@@ -1,0 +1,107 @@
+{
+  "schema_version": "viv_cpu_telic_reflection_query_v1",
+  "receipt_schema": "viv_cpu_telic_reflection_query_receipt_v1",
+  "status": "candidate_only",
+  "purpose": "link_raw_model_origin_telic_reflection_to_bounded_documentation_query",
+  "parents": {
+    "telic_reflection_v2_receipt_sha256": "CB55C3D092B40E2F1385794DC69889FAB44DADBA8F1E2C3D67F11F987257B797",
+    "telic_reflection_v2_checkpoint_sha256": "F72CC151CF7DB8DAC6542E590140A4F85D3D93580A0D9EB46EEBDA30F0EA4F03",
+    "query_surface_v4_checkpoint_sha256": "656C4DF08B12136614FF41E02C35EC78E6353CA3229872323D57FE9F3C1CE1BC",
+    "query_parser_schema": "viv_cpu_model_directed_grammar_v3",
+    "documentation_oracle_schema": "viv_documentation_oracle_v1"
+  },
+  "reflection_contract": {
+    "frame": "REEVALUATE|d=<dimension>|t=<tension_slot>|e=<evidence_slot>",
+    "clean_frame": "NO_REEVALUATION",
+    "cpu_admission": "model_origin_success AND cpu_final_disposition=REEVALUATION_CANDIDATE",
+    "no_query_after_clean_or_insufficient": true,
+    "raw_output_repair": false,
+    "answer_substitution": false
+  },
+  "query_contract": {
+    "frame": "Q|<bounded_terms>|<scope>|<top_k>",
+    "oracle_called_only_after_raw_query": true,
+    "hidden_query_objective": true,
+    "allowed_scopes": ["architecture", "contract", "operations", "research", "evidence"],
+    "allowed_top_k": [1, 2, 3],
+    "metadata_only": true
+  },
+  "lifecycle": [
+    "OBSERVE",
+    "REFLECT",
+    "CPU_VALIDATE",
+    "RETRIEVE",
+    "RECORD",
+    "COMPLETE",
+    "HOLD",
+    "ABSTAIN"
+  ],
+  "authority": {
+    "model_can_propose_reflection": true,
+    "model_can_propose_query": true,
+    "cpu_validates_reflection": true,
+    "cpu_validates_query_evidence": true,
+    "model_can_execute": false,
+    "model_can_schedule": false,
+    "rust_remains_write_membrane": true,
+    "human_approval_required_for_adoption": true
+  },
+  "adversarial_cases": [
+    "irrelevant_query",
+    "invented_premise",
+    "out_of_authority_scope",
+    "query_after_no_reevaluation",
+    "query_after_insufficient_evidence"
+  ],
+  "training": {
+    "device": "cpu",
+    "additional_training": false,
+    "seed": 43,
+    "repeats": 2,
+    "live_model_write": false,
+    "seed_write": false,
+    "publish": false
+  },
+  "guards": ["--isolated", "--no-publish"],
+  "forbidden": [
+    "source_paths",
+    "source_bodies",
+    "python",
+    "shell",
+    "arbitrary_paths",
+    "post_retrieval_evidence",
+    "cpu_query_substitution",
+    "production_generation",
+    "registry_mutation",
+    "seed_mutation",
+    "gpu_authority"
+  ],
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_excluded": true,
+    "volatile_fields_excluded": [
+      "created_utc",
+      "run_id",
+      "wall_seconds",
+      "inference_wall_seconds",
+      "retrieval_wall_seconds",
+      "receipt_sha256",
+      "receipt_hash_valid_before_write",
+      "receipt_hash_valid_after_write"
+    ]
+  },
+  "gates": {
+    "reflection_parent_replay": true,
+    "linked_query_success_minimum": 5,
+    "linked_dimension_coverage_minimum": 4,
+    "clean_no_query_required": 6,
+    "insufficient_no_query_required": 2,
+    "cpu_unauthorized_accepts": 0,
+    "deterministic_repeats": true,
+    "rust_probe": "HOLD_SECURITY",
+    "candidate_only": true
+  }
+}

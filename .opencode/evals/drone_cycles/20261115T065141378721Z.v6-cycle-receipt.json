@@ -1,0 +1,127 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "work_final_or_body_gate_verification_failed",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_read",
+  "session_id": "ses_e2206c463ffekoTZFKTqeygjZI",
+  "session_recovery": null,
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "read"
+  ],
+  "final_validation": "final_report_missing_drone_tag",
+  "intermediate_validation": {
+    "passed": true,
+    "reason": "no_intermediate_tool_boundary"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794725464568-4b3e1300-a556-4edc-88c2-53dc87f6214d-body-gate.json",
+      "sha256": "f5d0b6a079d601236678ee816ccfe8d3ded82f286b601a0f3eff04b11a69dc43",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794725479624-5c47d48f-1478-4252-b046-60cb1f14d9f9-body-gate.json",
+      "sha256": "4b70d80bba24ea54abf2506a9d4da0bc1870a2a84c5bd8d028c097f739613f1f",
+      "source": "tool:read",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794725483227-caa1e9c6-54d8-4ca6-8927-8e8331d266a7-body-gate.json",
+      "sha256": "d5acc1c5d05a2d9e105eb66f015bd3a09fa741d59349fa4a813731dd6281fbda",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794725491142-a7cb3944-f5a6-424c-98c3-1e431950eb7e-body-gate.json",
+      "sha256": "31a8a1f9c76fa61d0ffad9d63ada1b084e38780ebc99f7f46ceb281bf00d8a6b",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "reasons": []
+    }
+  ],
+  "assignment_sha256": "83d79c3bf8c77ced25100847a4880933a213bd36c7e5997f4a5bf72613c510de",
+  "work": {
+    "agent": "drone_read",
+    "elapsed_seconds": 40.313,
+    "exit_code": 0,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e2206c463ffekoTZFKTqeygjZI"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "4ce8aae7e91f12ae31a7d95233706024c466cfeff3ce6ec841223eabd9c0c51e",
+    "tools": [
+      {
+        "tool": "read",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [],
+    "task_succeeded": true,
+    "task_errors": [],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\n\nAgenda: Execute read tool once, report file name and verified fact from contents\n\nVerified facts: LocalCoder\n\nNext bounded action: STOP"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T065100741378Z",
+    "wrapper_exit": 0,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T065100650281Z.prompt.txt",
+    "dispatcher_final_text": [
+      "[DRONE SELF-PROMPT]\n\nAgenda: Execute read tool once, report file name and verified fact from contents\n\nVerified facts: LocalCoder\n\nNext bounded action: STOP"
+    ]
+  }
+}

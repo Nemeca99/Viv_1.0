@@ -1,0 +1,47 @@
+{
+  "status": "HOLD",
+  "scope": "one task-scoped Python file; staged before dispatch",
+  "source": "L:\\LocalCoder\\workspace\\hive_quality\\tmp5g3sr2tw\\unused.py",
+  "source_sha256": "5F1B71ACFD24996DD9047200A31B0F0C41F3720782D164A7A257BC2E4E828CAB",
+  "prepared": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1791487527728502000_1ab8a1fe\\unused.py",
+  "prepared_sha256": "5F1B71ACFD24996DD9047200A31B0F0C41F3720782D164A7A257BC2E4E828CAB",
+  "diff": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1791487527728502000_1ab8a1fe\\preparation.diff",
+  "checks": {
+    "format": {
+      "argv": [
+        "black",
+        "--quiet",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1791487527728502000_1ab8a1fe\\unused.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "ruff": {
+      "argv": [
+        "ruff",
+        "check",
+        "--no-cache",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1791487527728502000_1ab8a1fe\\unused.py"
+      ],
+      "exit_code": 1,
+      "stdout": "F401 [*] `os` imported but unused\n --> hive_quality\\runs\\1791487527728502000_1ab8a1fe\\unused.py:1:8\n  |\n1 | import os\n  |        ^^\nhelp: Remove unused import: `os`\n  |\n  - import os\n  |\n\nFound 1 error.\n[*] 1 fixable with the `--fix` option.\n",
+      "stderr": ""
+    },
+    "vulture": {
+      "argv": [
+        "vulture",
+        "--min-confidence",
+        "100",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1791487527728502000_1ab8a1fe\\unused.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "compile": {
+      "exit_code": 0,
+      "diagnostic": ""
+    }
+  }
+}

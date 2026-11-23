@@ -1,0 +1,32 @@
+{
+  "schema_version": "viv_model_origin_prompt_integrity_v1",
+  "status": "current_candidate_only",
+  "purpose": "Reject model-facing prompts that expose an expected answer or unsafe source material before authorship is scored.",
+  "principles": {
+    "raw_model_output_preserved": true,
+    "cpu_answer_substitution_forbidden": true,
+    "target_text_to_model_forbidden": true,
+    "source_bodies_to_model_forbidden": true,
+    "native_paths_to_model_forbidden": true,
+    "observed_predecision_state_allowed": true
+  },
+  "phase_rules": {
+    "OBSERVE": ["expected_assignment", "target_assignment", "answer_assignment"],
+    "RETRIEVE": ["expected_assignment", "target_assignment", "fixed_scope_answer", "fixed_top_k_answer"],
+    "CANDIDATE_PLAN": ["selected_key", "selected_literal", "selected_value_slot", "expected_assignment", "target_assignment"],
+    "MEASURE": ["candidate_answer", "cpu_answer", "expected_assignment", "target_assignment", "disposition_assignment"],
+    "SCHEDULE": ["next_answer", "chosen_answer", "fixed_experiment_answer"]
+  },
+  "admission": {
+    "prompt_must_be_single_line": true,
+    "max_prompt_characters": 2048,
+    "hidden_target_terms_are_cpu_side_only": true,
+    "any_violation": "HOLD_MODEL_ORIGIN_PROMPT_LEAKAGE"
+  },
+  "hashing": {
+    "encoding": "UTF-8",
+    "json_sort_keys": true,
+    "json_trailing_lf": true,
+    "sha256_uppercase": true
+  }
+}

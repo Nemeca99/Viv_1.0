@@ -1,0 +1,30 @@
+{
+  "schema_version": "viv_cpu_universal_translator_v1",
+  "experiment_id": "cpu_universal_translator_v1",
+  "role": "universal_translator",
+  "position": "end_gate",
+  "purpose": "Last accuracy check on output. Words in and words out must match the CPU card. Language may leave tagged. Lies do not emit as FACT.",
+  "candidate_only": true,
+  "gpu_required": false,
+  "loads_weights": false,
+  "cpu_owns": "output_accuracy",
+  "enigma": "encode language to CPU/UML card, decode only if the card still holds",
+  "classes": [
+    "LANGUAGE_PROPOSAL",
+    "TRUTH_ANCHORED",
+    "HOLD_LIE",
+    "ABSTAIN"
+  ],
+  "emit": {
+    "TRUTH_ANCHORED": "lossless_mouth_text_as_fact",
+    "LANGUAGE_PROPOSAL": "tagged_language_not_fact",
+    "HOLD_LIE": "no_emit",
+    "ABSTAIN": "no_emit"
+  },
+  "forbidden": {
+    "gpu_authors_fact": true,
+    "hold_painted_as_pass": true,
+    "skip_end_gate": true,
+    "kill_pretrain": true
+  }
+}

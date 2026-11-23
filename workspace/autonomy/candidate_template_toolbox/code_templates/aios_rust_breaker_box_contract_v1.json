@@ -1,0 +1,119 @@
+{
+  "schema_version": "aios_rust_breaker_box_contract_v1",
+  "surface_id": "aios_rust_breaker_box_v1",
+  "epistemic": "FACT",
+  "purpose": "Topology only: Viv plugs into Rust; Rust plugs into the OS. The breaker is Security IN then Security OUT with 120V in = 120V out integrity. Not a binary rebuild.",
+  "citation": "foundation/docs/architecture/AIOS_120_IN_120_OUT_V1.md",
+  "do_not_edit": [
+    "foundation/docs/COLD_START.md",
+    "COLD_START.md",
+    "security_core/runtime/security_core.pyd"
+  ],
+  "topology": {
+    "she_plugs_into": "rust",
+    "rust_plugs_into": "os",
+    "viv_os_direct": false,
+    "flow": [
+      "Viv/CPU request",
+      "CPU universal translator verifies truth",
+      "Rust breaker box: Security IN then Security OUT",
+      "OS filesystem/process/network/drives"
+    ],
+    "metaphor": {
+      "load": "Viv/CPU request",
+      "breaker_box": "Rust security_core",
+      "poles": ["security_in", "security_out"],
+      "utility_feed": "OS"
+    }
+  },
+  "electricity": {
+    "principle": "120V in → 120V out",
+    "meaning": "same_integrity_contract_both_directions",
+    "what_is_allowed_in_may_go_out": true,
+    "voltage_in_equals_voltage_out": true,
+    "ingress": "security_in",
+    "egress": "security_out",
+    "gate_rs": "Ingress/Egress only",
+    "cold_start_envelope": "Security IN → CPU → Security OUT",
+    "not": [
+      "120_input_channels",
+      "120_output_channels",
+      "120_packets",
+      "120_pins",
+      "120_wide_bus",
+      "rid_120s_capture_duration"
+    ],
+    "rid_120s": {
+      "same_number": false,
+      "meaning": "plant_capture_duration_seconds",
+      "do_not_collapse": true
+    }
+  },
+  "expected_rust_sha256": "6BCA1C84F9BE871D8F5876A7F84DE8D4437E21A10C602A9E67F55EB162005261",
+  "pyd_path": "security_core/runtime/security_core.pyd",
+  "deny": {
+    "disposition": "HOLD",
+    "os_direct_viv_syscall": true,
+    "actors": [
+      "viv",
+      "cpu",
+      "coder",
+      "helm",
+      "night-watch",
+      "night_watch",
+      "mailbox",
+      "shell",
+      "gpu",
+      "autonomous"
+    ],
+    "actions": [
+      "direct_os_write",
+      "direct_os_delete",
+      "direct_os_shell",
+      "direct_os_network",
+      "direct_os_drive",
+      "python_second_plug_durable_py",
+      "python_second_plug_off_sandbox",
+      "python_second_plug_off_l",
+      "bypass_rust_deny_because_local_test_adapter_ok"
+    ]
+  },
+  "allow": {
+    "cpu_ask_breaker_probe": true,
+    "isolated_candidate_persist_records_real_rust_decision": true,
+    "captain_offline_rust_modify": "not_this_module_write_path"
+  },
+  "python_write": {
+    "route": "rust_mediated",
+    "must_probe_rust_first": true,
+    "adapter": "lib.security_bridge.authorize_python_write",
+    "do_not_duplicate_probe": true,
+    "test_adapter_cannot_override_rust_deny": true,
+    "expected_production_probe": "HOLD_SECURITY"
+  },
+  "runtime_lock": {
+    "module": "lib.aios_rust_runtime_lock",
+    "import_or_skip": true,
+    "do_not_reimplement": true,
+    "viv_modifying_breaker_while_running": "HOLD_RUST_LEASH"
+  },
+  "cli": {
+    "runner": "build_tools/run_aios_rust_breaker_box_v1.py",
+    "allowed_commands": ["status"],
+    "reports": [
+      "she_plugs_into",
+      "rust_plugs_into",
+      "viv_os_direct",
+      "pyd_hash",
+      "electricity_120v_in_equals_120v_out",
+      "last_probe_hold_security"
+    ]
+  },
+  "protected_untouched": [
+    "security_core.pyd bytes",
+    "COLD_START.md",
+    "Seed 0",
+    "template registry",
+    "active pointer"
+  ]
+}

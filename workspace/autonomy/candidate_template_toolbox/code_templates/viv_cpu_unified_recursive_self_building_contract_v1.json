@@ -1,0 +1,93 @@
+{
+  "schema_version": "viv_cpu_unified_recursive_self_building_contract_v1",
+  "receipt_schema": "viv_cpu_unified_recursive_self_building_receipt_v1",
+  "parent_receipt_schema": "viv_cpu_unified_self_building_receipt_v2",
+  "candidate_only": true,
+  "isolated_required": true,
+  "no_publish_required": true,
+  "device": "cpu",
+  "seed": 43,
+  "max_cycles": 2,
+  "max_schedule_repeats_per_cycle": 1,
+  "repeats": 2,
+  "lifecycle": [
+    "OBSERVE",
+    "RETRIEVE",
+    "HYPOTHESIZE",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "RECORD",
+    "SCHEDULE",
+    "OBSERVE"
+  ],
+  "direct_proposal_to_sandbox": false,
+  "model_origin_required_for": [
+    "deficiency",
+    "query",
+    "action",
+    "variable",
+    "result",
+    "schedule"
+  ],
+  "model_output_repair_allowed": false,
+  "model_answer_substitution_allowed": false,
+  "live_observation": {
+    "source": "foundation/lib/viv_model_directed_live.py",
+    "verified_state_required": true,
+    "stale_or_contradictory_state": "HOLD_UNIFIED_RECURSIVE_LIVE_OBSERVATION",
+    "source_catalog_rebuilt": false
+  },
+  "approved_template_scope": [
+    "fixture.echo"
+  ],
+  "approved_scheduler_scope": "lib.viv_model_directed_self_development.approved_experiment_cards",
+  "production_write": {
+    "probe_required": true,
+    "expected_state": "HOLD_SECURITY",
+    "pointer_change": false,
+    "registry_change": false,
+    "production_generation": false
+  },
+  "protected_state": {
+    "seed_generation": 0,
+    "training_authority_open": false,
+    "promotion_authority_open": false,
+    "deployment_authority_open": false,
+    "gpu_execution": false,
+    "live_model_mutation": false,
+    "protected_main_mutation": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "receipt_hash_scope": "canonical_json_without_receipt_sha256",
+    "volatile_fields_excluded_from_behavior_digest": [
+      "created_utc",
+      "run_id",
+      "cycle_receipt_sha256",
+      "cycle_receipt_file_sha256",
+      "normalized_cycle_sha256",
+      "temporary_path",
+      "target_path",
+      "wall_seconds",
+      "inference_wall_seconds",
+      "decision_id",
+      "generator_seed",
+      "packet_sha256",
+      "model_packet_sha256"
+    ]
+  },
+  "failure_states": [
+    "HOLD_UNIFIED_RECURSIVE_PREFLIGHT",
+    "HOLD_UNIFIED_RECURSIVE_LIVE_OBSERVATION",
+    "HOLD_UNIFIED_RECURSIVE_MODEL",
+    "HOLD_UNIFIED_RECURSIVE_EVIDENCE",
+    "HOLD_UNIFIED_RECURSIVE_DETERMINISM",
+    "HOLD_UNIFIED_RECURSIVE_SECURITY",
+    "FAIL_UNIFIED_RECURSIVE_PROTECTED_STATE"
+  ]
+}

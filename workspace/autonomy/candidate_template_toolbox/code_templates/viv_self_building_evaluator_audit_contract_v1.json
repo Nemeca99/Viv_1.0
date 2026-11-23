@@ -1,0 +1,48 @@
+{
+  "schema_version": "viv_self_building_evaluator_audit_v1",
+  "purpose": "Audit whether self-building curriculum prompts expose the answer being scored.",
+  "status": "diagnostic_only",
+  "authority": "cpu_audit_only",
+  "historical_receipts_mutable": false,
+  "model_capability_conclusion_allowed": false,
+  "source_receipt_rewrite_allowed": false,
+  "cpu_gate_changed": false,
+  "harness_repair_allowed": false,
+  "phases": {
+    "reflection": "OBSERVE",
+    "query": "RETRIEVE",
+    "action": "CPU_VALIDATE",
+    "variable": "CANDIDATE_PLAN",
+    "result": "MEASURE",
+    "scheduler": "SCHEDULE",
+    "template": "CPU_VALIDATE"
+  },
+  "answer_bearing_rules": [
+    "variable prompts may expose bounded menus but not the selected key, literal, or value slot",
+    "result prompts may expose pre-decision measurements but not a candidate/cpu/final disposition assignment",
+    "scheduler prompts may expose the complete pre-decision matrix but not a marker that identifies the expected next slot",
+    "action prompts may expose approved template menus but not the selected template slot",
+    "template prompts may expose the complete template and variable menu but not a selected template or requested variable",
+    "raw model output remains the authorship source and is never repaired by the audit"
+  ],
+  "allowed_observation_fields": [
+    "bounded metric",
+    "verified evidence state",
+    "approved menu",
+    "pre-decision measurement",
+    "authority state",
+    "resource budget",
+    "prior state"
+  ],
+  "forbidden_content": [
+    "native paths",
+    "source bodies",
+    "python",
+    "shell",
+    "generated code",
+    "checkpoint paths",
+    "expected answer text",
+    "selected literal assignments",
+    "post-decision fields"
+  ]
+}

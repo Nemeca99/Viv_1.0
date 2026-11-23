@@ -1,0 +1,173 @@
+{
+  "info": {
+    "id": "ses_e218ad515ffegal6DqAOPyj7kn",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "drone_build",
+    "cost": 0,
+    "tokens": {
+      "input": 11636,
+      "output": 730,
+      "reasoning": 144,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794733583084,
+      "updated": 1794733694722,
+      "busy": 1794733583096,
+      "idle": 1794733694725
+    },
+    "title": "LocalCoder Drone 20261115T090622854249Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1de752af3001I6wYWw1WfU9qfu",
+      "time": {
+        "created": 1794733583091
+      },
+      "type": "agent-switched",
+      "agent": "drone_build",
+      "previous": "drone_build"
+    },
+    {
+      "id": "msg_1de752af2001PryU0o2OfZ8I8k",
+      "time": {
+        "created": 1794733583102
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\n[BOUNDED ARCHITECT ASSIGNMENT]\nVerify the Queen-corrected copy at `workspace/autonomy/hive_agent_message_contract_v5_candidate.py`. Execute the assigned import and assertions with the LocalCoder Python environment. Report the exact shell output; a completed process alone is not acceptance.\n\nUse the shell tool exactly once with this command:\n`L:\\.venv\\Scripts\\python.exe -B -c \"import sys; sys.path.insert(0, r'L:\\LocalCoder\\workspace\\autonomy'); from hive_agent_message_contract_v5_candidate import validate_agent_message as v; good={'agent_id':'worker-1','agent_type':'model','task_id':'task-1','status':'DONE','audience':'mind','trust_class':'unverified_model_output','message':'candidate','artifact_refs':[],'claims':[{'text':'fact','evidence_ids':['src-1'],'kind':'retrieved_fact'}],'uncertainties':[],'conflicts_with':[],'parent_task_id':None}; assert v(good)==(); x=dict(good); x.pop('task_id'); assert 'MISSING_TASK_ID' in v(x); x=dict(good); x.pop('agent_type'); assert 'MISSING_AGENT_TYPE' in v(x); x=dict(good); x['claims']={}; assert 'CLAIMS_NOT_LIST' in v(x); x=dict(good); x['trust_class']='invalid'; assert 'INVALID_TRUST_CLASS' in v(x); x=dict(good); x['parent_task_id']=' '; assert 'INVALID_PARENT_TASK_ID' in v(x); assert v([])==('MESSAGE_NOT_OBJECT',); x=dict(good); x.pop('claims'); assert 'MISSING_CLAIMS' in v(x); x=dict(good); x['claims']=[{'text':'x','evidence_ids':[],'kind':'unknown'}]; assert 'INVALID_CLAIM_KIND' in v(x); x=dict(good); x['artifact_refs']=[1]; assert 'ARTIFACT_REF_ITEM_NOT_STRING' in v(x); x=dict(good); x['uncertainties']=[1]; assert 'UNCERTAINTIES_ITEM_NOT_STRING' in v(x); x=dict(good); x['conflicts_with']=[1]; assert 'CONFLICTS_WITH_ITEM_NOT_STRING' in v(x); x=dict(good); x['audience']='outside'; assert 'INVALID_AUDIENCE' in v(x); x=dict(good); x['agent_type']='robot'; assert 'INVALID_AGENT_TYPE' in v(x); x=dict(good); x['message']='  '; assert 'INVALID_MESSAGE' in v(x); x=dict(good); x['extra_field']='permitted'; assert v(x)==(); print('PASS: validator cases')\"\n\nAfter the tool, start with `[DRONE]`, name the exact v5 file, include the exact output `PASS: validator cases`, and finish with `[DRONE SELF-PROMPT]` containing Agenda:, Verified facts:, and `Next bounded action: STOP`. Do not claim success if the actual shell output differs.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: shell. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n\n[QUEEN → DRONE]\nExecute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1de752b030019yDAc2O3LLYt2s",
+      "time": {
+        "created": 1794733583112,
+        "firstToken": 1794733658670,
+        "streamed": 1794733658679,
+        "completed": 1794733663149
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_11",
+          "name": "shell",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "L:\\.venv\\Scripts\\python.exe -B -c \"import sys; sys.path.insert(0, r'L:\\LocalCoder\\workspace\\autonomy'); from hive_agent_message_contract_v5_candidate import validate_agent_message as v; good={'agent_id':'worker-1','agent_type':'model','task_id':'task-1','status':'DONE','audience':'mind','trust_class':'unverified_model_output','message':'candidate','artifact_refs':[],'claims':[{'text':'fact','evidence_ids':['src-1'],'kind':'retrieved_fact'}],'uncertainties':[],'conflicts_with':[],'parent_task_id':None}; assert v(good)==(); x=dict(good); x.pop('task_id'); assert 'MISSING_TASK_ID' in v(x); x=dict(good); x.pop('agent_type'); assert 'MISSING_AGENT_TYPE' in v(x); x=dict(good); x['claims']={}; assert 'CLAIMS_NOT_LIST' in v(x); x=dict(good); x['trust_class']='invalid'; assert 'INVALID_TRUST_CLASS' in v(x); x=dict(good); x['parent_task_id']=' '; assert 'INVALID_PARENT_TASK_ID' in v(x); assert v([])==('MESSAGE_NOT_OBJECT',); x=dict(good); x.pop('claims'); assert 'MISSING_CLAIMS' in v(x); x=dict(good); x['claims']=[{'text':'x','evidence_ids':[],'kind':'unknown'}]; assert 'INVALID_CLAIM_KIND' in v(x); x=dict(good); x['artifact_refs']=[1]; assert 'ARTIFACT_REF_ITEM_NOT_STRING' in v(x); x=dict(good); x['uncertainties']=[1]; assert 'UNCERTAINTIES_ITEM_NOT_STRING' in v(x); x=dict(good); x['conflicts_with']=[1]; assert 'CONFLICTS_WITH_ITEM_NOT_STRING' in v(x); x=dict(good); x['audience']='outside'; assert 'INVALID_AUDIENCE' in v(x); x=dict(good); x['agent_type']='robot'; assert 'INVALID_AGENT_TYPE' in v(x); x=dict(good); x['message']='  '; assert 'INVALID_MESSAGE' in v(x); x=dict(good); x['extra_field']='permitted'; assert v(x)==(); print('PASS: validator cases')\"",
+              "timeout": 30000
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "PASS: validator cases\r\n"
+              }
+            ],
+            "metadata": {
+              "status": "completed",
+              "truncated": false,
+              "exit": 0
+            }
+          },
+          "time": {
+            "created": 1794733658671,
+            "ran": 1794733658676,
+            "completed": 1794733662048
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "387c985a9dfc1be7681689a069f88438b4f644ae",
+        "end": "b34551fc88781b175a73efa67f09712f00f9bf05",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794733661563-dfb639c9-bfc5-4c76-b327-5b3124bbfd0e-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794733661576-fbfe4ff6-25b7-491a-94fa-57f594faedea.json",
+          "LocalCoder/.opencode/receipts/1794733662040-65e41f5b-48a3-4149-af67-d7c4662331bc.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 5790,
+        "output": 558,
+        "reasoning": 71,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1de7663b6001tAuKjaRQDx6jJR",
+      "time": {
+        "created": 1794733663163,
+        "firstToken": 1794733693815,
+        "streamed": 1794733693845,
+        "completed": 1794733694722
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The shell command executed successfully and returned the expected output `PASS: validator cases`. This confirms that the `validate_agent_message` function in `hive_agent_message_contract_v5_candidate.py` correctly validates all the test cases. The validation logic properly checks for missing required fields, invalid values, and enforces the correct data types as specified by the Architect's test sequence.",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794733693818,
+            "completed": 1794733693843
+          }
+        },
+        {
+          "type": "text",
+          "text": "[DRONE]\nFile: `workspace/autonomy/hive_agent_message_contract_v5_candidate.py`\nFact: Shell output confirmed `PASS: validator cases`, indicating all validation assertions passed for the Queen-corrected message contract.\n\n[DRONE SELF-PROMPT]\nAgenda: Verification complete; no further actions required per Architect's bounded assignment.\nVerified facts: The `validate_agent_message` function in `hive_agent_message_contract_v5_candidate.py` correctly enforced all field validations, including missing fields (`MISSING_TASK_ID`, `MISSING_AGENT_TYPE`, etc.), invalid values (`INVALID_TRUST_CLASS`, `INVALID_AUDIENCE`, etc.), and type constraints (e.g., `ARTIFACT_REF_ITEM_NOT_STRING`). The test suite passed with output `PASS: validator cases`.\nNext bounded action: STOP"
+        }
+      ],
+      "snapshot": {
+        "start": "a74a40a288a6ed109e8e20270842e8ecd801b95c",
+        "end": "a74a40a288a6ed109e8e20270842e8ecd801b95c",
+        "files": []
+      },
+      "finish": "stop",
+      "rawFinish": "stop",
+      "cost": 0,
+      "tokens": {
+        "input": 5846,
+        "output": 172,
+        "reasoning": 73,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1de76df050016VSWER9vbftyNR",
+      "time": {
+        "created": 1794733694725
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    }
+  ]
+}

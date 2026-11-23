@@ -1,0 +1,11 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+[QUEEN] Your CLI patch matched an imagined old __main__ block, so it made no changes. The file currently ends with the lookup return dict. Append after that real tail. Your draft also used undefined os/sys, a missing source default, and parse_args(argv or []) which ignores real CLI arguments; correct those.
+1. Use read on `L:/LocalCoder/workspace/autonomy/receipt_failure_lookup_candidate.py` with offset 207 and limit 20.
+2. Use localcoder_patch tool. Match only the final return tail that actually exists, append def main(argv=None) and the guard. Inside main import argparse, use parser.parse_args(argv), default root Path(__file__).resolve().parents[2] / '.opencode/evals/receipt_flags_20261117', default source Path(__file__).with_name('typed_composition_receipt_audit_v2_candidate.py'); --case optional, --limit type=int default8. Print json.dumps(lookup_failures(...)) and return0; catch ValueError/OSError to JSON error and return1. End with if __name__ == '__main__': raise SystemExit(main()). No os or sys imports needed. Preserve both checked functions.
+<localcoder_patch_paths>
+workspace/autonomy/receipt_failure_lookup_candidate.py
+</localcoder_patch_paths>
+3. Use shell with exactly `& 'L:/.venv/Scripts/python.exe' -B 'L:/LocalCoder/.opencode/evals/failure_lookup_20261117/verify_cli.py'`.
+Report actual output normally.
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized supervised coding in this same session; the independent checker is frozen.

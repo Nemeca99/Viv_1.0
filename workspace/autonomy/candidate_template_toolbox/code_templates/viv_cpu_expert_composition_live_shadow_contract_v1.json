@@ -1,0 +1,66 @@
+{
+  "schema_version": "viv_cpu_expert_composition_live_shadow_contract_v1",
+  "purpose": "Attach the independently verified CPU route-level expert composition to the existing read-only live-shadow lifecycle.",
+  "status": "candidate_only",
+  "execution": {
+    "isolated": true,
+    "no_publish": true,
+    "training": false,
+    "optimizer_calls": 0,
+    "checkpoint_writes": 0,
+    "max_repeats": 2,
+    "gpu_execution": false,
+    "background_daemon": false
+  },
+  "router": {
+    "authority": "CPU_RULE",
+    "model_origin_claim": false,
+    "route_map": {
+      "OBSERVE": "reflection_specialist",
+      "RETRIEVE": "unified_parent",
+      "CANDIDATE_PLAN": "unified_parent",
+      "MEASURE": "unified_parent",
+      "SCHEDULE": "unified_parent"
+    },
+    "same_tokenizer": true,
+    "same_cpu_deterministic_settings": true
+  },
+  "lifecycle": [
+    "OBSERVE",
+    "RETRIEVE",
+    "HYPOTHESIZE",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "ACCEPT",
+    "REJECT",
+    "HOLD",
+    "RECORD",
+    "SCHEDULE",
+    "COMPLETE"
+  ],
+  "forbidden_transitions": [
+    [
+      "HYPOTHESIZE",
+      "SANDBOX_TEST"
+    ]
+  ],
+  "protected_effects": {
+    "seed_0": "unchanged",
+    "live_model": "unchanged",
+    "registry": "unchanged",
+    "active_pointer": "unchanged",
+    "protected_mains": "unchanged",
+    "rust_integrity": "unchanged",
+    "production_generation": "none",
+    "production_write": "HOLD_SECURITY"
+  },
+  "nonclaims": [
+    "not_a_fused_checkpoint",
+    "not_unified_model_origin",
+    "not_autonomous_router_choice",
+    "not_production_adoption",
+    "not_gpu_usefulness_evidence"
+  ]
+}

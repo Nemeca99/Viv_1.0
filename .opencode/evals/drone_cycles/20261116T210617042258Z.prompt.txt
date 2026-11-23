@@ -1,0 +1,17 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Add exactly one new Python file `workspace/autonomy/run_visible_drone_cycle_v8.py`. V7 stays immutable. V7 pins the old Body goal; this wrapper must temporarily set V7.ARCHITECT_GOAL_ID to `01a1e340-84ed-77c3-92f3-3eb738b89f5b` and add `aios_router_lookup_drone_seed` to V7.SUPPORTED_TOOLS only during delegation, then restore both in `finally`. Expose `run_cycle(assignment, seconds=120)`, an assignment-file/--seconds CLI, and `--self-check`. The self-check must replace V7.run_cycle with a fake (no model, Body, network or file writes), verify delegation sees the current goal and seed tool, verify the result is returned, and verify original globals are restored; print exactly `PASS: 4 checks`. Keep the file under 100 physical lines.
+Call the aios_router_lookup_drone_seed tool first with agent_id localcoder-viv-drone-01.
+Call the aios_router_open_build_task tool for this single bounded V8 wrapper and self-check, using lane_ids `['drone']`.
+Call the read tool on `workspace/autonomy/run_visible_drone_cycle_v7.py`.
+Call the aios_router_accept_self_prompt tool with lane_id `drone` after the visible self-prompt following the read.
+Call the localcoder_add_python tool for exactly `workspace/autonomy/run_visible_drone_cycle_v8.py`.
+Call the shell tool with exactly `& 'L:\.venv\Scripts\python.exe' workspace/autonomy/run_visible_drone_cycle_v8.py --self-check`.
+Call the aios_router_record_turn_result tool with the observed add and shell-check result.
+Call the aios_router_complete_lane tool only after the check passes. Stop after that.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: aios_router_lookup_drone_seed → aios_router_open_build_task → read → aios_router_accept_self_prompt → localcoder_add_python → shell → aios_router_record_turn_result → aios_router_complete_lane. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Every field must contain non-empty text; do not put commas after labels. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields, each non-empty and on its own line. Final Verified facts must repeat one concrete fact anchor from the read output and include the exact shell output when a shell check was assigned. Next bounded action must be STOP. Do not invent tool results or claim unverified work.

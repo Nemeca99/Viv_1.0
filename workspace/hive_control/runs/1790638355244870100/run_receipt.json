@@ -1,0 +1,227 @@
+{
+  "artifact": {
+    "path": "runs\\1790638355244870100\\hello.py",
+    "sha256": "539a41b22de5d96e39079a74b387ff1b11ce8cc5ccdc44e4274db19a1bf5afd9"
+  },
+  "fault_injected": false,
+  "foreman_snapshot_id": "3a01e585087222ca367708677eb05c6d20b17700cd36850881d6ee8d4d001af8",
+  "human_reply": {
+    "route": "Queen -> Viv -> task-003",
+    "value": "Hello from the Hive!"
+  },
+  "mind_generations": 2,
+  "mind_greeting_metrics": {
+    "done_reason": "stop",
+    "eval_count": 34,
+    "load_duration": 2232500,
+    "prompt_eval_count": 546,
+    "total_duration": 651421700
+  },
+  "mind_header_metrics": {
+    "done_reason": "stop",
+    "eval_count": 54,
+    "load_duration": 2677900,
+    "prompt_eval_count": 551,
+    "total_duration": 1517716500
+  },
+  "mode": "live",
+  "numeric_bridge": {
+    "numpy_version": "2.5.3",
+    "summary": {
+      "advanced_index_is_copy": true,
+      "astype_dtype": "float64",
+      "astype_is_copy": true,
+      "axis0_sum": [
+        12,
+        15,
+        18,
+        21
+      ],
+      "base_dtype": "int32",
+      "base_shape": [
+        3,
+        4
+      ],
+      "broadcast_shape": [
+        3,
+        4
+      ],
+      "elementwise_shape": [
+        2,
+        2
+      ],
+      "matrix_product": [
+        [
+          11.0
+        ]
+      ],
+      "reshape_shares_memory": true,
+      "slice_is_view": true
+    }
+  },
+  "python_role": "data transport only",
+  "ready_cohorts": [
+    [
+      "task-001"
+    ],
+    [
+      "task-002"
+    ],
+    [
+      "human-greeting"
+    ],
+    [
+      "task-003"
+    ]
+  ],
+  "rust_owns": [
+    "task state",
+    "OS entropy and master key",
+    "snapshot encryption",
+    "tool grants",
+    "artifact commits",
+    "receipt"
+  ],
+  "schema": "hive_rust_control_run_v1",
+  "scope": "isolated LocalCoder proof; no training, promotion, or deployment",
+  "security_checks": {
+    "master_key_in_worker_context": false,
+    "unapproved_peer_denied": true,
+    "unapproved_shell_denied": true,
+    "wrong_task_owner_denied": true
+  },
+  "source_sha256": {
+    "numpy_backend": "225046e86a4fafd4d8db260086fb4a82350bc9e27623c4f5c450c40adf2796f4",
+    "python_switchboard": "f0686f2f17730e3225610e3c735dc43d5be2e136b52ec3bab1046db3408d6ce2",
+    "rust_control": "f1655627dc3b0ecd199dffe05efdbdc6ce5346484c8c28da4d0ef78ab4c31480",
+    "rust_runner": "e6910c170f445fc3d2573fb69d8c1c263b07db964bd83a8d0e5c79fd11413065",
+    "template_registry": "a8f887b9f153060c805c3ac703bd167ea4c380d40f74928ed082af26a9a30b2e"
+  },
+  "status": "PASS",
+  "swarm_generation_count": 0,
+  "task_graph": [
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "queen-via-viv",
+        "agent_kind": "human",
+        "capability": "reply",
+        "depends_on": [
+          "task-002"
+        ],
+        "id": "human-greeting",
+        "objective": "Supply the greeting string"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-header",
+        "agent_kind": "deterministic",
+        "capability": "stamp-template",
+        "depends_on": [],
+        "id": "task-001",
+        "objective": "Stamp the module header"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-import",
+        "agent_kind": "deterministic",
+        "capability": "stamp-template",
+        "depends_on": [
+          "task-001"
+        ],
+        "id": "task-002",
+        "objective": "Stamp the selected import"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-function",
+        "agent_kind": "deterministic",
+        "capability": "stamp-template",
+        "depends_on": [
+          "task-002",
+          "human-greeting"
+        ],
+        "id": "task-003",
+        "objective": "Stamp the greeting function"
+      },
+      "state": "completed"
+    }
+  ],
+  "task_index": [
+    {
+      "artifact_sha256": "a51affadaa26ab8b02af350e040e3917515829e161c111655a4bdee384dec702",
+      "checksum": "d4236e1df4bbfa2bfecce6c80aa9d11f70839c8fbea033861bac574c7189b5b6",
+      "owner": "stamp-header",
+      "parent": null,
+      "state": "Completed",
+      "task_id": "task-001"
+    },
+    {
+      "artifact_sha256": "aabd92042d969ed0235db7d37a1bc051cb1c124e7a5398f011efe5a9d2359d2a",
+      "checksum": "034944d8966135dad76c17ab02d4e59bc16c5d6ed58e001359cccd21e5d135c3",
+      "owner": "stamp-import",
+      "parent": "task-001",
+      "state": "Completed",
+      "task_id": "task-002"
+    },
+    {
+      "artifact_sha256": "539a41b22de5d96e39079a74b387ff1b11ce8cc5ccdc44e4274db19a1bf5afd9",
+      "checksum": "5ab11b520bcfadbb42168ea4993e0dcd81679f0bbfc7570301e5859407e289a7",
+      "owner": "stamp-function",
+      "parent": "task-002",
+      "state": "Completed",
+      "task_id": "task-003"
+    }
+  ],
+  "tasks": [
+    {
+      "artifact_sha256": "a51affadaa26ab8b02af350e040e3917515829e161c111655a4bdee384dec702",
+      "checksum": "d4236e1df4bbfa2bfecce6c80aa9d11f70839c8fbea033861bac574c7189b5b6",
+      "generation_count": 0,
+      "owner": "stamp-header",
+      "parent": null,
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-001",
+      "template_id": "python.module_docstring",
+      "template_source_sha256": "f13f73d2ad5457028632ac8af982012c047f7128f34c0c07eb25fa01c26511bd"
+    },
+    {
+      "artifact_sha256": "aabd92042d969ed0235db7d37a1bc051cb1c124e7a5398f011efe5a9d2359d2a",
+      "checksum": "034944d8966135dad76c17ab02d4e59bc16c5d6ed58e001359cccd21e5d135c3",
+      "generation_count": 0,
+      "owner": "stamp-import",
+      "parent": "task-001",
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-002",
+      "template_id": "python.typing_final_import",
+      "template_source_sha256": "4cf00c254e8ae8a65f5174806728bbbbe379c0fc9da9863d1657b5a21a89d68b"
+    },
+    {
+      "artifact_sha256": "539a41b22de5d96e39079a74b387ff1b11ce8cc5ccdc44e4274db19a1bf5afd9",
+      "checksum": "5ab11b520bcfadbb42168ea4993e0dcd81679f0bbfc7570301e5859407e289a7",
+      "generation_count": 0,
+      "owner": "stamp-function",
+      "parent": "task-002",
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-003",
+      "template_id": "python.greeting_function",
+      "template_source_sha256": "5aded09231abe636de33cf5f5808536f5d0f4a3664765cdb4d9b326457169573"
+    }
+  ],
+  "validation": {
+    "actual": "Hello from the Hive!",
+    "passed": true
+  }
+}

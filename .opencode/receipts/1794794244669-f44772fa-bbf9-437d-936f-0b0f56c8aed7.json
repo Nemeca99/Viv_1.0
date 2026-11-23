@@ -1,0 +1,28 @@
+{
+  "schema": "lmstudio_toolbridge_diagnostic_v1",
+  "event": "provider_request",
+  "request_id": "d95c23b4-720b-4c9a-8894-f1a15a201ef8",
+  "session_id": "ses_e1dede10cffe3mCgX0fo0NNUvs",
+  "request_path": "/v1/chat/completions",
+  "model": "omnicoder-2-9b",
+  "prompt_chars": 512,
+  "prompt_sha256": "ff1e4edd9ea80091e7f017dde96c3c0bcf126046157a8b180239242667963de6",
+  "tool_field_count": 1,
+  "tool_schemas": [
+    {
+      "name": "localcoder_add_python",
+      "required": [
+        "filePath",
+        "content"
+      ],
+      "property_names": [
+        "content",
+        "filePath"
+      ],
+      "additional_properties": false
+    }
+  ],
+  "tool_choice": "required",
+  "forced_drone_tool_choice": "localcoder_add_python",
+  "captured_at": "2026-11-16T01:57:24.668Z"
+}

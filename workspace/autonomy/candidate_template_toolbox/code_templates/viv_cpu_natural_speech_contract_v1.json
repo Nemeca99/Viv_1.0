@@ -1,0 +1,95 @@
+{
+  "schema_version": "viv_cpu_natural_speech_contract_v1",
+  "status": "candidate_only",
+  "purpose": "Measure first-party model speech proposals while keeping CPU meaning and authority final.",
+  "model_boundary": {
+    "model": "viv_slm_seed_0000",
+    "checkpoint_role": "unchanged_seed0_parent",
+    "device": "cpu",
+    "external_model_or_api": false,
+    "weight_mutation": false
+  },
+  "inference": {
+    "lane": "efficient",
+    "role": "cpu_speech_candidate",
+    "temperature": 0.0,
+    "top_k": null,
+    "top_p": null,
+    "repetition_penalty": 1.0,
+    "max_new_tokens": 48,
+    "draft_mode": "cpu_gate",
+    "use_kv_cache": true,
+    "attention_backend": "cpu_sdpa",
+    "deterministic": true,
+    "torch_seed": 43,
+    "python_seed": 43,
+    "numpy_seed": 43,
+    "threads": 1,
+    "interop_threads": 1,
+    "float32_matmul_precision": "highest"
+  },
+  "speech_dispositions": {
+    "MODEL_AUTHORED_ACCEPT": "Raw model text passes the CPU mouth contract without fallback.",
+    "CPU_FALLBACK": "The CPU rejected or could not verify the raw proposal and supplied reviewed text.",
+    "HOLD": "The route or evidence is insufficient for an authorized answer.",
+    "CPU_AUTHORIZED": "The CPU route supplied the final fact-bound sentence.",
+    "MODEL_NOT_EVALUATED": "The request was not a reviewed probe and no model claim is made."
+  },
+  "evaluation_rule": {
+    "model_success_requires": [
+      "raw_model_text_nonempty",
+      "raw_model_text_speech_like",
+      "raw_model_text_passes_cpu_mouth_contract",
+      "fallback_used_is_false"
+    ],
+    "cpu_success_requires": [
+      "reviewed_route_is_verified",
+      "final_text_is_exact_cpu_authorized_text"
+    ],
+    "fallback_never_counts_as_model_success": true,
+    "quality_is_not_authority": true
+  },
+  "probe_contract": {
+    "source": "cpu_identity_router_v4",
+    "probe_kind": "reviewed_identity_and_conversation_routes",
+    "unsupported_queries": "hold",
+    "raw_model_input": "canonical_query_only",
+    "model_receives": [
+      "bounded_canonical_query",
+      "route_metadata_for_receipt_only"
+    ],
+    "model_does_not_receive": [
+      "source_paths",
+      "source_bodies",
+      "python",
+      "shell_commands",
+      "arbitrary_paths",
+      "security_handles",
+      "live_state_readers"
+    ]
+  },
+  "lexical_foundation": {
+    "adapter": "lib.cpu_lexicon_surface",
+    "structured_speech_plan_adapter": "lib.cpu_speech_plan",
+    "dictionary_role": "bounded_root_word_inventory",
+    "thesaurus_role": "bounded_part_of_speech_definition_and_variant_relations",
+    "grammar_role": "finite_sentence_structure_rules",
+    "speech_plan_role": "approved_plan_and_slot_selection_before_cpu_composition",
+    "free_form_plan_values": false,
+    "raw_corpus_to_model": false,
+    "native_source_paths_cpu_side_only": true,
+    "candidate_learning_only": true,
+    "unknown_or_ambiguous_lexical_meaning": "HOLD"
+  },
+  "safety": {
+    "production_generation_created": false,
+    "active_pointer_changed": false,
+    "registry_changed": false,
+    "seed_changed": false,
+    "gpu_used": false,
+    "training_started": false,
+    "checkpoint_written": false,
+    "human_approval_required_for_model_or_registry_change": true
+  },
+  "receipt_schema": "viv_cpu_natural_speech_canary_receipt_v1"
+}

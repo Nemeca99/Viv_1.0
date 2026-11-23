@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-18T18:24:38.1098496Z",
+  "unload": {
+    "instance_id": "omnicoder-2-9b"
+  },
+  "after": {
+    "models": [
+      {
+        "type": "llm",
+        "publisher": "mradermacher",
+        "key": "omnicoder-2-9b",
+        "display_name": "OmniCoder 2 9B",
+        "architecture": "qwen35",
+        "quantization": {
+          "name": "Q3_K_M",
+          "bits_per_weight": 3
+        },
+        "size_bytes": 5541691136,
+        "params_string": "9B",
+        "loaded_instances": [],
+        "max_context_length": 262144,
+        "format": "gguf",
+        "capabilities": {
+          "vision": true,
+          "trained_for_tool_use": true,
+          "reasoning": {
+            "allowed_options": [
+              "off",
+              "on"
+            ],
+            "default": "on"
+          }
+        },
+        "description": null
+      },
+      {
+        "type": "embedding",
+        "publisher": "nomic-ai",
+        "key": "text-embedding-nomic-embed-text-v1.5",
+        "display_name": "Nomic Embed Text v1.5",
+        "quantization": {
+          "name": "Q4_K_M",
+          "bits_per_weight": 4
+        },
+        "size_bytes": 84106624,
+        "params_string": null,
+        "loaded_instances": [],
+        "max_context_length": 2048,
+        "format": "gguf"
+      }
+    ]
+  }
+}

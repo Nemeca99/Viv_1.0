@@ -1,0 +1,13 @@
+{
+  "schema": "hive_swarm_horizontal_dev_failure_v1",
+  "status": "HOLD",
+  "reason": "event log still shared",
+  "phase": "after first parallel cohort",
+  "artifacts": [
+    "A.txt",
+    "B.txt",
+    "C.txt"
+  ],
+  "source": "hive_control/src/bin/swarm_horizontal.rs",
+  "resolution": "drop the extra Arc handle before unwrapping the event log; rerun in a fresh directory"
+}

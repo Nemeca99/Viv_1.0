@@ -1,0 +1,11 @@
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add new file `workspace/autonomy/hive_postal_route_request_v12_candidate.py`; stop if it exists.
+The first source line must be exactly: `def prepare_routing_request(proposed_recipient_id):`
+Return (request,errors_tuple). Exact cases:
+None -> (None,()).
+Non-string -> (None,("invalid_proposed_recipient_id",)); do not coerce with str().
+Empty or untrimmed string -> (None,("invalid_proposed_recipient_id",)).
+String casefold()=="queen" -> (None,("proposed_recipient_is_queen",)).
+Any other trimmed string, e.g. "drone_2" -> ({"recipient_id":peer},()).
+For --self-check compare exact outputs for inputs None, "drone_2", "", " QUEEN", and 123 against those expected tuples. Print exactly PASS: 5 routing checks only if all match; exit 0 only on pass. Keep source under 40 lines.
+Call aios_router_open_build_task tool; call aios_router_accept_self_prompt tool (drone,0); call localcoder_add_python tool with only filePath=workspace/autonomy/hive_postal_route_request_v12_candidate.py and content=source; call shell tool: & 'L:\.venv\Scripts\python.exe' -B 'workspace\autonomy\hive_postal_route_request_v12_candidate.py' --self-check; call aios_router_record_turn_result tool with actual facts; call aios_router_complete_lane tool with receipt.

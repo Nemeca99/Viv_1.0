@@ -1,0 +1,11 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+[QUEEN] Review feedback: I corrected undefined pathlib/hash helpers, the drive-letter slice, bool-as-int limits, exception handling around validate_result, exact case matching, and current_results source association. Your lookup now passes all 7 frozen groups against synthetic and real receipts; input files are unchanged. Preserve both reviewed functions.
+1. Use read on `L:/LocalCoder/workspace/autonomy/receipt_failure_lookup_candidate.py` with offset 175 and limit 50.
+2. Use localcoder_patch tool. Append a CLI only. Define main(argv=None) with argparse options --root (default Path(__file__).resolve().parents[2] / '.opencode/evals/receipt_flags_20261117'), --source (default Path(__file__).with_name('typed_composition_receipt_audit_v2_candidate.py')), --case (optional), --limit (type=int, default=8). Print exactly the JSON returned by lookup_failures on success, return 0; on file/value errors print a JSON error and return 1. Use a normal __main__ guard raising SystemExit(main()). Existing functions are frozen; changes are only an appended CLI. Import argparse inside main.
+<localcoder_patch_paths>
+workspace/autonomy/receipt_failure_lookup_candidate.py
+</localcoder_patch_paths>
+3. Use shell with exactly `& 'L:/.venv/Scripts/python.exe' -B 'L:/LocalCoder/.opencode/evals/failure_lookup_20261117/verify_cli.py'`.
+Report the actual result normally.
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized continued supervised coding in this same session.

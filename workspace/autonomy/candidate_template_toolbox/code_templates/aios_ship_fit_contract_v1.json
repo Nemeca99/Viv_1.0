@@ -1,0 +1,144 @@
+{
+  "schema_version": "aios_ship_fit_contract_v1",
+  "surface_id": "aios_ship_fit_v1",
+  "purpose": "Captain-facing SHIP FIT overlay. One hull status of already-landed surfaces: what is connected versus vacant. Observation only. Never command.",
+  "metaphor": {
+    "captain": "human Architect",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "computer_in_command": false,
+    "computer_mode": "candidate_only",
+    "fit": "connected vs vacant overlay; not a second bridge"
+  },
+  "mode": {
+    "plan_only": true,
+    "read_only": true,
+    "candidate_only_mind": true,
+    "aios_runtime_start": false,
+    "gpu_train_start": false,
+    "gpu_execution": false,
+    "daemon": false,
+    "production_write": false
+  },
+  "import_do_not_rewrite": [
+    "lib.aios_captain_bridge.observe_ship",
+    "lib.aios_ship_skeleton.ship_status",
+    "lib.aios_rust_runtime_lock.runtime_lock_status",
+    "lib.viv_night_watch.status",
+    "lib.aios_captain_mailbox.mailbox_status",
+    "lib.viv_file_index_retrieve.index_status",
+    "lib.aios_ship_right.ship_right_status",
+    "lib.aios_gpu_domain.status",
+    "lib.aios_skeleton_bus.mouth_render_slot",
+    "lib.aios_sensor_internal_state.observe_live_internal_state",
+    "lib.aios_deck_dispatch.dispatch_menu"
+  ],
+  "do_not_fight_in_flight": [
+    "aios_ship_helm",
+    "aios_host_ship_map",
+    "l-drive",
+    "breaker"
+  ],
+  "compose": {
+    "captain_bridge": {
+      "maps_to": "lib.aios_captain_bridge.observe_ship",
+      "use": "lamps",
+      "missing": "ABSTAIN"
+    },
+    "skeleton": {
+      "maps_to": "lib.aios_ship_skeleton.ship_status",
+      "use": ["function_count", "systems_toolbox_fill", "vacant_systems"],
+      "missing": "ABSTAIN",
+      "organism_complete": false
+    },
+    "rust_lock": {
+      "maps_to": "lib.aios_rust_runtime_lock.runtime_lock_status",
+      "use": ["window", "viv_write"],
+      "viv_write": "HOLD_RUST_LEASH",
+      "missing": "ABSTAIN"
+    },
+    "watch": {
+      "maps_to": "lib.viv_night_watch.status",
+      "missing_module": "ABSTAIN",
+      "missing_night_orders": "ABSTAIN",
+      "do_not_write_night_orders": true
+    },
+    "mailbox": {
+      "maps_to": "lib.aios_captain_mailbox.mailbox_status",
+      "use": ["pending_count", "preempts_idle"],
+      "peek_does_not_consume": true,
+      "missing": "ABSTAIN"
+    },
+    "inventory": {
+      "maps_to": "lib.viv_file_index_retrieve.index_status",
+      "role": "inventory_not_truth",
+      "missing": "ABSTAIN"
+    },
+    "canary": {
+      "maps_to": "read last watch_canary_rack receipt.json if present",
+      "do_not_run_rack": true,
+      "missing": "skip_ABSTAIN"
+    },
+    "ship_right": {
+      "maps_to": "lib.aios_ship_right.ship_right_status",
+      "missing": "ABSTAIN"
+    },
+    "gpu_domain": {
+      "maps_to": "lib.aios_gpu_domain.status",
+      "missing": "ABSTAIN",
+      "gpu_execution": false
+    },
+    "mouth": {
+      "maps_to": "lib.aios_skeleton_bus.mouth_render_slot",
+      "missing": "ABSTAIN",
+      "voice_playback": false,
+      "fill": "PARTIAL"
+    },
+    "sensors": {
+      "maps_to": "lib.aios_sensor_internal_state.observe_live_internal_state",
+      "missing": "ABSTAIN",
+      "host_cannot_author_s_n": true,
+      "stress_120s": false
+    },
+    "dispatch": {
+      "maps_to": "lib.aios_deck_dispatch.dispatch_menu",
+      "missing": "ABSTAIN",
+      "cannot_flip_hold_to_pass": true
+    },
+    "identity": {
+      "pointer": "sandbox/code/template_current.json",
+      "seed_0": "VIV_SLM_SEED_PARENT_HEAD.json plus bridge seed lamp",
+      "rust_hash": "security_core/runtime/security_core.pyd"
+    }
+  },
+  "epistemic": ["FACT", "HOLD", "ABSTAIN"],
+  "hull": {
+    "connected": "module imported and returned a payload",
+    "vacant": "module missing or canary skipped",
+    "abstain": "surface present but evidence inadmissible"
+  },
+  "expected_rust_sha256": "6BCA1C84F9BE871D8F5876A7F84DE8D4437E21A10C602A9E67F55EB162005261",
+  "expected_pointer_generation": "gen_c6be6ff385aed99f",
+  "forbidden": {
+    "boot": true,
+    "organism_beat": true,
+    "pulse_rid_120s": true,
+    "kill_jobs": true,
+    "write_night_orders": true,
+    "admit_registry_functions": true,
+    "edit_pyd": true,
+    "rewrite_aios_captain_bridge": true,
+    "duplicate_bridge": true
+  },
+  "protected_untouched": [
+    "Seed 0",
+    "template registry",
+    "active pointer",
+    "Rust security binary",
+    "NIGHT_ORDERS.json"
+  ],
+  "cli": {
+    "runner": "build_tools/run_aios_ship_fit_v1.py",
+    "allowed_commands": ["status"]
+  }
+}

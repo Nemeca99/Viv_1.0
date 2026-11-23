@@ -1,0 +1,13 @@
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add only new `workspace/autonomy/hive_postal_outbox_proposal_v7_candidate.py`.
+Use exactly `from hive_postal_message_contract_queen_v3_candidate import SCHEMA, VALID_KINDS, validate_postal_message`.
+Implement `prepare_queen_outbox_proposal(message_id,sender_id,authority_queen_id,task_id,body,*,kind="REPORT",proposed_recipient_id=None,parent_message_sha256=None)`.
+Deep-copy body. Message keys: schema=SCHEMA,message_id,sender_id,recipient_id=authority_queen_id,task_id,kind,body; add parent_message_sha256 only if given. Call validator once; invalid -> (None,(reason,)). Then peer.casefold()=="queen" -> (None,("proposed_recipient_is_queen",)). Else return proposal schema hive_postal_outbox_proposal_v1, that message, and routing_request=None or {recipient_id:peer}; errors=().
+Self-check exactly 5: default proposal/route None; peer is only in routing_request; nested deep-copy survives changing original; list body rejected; peer "QUEEN" returns proposed_recipient_is_queen. Print only `PASS: 5 checks` if all pass; else FAIL and nonzero exit.
+Call the aios_router_open_build_task tool.
+Call the aios_router_accept_self_prompt tool with lane_id=drone, turn=0, prompt=<three-field self-prompt>.
+Call the localcoder_add_python tool with only filePath=workspace/autonomy/hive_postal_outbox_proposal_v7_candidate.py and content=source.
+Call the read tool on the assigned target.
+Call the shell tool exactly `& (Join-Path (Get-PSDrive -Name L).Root -ChildPath '.venv\Scripts\python.exe') -B 'workspace/autonomy/hive_postal_outbox_proposal_v7_candidate.py' --self-check`.
+Call the aios_router_record_turn_result tool with actual Drone turn 0 outcome.
+Call the aios_router_complete_lane tool with an accurate receipt.

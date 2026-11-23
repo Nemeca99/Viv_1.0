@@ -1,0 +1,191 @@
+{
+  "schema_version": "viv_cpu_independent_query_semantic_equivalence_v1",
+  "purpose": "Pre-register a bounded CPU-side semantic coverage relation for documentation-query evidence without changing the frozen exact-document gate.",
+  "status": "candidate_only_diagnostic",
+  "authority": "cpu_evidence_validation_only",
+  "model_capability_conclusion_allowed": false,
+  "cpu_gate_changed": false,
+  "harness_repair_allowed": false,
+  "source_body_exposed_to_model": false,
+  "post_decision_fields_allowed": false,
+  "exact_document_identity_is_not_semantic_equivalence": true,
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_object_keys": "sorted",
+    "trailing_lf": true,
+    "volatile_fields_excluded": ["created_utc", "run_id", "receipt_sha256"]
+  },
+  "required_hit_checks": [
+    "oracle state is VERIFIED",
+    "canonical document content hash matches the verified manifest",
+    "document is conflict-free",
+    "document authority scope and role match the pre-registered objective",
+    "document contains every pre-registered required concept group",
+    "raw model query covers the pre-registered minimum concept groups",
+    "raw model output is valid and no harness repair or substitution occurred"
+  ],
+  "negative_interpretation_rules": [
+    "an exact target document that fails its own semantic concept relation is an evaluator-objective defect, not a model capability result",
+    "a verified document that passes the relation is diagnostic semantic-equivalence evidence only and does not rewrite the source receipt gate",
+    "a broad hit that lacks a required concept group remains an evidence failure",
+    "a query that retrieves a related document but does not express enough of the objective remains a query-authorship failure",
+    "no semantic-equivalence result may authorize action, training, promotion, deployment, or production writes"
+  ],
+  "concept_aliases": {
+    "cpu": ["cpu", "processor", "deterministic"],
+    "model": ["model", "learned", "inference"],
+    "directed": ["directed", "governed", "bounded"],
+    "self_development": ["self", "development", "building", "self-development"],
+    "frame": ["frame", "action", "output", "protocol"],
+    "ownership": ["ownership", "owner", "attribution", "provenance"],
+    "phase_state": ["phase", "stage", "state", "transition"],
+    "causal_availability": ["causal", "availability", "available", "evidence"],
+    "representation": ["representation", "encoding", "structure"],
+    "candidate": ["candidate", "isolated", "incumbent"],
+    "loop": ["loop", "cycle", "recursive"],
+    "recursive": ["recursive", "recursion", "linked"],
+    "evidence": ["evidence", "receipt", "verified", "measurement"],
+    "scheduler": ["scheduler", "scheduling", "schedule", "experiment"],
+    "rid": ["rid"],
+    "pid_heater": ["pid", "heater"],
+    "contract": ["contract", "boundary", "rule"],
+    "electrical": ["electrical", "power", "energy"],
+    "thermal": ["thermal", "temperature", "heat"],
+    "control": ["control", "controller", "governor"],
+    "uml": ["uml"],
+    "dual_language": ["dual", "language"],
+    "symbol": ["symbol", "token", "character", "representation"],
+    "namespace": ["namespace", "route", "scope"]
+  },
+  "objective_rules": {
+    "cpu model directed self development": {
+      "topic_key": "model_self_development",
+      "required_concepts": ["cpu", "model", "self_development"],
+      "minimum_query_concepts": 3,
+      "authority_scope": "architectural_intent",
+      "allowed_roles": ["architecture"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "model generated frame ownership": {
+      "topic_key": "model_frame_ownership",
+      "required_concepts": ["model", "frame", "ownership"],
+      "minimum_query_concepts": 3,
+      "authority_scope": "architectural_intent",
+      "allowed_roles": ["architecture"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "phase-state causal availability": {
+      "topic_key": "phase_state_causality",
+      "required_concepts": ["phase_state", "causal_availability"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "architectural_intent",
+      "allowed_roles": ["architecture"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "representation candidate only": {
+      "topic_key": "candidate_representation",
+      "required_concepts": ["representation", "candidate"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "architectural_intent",
+      "allowed_roles": ["architecture"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "viv self development loop": {
+      "topic_key": "self_development_loop",
+      "required_concepts": ["self_development", "loop"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "architectural_intent",
+      "allowed_roles": ["architecture"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "recursive evidence": {
+      "topic_key": "recursive_evidence",
+      "required_concepts": ["recursive", "evidence"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "architectural_intent",
+      "allowed_roles": ["architecture"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "bounded scheduler": {
+      "topic_key": "bounded_scheduler",
+      "required_concepts": ["directed", "scheduler"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "architectural_intent",
+      "allowed_roles": ["architecture"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "candidate only scheduler": {
+      "topic_key": "candidate_scheduler",
+      "required_concepts": ["candidate", "scheduler"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "architectural_intent",
+      "allowed_roles": ["architecture"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "rid pid heater contract": {
+      "topic_key": "rid_pid_heater_contract",
+      "required_concepts": ["rid", "pid_heater", "contract"],
+      "minimum_query_concepts": 3,
+      "authority_scope": "runtime_truth",
+      "allowed_roles": ["contract"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "rid pid heater electrical": {
+      "topic_key": "rid_pid_heater_electrical",
+      "required_concepts": ["rid", "pid_heater", "electrical"],
+      "minimum_query_concepts": 3,
+      "authority_scope": "runtime_truth",
+      "allowed_roles": ["contract"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "rid pid heater thermal": {
+      "topic_key": "rid_pid_heater_thermal",
+      "required_concepts": ["rid", "pid_heater", "thermal"],
+      "minimum_query_concepts": 3,
+      "authority_scope": "runtime_truth",
+      "allowed_roles": ["contract"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "rid pid heater control": {
+      "topic_key": "rid_pid_heater_control",
+      "required_concepts": ["rid", "pid_heater", "control"],
+      "minimum_query_concepts": 3,
+      "authority_scope": "runtime_truth",
+      "allowed_roles": ["contract"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "uml dual language": {
+      "topic_key": "uml_dual_language",
+      "required_concepts": ["uml", "dual_language"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "experimental_evidence",
+      "allowed_roles": ["training", "research", "evidence-index"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "uml symbol": {
+      "topic_key": "uml_symbol",
+      "required_concepts": ["uml", "symbol"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "experimental_evidence",
+      "allowed_roles": ["training", "research", "evidence-index"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "uml namespace": {
+      "topic_key": "uml_namespace",
+      "required_concepts": ["uml", "namespace"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "experimental_evidence",
+      "allowed_roles": ["training", "research", "evidence-index"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    },
+    "dual language symbol": {
+      "topic_key": "dual_language_symbol",
+      "required_concepts": ["dual_language", "symbol"],
+      "minimum_query_concepts": 2,
+      "authority_scope": "experimental_evidence",
+      "allowed_roles": ["training", "research", "evidence-index"],
+      "allowed_statuses": ["current", "target", "candidate"]
+    }
+  }
+}

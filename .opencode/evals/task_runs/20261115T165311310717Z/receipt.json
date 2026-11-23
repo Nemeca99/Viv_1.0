@@ -1,0 +1,62 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 467.438,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1fdf7548ffehU7qnreYTFGpSE"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "ba28e87073105482fa6c1460a5e8db5552d5d5f7d85fa969b1364448ac290c51",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_record_turn_result",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_complete_lane",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: 'drone_2'\r\nPASS: 'queen'\r\nPASS: ' QUEEN'\r\nPASS: None\r\nPASS: 123\r\nPASS: 5 checks"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "[DRONE]\nTarget file: workspace/autonomy/hive_postal_recipient_predicate_v13_candidate.py\nVerified fact: Lane completed successfully with receipt_sha256=ece956f81e8f80763a64e36c3451cb07ae25cee252ee0a07d0a7f74bd4ab1bc2.\n\n[DRONE SELF-PROMPT]\nAgenda: Task complete; all 6 tools executed successfully.\nVerified facts: File created, self-check passed (PASS: 5 checks), lane_completed=true, receipt_sha256=ece956f81e8f80763a64e36c3451cb07ae25cee252ee0a07d0a7f74bd4ab1bc2.\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T165311310717Z"
+}

@@ -1,0 +1,76 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "plan_receipt_or_authorization_alignment_failed",
+  "plan_validation": "plan_next_action_omits_explicit_target",
+  "session_id": "ses_e2416f4bfffeeQfwhhWtJLciSs",
+  "required_tools": [
+    "localcoder_add_python",
+    "shell"
+  ],
+  "plan_text": "[DRONE SELF-PROMPT]\nAgenda: Execute localcoder_add_python to create workspace/autonomy/hive_agent_message_contract_candidate.py with validate_agent_message function implementing envelope validation per Architect assignment.\nVerified facts: Assignment explicitly authorizes single tool sequence (localcoder_add_python \u2192 shell). No repository facts checked in this turn. File path contract is exact from assignment.\nNext bounded action: localcoder_add_python for workspace/autonomy/hive_agent_message_contract_candidate.py\n\n[DRONE]",
+  "plan": {
+    "elapsed_seconds": 40.531,
+    "exit_code": 1,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e2416f4bfffeeQfwhhWtJLciSs"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "52996c06c17235c341ef71db1c45170fe04e6b13dc89ebf23970aec807ec2ccb",
+    "tools": [],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Execute localcoder_add_python to create workspace/autonomy/hive_agent_message_contract_candidate.py with validate_agent_message function implementing envelope validation per Architect assignment.\nVerified facts: Assignment explicitly authorizes single tool sequence (localcoder_add_python \u2192 shell). No repository facts checked in this turn. File path contract is exact from assignment.\nNext bounded action: localcoder_add_python for workspace/autonomy/hive_agent_message_contract_candidate.py\n\n[DRONE]"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T211405150710Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T211405067075Z.prompt.txt"
+  },
+  "assignment_sha256": "699a0626257b42cf0a185655a93a747f41ced6b36c932c9c3f7b04fa534e574b",
+  "journal_style": {
+    "status": "read_labels_only",
+    "entry_sha256": "22a8a38f6e2770f903f18db45be2925914f85b23e2a682253fa8a3f3c9f0b7fa",
+    "labels": [
+      "Location",
+      "Direction",
+      "Action Taken",
+      "Silicon Trace",
+      "Reflection & Next Lesson"
+    ]
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794690853918-a36f26d1-7bca-432c-b3a9-9a7b582d17d8-body-gate.json",
+      "sha256": "d112ac82514a9cc656c485fe28f33f36228a18dc8de1b0c705508f287651a4d0",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    }
+  ],
+  "cycle_receipt": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\ses_e2416f4bfffeeQfwhhWtJLciSs.cycle-receipt.json"
+}

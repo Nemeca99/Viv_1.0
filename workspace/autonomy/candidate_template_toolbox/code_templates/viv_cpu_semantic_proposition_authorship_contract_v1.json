@@ -1,0 +1,108 @@
+{
+  "schema_version": "viv_cpu_semantic_proposition_authorship_contract_v1",
+  "receipt_schema": "viv_cpu_semantic_proposition_authorship_receipt_v1",
+  "status": "candidate_only",
+  "purpose": "Measure raw first-party model authorship of bounded semantic propositions while keeping CPU binding and empirical truth authoritative.",
+  "parent": {
+    "schema": "viv_cpu_semantic_truth_adversarial_v1",
+    "receipt": "foundation/artifacts/auto/agentic/cpu_semantic_truth_adversarial_v1/semantic_truth_adversarial_v1_20260815T070018Z/receipt.json",
+    "receipt_sha256": "15C3BE8CED2C3DBC672527A804C697830D8D3548D3E61E3BDD62FAEB2D878846",
+    "suite_sha256": "42C571597AD553328913761BA320CBD70E7AC19A4630519020124A4CFEC2184E"
+  },
+  "frame": {
+    "schema": "viv_cpu_semantic_proposition_frame_v1",
+    "maximum_characters": 112,
+    "output_budget_tokens": 56,
+    "field_order": ["u", "s", "p", "o", "v", "e", "c"],
+    "proposition": "P|u=<uml>|s=<subject>|p=<predicate>|o=<operator>|v=<value>|e=<evidence>|c=<claim>",
+    "hold": "H|r=<reason>",
+    "whitespace_policy": "outer_ascii_whitespace_only",
+    "trailing_output_policy": "reject_without_repair"
+  },
+  "menus": {
+    "uml": {
+      "A": {
+        "namespace": "uml_symbol",
+        "symbol": "A",
+        "value": 1,
+        "route_expression": "1"
+      }
+    },
+    "subject": {
+      "sa": "sensor.alpha"
+    },
+    "predicate": {
+      "tc": "temperature_c"
+    },
+    "operator": {
+      "eq": "equals",
+      "ap": "approximately_equals"
+    },
+    "value": {
+      "1": 1.0,
+      "68": 68.4,
+      "70": 70.0
+    },
+    "evidence": ["70", "68", "x", "c"],
+    "claim": {
+      "su": "SUPPORTED",
+      "ve": "VERIFIED",
+      "un": "UNKNOWN",
+      "co": "CONTRADICTED",
+      "ho": "HOLD"
+    },
+    "hold_reasons": ["un", "st", "cf", "iv", "ns"]
+  },
+  "model_packet": {
+    "metadata_only": true,
+    "hidden_expectations_excluded": true,
+    "fixture_values_excluded": true,
+    "source_paths_excluded": true,
+    "source_bodies_excluded": true,
+    "python_shell_and_executable_content_excluded": true,
+    "post_decision_fields_excluded": true,
+    "target_frame_excluded": true
+  },
+  "curriculum": {
+    "training_rows": 96,
+    "held_out_rows": 24,
+    "compositional_traces": 4,
+    "cpu_recipe": {
+      "device": "cpu",
+      "seed": 43,
+      "steps": 1024,
+      "batch_size": 8,
+      "learning_rate": 0.0005,
+      "repeats": 2
+    },
+    "response_only_loss": true,
+    "context_length_rule": "prompt_tokens_plus_target_tokens <= model_context_length",
+    "generation_budget_rule": "fixed_from_contract_not_target_length"
+  },
+  "authority": {
+    "cpu_resolves_slots": true,
+    "cpu_judges_semantics_and_evidence": true,
+    "gpu_truth_authority": false,
+    "rust_write_membrane": true,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false,
+    "live_model_mutation": false
+  },
+  "dispositions": [
+    "PASS_CPU_SEMANTIC_PROPOSITION_AUTHORSHIP_CANDIDATE_ONLY",
+    "HOLD_SEMANTIC_PROPOSITION_PREFLIGHT",
+    "HOLD_SEMANTIC_PROPOSITION_MODEL",
+    "HOLD_SEMANTIC_PROPOSITION_CONTEXT",
+    "HOLD_SEMANTIC_PROPOSITION_DETERMINISM",
+    "HOLD_SEMANTIC_PROPOSITION_SECURITY",
+    "FAIL_SEMANTIC_PROPOSITION_PROTECTED_STATE"
+  ],
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

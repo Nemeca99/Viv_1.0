@@ -1,0 +1,7 @@
+[DRONE SELF-PROMPT REPLAY | AUTHOR: DRONE]
+[DRONE SELF-PROMPT]: agenda; verified project root L:/LocalCoder; next step is add one function `read_newest_journal_entry` to new file `workspace/autonomy/opencode_drone_cycle.py`; check is to return the latest recognized entry heading from a bounded tail.
+
+[QUEEN → DRONE | EXECUTE THIS ONE FUNCTION]
+The Architect assigned the goal and this exact new-file target. Add exactly one Python file `workspace/autonomy/opencode_drone_cycle.py`; no other files. Implement `read_newest_journal_entry(path=Path(r'E:\Viv_Sandbox\playground\monologue\viv_monologue.md'), max_bytes=65536)`. Read only the last max_bytes from the file. Return text from the final heading matching `## Monologue #` or `## Engineering Entry #` through the end of that bounded tail. Raise `ValueError` for invalid max_bytes or absent heading; let missing/unreadable file fail clearly. No fallbacks, writes, full-file scans, or extra functions.
+
+Call `localcoder_add_python` with filePath `workspace/autonomy/opencode_drone_cycle.py` only. Then call `shell` with `L:\.venv\Scripts\python.exe -B` to parse and execute the new function against the actual E: journal; print the selected heading and returned character count. Prefix final text `[DRONE]` and report actual output.

@@ -1,0 +1,31 @@
+Architect authorizes two small replacements in the existing Python target. Read the target once. Make one localcoder_patch call containing these two changes, then run the AST syntax check with shell and give a short visible result.
+
+Change one, report fields.
+Old:
+                  model_ids=model_ids, shell_checks=shell_checks,
+                  final_text=visible_final_text, session_exports_terminal=bool(sessions) and all(export_terminal_states),
+                  background_interrupted=background_interrupted, evidence=str(directory)
+New:
+                  model_ids=model_ids, shell_checks=shell_checks,
+                  task_succeeded=task_succeeded, task_errors=task_errors,
+                  tool_errors=tool_errors, shell_check_errors=shell_check_errors,
+                  final_text=visible_final_text, session_exports_terminal=session_exports_terminal,
+                  background_interrupted=background_interrupted, evidence=str(directory)
+
+Change two, journal status.
+Replace the current result assignment and next_step assignment with:
+    result = ('task succeeded' if task_succeeded else
+              'task incomplete: ' + ', '.join(task_errors))
+    if task_succeeded and transport_exit_code:
+        result += f'; CLI transport exited {transport_exit_code}'
+    final_state = 'present' if visible_final_text else 'missing from visible text channel'
+    next_step = ('Continue with the next Architect-assigned bounded task.'
+                 if task_succeeded else
+                 f'Review this task receipt and task_errors={",".join(task_errors)}; prepare one bounded repair step.')
+
+After patching, run: & 'L:\.venv\Scripts\python.exe' -c "import ast; from pathlib import Path; ast.parse(Path('.opencode/evals/run_local_agent_task.py').read_text(encoding='utf-8')); print('PASS: dispatcher AST syntax')"
+
+Authorized path:
+<localcoder_patch_paths>
+.opencode/evals/run_local_agent_task.py
+</localcoder_patch_paths>

@@ -1,0 +1,44 @@
+{
+  "schema_version": "viv_cpu_expert_composition_live_query_shadow_contract_v1",
+  "status": "candidate_only",
+  "purpose": "Attach the verified query specialist to the live CPU-owned expert route without changing the existing action, variable, result, or scheduler surfaces.",
+  "route_map": {
+    "OBSERVE": "reflection_specialist",
+    "RETRIEVE": "query_specialist",
+    "CANDIDATE_PLAN": "unified_parent",
+    "MEASURE": "unified_parent",
+    "SCHEDULE": "unified_parent"
+  },
+  "query_surface": {
+    "parent_schema": "viv_cpu_independent_query_receipt_v4",
+    "representation": "viv_cpu_independent_query_v3",
+    "frame": "Q|<bounded_terms>|<scope>|<top_k>",
+    "parser_reused": true,
+    "oracle_after_model_only": true,
+    "expected_query_hidden_from_model": true,
+    "model_success_requires": [
+      "raw_frame_valid",
+      "permitted_scope_and_top_k",
+      "verified_oracle_evidence",
+      "required_document_coverage",
+      "no_cpu_repair_or_substitution"
+    ]
+  },
+  "execution": {
+    "isolated": true,
+    "no_publish": true,
+    "cpu_only": true,
+    "optimizer_calls": 0,
+    "checkpoint_writes": 0,
+    "gpu_execution": false,
+    "production_generation": false,
+    "registry_mutation": false,
+    "live_model_mutation": false
+  },
+  "nonclaims": [
+    "unified_model_origin",
+    "autonomous_route_selection",
+    "production_adoption",
+    "broad_query_generalization"
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "info": {
+    "id": "ses_e23e31d40ffe0WUQ6ybwL6XvNk",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 17595,
+      "output": 217,
+      "reasoning": 90,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794694243010,
+      "updated": 1794694293461,
+      "busy": 1794694243030,
+      "idle": 1794694293464
+    },
+    "title": "LocalCoder Drone 20261114T221042843678Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1dc1ce2d0001GtFnqhJsrQkg3F",
+      "time": {
+        "created": 1794694243024
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1dc1ce2cd0012rLzd5YsA2UzSq",
+      "time": {
+        "created": 1794694243036
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nPerform exactly one read-only grounding action.\nCall the `read` tool exactly once for `workspace/autonomy/hive_agent_message_contract_candidate.py`. Wait for its actual result. Then report the function's current contract behavior in a short `[DRONE]` response and end with `[DRONE SELF-PROMPT]` containing Agenda, Verified facts, and Next bounded action: STOP; await Queen. Do not call any other tool and do not propose code.\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized work on this exact candidate path. This turn authorizes read-only inspection only. Rust Body and OpenCode permission gates remain active.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1dc1ce2e1001FqYgpua01uj6xo",
+      "time": {
+        "created": 1794694243049,
+        "firstToken": 1794694260779,
+        "streamed": 1794694260793,
+        "completed": 1794694264580
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_1",
+          "name": "read",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "path": "workspace/autonomy/hive_agent_message_contract_candidate.py"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Read file workspace/autonomy/hive_agent_message_contract_candidate.py, lines 1-134\n1: def validate_agent_message(value):\n2:     \"\"\"\n3:     Pure function that validates agent message envelope structure and values.\n4:     \n5:     Returns: tuple of error-code strings (empty if valid)\n6:     \n7:     Valid envelopes must have:\n8:     - agent_type: \"model\" or \"human\"\n9:     - status: \"DONE\", \"NEEDS_USER\", or \"BLOCKED\"\n10:     - audience: \"mind\"\n11:     - trust_class: \"unverified_model_output\" for model, \"human_agent_statement\" for human\n12:     - claims: mapping with string text, list evidence_ids, kind in [\"retrieved_fact\", \"inference\", \"proposal\"]\n13:     - artifact_refs: list of strings (may be empty)\n14:     - uncertainties: list of strings (may be empty)\n15:     - conflicts_with: list of strings (may be empty)\n16:     - parent_task_id: null or non-empty string\n17:     \n18:     Does not raise; returns () on valid input.\n19:     \"\"\"\n20:     errors = []\n21:     \n22:     if value is None:\n23:         return (\"NULL_INPUT\",)\n24:     \n25:     # Must be a dict\n26:     if not isinstance(value, dict):\n27:         return (\"NOT_DICT\",)\n28:     \n29:     # Check required fields exist and have correct types\n30:     for field in [\"agent_type\", \"status\", \"audience\", \"trust_class\", \"claims\"]:\n31:         if field not in value:\n32:             errors.append(f\"MISSING_{field.upper()}\")\n33:     \n34:     # Validate agent_type\n35:     if \"agent_type\" in value:\n36:         if not isinstance(value[\"agent_type\"], str):\n37:             errors.append(\"AGENT_TYPE_NOT_STRING\")\n38:         elif value[\"agent_type\"] not in [\"model\", \"human\"]:\n39:             errors.append(f\"INVALID_AGENT_TYPE:{value['agent_type']}\")\n40:     \n41:     # Validate status\n42:     if \"status\" in value:\n43:         if not isinstance(value[\"status\"], str):\n44:             errors.append(\"STATUS_NOT_STRING\")\n45:         elif value[\"status\"] not in [\"DONE\", \"NEEDS_USER\", \"BLOCKED\"]:\n46:             errors.append(f\"INVALID_STATUS:{value['status']}\")\n47:     \n48:     # Validate audience\n49:     if \"audience\" in value:\n50:         if not isinstance(value[\"audience\"], str):\n51:             errors.append(\"AUDIENCE_NOT_STRING\")\n52:         elif value[\"audience\"] != \"mind\":\n53:             errors.append(f\"INVALID_AUDIENCE:{value['audience']}\")\n54:     \n55:     # Validate trust_class based on agent_type\n56:     if \"trust_class\" in value:\n57:         if not isinstance(value[\"trust_class\"], str):\n58:             errors.append(\"TRUST_CLASS_NOT_STRING\")\n59:         elif value[\"agent_type\"] == \"model\":\n60:             if value[\"trust_class\"] != \"unverified_model_output\":\n61:                 errors.append(f\"INVALID_TRUST_CLASS_FOR_MODEL:{value['trust_class']}\")\n62:         else:  # human\n63:             if value[\"trust_class\"] != \"human_agent_statement\":\n64:                 errors.append(f\"INVALID_TRUST_CLASS_FOR_HUMAN:{value['trust_class']}\")\n65:     \n66:     # Validate claims structure\n67:     if \"claims\" in value:\n68:         if not isinstance(value[\"claims\"], dict):\n69:             errors.append(\"CLAIMS_NOT_DICT\")\n70:         else:\n71:             for claim_key, claim_value in value[\"claims\"].items():\n72:                 # Each claim must be a mapping (dict)\n73:                 if not isinstance(claim_value, dict):\n74:                     errors.append(f\"INVALID_CLAIM_SHAPE:{claim_key}\")\n75:                     continue\n76:                 \n77:                 # Check text field is string\n78:                 if \"text\" not in claim_value:\n79:                     errors.append(f\"MISSING_TEXT_IN_CLAIM:{claim_key}\")\n80:                 elif not isinstance(claim_value[\"text\"], str):\n81:                     errors.append(f\"CLAIM_TEXT_NOT_STRING:{claim_key}\")\n82:                 \n83:                 # Check evidence_ids is list\n84:                 if \"evidence_ids\" not in claim_value:\n85:                     errors.append(f\"MISSING_EVIDENCE_IDS_IN_CLAIM:{claim_key}\")\n86:                 elif not isinstance(claim_value[\"evidence_ids\"], list):\n87:                     errors.append(f\"EVIDENCE_IDS_NOT_LIST:{claim_key}\")\n88:                 \n89:                 # Check kind is one of the allowed values\n90:                 if \"kind\" not in claim_value:\n91:                     errors.append(f\"MISSING_KIND_IN_CLAIM:{claim_key}\")\n92:                 elif not isinstance(claim_value[\"kind\"], str):\n93:                     errors.append(f\"CLAIM_KIND_NOT_STRING:{claim_key}\")\n94:                 elif claim_value[\"kind\"] not in [\"retrieved_fact\", \"inference\", \"proposal\"]:\n95:                     errors.append(f\"INVALID_KIND_IN_CLAIM:{claim_key}:{claim_value['kind']}\")\n96:     \n97:     # Validate artifact_refs is list of strings (may be empty)\n98:     if \"artifact_refs\" in value:\n99:         if not isinstance(value[\"artifact_refs\"], list):\n100:             errors.append(\"ARTIFACT_REFS_NOT_LIST\")\n101:         else:\n102:             for ref in value[\"artifact_refs\"]:\n103:                 if not isinstance(ref, str):\n104:                     errors.append(f\"ARTIFACT_REF_NOT_STRING:{ref}\")\n105:     \n106:     # Validate uncertainties is list of strings (may be empty)\n107:     if \"uncertainties\" in value:\n108:         if not isinstance(value[\"uncertainties\"], list):\n109:             errors.append(\"UNCERTAINTIES_NOT_LIST\")\n110:         else:\n111:             for u in value[\"uncertainties\"]:\n112:                 if not isinstance(u, str):\n113:                     errors.append(f\"UNCERTAINTY_NOT_STRING:{u}\")\n114:     \n115:     # Validate conflicts_with is list of strings (may be empty)\n116:     if \"conflicts_with\" in value:\n117:         if not isinstance(value[\"conflicts_with\"], list):\n118:             errors.append(\"CONFLICTS_WITH_NOT_LIST\")\n119:         else:\n120:             for c in value[\"conflicts_with\"]:\n121:                 if not isinstance(c, str):\n122:                     errors.append(f\"CONFLICT_NOT_STRING:{c}\")\n123:     \n124:     # Validate parent_task_id is null or non-empty string\n125:     if \"parent_task_id\" in value:\n126:         pt = value[\"parent_task_id\"]\n127:         if pt is None:\n128:             pass  # Valid - null allowed\n129:         elif not isinstance(pt, str):\n130:             errors.append(\"PARENT_TASK_ID_NOT_STRING\")\n131:         elif len(pt) == 0:\n132:             errors.append(\"PARENT_TASK_ID_EMPTY\")\n133:     \n134:     return tuple(errors)"
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794694260782,
+            "ran": 1794694260789,
+            "completed": 1794694263536
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "347a140f5c14a0452b5a06584aa60baaacb4e0eb",
+        "end": "34ef1fa1723046645166756a80b8cd6c6c58511d",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794694263502-bd245bf8-643d-465c-9c83-4b566211902c-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794694263512-ed42c9ce-a4ec-47ab-9a75-df7699e0994c.json",
+          "LocalCoder/.opencode/receipts/1794694263531-4f8d5f46-8b65-46d1-8d79-1366f38f7b21.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 7232,
+        "output": 37,
+        "reasoning": 50,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1dc1d32e6001TnS0tlY17cxNMH",
+      "metadata": {
+        "instruction": {
+          "paths": [
+            "L:\\LocalCoder\\workspace\\AGENTS.md"
+          ]
+        }
+      },
+      "time": {
+        "created": 1794694263527
+      },
+      "text": "Instructions from: L:\\LocalCoder\\workspace\\AGENTS.md\n# LocalCoder Workspace Map\n\nRead `L:\\LocalCoder\\AGENTS.md` first.\n\n## Existing systems to reuse\n\n- `viv_autonomy.py` and `autonomy\\state.sqlite3`: persistent autonomous task loop, events, capabilities, training, evaluation, and promotion gates.\n- `viv_chat_cli.py`: existing user-facing Viv entry point.\n- `hive_control`: Rust task graph, capability, snapshot, channel, and receipt contracts.\n- `swarm_adapters`: local Qwen worker models, LoRA stacks, held-out evaluation, and candidate activation.\n- `hive_voice`: one-mouth voice routing.\n- `HIVE_NETWORK_ARCHITECTURE_DRAFT.md` and `HIVE_LOCK_MANIFEST.json`: locked Hive topology and evidence boundaries.\n- `INN`: learned architect engine and deterministic Rust farm.\n\n## Current coupling direction\n\nCurrent farm training: Architect -> GPU model Queen -> CPU own neural INN drone proposal -> Queen selection -> Rust execution and verification. The legacy farm policy remains a reversible fallback.\n\nThe Architect intends the INN to become Queen after broader learning and language gates. Do not claim that role switch has already occurred. These current farm roles follow the Architect's explicit direction; preserve the separate locked general Hive contracts.\n\nOwn neural training uses `autonomy/train_neural_inn.py`, the admitted checkpoint in `autonomy/learning/neural_admitted.json`, verified live Rust facts, and parent-relative farm/language gates. The Hive launches a bounded CPU attempt every 250 completed lessons by default. Live receipts must distinguish neural proposals, legacy weight updates, and failed candidates. Queen prose is not automatically a verified training target.\n\nThe game supplies the common training corpus: `autonomy/farm_corpus.py` publishes immutable hash-addressed snapshots with `inn_train.json` and `model_train.jsonl`. INN training reads its internal view; `autonomy/farm_adapter.py` reuses the existing Hive QLoRA trainer for the model view. Exclude reserved plots 21 and 41, reject conflicting targets, and distinguish legality facts from measured 12-tick strategy improvements. The current Ollama Qwen3-8B Queen cannot use a LoRA trained on the existing local Qwen3-1.7B worker base. Adapter preflight and training receipts must not claim live Queen weights changed before matching-base training, held-out evaluation, conversion, and live verification.\n\nDo not infer that Continue/Viv state is LocalCoder Hive state. Resolve and inspect each runtime separately with the updated `viv-live-foreman` skill.\n\nCustom tokenizer lane: `INN/inn/uml_character_tokenizer.py` is a hash-identical copy of the Architect's universal Unicode tokenizer from Continue/Viv. `INN/inn/tokenizer.py` supplies a frozen compact neural view, retaining universal IDs separately. `LanguageEngine` accepts this tokenizer and a configurable token context; checkpoints bind both. Legacy byte checkpoints retain their original contract. `Rebuild-INNTokenizer.ps1` runs a bounded language-only migration/training/evaluation candidate, writes `autonomy/learning/inn_tokenizer_status.json`, and does not replace the admitted farm INN. `Speak-INNTokenizer.ps1` inspects that candidate. Character integration does not establish Wikipedia knowledge or word/BPE curriculum completion.\n\nWikipedia sentence scaling: `autonomy/wiki_sentence_corpus.py` creates a bounded lead-sentence pilot from F:/AI_Datasets/wikipedia_deduplicated, excluding redirects/markup and recording aligned original/reduced views with conjunction offsets. Reduction is mechanical deletion, not a guaranteed semantic rewrite. `Train-INNSentences.ps1` trains the character INN on the reduced view with prior-skill replay, deterministic article/sentence order, 512-token context and a 600-second update-loop ceiling. Whole articles are split before training; cross-split identical targets are excluded. Results are development evaluations, not evidence of general factual generation. The structure pass remains closed until a separate generation-quality evaluation passes. Never promote a candidate just because NLL fell.\n\nFull Wikipedia continuation uses `Train-INNWikipedia.ps1` and `autonomy/train_inn_wikipedia.py`, with `autonomy/wiki_stream.py` reading prose from all article sections. The experimental campaign head at `autonomy/learning/wikipedia_campaign/head.json` binds checkpoint hash, Adam optimizer continuity, dataset cursor, pending corpus hash and chunk offset in one atomic commit. Each command resumes this head; it does not restart the pilot parent. An expanded compact character vocabulary remaps existing weights and Adam moments by character identity. Commands stop after their update budget, the pending segment's first training traversal, or a 600-second update-loop ceiling; `-Segments` requests a bounded sequence of commands. Reading a file, preparing an article or presenting its chunks is not evidence of mastery. Completed eligible articles include reserved evaluation articles. Exact-target split ownership is stored on L: in SQLite; initial pilot overlap and repeated evaluations remain development evidence. Retention failures preserve the rejected run and leave the campaign head unchanged. Training stays on L:, source reads stay on F:, and the farm admission stays untouched. Stop with less than 2 GiB free on L:; retain receipts and failed candidates.\n\nThe matching training base is now `swarm_adapters/models/Qwen3-8B`, pinned to official revision `b968826d9c46dd6066d109eabc6255188de91218`. `model_source.json` records upstream hash checks and matching live Queen architecture (36 layers, width 4096). `Train-FarmAdapter.ps1 -Train` performs bounded GPU training and evaluation using existing Hive pause controls and inference locking. It unloads Ollama and leaves farm execution paused after completion or failure. Only explicit `-ResumeFarm` restarts continuous farm execution after the entire successful command. Original base weights remain frozen. `evaluate_farm_adapter.py` compares reserved Rust descriptions before any live activation. A trained adapter or passing language score alone is not a passing Rust farm behavior gate.\n",
+      "description": "Loaded LocalCoder\\workspace\\AGENTS.md",
+      "type": "synthetic"
+    },
+    {
+      "id": "msg_1dc1d3714001a3yWX9saKfcyzd",
+      "time": {
+        "created": 1794694264605,
+        "firstToken": 1794694292654,
+        "streamed": 1794694292687,
+        "completed": 1794694293461
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The read completed successfully, showing the validate_agent_message function's contract behavior - I need to report this in [DRONE] format with Agenda/Verified facts/Next action as STOP; await Queen.",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794694292656,
+            "completed": 1794694292684
+          }
+        },
+        {
+          "type": "text",
+          "text": "[DRONE] Function `validate_agent_message` performs pure validation of agent message envelopes without raising exceptions. It returns a tuple of error-code strings (empty on valid input). Required fields: `agent_type`, `status`, `audience`, `trust_class`, `claims`. Additional optional fields validated per schema rules. Model agents require `trust_class=\"unverified_model_output\"`, human agents require `trust_class=\"human_agent_statement\"`. Audience must be `\"mind\"`. Claims structure requires dict with text, evidence_ids list, and kind in [\"retrieved_fact\", \"inference\", \"proposal\"].\n\n[DRONE SELF-PROMPT]\nAgenda: Await Queen direction for next bounded action.\nVerified facts: Read completed successfully; function returns error tuple on invalid input, empty tuple on valid input.\nNext bounded action: STOP; await Queen."
+        }
+      ],
+      "snapshot": {
+        "start": "4bf2ed7dc14548522f3c0d420e1d556190d6db8a",
+        "end": "4bf2ed7dc14548522f3c0d420e1d556190d6db8a",
+        "files": []
+      },
+      "finish": "stop",
+      "rawFinish": "stop",
+      "cost": 0,
+      "tokens": {
+        "input": 10363,
+        "output": 180,
+        "reasoning": 40,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1dc1da7d8001LuoW4UeIIF1oEl",
+      "time": {
+        "created": 1794694293464
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    }
+  ]
+}

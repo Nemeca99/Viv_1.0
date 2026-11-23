@@ -1,0 +1,36 @@
+{
+  "schema_version": "viv_cpu_operator_want_need_specialist_contract_v1",
+  "experiment_id": "cpu_operator_want_need_specialist_v1",
+  "purpose": "Extract operator-owned prompts from F:/AI_Datasets/personal, seal a CPU character-LM recipe on raw wants, and train an isolated specialist. AI replies stay gray. Need remains CPU spelling alignment of the want, not the AI reply. Not 86M. Not Seed 0.",
+  "specialist_training_authorized": true,
+  "admitted_to_viv_chat_86m": false,
+  "admitted_to_training": false,
+  "seed_0_mutation": false,
+  "gpu_required": false,
+  "cuda_visible_devices": "",
+  "source_root": "F:/AI_Datasets/personal",
+  "chatlogs_root": "F:/AI_Datasets/personal/Chatlogs",
+  "operator_prompts": "operator_owned",
+  "ai_messages": "gray_area",
+  "ai_use_as_training_target": false,
+  "train_on": "raw_operator_want",
+  "need_is_not_ai_reply": true,
+  "forbidden_roots": [
+    "viv_chat_86m_v1",
+    "viv_chat_86m",
+    "L:/Standalone/Viv_Discord"
+  ],
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "ctx": 128,
+    "d_model": 64,
+    "hidden": 128,
+    "n_layer": 2,
+    "batch_size": 16,
+    "steps": 1200,
+    "learning_rate": 0.002,
+    "torch_num_threads": 2,
+    "holdout_mod": 10
+  }
+}

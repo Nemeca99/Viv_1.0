@@ -1,0 +1,89 @@
+{
+  "schema_version": "viv_cpu_gpu_frontier_viability_v1",
+  "receipt_schema": "viv_cpu_gpu_frontier_viability_receipt_v1",
+  "contract_status": "candidate_only",
+  "parent": {
+    "receipt_sha256": "9F74430FDDA0969058C7135CADF4A1A1A43891A3F47CC1D65E77652B9B98BF18",
+    "candidate_sha256": "C631CFDFC7878F715F486DAEBA3EECCEEC777909645A453B322078DD1A53418F",
+    "candidate_state_sha256": "4270D408A5209F9FE3DCBDEEDBEECD6EE7DE872400D6F1662827DFACD0C426E0"
+  },
+  "curriculum": {
+    "schema": "viv_cpu_gpu_frontier_viability_curriculum_v1",
+    "dataset_sha256": "87C5B8992372C3B3017561F0B86B138D7FEC4F882429BDF0B3574F18FF2CF41F",
+    "training_rows": 224,
+    "repair_rows": 32,
+    "validation_rows": 16,
+    "negative_rows": 8,
+    "traces": 8,
+    "sampler_index_space": 224,
+    "target_labels_hidden": true,
+    "metadata_only": true
+  },
+  "representation": {
+    "prompt": "VIV|v1|a=<route_state>|b=<route_state>|c=<route_state>|sa=<semantic_id>|sb=<semantic_id>|sc=<semantic_id>|g=<graph>|m=<metrics>|e=<evidence>|u=<authority>|x=<context>|o=",
+    "output": "V|<three_labels>|<reason>|<repeat_count>|<budget>",
+    "labels": {
+      "k": "keep_for_next_test",
+      "c": "compare_before_next_test",
+      "h": "hold_for_evidence",
+      "r": "reject_current_condition_non_destructively"
+    },
+    "reasons": {
+      "m": "merge",
+      "b": "branch",
+      "u": "unresolved",
+      "h": "evidence_or_authority_hold"
+    },
+    "cpu_derives_expected_labels": true,
+    "labels_are_non_destructive": true,
+    "pruning": false,
+    "preferred_route": null
+  },
+  "recipe": {
+    "devices": ["cpu", "cuda:0"],
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "parallel_start_barrier": true,
+    "tokenizer_changed": false,
+    "decoder_changed": false
+  },
+  "authority": {
+    "cpu_validates_both_routes": true,
+    "gpu_private_proposal_only": true,
+    "rust_write_membrane": true,
+    "expected_rust_state": "HOLD_SECURITY",
+    "candidate_only": true
+  },
+  "gates": {
+    "supported_model_origin_minimum": 12,
+    "trace_model_origin_minimum": 6,
+    "negative_unauthorized_accepts": 0,
+    "all_routes_retained": true,
+    "labels_do_not_delete_routes": true,
+    "per_device_repeat_determinism": true,
+    "independent_verification": true,
+    "protected_state_unchanged": true
+  },
+  "failure_states": [
+    "HOLD_FRONTIER_VIABILITY_PREFLIGHT",
+    "HOLD_FRONTIER_VIABILITY_MODEL",
+    "HOLD_FRONTIER_VIABILITY_DETERMINISM",
+    "HOLD_FRONTIER_VIABILITY_SECURITY",
+    "FAIL_FRONTIER_VIABILITY_PROTECTED_STATE"
+  ],
+  "packet_exclusions": [
+    "expected_labels_cpu_side",
+    "expected_reason_cpu_side",
+    "target_frame",
+    "cpu_final_disposition",
+    "post_decision_state",
+    "source_body",
+    "source_path",
+    "python",
+    "shell",
+    "generated_code"
+  ]
+}

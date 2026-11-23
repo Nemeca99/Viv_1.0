@@ -1,0 +1,19 @@
+Continue this dispatcher fix in the same session. The core task_succeeded calculation is already present and the Queen has confirmed its syntax. Complete the receipt and journal wiring with one small localcoder_patch call using two changes. After it succeeds, call shell for the same AST syntax check and return a short visible report.
+
+Change one: replace the report fields
+                  model_ids=model_ids, shell_checks=shell_checks,
+                  final_text=visible_final_text, session_exports_terminal=bool(sessions) and all(export_terminal_states),
+                  background_interrupted=background_interrupted, evidence=str(directory)
+with
+                  model_ids=model_ids, shell_checks=shell_checks,
+                  task_succeeded=task_succeeded, task_errors=task_errors,
+                  tool_errors=tool_errors, shell_check_errors=shell_check_errors,
+                  final_text=visible_final_text, session_exports_terminal=session_exports_terminal,
+                  background_interrupted=background_interrupted, evidence=str(directory)
+
+Change two: replace the existing result and next_step assignments so result is 'task succeeded' when task_succeeded, otherwise 'task incomplete: ' plus the comma-joined task_errors. If a succeeded task has a nonzero transport_exit_code, append that transport fact. Keep final_state. Set next_step to continue with the next Architect-assigned bounded task on success; on incomplete work, say to review the receipt and task_errors and prepare one bounded repair step.
+
+The target path contract is:
+<localcoder_patch_paths>
+.opencode/evals/run_local_agent_task.py
+</localcoder_patch_paths>

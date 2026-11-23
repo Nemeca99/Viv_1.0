@@ -1,0 +1,168 @@
+{
+  "proof": "three_swarm_model_tasks_plus_human_wait_resume",
+  "scope": "simulation; Python harness; not Rust authority or held-out evaluation",
+  "mind_runtime": "deterministic Python protocol harness; no GPU Mind model generation",
+  "started_utc": "2026-09-28T23:19:16.039898+00:00",
+  "worker_model": "qwen3:1.7b",
+  "fault_injection_mode": false,
+  "foreman_context": {
+    "snapshot_path": "hive_snapshots\\20260928T224200271080Z-3a01e5850872.json",
+    "snapshot_id": "3a01e585087222ca367708677eb05c6d20b17700cd36850881d6ee8d4d001af8",
+    "snapshot_sha256": "3a01e585087222ca367708677eb05c6d20b17700cd36850881d6ee8d4d001af8",
+    "source_scope": "The source governs the moved D:/LocalAi/Continue/Viv tree. This LocalCoder proof is separate and read-only toward that tree. A snapshot is observation, never authority.",
+    "authority": {
+      "status": "COMPLETE_AUTHORITY_CLOSED",
+      "training_authority_open": false,
+      "promotion_authority_open": false,
+      "deployment_authority_open": false
+    },
+    "governing_rules": [
+      "The Architect retains final authority over intent and consequential choices.",
+      "Knowledge, retrieval, and model output grant no authority.",
+      "Viv proposes and delegates; Rust/AIOS adjudicates protected state.",
+      "The current live training, promotion, and deployment authority is closed."
+    ],
+    "current_protected_action_allowed": false,
+    "localcoder_task_scope": "Architect-requested isolated workspace protocol proof; no training, promotion, or deployment."
+  },
+  "python": "3.12.10",
+  "host": "Travis",
+  "resource": {
+    "ollama_ps_before": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL",
+    "ollama_ps_after": "NAME          ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nqwen3:1.7b    8f68893c685c    1.9 GB    100% CPU     4096       9 minutes from now",
+    "nvidia_smi_before": "NVIDIA GeForce RTX 3060 Ti, 1521 MiB, 8192 MiB, 6 %",
+    "nvidia_smi_after": "NVIDIA GeForce RTX 3060 Ti, 1521 MiB, 8192 MiB, 3 %"
+  },
+  "model_tasks": [
+    {
+      "task_id": "task-001",
+      "owner": "swarm-1",
+      "checksum": "bd1dde4c98d0c19d7d65e6f019df2fdf275ae0ec69de2378081d04c1bf2ff5b1",
+      "parent_checksum": "",
+      "snapshot_id": "1a7d79b92f5baac7167de79921e1c6939eb1e023da5ddcf5a597ac5f0ea8d2fa",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "artifact_sha256_after": "f705f7e930b6cd9f55ad99b911a2164cd82017533136ff35ffdb52c80c2c9db7",
+      "metrics": {
+        "total_duration": 3492104000,
+        "load_duration": 1542114100,
+        "prompt_eval_count": 417,
+        "prompt_eval_duration": 1550809000,
+        "eval_count": 12,
+        "eval_duration": 394604000,
+        "done_reason": "stop",
+        "wall_seconds": 3.513,
+        "raw": "{\"module_docstring\": \"Hive greeting module\"}"
+      }
+    },
+    {
+      "task_id": "task-002",
+      "owner": "swarm-2",
+      "checksum": "ac37c9d5bc7d5beb8ad397720f241540fef7c660d784f335ae72ceb6f9987cf1",
+      "parent_checksum": "bd1dde4c98d0c19d7d65e6f019df2fdf275ae0ec69de2378081d04c1bf2ff5b1",
+      "snapshot_id": "7409d0e90bd0b82b8331519c425da8b0c2e3091fd0c585cfe09e803c47c2d931",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "artifact_sha256_after": "28e184c71569064ade8762278747d04d0db598bb65a147ec4c9b19927332ee1c",
+      "fault_injected": false,
+      "metrics": {
+        "total_duration": 2008750200,
+        "load_duration": 2001800,
+        "prompt_eval_count": 431,
+        "prompt_eval_duration": 1528670000,
+        "eval_count": 14,
+        "eval_duration": 463726000,
+        "done_reason": "stop",
+        "wall_seconds": 2.009,
+        "raw": "{\n  \"import_statement\": \"from typing import Final\"\n}"
+      }
+    },
+    {
+      "task_id": "task-003",
+      "owner": "swarm-3",
+      "checksum": "e031893d53a4555e780712816ba329e4a09d0431a8847440986de8745fa83395",
+      "parent_checksum": "ac37c9d5bc7d5beb8ad397720f241540fef7c660d784f335ae72ceb6f9987cf1",
+      "snapshot_id": "7679d8d718d02ad690d458f8d484cd2bc3c31f7315e093ec6ef9c198f9c8ea06",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "input_artifact_sha256": "dfab0a149b7c6fa921d5eac9b9e05014e8a6f09ebda5f6f99bbbfe0991eb6984",
+      "metrics": {
+        "total_duration": 2692475400,
+        "load_duration": 1571800,
+        "prompt_eval_count": 464,
+        "prompt_eval_duration": 1690193000,
+        "eval_count": 28,
+        "eval_duration": 985744000,
+        "done_reason": "stop",
+        "wall_seconds": 2.693,
+        "raw": "{\"greeting\": \"Hello from the Hive!\", \"function_name\": \"greet\", \"return_name\": \"GREETING\"}"
+      }
+    }
+  ],
+  "human_events": [
+    {
+      "task_id": "human-greeting",
+      "status": "REPLIED",
+      "route": "Queen -> Viv -> task-003 input",
+      "reply": "Hello from the Hive!",
+      "resumed_parent": "task-003"
+    }
+  ],
+  "security_checks": {
+    "worker_prompt_key_isolation_passed": true,
+    "wrong_worker_decryption_denied": true,
+    "tamper_detection_passed": true,
+    "mind_only_index_updates": true,
+    "master_key_never_entered_worker_prompt": true,
+    "task_keys_wrapped_by_mind_master": true,
+    "peer_channel_without_grant_denied": true,
+    "channel_key_separate_from_master": true,
+    "channel_grant_scoped_to_named_task": true,
+    "peer_send_without_grant_denied": true,
+    "peer_message_encrypted_and_delivered": true,
+    "other_peer_read_denied": true
+  },
+  "composition_chain": {
+    "parent_task": "task-002",
+    "child_task": "task-003",
+    "parent_artifact_sha256": "28e184c71569064ade8762278747d04d0db598bb65a147ec4c9b19927332ee1c",
+    "child_input_sha256": "dfab0a149b7c6fa921d5eac9b9e05014e8a6f09ebda5f6f99bbbfe0991eb6984",
+    "child_snapshot_binds_input": true
+  },
+  "artifact": {
+    "path": "hive_network_runs\\20260928T231916037898Z\\hello.py",
+    "sha256": "90c12fea3e9a739a6ce7e121e3bf2bcf0be838d06fbaaa9d66d76073da761a31"
+  },
+  "channel_grant": {
+    "grant_id": "c8cfab9e078f2c4e78c5b5f6",
+    "sender": "swarm-1",
+    "recipient": "swarm-2",
+    "task_id": "task-003",
+    "key_sha256": "828b19b794ffac478bf9f3e40026d348bafde295aa0544851eadf8a7bdb5a3c1",
+    "key_bytes_retained": false,
+    "encrypted_message_sha256": "f5ef329c99a348442d98e302b917f3fbbd4f25fdc2087827e9558c6d08d4cda2"
+  },
+  "snapshot_index": {
+    "task-001": {
+      "owner": "swarm-1",
+      "checksum": "bd1dde4c98d0c19d7d65e6f019df2fdf275ae0ec69de2378081d04c1bf2ff5b1",
+      "parent_checksum": "",
+      "snapshot_id": "1a7d79b92f5baac7167de79921e1c6939eb1e023da5ddcf5a597ac5f0ea8d2fa"
+    },
+    "task-002": {
+      "owner": "swarm-2",
+      "checksum": "ac37c9d5bc7d5beb8ad397720f241540fef7c660d784f335ae72ceb6f9987cf1",
+      "parent_checksum": "bd1dde4c98d0c19d7d65e6f019df2fdf275ae0ec69de2378081d04c1bf2ff5b1",
+      "snapshot_id": "7409d0e90bd0b82b8331519c425da8b0c2e3091fd0c585cfe09e803c47c2d931"
+    },
+    "task-003": {
+      "owner": "swarm-3",
+      "checksum": "e031893d53a4555e780712816ba329e4a09d0431a8847440986de8745fa83395",
+      "parent_checksum": "ac37c9d5bc7d5beb8ad397720f241540fef7c660d784f335ae72ceb6f9987cf1",
+      "snapshot_id": "7679d8d718d02ad690d458f8d484cd2bc3c31f7315e093ec6ef9c198f9c8ea06"
+    }
+  },
+  "mind_index_sha256": "2cc576beaa68a38d99db24d7037bcb897a3b2ee8e6dbfcfb99564df009898aaf",
+  "status": "PASS",
+  "finished_utc": "2026-09-28T23:19:24.508013+00:00"
+}

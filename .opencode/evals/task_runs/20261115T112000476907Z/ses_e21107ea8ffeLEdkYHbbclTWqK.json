@@ -1,0 +1,156 @@
+{
+  "info": {
+    "id": "ses_e21107ea8ffeLEdkYHbbclTWqK",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "drone_build",
+    "cost": 0,
+    "tokens": {
+      "input": 10852,
+      "output": 309,
+      "reasoning": 353,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794741600602,
+      "updated": 1794741652854,
+      "busy": 1794741600619,
+      "idle": 1794741652858
+    },
+    "title": "LocalCoder Drone 20261115T112000476907Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1deef8165001TRI9mRyOQmUGUD",
+      "time": {
+        "created": 1794741600613
+      },
+      "type": "agent-switched",
+      "agent": "drone_build",
+      "previous": "drone_build"
+    },
+    {
+      "id": "msg_1deef8163001npa6r4gMSxO0Mu",
+      "time": {
+        "created": 1794741600625
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nArchitect-approved AIOS router control-plane lifecycle for goal 01a1d847-3b27-7533-bbc2-c718ace48ae7.\nRouter bounds JSON: {\"task_class\":\"build\",\"lane_ids\":[\"drone\"],\"max_turns_per_lane\":1}\nRun exactly one bounded build task and one serial Drone lane turn; this is a control-record smoke with no source-code target. The router task and event record are the complete work scope.\nCall the `aios_router_open_build_task` tool to open the current assignment under the declared router bounds. The session-bound bridge supplies the actual OpenCode session ID, task ID, and assignment hash.\nThen call the `aios_router_accept_self_prompt` tool for lane drone turn 0. The prompt must contain Agenda, Verified facts grounded in the actual open-task result, and Next bounded action to record turn 0.\nThen call the `aios_router_record_turn_result` tool for lane drone turn 0 with a concise, truthful result grounded in the actual tool outputs.\nThen call the `aios_router_complete_lane` tool for lane drone with a concise nonempty completion receipt.\nFinally call the `aios_router_router_status` tool and report its actual event count and event-chain status. Stop after this readback. The final [DRONE] report must name `router.sqlite3`, cite one concrete returned fact, and end with [DRONE SELF-PROMPT] fields Agenda:, Verified facts:, Next bounded action: STOP.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: aios_router_open_build_task → aios_router_accept_self_prompt → aios_router_record_turn_result → aios_router_complete_lane → aios_router_router_status. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n\n[QUEEN → DRONE]\nExecute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1deef8177001K1EPTBYoHYI66K",
+      "time": {
+        "created": 1794741600638,
+        "firstToken": 1794741630619,
+        "streamed": 1794741630628,
+        "completed": 1794741634172
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_1",
+          "name": "aios_router_open_build_task",
+          "executed": false,
+          "state": {
+            "status": "error",
+            "input": {
+              "assignment": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+              "lane_ids": [
+                "drone"
+              ],
+              "max_turns_per_lane": 1
+            },
+            "error": {
+              "type": "unknown",
+              "message": "Router open is outside the next explicitly authorized tool step; no task was opened."
+            }
+          },
+          "time": {
+            "created": 1794741630621,
+            "ran": 1794741630626,
+            "completed": 1794741633211
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "5115d44e474d0b8023a391b367cb47ebf9ba4bf9",
+        "end": "8a34b9a6f439d52c7f625eed748060594391f434",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794741633203-b174129f-6a8e-4425-a485-d4cb62a6bf50-body-gate.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 5358,
+        "output": 113,
+        "reasoning": 313,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1def004850011UEjxhQtiE5v1W",
+      "time": {
+        "created": 1794741634185,
+        "firstToken": 1794741652079,
+        "streamed": 1794741652084,
+        "completed": 1794741652854
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "The current Architect task stopped after router_open_out_of_order. No further tool will run."
+        }
+      ],
+      "snapshot": {
+        "start": "dc6f06e429605c2fb28b4d3d884b951706e9af98",
+        "end": "dc6f06e429605c2fb28b4d3d884b951706e9af98",
+        "files": []
+      },
+      "finish": "stop",
+      "rawFinish": "stop",
+      "cost": 0,
+      "tokens": {
+        "input": 5494,
+        "output": 196,
+        "reasoning": 40,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1def04d7a0017GjFZ6B50Tx2Sv",
+      "time": {
+        "created": 1794741652858
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    }
+  ]
+}

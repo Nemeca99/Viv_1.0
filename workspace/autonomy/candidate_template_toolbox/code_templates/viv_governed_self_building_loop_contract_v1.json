@@ -1,0 +1,56 @@
+{
+  "schema_version": "viv_cpu_governed_self_building_loop_v1",
+  "receipt_schema": "viv_cpu_governed_self_building_end_to_end_receipt_v1",
+  "status": "current_candidate_only",
+  "lifecycle": [
+    "OBSERVE",
+    "PROPOSE",
+    "INTERPRET",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "JUDGE",
+    "RECORD",
+    "SCHEDULE"
+  ],
+  "limits": {
+    "max_cycles": 3,
+    "max_repeats": 3,
+    "concurrency": "none",
+    "daemon": false,
+    "self_resume": false
+  },
+  "authority": {
+    "model": "proposal_origin_only",
+    "gpu": "private_proposal_and_acceleration_only",
+    "cpu": "deterministic_validation_and_candidate_admission",
+    "rust": "executable_write_membrane",
+    "architect": "production_generation_and_pointer_approval"
+  },
+  "variable_surface": {
+    "wire": "A|variable|<template_slot>|<declared_key>|<value_slot>",
+    "literal_values_model_visible": false,
+    "template_registry_mutation": false
+  },
+  "result_surface": {
+    "wire": "R|<accept|reject|hold>|<reason>",
+    "raw_output_preserved": true,
+    "cpu_repair_counts_as_model_success": false
+  },
+  "production_boundary": {
+    "candidate_generation_allowed": true,
+    "production_generation_requires_architect_receipt": true,
+    "pointer_adoption_requires_separate_receipt": true,
+    "protected_source_rewrite": false,
+    "seed_0_mutation": false,
+    "live_model_mutation": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "receipt_hash_scope": "object_without_receipt_sha256"
+  }
+}

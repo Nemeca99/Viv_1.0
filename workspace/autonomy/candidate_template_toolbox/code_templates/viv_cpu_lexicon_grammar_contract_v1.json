@@ -1,0 +1,64 @@
+{
+  "schema_version": "viv_cpu_lexicon_grammar_contract_v1",
+  "status": "candidate_only",
+  "purpose": "Teach bounded lexical grounding and sentence structure without making a raw dictionary the authority for meaning or execution.",
+  "roles": {
+    "root_dictionary": "canonical word inventory and spelling presence",
+    "thesaurus": "bounded synonym, variant, part-of-speech, and definition relations",
+    "grammar": "finite sentence-form rules and approved training examples",
+    "cpu": "normalizes, bounds, verifies, and owns final speech authority",
+    "model": "learns candidate lexical and grammatical associations in an isolated copy"
+  },
+  "source_policy": {
+    "preferred_dictionary": "E:/Backup/words_dictionary.json",
+    "preferred_thesaurus": "E:/Backup/en_thesaurus.jsonl",
+    "source_mode": "external_read_only_reference",
+    "native_paths_cpu_side_only": true,
+    "raw_corpus_model_packet": false,
+    "binary_dictionary_packages_runtime_loaded": false,
+    "writeback_to_source": false
+  },
+  "learning_policy": {
+    "sequence": [
+      "observe",
+      "normalize_words",
+      "retrieve_bounded_lexical_cards",
+      "apply_grammar_rule",
+      "form_candidate_sentence",
+      "cpu_validate",
+      "record_experience",
+      "replay_in_isolated_candidate"
+    ],
+    "dictionary_is_not_definition_authority": true,
+    "thesaurus_is_not_context_authority": true,
+    "grammar_is_not_free_form_execution": true,
+    "live_weight_updates": false,
+    "production_activation": false,
+    "human_approval_for_adoption": true
+  },
+  "grammar_contract": {
+    "rule_count": 7,
+    "sentence_validation": [
+      "required_slots_present",
+      "word_order_matches_rule",
+      "punctuation_is_bounded",
+      "no_unsupported_fact_added",
+      "cpu_route_or_evidence_supports_meaning"
+    ],
+    "unknown_or_ambiguous_meaning": "HOLD"
+  },
+  "structured_speech_plan": {
+    "schema_version": "viv_cpu_speech_plan_grammar_v1",
+    "frame_prefix": "P",
+    "model_emits": "approved_plan_and_slot_identifiers_only",
+    "cpu_resolves": "slot_identifiers_to_approved_lexical_values",
+    "grammar_composer": "foundation/lib/cpu_grammar_composer.py",
+    "plan_resolver": "foundation/lib/cpu_speech_plan.py",
+    "free_form_sentence_values": false,
+    "unknown_plan_or_slot": "HOLD",
+    "candidate_only": true,
+    "live_weight_updates": false,
+    "production_activation": false
+  },
+  "receipt_schema": "viv_cpu_lexicon_grammar_receipt_v1"
+}

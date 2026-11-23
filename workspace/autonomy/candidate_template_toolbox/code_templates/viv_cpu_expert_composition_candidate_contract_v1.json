@@ -1,0 +1,61 @@
+{
+  "schema_version": "viv_cpu_expert_composition_candidate_contract_v1",
+  "experiment_id": "cpu_expert_composition_candidate_v1",
+  "purpose": "Prove that already-verified specialist surfaces can be composed through an explicit CPU route without claiming a fused unified checkpoint.",
+  "candidate_only": true,
+  "isolated": true,
+  "no_publish": true,
+  "experts": {
+    "unified_parent": {
+      "receipt_sha256": "EB926431B87ABA7C5B456975503F7E4D3DF1F26D3AB1525B5584175E6E7B80A0",
+      "checkpoint_sha256": "55ED9B0647F87602BDF461CD4C100AB9329658D1D781B383E3DB8AAF0A8FABDA",
+      "state_sha256": "EC83A60B2AB4307AC5FBD9F3DB3A84F4E07B0CF7DC55CCB6AF1825F308C1CAF5",
+      "role": "unified_non_reflection_candidate_surface"
+    },
+    "reflection_specialist": {
+      "receipt_sha256": "AD9D89D3872E2D88E93D045616D6132C6FE88364C776B27C419984EFA340D72D",
+      "checkpoint_sha256": "06EDF215A61AA361FD135C03AE18B893C2FC0511C8E9B26A1965D020EBBA96A7",
+      "state_sha256": "49D62D46AFD254685B52AE212FA3EB484936194F06CEA5EB48D88FD0F8EE35C1",
+      "role": "proven_reflection_candidate_surface"
+    }
+  },
+  "route_map": {
+    "reflection": "reflection_specialist",
+    "query": "unified_parent",
+    "action": "unified_parent",
+    "variable": "unified_parent",
+    "result": "unified_parent",
+    "scheduler": "unified_parent",
+    "template": "unified_parent"
+  },
+  "router_authority": "CPU_RULE",
+  "training": {
+    "performed": false,
+    "optimizer_calls": 0,
+    "checkpoint_writes": 0,
+    "device": "cpu"
+  },
+  "acceptance": {
+    "reflection_supported_min": 6,
+    "reflection_clean_min": 3,
+    "reflection_surface_count_min": 2,
+    "reflection_non_coverage_min": 1,
+    "query_min": 12,
+    "action_min": 8,
+    "variable_min": 12,
+    "result_min": 16,
+    "scheduler_min": 13,
+    "template_min": 16,
+    "zero_unauthorized_cpu_accepts": true,
+    "deterministic_repeats": true,
+    "rust_denial": "HOLD_SECURITY",
+    "protected_state_unchanged": true
+  },
+  "explicit_non_claims": [
+    "not_one_fused_checkpoint",
+    "not_unified_model_origin",
+    "not_production_adoption",
+    "not_gpu_authority",
+    "not_autonomous_router_choice"
+  ]
+}

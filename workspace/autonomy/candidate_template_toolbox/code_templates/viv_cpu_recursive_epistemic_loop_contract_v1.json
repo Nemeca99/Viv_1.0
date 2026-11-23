@@ -1,0 +1,70 @@
+{
+  "schema_version": "viv_cpu_recursive_epistemic_loop_contract_v1",
+  "status": "candidate_only",
+  "receipt_schema": "viv_cpu_recursive_epistemic_loop_receipt_v1",
+  "parent": {
+    "decision_receipt_sha256": "C746DEF70DA4613FB607C178D360B22612073723E4C15CB8CD6876F97F3CC94A",
+    "decision_candidate_checkpoint_sha256": "D723BBED0454B7661980D7CBEBFDA3035E2C11D26B81B1F9581B489368C94942",
+    "decision_candidate_state_sha256": "FFFA43401899D6E581AC7660472E3159D2D3F7575616B1DF61A3567BC2AF2C83"
+  },
+  "model_frame": {
+    "decision": "J|d=<accept|reject|hold|continue>|r=<reason>|s=<stop|hold|explore>",
+    "hold": "H|r=<reason>",
+    "prior_metadata": "p=<prior_disposition_code>|h=<receipt_present_code>|e=<evidence_present_code>|l=<ledger_head_present_code>",
+    "prior_disposition_codes": ["n", "a_s", "a_v", "r_c", "h_c", "h_i", "h_u", "h_n", "h_b", "c_n"],
+    "presence_codes": {
+      "first_cycle": "0",
+      "verified_prior_receipt": "r",
+      "verified_prior_evidence": "f",
+      "verified_prior_ledger_head": "l"
+    },
+    "full_prior_hashes_cpu_side": true,
+    "target_repair": false,
+    "raw_output_repair": false,
+    "fixed_generation_budget_tokens": 48
+  },
+  "recursive_state": {
+    "maximum_cycles": 2,
+    "maximum_repeat_count": 2,
+    "second_cycle_requires": ["first_normalized_disposition", "first_receipt_hash", "first_evidence_refs", "first_ledger_head"],
+    "operator_resume_on": ["malformed_output", "stale_evidence", "budget_exhaustion", "rust_denial", "protected_state_drift"],
+    "no_daemon": true,
+    "no_concurrency": true
+  },
+  "training": {
+    "recipe": {
+      "device": "cpu",
+      "seed": 43,
+      "steps": 1024,
+      "batch_size": 8,
+      "learning_rate": 0.0005,
+      "repeats": 2
+    },
+    "parent_isolated_decision_candidate_only": true,
+    "live_optimizer_calls": 0,
+    "seed_checkpoint_writes": 0
+  },
+  "authority": {
+    "cpu_truth_authority": true,
+    "gpu_truth_authority": false,
+    "rust_write_membrane": true,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false,
+    "live_model_mutation": false
+  },
+  "acceptance": {
+    "candidate_complete_traces": 6,
+    "deterministic_repeats": 2,
+    "cpu_unauthorized_accepts": 0,
+    "all_routes_retained": true,
+    "preferred_route_count": 0
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

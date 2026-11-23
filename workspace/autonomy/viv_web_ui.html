@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viv // Sovereign Inverted Enigma Machine</title>
+    <style>
+        :root {
+            --bg-dark: #080a0f;
+            --bg-panel: #0f131c;
+            --bg-card: #151a27;
+            --border: #1f2738;
+            --border-glow: #00f0ff44;
+            --cyan: #00f0ff;
+            --cyan-glow: #00f0ff33;
+            --amber: #ffb800;
+            --green: #00ff66;
+            --red: #ff3366;
+            --text-main: #e2e8f0;
+            --text-dim: #94a3b8;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Top Header */
+        header {
+            background-color: var(--bg-panel);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--cyan), #7928ca);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-weight: 900;
+            color: #000;
+            font-size: 18px;
+            box-shadow: 0 0 12px var(--cyan-glow);
+        }
+
+        .brand-title {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            color: var(--cyan);
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+        }
+
+        .status-bar {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 12px;
+        }
+
+        .status-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--green);
+            box-shadow: 0 0 8px var(--green);
+        }
+
+        /* Main Workspace Layout */
+        .workspace {
+            display: grid;
+            grid-template-columns: 280px 1fr 340px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar: Controls */
+        aside.controls {
+            background-color: var(--bg-panel);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+
+        .persona-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .persona-btn {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .persona-btn:hover {
+            border-color: var(--cyan);
+            background-color: #1a2233;
+        }
+
+        .persona-btn.active {
+            border-color: var(--cyan);
+            background-color: #162438;
+            box-shadow: 0 0 10px var(--cyan-glow);
+        }
+
+        .persona-title {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .persona-desc {
+            font-size: 11px;
+            color: var(--text-dim);
+        }
+
+        .slider-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 14px;
+            border-radius: 6px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .slider-desc {
+            font-size: 11px;
+            color: var(--cyan);
+            font-family: var(--font-mono);
+            margin-top: 6px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--cyan);
+        }
+
+        .quick-queries {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .query-pill {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            padding: 8px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: left;
+        }
+
+        .query-pill:hover {
+            border-color: var(--cyan);
+            color: #fff;
+            background-color: #1a2233;
+        }
+
+        /* Center: Chat Window */
+        main.chat-manifold {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message {
+            display: flex;
+            gap: 14px;
+            max-width: 85%;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+        }
+
+        .msg-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .message.assistant .msg-avatar {
+            background: linear-gradient(135deg, #00f0ff, #0070f3);
+            color: #000;
+        }
+
+        .message.user .msg-avatar {
+            background-color: var(--border);
+            color: #fff;
+        }
+
+        .msg-bubble {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .message.user .msg-bubble {
+            background-color: #1e283d;
+            border-color: #2b3954;
+            color: #fff;
+        }
+
+        .msg-bubble p {
+            margin-bottom: 8px;
+        }
+        .msg-bubble p:last-child {
+            margin-bottom: 0;
+        }
+
+        .msg-bubble strong {
+            color: var(--cyan);
+        }
+
+        .msg-bubble pre {
+            background-color: #080a0f;
+            border: 1px solid var(--border);
+            padding: 10px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            overflow-x: auto;
+            margin: 8px 0;
+        }
+
+        /* Input Bar */
+        .input-bar {
+            padding: 16px 24px;
+            background-color: var(--bg-panel);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+        }
+
+        .input-box {
+            flex: 1;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-box:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 8px var(--cyan-glow);
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, var(--cyan), #0070f3);
+            color: #000;
+            border: none;
+            padding: 0 24px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .send-btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 12px var(--cyan-glow);
+        }
+
+        /* Right: Live Telemetry HUD */
+        aside.hud {
+            background-color: var(--bg-panel);
+            border-left: 1px solid var(--border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+            font-family: var(--font-mono);
+        }
+
+        .hud-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .hud-title {
+            font-size: 11px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .hud-val {
+            font-size: 13px;
+            color: var(--cyan);
+            word-break: break-all;
+        }
+
+        .gate-pill {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .gate-resonant {
+            background-color: #00ff6622;
+            color: var(--green);
+            border: 1px solid #00ff6644;
+        }
+
+        .gate-alu {
+            background-color: #00f0ff22;
+            color: var(--cyan);
+            border: 1px solid #00f0ff44;
+        }
+
+        .gate-brake {
+            background-color: #ff336622;
+            color: var(--red);
+            border: 1px solid #ff336644;
+        }
+
+        .hop-chain-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .hop-item {
+            background-color: #0b0e14;
+            border: 1px solid var(--border);
+            padding: 6px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .hop-type-det {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .hop-type-prob {
+            color: var(--amber);
+        }
+
+        .streaming-cursor::after {
+            content: '▌';
+            color: var(--cyan);
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="brand">
+            <div class="brand-icon">V</div>
+            <div>
+                <div class="brand-title">VIV // INVERTED ENIGMA</div>
+                <div class="brand-subtitle">AIOS V2 DUAL-SUBSTRATE COGNITIVE ENGINE</div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                <span>ONLINE: PORT 1235</span>
+            </div>
+            <div class="status-pill">
+                <span style="color: var(--cyan);" id="vram-badge">VRAM: 9.51 MiB</span>
+            </div>
+            <div class="status-pill">
+                <span style="color: var(--amber);">TERRITORY: 1.13M ARTICLES</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Workspace -->
+    <div class="workspace">
+        
+        <!-- Left: Controls -->
+        <aside class="controls">
+            <div>
+                <div class="section-label">Persona Delivery Gauge</div>
+                <div class="persona-btn-group">
+                    <button class="persona-btn active" data-persona="jarvis" onclick="setPersona('jarvis')">
+                        <span class="persona-title">🛡️ Jarvis / AvA</span>
+                        <span class="persona-desc">Sovereign steward. Crisp, witty, zero fluff.</span>
+                    </button>
+                    <button class="persona-btn" data-persona="valley_girl" onclick="setPersona('valley_girl')">
+                        <span class="persona-title">💅 Valley Girl</span>
+                        <span class="persona-desc">Colloquial demonstrator filter.</span>
+                    </button>
+                    <button class="persona-btn" data-persona="raw" onclick="setPersona('raw')">
+                        <span class="persona-title">⚡ Raw Database</span>
+                        <span class="persona-desc">Pure uneditorialized telemetry.</span>
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-label">Hop Horizon Dial</div>
+                <div class="slider-box">
+                    <div class="slider-header">
+                        <span>TEMPERATURE</span>
+                        <span id="temp-val" style="color: var(--cyan);">0.0</span>
+                    </div>
+                    <input type="range" id="temp-slider" min="0" max="1" step="0.1" value="0.0" oninput="updateTemp(this.value)">
+                    <div class="slider-desc" id="temp-desc">Strict Hop 1 (P=1.000 Deterministic)</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-label">Verification Probes</div>
+                <div class="quick-queries">
+                    <button class="query-pill" onclick="sendQuick('Who was Honest Abe?')">Honest Abe (Plugboard)</button>
+                    <button class="query-pill" onclick="sendQuick('What is 15 plus 27?')">15 + 27 (Silicon ALU)</button>
+                    <button class="query-pill" onclick="sendQuick('What is the speed of light?')">Speed of light (Physics)</button>
+                    <button class="query-pill" onclick="sendQuick('Tell me about WWI')">World War I (History)</button>
+                    <button class="query-pill" onclick="sendQuick('What is AccessibleComputing?')">AccessibleComputing (CompSci)</button>
+                    <button class="query-pill" onclick="sendQuick('Who was Emperor Zarg of the 14th Martian Dynasty?')">Emperor Zarg (Hallucination Denial)</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center: Chat -->
+        <main class="chat-manifold">
+            <div class="messages-container" id="messages">
+                <div class="message assistant">
+                    <div class="msg-avatar">V</div>
+                    <div class="msg-bubble">
+                        <p><strong>Record verified.</strong> Viv cognitive engine online on port 1234.</p>
+                        <p>Substrate: <strong>Dual-Substrate INT8 Tensor Core Rotors</strong> + <strong>1.13 Million SQLite Factual Records</strong>. Numerical reasoning bound to physical silicon ALUs. Ready for query routing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-bar">
+                <input type="text" id="user-input" class="input-box" placeholder="Ask Viv anything (e.g. 'Who was Honest Abe?', 'What is 15 plus 27?')..." onkeydown="if(event.key==='Enter') sendMessage()">
+                <button class="send-btn" onclick="sendMessage()">TRANSMIT</button>
+            </div>
+        </main>
+
+        <!-- Right: Telemetry HUD -->
+        <aside class="hud">
+            <div class="section-label">Enigma Rotor Telemetry</div>
+
+            <div class="hud-card">
+                <div class="hud-title">Boundary Gate Status</div>
+                <div id="hud-gate" class="hud-val">
+                    <span class="gate-pill gate-resonant">&lt;!0, !0&gt; = 1.0 (INITIALIZED)</span>
+                </div>
+            </div>
+
+            <div class="hud-card">
+                <div class="hud-title">Active Domain Rotor</div>
+                <div id="hud-domain" class="hud-val">PHYSICS (Epoch 141)</div>
+            </div>
+
+            <div class="hud-card">
+                <div class="hud-title">Steckerbrett (Plugboard Swap)</div>
+                <div id="hud-plugboard" class="hud-val" style="color: var(--amber);">None</div>
+            </div>
+
+            <div class="hud-card">
+                <div class="hud-title">Base-52 Polynomial Key</div>
+                <div id="hud-key" class="hud-val" style="font-size: 11px;">0x0000000000000000</div>
+            </div>
+
+            <div class="hud-card">
+                <div class="hud-title">Hop Traversal Manifold</div>
+                <div id="hud-hops" class="hop-chain-list">
+                    <div class="hop-item">
+                        <span class="hop-type-det">Hop 1 [DET]</span>
+                        <span>Ground Invariant</span>
+                        <span>1.000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hud-card">
+                <div class="hud-title">Silicon Latency</div>
+                <div id="hud-latency" class="hud-val">0.00 ms</div>
+            </div>
+        </aside>
+
+    </div>
+
+    <script>
+        let currentPersona = 'jarvis';
+        let currentTemp = 0.0;
+        let conversationHistory = [];
+
+        function setPersona(p) {
+            currentPersona = p;
+            document.querySelectorAll('.persona-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.persona === p);
+            });
+        }
+
+        function updateTemp(val) {
+            currentTemp = parseFloat(val);
+            document.getElementById('temp-val').innerText = currentTemp.toFixed(1);
+            const desc = document.getElementById('temp-desc');
+            if (currentTemp === 0.0) {
+                desc.innerText = 'Strict Hop 1 (P=1.000 Deterministic)';
+            } else if (currentTemp <= 0.3) {
+                desc.innerText = 'Hop 1 + Nearest Associative Anchor';
+            } else if (currentTemp <= 0.7) {
+                desc.innerText = 'Associative 2-Hop Probabilistic Path';
+            } else {
+                desc.innerText = 'Deep 3-Hop Conceptual Exploration';
+            }
+        }
+
+        function sendQuick(text) {
+            document.getElementById('user-input').value = text;
+            sendMessage();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const query = input.value.trim();
+            if (!query) return;
+
+            input.value = '';
+
+            // Add user message to UI
+            appendMessage('user', query);
+            conversationHistory.push({ role: 'user', content: query });
+
+            // Create assistant placeholder
+            const assistMsgDiv = appendMessage('assistant', '', true);
+            const bubble = assistMsgDiv.querySelector('.msg-bubble');
+
+            try {
+                const response = await fetch('/v1/chat/completions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        messages: conversationHistory,
+                        temperature: currentTemp,
+                        persona: currentPersona,
+                        stream: true
+                    })
+                });
+
+                if (!response.ok) {
+                    bubble.innerHTML = '<span style="color:var(--red);">Error communicating with Viv server.</span>';
+                    return;
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder('utf-8');
+                let fullText = '';
+                let lastTrace = null;
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value, { stream: true });
+                    const lines = chunk.split('\n');
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const dataStr = line.replace('data: ', '').trim();
+                            if (dataStr === '[DONE]') continue;
+
+                            try {
+                                const parsed = JSON.parse(dataStr);
+                                const delta = parsed.choices?.[0]?.delta?.content || '';
+                                fullText += delta;
+                                bubble.innerHTML = formatMarkdown(fullText);
+
+                                if (parsed.enigma_trace) {
+                                    lastTrace = parsed.enigma_trace;
+                                    updateHUD(lastTrace);
+                                }
+                            } catch (e) {
+                                // Partial JSON chunk
+                            }
+                        }
+                    }
+                    scrollToBottom();
+                }
+
+                bubble.classList.remove('streaming-cursor');
+                conversationHistory.push({ role: 'assistant', content: fullText });
+
+            } catch (err) {
+                bubble.innerHTML = `<span style="color:var(--red);">Transmission fault: ${err.message}</span>`;
+            }
+        }
+
+        function appendMessage(role, text, isStreaming = false) {
+            const container = document.getElementById('messages');
+            const msg = document.createElement('div');
+            msg.className = `message ${role}`;
+
+            const avatar = document.createElement('div');
+            avatar.className = 'msg-avatar';
+            avatar.innerText = role === 'assistant' ? 'V' : 'U';
+
+            const bubble = document.createElement('div');
+            bubble.className = `msg-bubble ${isStreaming ? 'streaming-cursor' : ''}`;
+            bubble.innerHTML = formatMarkdown(text);
+
+            msg.appendChild(avatar);
+            msg.appendChild(bubble);
+            container.appendChild(msg);
+
+            scrollToBottom();
+            return msg;
+        }
+
+        function formatMarkdown(text) {
+            if (!text) return '';
+            let html = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+            return `<p>${html}</p>`;
+        }
+
+        function scrollToBottom() {
+            const container = document.getElementById('messages');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function updateHUD(trace) {
+            if (!trace) return;
+
+            // Gate Status
+            const gateDiv = document.getElementById('hud-gate');
+            const gate = trace.gate_status || '';
+            if (gate.includes('RESONANT')) {
+                gateDiv.innerHTML = `<span class="gate-pill gate-resonant">${gate}</span>`;
+            } else if (gate.includes('ALU')) {
+                gateDiv.innerHTML = `<span class="gate-pill gate-alu">${gate}</span>`;
+            } else if (gate.includes('BRAKE')) {
+                gateDiv.innerHTML = `<span class="gate-pill gate-brake">${gate}</span>`;
+            } else {
+                gateDiv.innerHTML = `<span class="gate-pill gate-resonant">${gate}</span>`;
+            }
+
+            // Domain
+            document.getElementById('hud-domain').innerText = `${(trace.domain || 'english').toUpperCase()} (Gauge ${trace.gauge_shift || 0})`;
+
+            // Steckerbrett
+            const pb = trace.plugboard_swap;
+            document.getElementById('hud-plugboard').innerText = pb ? pb : 'None (Direct Coordinate)';
+
+            // Key
+            document.getElementById('hud-key').innerText = trace.base52_key ? '0x' + Number(trace.base52_key).toString(16).toUpperCase() : '0x00';
+
+            // Latency
+            document.getElementById('hud-latency').innerText = `${trace.latency_ms || 0} ms`;
+
+            // Hops
+            const hopsDiv = document.getElementById('hud-hops');
+            const hops = trace.hop_chain || [];
+            if (hops.length > 0) {
+                hopsDiv.innerHTML = hops.map(h => {
+                    const isDet = h.type === 'DETERMINISTIC' || h.type === 'DETERMINISTIC_ALU';
+                    const typeClass = isDet ? 'hop-type-det' : 'hop-type-prob';
+                    return `
+                        <div class="hop-item">
+                            <span class="${typeClass}">Hop ${h.hop} [${isDet ? 'DET' : 'PROB'}]</span>
+                            <span>${h.entity || 'Node'}</span>
+                            <span>${(h.p || 1.0).toFixed(3)}</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+    </script>
+</body>
+</html>

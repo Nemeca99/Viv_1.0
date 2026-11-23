@@ -1,0 +1,37 @@
+{
+  "schema": "lmstudio_toolbridge_diagnostic_v1",
+  "event": "provider_request",
+  "request_id": "d012e4b5-461c-47b5-82c0-79a8be1a831b",
+  "session_id": "ses_e17e97865ffeqBHUup02dTc68O",
+  "request_path": "/v1/chat/completions",
+  "model": "omnicoder-2-9b",
+  "prompt_chars": 790,
+  "prompt_sha256": "6e03b81ceffa9b6101e64e1fb71e26bd745799f26343d9051a9543fdc919dd4f",
+  "request_body_chars": 81872,
+  "request_text_chars": 71519,
+  "system_text_chars": 32135,
+  "output_token_limit": 4096,
+  "inference_parameters": {
+    "temperature": 0.1,
+    "top_p": 1,
+    "seed": 915703687,
+    "reasoning_effort": "none",
+    "frequency_penalty": 0,
+    "presence_penalty": 0.1
+  },
+  "tool_field_count": 1,
+  "tool_schemas": [
+    {
+      "name": "localcoder_failure_lookup",
+      "required": [],
+      "property_names": [
+        "case",
+        "limit"
+      ],
+      "additional_properties": false
+    }
+  ],
+  "tool_choice": "required",
+  "forced_drone_tool_choice": "localcoder_failure_lookup",
+  "captured_at": "2026-11-17T08:05:48.474Z"
+}

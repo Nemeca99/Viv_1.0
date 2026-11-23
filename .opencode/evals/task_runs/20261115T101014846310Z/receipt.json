@@ -1,0 +1,54 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 134.594,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e21505cc0ffe7LJfg67yNrC3CD"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "ebdfc6deb7bd6cfa14fcd33307be2d3a385fcd2177a3b97ce79c51e921954229",
+  "tools": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\privacy_core_router_db_gate.py\", line 2, in <module>\r\n    from aios_rebuild.privacy_core import PrivacyCore\r\nModuleNotFoundError: No module named 'aios_rebuild'\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\privacy_core_router_db_gate.py\", line 2, in <module>\r\n    from aios_rebuild.privacy_core import PrivacyCore\r\nModuleNotFoundError: No module named 'aios_rebuild'\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE]\nFile: workspace/autonomy/privacy_core_router_db_gate.py; Fact: ModuleNotFoundError indicates aios_rebuild module not found in Python path, requiring correct virtual environment activation.\n\n[DRONE SELF-PROMPT]\nAgenda: Fix the Python import by using the correct virtual environment path that includes site-packages for aios_rebuild.\nVerified facts: Exit code 1 with Traceback showing ModuleNotFoundError for aios_rebuild; evidence token Traceback confirmed.\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T101014846310Z"
+}

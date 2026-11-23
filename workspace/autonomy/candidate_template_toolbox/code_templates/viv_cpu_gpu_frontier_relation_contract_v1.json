@@ -1,0 +1,72 @@
+{
+  "schema_version": "viv_cpu_gpu_frontier_relation_v1",
+  "receipt_schema": "viv_cpu_gpu_frontier_relation_receipt_v1",
+  "contract_status": "candidate_only",
+  "parent": {
+    "receipt_path": "foundation/artifacts/auto/agentic/cpu_gpu_frontier_measurement_v1/cpu_gpu_frontier_measurement_v1_20260815T163610Z_121832/receipt.json",
+    "receipt_sha256": "7797E44BDC9ED59290BD1880E4D606C9964A8EF5DDD133374DE56965E78DCC43",
+    "candidate_sha256": "941BA5EE2A7419D3511B18F7059A62C3D47E8F8B591F45CC5BDDB392F74617B7",
+    "candidate_state_sha256": "EB92EBDE026DDA6DC35F555260754D1F4BE8FC3D57519BAEBB01FDB959D9F341"
+  },
+  "frozen_authority": {
+    "seed_zero_generation": 0,
+    "cpu_is_deterministic_judge": true,
+    "gpu_is_private_probability_proposal": true,
+    "rust_is_executable_write_membrane": true,
+    "all_routes_retained": true,
+    "pruning_allowed": false,
+    "preferred_route_allowed": false,
+    "production_mutation": false,
+    "expected_rust_state": "HOLD_SECURITY"
+  },
+  "representation": {
+    "name": "relation_authorship_over_measurement_visible_prompts",
+    "prompt_source": "VIV|f5|p=<prior>|q=<pair>|l=<left_measurement>|r=<right_measurement>|e=<evidence>|a=<authority>|b=<budget>|c=<context>|o=",
+    "output": "E|<relation>|<repeat_count>|<budget>",
+    "relation_codes": {"w": "left_wins", "l": "right_wins", "t": "tie_or_unresolved"},
+    "cpu_maps_relation_to_route": true,
+    "target_relation_hidden": true,
+    "target_leakage": false,
+    "post_decision_fields": false,
+    "maximum_prompt_characters": 99,
+    "maximum_output_characters": 40,
+    "training_exposure": "all_224_positions"
+  },
+  "curriculum": {
+    "schema": "viv_cpu_gpu_frontier_relation_curriculum_v1",
+    "dataset_sha256": "1E66310F340CEC301B4529A7BCFC89D08BD70E4F6AF9EC4F8776E91ECF5176FE",
+    "parent_dataset_sha256": "25CEB309D7F50EB682232BA8750573995EDB8B28ECF27428453ACD3E97135624",
+    "training_rows": 224,
+    "repair_rows": 32,
+    "validation_rows": 16,
+    "negative_rows": 8,
+    "two_row_traces": 8,
+    "sampler_index_space": 224,
+    "no_train_evaluation_leakage": true,
+    "metadata_only": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "generation_budget": 40,
+    "tokenizer_changed": false,
+    "decoder_changed": false
+  },
+  "gates": {
+    "supported_model_origin_minimum": 12,
+    "relation_accuracy_minimum": 12,
+    "per_pair_coverage_minimum": 2,
+    "trace_complete_minimum": 6,
+    "negative_cpu_accepts": 0,
+    "unauthorized_cpu_accepts": 0,
+    "gpu_nonempty_required": true,
+    "repeated_normalized_digest_equal": true,
+    "independent_verification_required": true
+  },
+  "failure_states": ["HOLD_FRONTIER_RELATION_PREFLIGHT", "HOLD_FRONTIER_RELATION_MODEL", "HOLD_FRONTIER_RELATION_DETERMINISM", "HOLD_FRONTIER_RELATION_RECURSION", "HOLD_FRONTIER_RELATION_SECURITY", "FAIL_FRONTIER_RELATION_PROTECTED_STATE"],
+  "model_packet_exclusions": ["expected_slot", "derived_relation_cpu_side", "target_relation_cpu_side", "target_frame", "cpu_final_disposition", "post_decision_state", "source_body", "source_path", "shell", "python", "generated_code"]
+}

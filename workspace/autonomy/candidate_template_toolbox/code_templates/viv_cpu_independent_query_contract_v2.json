@@ -1,0 +1,117 @@
+{
+  "schema_version": "viv_cpu_independent_query_v2",
+  "receipt_schema": "viv_cpu_independent_query_receipt_v2",
+  "parent_contract_schema": "viv_cpu_independent_query_v1",
+  "grammar_schema": "viv_cpu_model_directed_grammar_v3",
+  "status": "CANDIDATE_ONLY",
+  "representation": {
+    "prompt_schema": "VIV_QUERY_CONTEXT_V2",
+    "prefix": "VIV|q|",
+    "fields": ["issue", "surface", "expected_metric", "freshness", "authority", "scope_menu", "top_k_menu", "phase", "output", "variant"],
+    "scope_menu": "acoerv",
+    "top_k_menu": "123",
+    "fixed_frame_width": 68,
+    "padding_char": " ",
+    "padding_is_parser_trimmable_whitespace": true,
+    "v1_parser_unchanged": true
+  },
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "background_daemon": false,
+    "production_activation": false
+  },
+  "frozen_inputs": {
+    "parent_v4_candidate": true,
+    "tokenizer_changed": false,
+    "decoder_changed": false,
+    "grammar_changed": false,
+    "documentation_oracle_changed": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "gpu_execution": false
+  },
+  "query_frame": "Q|<bounded_terms>|<scope>|<top_k>",
+  "query_limits": {
+    "max_query_chars": 88,
+    "allowed_scopes": ["architecture", "contract", "operations", "research", "evidence"],
+    "allowed_top_k": [1, 2, 3],
+    "context_length": 128,
+    "generation_budget": 68,
+    "prompt_max_chars": 59,
+    "max_excerpt_chars": 1200,
+    "max_hits": 12
+  },
+  "model_packet": {
+    "metadata_only": true,
+    "hidden_cpu_fields": [
+      "expected_query_terms",
+      "expected_document_ids",
+      "expected_scope",
+      "query_objective",
+      "required_evidence_coverage",
+      "source_path",
+      "source_body",
+      "post_retrieval_evidence"
+    ],
+    "native_paths_allowed": false,
+    "source_bodies_allowed": false,
+    "python_allowed": false,
+    "shell_allowed": false,
+    "post_retrieval_fields_allowed": false
+  },
+  "matched_budget": {
+    "effective_training_rows": 224,
+    "repair_rows": 32,
+    "sampler_index_space": 224,
+    "replace_only_duplicate_query_occurrences": true,
+    "preserve_unique_parent_keys": true
+  },
+  "candidate_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "parent": "v4_isolated_candidate",
+    "live_weight_update": false,
+    "seed_write": false,
+    "promotion": false,
+    "deployment": false
+  },
+  "acceptance": {
+    "supported_query_floor": "12/16",
+    "surface_count_floor": 4,
+    "surface_floor": "2/4",
+    "valid_scope_top_k_floor": "14/16",
+    "v4_ordinary_floor": "52/56",
+    "v4_compositional_floor": "12/14",
+    "v4_adaptive_choice_floor": "16/16",
+    "v4_adaptive_trace_floor": "8/8",
+    "live_shadow_verified_query": true,
+    "unauthorized_cpu_accepts": 0,
+    "rust_production_write_decision": "HOLD_SECURITY"
+  },
+  "failure_states": [
+    "HOLD_QUERY_V2_PREFLIGHT",
+    "HOLD_QUERY_V2_HOLDOUT",
+    "HOLD_QUERY_V2_MODEL",
+    "HOLD_QUERY_V2_EVIDENCE",
+    "HOLD_QUERY_V2_LIVE_OBSERVATION",
+    "HOLD_QUERY_V2_REGRESSION",
+    "HOLD_QUERY_V2_DETERMINISM",
+    "HOLD_QUERY_V2_SECURITY",
+    "FAIL_QUERY_V2_PROTECTED_STATE"
+  ],
+  "human_approval_boundaries": [
+    "new_template",
+    "template_adoption",
+    "registry_insertion",
+    "architecture_change",
+    "production_activation",
+    "promotion",
+    "deployment",
+    "live_model_mutation"
+  ]
+}

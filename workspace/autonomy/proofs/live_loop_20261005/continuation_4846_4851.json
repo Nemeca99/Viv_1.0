@@ -1,0 +1,149 @@
+{
+  "schema": "viv_live_loop_continuation_receipt_v1",
+  "observed_utc": "2026-10-05T05:51:27.028124+00:00",
+  "worker_pid": 160492,
+  "supervisor_pid": 106692,
+  "events": [
+    {
+      "id": 4846,
+      "at_epoch": 1791179364.9193578,
+      "kind": "candidate_evaluation_completed",
+      "data": {
+        "activation_block_reason": null,
+        "candidate_behavior_pass": true,
+        "candidate_improved": false,
+        "candidate_pass": false,
+        "candidate_source_safe": true,
+        "correction_examples_added": 0,
+        "drive": "D",
+        "drive_adapter_activation": null,
+        "heldout_ids_marked_evaluated": 5,
+        "output": "L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\D\\versions\\d8b1c71c45a5\\evidence_eval_receipt.json",
+        "summary": {
+          "base": {
+            "cases": 5,
+            "passed_cases": 5,
+            "repeats": 2
+          },
+          "candidate": {
+            "cases": 5,
+            "passed_cases": 5,
+            "repeats": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 4847,
+      "at_epoch": 1791179364.9308822,
+      "kind": "task_completed",
+      "data": {
+        "id": "test",
+        "kind": "test",
+        "result": "candidate behavior passed=True; improved=False; drive adapter activated=False"
+      }
+    },
+    {
+      "id": 4848,
+      "at_epoch": 1791179365.9376445,
+      "kind": "task_selected",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4849,
+      "at_epoch": 1791179365.946641,
+      "kind": "task_completed",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "result": "idled for one second"
+      }
+    },
+    {
+      "id": 4850,
+      "at_epoch": 1791179366.9548938,
+      "kind": "task_selected",
+      "data": {
+        "id": "training",
+        "kind": "training",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4851,
+      "at_epoch": 1791179367.0531795,
+      "kind": "self_training_corpus_prepared",
+      "data": {
+        "corpus_sha256": "fe6e4f64bcf532abb02dbb2d37f4083eac098304490b1e7244ed58d1b0d5bd8e",
+        "drive": "E",
+        "evaluation_file_sha256": "e5a331bd43c56cfef45a4bae7dc2e7be6eacd73cc5202a2e8d306d6a02beca3c",
+        "evaluation_group_count": 4,
+        "evaluation_ids": [
+          "54ed94cc7395a636b635269c6fc7d450aa31a57e70b6bc6b9c18d39046d41e11",
+          "684a6c90f0ff5bd4108c9a2e0b47a3a776378c673949a45f2573f0f11e627a4f",
+          "2f00984f0010d1fb58b229e51c25243c8fd77412fbc3f89de7c1d1ebc05c9466",
+          "1ade0fa8132a748331b18198ebe5ff48c44bfe3784f8be86b725b9fe0c030fc6"
+        ],
+        "evaluation_sampling_tier_counts": {
+          "source_document": 2,
+          "structured_text": 2
+        },
+        "evaluation_source_count": 4,
+        "excluded_unsafe_source_count": 7,
+        "failure_feedback_training_count": 0,
+        "previously_evaluated_training_count": 4,
+        "promotion": "forbidden_candidate_only",
+        "schema": "viv_evidence_sft_v3",
+        "source_safety_policy": "credential_and_binary_source_exclusion_v1",
+        "tool_scheme_sha256": "58d67ddb6af1be0c96d78da15061fdfbf28d24b9c6ab99b47eb402b3e5bb9284",
+        "training_file_sha256": "59c6243a7b1ad827c57ba9d92d2a4cd9b9fcdd14dc37387f5f86c0ec71c4d7ff",
+        "training_ids": [
+          "5e289bae03c776c00280a8ef98bd86785f69cff2c29d6b5f494022f688526ff6",
+          "bf590c4b16ffc7c0002b1bc9741fe570e0fb074515779507416b43911221bd9e",
+          "84871902fc2436df8a1cae87ba216f059bce470ac2e9babec1f5e52d2bd04f58",
+          "6f6a725013aae9301717795f00f6ddfbe7d19bd936ffacb22490a283abca63b4",
+          "4290c097f841b201fc872658a3a752c13600d56bf8bdcd3abd62112f0997517a",
+          "c5f5f50adba73bf09ef4d2ecde0e04e168b75cc25cd784488dd1688f4c514154",
+          "f03b26d65bfe15939ef4c2104ca388dfd1443ad10a58630506cbccb64d900208",
+          "29fb90ce4b3f15bd299e971a80165492b3a0457ad642882e3b6a89223cc19b76"
+        ],
+        "training_sampling_tier_counts": {
+          "source_document": 7,
+          "structured_text": 1
+        },
+        "training_source_count": 8
+      }
+    }
+  ],
+  "pending_jobs": {
+    "evaluation_job": null,
+    "training_job": {
+      "adapter_name": "viv-drive-e",
+      "base": "L:\\LocalCoder\\workspace\\swarm_adapters\\models\\Qwen3-1.7B",
+      "dataset": "L:\\LocalCoder\\workspace\\autonomy\\learning\\corpora\\E\\fe6e4f64bcf532ab\\train.jsonl",
+      "drive": "E",
+      "evaluation_dataset": "L:\\LocalCoder\\workspace\\autonomy\\learning\\corpora\\E\\fe6e4f64bcf532ab\\eval.jsonl",
+      "evaluation_output": "L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\E\\versions\\fe6e4f64bcf5\\evidence_eval_receipt.json",
+      "output": "L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\E\\versions\\fe6e4f64bcf5",
+      "shared_adapter": "L:\\LocalCoder\\workspace\\swarm_adapters\\runs\\viv-swarm-default-v2\\swarm-default",
+      "steps": 40
+    }
+  },
+  "artifact_sha256": {
+    "swarm_adapters/drive_stacks/D/versions/d8b1c71c45a5/training_receipt.json": "a47c62be68f52a5afd092c7db71ab6656409efc72a2d24011a3452932b6f38dd",
+    "swarm_adapters/drive_stacks/D/versions/d8b1c71c45a5/evidence_eval_receipt.json": "b690220c79f9f6b113867bb9d1fe06bd32ce8ea063549a742afc7c6e6a60b994",
+    "autonomy/learning/corpora/D/d8b1c71c45a55a7d/eval.jsonl": "a45a5c2af9c6877c24988315d132e27aab447b22c6e992f3016c67d09989bb07",
+    "viv_autonomy.py": "d097b94b56e398588a0b62c4a2c5de97295613b73ab8aca0e7659681b7ad1fb7"
+  },
+  "claims": {
+    "D_candidate": "5/5 base and 5/5 candidate across 2 repeats; candidate_improved=false; no activation",
+    "E_candidate": "new 40-step candidate job d8? no: version fe6e4f64bcf5 is queued for training; evaluation pending",
+    "task_loop": "worker alive; random task selected training at event 4850; next task entered candidate training preparation"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "schema": "viv_current_worker_continuity_v1",
+  "captured_utc": "2026-10-05T03:16:52.736805+00:00",
+  "enabled": true,
+  "worker": {
+    "pid": 89992,
+    "state": "running",
+    "heartbeat_recent": true,
+    "process_running": true,
+    "cmdline": [
+      "L:\\Python312\\python.exe",
+      "L:\\LocalCoder\\workspace\\viv_autonomy.py",
+      "worker"
+    ],
+    "cpu_seconds": 80.671875,
+    "rss_bytes": 3121696768
+  },
+  "supervisor": {
+    "at": 1791170211.8044622,
+    "child_launcher_pid": 224032,
+    "launches": 35,
+    "pid": 106692,
+    "restart_backoff_seconds": 0,
+    "state": "watching"
+  },
+  "source_sha256": {
+    "viv_autonomy.py": "fa9e3a84c999793e831659b84b018b091a4d156653eb557d5193b12f14367f3e",
+    "viv_chat_cli.py": "4de156a6117bed29878529beb4c3158de9c4b79d76985b5cadfb12f600451725",
+    "swarm_adapters/drive_stacks/runtime.py": "b5cbcf8a89a43b068b01a3dbb1f10f090bc69582b84e2c051d5d31bf4e8597d8",
+    "autonomy/agent_index.py": "2fd0e6d9294aa7408b20e764a4a7a9a2f1ce69d2419d4cd95f5fadd719c9f28c"
+  },
+  "events_since_resume": [
+    {
+      "id": 4079,
+      "at": 1791170122.241444,
+      "kind": "architect_resume",
+      "data": {}
+    },
+    {
+      "id": 4080,
+      "at": 1791170122.993856,
+      "kind": "supervisor_launched_worker",
+      "data": {
+        "launch": 35,
+        "launcher_pid": 224032
+      }
+    },
+    {
+      "id": 4081,
+      "at": 1791170128.042983,
+      "kind": "task_selected",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4082,
+      "at": 1791170128.5374591,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [],
+          "options": {
+            "query": "missing"
+          }
+        },
+        "output": {
+          "results": []
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4083,
+      "at": 1791170128.5426056,
+      "kind": "task_completed",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "result": "registered tested tool called with a recorded development case"
+      }
+    },
+    {
+      "id": 4084,
+      "at": 1791170129.5495374,
+      "kind": "task_selected",
+      "data": {
+        "id": "explore",
+        "kind": "explore",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    }
+  ],
+  "scope_note": "The updated worker remains live. It selected explore and has not emitted a completion event for that task as of this capture. No successful F/L repair or family-gate exercise claimed."
+}

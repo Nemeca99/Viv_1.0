@@ -1,0 +1,61 @@
+{
+  "info": {
+    "id": "ses_e21e1db24ffeVSQ1ZAe3xlQmCn",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "drone_read",
+    "cost": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "failed",
+    "time": {
+      "created": 1794727879983,
+      "updated": 1794727880002,
+      "busy": 1794727880005,
+      "idle": 1794727898627
+    },
+    "title": "LocalCoder Drone 20261115T073119771207Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1de1e253d001Raq25R5kXVQWzF",
+      "time": {
+        "created": 1794727879997
+      },
+      "type": "agent-switched",
+      "agent": "drone_read",
+      "previous": "drone_read"
+    },
+    {
+      "id": "msg_1de1e253b001HgKZ7SBLiJJ4ig",
+      "time": {
+        "created": 1794727880012
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nUse the `read` tool exactly once on `workspace/autonomy/opencode_drone_prompts.py`. Report the actual first top-level function definition and its starting line as shown in the read result. Do not call any additional tool. Return a concise [DRONE] report and a [DRONE SELF-PROMPT] with Agenda, Verified facts, and Next bounded action: STOP.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: read. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n\n[QUEEN → DRONE]\nExecute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1de1e6e03001SN5vF2yKBaqWS2",
+      "time": {
+        "created": 1794727898627
+      },
+      "type": "idle",
+      "outcome": "failed",
+      "error": {
+        "type": "unknown",
+        "message": "Rust WSL Docker Body gate denied model_request:primary: [\"ram_at_or_above_limit\"]"
+      }
+    }
+  ]
+}

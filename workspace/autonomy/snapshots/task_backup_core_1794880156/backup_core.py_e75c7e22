@@ -1,0 +1,53 @@
+class BackupCore:
+    def __init__(self, config: dict):
+        self.config = config
+        self.snapshot_dir = config.get('snapshot_dir', '.snapshots')
+        self.max_snapshots = config.get('max_snapshots', 5)
+        self.quota_limit = config.get('quota_limit', 1000000000)
+        self.snapshot_hashes = {}
+
+    def _calculate_hash(self, file_path: str) -> str:
+        import hashlib
+        h = hashlib.sha256()
+        with open(file_path, 'rb') as f:
+            for chunk in iter(lambda: f.read(8192), b''):
+                h.update(chunk)
+        return h.hexdigest()
+
+    def backup_file(self, file_path: str):
+        import os, shutil
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"File not found: {file_path}")
+        hash_val = self._calculate_hash(file_path)
+        snapshot_name = f"{os.path.basename(file_path)}.snap"
+        dest_path = os.path.join(self.snapshot_dir, snapshot_name)
+        if os.path.exists(dest_path):
+            os.remove(dest_path)
+        shutil.copy2(file_path, dest_path)
+        self.snapshot_hashes[dest_path] = hash_val
+
+    def _manage_snapshot_quota(self):
+        import os
+        snapshots = sorted([f for f in os.listdir(self.snapshot_dir) if f.endswith('.snap')])
+        while len(snapshots) > self.max_snapshots:
+            oldest = snapshots.pop(0)
+            oldest_path = os.path.join(self.snapshot_dir, oldest)
+            os.remove(oldest_path)
+            del self.snapshot_hashes[oldest_path]
+
+    def _verify_hashes(self):
+        import os
+        for path, expected_hash in list(self.snapshot_hashes.items()):
+            if not os.path.exists(path):
+                raise FileNotFoundError(f"Snapshot missing: {path}")
+            actual_hash = self._calculate_hash(path)
+            if actual_hash != expected_hash:
+                return False
+        return True
+
+    def get_health_status(self) -> dict:
+        import os
+        snapshot_count = len([f for f in os.listdir(self.snapshot_dir) if f.endswith('.snap')])
+        total_size = sum(os.path.getsize(f) for f in os.listdir(self.snapshot_dir) if f.endswith('.snap'))
+        status = 'healthy' if total_size <= self.quota_limit else 'over_quota'
+        return {'status': status, 'snapshot_count': snapshot_count, 'quota_used': total_size}

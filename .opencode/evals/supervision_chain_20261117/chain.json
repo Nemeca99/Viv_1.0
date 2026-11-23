@@ -1,0 +1,41 @@
+{
+  "schema": "localcoder_supervised_goal_chain_v1",
+  "role": "Planning and evidence only; Rust remains authoritative for runtime task state.",
+  "session_id": "ses_e17e97865ffeqBHUup02dTc68O",
+  "milestones": [
+    {
+      "id": "node_gate_acceptance",
+      "depends_on": [],
+      "status": "verified",
+      "acceptance": "Reject denied and malformed per-node gates; valid receipt passes.",
+      "source_sha256": "831a0c7b4d94ddd0f0bc03aa349d305c9f2be930a53b582f0abb1118689c432a",
+      "checks": "32/32 node cases; 53/53 flags; 11/11 relays",
+      "review": "Viv authored guards; Queen restored status/output checks dropped by second patch. Both drafts preserved."
+    },
+    {
+      "id": "circuit_identity",
+      "depends_on": [
+        "node_gate_acceptance"
+      ],
+      "status": "verified",
+      "acceptance": "Bind node identities and entry function to recorded database versions and relay endpoints.",
+      "baseline": "3/35; forged node identities accepted",
+      "source_sha256": "f5a85a1b32fc238d86b06d878bcaee2f692f1045f08240003b41b20c3fcb54c4",
+      "checks": "35/35 identity; all 131 accumulated cases pass",
+      "review": "Rejected large draft preserved. Viv authored pure comparator; Queen corrected strict types, copied it into audit, and added read-only SQL/type/dependency adapter."
+    },
+    {
+      "id": "regression_workflow",
+      "depends_on": [
+        "circuit_identity"
+      ],
+      "status": "verified",
+      "acceptance": "Viv authors a reusable bounded regression runner and factual handoff; all frozen checks pass.",
+      "checks": "131/131 fresh cases plus six independent workflow controls",
+      "live_receipt": "L:\\LocalCoder\\.opencode\\evals\\composition_regression_runs\\69a1020fe4e5448db6ed1b407089f2f7\\run_result.json",
+      "review": "Viv authored suite list, streaming hash helper and result validator; Queen corrected strict types, repaired runner orchestration and added the usage note after Viv exact-match failure."
+    }
+  ],
+  "completed_at": "2026-11-17T08:56:50.829054+00:00",
+  "result": "three_linked_milestones_verified"
+}

@@ -1,0 +1,451 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "session_recovery_required",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e1eb9580fffeMz4M1Gq0xZJPSv",
+  "session_recovery": {
+    "recovered": true,
+    "session_id": "ses_e1eb9580fffeMz4M1Gq0xZJPSv",
+    "title": "LocalCoder Drone 20261115T221426376206Z",
+    "outcome": "succeeded",
+    "terminal": true,
+    "interrupt_attempted": false,
+    "interrupt": null,
+    "export_path": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T221426376206Z\\ses_e1eb9580fffeMz4M1Gq0xZJPSv.v6-recovery-20261115T222427100430Z.json"
+  },
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "read",
+    "localcoder_add_python",
+    "shell"
+  ],
+  "final_validation": "final_report_missing_drone_tag",
+  "self_check_validation": {
+    "required": true,
+    "passed": false,
+    "reason": "self_check_nonzero_or_missing_exit"
+  },
+  "read_evidence_validation": null,
+  "source_line_validation": {
+    "required": true,
+    "passed": true,
+    "reason": "under_assigned_line_limit",
+    "target": "workspace/autonomy/hive_postal_inbox_contract_v6_check_candidate.py",
+    "line_count": 80,
+    "exclusive_limit": 100
+  },
+  "intermediate_validation": {
+    "passed": true,
+    "reason": "intermediate_self_prompts_verified"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794780871859-4cc07557-a60c-4ebb-955d-300ef7f170c8-body-gate.json",
+      "sha256": "464d24452710bc64fea6a13f87b5cd910c40b2dcbb801f6c94e06ac87b44772b",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 87.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84.6,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 87.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794780893297-1f4b5f32-0161-4dd3-9014-b611514028e5-body-gate.json",
+      "sha256": "21506317843e08e0b52be70399bfd4ea83afa96c9dd885c9d3150e9400602277",
+      "source": "tool:read",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 86.1,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 86.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.2
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794780898629-e9e99e1c-6a06-468c-889e-17641599cbf1-body-gate.json",
+      "sha256": "ca73b32b6f0db93d84048461536b293d4e9f4359a93dac47ee3db7f93d7da794",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 86.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84.5,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 86.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794780938515-8319ebd0-8292-46d4-b996-088396c7007c-body-gate.json",
+      "sha256": "8dca2529291b727d6b8c28e8167da909b8c942087779aaa958b5b3be02c03dc0",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 85.9,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 85.9,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.4
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794780970838-b3d447d1-a4c1-46a8-880b-e5579d0f3ab0-body-gate.json",
+      "sha256": "4362b5028c76711ff7c890d1ff0d160d423e407181953af957028d0e19672064",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 85.2,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 85.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.5
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794781093918-e348aace-491d-4e7a-acdd-f0eccd421c6e-body-gate.json",
+      "sha256": "bd5da26f2a7d65070114ca67535f8f5bab2677ca4e01fe6c527442a73719d6ad",
+      "source": "tool:localcoder_add_python",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 85.6,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 85.6,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.2
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794781099001-a801b0dc-0483-4de9-95f3-a315ea1d8bd8-body-gate.json",
+      "sha256": "126e660700ae61a7966c63fb421e3c92517d0aaa189b243bc82b8dc935106742",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 85.3,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 85.3,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 2.1
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794781118793-29dbf1ff-d1ff-47fe-b064-215c44f3b44f-body-gate.json",
+      "sha256": "7c4ddc132aafdfe89907172fa47c7bfec9ecb8ffd92094f380c1c14cc399427f",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 84.7,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 84.7,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794781161783-bf735f11-7512-4c34-9e81-ecd64ceb7609-body-gate.json",
+      "sha256": "2f895546d44f085b94bcb409921dc91ac0fb1c46dc6c09ba87d5810317e7b09e",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 83.4,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 83.4,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 2.1
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794781204105-780b7fae-84c1-4b2a-be67-0713c4db8dd7-body-gate.json",
+      "sha256": "52552afe82ce8047a439edfedc3e3ea39725639dc8d9ee6251a64a82494ba631",
+      "source": "tool:shell",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 83.1,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 83.7,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 83.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794781209805-eb814604-3fc3-42cd-a481-29b8b1285030-body-gate.json",
+      "sha256": "1201182d805a08d4fa21e4b7aafa9de1a2477334302cd8afd1183085d1bf1332",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 83.2,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 83.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.1
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794781425852-af9f83fe-24d4-4308-9733-d7dfece3e6de-body-gate.json",
+      "sha256": "95726a0a09c19b1ace481c5ff35af62c03643926b3ad07dceb5ad240003af87a",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 82.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 83.8,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 82.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.3
+      },
+      "reasons": []
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 84.4,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 86.9,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 1.9
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "bc31cd54bd96745323db4055164e51496b159ce8a05ff4ef22674cbaab1a78b1",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 600.484,
+    "exit_code": 1,
+    "transport_exit_code": 1,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": true,
+    "sessions": [
+      "ses_e1eb9580fffeMz4M1Gq0xZJPSv"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "b8f5ce57c55eb3250030e790b0956b6388566bd2d8661716918894914dbb70bb",
+    "tools": [
+      {
+        "tool": "read",
+        "status": "completed"
+      },
+      {
+        "tool": "localcoder_add_python",
+        "status": "completed"
+      },
+      {
+        "tool": "shell",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [
+      {
+        "status": "completed",
+        "exit": 1,
+        "output": "Case 1: expected (True, 'accepted_for_local_inbox'), got (True, accepted_for_local_inbox)\nExit code: 1"
+      }
+    ],
+    "task_succeeded": false,
+    "task_errors": [
+      "timed_out",
+      "shell_check_failed",
+      "self_check_nonzero_or_missing_exit"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [
+      {
+        "status": "completed",
+        "exit": 1,
+        "output": "Case 1: expected (True, 'accepted_for_local_inbox'), got (True, accepted_for_local_inbox)\nExit code: 1"
+      }
+    ],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "<tool_call>\n<function=localcoder_add_python>\n<parameter=filePath>\nL:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_contract_v6_check_candidate.py\n</parameter>\n<parameter=content>\nfrom hive_postal_inbox_contract_v1_candidate import validate_message_for_local_inbox\n\n\nEXPECTED_RESULTS = [\n    (\"valid/queen\", (True, \"accepted_for_local_inbox\")),\n    (\"valid/drone_1\", (False, \"not_for_local_inbox\")),\n    (\"string/queen\", (False, \"message_not_object\")),\n    (\"missing task_id/queen\", (False, \"missing_required_field\")),\n    (\"padded recipient/queen\", (False, \"invalid_recipient_id\")),\n    (\"unknown kind/queen\", (False, \"invalid_kind\")),\n    (\"list body/queen\", (False, \"invalid_body\")),\n    (\"valid/padded local ID\", (False, \"not_for_local_inbox\")),\n]\n\n\ndef _self_check() -> int:\n    \"\"\"Run self-check with exactly eight test cases.\"\"\"\n    valid_envelope = {\n        \"schema\": \"hive_postal_message_v1\",\n        \"message_id\": \"msg_001\",\n        \"sender_id\": \"drone_1\",\n        \"recipient_id\": \"queen\",\n        \"task_id\": \"task_1\",\n        \"kind\": \"REPORT\",\n        \"body\": {\"status\": \"complete\"},\n    }\n\n    cases = [\n        # Case 1: matching valid envelope => accepted\n        (valid_envelope, \"queen\"),\n        \n        # Case 2: valid envelope for another ID => not_for_local_inbox\n        (valid_envelope, \"drone_1\"),\n        \n        # Case 3: string => message_not_object\n        (\"not an object\", \"queen\"),\n        \n        # Case 4: missing task_id => missing_required_field\n        ({k: v for k, v in valid_envelope.items() if k != \"task_id\"}, \"queen\"),\n        \n        # Case 5: padded recipient => invalid_recipient_id (envelope fails)\n        ({**valid_envelope, \"recipient_id\": \" queen\"}, \"queen\"),\n        \n        # Case 6: kind UNKNOWN => invalid_kind (envelope fails)\n        ({**valid_envelope, \"kind\": \"UNKNOWN\"}, \"queen\"),\n        \n        # Case 7: list body => invalid_body (envelope fails)\n        ({**valid_envelope, \"body\": []}, \"queen\"),\n        \n        # Case 8: matching envelope with padded local ID => not_for_local_inbox\n        (valid_envelope, \" queen\"),\n    ]\n\n    passed = 0\n    for index, (message, local_inbox_id) in enumerate(cases, start=1):\n        actual, reason = validate_message_for_local_inbox(message, local_inbox_id)\n        expected = EXPECTED_RESULTS[index - 1][1]\n\n        if actual is not expected or reason != expected[1]:\n            print(f\"Case {index}: expected {expected}, got ({actual}, {reason})\")\n            return 1\n\n    print(\"PASS: 8 checks\")\n    return 0\n\n\ndef main() -> int:\n    import argparse\n    parser = argparse.ArgumentParser(description=\"Inbox contract candidate validator\")\n    parser.add_argument(\"--self-check\", action=\"store_true\")\n    args = parser.parse_args()\n\n    if not args.self_check:\n        parser.error(\"--self-check is required\")\n\n    return _self_check()\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n</parameter>\n</function>\n</tool_call>"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": true,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T221426376206Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T221426253654Z.prompt.txt",
+    "exit_only_final_shell_check_passed": false,
+    "session_recovery": {
+      "recovered": true,
+      "session_id": "ses_e1eb9580fffeMz4M1Gq0xZJPSv",
+      "title": "LocalCoder Drone 20261115T221426376206Z",
+      "outcome": "succeeded",
+      "terminal": true,
+      "interrupt_attempted": false,
+      "interrupt": null,
+      "export_path": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T221426376206Z\\ses_e1eb9580fffeMz4M1Gq0xZJPSv.v6-recovery-20261115T222427100430Z.json"
+    },
+    "dispatcher_final_text": [
+      "<tool_call>\n<function=localcoder_add_python>\n<parameter=filePath>\nL:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_contract_v6_check_candidate.py\n</parameter>\n<parameter=content>\nfrom hive_postal_inbox_contract_v1_candidate import validate_message_for_local_inbox\n\n\nEXPECTED_RESULTS = [\n    (\"valid/queen\", (True, \"accepted_for_local_inbox\")),\n    (\"valid/drone_1\", (False, \"not_for_local_inbox\")),\n    (\"string/queen\", (False, \"message_not_object\")),\n    (\"missing task_id/queen\", (False, \"missing_required_field\")),\n    (\"padded recipient/queen\", (False, \"invalid_recipient_id\")),\n    (\"unknown kind/queen\", (False, \"invalid_kind\")),\n    (\"list body/queen\", (False, \"invalid_body\")),\n    (\"valid/padded local ID\", (False, \"not_for_local_inbox\")),\n]\n\n\ndef _self_check() -> int:\n    \"\"\"Run self-check with exactly eight test cases.\"\"\"\n    valid_envelope = {\n        \"schema\": \"hive_postal_message_v1\",\n        \"message_id\": \"msg_001\",\n        \"sender_id\": \"drone_1\",\n        \"recipient_id\": \"queen\",\n        \"task_id\": \"task_1\",\n        \"kind\": \"REPORT\",\n        \"body\": {\"status\": \"complete\"},\n    }\n\n    cases = [\n        # Case 1: matching valid envelope => accepted\n        (valid_envelope, \"queen\"),\n        \n        # Case 2: valid envelope for another ID => not_for_local_inbox\n        (valid_envelope, \"drone_1\"),\n        \n        # Case 3: string => message_not_object\n        (\"not an object\", \"queen\"),\n        \n        # Case 4: missing task_id => missing_required_field\n        ({k: v for k, v in valid_envelope.items() if k != \"task_id\"}, \"queen\"),\n        \n        # Case 5: padded recipient => invalid_recipient_id (envelope fails)\n        ({**valid_envelope, \"recipient_id\": \" queen\"}, \"queen\"),\n        \n        # Case 6: kind UNKNOWN => invalid_kind (envelope fails)\n        ({**valid_envelope, \"kind\": \"UNKNOWN\"}, \"queen\"),\n        \n        # Case 7: list body => invalid_body (envelope fails)\n        ({**valid_envelope, \"body\": []}, \"queen\"),\n        \n        # Case 8: matching envelope with padded local ID => not_for_local_inbox\n        (valid_envelope, \" queen\"),\n    ]\n\n    passed = 0\n    for index, (message, local_inbox_id) in enumerate(cases, start=1):\n        actual, reason = validate_message_for_local_inbox(message, local_inbox_id)\n        expected = EXPECTED_RESULTS[index - 1][1]\n\n        if actual is not expected or reason != expected[1]:\n            print(f\"Case {index}: expected {expected}, got ({actual}, {reason})\")\n            return 1\n\n    print(\"PASS: 8 checks\")\n    return 0\n\n\ndef main() -> int:\n    import argparse\n    parser = argparse.ArgumentParser(description=\"Inbox contract candidate validator\")\n    parser.add_argument(\"--self-check\", action=\"store_true\")\n    args = parser.parse_args()\n\n    if not args.self_check:\n        parser.error(\"--self-check is required\")\n\n    return _self_check()\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n</parameter>\n</function>\n</tool_call>"
+    ]
+  }
+}

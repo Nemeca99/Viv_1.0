@@ -1,0 +1,53 @@
+{
+  "schema_version": "viv_cpu_reflection_query_variable_shadow_contract_v1",
+  "status": "candidate_only",
+  "purpose": "Attach the proven current-manifest reflection-to-query chain to one CPU-owned variable-slot surface.",
+  "lifecycle": [
+    "OBSERVE",
+    "REFLECT",
+    "RETRIEVE",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "RECORD",
+    "COMPLETE"
+  ],
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "max_repeats": 2,
+    "sandbox_execution": false,
+    "production_write": false
+  },
+  "route_ownership": {
+    "reflection": "verified_reflection_candidate",
+    "query": "verified_current_query_candidate",
+    "variable": "verified_variable_specialist",
+    "cpu_router": true,
+    "rust_probe": "hypothetical_denial_only"
+  },
+  "variable_surface": {
+    "template_slot": 0,
+    "template_id": "fixture.echo",
+    "task": "render_preview",
+    "declared_key": "message",
+    "value_slot": "msg_preview",
+    "resolved_literal_cpu_only": "preview",
+    "model_literal_visibility": false,
+    "source_rewrite": false
+  },
+  "evidence_rules": {
+    "query_must_complete_before_variable": true,
+    "oracle_state": "VERIFIED",
+    "target_visible_to_model": false,
+    "expected_slot_cpu_only": true,
+    "model_output_repair": false,
+    "unsupported_cpu_accepts": 0
+  },
+  "explicit_non_claims": [
+    "not_unified_model_origin",
+    "not_sandbox_execution",
+    "not_adaptive_scheduling",
+    "not_multi_template_selection",
+    "not_production_adoption"
+  ]
+}

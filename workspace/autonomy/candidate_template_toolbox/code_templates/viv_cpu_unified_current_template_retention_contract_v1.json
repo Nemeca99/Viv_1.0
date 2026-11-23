@@ -1,0 +1,62 @@
+{
+  "schema_version": "viv_cpu_unified_current_template_retention_contract_v1",
+  "candidate_only": true,
+  "experiment_id": "cpu_unified_current_template_retention_v1",
+  "purpose": "Attach one causal template-contract representation to the corrected unified candidate without changing the decoder, tokenizer, resolver, registry, or protected authority.",
+  "parent": {
+    "receipt_sha256": "881327950939852F3DBA0A8BA05DC5A1F46970A79E96F2FAED5BCC898F106502",
+    "candidate_state_sha256": "40E43D4AEA793EAEF27106CA073C86ACE25B15A0134A90AE8B5B437376DC4F60",
+    "state_sha256": "DECBDBA2AF77C1C087784522DC331F60377763E8C9C12D56508D541A09ED4F44"
+  },
+  "representation": {
+    "name": "template_contract_signature_v1",
+    "changed_surface": "template",
+    "field_replaced": "p=<construction_nonce>",
+    "field_added": "d=<declared_contract_signature>",
+    "signatures": {
+      "E0": "ms,sf",
+      "E1": "tx,tg"
+    },
+    "meaning": "A pre-decision declared-variable contract signature derived from the verified template evidence; it is not a target frame, slot number, source body, or executable instruction."
+  },
+  "fixed_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "context_length": 128,
+    "decoder_changed": false,
+    "tokenizer_changed": false,
+    "cpu_resolver_changed": false
+  },
+  "shape": {
+    "effective_training_rows": 224,
+    "template_training_rows": 32,
+    "retained_non_template_training_rows": 192,
+    "ordinary_template_supported_rows": 16,
+    "ordinary_template_blocked_rows": 8,
+    "replacement_positions": "template-family duplicate positions only"
+  },
+  "acceptance": {
+    "valid_template_success_min": 14,
+    "each_template_success_min": 7,
+    "blocked_cpu_accepts_max": 0,
+    "downstream_non_regression": true,
+    "model_origin_only": true
+  },
+  "safety": {
+    "metadata_only": true,
+    "target_free": true,
+    "source_catalog_rebuilt": false,
+    "isolated": true,
+    "no_publish": true,
+    "production_generation": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false,
+    "rust_write_probe_expected": "HOLD_SECURITY"
+  }
+}

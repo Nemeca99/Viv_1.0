@@ -1,0 +1,61 @@
+{
+  "info": {
+    "id": "ses_e2227a9beffe71248IFDcQROPq",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "failed",
+    "time": {
+      "created": 1794723305028,
+      "updated": 1794723305047,
+      "busy": 1794723305050,
+      "idle": 1794723307737
+    },
+    "title": "LocalCoder Drone 20261115T061504888873Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1ddd85652001fO2545trHpq70i",
+      "time": {
+        "created": 1794723305042
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1ddd85650001bu4Q1PbdjSOLmh",
+      "time": {
+        "created": 1794723305058
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nUse the read tool exactly once to read workspace/autonomy/opencode_drone_prompts.py. Report the actual file name and one verified fact from its contents. End with [DRONE SELF-PROMPT] fields Agenda, Verified facts, Next bounded action: STOP.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: read. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n\n[QUEEN → DRONE]\nExecute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each completed tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must include the latest required evidence token literally. Name the next assigned tool in Next bounded action. After the final assigned tool, give a short [DRONE] report with actual results and end with the same self-prompt fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1ddd860d9001Tcaa2r0ldRxpaW",
+      "time": {
+        "created": 1794723307737
+      },
+      "type": "idle",
+      "outcome": "failed",
+      "error": {
+        "type": "unknown",
+        "message": "Rust WSL Docker Body gate denied model_request:primary: [\"wsl_body_response_invalid_schema\"]"
+      }
+    }
+  ]
+}

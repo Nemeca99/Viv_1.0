@@ -1,0 +1,54 @@
+{
+  "elapsed_seconds": 101.609,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "interrupted"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e245b280cffedJ59uX7vtASnEw"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "1654103314331b5e59a145d400562e96bc9abbd64797e59a66f64fd5c835ebe3",
+  "tools": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "File \"<string>\", line 1\r\n    import ast,pathlib; p=pathlib.Path('workspace/autonomy/opencode_drone_prompts.py'); src=p.read_text(encoding='utf-8'); ast.parse(src); ns={}; exec(compile(src,str(p),'exec'),ns); f=ns['format_drone_self_prompt']; out=f('bounded helper','AST parsed and imported','report verified output'); assert out.startswith('[DRONE SELF-PROMPT]'); assert 'Verified facts: AST parsed and imported' in out; assert 'Next bounded action: report verified output' in out; print(out); print("
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out",
+    "session_outcome_not_succeeded",
+    "visible_final_text_missing",
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "File \"<string>\", line 1\r\n    import ast,pathlib; p=pathlib.Path('workspace/autonomy/opencode_drone_prompts.py'); src=p.read_text(encoding='utf-8'); ast.parse(src); ns={}; exec(compile(src,str(p),'exec'),ns); f=ns['format_drone_self_prompt']; out=f('bounded helper','AST parsed and imported','report verified output'); assert out.startswith('[DRONE SELF-PROMPT]'); assert 'Verified facts: AST parsed and imported' in out; assert 'Next bounded action: report verified output' in out; print(out); print("
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T195935814923Z"
+}

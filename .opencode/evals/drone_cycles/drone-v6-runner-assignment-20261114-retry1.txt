@@ -1,0 +1,13 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+
+1. Use the read tool immediately to read workspace/autonomy/run_visible_drone_cycle_v5.py.
+2. Use the localcoder_add_python tool exactly once to add the new file at this project-relative path: workspace/autonomy/run_visible_drone_cycle_v6.py. This is the same previously authorized absolute target under L:\LocalCoder. Never pass an absolute path to the add-only tool.
+3. Use the shell tool exactly once to run:
+L:\.venv\Scripts\python.exe -B -c "import ast,pathlib; ast.parse(pathlib.Path(r'L:\LocalCoder\workspace\autonomy\run_visible_drone_cycle_v6.py').read_text(encoding='utf-8')); print('PASS: v6 runner syntax')"
+
+Copy v5 as the starting implementation. Make only these focused changes:
+- Start the actual work phase in a fresh visible OpenCode session by calling _dispatch(work_prompt, seconds) without a session_id. Preserve v5's bounded self-prompt, tool-sequence, intermediate-prompt, final STOP, and Rust Body receipt validation.
+- Add a fallback for an empty dispatcher session list. Its evidence path is .opencode/evals/task_runs/<stamp> and the visible title is LocalCoder Drone <stamp>. Use the existing OpenCode CLI session list --format json to find exactly one session with that title. Export it. If it is still active (no outcome and no idle timestamp), call opencode api POST /api/session/<id>/interrupt --data '{}', export again, and record the recovered ID, outcome, and interrupt result in the additive cycle receipt. Never report an interrupted or missing export as success.
+- Use subprocess argument arrays, not command-string splitting. Keep v5 behavior otherwise. Do not edit v5 or the dispatcher. Do not execute the new runner.
+
+After each tool result, self-prompt visibly with Agenda, Verified facts, and Next bounded action naming the next assigned tool. After the syntax result, final response starts [DRONE], includes the actual PASS: v6 runner syntax output, and ends with [DRONE SELF-PROMPT] fields whose Next bounded action is STOP.

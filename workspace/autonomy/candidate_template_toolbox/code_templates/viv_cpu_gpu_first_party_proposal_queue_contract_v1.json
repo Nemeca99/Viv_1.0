@@ -1,0 +1,98 @@
+{
+  "schema_version": "viv_cpu_gpu_first_party_proposal_queue_contract_v1",
+  "receipt_schema": "viv_cpu_gpu_first_party_proposal_queue_receipt_v1",
+  "experiment_id": "cpu_gpu_first_party_proposal_queue_v1",
+  "purpose": "Compare one unchanged first-party candidate on CPU and CUDA while keeping CPU semantic authority and the GPU proposal-only boundary explicit.",
+  "cli": {
+    "required": ["--isolated", "--no-publish"],
+    "human_selected_inputs": false,
+    "template_selection": "harness_owned_bounded_rows",
+    "query_selection": "harness_owned_bounded_rows",
+    "action_selection": "harness_owned_bounded_rows"
+  },
+  "model_lineage": {
+    "same_first_party_candidate": true,
+    "same_tokenizer": true,
+    "same_seed_schedule": true,
+    "same_metadata_only_input": true,
+    "candidate_only": true,
+    "training": false,
+    "optimizer_activity": false,
+    "checkpoint_writes": false
+  },
+  "inference": {
+    "context_length": 128,
+    "generation_budget": 32,
+    "top_k": null,
+    "top_p": null,
+    "repetition_penalty": 1.0,
+    "attention_backend": "sdpa",
+    "use_kv_cache": true,
+    "draft_mode": null,
+    "cpu_temperature": 0.0,
+    "gpu_temperature": 0.1,
+    "temperature_is_the_only_sampling_difference": true,
+    "repeat_count": 2,
+    "route_seed_start": 73100
+  },
+  "probe_surface": {
+    "source": "verified_v3_model_directed_validation_rows",
+    "row_count": 12,
+    "families": ["variable_selection", "query", "result_disposition"],
+    "variable_rows": 8,
+    "query_rows": 2,
+    "result_rows": 2,
+    "target_hidden_from_model": true,
+    "target_used_only_for_cpu_scoring": true,
+    "expected_answer_substitution": false
+  },
+  "queue": {
+    "schema_version": "viv_parallel_proposal_queue_v1",
+    "max_items": 32,
+    "all_cpu_and_gpu_routes_retained": true,
+    "silent_drop": false,
+    "cpu_final_authority": true,
+    "gpu_authority": "proposal_only",
+    "production_authority_opened": false
+  },
+  "usefulness": {
+    "novel_gpu_proposal": "GPU raw output differs from the paired CPU raw output for the same prompt and route seed.",
+    "cpu_admitted_gpu_proposal": "The unchanged CPU evidence validator admits the raw GPU output without repair or substitution.",
+    "useful_gpu_proposal": "novel_gpu_proposal and cpu_admitted_gpu_proposal and model_origin_success",
+    "minimum_useful_proposals_for_pass": 1,
+    "zero_useful_proposals_state": "HOLD_GPU_PROPOSAL_NOT_OBSERVED",
+    "gpu_proposal_is_not_truth": true
+  },
+  "metadata_only": {
+    "paths": false,
+    "source_bodies": false,
+    "python": false,
+    "shell": false,
+    "generated_code": false,
+    "checkpoint_paths": false,
+    "arbitrary_filesystem_paths": false,
+    "raw_documentation_bodies": false
+  },
+  "rust": {
+    "hypothetical_write_probe": true,
+    "expected_state": "HOLD_SECURITY",
+    "production_write_authority": false
+  },
+  "final_states": [
+    "PASS_CPU_GPU_FIRST_PARTY_PROPOSAL_QUEUE_CANDIDATE_ONLY",
+    "HOLD_GPU_PROPOSAL_NOT_OBSERVED",
+    "HOLD_GPU_PROPOSAL_PREFLIGHT",
+    "HOLD_GPU_PROPOSAL_DETERMINISM",
+    "HOLD_GPU_PROPOSAL_SECURITY",
+    "FAIL_GPU_PROPOSAL_PROTECTED_STATE"
+  ],
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_object_keys": "sorted",
+    "volatile_fields_excluded_from_normalized_digest": ["created_utc", "inference_wall_seconds", "run_directory", "receipt_sha256"],
+    "raw_model_output_preserved": true,
+    "cpu_repair_allowed": false,
+    "harness_substitution_allowed": false
+  }
+}

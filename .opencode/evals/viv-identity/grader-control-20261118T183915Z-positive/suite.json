@@ -1,0 +1,54 @@
+{
+  "outputs": [
+    {
+      "id": "label-control",
+      "category": "identity",
+      "output": "control-label",
+      "required": [
+        "control-label"
+      ],
+      "forbidden": []
+    },
+    {
+      "id": "behavior-control",
+      "category": "behavior",
+      "output": "control-behavior",
+      "required": [
+        "control-behavior"
+      ],
+      "forbidden": []
+    },
+    {
+      "id": "code-control",
+      "category": "coding",
+      "output": "def twice(value):\n    return value * 2",
+      "function": "twice",
+      "cases": [
+        [
+          [
+            3
+          ],
+          6
+        ],
+        [
+          [
+            -4
+          ],
+          -8
+        ],
+        [
+          [
+            0
+          ],
+          0
+        ]
+      ]
+    }
+  ],
+  "criteria": {
+    "identity": 1.0,
+    "behavior": 1.0,
+    "coding_minimum": 1
+  },
+  "baseline_coding": 1
+}

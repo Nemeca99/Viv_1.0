@@ -1,0 +1,72 @@
+{
+  "schema_version": "viv_cpu_governed_adoption_live_canary_contract_v1",
+  "receipt_schema": "viv_cpu_governed_adoption_live_canary_receipt_v1",
+  "status": "candidate_only_until_explicit_pointer_approval",
+  "pointer": {
+    "schema_version": "viv_code_template_pointer_v1",
+    "target": "sandbox/code/template_current.json",
+    "atomic_replace": true,
+    "same_directory_staging": true,
+    "parent_hash_required": true,
+    "post_write_runtime_verification_required": true
+  },
+  "rust_authority": {
+    "approval_schema": "viv_cpu_human_approved_pointer_adoption_approval_v1",
+    "activation_operations": ["pointer_adoption", "live_canary", "rollback"],
+    "rollback_operations": ["pointer_adoption", "rollback"],
+    "architect_approval_required": true,
+    "rust_decision_required": true,
+    "autonomous_pointer_access": false
+  },
+  "live_canary": {
+    "pillars": ["auto", "rid", "uml"],
+    "templates": ["fixture.echo", "fixture.echo_companion"],
+    "import_without_execution": true,
+    "explicit_execution_only": true,
+    "declared_variable_overrides_only": true,
+    "production_write_probe": "HOLD_SECURITY"
+  },
+  "fault_injection": {
+    "required_after_candidate_activation": true,
+    "tamper_source": "actual_generated_module_bytes",
+    "expected_behavior": "HOLD",
+    "runtime_disposition": "HOLD_ADOPTION_RUNTIME_INVARIANT",
+    "rollback_trigger": "runtime_hold_only",
+    "hold_must_be_recorded_before_rollback": true,
+    "rationalization_or_fallback_allowed": false,
+    "restore_previous_generation_required": true
+  },
+  "protected_state": [
+    "seed_0",
+    "live_model",
+    "registry",
+    "production_pointer",
+    "protected_rid_main",
+    "protected_auto_main",
+    "protected_uml_main",
+    "gpu_state",
+    "worker_state",
+    "authority_flags",
+    "rust_integrity"
+  ],
+  "final_states": [
+    "PASS_GOVERNED_ADOPTION_LIVE_CANARY_CANDIDATE_ONLY",
+    "PASS_GOVERNED_ADOPTION_LIVE_CANARY_ROLLBACK_CANDIDATE_ONLY",
+    "HOLD_ADOPTION_PREFLIGHT",
+    "HOLD_ADOPTION_INCUMBENT_REQUIRED",
+    "HOLD_ADOPTION_APPROVAL",
+    "HOLD_ADOPTION_SECURITY",
+    "HOLD_ADOPTION_RUNTIME_INVARIANT",
+    "HOLD_ADOPTION_FAULT_DETECTED",
+    "HOLD_ADOPTION_ROLLBACK",
+    "HOLD_ADOPTION_DETERMINISM",
+    "FAIL_ADOPTION_PROTECTED_STATE"
+  ],
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_object_keys": "sorted",
+    "self_hash_field_omitted": true,
+    "trailing_lf": true
+  }
+}

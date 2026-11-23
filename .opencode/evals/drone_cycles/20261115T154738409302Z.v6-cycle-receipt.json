@@ -1,0 +1,198 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "observed_tool_count_mismatch",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e201da7d4ffeJ6H0IjgNwi4hx5",
+  "session_recovery": null,
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "aios_router_open_build_task",
+    "aios_router_accept_self_prompt",
+    "localcoder_add_python",
+    "read",
+    "shell",
+    "aios_router_record_turn_result",
+    "aios_router_complete_lane"
+  ],
+  "final_validation": "final_report_missing_drone_tag",
+  "self_check_validation": {
+    "required": true,
+    "passed": false,
+    "reason": "self_check_result_missing"
+  },
+  "read_evidence_validation": null,
+  "intermediate_validation": {
+    "passed": false,
+    "reason": "observed_tool_count_mismatch"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794757518915-c60df0d8-a7c5-4e19-9647-ea0504283bc0-body-gate.json",
+      "sha256": "0dcad7bc457db1fe1a5228de6c060516f58c69f504ae1f7ef8a39f23a80f92f1",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.4,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.4,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.3
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794757573416-96baf11e-bd2c-4b01-a949-9a39458c075c-body-gate.json",
+      "sha256": "68085a0d74ed24cbc085e621381fea12c7dc2b0558c0ac855dae2dfbbab2b0a1",
+      "source": "tool:aios_router_open_build_task",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 88.3,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.7,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 88.3,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.1
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794757578994-e7d76bd9-5245-468b-8886-0b2a6021d7c0-body-gate.json",
+      "sha256": "0430fc0d772c4c5c901442420b7daf354423315db206931e7fae66543bbe131c",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.7,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 2
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794757629253-acc464a2-e491-40c8-a176-52f227948a69-body-gate.json",
+      "sha256": "7ed6f3d675c88df012e23cbfdd3dd32093d9384613470740e4b17d60efa1f7ee",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 86.9,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.7,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 86.9,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1
+      },
+      "reasons": []
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 81.0,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 89.2,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 0.8
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "381b6c5946f23f5d3dec6438bdf744175c64924d17ee2c121d790b182566f734",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 143.141,
+    "exit_code": 0,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e201da7d4ffeJ6H0IjgNwi4hx5"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "08139dbba7dfa1b3e05d45ddfb4a55f1c145cd0a32f4b8495cf1f75bea6d0cd0",
+    "tools": [
+      {
+        "tool": "aios_router_open_build_task",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "self_check_result_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Execute assigned tool sequence starting with localcoder_add_python for hive_postal_outbox_proposal_v8_candidate.py.\nVerified facts: Task open, assignment_sha256=ea60c95814a14b9dcc1ee86888c713e86d821c144d03f051b8a9a151167a675d, max_turns_per_lane=1, state=open.\nNext bounded action: Use localcoder_add_python tool"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T154515163873Z",
+    "wrapper_exit": 0,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T154515066339Z.prompt.txt",
+    "exit_only_final_shell_check_passed": false,
+    "dispatcher_final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Execute assigned tool sequence starting with localcoder_add_python for hive_postal_outbox_proposal_v8_candidate.py.\nVerified facts: Task open, assignment_sha256=ea60c95814a14b9dcc1ee86888c713e86d821c144d03f051b8a9a151167a675d, max_turns_per_lane=1, state=open.\nNext bounded action: Use localcoder_add_python tool"
+    ]
+  }
+}

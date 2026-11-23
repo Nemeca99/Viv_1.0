@@ -1,0 +1,64 @@
+import os, json, datetime
+from pathlib import Path
+
+class PrivacyCore:
+    def __init__(self):
+        self.config_file = Path(__file__).parent / "config" / "privacy_settings.json"
+        self.config_dir = self.config_file.parent
+        self.config_dir.mkdir(parents=True, exist_ok=True)
+        self.mode = "semi-auto"
+        self._load_config()
+
+    def _load_config(self):
+        if not self.config_file.exists():
+            self.config = {"mode": "semi-auto", "version": "1.0"}
+        else:
+            with open(self.config_file) as f:
+                self.config = json.load(f)
+        self.mode = self.config.get("mode", "semi-auto")
+
+    def _save_config(self):
+        self.config["last_updated"] = datetime.now().isoformat()
+        with open(self.config_file, 'w') as f:
+            json.dump(self.config, f, indent=2)
+
+    def get_mode(self): return self.mode
+
+    def set_semi_auto(self):
+        self.mode = "semi-auto"
+        self._save_config()
+
+    def set_full_auto(self):
+        self.mode = "full-auto"
+        self._save_config()
+
+    def enable_full_auto(self, confirmed=True):
+        if confirmed:
+            self.set_full_auto()
+
+    def get_status(self): return {"mode": self.mode}
+
+    def _check_path(self, path_str):
+        p = Path(path_str)
+        try:
+            p.resolve().relative_to(Path.cwd())
+            return True
+        except ValueError:
+            return False
+
+    def authorize_file_write(self, file_path):
+        if not self._check_path(file_path):
+            return {"allowed": False, "reason": "Path traversal"}
+        ext = Path(file_path).suffix.lower()
+        blocked = {".pyc", ".log", ".tmp"}
+        if ext in blocked:
+            return {"allowed": False, "reason": f"Blocked extension: {ext}"}
+        return {"allowed": True, "reason": ""}
+
+    def write_text(self, file_path, content, encoding='utf-8'):
+        auth = self.authorize_file_write(file_path)
+        if auth["allowed"]:
+            with open(file_path, 'w', encoding=encoding) as f:
+                f.write(content)
+        else:
+            raise PermissionError(auth["reason"])

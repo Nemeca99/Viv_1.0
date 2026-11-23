@@ -1,0 +1,19 @@
+{
+  "schema_version": "viv_cpu_language_truth_cpu_model_probe_v1",
+  "experiment_id": "cpu_language_truth_cpu_model_probe_v1",
+  "purpose": "Load the live 86M checkpoint onto CPU only. Generate language. CPU-anchor it. Do not touch the GPU occupant.",
+  "candidate_only": true,
+  "device": "cpu",
+  "cuda_visible_devices": "",
+  "gpu_execution": false,
+  "forbidden": {
+    "kill_pretrain": true,
+    "steal_gpu": true,
+    "write_live_checkpoint": true,
+    "ingest_harvest": true,
+    "sft_into_86m": true
+  },
+  "parent_anchor_schema": "viv_cpu_language_truth_anchor_v1",
+  "live_checkpoint": "L:/Standalone/Viv_Discord/brain/runs/viv_chat_86m_v1/checkpoint.pt",
+  "vocab": "L:/Continue/Viv/foundation/models/Training/checkpoints/viv_slm/viv_slm_identity_personality_v49_lower_dialogue/inputs/VOCAB.json"
+}

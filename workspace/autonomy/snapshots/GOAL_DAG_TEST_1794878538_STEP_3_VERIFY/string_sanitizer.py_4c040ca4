@@ -1,0 +1,11 @@
+def sanitize_alphanumeric(text: str) -> str:
+    """
+    Sanitize input string by removing all non-alphanumeric characters.
+    
+    Args:
+        text (str): The input string to be sanitized.
+        
+    Returns:
+        str: A new string containing only alphanumeric characters from the input.
+    """
+    return ''.join(c for c in text if c.isalnum())

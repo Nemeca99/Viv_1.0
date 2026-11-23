@@ -1,0 +1,36 @@
+{
+  "agent": "drone_read",
+  "elapsed_seconds": 49.531,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e21c2f927ffeYLNuAtxcAqU721"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "d726a4541d88c5dd02b2f64f95399e48b300874056a0f3320dc766a5a324cb0a",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE]\nAssigned file: `workspace/autonomy/opencode_drone_prompts.py`\nFirst top-level function definition: `format_drone_self_prompt` at line 1, which formats caller-supplied agenda/facts/next_action strings and raises ValueError if any input is empty after whitespace trimming.\n\n[DRONE SELF-PROMPT]\nAgenda: Report first function definition from opencode_drone_prompts.py read result\nVerified facts: workspace; format_drone_self_prompt(agenda, verified_facts, next_action) -> str formats only caller-supplied facts without verification or authority granting\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T080503693610Z"
+}

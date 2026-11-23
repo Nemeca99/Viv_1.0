@@ -1,0 +1,79 @@
+{
+  "schema_version": "viv_cpu_unified_self_building_loop_v1",
+  "receipt_schema": "viv_cpu_unified_self_building_receipt_v1",
+  "status": "candidate_only",
+  "authority_scope": "cpu_semantic_validation_with_rust_write_membrane",
+  "parent": {
+    "multi_template_receipt_sha256": "DD1AE5673658CFFBAF67334FF7CFD35E2DA533719DF1DF63FBE088C434BE7B17",
+    "multi_template_candidate_sha256": "88732B8F13C82A77AAC1920252174304572D18503F19F225CF351191D211CE0E",
+    "multi_template_state_sha256": "706EA410412FC078B4A3B22FA6648494650AAC037D4D2224314F3F737CA9BEE2",
+    "shadow_registry_sha256": "8984BE92F7788E4BCDC5698E3076FB243F96EDF360D7AAFBFC2A25E3E8CEF72C"
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "training": false,
+    "optimizer_live_seed0": false,
+    "checkpoint_write": false
+  },
+  "surfaces": [
+    "reflection",
+    "query",
+    "action",
+    "variable",
+    "result",
+    "scheduler",
+    "template"
+  ],
+  "gates": {
+    "reflection_supported_min": 6,
+    "reflection_clean_min": 3,
+    "query_success_min": 12,
+    "query_surface_count_min": 4,
+    "query_surface_floor_min": 2,
+    "action_success_min": 8,
+    "variable_success_min": 12,
+    "variable_message_min": 6,
+    "variable_suffix_min": 6,
+    "result_success_min": 10,
+    "scheduler_success_min": 12,
+    "scheduler_trace_min": 6,
+    "template_success_min": 14,
+    "template_each_min": 7
+  },
+  "invariants": {
+    "active_registry_unchanged": true,
+    "candidate_only": true,
+    "generated_files_created": false,
+    "production_generation_created": false,
+    "active_pointer_changed": false,
+    "seed_changed": false,
+    "live_model_changed": false,
+    "gpu_execution": false,
+    "promotion": false,
+    "deployment": false,
+    "human_approval_present": false,
+    "rust_expected_decision": "HOLD_SECURITY"
+  },
+  "metadata_rules": {
+    "source_paths": false,
+    "source_bodies": false,
+    "python": false,
+    "shell": false,
+    "generated_code": false,
+    "arbitrary_paths": false,
+    "cpu_repair_counts_as_model_success": false
+  },
+  "canonicalization": {
+    "encoding": "utf-8",
+    "line_endings": "lf",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "receipt_hash_omits": ["receipt_sha256", "receipt_hash_valid_before_write", "receipt_hash_valid_after_write"],
+    "volatile_comparison_fields": ["created_utc", "run_id", "wall_seconds", "inference_wall_seconds", "retrieval_wall_seconds", "decision_id", "operation_id", "post_write_file_sha256"]
+  }
+}

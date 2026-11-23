@@ -1,0 +1,12 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Task access: write
+[QUEEN] Next coding goal: repair relay identity verification in Check 7 of the composition audit. I reproduced a concrete defect: the audit accepts forged relay keys and altered metadata even after the fixtures are resealed. Baseline: 2/11 checks pass; nine tampered receipts are wrongly accepted. The real candidate database stayed unchanged.
+1. Use read on `L:/LocalCoder/workspace/autonomy/typed_composition_receipt_audit_v2_candidate.py` with offset 170 and limit 55.
+2. Use localcoder_patch to change only the broken relay-key verification block in that file. Derive the key payload from edge_copy (receipt_sha256 was already removed), remove relay_key from that payload, compute canonical_hash of the remaining dictionary, and reject if it differs from the claimed relay_key. Then require exactly one row in the existing rows list whose relay_key matches; require canonical_hash(json.loads(row['evidence_json'])) to equal canonical_hash(typed_edge). This binds the entire edge to recorded database evidence, independent of array order. Print a check7 FAIL diagnostic and return 1 on mismatch. Keep Check 8, all other checks, database contents, and the frozen checker unchanged.
+<localcoder_patch_paths>
+workspace/autonomy/typed_composition_receipt_audit_v2_candidate.py
+</localcoder_patch_paths>
+3. Use shell with exactly `L:/.venv/Scripts/python.exe -B L:/LocalCoder/.opencode/evals/verify_relay_identity_20261117.py`.
+Report the actual result briefly. No verbose self-prompts.
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized continued supervised coding. This audit file is the only change target; test files and database are frozen.

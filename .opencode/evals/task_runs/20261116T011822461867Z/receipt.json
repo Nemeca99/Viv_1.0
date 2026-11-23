@@ -1,0 +1,38 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 226.719,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "interrupted"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1e10f27dffe2c8giC32HhMSoC"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "e682770cf615a3dd57ce26114974b908a56341c9842dbb96a36267774ae41ce0",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "session_outcome_not_succeeded"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Extract constants and hashing rules from candidate_typed_composition_executor_v2.py to implement self-check validation in new audit file.\nVerified facts: File is 404 lines long, Execute function loads version receipts via load_version, candidate_typed_composition_executor_v2 confirms canonical_hash uses json.dumps with sort_keys=True and separators=(\",\", \":\"), sha256_bytes hashes UTF-8 encoded bytes.\nNext bounded action: Call the localcoder_add_python tool"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261116T011822461867Z"
+}

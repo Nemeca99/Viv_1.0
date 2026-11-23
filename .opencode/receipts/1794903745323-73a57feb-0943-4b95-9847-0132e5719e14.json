@@ -1,0 +1,39 @@
+{
+  "schema": "lmstudio_toolbridge_diagnostic_v1",
+  "event": "provider_request",
+  "request_id": "d52b915e-b790-44fc-a50f-2e958ccf589d",
+  "session_id": "ses_e17e97865ffeqBHUup02dTc68O",
+  "request_path": "/v1/chat/completions",
+  "model": "omnicoder-2-9b",
+  "prompt_chars": 1564,
+  "prompt_sha256": "e946e79e9b7d2c5410fb27ed9451a5d1ec26f0a972a7e710c524a01279845d33",
+  "request_body_chars": 64220,
+  "request_text_chars": 55128,
+  "system_text_chars": 32654,
+  "output_token_limit": 4096,
+  "inference_parameters": {
+    "temperature": 0.1,
+    "top_p": 1,
+    "seed": 915703687,
+    "reasoning_effort": "none",
+    "frequency_penalty": 0,
+    "presence_penalty": 0.1
+  },
+  "tool_field_count": 1,
+  "tool_schemas": [
+    {
+      "name": "localcoder_patch",
+      "required": [],
+      "property_names": [
+        "changes",
+        "filePath",
+        "newString",
+        "oldString"
+      ],
+      "additional_properties": false
+    }
+  ],
+  "tool_choice": "required",
+  "forced_drone_tool_choice": "localcoder_patch",
+  "captured_at": "2026-11-17T08:22:25.322Z"
+}

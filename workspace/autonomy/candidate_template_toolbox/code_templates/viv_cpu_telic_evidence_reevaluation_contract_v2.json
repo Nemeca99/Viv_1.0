@@ -1,0 +1,66 @@
+{
+  "schema_version": "viv_cpu_telic_evidence_reevaluation_v1",
+  "experiment_version": "viv_cpu_telic_evidence_reevaluation_v2",
+  "receipt_schema": "viv_cpu_telic_evidence_reevaluation_receipt_v2",
+  "status": "candidate_only",
+  "purpose": "Extend the frozen v1 evidence-to-telic-state canary to the complete 16-row source-attributed holdout without changing the model grammar or CPU transition rules.",
+  "parent": {
+    "bounded_evidence_receipt_required": true,
+    "telic_reflection_candidate_required": true,
+    "source_catalog_rebuild": false
+  },
+  "model_surface": {
+    "frame": "REEVALUATE|d=<dimension>|t=<tension>|e=0 or NO_REEVALUATION",
+    "metadata_only": true,
+    "expected_disposition_hidden": true,
+    "raw_output_preserved": true,
+    "cpu_repair": false,
+    "tokenizer_change": false,
+    "decoder_change": false
+  },
+  "holdout": {
+    "total": 16,
+    "supported_reevaluation": 8,
+    "verified_stable_no_reevaluation": 6,
+    "insufficient_or_closed": 2,
+    "source_surfaces": [
+      "telic_state",
+      "bounded_evidence",
+      "verified_receipt",
+      "authority_state"
+    ]
+  },
+  "cpu_rules": {
+    "evidence_classification_final_authority": true,
+    "dynamic_state_may_change": true,
+    "historical_state_rewritten": false,
+    "foundations_mutable": false,
+    "contradictory_evidence_averaged": false,
+    "unknown_invented_as_supported": false,
+    "model_output_repaired": false
+  },
+  "required_transitions": [
+    "UNKNOWN_TO_SUPPORTED",
+    "SUPPORTED_TO_VERIFIED",
+    "SUPPORTED_TO_CONTRADICTED",
+    "VERIFIED_STABLE_NO_CHANGE",
+    "INSUFFICIENT_STATE_PRESERVED"
+  ],
+  "acceptance_gates": {
+    "reevaluation_model_origin_minimum": 6,
+    "stable_no_reevaluation_model_origin_minimum": 5,
+    "unsupported_evidence_cpu_accepts": 0,
+    "repeat_count": 2,
+    "all_cpu_transitions_valid": true,
+    "candidate_only": true,
+    "rust_state": "HOLD_SECURITY"
+  },
+  "authority": {
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "rust_write": false,
+    "gpu_execution": false
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "label": "after",
+  "directory": "L:\\LocalCoder",
+  "capture_only": true,
+  "model_generation_performed": false,
+  "config_overlay": {
+    "providers": {
+      "lmstudio": {
+        "settings": {
+          "baseURL": "http://127.0.0.1:64635/v1"
+        },
+        "models": {
+          "omnicoder-2-9b": {
+            "name": "Local_Coder:OmniCoder 2 9B",
+            "modelID": "omnicoder-2-9b",
+            "package": "@opencode/ai/providers/openai-compatible",
+            "capabilities": {
+              "tools": true,
+              "input": [
+                "text",
+                "image"
+              ],
+              "output": [
+                "text"
+              ],
+              "reasoning": {
+                "supported": false
+              }
+            },
+            "limit": {
+              "context": 49152,
+              "output": 4096
+            },
+            "body": {
+              "temperature": 0.1,
+              "top_p": 1,
+              "reasoning_effort": "none",
+              "frequency_penalty": 0,
+              "presence_penalty": 0.1
+            }
+          }
+        }
+      }
+    }
+  },
+  "project_config_sha256": "b8ebfd4a99bf75276120d54cdbe697be3c27fd6989b38d74df750f55159845d2",
+  "cases": [
+    {
+      "agent": "build",
+      "session_id": "ses_e0fced8eaffeH8pNi80w77OIYj",
+      "system_file": "L:\\LocalCoder\\.opencode\\evals\\opencode-identity-after-20261118T194514Z\\build-system.txt",
+      "system_sha256": "dd55fe7e49c300d31145c7a839f0f30a56fbb8a5c7b7c7eec4efca6979de82d1",
+      "custom_drone_prompt_present": false,
+      "runtime_context_present": true,
+      "stale_codex_queen_claim": false,
+      "localcoder_tools": [
+        "aios_router_lookup_drone_seed"
+      ],
+      "software_identity_present": false,
+      "system_chars": 34466
+    },
+    {
+      "agent": "drone_build",
+      "session_id": "ses_e0fce659efferhAl9cspmcOJE9",
+      "system_file": "L:\\LocalCoder\\.opencode\\evals\\opencode-identity-after-20261118T194514Z\\drone_build-system.txt",
+      "system_sha256": "3023e14bcc1a44ee997154a26bd5ffcb88795df624a2e55bf0b26569569641b1",
+      "custom_drone_prompt_present": false,
+      "runtime_context_present": true,
+      "stale_codex_queen_claim": false,
+      "localcoder_tools": [
+        "aios_router_lookup_drone_seed"
+      ],
+      "software_identity_present": false,
+      "system_chars": 34698
+    }
+  ],
+  "result": "CAPTURED",
+  "logs": [
+    "server listening on http://127.0.0.1:28911\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e0fced8eaffeH8pNi80w77OIYj\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e0fce659efferhAl9cspmcOJE9\n"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "viv_cpu_semantic_card_v2",
+  "purpose": "Metadata-only semantic routing cards with CPU-authoritative disposition rules",
+  "card_fields": [
+    "approved_catalog_id",
+    "domain",
+    "arity",
+    "primary_operation",
+    "secondary_operation",
+    "primary_object",
+    "secondary_object",
+    "dependency_depth",
+    "dependency_shape",
+    "effect_class",
+    "risk_class",
+    "target_pillars",
+    "pillar_mapping_status",
+    "semantic_key",
+    "ontology_rule_ids"
+  ],
+  "record_fields": [
+    "expected_disposition",
+    "expected_hold_reason",
+    "ambiguity_class",
+    "rule_ids",
+    "requested_pillar",
+    "cpu_disposition"
+  ],
+  "dispositions": [
+    "select",
+    "hold",
+    "variable"
+  ],
+  "hold_reasons": [
+    "missing",
+    "malformed",
+    "unsafe",
+    "review",
+    "unknown"
+  ],
+  "ambiguity_classes": [
+    "none",
+    "unknown_concept",
+    "missing_context",
+    "ambiguous_tie",
+    "unsafe_authority",
+    "undeclared_variable",
+    "malformed_request",
+    "pillar_unmapped",
+    "security_hold",
+    "conflicting_rule"
+  ],
+  "effect_classes": [
+    "read",
+    "write",
+    "control",
+    "pure",
+    "unknown"
+  ],
+  "risk_classes": [
+    "none",
+    "bounded",
+    "authority",
+    "security",
+    "live_state",
+    "unknown"
+  ],
+  "pillar_mapping_statuses": [
+    "approved",
+    "unmapped",
+    "candidate_only",
+    "conflict"
+  ],
+  "source_paths_present": false,
+  "source_text_present": false,
+  "function_bodies_present": false,
+  "generated_python_present": false,
+  "model_receives": "compact operation/object/arity/effect labels only",
+  "approved_catalog_ids_are_cpu_only": true,
+  "target_pillars_are_never_inferred": true,
+  "cpu_is_final_disposition_authority": true,
+  "semantic_match_is_not_source_correctness": true,
+  "human_approval_required_before_template_insertion": true
+}

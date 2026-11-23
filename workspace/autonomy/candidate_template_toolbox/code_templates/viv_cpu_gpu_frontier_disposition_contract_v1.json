@@ -1,0 +1,78 @@
+{
+  "schema_version": "viv_cpu_gpu_frontier_disposition_v1",
+  "status": "candidate_only",
+  "receipt_schema": "viv_cpu_gpu_frontier_disposition_receipt_v1",
+  "parent": {
+    "probability_frontier_receipt_sha256": "BBAB522C8BBCCCF21045D8DB0E439036DA307F57BD1453EA037B3B792E851E0B",
+    "probability_frontier_final_state": "PASS_CPU_GPU_PROBABILITY_FRONTIER_CANDIDATE_ONLY",
+    "decision_parent_candidate_state_sha256": "FFFA43401899D6E581AC7660472E3159D2D3F7575616B1DF61A3567BC2AF2C83"
+  },
+  "frame": {
+    "schema": "viv_cpu_epistemic_decision_frame_v1",
+    "decision": "J|d=<accept|reject|hold|continue>|r=<reason_code>|s=<stop|hold|explore>",
+    "hold": "H|r=<reason_code>",
+    "maximum_characters": 64,
+    "fixed_generation_budget_tokens": 48,
+    "trailing_output_policy": "reject_without_repair"
+  },
+  "model_packet": {
+    "schema": "viv_cpu_gpu_frontier_disposition_card_v1",
+    "fields": ["route_count", "retained_route_count", "survivor_count", "failed_count", "converged_count", "divergent_count", "agreement_count", "alternative_count", "evidence_state", "authority_state", "budget_state"],
+    "per_route_fields": ["row_id", "route_seed", "route_ids", "route_converged", "semantic_route_agreement", "surviving_path_count", "cpu_survival", "gpu_survival", "evidence_state", "model_packet_sha256"],
+    "hidden_from_model": ["expected_disposition", "target_frame", "cpu_final_disposition", "post_decision_state", "preferred_route_id"],
+    "maximum_routes": 256,
+    "maximum_prompt_characters": 112,
+    "metadata_only": true
+  },
+  "frontier_policy": {
+    "all_routes_retained": true,
+    "failed_routes_retained": true,
+    "preferred_route_default": null,
+    "pruning_allowed": false,
+    "first_survivor_is_final": false,
+    "continue_when": "pre_decision_route_frontier_has_unconverged_or_divergent_routes_and_budget_is_available",
+    "accept_when": "all_retained_routes_converge_and_all_survive_current_evidence",
+    "reject_when": "all_retained_routes_converge_and_none_survive_current_evidence",
+    "hold_when": "authority_or_evidence_is_insufficient_or_conflicting"
+  },
+  "training": {
+    "training_rows": 224,
+    "validation_rows": 16,
+    "live_frontier_rows": 1,
+    "recipe": {
+      "device": "cpu",
+      "seed": 43,
+      "steps": 1024,
+      "batch_size": 8,
+      "learning_rate": 0.0005,
+      "repeats": 2
+    }
+  },
+  "authority": {
+    "cpu_truth_authority": true,
+    "gpu_probability_proposal_only": true,
+    "rust_write_membrane": true,
+    "route_pruning": false,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "human_events_fabricated": false
+  },
+  "acceptance": {
+    "candidate_live_frontier_model_origin": true,
+    "candidate_validation_model_origin_minimum": 12,
+    "candidate_live_frontier_unauthorized_cpu_accepts": 0,
+    "all_routes_retained": true,
+    "preferred_route_count": 0,
+    "repeated_digests_identical": true,
+    "rust_expected_state": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

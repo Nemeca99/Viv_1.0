@@ -1,0 +1,9 @@
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add new file `workspace/autonomy/hive_postal_route_request_v11_candidate.py`; stop if it exists.
+Implement pure prepare_routing_request(proposed_recipient_id) returning (request,errors_tuple):
+- None -> (None,()).
+- Reject non-string, empty, or untrimmed values as (None,("invalid_proposed_recipient_id",)).
+- Reject casefold()=="queen" as (None,("proposed_recipient_is_queen",)).
+- Any other trimmed peer, e.g. "drone_2", -> ({"recipient_id":peer},()).
+Use only sys for --self-check. Four checks: None, drone_2, empty, QUEEN. Print exactly PASS: 4 routing request checks and exit 0 only if all pass; otherwise FAIL/nonzero. Keep it short and under 40 lines; no I/O except self-check.
+Call aios_router_open_build_task tool; call aios_router_accept_self_prompt tool (drone,0); call localcoder_add_python tool (assigned target, source); call shell tool: & 'L:\.venv\Scripts\python.exe' -B 'workspace\autonomy\hive_postal_route_request_v11_candidate.py' --self-check; call aios_router_record_turn_result tool (actual facts); call aios_router_complete_lane tool (receipt).

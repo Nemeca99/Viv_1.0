@@ -1,0 +1,109 @@
+{
+  "schema_version": "viv_cpu_routed_recursive_self_building_contract_v1",
+  "receipt_schema": "viv_cpu_routed_recursive_self_building_receipt_v1",
+  "status": "candidate_only",
+  "purpose": "Prove two CPU-owned routed self-development cycles where the second bounded experiment is derived from the first cycle's normalized result and sealed cycle receipt.",
+  "parent": {
+    "routed_composite_receipt_sha256": "68233FEB380E5B04AF701E2AA008A824F26DD2F95EECFD27C2E517DF41C54961",
+    "routed_composite_route_manifest_sha256": "A9859A8E555E8BAC7FAC29DBFECBF9B032010AA0721CD146FB45715B2BABF0E2",
+    "active_registry_sha256": "408E91A61D5A1C8780285EFDA0D41A7452806E7579D44925E489A84BDF54E82C",
+    "seed0_checkpoint_sha256": "8B4395B508BF8F92C9AFA5ED49AE426A4851A5B563D8DAC175F8EFD9BA71B45C",
+    "rust_integrity_sha256": "494B38FA4A5617356E6763742172C5A091B649B062837E6034CA89424E277034"
+  },
+  "route_policy": {
+    "owner": "CPU_RULE",
+    "route_manifest_is_fixed": true,
+    "model_may_not_select_route": true,
+    "specialized_routes_are_not_one_unified_checkpoint": true,
+    "raw_model_output_is_authoritative_for_authorship": true,
+    "cpu_repair_counts_as_model_success": false,
+    "malformed_output": "HOLD",
+    "stale_or_contradictory_evidence": "ABSTAIN"
+  },
+  "recursive_policy": {
+    "minimum_cycles": 2,
+    "maximum_cycles": 2,
+    "maximum_schedule_repeats_per_cycle": 1,
+    "maximum_total_scheduled_repeats": 2,
+    "second_cycle_requires": [
+      "prior_cycle_normalized_sha256",
+      "prior_cycle_receipt_sha256",
+      "prior_normalized_result_sha256",
+      "prior_schedule_outcome_sha256"
+    ],
+    "expected_next_slot_must_be_derived_from_predecision_evidence": true,
+    "different_from_previous_is_not_success_by_itself": true,
+    "human_selected_query_action_or_experiment": false,
+    "daemon": false,
+    "operator_resume_on_stop": true
+  },
+  "lifecycle": [
+    "OBSERVE",
+    "RETRIEVE",
+    "HYPOTHESIZE",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "ACCEPT",
+    "RECORD",
+    "SCHEDULE",
+    "OBSERVE",
+    "COMPLETE"
+  ],
+  "forbidden_transitions": [
+    ["HYPOTHESIZE", "SANDBOX_TEST"],
+    ["MODEL", "PRODUCTION_WRITE"],
+    ["SCHEDULE", "PRODUCTION_WRITE"]
+  ],
+  "model_packet_rules": {
+    "metadata_only": true,
+    "no_source_paths": true,
+    "no_source_bodies": true,
+    "no_python": true,
+    "no_shell": true,
+    "no_generated_code": true,
+    "no_checkpoint_paths": true,
+    "no_arbitrary_filesystem_paths": true,
+    "expected_next_slot_hidden": true,
+    "prior_receipt_reference_bounded": true,
+    "prior_result_reference_bounded": true
+  },
+  "safety": {
+    "device": "cpu",
+    "isolated": true,
+    "no_publish": true,
+    "production_write_probe": "expected_HOLD_SECURITY",
+    "active_registry_mutation": false,
+    "template_insertion": false,
+    "seed0_mutation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false,
+    "optimizer_activity": false,
+    "checkpoint_writes": false,
+    "promotion": false,
+    "deployment": false,
+    "human_event_fabrication": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_omitted": true,
+    "behavior_digest_excludes": [
+      "created_utc",
+      "run_id",
+      "cycle_receipt_sha256",
+      "receipt_sha256",
+      "decision_id",
+      "wall_seconds",
+      "inference_wall_seconds",
+      "temporary_path",
+      "target_path",
+      "generator_seed",
+      "audit_result_digests",
+      "full_cpu_result_sha256"
+    ]
+  }
+}

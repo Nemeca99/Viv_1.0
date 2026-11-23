@@ -1,0 +1,66 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 554.531,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1fa7c1e8ffe4iV91f4AaYIxHG"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "42b147f70d78d0276e565f92ef159ad96f43df457502ccb331011fb20393ad11",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_record_turn_result",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_complete_lane",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: 8 checks"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "[DRONE]\nTarget file: workspace/autonomy/hive_postal_recipient_predicate_v17_candidate.py; Self-check passed with PASS: 8 checks, confirming all test cases (drone_2=True, queen=False, QUEEN=False, \" QUEEN\"=False, \" drone_2 \"=False, \"\"=False, None=False, 123=False)\n\n[DRONE SELF-PROMPT]\nAgenda: Task complete; lane drone finished successfully with receipt_sha256=b948e8a03bb8a2f9859ac5411347d27aad8eeed306c78ae9ff99b24d47254d2d\nVerified facts: aios_router_complete_lane returned ok=true, receipt_sha256=b948e8a03bb8a2f9859ac5411347d27aad8eeed306c78ae9ff99b24d47254d2d; all 7 tools completed\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T175401676146Z"
+}

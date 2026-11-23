@@ -1,0 +1,15 @@
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+extend-exclude = '(^|/)(\.venv|\.hive_proof_env|runs|outputs|models|artifacts)(/|$)'
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = [".venv", ".hive_proof_env", "runs", "outputs", "models", "artifacts"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.vulture]
+min_confidence = 100

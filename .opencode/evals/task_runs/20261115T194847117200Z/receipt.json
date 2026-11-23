@@ -1,0 +1,48 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 233.125,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1f3eb1ebffe2KN8d2SlLQfnle"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "97b4d97d72e6c78e05f0dc93f9f99e6d49442cfeebef3ef7041c485a9ac43584",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "error"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "tool_error",
+    "verification_check_missing"
+  ],
+  "tool_errors": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "error"
+    }
+  ],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "<tool_call>\n<function=localcoder_add_python>\n<parameter=content>\ndef prepare_routing_request(value):\n    if value is None:\n        return (None, (\"invalid_proposed_recipient_id\",))\n    \n    # Accept only non-empty strings with no surrounding whitespace\n    if not isinstance(value, str):\n        return (None, (\"invalid_proposed_recipient_id\",))\n    \n    s = value  # Preserve exact string without coercion or trimming\n    \n    if not s:\n        return (None, (\"invalid_proposed_recipient_id\",))\n    \n    if s.casefold() == \"queen\":\n        return (None, (\"proposed_recipient_is_queen\",))\n    \n    try:\n        int(s)\n        return (None, (\"invalid_proposed_recipient_id\",))\n    except ValueError:\n        pass\n    \n    # Return exact string without modification\n    return ({\"recipient_id\": s}, ())\n\n\ndef main():\n    import argparse\n    \n    parser = argparse.ArgumentParser(description=\"Hive postal route request\")\n    parser.add_argument(\"--self-check\", action=\"store_true\", help=\"Run self-check with 8 cases\")\n    args = parser.parse_args()\n    \n    if args.self_check:\n        test_cases = [\n            None,\n            \"drone_0x1a2b3c4d5e6f7890abcdef1234567890\",  # Valid drone ID (64-char lowercase hex)\n            \"queen\",  # Queen case-insensitive\n            \" QUEEN \",  # Leading whitespace\n            \"\",  # Empty string\n            123,  # Non-string integer\n        ]\n        \n        passed = 0\n        \n        for i, test in enumerate(test_cases):\n            result, error = prepare_routing_request(test)\n            \n            if i == 0:  # None\n                expected_error = \"invalid_proposed_recipient_id\"\n                assert error == (expected_error,), f\"Case {i+1} failed: expected {expected_error}, got {error}\"\n            elif i == 1:  # Valid drone ID\n                expected_result = {\"recipient_id\": \"drone_0x1a2b3c4d5e6f7890abcdef1234567890\"}\n                assert result == expected_result, f\"Case {i+1} failed: expected {expected_result}, got {result}\"\n            elif i == 2:  # Queen case-insensitive\n                expected_error = \"proposed_recipient_is_queen\"\n                assert error == (expected_error,), f\"Case {i+1} failed: expected {expected_error}, got {error}\"\n            elif i == 3:  # Leading whitespace\n                expected_error = \"invalid_proposed_recipient_id\"\n                assert error == (expected_error,), f\"Case {i+1} failed: expected {expected_error}, got {error}\"\n            elif i == 4:  # Empty string\n                expected_error = \"invalid_proposed_recipient_id\"\n                assert error == (expected_error,), f\"Case {i+1} failed: expected {expected_error}, got {error}\"\n            elif i == 5:  # Non-string integer\n                expected_error = \"invalid_proposed_recipient_id\"\n                assert error == (expected_error,), f\"Case {i+1} failed: expected {expected_error}, got {error}\"\n            \n            passed += 1\n        \n        print(f\"PASS: {passed} checks\")\n\n\nif __name__ == \"__main__\":\n    main()\n</parameter>\n<parameter=filePath>\nL:\\LocalCoder\\workspace\\autonomy\\hive_postal_route_request_v13_candidate.py\n</parameter>\n</function>\n</tool_call>"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T194847117200Z"
+}

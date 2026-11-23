@@ -1,0 +1,65 @@
+{
+  "label": "drive-root",
+  "directory": "L:\\",
+  "capture_only": true,
+  "model_generation_performed": false,
+  "config_overlay": {
+    "providers": {
+      "lmstudio": {
+        "settings": {
+          "baseURL": "http://127.0.0.1:65255/v1"
+        },
+        "models": {
+          "omnicoder-2-9b": {
+            "name": "Local_Coder:OmniCoder 2 9B",
+            "modelID": "omnicoder-2-9b",
+            "package": "@opencode/ai/providers/openai-compatible",
+            "capabilities": {
+              "tools": true,
+              "input": [
+                "text",
+                "image"
+              ],
+              "output": [
+                "text"
+              ],
+              "reasoning": {
+                "supported": false
+              }
+            },
+            "limit": {
+              "context": 49152,
+              "output": 4096
+            },
+            "body": {
+              "temperature": 0.1,
+              "top_p": 1,
+              "reasoning_effort": "none",
+              "frequency_penalty": 0,
+              "presence_penalty": 0.1
+            }
+          }
+        }
+      }
+    }
+  },
+  "project_config_sha256": "b8ebfd4a99bf75276120d54cdbe697be3c27fd6989b38d74df750f55159845d2",
+  "cases": [
+    {
+      "agent": "build",
+      "session_id": "ses_e0fc8a87fffe2xxgGWU6eKsswo",
+      "system_file": "L:\\LocalCoder\\.opencode\\evals\\opencode-identity-drive-root-20261118T195200Z\\build-system.txt",
+      "system_sha256": "9cbab0ed0a099bf0838d55056c7f7fc720bf38531bc575681ff3953fe9566f76",
+      "custom_drone_prompt_present": false,
+      "runtime_context_present": false,
+      "stale_codex_queen_claim": false,
+      "localcoder_tools": [],
+      "software_identity_present": false,
+      "system_chars": 11498
+    }
+  ],
+  "result": "CAPTURED",
+  "logs": [
+    "server listening on http://127.0.0.1:28911\n"
+  ]
+}

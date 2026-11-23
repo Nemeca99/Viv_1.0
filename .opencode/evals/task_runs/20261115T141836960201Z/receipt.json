@@ -1,0 +1,66 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 851.063,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e206cf921ffethxZccJMgDUELt"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "2d6d24d21cb9c082791937312f9fd524fe6721387c6ecc33c1e0b9c6ec23c7ed",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "L:.venv\\Scripts\\python.exe: The term 'L:.venv\\Scripts\\python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "L:.venv\\Scripts\\python.exe: The term 'L:.venv\\Scripts\\python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Run self-check test on hive_postal_outbox_proposal_v4_candidate.py via shell, then record turn result and complete lane.\nVerified facts: shell tool returned exit code 1, error message indicates path format issue with L:.venv\\Scripts\\python.exe not recognized as cmdlet.\nNext bounded action: Use shell tool to execute python.exe with correct Windows path syntax"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T141836960201Z"
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "viv_cpu_unified_candidate_adoption_rollback_attachment_contract_v1",
+  "receipt_schema": "viv_cpu_unified_candidate_adoption_rollback_attachment_receipt_v1",
+  "status": "candidate_only",
+  "purpose": "Bind the current unified model-origin candidate evidence to the separately verified governed generation and bad-evolution rollback boundaries without opening production authority.",
+  "required_parent_evidence": [
+    "current_unified_recursive_candidate",
+    "current_unified_multi_template_attachment",
+    "delegated_inactive_generation",
+    "test_only_pointer_fault_and_rollback"
+  ],
+  "rules": {
+    "read_only_aggregation": true,
+    "isolated": true,
+    "no_publish": true,
+    "no_checkpoint_merge": true,
+    "no_seed_mutation": true,
+    "no_live_model_mutation": true,
+    "no_registry_mutation": true,
+    "no_pointer_mutation": true,
+    "human_approval_required_for_production": true,
+    "pointer_approval_is_separate": true,
+    "same_model_origin_generation_binding_must_be_explicit": true,
+    "negative_evidence_preserved": true
+  },
+  "interpretation": {
+    "pass_claim": "Current unified candidate provenance, approved generation evidence, and actual bad-evolution rollback evidence are independently verified as separate governed surfaces.",
+    "not_a_pass_claim": "The current receipt does not claim that the existing inactive generation was assembled from the current unified checkpoint, nor that production pointer adoption is authorized.",
+    "next_gate": "Assemble a versioned candidate generation from a model-origin proposal, bind its exact lineage, and repeat the test-only pointer fault/rollback proof."
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_object_keys": "sorted",
+    "trailing_lf": true,
+    "self_hash_field_omitted": "receipt_sha256"
+  }
+}

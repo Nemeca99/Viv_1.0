@@ -1,0 +1,109 @@
+{
+  "active_pointer_changed": false,
+  "archive_path": "<protected-generated-root>",
+  "created_utc": "2026-09-30T05:11:28+00:00",
+  "dry_run": true,
+  "function_index_sha256": "403d3afeace7ec73f147f29097dc69dcd7ab509cd114ac65503bd35e84b57140",
+  "generated_files_created": false,
+  "generated_root": "<protected-generated-root>",
+  "generation_id": "gen_fe031d553b375fb7",
+  "lineage_tail": [],
+  "manifest_sha256": "c356e69072a8ca5974c58a0f74999f7a82c8f55718f8a943516314e6beb2c013",
+  "module_hashes": {
+    "fixture.echo": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+    "fixture.echo_companion": "c359ff263250a989345c966c6dbde8a005c0c727b4cf3cc770b58c2887407b0f"
+  },
+  "parent_generation": null,
+  "parent_receipt": null,
+  "receipt_id": "dry_gen_fe031d553b375fb7_76ff3b1ac7c0933f",
+  "schema_version": "viv_code_template_receipt_v1",
+  "security": {
+    "integrity": {
+      "detail": "sha256=0948f78a8d11b3069b7a172e795c5fdb5ee6a0539c1e9f97141e7209ce21ffdd path=<protected-security-runtime>",
+      "ok": true
+    },
+    "master_s_n": 1.0,
+    "ok": false,
+    "pointer_decision": {
+      "allowed": true,
+      "law": "",
+      "reason": "OK",
+      "tariff_demand": 1.0,
+      "version": "0.3.1"
+    },
+    "python_write_decisions": [
+      {
+        "allowed": false,
+        "target_path": "<protected-generated-root>",
+        "template_id": "fixture.echo",
+        "verdict": {
+          "action": "WRITE_PYTHON",
+          "actor": "viv_autonomous",
+          "allowed": false,
+          "autonomous_access": false,
+          "content_bytes": 461,
+          "content_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+          "decision_id": "817daadaf3b0b6ef5076fc4a8283a716",
+          "disposition": "DENY",
+          "ledger_recorded": true,
+          "normalized_target_path": "<protected-generated-root>",
+          "operation_id": "template-publish-gen_fe031d553b375fb7-fixture.echo",
+          "parent_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "policy_version": "python-write-control-v1",
+          "provenance_sha256": "",
+          "reason": "Rust Python self-authoring capability is closed at this stage",
+          "request_id": "template-dry-run-gen_fe031d553b375fb7-fixture.echo",
+          "rule": "python_write_capability_closed"
+        }
+      },
+      {
+        "allowed": false,
+        "target_path": "<protected-generated-root>",
+        "template_id": "fixture.echo_companion",
+        "verdict": {
+          "action": "WRITE_PYTHON",
+          "actor": "viv_autonomous",
+          "allowed": false,
+          "autonomous_access": false,
+          "content_bytes": 388,
+          "content_sha256": "c359ff263250a989345c966c6dbde8a005c0c727b4cf3cc770b58c2887407b0f",
+          "decision_id": "446381c7ee78d9de7ee5fea9983158d5",
+          "disposition": "DENY",
+          "ledger_recorded": true,
+          "normalized_target_path": "<protected-generated-root>",
+          "operation_id": "template-publish-gen_fe031d553b375fb7-fixture.echo_companion",
+          "parent_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "policy_version": "python-write-control-v1",
+          "provenance_sha256": "",
+          "reason": "Rust Python self-authoring capability is closed at this stage",
+          "request_id": "template-dry-run-gen_fe031d553b375fb7-fixture.echo_companion",
+          "rule": "python_write_capability_closed"
+        }
+      }
+    ],
+    "reason": "rust_security_denied_or_unavailable",
+    "rust_available": true,
+    "state": "HOLD_SECURITY"
+  },
+  "selection_request": {
+    "schema_version": "viv_code_template_selection_request_v1",
+    "templates": [
+      {
+        "submain_order": [],
+        "target_pillars": [
+          "auto"
+        ],
+        "template_id": "fixture.echo"
+      },
+      {
+        "submain_order": [],
+        "target_pillars": [
+          "auto"
+        ],
+        "template_id": "fixture.echo_companion"
+      }
+    ]
+  },
+  "selection_request_sha256": "d9f3b14075e4ead7fbe22702bfa2d43db5e3dc17335ae3a3acb466fbf9fe72cc",
+  "source_root": "<source-template-root>"
+}

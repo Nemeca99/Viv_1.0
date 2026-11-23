@@ -1,0 +1,96 @@
+{
+  "schema_version": "viv_cpu_bounded_autonomous_candidate_loop_v1",
+  "receipt_schema": "viv_cpu_bounded_autonomous_candidate_loop_receipt_v1",
+  "parent_protocol": {
+    "schema": "viv_cpu_tagged_uml_protocol_curriculum_v3",
+    "receipt_sha256": "CA4B5BD71BB1F9BBC61DE44BFD0C9FEA8E7C2A6A9C8AA414D404DEAEC5E4053A",
+    "receipt_path": "foundation/artifacts/auto/agentic/cpu_tagged_uml_protocol_curriculum_v3/tagged_uml_protocol_v3_20260813T213543Z_59908/receipt.json",
+    "ordinary_floor": 48,
+    "ordinary_total": 56,
+    "compositional_floor": 11,
+    "compositional_total": 14
+  },
+  "fresh_holdout": {
+    "ordinary_rows": 56,
+    "compositional_traces": 14,
+    "trace_rows": 56,
+    "families": [
+      "uml_symbol_binding",
+      "knowledge_slot_selection",
+      "speech_plan_selection",
+      "output_mode_selection",
+      "action_branch_selection",
+      "hold_reason_selection",
+      "full_turn_composition"
+    ],
+    "variant_bases": {
+      "ordinary": 200,
+      "compositional": 400
+    }
+  },
+  "training_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "candidate_only": true,
+    "live_model_write": false,
+    "seed_write": false
+  },
+  "live_cycle": {
+    "max_cycles": 3,
+    "required_linked_cycles": 2,
+    "max_schedule_repeats": 3,
+    "max_document_chars": 1200,
+    "max_candidates": 1,
+    "no_human_selected_action": true,
+    "no_harness_frame_repair": true
+  },
+  "model_frame_families": [
+    "deficiency",
+    "query",
+    "action",
+    "result",
+    "schedule"
+  ],
+  "metadata_only": {
+    "source_paths": false,
+    "source_bodies": false,
+    "python": false,
+    "shell": false,
+    "generated_code": false,
+    "checkpoint_paths": false,
+    "arbitrary_filesystem_paths": false
+  },
+  "protected_boundaries": {
+    "production_generation": false,
+    "active_pointer_change": false,
+    "registry_change": false,
+    "template_insertion": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "training_authority": false,
+    "promotion_authority": false,
+    "deployment_authority": false,
+    "gpu_public_authority": false,
+    "daemon_activation": false,
+    "rust_python_write_open": false
+  },
+  "canonicalization": {
+    "encoding": "utf-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_newline": true,
+    "self_hash_omitted": true,
+    "volatile_fields_excluded": [
+      "created_utc",
+      "run_id",
+      "cycle_id",
+      "decision_id",
+      "wall_seconds",
+      "temporary_path",
+      "receipt_sha256"
+    ]
+  }
+}

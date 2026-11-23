@@ -1,0 +1,166 @@
+{
+  "cycle_succeeded": true,
+  "stop_reason": "verified_and_stopped",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e218ad515ffegal6DqAOPyj7kn",
+  "session_recovery": null,
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "shell"
+  ],
+  "final_validation": "final_report_and_tool_receipts_verified",
+  "read_evidence_validation": null,
+  "intermediate_validation": {
+    "passed": true,
+    "reason": "no_intermediate_tool_boundary"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794733586597-8ab2119a-a35a-4767-9700-8893f1a7a504-body-gate.json",
+      "sha256": "a402c65901404bca4d652231600a6cb2a0e5030c8f1ff2ef284449995c5b24ac",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 96,
+        "scope": "localcoder_runtime",
+        "status": "applied",
+        "waived_reasons": [
+          "ram_at_or_above_limit"
+        ]
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 96,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.4
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794733661563-dfb639c9-bfc5-4c76-b327-5b3124bbfd0e-body-gate.json",
+      "sha256": "75c1ab1e6b8f6c186dfa5eac6904b74f39b465c9009f13e4bab5d720a210b548",
+      "source": "tool:shell",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 94.2,
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 94.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 2
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794733666111-d3200799-b077-4d0c-b349-cc1ea41b2370-body-gate.json",
+      "sha256": "264adb1183f07a32c3caed3891eb727137d1fdd5286a2e97ebf9df45da712885",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 94.8,
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 94.8,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.5
+      },
+      "reasons": []
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 81.3,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 94.1,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 1.9
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "e3d5dcde835b5a90046d354245349263fe8d5903adc1df1f57091bd1cd52fa92",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 112.047,
+    "exit_code": 0,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e218ad515ffegal6DqAOPyj7kn"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "5f64625138e35e256b21caf7253175b9656f89dd3c400e4380d2283cd4060f08",
+    "tools": [
+      {
+        "tool": "shell",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [
+      {
+        "status": "completed",
+        "exit": 0,
+        "output": "PASS: validator cases"
+      }
+    ],
+    "task_succeeded": true,
+    "task_errors": [],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": true,
+    "final_text": [
+      "[DRONE]\nFile: `workspace/autonomy/hive_agent_message_contract_v5_candidate.py`\nFact: Shell output confirmed `PASS: validator cases`, indicating all validation assertions passed for the Queen-corrected message contract.\n\n[DRONE SELF-PROMPT]\nAgenda: Verification complete; no further actions required per Architect's bounded assignment.\nVerified facts: The `validate_agent_message` function in `hive_agent_message_contract_v5_candidate.py` correctly enforced all field validations, including missing fields (`MISSING_TASK_ID`, `MISSING_AGENT_TYPE`, etc.), invalid values (`INVALID_TRUST_CLASS`, `INVALID_AUDIENCE`, etc.), and type constraints (e.g., `ARTIFACT_REF_ITEM_NOT_STRING`). The test suite passed with output `PASS: validator cases`.\nNext bounded action: STOP"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T090622854249Z",
+    "wrapper_exit": 0,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T090622744318Z.prompt.txt",
+    "dispatcher_final_text": [
+      "[DRONE]\nFile: `workspace/autonomy/hive_agent_message_contract_v5_candidate.py`\nFact: Shell output confirmed `PASS: validator cases`, indicating all validation assertions passed for the Queen-corrected message contract.\n\n[DRONE SELF-PROMPT]\nAgenda: Verification complete; no further actions required per Architect's bounded assignment.\nVerified facts: The `validate_agent_message` function in `hive_agent_message_contract_v5_candidate.py` correctly enforced all field validations, including missing fields (`MISSING_TASK_ID`, `MISSING_AGENT_TYPE`, etc.), invalid values (`INVALID_TRUST_CLASS`, `INVALID_AUDIENCE`, etc.), and type constraints (e.g., `ARTIFACT_REF_ITEM_NOT_STRING`). The test suite passed with output `PASS: validator cases`.\nNext bounded action: STOP"
+    ]
+  }
+}

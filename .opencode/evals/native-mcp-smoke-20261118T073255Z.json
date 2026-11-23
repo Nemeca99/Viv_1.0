@@ -1,0 +1,346 @@
+{
+  "scope": "native candidate MCP transport; not deployed Docker instance",
+  "exe": "L:\\LocalCoder\\workspace\\autonomy\\aios_router_mcp_v3_postal_candidate\\target\\release\\aios-router-mcp-v2-privacy-candidate.exe",
+  "exe_sha256": "0c5e24a0a0cd3ee836b034673118b43d380eb7390a643ee40028070600ebdf75",
+  "initialize": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "protocolVersion": "2024-11-05",
+      "capabilities": {
+        "tools": {}
+      },
+      "serverInfo": {
+        "name": "aios-router-mcp-v2-privacy-candidate",
+        "version": "0.2.0"
+      },
+      "instructions": "Digest-only router and negative-evidence event log. Every mutation requires a fresh matching Rust Body receipt plus an exact PrivacyCore allow for the pinned database path. Positive Drone knowledge remains in its separate RAG database."
+    }
+  },
+  "tool_names": [
+    "accept_self_prompt",
+    "assign_drone_seed",
+    "classify_task",
+    "complete_lane",
+    "lookup_drone_seed",
+    "open_build_task",
+    "queen_summary",
+    "record_turn_result",
+    "router_status",
+    "stop_task"
+  ],
+  "classify": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"destination_role\":\"drone\",\"dispatch\":\"classification_only\",\"task_class\":\"build\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "records": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "protocolVersion": "2024-11-05",
+        "capabilities": {
+          "tools": {}
+        },
+        "serverInfo": {
+          "name": "aios-router-mcp-v2-privacy-candidate",
+          "version": "0.2.0"
+        },
+        "instructions": "Digest-only router and negative-evidence event log. Every mutation requires a fresh matching Rust Body receipt plus an exact PrivacyCore allow for the pinned database path. Positive Drone knowledge remains in its separate RAG database."
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "name": "accept_self_prompt",
+            "description": "Accept one bounded self-prompt for the next serial lane turn; records only a digest and requires the same fresh Rust Body plus PrivacyCore receipt. It never invokes the model.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "prompt": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                },
+                "turn": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "turn",
+                "prompt"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "assign_drone_seed",
+            "description": "Assign exactly one OS-CSPRNG inference seed to an Architect-named Drone identity. SQLite UNIQUE constraints prevent seed or identity reuse. Requires a fresh matching Rust Body and PrivacyCore receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "description": "Architect-assigned Drone identity key; it must appear verbatim in the current assignment.",
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "agent_id",
+                "session_id",
+                "task_id",
+                "assignment_hash"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "classify_task",
+            "description": "Classify only: conversation routes to Queen, build to Drone, all other labels to Queen. This does not dispatch work.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "label": {
+                  "description": "User-originated label; conversation routes Queen, build routes Drone, every other label routes Queen.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "label"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "complete_lane",
+            "description": "Mark an idle lane complete after at least one turn, with a nonempty completion receipt; requires the same fresh Rust Body plus PrivacyCore receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "receipt": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "receipt"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "lookup_drone_seed",
+            "description": "Read the persistent seed and stable seed-derived style profile for one registered Drone identity.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "agent_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "open_build_task",
+            "description": "Open a bounded router task. Requires session_id, task_id, matching assignment hash, and a fresh Rust Body receipt carrying the exact PrivacyCore allow for the pinned database path.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment": {
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "max_turns_per_lane": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "assignment",
+                "lane_ids",
+                "max_turns_per_lane"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "queen_summary",
+            "description": "Return a Queen-facing summary derived strictly from recorded event receipts.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "task_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "record_turn_result",
+            "description": "Record the digest receipt for the matching active lane turn; requires the same fresh Rust Body plus PrivacyCore receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "result": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                },
+                "turn": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "turn",
+                "result"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "router_status",
+            "description": "Report candidate health, append-only event-chain status, and explicit missing security integrations.",
+            "inputSchema": {
+              "properties": {},
+              "type": "object"
+            }
+          },
+          {
+            "name": "stop_task",
+            "description": "Record a task stop request; requires the same fresh Rust Body plus PrivacyCore receipt. This cannot cancel an external model generation; bridge cancellation and acknowledgement are not connected.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "reason"
+              ],
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"destination_role\":\"drone\",\"dispatch\":\"classification_only\",\"task_class\":\"build\"}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ]
+}

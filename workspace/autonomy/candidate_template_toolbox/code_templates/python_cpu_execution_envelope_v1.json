@@ -1,0 +1,74 @@
+{
+  "schema_version": "viv_cpu_execution_first_contract_v1",
+  "status": "IMPLEMENTED_CPU_BOUNDARY_CANDIDATE_ONLY",
+  "governing_rule": "The model proposes a constrained plan; the CPU executes approved templates and returns the computed result.",
+  "model_surface": {
+    "allowed_request_schema": "viv_cpu_execution_request_v1",
+    "allowed_fields": [
+      "schema_version",
+      "action",
+      "template_id",
+      "pillar",
+      "variable_overrides",
+      "hold_code"
+    ],
+    "actions": ["execute", "hold"],
+    "template_selection_authority": "cpu",
+    "variable_binding_authority": "cpu",
+    "function_body_authority": "human_approved_source_template_only",
+    "forbidden_model_fields": [
+      "context",
+      "source",
+      "source_path",
+      "path",
+      "body",
+      "content",
+      "code",
+      "python",
+      "command",
+      "shell",
+      "stdout",
+      "stderr",
+      "output",
+      "text"
+    ]
+  },
+  "external_context": {
+    "owner": "trusted_external_ingress",
+    "model_plan_cannot_supply_it": true,
+    "receipt_behavior": "hash_only"
+  },
+  "cpu_execution": {
+    "security": "existing_rust_membrane_required",
+    "runtime": "verified_active_template_generation_only",
+    "variable_overrides": "declared_keys_only",
+    "submain_order": "source_index_order",
+    "main_invocation": "exactly_once_after_submains",
+    "natural_language_generation": false,
+    "primary_output": "execution_result"
+  },
+  "audit": {
+    "receipt_schema": "viv_cpu_execution_receipt_v1",
+    "ledger_schema": "viv_cpu_execution_ledger_v1",
+    "hash_chain": true,
+    "append_only_api": true,
+    "update_api": "ABSENT",
+    "delete_api": "ABSENT",
+    "human_retention_authority_required": true,
+    "host_acl_or_rust_operator_enforcement_required": true,
+    "claim_limit": "The Python boundary provides append-only semantics and tamper evidence; filesystem deletion authority is not claimed by Python alone."
+  },
+  "rendering": {
+    "gpu_ava": "optional_decorative_renderer",
+    "renderer_receives": "computed_execution_result",
+    "renderer_is_primary_output": false
+  },
+  "protected_scope": {
+    "production_generation_activation": false,
+    "template_registry_mutation": false,
+    "seed_mutation": false,
+    "training_authority_change": false,
+    "gpu_path_change": false,
+    "protected_main_change": false
+  }
+}

@@ -1,0 +1,15 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add new `workspace/autonomy/hive_postal_outbox_proposal_v7_candidate.py` only if absent.
+Import exactly `from hive_postal_message_contract_queen_v3_candidate import SCHEMA, VALID_KINDS, validate_postal_message`. `prepare_queen_outbox_proposal(message_id,sender_id,authority_queen_id,task_id,body,*,kind="REPORT",proposed_recipient_id=None,parent_message_sha256=None)`. Build exact message `{schema:SCHEMA,message_id,sender_id,recipient_id:authority_queen_id,task_id,kind,body:deepcopy(body)}` plus optional hash key `parent_message_sha256`. Call `valid,reason=validate_postal_message(message)` once; invalid -> `(None,(reason,))`; if proposed peer casefolds to `queen`, return `(None,("proposed_recipient_is_queen",))`; else return `({schema:"hive_postal_outbox_proposal_v1",message,routing_request=None if peer is None else {recipient_id:peer}},())`. 
+`--self-check`: 5 checks—exact default with route None; peer outside message; nested mutation preserves deep copy; list body rejected; `proposed_recipient_id="QUEEN"` rejected. Unpack as `proposal,errors=prepare(...)`, never nested indexing. Print only `PASS: 5 checks` if all pass; else `FAIL:` and exit 1.
+Call the `aios_router_open_build_task` tool; call the `aios_router_accept_self_prompt` tool with only lane_id=drone, turn=0, prompt=<three-field self-prompt>. Call the `localcoder_add_python` tool using only project-relative `filePath=workspace/autonomy/hive_postal_outbox_proposal_v7_candidate.py` and `content=source`. Call the `read` tool on the assigned target. Call the `shell` tool exactly `& (Join-Path (Get-PSDrive -Name L).Root -ChildPath '.venv\Scripts\python.exe') -B 'workspace/autonomy/hive_postal_outbox_proposal_v7_candidate.py' --self-check`. Call the `aios_router_record_turn_result` tool with actual drone turn 0 result; call the `aios_router_complete_lane` tool with accurate receipt.
+[CURRENT AUTHORIZATION FACT]
+Architect authorized this task; OpenCode and Rust Body gates govern.
+[QUEEN → DRONE]
+Follow listed order. After nonfinal results emit `[DRONE SELF-PROMPT]` with `Agenda:`, `Verified facts:`, `Next bounded action:` from latest evidence. If shell fails, do not read/retry; immediately record failure and complete lane. Final starts `[DRONE]`, names target and read-backed fact, and ends with same fields and `Next bounded action: STOP`.
+
+
+
+
+

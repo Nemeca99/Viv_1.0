@@ -1,0 +1,72 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 300.375,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e210001b6ffebfgUvJZCQOowOv"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "1c9e78e3b9819876ece57f366b3c7269a8f09a16bce624570283ced90d548efb",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out",
+    "tool_error"
+  ],
+  "tool_errors": [
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    }
+  ],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Execute bounded AIOS router control-plane smoke test with turn 0 record, then complete lane and report status.\nVerified facts: Task opened successfully with assignment SHA cc4082e39c42f7bacd49cd8daf4a8f602924504d0e25ac3407cee9795927d620, state open, lane drone, max_turns_per_lane 1. Task ID oc_55d833499d2d355c93a28220a78b345e697b92c6b44fae2a1ca534375173590a.\nNext bounded action: Use aios_router_accept_self_prompt tool for lane drone turn 0 with prompt containing Agenda, Verified facts (task open evidence), and Next bounded action to record turn 0 result."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T113801037107Z"
+}

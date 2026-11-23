@@ -1,0 +1,46 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 110.593,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1f1a69b1ffezxkszEfRj8dmdw"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "c907a45ecb39c320c9562072668c94d503f8a1e8f3221515f1987b56f133f56f",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: 8 checks"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "[DRONE]\nFile `workspace/autonomy/hive_postal_inbox_match_v20_candidate.py` contains 55 lines; shell execution returned exactly \"PASS: 8 checks\" with exit code 0, confirming all self-check cases passed.\n\n[DRONE SELF-PROMPT]\nAgenda: Task complete; no further tools required per Architect authorization.\nVerified facts: Self-check executed successfully with PASS: 8 checks and exit code 0; evidence tokens include message_matches_local_inbox and hive_postal_inbox_match_v20_candidate.\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T202824886396Z"
+}

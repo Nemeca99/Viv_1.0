@@ -1,0 +1,74 @@
+{
+  "schema_version": "viv_file_index_retrieve_contract_v1",
+  "status": "candidate_only",
+  "purpose": "Bounded CPU-owned read-only retrieve over the local file-index SQLite inventory. Rows report that a path was indexed, not that its contents are a verified claim.",
+  "classification": {
+    "authority_class": "evidentiary",
+    "authority_scope": "experimental_evidence",
+    "role": "inventory",
+    "runtime_truth": false,
+    "verified_claim_oracle": false,
+    "inventory_not_truth": true
+  },
+  "index": {
+    "scanner": "foundation/scripts/file_index_system.py",
+    "default_db": "artifacts/file_index/file_index.db",
+    "schema_table": "files",
+    "wikipedia_or_global_index": "separate_historical_surface_not_admitted",
+    "create_if_missing": false,
+    "start_scan_if_absent": false
+  },
+  "packet": {
+    "owner": "CPU",
+    "model_selects_slots": false,
+    "slots": ["query", "path_prefix", "extension", "limit"],
+    "unbounded_dump": "HOLD_UNBOUNDED_DUMP",
+    "c_drive": "HOLD_C_DRIVE_EXCLUDED"
+  },
+  "caps": {
+    "default_limit": 8,
+    "max_limit": 32,
+    "max_query_chars": 200,
+    "max_path_prefix_chars": 512,
+    "max_path_chars": 1024,
+    "max_extension_chars": 16,
+    "busy_timeout_ms": 2000
+  },
+  "sqlite": {
+    "uri_mode": "ro",
+    "query_only": true,
+    "journal_mode_pragma": false,
+    "schema_init": false,
+    "allowed_statements": ["SELECT", "PRAGMA table_info", "PRAGMA query_only", "PRAGMA busy_timeout"]
+  },
+  "forbidden": {
+    "index_write": true,
+    "scan_start": true,
+    "file_execute": true,
+    "file_delete": true,
+    "file_content_read": true,
+    "seed0_mutation": true,
+    "pointer_mutation": true,
+    "registry_mutation": true,
+    "rust_write": true,
+    "wikipedia_auto_admit": true
+  },
+  "states": {
+    "success": "INVENTORY",
+    "missing_db": "ABSTAIN_INDEX_ABSENT",
+    "locked": "HOLD_INDEX_LOCKED",
+    "invalid": "HOLD_INDEX_INVALID",
+    "schema": "HOLD_SCHEMA_MISMATCH",
+    "unbounded": "HOLD_UNBOUNDED_DUMP",
+    "packet": "HOLD_PACKET_INVALID",
+    "c_drive": "HOLD_C_DRIVE_EXCLUDED"
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "candidate_only": true,
+    "production_generation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "elapsed_seconds": 71.891,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e2454179dffeJJcYh9q2xSx4x1"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "2e2b268688bca3ffd5ea0e117e390808682ea45ff1951c1755c17da437931226",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: self-prompt format"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "[DRONE SELF-PROMPT] completed successfully. The `format_drone_self_prompt` function correctly formats its caller-supplied arguments into the expected `[DRONE SELF-PROMPT]` structure with agenda, verified facts, and next bounded action sections.\n\n**Actual output:** `PASS: self-prompt format`\n\nThe implementation:\n- Takes three string parameters (agenda, evidence, next)\n- Validates all inputs are non-empty strings after trimming\n- Returns a formatted string starting with `[DRONE SELF-PROMPT]` header\n- Properly labels sections as \"Agenda:\", \"Verified facts:\", and \"Next bounded action:\"\n\n**Task complete.** The Drone helper task has been closed by executing the one bounded check requested."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T200718743945Z"
+}

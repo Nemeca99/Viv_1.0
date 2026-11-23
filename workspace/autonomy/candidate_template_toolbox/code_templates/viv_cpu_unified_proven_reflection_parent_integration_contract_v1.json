@@ -1,0 +1,77 @@
+{
+  "schema_version": "viv_cpu_unified_proven_reflection_parent_integration_contract_v1",
+  "experiment_id": "cpu_unified_proven_reflection_parent_integration_v1",
+  "purpose": "Test whether a verified specialized reflection capability can be retained while integrating the target-free unified self-building curriculum.",
+  "candidate_only": true,
+  "isolated": true,
+  "no_publish": true,
+  "source_catalog_rebuilt": false,
+  "parents": {
+    "unified_control": {
+      "receipt_path": "foundation/artifacts/auto/agentic/cpu_unified_target_free_self_building_v1/unified_target_free_self_building_20260816T025624Z_789/receipt.json",
+      "receipt_sha256": "EB926431B87ABA7C5B456975503F7E4D3DF1F26D3AB1525B5584175E6E7B80A0",
+      "checkpoint_sha256": "55ED9B0647F87602BDF461CD4C100AB9329658D1D781B383E3DB8AAF0A8FABDA",
+      "state_sha256": "EC83A60B2AB4307AC5FBD9F3DB3A84F4E07B0CF7DC55CCB6AF1825F308C1CAF5"
+    },
+    "reflection_parent": {
+      "receipt_path": "foundation/artifacts/auto/agentic/cpu_independent_reflection_v2/independent_reflection_v2_20260814T072536Z_167000/receipt.json",
+      "receipt_sha256": "AD9D89D3872E2D88E93D045616D6132C6FE88364C776B27C419984EFA340D72D",
+      "checkpoint_path": "foundation/artifacts/auto/agentic/cpu_independent_reflection_v2/independent_reflection_v2_20260814T072536Z_167000/candidate_reflection_v2.pt",
+      "checkpoint_sha256": "06EDF215A61AA361FD135C03AE18B893C2FC0511C8E9B26A1965D020EBBA96A7",
+      "state_sha256": "49D62D46AFD254685B52AE212FA3EB484936194F06CEA5EB48D88FD0F8EE35C1"
+    }
+  },
+  "curriculum": {
+    "schema_version": "viv_cpu_unified_target_free_curriculum_v1",
+    "training_rows": 224,
+    "training_family_rows": 32,
+    "holdout_surfaces": 7,
+    "metadata_only": true,
+    "target_free": true,
+    "hidden_cpu_objectives": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "context_length": 128,
+    "generation_budgets": {
+      "reflection": 80,
+      "query": 68,
+      "fixed_width": 40
+    }
+  },
+  "behavioral_gates": {
+    "reflection_supported_min": 6,
+    "reflection_clean_min": 3,
+    "reflection_surface_count_min": 2,
+    "reflection_non_coverage_min": 1,
+    "query_supported_min": 12,
+    "action_supported_min": 8,
+    "variable_supported_min": 12,
+    "result_supported_min": 16,
+    "scheduler_supported_min": 13,
+    "template_each_min": 8,
+    "candidate_must_not_regress_against_unified_control": true,
+    "zero_unauthorized_cpu_accepts": true
+  },
+  "authority": {
+    "gpu_execution": false,
+    "live_model_mutation": false,
+    "seed0_mutation": false,
+    "registry_mutation": false,
+    "production_generation": false,
+    "rust_expected_state": "HOLD_SECURITY",
+    "adoption": "HUMAN_APPROVAL_REQUIRED"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "receipt_self_hash_excludes": ["receipt_sha256"]
+  }
+}

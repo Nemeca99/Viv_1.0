@@ -1,0 +1,48 @@
+{
+  "schema_version": "viv_cpu_multi_template_discrimination_v1",
+  "receipt_schema": "viv_cpu_multi_template_discrimination_receipt_v1",
+  "status": "candidate_only_until_human_approval",
+  "active_registry_mutation": false,
+  "human_approval_required": true,
+  "production_activation": false,
+  "model_output_grammar": "viv_cpu_model_directed_grammar_v3",
+  "action_frame": "A|select|<template_slot>",
+  "variable_frame": "A|variable|<template_slot>|<declared_key>|<value_slot>",
+  "limits": {
+    "ordinary_supported_rows": 16,
+    "blocked_rows": 8,
+    "repeats": 2,
+    "max_template_slots": 2,
+    "max_execution_repeats": 3
+  },
+  "template_scope": {
+    "active_template": "fixture.echo",
+    "candidate_template": "fixture.echo_companion",
+    "candidate_targets": ["auto", "rid", "uml"],
+    "candidate_submains": []
+  },
+  "cpu_authority": {
+    "approved_menu_owner": "CPU_RULE",
+    "source_hash_verifier": "CPU_RULE",
+    "variable_contract_verifier": "CPU_RULE",
+    "final_disposition": "CPU_RULE",
+    "rust_write_membrane": "RUST",
+    "human_registry_approval": "HUMAN"
+  },
+  "metadata_only": {
+    "native_paths": false,
+    "source_bodies": false,
+    "python": false,
+    "shell": false,
+    "generated_code": false,
+    "runtime_literals_in_model_packet": false,
+    "hidden_target_in_prompt": false
+  },
+  "deterministic_hashing": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "self_hash_field_omitted": true,
+    "trailing_lf": true
+  }
+}

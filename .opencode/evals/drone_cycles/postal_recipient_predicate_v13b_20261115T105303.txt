@@ -1,0 +1,6 @@
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add new file `workspace/autonomy/hive_postal_recipient_predicate_v13_candidate.py`; stop if it exists.
+First source line exactly: `def is_valid_drone_recipient(value):`
+Return True only when value is a string, nonempty, already trimmed, and casefold() is not "queen". Return False for every other input. Do not coerce types.
+Add a `--self-check` mode covering exactly these cases: "drone_2" -> True; "queen" -> False; " QUEEN" -> False; None -> False; 123 -> False. Print exactly `PASS: 5 checks` only after all five pass, and exit nonzero on any mismatch. Keep source under 30 lines.
+Call the aios_router_open_build_task tool; call the aios_router_accept_self_prompt tool for lane drone turn 0; call the localcoder_add_python tool with only filePath=workspace/autonomy/hive_postal_recipient_predicate_v13_candidate.py and content=source; call the shell tool with `& 'L:\.venv\Scripts\python.exe' -B 'workspace\autonomy\hive_postal_recipient_predicate_v13_candidate.py' --self-check`; call the aios_router_record_turn_result tool with the actual shell output; call the aios_router_complete_lane tool with a truthful receipt.

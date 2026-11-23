@@ -1,0 +1,12 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Task access: write
+[QUEEN] Review: your first patch scored 2/11, not zero. It still hashes the relay key string instead of its payload; never compares that hash; reuses a stale raw_row; uses unsupported sqlite3.Row.get; and double-encodes the database evidence. I preserved it. Repair only this block.
+1. Use read on `L:/LocalCoder/workspace/autonomy/typed_composition_receipt_audit_v2_candidate.py` with offset 185 and limit 30.
+2. Use localcoder_patch to replace the faulty relay-key/binding block. Start payload = dict(edge_copy), where edge_copy has no receipt_sha256. claimed_key = payload.pop('relay_key', None). Reject unless canonical_hash(payload) == claimed_key. Find matching_rows = [row for row in rows if row['relay_key'] == claimed_key]. Reject unless len(matching_rows) == 1. Then db_evidence = json.loads(matching_rows[0]['evidence_json']). Reject unless canonical_hash(db_evidence) == canonical_hash(typed_edge). Each rejection prints a check7 failure and returns 1. Do not json.dumps before canonical_hash; it already encodes dictionaries. Do not use raw_row or .get here. Keep all other code unchanged.
+<localcoder_patch_paths>
+workspace/autonomy/typed_composition_receipt_audit_v2_candidate.py
+</localcoder_patch_paths>
+3. Use shell with exactly `L:/.venv/Scripts/python.exe -B L:/LocalCoder/.opencode/evals/verify_relay_identity_20261117.py`.
+Give the real score. Stop after the check.
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this supervised repair. Only the audit file may change.

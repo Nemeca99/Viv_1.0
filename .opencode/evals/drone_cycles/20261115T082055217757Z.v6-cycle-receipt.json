@@ -1,0 +1,160 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "observed_tool_count_mismatch",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e21b7f62dffeOYewsZaNlfogDJ",
+  "session_recovery": null,
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "read",
+    "localcoder_add_python",
+    "shell"
+  ],
+  "final_validation": "final_report_missing_drone_tag",
+  "read_evidence_validation": null,
+  "intermediate_validation": {
+    "passed": false,
+    "reason": "observed_tool_count_mismatch"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794730628379-74b4164b-a613-45a0-855d-0053917bd38d-body-gate.json",
+      "sha256": "4650b5f3db8d56ee5f23044d22c59657afc57a951c296d993b1023cfb379e038",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89,
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.4
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794730645775-d2b5d1a5-b0a0-445e-8823-596f3adca31c-body-gate.json",
+      "sha256": "7490ebe466345fe99d60384622a5a8d720b218f97c32350e9239456f81882ac5",
+      "source": "tool:read",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.1,
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.9
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794730649630-0055a095-a286-461f-a2bc-f649d0c9158d-body-gate.json",
+      "sha256": "d6c3930556a970c64527ba25ff384358879e0f5382eee3f80fe91577e9cecced",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.9,
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.2,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.9,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.8
+      },
+      "reasons": []
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 81.1,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 88.0,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 1.4
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "5c17ba8d5a99f29634cb0a8b72879db474b83bb8349b6d55d06cc59ea101f0a2",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 229.781,
+    "exit_code": 0,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e21b7f62dffeOYewsZaNlfogDJ"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "08f8321ec15f34b56b2c9605cc58ce6c1351b7def2f1c8ee76137636be0a265e",
+    "tools": [
+      {
+        "tool": "read",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [],
+    "task_succeeded": true,
+    "task_errors": [],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Create hive_agent_message_contract_v2_candidate.py with corrected validation rules per Architect instructions.\nVerified facts: Read completed hive_agent_message_contract_candidate.py; existing function checks for required fields but does not enforce task_id presence, agent_type absence handling, or claims list type strictly. Next bounded action: localcoder_add_python\n\n<tool_call>\n<function=localcoder_add_python>\n<path>L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v2_candidate.py</path>\ncontent=\"\"\"def validate_agent_message(value):\n    \\\"\\\"\\\"\n    Pure function that validates agent message envelope structure and values.\n    \n    Returns: tuple of error-code strings (empty if valid)\n    \n    Valid envelopes must have:\n    - agent_type: \"model\" or \"human\"\n    - status: \"DONE\", \"NEEDS_USER\", or \"BLOCKED\"\n    - audience: \"mind\"\n    - trust_class: \"unverified_model_output\" for model, \"human_agent_statement\" for human\n    - claims: list of objects with string text, list-of-string evidence_ids, kind in [\"retrieved_fact\", \"inference\", \"proposal\"]\n    - artifact_refs: list of strings (may be empty)\n    - uncertainties: list of strings (may be empty)\n    - conflicts_with: list of strings (may be empty)\n    - parent_task_id: null or non-empty string\n    \n    Does not raise; returns () on valid input.\n    \\\"\\\"\\\"\n    errors = []\n    \n    if value is None:\n        return (\"NULL_INPUT\",)\n    \n    # Must be a dict\n    if not isinstance(value, dict):\n        return (\"NOT_DICT\",)\n    \n    # Check required fields exist and have correct types\n    for field in [\"agent_type\", \"status\", \"audience\", \"trust_class\", \"claims\"]:\n        if field not in value:\n            errors.append(f\"MISSING_{field.upper()}\")\n    \n    # Validate agent_type\n    if \"agent_type\" in value:\n        if not isinstance(value[\"agent_type\"], str):\n            errors.append(\"AGENT_TYPE_NOT_STRING\")\n        elif value[\"agent_type\"] not in [\"model\", \"human\"]:\n            errors.append(f\"INVALID_AGENT_TYPE:{value['agent_type']}\")\n    \n    # Validate status\n    if \"status\" in value:\n        if not isinstance(value[\"status\"], str):\n            errors.append(\"STATUS_NOT_STRING\")\n        elif value[\"status\"] not in [\"DONE\", \"NEEDS_USER\", \"BLOCKED\"]:\n            errors.append(f\"INVALID_STATUS:{value['status']}\")\n    \n    # Validate audience\n    if \"audience\" in value:\n        if not isinstance(value[\"audience\"], str):\n            errors.append(\"AUDIENCE_NOT_STRING\")\n        elif value[\"audience\"] != \"mind\":\n            errors.append(f\"INVALID_AUDIENCE:{value['audience']}\")\n    \n    # Validate trust_class based on agent_type\n    if \"trust_class\" in value:\n        if not isinstance(value[\"trust_class\"], str):\n            errors.append(\"TRUST_CLASS_NOT_STRING\")\n        elif value[\"agent_type\"] == \"model\":\n            if value[\"trust_class\"] != \"unverified_model_output\":\n                errors.append(f\"INVALID_TRUST_CLASS_FOR_MODEL:{value['trust_class']}\")\n        else:  # human\n            if value[\"trust_class\"] != \"human_agent_statement\":\n                errors.append(f\"INVALID_TRUST_CLASS_FOR_HUMAN:{value['trust_class']}\")\n    \n    # Validate claims structure - MUST be a list, not dict\n    if \"claims\" in value:\n        if not isinstance(value[\"claims\"], list):\n            errors.append(\"CLAIMS_NOT_LIST\")\n        else:\n            for claim in value[\"claims\"]:\n                # Each claim must be an object (dict) with string text, list-of-string evidence_ids, kind\n                if not isinstance(claim, dict):\n                    errors.append(f\"INVALID_CLAIM_SHAPE:{type(claim)}\")\n                    continue\n                \n                # Check text field is string\n                if \"text\" not in claim:\n                    errors.append(f\"MISSING_TEXT_IN_CLAIM:{claim.get('key', 'unknown')}\")\n                elif not isinstance(claim[\"text\"], str):\n                    errors.append(f\"CLAIM_TEXT_NOT_STRING:{claim.get('key', 'unknown')}\")\n                \n                # Check evidence_ids is list\n                if \"evidence_ids\" not in claim:\n                    errors.append(f\"MISSING_EVIDENCE_IDS_IN_CLAIM:{claim.get('key', 'unknown')}\")\n                elif not isinstance(claim[\"evidence_ids\"], list):\n                    errors.append(f\"EVIDENCE_IDS_NOT_LIST:{claim.get('key', 'unknown')}\")\n                \n                # Check kind is one of the allowed values\n                if \"kind\" not in claim:\n                    errors.append(f\"MISSING_KIND_IN_CLAIM:{claim.get('key', 'unknown')}\")\n                elif not isinstance(claim[\"kind\"], str):\n                    errors.append(f\"CLAIM_KIND_NOT_STRING:{claim.get('key', 'unknown')}\")\n                elif claim[\"kind\"] not in [\"retrieved_fact\", \"inference\", \"proposal\"]:\n                    errors.append(f\"INVALID_KIND_IN_CLAIM:{claim.get('key', 'unknown')}:{claim['kind']}\")\n    \n    # Validate artifact_refs is list of strings (may be empty)\n    if \"artifact_refs\" in value:\n        if not isinstance(value[\"artifact_refs\"], list):\n            errors.append(\"ARTIFACT_REFS_NOT_LIST\")\n        else:\n            for ref in value[\"artifact_refs\"]:\n                if not isinstance(ref, str):\n                    errors.append(f\"ARTIFACT_REF_NOT_STRING:{ref}\")\n    \n    # Validate uncertainties is list of strings (may be empty)\n    if \"uncertainties\" in value:\n        if not isinstance(value[\"uncertainties\"], list):\n            errors.append(\"UNCERTAINTIES_NOT_LIST\")\n        else:\n            for u in value[\"uncertainties\"]:\n                if not isinstance(u, str):\n                    errors.append(f\"UNCERTAINTY_NOT_STRING:{u}\")\n    \n    # Validate conflicts_with is list of strings (may be empty)\n    if \"conflicts_with\" in value:\n        if not isinstance(value[\"conflicts_with\"], list):\n            errors.append(\"CONFLICTS_WITH_NOT_LIST\")\n        else:\n            for c in value[\"conflicts_with\"]:\n                if not isinstance(c, str):\n                    errors.append(f\"CONFLICT_NOT_STRING:{c}\")\n    \n    # Validate parent_task_id is null or non-empty string\n    if \"parent_task_id\" in value:\n        pt = value[\"parent_task_id\"]\n        if pt is None:\n            pass  # Valid - null allowed\n        elif not isinstance(pt, str):\n            errors.append(\"PARENT_TASK_ID_NOT_STRING\")\n        elif len(pt) == 0:\n            errors.append(\"PARENT_TASK_ID_EMPTY\")\n    \n    return tuple(errors)\n\nif __name__ == \\\"__main__\\\":\n    # Test cases for validation\n    test_cases = [\n        # Valid model envelope\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": [\n                {\"text\": \"Fact 1\", \"evidence_ids\": [\"id1\"], \"kind\": \"retrieved_fact\"},\n                {\"text\": \"Inference A\", \"evidence_ids\": [], \"kind\": \"inference\"}\n            ],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": [],\n            \"parent_task_id\": None\n        },\n        # Valid human envelope\n        {\n            \"agent_type\": \"human\",\n            \"status\": \"NEEDS_USER\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"human_agent_statement\",\n            \"claims\": [\n                {\"text\": \"Statement 1\", \"evidence_ids\": [\"id2\"], \"kind\": \"proposal\"}\n            ],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": [],\n            \"parent_task_id\": None\n        },\n        # Missing task_id - should report MISSING_TASK_ID\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": [],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": []\n        },\n        # Missing agent_type with trust_class present - should report MISSING_AGENT_TYPE without raising\n        {\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": [],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": []\n        },\n        # Claims as dict instead of list - should report CLAIMS_NOT_LIST\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": {\"key1\": \"value1\"},  # dict instead of list\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": []\n        },\n        # Invalid trust class for model\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"invalid_trust\",  # wrong trust class\n            \"claims\": [],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": []\n        },\n        # Empty parent_task_id - should be rejected\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": [],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": [],\n            \"parent_task_id\": \"\"  # empty string, not null\n        }\n    ]\n    \n    print(\"Testing validate_agent_message function...\")\n    for i, test in enumerate(test_cases):\n        result = validate_agent_message(test)\n        if len(result) == 0:\n            print(f\"PASS: Test case {i+1} - valid envelope returned ()\")\n        else:\n            print(f\"FAIL: Test case {i+1} - expected (), got {result}\")\n    \n    # Specific test for missing task_id\n    result = validate_agent_message({\n        \"agent_type\": \"model\",\n        \"status\": \"DONE\",\n        \"audience\": \"mind\",\n        \"trust_class\": \"unverified_model_output\",\n        \"claims\": [],\n        \"artifact_refs\": [],\n        \"uncertainties\": [],\n        \"conflicts_with\": []\n    })\n    if result == (\"MISSING_TASK_ID\",):\n        print(\"PASS: contract-validator cases\")\n    else:\n        print(f\"FAIL: Expected MISSING_TASK_ID, got {result}\")\n\n\"\"\"\n</parameter>\n</function>\n</tool_call>"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T081705355667Z",
+    "wrapper_exit": 0,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T081705265415Z.prompt.txt",
+    "dispatcher_final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Create hive_agent_message_contract_v2_candidate.py with corrected validation rules per Architect instructions.\nVerified facts: Read completed hive_agent_message_contract_candidate.py; existing function checks for required fields but does not enforce task_id presence, agent_type absence handling, or claims list type strictly. Next bounded action: localcoder_add_python\n\n<tool_call>\n<function=localcoder_add_python>\n<path>L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v2_candidate.py</path>\ncontent=\"\"\"def validate_agent_message(value):\n    \\\"\\\"\\\"\n    Pure function that validates agent message envelope structure and values.\n    \n    Returns: tuple of error-code strings (empty if valid)\n    \n    Valid envelopes must have:\n    - agent_type: \"model\" or \"human\"\n    - status: \"DONE\", \"NEEDS_USER\", or \"BLOCKED\"\n    - audience: \"mind\"\n    - trust_class: \"unverified_model_output\" for model, \"human_agent_statement\" for human\n    - claims: list of objects with string text, list-of-string evidence_ids, kind in [\"retrieved_fact\", \"inference\", \"proposal\"]\n    - artifact_refs: list of strings (may be empty)\n    - uncertainties: list of strings (may be empty)\n    - conflicts_with: list of strings (may be empty)\n    - parent_task_id: null or non-empty string\n    \n    Does not raise; returns () on valid input.\n    \\\"\\\"\\\"\n    errors = []\n    \n    if value is None:\n        return (\"NULL_INPUT\",)\n    \n    # Must be a dict\n    if not isinstance(value, dict):\n        return (\"NOT_DICT\",)\n    \n    # Check required fields exist and have correct types\n    for field in [\"agent_type\", \"status\", \"audience\", \"trust_class\", \"claims\"]:\n        if field not in value:\n            errors.append(f\"MISSING_{field.upper()}\")\n    \n    # Validate agent_type\n    if \"agent_type\" in value:\n        if not isinstance(value[\"agent_type\"], str):\n            errors.append(\"AGENT_TYPE_NOT_STRING\")\n        elif value[\"agent_type\"] not in [\"model\", \"human\"]:\n            errors.append(f\"INVALID_AGENT_TYPE:{value['agent_type']}\")\n    \n    # Validate status\n    if \"status\" in value:\n        if not isinstance(value[\"status\"], str):\n            errors.append(\"STATUS_NOT_STRING\")\n        elif value[\"status\"] not in [\"DONE\", \"NEEDS_USER\", \"BLOCKED\"]:\n            errors.append(f\"INVALID_STATUS:{value['status']}\")\n    \n    # Validate audience\n    if \"audience\" in value:\n        if not isinstance(value[\"audience\"], str):\n            errors.append(\"AUDIENCE_NOT_STRING\")\n        elif value[\"audience\"] != \"mind\":\n            errors.append(f\"INVALID_AUDIENCE:{value['audience']}\")\n    \n    # Validate trust_class based on agent_type\n    if \"trust_class\" in value:\n        if not isinstance(value[\"trust_class\"], str):\n            errors.append(\"TRUST_CLASS_NOT_STRING\")\n        elif value[\"agent_type\"] == \"model\":\n            if value[\"trust_class\"] != \"unverified_model_output\":\n                errors.append(f\"INVALID_TRUST_CLASS_FOR_MODEL:{value['trust_class']}\")\n        else:  # human\n            if value[\"trust_class\"] != \"human_agent_statement\":\n                errors.append(f\"INVALID_TRUST_CLASS_FOR_HUMAN:{value['trust_class']}\")\n    \n    # Validate claims structure - MUST be a list, not dict\n    if \"claims\" in value:\n        if not isinstance(value[\"claims\"], list):\n            errors.append(\"CLAIMS_NOT_LIST\")\n        else:\n            for claim in value[\"claims\"]:\n                # Each claim must be an object (dict) with string text, list-of-string evidence_ids, kind\n                if not isinstance(claim, dict):\n                    errors.append(f\"INVALID_CLAIM_SHAPE:{type(claim)}\")\n                    continue\n                \n                # Check text field is string\n                if \"text\" not in claim:\n                    errors.append(f\"MISSING_TEXT_IN_CLAIM:{claim.get('key', 'unknown')}\")\n                elif not isinstance(claim[\"text\"], str):\n                    errors.append(f\"CLAIM_TEXT_NOT_STRING:{claim.get('key', 'unknown')}\")\n                \n                # Check evidence_ids is list\n                if \"evidence_ids\" not in claim:\n                    errors.append(f\"MISSING_EVIDENCE_IDS_IN_CLAIM:{claim.get('key', 'unknown')}\")\n                elif not isinstance(claim[\"evidence_ids\"], list):\n                    errors.append(f\"EVIDENCE_IDS_NOT_LIST:{claim.get('key', 'unknown')}\")\n                \n                # Check kind is one of the allowed values\n                if \"kind\" not in claim:\n                    errors.append(f\"MISSING_KIND_IN_CLAIM:{claim.get('key', 'unknown')}\")\n                elif not isinstance(claim[\"kind\"], str):\n                    errors.append(f\"CLAIM_KIND_NOT_STRING:{claim.get('key', 'unknown')}\")\n                elif claim[\"kind\"] not in [\"retrieved_fact\", \"inference\", \"proposal\"]:\n                    errors.append(f\"INVALID_KIND_IN_CLAIM:{claim.get('key', 'unknown')}:{claim['kind']}\")\n    \n    # Validate artifact_refs is list of strings (may be empty)\n    if \"artifact_refs\" in value:\n        if not isinstance(value[\"artifact_refs\"], list):\n            errors.append(\"ARTIFACT_REFS_NOT_LIST\")\n        else:\n            for ref in value[\"artifact_refs\"]:\n                if not isinstance(ref, str):\n                    errors.append(f\"ARTIFACT_REF_NOT_STRING:{ref}\")\n    \n    # Validate uncertainties is list of strings (may be empty)\n    if \"uncertainties\" in value:\n        if not isinstance(value[\"uncertainties\"], list):\n            errors.append(\"UNCERTAINTIES_NOT_LIST\")\n        else:\n            for u in value[\"uncertainties\"]:\n                if not isinstance(u, str):\n                    errors.append(f\"UNCERTAINTY_NOT_STRING:{u}\")\n    \n    # Validate conflicts_with is list of strings (may be empty)\n    if \"conflicts_with\" in value:\n        if not isinstance(value[\"conflicts_with\"], list):\n            errors.append(\"CONFLICTS_WITH_NOT_LIST\")\n        else:\n            for c in value[\"conflicts_with\"]:\n                if not isinstance(c, str):\n                    errors.append(f\"CONFLICT_NOT_STRING:{c}\")\n    \n    # Validate parent_task_id is null or non-empty string\n    if \"parent_task_id\" in value:\n        pt = value[\"parent_task_id\"]\n        if pt is None:\n            pass  # Valid - null allowed\n        elif not isinstance(pt, str):\n            errors.append(\"PARENT_TASK_ID_NOT_STRING\")\n        elif len(pt) == 0:\n            errors.append(\"PARENT_TASK_ID_EMPTY\")\n    \n    return tuple(errors)\n\nif __name__ == \\\"__main__\\\":\n    # Test cases for validation\n    test_cases = [\n        # Valid model envelope\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": [\n                {\"text\": \"Fact 1\", \"evidence_ids\": [\"id1\"], \"kind\": \"retrieved_fact\"},\n                {\"text\": \"Inference A\", \"evidence_ids\": [], \"kind\": \"inference\"}\n            ],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": [],\n            \"parent_task_id\": None\n        },\n        # Valid human envelope\n        {\n            \"agent_type\": \"human\",\n            \"status\": \"NEEDS_USER\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"human_agent_statement\",\n            \"claims\": [\n                {\"text\": \"Statement 1\", \"evidence_ids\": [\"id2\"], \"kind\": \"proposal\"}\n            ],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": [],\n            \"parent_task_id\": None\n        },\n        # Missing task_id - should report MISSING_TASK_ID\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": [],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": []\n        },\n        # Missing agent_type with trust_class present - should report MISSING_AGENT_TYPE without raising\n        {\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": [],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": []\n        },\n        # Claims as dict instead of list - should report CLAIMS_NOT_LIST\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": {\"key1\": \"value1\"},  # dict instead of list\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": []\n        },\n        # Invalid trust class for model\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"invalid_trust\",  # wrong trust class\n            \"claims\": [],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": []\n        },\n        # Empty parent_task_id - should be rejected\n        {\n            \"agent_type\": \"model\",\n            \"status\": \"DONE\",\n            \"audience\": \"mind\",\n            \"trust_class\": \"unverified_model_output\",\n            \"claims\": [],\n            \"artifact_refs\": [],\n            \"uncertainties\": [],\n            \"conflicts_with\": [],\n            \"parent_task_id\": \"\"  # empty string, not null\n        }\n    ]\n    \n    print(\"Testing validate_agent_message function...\")\n    for i, test in enumerate(test_cases):\n        result = validate_agent_message(test)\n        if len(result) == 0:\n            print(f\"PASS: Test case {i+1} - valid envelope returned ()\")\n        else:\n            print(f\"FAIL: Test case {i+1} - expected (), got {result}\")\n    \n    # Specific test for missing task_id\n    result = validate_agent_message({\n        \"agent_type\": \"model\",\n        \"status\": \"DONE\",\n        \"audience\": \"mind\",\n        \"trust_class\": \"unverified_model_output\",\n        \"claims\": [],\n        \"artifact_refs\": [],\n        \"uncertainties\": [],\n        \"conflicts_with\": []\n    })\n    if result == (\"MISSING_TASK_ID\",):\n        print(\"PASS: contract-validator cases\")\n    else:\n        print(f\"FAIL: Expected MISSING_TASK_ID, got {result}\")\n\n\"\"\"\n</parameter>\n</function>\n</tool_call>"
+    ]
+  }
+}

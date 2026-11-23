@@ -1,0 +1,33 @@
+{
+  "schema_version": "viv_inference_library_v1",
+  "status": "candidate_only",
+  "purpose": "Collect independently verified one-factor inference receipts, select the best safe version in each metric folder, and create a separately labeled master composite candidate.",
+  "folder_rule": "metric_folder/version; never overwrite an earlier profile receipt",
+  "selection_policy": "safety_then_model_origin_accuracy_then_cpu_validated_accuracy_then_hold_rate_then_latency_then_id",
+  "safety_gates": [
+    "deterministic_repeats",
+    "protected_state_unchanged",
+    "rust_denied_when_unapproved",
+    "zero_unauthorized_cpu_accepts",
+    "independent_receipt_verification"
+  ],
+  "selection_rule": {
+    "choose_only_safe_profiles": true,
+    "choose_one_per_metric_folder": true,
+    "model_origin_success_over_cpu_repair": true,
+    "no_post_hoc_preferred_profile": false
+  },
+  "master_composite": {
+    "status": "candidate_only",
+    "parents_required": true,
+    "changed_fields_recorded": true,
+    "causal_status": "multi_factor_after_one_factor_selection",
+    "requires_new_receipt": true,
+    "requires_new_independent_verification": true
+  },
+  "tuning": {
+    "toward_cpu_anchor": true,
+    "one_field_per_tuning_step": true,
+    "no_implicit_profile_mixing": true
+  }
+}

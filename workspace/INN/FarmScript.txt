@@ -1,0 +1,1181 @@
+* Farming v8: outcome-only rewards, F1/F2/B1, immutable FIFO commitments.
+ * Bound Google Apps Script V8. startTraining resumes; hardResetFarm starts a new run.
+ * Farming B5:B22 configures this five-feature learner. Other architecture tabs
+ * are separate examples, not a connected Transformer or a source of live losses.
+ */
+const FARM8 = {
+  version: '8-outcomes', farm: 'Farming', logs: 'Training_Logs',
+  state: '_Farming_v8_State', maxPlots: 64, maxMs: 240000,
+  replay: 128, chunkSize: 20000, chunks: 50,
+  tools: ['TILL','SEED','WATER','HARVEST','MERGE','IDLE','UPGRADE','AUTOMATE'],
+  stages: ['BARREN','TILLED','SEEDED','WATER1','WATER2','HARVESTING'],
+  manual: ['TILL','SEED','WATER','HARVEST'],
+  header: ['RUN ID','TICK','TOOL','PLOT A','PLOT B','STATE BEFORE','VALID','REWARD',
+    'BANK','LIFETIME','ACTIVE PLOTS','DECAYS','EPSILON','QK RAW','F2 PROB','B1 GATE',
+    'FINAL SCORE','X1','X2','X3','X4','X5','PHASE','VERSION','NEXT CANDIDATES',
+    'IMMEDIATE REWARD','WORLD REWARD','LEGAL','EXECUTED','F1 PROB','NOTE']
+};
+
+function number8(v,d) {
+  return v===''||v==null ? d : Number.isFinite(Number(v)) ? Number(v) : d;
+}
+function clip8(x,a,b) { return Math.max(a,Math.min(b,x)); }
+function sigmoid8(x) {
+  return x>=0 ? 1/(1+Math.exp(-x)) : Math.exp(x)/(1+Math.exp(x));
+}
+function clone8(x) { return JSON.parse(JSON.stringify(x)); }
+function sum8(a) { return a.reduce((s,x)=>s+x,0); }
+function softmax8(a) {
+  if(!a.length)return [];
+  const m=Math.max(...a),e=a.map(x=>Math.exp(x-m)),s=sum8(e);
+  return e.map(x=>x/s);
+}
+function random8(c) {
+  let x=c.r.rng|0;
+  x^=x<<13;x^=x>>>17;x^=x<<5;
+  c.r.rng=x>>>0;
+  return c.r.rng/4294967296;
+}
+function count8(c) { return c.p.filter(p=>p.active).length; }
+function sync8(c) {
+  c.r.active=count8(c);
+  c.r.max=Math.max(c.r.max,c.r.active);
+}
+function freshPlot8(id,tick) {
+  return {
+    id,active:0,tier:1,yield:1,stage:'BARREN',tills:0,water:0,
+    deadline:0,timer:0,last:tick,harvests:0,coins:0,decays:0,reward:0,
+    urgency:0,age:0,queue:[],upgrade:0,auto:0
+  };
+}
+function resetPlot8(p,tick,lose) {
+  p.stage='BARREN';p.tills=0;p.water=0;p.deadline=0;p.timer=0;
+  p.last=tick;p.age=0;p.urgency=0;
+  if(lose){p.upgrade=0;p.auto=0;}
+  // Committed queue entries are never cleared here.
+}
+function fresh8(config,id,seed) {
+  const c={
+    version:FARM8.version,id,config,logNext:101,batch:[],batchStart:101,
+    r:{
+      tick:0,bank:0,lifetime:0,next:100,active:1,max:1,harvests:0,decays:0,
+      episode:0,best:0,lastTool:'NONE',lastA:0,lastB:0,lastReward:0,steps:0,
+      epsilon:config.epsilonStart,success:0,invalid:0,rng:(seed>>>0)||1
+    },
+    p:Array.from({length:64},(_,i)=>freshPlot8(i+1,0)),
+    w:FARM8.tools.map(()=>({b:0,x:[0,0,0,0,0],n:0,delta:0})),
+    validity:FARM8.stages.map(()=>[0,0,0,0,0,0]),
+    pending:null,lastCandidates:[],loss:0,updates:0,replayed:0
+  };
+  c.p[0].active=1;
+  return c;
+}
+function assert8(c) {
+  if(c.version!==FARM8.version)throw Error('Checkpoint version mismatch.');
+  if(c.p.length!==64||count8(c)<1||count8(c)!==c.r.active)
+    throw Error('Active plot invariant failed.');
+  if(!Number.isInteger(c.r.max)||c.r.max<c.r.active||c.r.max>64)
+    throw Error('Maximum plot invariant failed.');
+  if(c.r.bank<0||!Number.isFinite(c.r.bank)||!Number.isFinite(c.r.episode))
+    throw Error('Invalid accounting.');
+  c.p.forEach((p,i)=>{
+    if(p.id!==i+1||p.queue.length>4||p.queue.some(t=>!FARM8.manual.includes(t)))
+      throw Error('Invalid plot/queue.');
+    if(!['BARREN','TILLED','SEEDED','WATER1','GROWING','WATER2','HARVESTING'].includes(p.stage))
+      throw Error('Invalid stage.');
+    if(!Number.isInteger(p.upgrade)||p.upgrade<0||p.upgrade>3||p.auto&&p.upgrade!==3)
+      throw Error('Invalid upgrades.');
+  });
+  c.w.forEach(w=>{
+    if(![w.b,...w.x,w.delta].every(Number.isFinite))
+      throw Error('Non-finite weights.');
+  });
+}
+function urgency8(c,p) {
+  if(!p.active||p.auto||['GROWING','HARVESTING'].includes(p.stage))return 0;
+  if(p.stage==='BARREN')return clip8((c.r.tick-p.last)/2,0,1);
+  const span=p.stage==='TILLED' ? c.config.tillDecay :
+    p.stage==='SEEDED' ? c.config.seedDecay : c.config.waterDecay;
+  return p.deadline ? clip8(1-(p.deadline-c.r.tick)/span,0,1) : 0;
+}
+function upgradeCost8(c,p) { return p.tier*1000*c.r.max; }
+function mergeCost8(c) {
+  const n=count8(c),tier=Math.max(...c.p.map(p=>p.tier));
+  return Math.round(100*(n+1)/n*tier);
+}
+function legal8(c,t,p,q) {
+  if(t==='IDLE')return true;
+  if(!p||!p.active)return false;
+  if(FARM8.manual.includes(t)) {
+    if(p.auto)return false;
+    return t==='TILL' ? p.stage==='BARREN' :
+      t==='SEED' ? p.stage==='TILLED' :
+      t==='WATER' ? ['SEEDED','WATER1'].includes(p.stage) :
+      p.stage==='WATER2';
+  }
+  if(t==='UPGRADE')
+    return !p.auto&&!p.queue.length&&p.upgrade<3&&c.r.bank>=upgradeCost8(c,p);
+  if(t==='AUTOMATE')
+    return !p.auto&&!p.queue.length&&p.upgrade===3&&c.r.bank>=1;
+  if(t==='MERGE')
+    return !!(
+      q&&q.active&&q.id!==p.id&&p.tier===q.tier&&
+      !p.queue.length&&!q.queue.length&&
+      !['GROWING','HARVESTING'].includes(p.stage)&&
+      !['GROWING','HARVESTING'].includes(q.stage)&&
+      c.r.bank>=mergeCost8(c)
+    );
+  return false;
+}
+function manual8(c,p,t) {
+  p.last=c.r.tick;p.age=0;
+  if(t==='TILL') {
+    p.tills++;
+    if(p.tills>=Math.max(1,c.config.tills-Math.min(2,p.upgrade))) {
+      p.stage='TILLED';p.deadline=c.r.tick+c.config.tillDecay;
+    }
+  } else if(t==='SEED') {
+    p.stage='SEEDED';p.deadline=c.r.tick+c.config.seedDecay;
+  } else if(t==='WATER') {
+    p.water+=p.upgrade>=3?2:1;
+    if(p.water>=2) {
+      p.stage='GROWING';p.timer=c.r.tick+2;p.deadline=0;
+    } else {
+      p.stage='WATER1';p.deadline=c.r.tick+c.config.waterDecay;
+    }
+  } else if(t==='HARVEST') {
+    p.stage='HARVESTING';
+    p.timer=c.r.tick+c.config.harvestDuration;
+    p.deadline=0;
+  }
+}
+function world8(c) {
+  const events=[];
+  const event=(kind,p,reward,note)=>events.push({kind,plot:p.id,reward,note});
+
+  for(const p of c.p.filter(p=>p.active)) {
+    if(p.stage==='GROWING'&&c.r.tick>=p.timer) {
+      p.stage='WATER2';p.timer=0;
+      p.deadline=c.r.tick+c.config.waterDecay;
+    } else if(p.stage==='HARVESTING'&&c.r.tick>=p.timer) {
+      c.r.bank+=p.yield;c.r.lifetime+=p.yield;c.r.harvests++;
+      p.harvests++;p.coins+=p.yield;
+      event('COMPLETION',p,p.yield,'Harvest proceeds');
+      resetPlot8(p,c.r.tick,false);
+    }
+  }
+
+  // Deadlines apply before any action, including automation.
+  for(const p of c.p.filter(p=>p.active)) {
+    if(p.deadline&&c.r.tick>p.deadline) {
+      p.decays++;c.r.decays++;
+      event('DECAY',p,-.6,'Missed deadline');
+      resetPlot8(p,c.r.tick,false);
+    }
+  }
+
+  // Rotate funding priority between automated plots.
+  const automated=c.p.filter(p=>p.active&&p.auto);
+  if(automated.length) {
+    const n=c.r.tick%automated.length;
+    automated.push(...automated.splice(0,n));
+  }
+  for(const p of automated) {
+    if(['GROWING','HARVESTING'].includes(p.stage))continue;
+    if(c.r.bank<1) {
+      p.decays++;c.r.decays++;
+      event('AUTO_FAILURE',p,-.6,'Cannot pay; automation and upgrades lost');
+      resetPlot8(p,c.r.tick,true);
+      continue;
+    }
+    const t=p.stage==='BARREN'?'TILL':
+      p.stage==='TILLED'?'SEED':
+      p.stage==='WATER2'?'HARVEST':'WATER';
+    c.r.bank--;
+    event('AUTO_COST',p,-1,t);
+    manual8(c,p,t);
+  }
+
+  for(const p of c.p.filter(p=>p.active)) {
+    p.age=c.r.tick-p.last;
+    if(p.stage==='BARREN'&&p.age>2&&!p.auto) {
+      if(c.r.bank>0) {
+        c.r.bank--;event('DRAIN',p,-1,'Barren resource drain');
+      } else if(count8(c)>1) {
+        p.active=0;event('PLOT_LOSS',p,-1,'Barren plot bankruptcy');
+      }
+    }
+    p.urgency=urgency8(c,p);
+  }
+
+  sync8(c);
+  while(c.r.bank>=c.r.next) {
+    const p=c.p.find(p=>!p.active);
+    if(!p)break;
+    p.active=1;p.tier=1;p.yield=1;
+    resetPlot8(p,c.r.tick,true);
+    sync8(c);
+    c.r.next+=100+Math.max(0,c.r.active-1);
+    event('EXPANSION',p,0,'New tier-1 plot');
+  }
+  return events;
+}
+
+function candidate8(c,t,p,q,queued) {
+  const n=count8(c);
+  const u=Math.max(
+    0,...c.p.filter(p=>p.active&&!p.auto).map(p=>urgency8(c,p))
+  );
+  let urgency=0,progress=0,yieldN=0;
+
+  if(t==='IDLE') {
+    urgency=1-u;
+    progress=c.p.filter(
+      p=>p.active&&['GROWING','HARVESTING'].includes(p.stage)
+    ).length/n;
+  } else if(t==='MERGE') {
+    urgency=(urgency8(c,p)+urgency8(c,q))/2;
+    progress=.5;
+    yieldN=clip8((p.yield+q.yield)/20,0,1);
+  } else if(t==='UPGRADE'||t==='AUTOMATE') {
+    urgency=urgency8(c,p);
+    progress=p.upgrade/3;
+    yieldN=clip8(p.yield/10,0,1);
+  } else {
+    urgency=urgency8(c,p);
+    progress=({
+      BARREN:.1+.1*p.tills,TILLED:.35,SEEDED:.5,
+      WATER1:.65,GROWING:.75,WATER2:.85,HARVESTING:.95
+    })[p.stage];
+    yieldN=clip8(p.yield/10,0,1);
+  }
+
+  return {
+    t,a:p?p.id:0,b:q?q.id:0,stage:p?p.stage:'GLOBAL',queued:!!queued,
+    x:[
+      urgency*(1+u),progress,yieldN,clip8(n/12,0,1),
+      ['MERGE','UPGRADE','AUTOMATE'].includes(t)
+        ? clip8(c.r.bank/Math.max(
+            1,t==='UPGRADE'?upgradeCost8(c,p):mergeCost8(c)
+          ),0,1)
+        : 0
+    ],
+    raw:0,f1:0,f2:0,gate:1,score:0
+  };
+}
+function candidates8(c) {
+  const out=[],active=c.p.filter(p=>p.active);
+
+  // Inactive plots retain their FIFO. Attempts consume entries without
+  // permitting a rejected action to mutate the world.
+  c.p.filter(p=>!p.active&&p.queue.length).forEach(p=>{
+    out.push(candidate8(c,p.queue[0],p,null,true));
+  });
+
+  active.forEach(p=>{
+    if(!p.auto&&!['GROWING','HARVESTING'].includes(p.stage)) {
+      if(p.queue.length) {
+        out.push(candidate8(c,p.queue[0],p,null,true));
+      } else {
+        FARM8.manual.forEach(t=>{
+          out.push(candidate8(c,t,p,null,false));
+        });
+      }
+    }
+    ['UPGRADE','AUTOMATE'].forEach(t=>{
+      if(legal8(c,t,p,null))
+        out.push(candidate8(c,t,p,null,false));
+    });
+  });
+
+  for(let i=0;i<active.length;i++) {
+    for(let j=i+1;j<active.length;j++) {
+      if(legal8(c,'MERGE',active[i],active[j])) {
+        out.push(candidate8(c,'MERGE',active[i],active[j],false));
+      }
+    }
+  }
+  out.push(candidate8(c,'IDLE',null,null,false));
+  return out;
+}
+function raw8(c,a) {
+  const w=c.w[FARM8.tools.indexOf(a.t)];
+  return w.b+sum8(w.x.map((v,i)=>v*a.x[i]));
+}
+function volume8(c) {
+  if(c.config.volumeFixed!==null)return c.config.volumeFixed;
+  if(c.config.epsilonStart===c.config.epsilonMin)return 3;
+  return Math.round(clip8(
+    1+2*(c.config.epsilonStart-c.r.epsilon)/
+      (c.config.epsilonStart-c.config.epsilonMin),1,3
+  )*100)/100;
+}
+function score8(c,items) {
+  if(!items.length)return;
+  const d=Math.pow(Math.sqrt(c.config.dk),c.config.surface);
+  const v=volume8(c);
+  const logits=items.map(a=>{
+    a.raw=raw8(c,a);
+    return a.raw/d;
+  });
+  const f1=softmax8(logits);
+  const f2=softmax8(logits.map(z=>z*v));
+
+  items.forEach((a,i)=>{
+    const s=FARM8.stages.indexOf(a.stage);
+    const t=FARM8.tools.indexOf(a.t);
+    a.f1=f1[i];a.f2=f2[i];
+    a.gate=s>=0&&t<4?sigmoid8(c.validity[s][t]):1;
+
+    // B1 is a hard admission gate, not an extra preference
+    // for IDLE's fixed certainty.
+    a.score=a.gate>=c.config.threshold?a.f2:0;
+  });
+}
+function choose8(c,items) {
+
+  /*
+   * COMMITTED FIFO PRIORITY
+   *
+   * If one or more queue heads are currently eligible candidates,
+   * the controller MUST service committed work before considering
+   * IDLE or creating new uncommitted work.
+   *
+   * Multiple plots may each have a queue head. The learner may still
+   * choose WHICH committed plot to service this tick.
+   */
+
+  const queued = items.filter(a => a.queued);
+
+  if(queued.length) {
+
+    // A denied/inactive commitment is still attempted once and consumed.
+    // This preserves the existing immutable-commitment behavior.
+    const denied = queued.filter(a =>
+      a.gate < c.config.threshold ||
+      !c.p[a.a - 1].active
+    );
+
+    if(denied.length)
+      return denied[(c.r.tick - 1) % denied.length];
+
+
+    const allowed = queued.filter(
+      a => a.gate >= c.config.threshold
+    );
+
+    if(!allowed.length)
+      throw Error('Queued commitment exists but none is selectable.');
+
+
+    // Exploration may choose between different committed plot heads,
+    // but cannot abandon committed work for IDLE/new work.
+    if(random8(c) < c.r.epsilon)
+      return allowed[
+        Math.floor(random8(c) * allowed.length)
+      ];
+
+
+    let max = -Infinity;
+    let pool = [];
+
+    allowed.forEach(a => {
+      if(a.score > max) {
+        max = a.score;
+        pool = [a];
+      } else if(a.score === max) {
+        pool.push(a);
+      }
+    });
+
+    return pool[
+      Math.floor(random8(c) * pool.length)
+    ];
+  }
+
+
+  /*
+   * NO COMMITTED WORK
+   *
+   * Normal policy selection applies.
+   */
+
+  const allowed = items.filter(
+    a => a.gate >= c.config.threshold
+  );
+
+  if(!allowed.length)
+    throw Error('IDLE fallback missing.');
+
+
+  if(random8(c) < c.r.epsilon)
+    return allowed[
+      Math.floor(random8(c) * allowed.length)
+    ];
+
+
+  let max = -Infinity;
+  let pool = [];
+
+  allowed.forEach(a => {
+    if(a.score > max) {
+      max = a.score;
+      pool = [a];
+    } else if(a.score === max) {
+      pool.push(a);
+    }
+  });
+
+  return pool[
+    Math.floor(random8(c) * pool.length)
+  ];
+}
+function plan8(c,p,first) {
+  p.queue.push(first.t);
+  const sim={
+    ...c,r:{...c.r},
+    p:c.p.map(q=>q.id===p.id?{...q,queue:[]}:q)
+  };
+  const q=sim.p[p.id-1];
+  let t=first.t;
+
+  while(p.queue.length<4) {
+    if(legal8(sim,t,q,null))manual8(sim,q,t);
+    sim.r.tick++;
+
+    if(['GROWING','HARVESTING'].includes(q.stage)) {
+      sim.r.tick=Math.max(sim.r.tick,q.timer);
+      if(q.stage==='GROWING') {
+        q.stage='WATER2';q.timer=0;
+        q.deadline=sim.r.tick+sim.config.waterDecay;
+      } else {
+        resetPlot8(q,sim.r.tick,false);
+      }
+    }
+    if(q.deadline&&sim.r.tick>q.deadline)
+      resetPlot8(q,sim.r.tick,false);
+
+    const items=FARM8.manual.map(t=>candidate8(sim,t,q,null,false));
+    score8(sim,items);
+    const allowed=items.filter(a=>a.gate>=sim.config.threshold);
+    if(!allowed.length)break;
+
+    // Learned scores propose future actions.
+    // No fixed farming action sequence is inserted.
+    const a=choose8(sim,allowed);
+    p.queue.push(a.t);t=a.t;
+  }
+  c.r.rng=sim.r.rng;
+}
+function execute8(c,a) {
+  const p=a.a?c.p[a.a-1]:null,q=a.b?c.p[a.b-1]:null;
+
+  if(a.queued) {
+    if(!p||p.queue[0]!==a.t)throw Error('FIFO head changed.');
+    p.queue.shift();
+  } else if(FARM8.manual.includes(a.t)) {
+    plan8(c,p,a);
+    p.queue.shift();
+  }
+
+  const legal=legal8(c,a.t,p,q);
+  const passed=a.gate>=c.config.threshold;
+  const s=FARM8.stages.indexOf(a.stage);
+  const t=FARM8.tools.indexOf(a.t);
+
+  if(s>=0&&t<4) {
+    const z=c.validity[s][t];
+    c.validity[s][t]=clip8(
+      z+c.config.alpha*((legal?1:0)-sigmoid8(z)),-30,30
+    );
+  }
+
+  if(!legal||!passed) {
+    return {
+      legal,executed:false,
+      reward:p&&p.stage==='BARREN'?-1:-.6,
+      note:!passed?'B1_DENIED':'RULE_DENIED'
+    };
+  }
+
+  let reward=0;
+  if(FARM8.manual.includes(a.t)) {
+    manual8(c,p,a.t);
+  } else if(a.t==='UPGRADE') {
+    reward=-upgradeCost8(c,p);
+    c.r.bank+=reward;p.upgrade++;
+  } else if(a.t==='AUTOMATE') {
+    p.auto=1;
+  } else if(a.t==='MERGE') {
+    reward=-mergeCost8(c);c.r.bank+=reward;
+    p.tier++;p.yield=p.tier;
+    resetPlot8(p,c.r.tick,true);
+    q.active=0;resetPlot8(q,c.r.tick,true);
+    sync8(c);
+  }
+
+  if(p)p.reward=reward;
+  return {legal:true,executed:true,reward,note:'EXECUTED'};
+}
+function nextFeatures8(items,c) {
+  // Respect forced denial/consumption before evaluating other next actions.
+  const denied=items.filter(a=>
+    a.queued&&(a.gate<c.config.threshold||!c.p[a.a-1].active)
+  );
+  if(denied.length) {
+    const a=denied[(c.r.tick-1)%denied.length];
+    return [[FARM8.tools.indexOf(a.t),...a.x]];
+  }
+
+  // Duplicate feature vectors have identical action values.
+  const unique=new Map();
+  items.filter(a=>a.gate>=c.config.threshold).forEach(a=>{
+    const n=[FARM8.tools.indexOf(a.t),...a.x];
+    unique.set(JSON.stringify(n),n);
+  });
+  return [...unique.values()];
+}
+function learn8(c,a,reward,next) {
+  const w=c.w[FARM8.tools.indexOf(a.t)];
+  const prediction=raw8(c,a);
+  const future=next.length
+    ? Math.max(...next.map(n=>
+        c.w[n[0]].b+sum8(c.w[n[0]].x.map((v,i)=>v*n[i+1]))
+      ))
+    : 0;
+  const target=reward+c.config.gamma*future;
+  const delta=target-prediction;
+  const rate=c.config.alpha/(1+sum8(a.x.map(v=>v*v)));
+
+  // Normalized semi-gradient TD on an unbounded linear action value.
+  // No tanh/target-range mismatch. Recorded rewards are never clipped.
+  w.b+=rate*delta;
+  w.x=w.x.map((v,i)=>v+rate*delta*a.x[i]);
+  w.n++;w.delta=delta;
+  c.loss=.5*delta*delta;c.updates++;
+  if(!Number.isFinite(c.loss))throw Error('Non-finite TD loss.');
+}
+function row8(c,a,phase,reward,extra) {
+  extra=extra||{};
+  const r=c.r;
+  return [
+    c.id,extra.tick===undefined?r.tick:extra.tick,
+    a?a.t:'WORLD',a?a.a:0,a?a.b:0,a?a.stage:'GLOBAL',
+    extra.executed?1:0,reward,
+    r.bank,r.lifetime,r.active,r.decays,r.epsilon,
+    a?a.raw:0,a?a.f2:0,a?a.gate:0,a?a.score:0,
+    ...(a?a.x:[0,0,0,0,0]),phase,FARM8.version,
+    extra.next?JSON.stringify(extra.next):'',
+    extra.immediate||0,extra.world||0,
+    extra.legal?1:0,extra.executed?1:0,
+    a?a.f1:0,extra.note||''
+  ];
+}
+function step8(c) {
+  c.r.tick++;
+  const events=world8(c);
+  const worldReward=sum8(events.map(e=>e.reward));
+  const rows=[];
+  let items=candidates8(c);
+  score8(c,items);
+
+  if(c.pending) {
+    const p=c.pending;
+    const next=nextFeatures8(items,c);
+    const reward=p.reward+worldReward;
+    learn8(c,p.a,reward,next);
+    rows.push(row8(c,p.a,'TRANSITION',reward,{
+      tick:p.tick,next,immediate:p.reward,world:worldReward,
+      legal:p.legal,executed:p.executed,
+      note:'Next state at tick '+c.r.tick
+    }));
+  }
+
+  events.forEach(e=>{
+    rows.push(row8(c,{
+      t:e.kind==='COMPLETION'?'HARVEST':'WORLD',
+      a:e.plot,b:0,
+      stage:e.kind==='COMPLETION'?'HARVESTING':'WORLD',
+      x:[0,0,0,0,0],raw:0,f1:0,f2:0,gate:0,score:0
+    },e.kind,e.reward,{note:e.note}));
+  });
+
+  // Learning changed Q, so rescore the complete decision set.
+  items=candidates8(c);
+  score8(c,items);
+  const a=clone8(choose8(c,items));
+  const result=execute8(c,a);
+  const r=c.r;
+
+  r.episode+=worldReward+result.reward;
+  r.best=Math.max(r.best,r.episode);
+  r.lastTool=a.t;r.lastA=a.a;r.lastB=a.b;
+  r.lastReward=worldReward+result.reward;r.steps++;
+  if(result.executed)r.success++;else r.invalid++;
+
+  c.pending={
+    a,reward:result.reward,legal:result.legal,
+    executed:result.executed,tick:r.tick
+  };
+  rows.push(row8(c,a,'ACTION',result.reward,{
+    ...result,immediate:result.reward
+  }));
+
+  r.epsilon=Math.max(
+    c.config.epsilonMin,r.epsilon*c.config.epsilonDecay
+  );
+  c.lastCandidates=items.sort((a,b)=>b.score-a.score).slice(0,32);
+  c.lastAction=rows[rows.length-1];
+  sync8(c);assert8(c);
+  return rows;
+}
+
+/* Spreadsheet integration:
+ * Checkpoint is authoritative. Visible tables are projections.
+ */
+function io8() {
+  const ss=SpreadsheetApp.getActiveSpreadsheet();
+  const farm=ss.getSheetByName(FARM8.farm);
+  if(!farm)throw Error('Farming sheet not found.');
+  const logs=ss.getSheetByName(FARM8.logs)||ss.insertSheet(FARM8.logs);
+  const state=ss.getSheetByName(FARM8.state)||ss.insertSheet(FARM8.state);
+
+  for(const [s,n,m] of [[farm,1000,29],[logs,101,31],[state,51,2]]) {
+    if(s.getMaxRows()<n)
+      s.insertRowsAfter(s.getMaxRows(),n-s.getMaxRows());
+    if(s.getMaxColumns()<m)
+      s.insertColumnsAfter(s.getMaxColumns(),m-s.getMaxColumns());
+  }
+  return {ss,farm,logs,state};
+}
+function config8(farm) {
+  const b=farm.getRange('B5:B22').getValues().flat();
+  const formula=farm.getRange('B20').getFormula();
+  const c={
+    tickMs:number8(b[0],1000),tills:number8(b[1],3),
+    tillDecay:number8(b[2],2),seedDecay:number8(b[3],2),
+    waterDecay:number8(b[4],2),harvestDuration:number8(b[5],2),
+    alpha:number8(b[8],.15),gamma:number8(b[9],.9),
+    epsilonStart:number8(b[10],.25),epsilonDecay:number8(b[11],.999),
+    epsilonMin:number8(b[12],.02),threshold:number8(b[13],.5),
+    surface:number8(b[14],2),
+    volumeFixed:formula?null:number8(b[15],3),
+    dk:number8(b[17],5)
+  };
+  if(c.tickMs<1000||c.tills!==3||c.dk!==5)
+    throw Error('Required: B5 >= 1000, B6 = 3, B22 = 5 for five stored features.');
+  if(![
+    c.tillDecay,c.seedDecay,c.waterDecay,c.harvestDuration
+  ].every(v=>Number.isInteger(v)&&v>=1))
+    throw Error('Timers must be positive integer ticks.');
+  if(!(
+    c.alpha>0&&c.alpha<=1&&c.gamma>=0&&c.gamma<1&&
+    c.threshold>=0&&c.threshold<=1&&
+    c.epsilonMin>=0&&c.epsilonMin<=c.epsilonStart&&
+    c.epsilonStart<=1&&c.epsilonDecay>0&&c.epsilonDecay<=1&&
+    c.surface>0&&(c.volumeFixed===null||c.volumeFixed>0)
+  ))throw Error('Invalid training configuration.');
+  return c;
+}
+function checksum8(s) {
+  let h=2166136261;
+  for(let i=0;i<s.length;i++)
+    h=Math.imul(h^s.charCodeAt(i),16777619);
+  return String(h>>>0);
+}
+function checkpoint8(io,c) {
+  assert8(c);
+  const text=JSON.stringify(c);
+  const n=Math.ceil(text.length/FARM8.chunkSize);
+  if(n>FARM8.chunks)
+    throw Error('Checkpoint too large; no partial write performed.');
+  const rows=Array.from({length:51},()=>['','']);
+  rows[0]=[FARM8.version,n+'|'+checksum8(text)];
+  for(let i=0;i<n;i++) {
+    rows[i+1]=[
+      i,text.slice(i*FARM8.chunkSize,(i+1)*FARM8.chunkSize)
+    ];
+  }
+  io.state.getRange(1,1,51,2).setValues(rows);
+}
+function readCheckpoint8(io) {
+  const rows=io.state.getRange(1,1,51,2).getValues();
+  if(!rows[0][0])return null;
+  if(rows[0][0]!==FARM8.version)
+    throw Error('Unrecognized checkpoint.');
+  const [n,hash]=String(rows[0][1]).split('|');
+  const text=rows.slice(1,1+Number(n)).map(r=>r[1]).join('');
+  if(checksum8(text)!==hash)
+    throw Error('Checkpoint checksum failed; stopped without overwriting evidence.');
+  const c=JSON.parse(text);
+  assert8(c);
+  return c;
+}
+function prepareLogs8(io) {
+  const h=io.logs.getRange(100,1,1,31).getValues()[0];
+  if(h[0]&&h[0]!=='RUN ID')
+    throw Error('Training_Logs row 100 belongs to other data.');
+  if(h[23]&&h[23]!=='VERSION')
+    throw Error('Training_Logs columns X:AE are occupied.');
+  io.logs.getRange(100,1,1,31).setValues([FARM8.header]);
+  io.logs.getRange('I9').setValue('LEGACY BENCHMARK — NOT USED BY V8');
+}
+function newId8() {
+  return 'RUN8-'+
+    Utilities.formatDate(new Date(),'GMT','yyyyMMdd-HHmmss')+
+    '-'+Utilities.getUuid().slice(0,8);
+}
+function migrate8(io) {
+  const c=fresh8(config8(io.farm),newId8(),Date.now());
+  const r=io.farm.getRange('I5:I21').getValues().flat();
+  const rows=io.farm.getRange('A33:V96').getValues();
+
+  c.r.tick=number8(r[0],0);
+  c.r.bank=number8(r[1],0);
+  c.r.lifetime=number8(r[2],0);
+  c.r.next=number8(r[3],100);
+  c.r.harvests=number8(r[5],0);
+  c.r.decays=number8(r[6],0);
+
+  c.p=rows.map((r,i)=>({
+    id:i+1,active:Number(r[1])===1?1:0,
+    tier:number8(r[2],1),yield:number8(r[3],1),
+    stage:r[4]||'BARREN',tills:number8(r[5],0),
+    water:number8(r[6],0),deadline:number8(r[7],0),
+    timer:number8(r[8],0),last:number8(r[9],0),
+    harvests:number8(r[10],0),coins:number8(r[11],0),
+    decays:number8(r[12],0),reward:0,
+    urgency:number8(r[14],0),age:number8(r[15],0),
+    queue:r.slice(16,20).filter(t=>t!==''),
+    upgrade:number8(r[20],0),auto:Number(r[21])===1?1:0
+  }));
+
+  const previous=Number(
+    PropertiesService.getDocumentProperties()
+      .getProperty('FARM_V7_'+io.ss.getId()+'_MAX')
+  );
+  c.r.max=Number.isInteger(previous)&&previous>=1&&previous<=64
+    ? previous : Math.max(1,count8(c));
+  sync8(c);
+
+  // Old shaped-reward values cannot represent the new objective.
+  // Observed legality labels remain applicable to unchanged game rules.
+  c.validity=io.farm.getRange('X33:AC38').getValues()
+    .map(row=>row.map(v=>number8(v,0)));
+  c.logNext=Math.max(101,io.logs.getLastRow()+1);
+  assert8(c);
+  return c;
+}
+function recoverLegacy8(io,c) {
+  const legacyId=String(io.farm.getRange('N4').getValue());
+  const last=io.logs.getLastRow();
+  if(
+    last<101||count8(c)!==1||c.r.max!==1||
+    c.p.some(p=>p.auto||p.upgrade)
+  )return [];
+
+  const first=Math.max(101,last-4095);
+  const actions=io.logs.getRange(first,1,last-first+1,31).getValues()
+    .filter(r=>r[0]===legacyId&&r[22]==='ACTION'&&!r[23]);
+
+  // The observed legacy run had one manual plot and no spending.
+  // In this restricted case, bank differences identify harvest proceeds.
+  if(actions.length<2||actions.some(r=>
+    r[10]!==1||r[8]!==r[9]||
+    ![...FARM8.manual,'IDLE'].includes(r[2])||
+    !r.slice(17,22).every(Number.isFinite)
+  ))return [];
+
+  if(actions[0][1]!==1)return [];
+  let tills=0,life=0,decays=0;
+
+  const features=actions.map(r=>{
+    if(r[9]>life||r[11]>decays)tills=0;
+    const x=r.slice(17,22);
+    if(r[5]==='BARREN')x[1]=.1+.1*tills;
+    if(r[2]==='TILL'&&r[6]===1)tills++;
+    life=r[9];decays=r[11];
+    return x;
+  });
+
+  const recovered=[];
+  for(let i=0;i<actions.length-1;i++) {
+    const a=actions[i],b=actions[i+1];
+    if(
+      b[1]!==a[1]+1||b[8]<a[8]||b[11]<a[11]
+    )continue;
+
+    const immediate=a[6]===1?0:(a[5]==='BARREN'?-1:-.6);
+    const world=b[8]-a[8]-.6*(b[11]-a[11]);
+    const reward=immediate+world;
+    const next=[[FARM8.tools.indexOf(b[2]),...features[i+1]]];
+    const cand={
+      t:a[2],a:a[3],b:a[4],stage:a[5],x:features[i],
+      raw:0,f1:0,f2:0,gate:a[15],score:0
+    };
+
+    learn8(c,cand,reward,next);
+    c.replayed++;
+
+    const row=row8(c,cand,'TRANSITION',reward,{
+      tick:a[1],next,immediate,world,
+      legal:a[6]===1,executed:a[6]===1,
+      note:'Recovered '+legacyId+
+        '; observed next action (SARSA); removed step bonuses.'
+    });
+    row[8]=a[8];row[9]=a[9];row[10]=a[10];
+    row[11]=a[11];row[12]=a[12];
+    recovered.push(row);
+  }
+  return recovered;
+}
+function replay8(io,c) {
+  const last=io.logs.getLastRow();
+  if(last<101)return;
+  const first=Math.max(101,last-2047);
+  const rows=io.logs.getRange(first,1,last-first+1,31).getValues()
+    .filter(r=>r[23]===FARM8.version&&r[22]==='TRANSITION')
+    .slice(-FARM8.replay);
+
+  rows.forEach(r=>{
+    const x=r.slice(17,22);
+    const next=JSON.parse(r[24]||'[]');
+    if(
+      !FARM8.tools.includes(r[2])||![0,1].includes(r[27])||
+      !x.every(Number.isFinite)||!Number.isFinite(r[7])||
+      !Array.isArray(next)||
+      next.some(n=>
+        n.length!==6||!n.every(Number.isFinite)||
+        !Number.isInteger(n[0])||n[0]<0||n[0]>7
+      )
+    )throw Error('Invalid v8 replay record at tick '+r[1]);
+
+    learn8(c,{t:r[2],x},r[7],next);
+    c.replayed++;
+
+    const s=FARM8.stages.indexOf(r[5]);
+    const a=FARM8.tools.indexOf(r[2]);
+    if(s>=0&&a<4) {
+      const z=c.validity[s][a];
+      c.validity[s][a]=clip8(
+        z+c.config.alpha*(Number(r[27])-sigmoid8(z)),-30,30
+      );
+    }
+  });
+}
+function beginBatch8(c,rows) {
+  c.batchStart=c.logNext;
+  c.batch=rows;
+  c.logNext+=rows.length;
+}
+function writeProjection8(io,c) {
+  const r=c.r,f=io.farm,l=io.logs;
+  f.getRange('I5:I21').setValues([
+    r.tick,r.bank,r.lifetime,r.next,r.active,r.harvests,r.decays,
+    r.episode,r.best,r.lastTool,r.lastA,r.lastB,r.lastReward,
+    r.steps,r.epsilon,r.success,r.invalid
+  ].map(v=>[v]));
+
+  f.getRange('N4').setValue(c.id);
+  f.getRange('Q24:Y31').setValues(c.w.map((w,i)=>[
+    FARM8.tools[i],w.b,...w.x,w.n,w.delta
+  ]));
+  f.getRange('W32:AC38').setValues([
+    ['STAGE',...FARM8.tools.slice(0,6)],
+    ...FARM8.stages.map((s,i)=>[s,...c.validity[i]])
+  ]);
+  f.getRange('A33:V96').setValues(c.p.map(p=>[
+    p.id,p.active,p.tier,p.yield,p.stage,p.tills,p.water,
+    p.deadline,p.timer,p.last,p.harvests,p.coins,p.decays,
+    p.reward,p.urgency,p.age,
+    ...Array.from({length:4},(_,i)=>p.queue[i]||''),
+    p.upgrade,p.auto
+  ]));
+  f.getRange('I32').setValue('TIMER DONE (GROW/HARVEST)');
+
+  const cand=Array.from({length:32},()=>Array(16).fill(''));
+  c.lastCandidates.forEach((a,i)=>{
+    cand[i]=[
+      i+1,a.t,a.a,a.b,a.stage,a.raw,a.f1,
+      a.raw/Math.pow(Math.sqrt(c.config.dk),c.config.surface),
+      a.f2,a.gate,a.score,
+      a.t===r.lastTool&&a.a===r.lastA&&a.b===r.lastB?1:0,
+      '','',r.epsilon,r.tick
+    ];
+  });
+  f.getRange('A102:P133').setValues(cand);
+  f.getRange('B24:D30').setValues(
+    Array.from({length:7},()=>[0,0,0])
+  );
+
+  if(c.lastAction) {
+    const h=c.lastAction;
+    f.getRange(142+((r.steps-1)%859),1,1,16).setValues([[
+      h[1],h[2],h[3],h[4],h[5],h[6],h[7],h[8],
+      h[9],h[10],h[11],h[12],h[13],h[14],h[15],h[16]
+    ]]);
+  }
+
+  if(c.batch.length) {
+    const end=c.batchStart+c.batch.length-1;
+    if(end>l.getMaxRows())
+      l.insertRowsAfter(l.getMaxRows(),end-l.getMaxRows());
+    l.getRange(c.batchStart,1,c.batch.length,31).setValues(c.batch);
+  }
+
+  // Version-specific benchmarks preserve legacy rows separately.
+  c.frontier=c.frontier||{};
+  const names=[...FARM8.stages,'GLOBAL','OVERALL'];
+  l.getRange('I22:N30').setValues([
+    ['V8 STATE','ACTION','TRANSITION REWARD','AT TICK','MAX PLOTS','RUN'],
+    ...names.map(s=>
+      c.frontier[s]?[s,...c.frontier[s]]:[s,'','','','','']
+    )
+  ]);
+  l.getRange('I33:J39').setValues([
+    ['LIVE FARM MODEL','Five-feature linear Q + learned validity'],
+    ['TD loss',c.loss],
+    ['TD updates',c.updates],
+    ['Replayed transitions',c.replayed],
+    ['Historical max plots',r.max],
+    ['Reward version',FARM8.version],
+    ['Pending transition tick',c.pending?c.pending.tick:'']
+  ]);
+  SpreadsheetApp.flush();
+}
+function commit8(io,c,rows) {
+  if(rows.some(r=>r.some(v=>typeof v==='string'&&v.length>45000)))
+    throw Error('Log cell exceeds safe size; checkpoint not advanced.');
+
+  c.frontier=c.frontier||{};
+  rows.filter(r=>r[22]==='TRANSITION').forEach(r=>{
+    [r[5],'OVERALL'].forEach(s=>{
+      const old=c.frontier[s];
+      if(!old||r[7]>old[1])
+        c.frontier[s]=[r[2],r[7],r[1],c.r.max,c.id];
+    });
+  });
+
+  beginBatch8(c,rows);
+  checkpoint8(io,c);
+  writeProjection8(io,c);
+}
+function load8(io) {
+  prepareLogs8(io);
+  let c=readCheckpoint8(io);
+  if(c) {
+    writeProjection8(io,c);
+    c.config=config8(io.farm);
+    return c;
+  }
+
+  c=migrate8(io);
+  const recovered=recoverLegacy8(io,c);
+  replay8(io,c);
+  commit8(io,c,[
+    ...recovered,
+    row8(c,null,'MIGRATION',0,{
+      note:'Preserved game state; recovered '+recovered.length+
+        ' outcome-only transitions; retained validity evidence.'
+    })
+  ]);
+  return c;
+}
+function flag8() {
+  return PropertiesService.getDocumentProperties();
+}
+function deleteTriggers8() {
+  ScriptApp.getProjectTriggers()
+    .filter(t=>[
+      'kernelExecutionLoop_','kernelExecutionLoop8'
+    ].includes(t.getHandlerFunction()))
+    .forEach(t=>ScriptApp.deleteTrigger(t));
+}
+function stopTraining() {
+  flag8().setProperty('FARM8_STOP','1');
+  deleteTriggers8();
+  const s=SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName(FARM8.farm);
+  if(s)s.getRange('H2').setValue('STOPPED');
+}
+function startTraining() { launch8(false); }
+function runLiveWatching() { launch8(true); }
+function launch8(live) {
+  const lock=LockService.getDocumentLock();
+  if(!lock.tryLock(1000))throw Error('A kernel is still running.');
+  try {
+    const io=io8();
+    load8(io);
+    deleteTriggers8();
+    flag8().deleteProperty('FARM8_STOP');
+    io.farm.getRange('H2').setValue('RUNNING');
+  } finally {
+    lock.releaseLock();
+  }
+  loop8(live);
+}
+function kernelExecutionLoop8() { loop8(false); }
+function kernelExecutionLoop_() { loop8(false); }
+function runTraining() { runLiveWatching(); }
+function stepSingle() {
+  const lock=LockService.getDocumentLock();
+  if(!lock.tryLock(1000))throw Error('A kernel is still running.');
+  try {
+    const io=io8(),c=load8(io);
+    commit8(io,c,step8(c));
+    io.farm.getRange('H2').setValue('STOPPED');
+  } finally {
+    lock.releaseLock();
+  }
+}
+function loop8(live) {
+  const lock=LockService.getDocumentLock();
+  if(!lock.tryLock(1000))return;
+  let io;
+
+  try {
+    io=io8();
+    if(
+      flag8().getProperty('FARM8_STOP')==='1'||
+      io.farm.getRange('H2').getValue()!=='RUNNING'
+    )return;
+
+    const c=load8(io),start=Date.now();
+    const limit=live
+      ? Math.max(1,number8(io.farm.getRange('B21').getValue(),100))
+      : Infinity;
+    let n=0;
+
+    while(Date.now()-start<FARM8.maxMs&&n<limit) {
+      if(
+        flag8().getProperty('FARM8_STOP')==='1'||
+        io.farm.getRange('H2').getValue()!=='RUNNING'
+      )break;
+
+      const began=Date.now();
+      commit8(io,c,step8(c));
+      n++;
+      const wait=c.config.tickMs-(Date.now()-began);
+      if(wait>0)Utilities.sleep(wait);
+    }
+
+    if(live) {
+      io.farm.getRange('H2').setValue('STOPPED');
+    } else if(
+      flag8().getProperty('FARM8_STOP')!=='1'&&
+      io.farm.getRange('H2').getValue()==='RUNNING'
+    ) {
+      deleteTriggers8();
+      ScriptApp.newTrigger('kernelExecutionLoop8')
+        .timeBased().after(1000).create();
+    }
+  } catch(e) {
+    flag8().setProperty('FARM8_STOP','1');
+    deleteTriggers8();
+    if(io)io.farm.getRange('H2').setValue('ERROR');
+    throw e;
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function setV8BankCoins(amount) {
+  stopTraining();
+
+  const lock = LockService.getDocumentLock();
+  if (!lock.tryLock(5000))
+    throw Error('Kernel is still running. Stop training and try again.');
+
+  try {
+    const io = io8();
+    const c = readCheckpoint8(io);
+
+    if (!c)
+      throw Error('No V8 checkpoint exists.');
+
+    const value = Number(amount);
+
+    if (!Number.isFinite(value) || value < 0)
+      throw Error('Bank amount must be a finite number >= 0.');
+
+    c.r.bank = value;
+
+    // Save through the normal V8 checkpoint system so the checksum stays valid.
+    checkpoint8(io, c);
+
+    // Update Farming so the visible dashboard matches the authoritative state.
+    writeProjection8(io, c);
+
+    io.farm.getRange('H2').setValue('STOPPED');
+
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+
+// Convenience functions you can run directly from Apps Script.
+function giveV8TenCoins() {
+  setV8BankCoins(10);
+}
+
+function giveV8HundredCoins() {
+  setV8BankCoins(100);
+}
+
+function giveV8ThousandCoins() {
+  setV8BankCoins(1000);
+}
+function hardResetFarm() {
+  stopTraining();
+  const lock=LockService.getDocumentLock();
+  if(!lock.tryLock(1000))
+    throw Error('Kernel is stopping; retry reset after it exits.');
+
+  try {
+    const io=io8();
+    prepareLogs8(io);
+    const old=readCheckpoint8(io);
+
+    if(old) {
+      writeProjection8(io,old);
+      if(old.pending) {
+        const p=old.pending;
+        learn8(old,p.a,p.reward,[]);
+        old.pending=null;
+        commit8(io,old,[
+          row8(old,p.a,'TRANSITION',p.reward,{
+            tick:p.tick,next:[],immediate:p.reward,
+            legal:p.legal,executed:p.executed,
+            note:'Terminal transition: user reset.'
+          })
+        ]);
+      }
+    }
+
+    const c=fresh8(config8(io.farm),newId8(),Date.now());
+    c.logNext=Math.max(101,io.logs.getLastRow()+1);
+    if(old)c.frontier=clone8(old.frontier||{});
+
+    replay8(io,c);
+    commit8(io,c,[
+      row8(c,null,'RESET',0,{
+        note:'New game; retained corpus and replayed compatible transitions.'
+      })
+    ]);
+    io.farm.getRange('A142:P1000').clearContent();
+  } finally {
+    lock.releaseLock();
+  }
+}
+function repairStateFrontier() {
+  // Legacy shaped rewards are not outcome-only measurements.
+  const lock=LockService.getDocumentLock();
+  if(!lock.tryLock(1000))throw Error('Stop the running kernel first.');
+  try {
+    const io=io8(),c=load8(io);
+    writeProjection8(io,c);
+  } finally {
+    lock.releaseLock();
+  }
+}

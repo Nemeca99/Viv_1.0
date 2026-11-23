@@ -1,0 +1,175 @@
+{
+  "schema": "viv_live_loop_continuation_receipt_v1",
+  "observed_utc": "2026-10-05T06:06:57.735447+00:00",
+  "worker_pid": 172504,
+  "supervisor_pid": 106692,
+  "events": [
+    {
+      "id": 4879,
+      "at_epoch": 1791180177.1511161,
+      "kind": "drive_agent_index_feedback_reclassified",
+      "data": {
+        "attempt_count": 27,
+        "basis": "strict four-field JSON recovered by one premature-close rejoin; actual source file hash matched; existing curiosity validator then rejected unanchored follow-up",
+        "drive": "L",
+        "no_curiosity_question_queued": true,
+        "no_index_entry_written": true,
+        "previous_reason": "Expert output was not JSON",
+        "raw_response_sha256": "efeee3be443f02e027f18bb24a5a19cbdcfbcd61363516362bebe1e780162737",
+        "reclassified_reason": "Curiosity follow-up question must use at least one specific term from the cited excerpt or filename",
+        "source_sha256": "7d595885e291c544378eb049a26aab0355c2bbc4d918912c5c591b3385ec35c6",
+        "supersedes_failure_event_id": 4860
+      }
+    },
+    {
+      "id": 4880,
+      "at_epoch": 1791180245.3396611,
+      "kind": "architect_resume",
+      "data": {}
+    },
+    {
+      "id": 4881,
+      "at_epoch": 1791180245.7284482,
+      "kind": "supervisor_launched_worker",
+      "data": {
+        "launch": 44,
+        "launcher_pid": 172016
+      }
+    },
+    {
+      "id": 4882,
+      "at_epoch": 1791180250.788027,
+      "kind": "task_selected",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4883,
+      "at_epoch": 1791180250.7940326,
+      "kind": "task_completed",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "result": "an earlier autonomous chat turn is still queued"
+      }
+    },
+    {
+      "id": 4884,
+      "at_epoch": 1791180251.8012667,
+      "kind": "task_selected",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4885,
+      "at_epoch": 1791180251.8072703,
+      "kind": "task_completed",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "result": "an earlier autonomous chat turn is still queued"
+      }
+    },
+    {
+      "id": 4886,
+      "at_epoch": 1791180252.8260822,
+      "kind": "task_selected",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4887,
+      "at_epoch": 1791180252.8337293,
+      "kind": "task_completed",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "result": "an earlier autonomous chat turn is still queued"
+      }
+    },
+    {
+      "id": 4888,
+      "at_epoch": 1791180253.840874,
+      "kind": "task_selected",
+      "data": {
+        "id": "test",
+        "kind": "test",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4889,
+      "at_epoch": 1791180385.565917,
+      "kind": "candidate_evaluation_completed",
+      "data": {
+        "activation_block_reason": null,
+        "candidate_behavior_pass": true,
+        "candidate_improved": false,
+        "candidate_pass": false,
+        "candidate_source_safe": true,
+        "correction_examples_added": 0,
+        "drive": "E",
+        "drive_adapter_activation": null,
+        "heldout_ids_marked_evaluated": 4,
+        "output": "L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\E\\versions\\fe6e4f64bcf5\\evidence_eval_receipt.json",
+        "summary": {
+          "base": {
+            "cases": 4,
+            "passed_cases": 4,
+            "repeats": 2
+          },
+          "candidate": {
+            "cases": 4,
+            "passed_cases": 4,
+            "repeats": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 4890,
+      "at_epoch": 1791180385.5759168,
+      "kind": "task_completed",
+      "data": {
+        "id": "test",
+        "kind": "test",
+        "result": "candidate behavior passed=True; improved=False; drive adapter activated=False"
+      }
+    },
+    {
+      "id": 4891,
+      "at_epoch": 1791180386.582679,
+      "kind": "task_selected",
+      "data": {
+        "id": "self_learning",
+        "kind": "self_learning",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    }
+  ],
+  "artifact_sha256": {
+    "viv_autonomy.py": "c47b24e99bbd8ca5cec7e3a34e3b7ff37f47671a6bbe9353b5d984b060f1bfe9",
+    "test_viv_autonomy.py": "f660678876a200de0f2da2677cfbdb660e14cc0f072d2775114bba8b1058abae",
+    "swarm_adapters/drive_stacks/E/versions/fe6e4f64bcf5/training_receipt.json": "f1f6987194481e509f9c80a41605b223fccc90b6ad01531793d4e607a28b48be",
+    "swarm_adapters/drive_stacks/E/versions/fe6e4f64bcf5/evidence_eval_receipt.json": "9cd3bee28d001ed39f07ce01b4aeaecef7347a240b7a8b2d68406b5c83753f34"
+  },
+  "claims": {
+    "E_candidate_fe6e4f64bcf5": "base 4/4 and candidate 4/4 across 2 repeats; no improvement and no activation",
+    "L_failure_reclassified": "event 4879 stores source-anchored-question validator feedback for next L attempt",
+    "post_edit_resume": "supervisor launch 44 started worker PID 172504 after source edit; random test selected and completed; worker selected self_learning at event 4891"
+  }
+}

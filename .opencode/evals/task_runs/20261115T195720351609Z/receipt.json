@@ -1,0 +1,50 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 365.766,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1f36dd27ffeLrbVL904dnomed"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "97b4d97d72e6c78e05f0dc93f9f99e6d49442cfeebef3ef7041c485a9ac43584",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "FAIL: [(1, 'FAIL'), (2, 'FAIL'), (3, 'FAIL'), (4, 'FAIL'), (5, 'FAIL'), (6, 'FAIL'), (7, 'FAIL'), (8, 'FAIL')]"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "[DRONE]\nFile `L:\\LocalCoder\\workspace\\autonomy\\hive_postal_route_request_v13_candidate.py` self-check failed all 8 cases with exit code 0. Verified fact: The validation rejects \"drone_001\" as invalid hex when it should pass - the requirement is to accept any non-empty string without surrounding whitespace that isn't queen case-insensitively, not just valid 64-char hex IDs.\n\n[DRONE SELF-PROMPT]\nAgenda: Fix prepare_routing_request logic to accept any non-empty string without surrounding whitespace except queen case-insensitively; only reject None, empty strings, whitespace-only inputs, and non-string types.\nVerified facts: Self-check failed all cases because validation was too strict - should accept \"drone_001\" as valid input.\nNext bounded action: Edit the file with corrected logic"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T195720351609Z"
+}

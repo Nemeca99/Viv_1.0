@@ -1,0 +1,15 @@
+--- template_rebuild\reference\fixture_echo.py
++++ hive_quality\runs\1790730672034237000_5d301b0a\fixture_echo.py
+@@ -7,6 +7,7 @@
+ }
+ # TEMPLATE VARIABLES END
+ 
++
+ def main(context: Mapping[str, Any], variables: Mapping[str, Any]) -> dict[str, Any]:
+     return {
+         "ok": True,
+@@ -15,4 +16,3 @@
+         "context_keys": sorted(str(key) for key in context),
+         "variables": dict(variables),
+     }
+-

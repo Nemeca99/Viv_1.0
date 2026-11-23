@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nox Forge / Steel Brain — 2D Word Neuron & Cognitive Rectifier Lattice</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --panel-bg: rgba(13, 20, 36, 0.92);
+      --panel-border: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --cyan: #38bdf8;
+      --emerald: #10b981;
+      --crimson: #ef4444;
+      --amber: #f59e0b;
+      --purple: #a855f7;
+      --blue: #3b82f6;
+      --gold: #fbbf24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+    }
+    #canvas-container {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      background: radial-gradient(circle at 50% 50%, #0d1527 0%, #060913 100%);
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .hud-panel {
+      position: absolute;
+      background: var(--panel-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.7);
+      z-index: 10;
+    }
+    #top-hud {
+      top: 14px;
+      left: 14px;
+      right: 380px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    #controls-hud {
+      top: 76px;
+      left: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+    }
+    #legend-hud {
+      bottom: 14px;
+      left: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 11px;
+      padding: 8px 14px;
+      flex-wrap: wrap;
+    }
+    #sidebar {
+      width: 370px;
+      height: 100%;
+      background: var(--panel-bg);
+      border-left: 1px solid var(--panel-border);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+      z-index: 10;
+    }
+    h1 {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+    }
+    .badge {
+      font-size: 10.5px;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      font-weight: 600;
+    }
+    .badge-amber {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--amber);
+      border-color: rgba(245, 158, 11, 0.35);
+    }
+    .badge-emerald {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--emerald);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+    select, input, button {
+      background: #0f172a;
+      border: 1px solid var(--panel-border);
+      color: #e2e8f0;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    select:hover, input:hover, button:hover {
+      border-color: #38bdf8;
+    }
+    button.primary {
+      background: #0284c7;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+    }
+    button.primary:hover {
+      background: #0369a1;
+    }
+    button.rectifier-btn {
+      background: #7c3aed;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+    }
+    button.rectifier-btn:hover {
+      background: #6d28d9;
+    }
+    button.danger {
+      background: #dc2626;
+      border: none;
+      color: #fff;
+    }
+    button.filter-pill {
+      padding: 3px 8px;
+      font-size: 10.5px;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.7);
+    }
+    button.filter-pill.active {
+      background: #0284c7;
+      color: #fff;
+      border-color: #38bdf8;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+    }
+    .card-title {
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      font-size: 10.5px;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #terminal-stream {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 10.5px;
+      color: #a5f3fc;
+      line-height: 1.45;
+      max-height: 160px;
+      overflow-y: auto;
+      background: #030712;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #1e293b;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 11.5px;
+    }
+    .reflector-badge {
+      display: inline-block;
+      font-size: 9.5px;
+      padding: 1px 4px;
+      border-radius: 4px;
+      margin-right: 4px;
+      font-weight: 700;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+    .mode-tab {
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .mode-tab.active {
+      background: #0284c7;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="canvas-container">
+    <canvas id="graph-canvas"></canvas>
+
+    <!-- Top HUD: Live Telemetry & Simulation Controls -->
+    <div id="top-hud" class="hud-panel">
+      <h1>AIOS V2 <span>STEEL BRAIN 2D LATTICE</span></h1>
+      <span class="badge" id="telemetry-badge">102,390 NEURONS · 88,381 LINKS · DENSITY 0.8632</span>
+      <span class="badge badge-emerald">Sn = 1.0000</span>
+      <div style="display:flex; gap: 6px; margin-left: auto; align-items:center;">
+        <button id="tab-syntactic" class="mode-tab active">Sentence Conduit Mode</button>
+        <button id="tab-rectifier" class="mode-tab">Graetz Rectifier Mode</button>
+      </div>
+    </div>
+
+    <!-- Secondary HUD: Controls & Filters -->
+    <div id="controls-hud" class="hud-panel">
+      <!-- Preset Dropdown -->
+      <select id="preset-selector" style="max-width: 260px;">
+        <optgroup label="Recent Classical Frontier Additions">
+          <option value="the wave is amoebean">Frontier: "the wave is amoebean"</option>
+          <option value="the dosage is dark">Frontier: "the dosage is dark"</option>
+          <option value="the bird is waid">Frontier: "the bird is waid"</option>
+          <option value="the cat saw their carapace">Frontier: "the cat saw their carapace"</option>
+          <option value="the call is too right">Frontier: "the call is too right"</option>
+        </optgroup>
+        <optgroup label="Certified High-Frequency Conduits">
+          <option value="the cat ate their fish">Core: "the cat ate their fish"</option>
+          <option value="they can see the star">Core: "they can see the star"</option>
+          <option value="the dog ran to the tree">Core: "the dog ran to the tree"</option>
+          <option value="the mind can write the word">Core: "the mind can write the word"</option>
+        </optgroup>
+        <optgroup label="Antipodal Rectifier Tests">
+          <option value="hot">Rectify Pole: "hot" (+1.0V AC -> D1/D4)</option>
+          <option value="cold">Rectify Pole: "cold" (-1.0V AC -> D2/D3)</option>
+          <option value="true">Rectify Pole: "true" (+1.0V AC -> AXIS:veracity)</option>
+          <option value="false">Rectify Pole: "false" (-1.0V AC -> AXIS:veracity)</option>
+          <option value="carapace">Rectify Non-Scalar: "carapace" (Open Circuit Z=∞)</option>
+        </optgroup>
+      </select>
+
+      <button id="btn-play" class="primary">▶ Simulate Pulse</button>
+      <button id="btn-stop" style="display:none;" class="danger">■ Halt</button>
+      <button id="btn-settle" title="Run physics relaxation to untangle nodes">⚡ Settle Physics</button>
+      <button id="btn-reset">↺ Center</button>
+
+      <!-- Search Input -->
+      <input type="text" id="node-search" placeholder="Search node..." style="width: 110px;" />
+
+      <!-- Speed Selector -->
+      <span style="font-size:11px; color:var(--muted); margin-left: 4px;">Speed:</span>
+      <select id="speed-selector" style="padding: 3px 6px; font-size:11px;">
+        <option value="0.03">0.5x</option>
+        <option value="0.065" selected>1.0x</option>
+        <option value="0.14">2.0x</option>
+      </select>
+    </div>
+
+    <!-- Bottom HUD: Interactive Filter & Legend -->
+    <div id="legend-hud" class="hud-panel">
+      <div class="legend-item"><div class="legend-dot" style="background:#38bdf8;"></div> Word Token</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#10b981;"></div> BPE Subword</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fbbf24;"></div> Rectifier Axis Hub</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#a855f7;"></div> Graetz Diode (D1-D4)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#ef4444;"></div> Deflected Permutation</div>
+      <div style="border-left: 1px solid #334155; height: 16px; margin: 0 4px;"></div>
+      <span style="color:var(--muted); font-size:10.5px;">Filter:</span>
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="core">Core Hubs</button>
+      <button class="filter-pill" data-filter="frontier">Frontier Additions</button>
+      <button class="filter-pill" data-filter="rectifier">Graetz Diodes & Axes</button>
+      <button class="filter-pill" data-filter="bpe">BPE Subwords</button>
+    </div>
+  </div>
+
+  <!-- Sidebar: Deep Inspector & Telemetry Flight Recorder -->
+  <div id="sidebar">
+    <div class="card">
+      <div class="card-title">
+        <span>AIOS V2 Kernel Vitals</span>
+        <span class="badge badge-emerald">ONLINE</span>
+      </div>
+      <div class="stat-row">
+        <span>Stability Scalar ($S_n$):</span>
+        <strong style="color:#10b981;">1.0000</strong>
+      </div>
+      <div class="stat-row">
+        <span>Lattice Density ($E/N$):</span>
+        <strong style="color:#38bdf8;">0.8632 (Record)</strong>
+      </div>
+      <div class="stat-row">
+        <span>Graduated Core:</span>
+        <strong style="color:#e2e8f0;">2,297 Words</strong>
+      </div>
+      <div class="stat-row">
+        <span>Fractal Cycles Mastered:</span>
+        <strong style="color:#e2e8f0;">4,956 Cycles</strong>
+      </div>
+      <div class="stat-row">
+        <span>Dream Consolidations:</span>
+        <strong style="color:#f59e0b;">12 Passes Fired</strong>
+      </div>
+      <div class="stat-row">
+        <span>Rolling Storage Gate:</span>
+        <strong style="color:#10b981;">55.92 GB Free (L:\)</strong>
+      </div>
+    </div>
+
+    <!-- Mode Specific Card -->
+    <div class="card" id="rectifier-status-card">
+      <div class="card-title">
+        <span>Graetz Diamond Rectifier</span>
+        <span class="badge badge-amber" id="rectifier-mode-badge">UNIPOLAR DC</span>
+      </div>
+      <div class="stat-row">
+        <span>Bridge Topology:</span>
+        <strong>4 Diodes (D1-D4)</strong>
+      </div>
+      <div class="stat-row">
+        <span>Smoothing Capacitor ($\tau$):</span>
+        <strong>25,000 (250 Word Pass)</strong>
+      </div>
+      <div class="stat-row">
+        <span>Active Rectified DC:</span>
+        <strong id="dc-voltage-display" style="color:#fbbf24;">+1.00V DC</strong>
+      </div>
+      <div class="stat-row">
+        <span>Concrete Entity Impedance:</span>
+        <strong style="color:#ef4444;">Z = ∞ (Fail-Closed)</strong>
+      </div>
+    </div>
+
+    <!-- Node Inspector -->
+    <div class="card">
+      <div class="card-title">
+        <span>Neuron Inspector</span>
+        <span id="inspector-id" style="font-size:10px; color:#38bdf8;">None Selected</span>
+      </div>
+      <div id="inspector-content" style="color: var(--muted); font-size: 11.5px;">
+        Click any node to inspect its Heptagonal facets, token surface, pass hits, and dimensional polarity.
+      </div>
+    </div>
+
+    <!-- Flight Recorder Terminal Stream -->
+    <div class="card" style="flex:1; display:flex; flex-direction:column;">
+      <div class="card-title">
+        <span>Flight Recorder / Conduction Log</span>
+        <span style="font-size:9.5px; color:#64748b;">Live Stream</span>
+      </div>
+      <div id="terminal-stream">
+        [SYSTEM INITIALIZED] 2D Lattice loaded from language-routes-20261105T044411059028Z.<br>
+        [READY] Select a preset and click 'Simulate Pulse' to trace graph conductance.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // Real Data Extract from latest snapshot (language-routes-20261105T044411059028Z)
+    // =========================================================================
+    const graphData = {
+      nodes: [
+        // Core Hubs
+        { id: "the", label: "the", kind: "WORD", cat: "core", x: 260, y: 350, r: 24, passes: 6840 },
+        { id: "cat", label: "cat", kind: "WORD", cat: "core", x: 420, y: 220, r: 20, passes: 1420 },
+        { id: "dog", label: "dog", kind: "WORD", cat: "core", x: 310, y: 170, r: 20, passes: 980 },
+        { id: "bird", label: "bird", kind: "WORD", cat: "core", x: 740, y: 150, r: 20, passes: 860 },
+        { id: "fish", label: "fish", kind: "WORD", cat: "core", x: 890, y: 310, r: 20, passes: 610 },
+        { id: "ate", label: "ate", kind: "WORD", cat: "core", x: 570, y: 220, r: 20, passes: 480 },
+        { id: "their", label: "their", kind: "WORD", cat: "core", x: 730, y: 250, r: 22, passes: 890 },
+        { id: "they", label: "they", kind: "WORD", cat: "core", x: 270, y: 520, r: 22, passes: 1240 },
+        { id: "can", label: "can", kind: "WORD", cat: "core", x: 430, y: 480, r: 22, passes: 2310 },
+        { id: "see", label: "see", kind: "WORD", cat: "core", x: 600, y: 460, r: 26, passes: 3450 },
+        { id: "sun", label: "sun", kind: "WORD", cat: "core", x: 760, y: 540, r: 22, passes: 1120 },
+        { id: "star", label: "star", kind: "WORD", cat: "core", x: 790, y: 410, r: 22, passes: 980 },
+        { id: "tree", label: "tree", kind: "WORD", cat: "core", x: 870, y: 470, r: 20, passes: 1250 },
+        { id: "ran", label: "ran", kind: "WORD", cat: "core", x: 470, y: 120, r: 18, passes: 620 },
+        { id: "to", label: "to", kind: "WORD", cat: "core", x: 610, y: 120, r: 18, passes: 1480 },
+        { id: "is", label: "is", kind: "WORD", cat: "core", x: 470, y: 350, r: 24, passes: 4200 },
+        { id: "too", label: "too", kind: "WORD", cat: "core", x: 580, y: 340, r: 18, passes: 740 },
+        { id: "right", label: "right", kind: "WORD", cat: "core", x: 720, y: 340, r: 20, passes: 820 },
+        { id: "wave", label: "wave", kind: "WORD", cat: "core", x: 370, y: 420, r: 19, passes: 310 },
+        { id: "water", label: "water", kind: "WORD", cat: "core", x: 220, y: 450, r: 20, passes: 520 },
+
+        // Recently Mastered Classical Frontier Additions
+        { id: "amoebean", label: "amoebean", kind: "WORD", cat: "frontier", x: 520, y: 550, r: 20, passes: 32, note: "Webster 1913: Responsive/alternating pastoral dialogue" },
+        { id: "dosage", label: "dosage", kind: "WORD", cat: "frontier", x: 360, y: 280, r: 19, passes: 28, note: "Physical/medicinal quantity" },
+        { id: "waid", label: "waid", kind: "WORD", cat: "frontier", x: 850, y: 180, r: 19, passes: 36, note: "Chaucer/Webster: Oppressed with weight; weighed down" },
+        { id: "carapace", label: "carapace", kind: "WORD", cat: "frontier", x: 860, y: 240, r: 20, passes: 41, note: "Biological dorsal shell armor" },
+        { id: "surmark", label: "surmark", kind: "WORD", cat: "frontier", x: 780, y: 80, r: 18, passes: 25, note: "Ancient timber mark for ship construction" },
+        { id: "murage", label: "murage", kind: "WORD", cat: "frontier", x: 680, y: 70, r: 18, passes: 24, note: "Medieval tax for city wall maintenance" },
+        { id: "call", label: "call", kind: "WORD", cat: "frontier", x: 380, y: 340, r: 20, passes: 78, note: "Frontier anchored to right/is" },
+
+        // Polar Dualities & Cognitive Rectifier Components
+        { id: "hot", label: "hot", kind: "WORD", cat: "polar", x: 480, y: 680, r: 21, passes: 580, pole: "+", axis: "AXIS:thermal" },
+        { id: "cold", label: "cold", kind: "WORD", cat: "polar", x: 680, y: 680, r: 21, passes: 610, pole: "-", axis: "AXIS:thermal" },
+        { id: "axis_thermal", label: "AXIS:thermal", kind: "AXIS", cat: "rectifier", x: 580, y: 750, r: 23, passes: 1190 },
+        { id: "true", label: "true", kind: "WORD", cat: "polar", x: 830, y: 680, r: 21, passes: 440, pole: "+", axis: "AXIS:veracity" },
+        { id: "false", label: "false", kind: "WORD", cat: "polar", x: 970, y: 680, r: 21, passes: 420, pole: "-", axis: "AXIS:veracity" },
+        { id: "axis_veracity", label: "AXIS:veracity", kind: "AXIS", cat: "rectifier", x: 900, y: 750, r: 23, passes: 860 },
+        
+        // Graetz Diamond Diodes
+        { id: "diode_d1", label: "D1 (+Fwd)", kind: "DIODE", cat: "rectifier", x: 530, y: 710, r: 14 },
+        { id: "diode_d2", label: "D2 (-Rev)", kind: "DIODE", cat: "rectifier", x: 630, y: 710, r: 14 },
+        { id: "diode_d3", label: "D3 (-Fwd)", kind: "DIODE", cat: "rectifier", x: 630, y: 780, r: 14 },
+        { id: "diode_d4", label: "D4 (+Rev)", kind: "DIODE", cat: "rectifier", x: 530, y: 780, r: 14 },
+
+        // BPE Subwords
+        { id: "bpe_th", label: "[th]", kind: "COMBINATION", cat: "bpe", x: 170, y: 350, r: 15, passes: 3410 },
+        { id: "bpe_ee", label: "[ee]", kind: "COMBINATION", cat: "bpe", x: 640, y: 410, r: 15, passes: 2180 },
+        { id: "bpe_sh", label: "[sh]", kind: "COMBINATION", cat: "bpe", x: 950, y: 260, r: 15, passes: 1420 },
+        { id: "bpe_st", label: "[st]", kind: "COMBINATION", cat: "bpe", x: 840, y: 370, r: 15, passes: 1840 }
+      ],
+      edges: [
+        // BPE Subword linkages
+        { s: "bpe_th", t: "the", facet: "CHILD", dir: "UP", w: 999999 },
+        { s: "bpe_th", t: "they", facet: "CHILD", dir: "UP", w: 999999 },
+        { s: "bpe_th", t: "their", facet: "CHILD", dir: "UP", w: 999999 },
+        { s: "bpe_ee", t: "see", facet: "CHILD", dir: "UP", w: 999999 },
+        { s: "bpe_ee", t: "tree", facet: "CHILD", dir: "UP", w: 999999 },
+        { s: "bpe_sh", t: "fish", facet: "CHILD", dir: "UP", w: 999999 },
+        { s: "bpe_st", t: "star", facet: "CHILD", dir: "UP", w: 999999 },
+
+        // Hept Reflector Outward Directed Conduits
+        { s: "the", t: "cat", facet: "DOWN", hits: 1420 },
+        { s: "cat", t: "ate", facet: "RIGHT", hits: 480 },
+        { s: "ate", t: "their", facet: "FRONT", hits: 890 },
+        { s: "their", t: "fish", facet: "RIGHT", hits: 610 },
+
+        { s: "they", t: "can", facet: "RIGHT", hits: 1240 },
+        { s: "can", t: "see", facet: "DOWN", hits: 2310 },
+        { s: "see", t: "the", facet: "LEFT", hits: 3100 },
+        { s: "the", t: "star", facet: "BACK", hits: 980 },
+        { s: "the", t: "sun", facet: "CENTER", hits: 1120 },
+        { s: "the", t: "tree", facet: "BACK", hits: 1250 },
+        { s: "see", t: "star", facet: "UP", hits: 940 },
+
+        { s: "the", t: "dog", facet: "UP", hits: 980 },
+        { s: "dog", t: "ran", facet: "RIGHT", hits: 620 },
+        { s: "the", t: "bird", facet: "UP", hits: 860 },
+        { s: "ran", t: "to", facet: "RIGHT", hits: 1480 },
+        { s: "to", t: "the", facet: "LEFT", hits: 1450 },
+
+        // Syntax & Frontier Highway Links
+        { s: "the", t: "wave", facet: "DOWN", hits: 310 },
+        { s: "wave", t: "is", facet: "RIGHT", hits: 420 },
+        { s: "is", t: "amoebean", facet: "CENTER", hits: 32 },
+        { s: "the", t: "dosage", facet: "UP", hits: 28 },
+        { s: "dosage", t: "is", facet: "RIGHT", hits: 28 },
+        { s: "the", t: "bird", facet: "UP", hits: 860 },
+        { s: "bird", t: "is", facet: "RIGHT", hits: 120 },
+        { s: "is", t: "waid", facet: "CENTER", hits: 36 },
+        { s: "cat", t: "see", facet: "FRONT", hits: 410 },
+        { s: "their", t: "carapace", facet: "RIGHT", hits: 41 },
+        { s: "the", t: "call", facet: "RIGHT", hits: 78 },
+        { s: "call", t: "is", facet: "RIGHT", hits: 78 },
+        { s: "is", t: "too", facet: "RIGHT", hits: 740 },
+        { s: "too", t: "right", facet: "RIGHT", hits: 820 },
+
+        // Full Bridge Rectifier Topology (Graetz Diamond)
+        { s: "hot", t: "diode_d1", facet: "ANODE", hits: 580, type: "circuit" },
+        { s: "diode_d1", t: "axis_thermal", facet: "CATHODE", hits: 580, type: "circuit" },
+        { s: "cold", t: "diode_d2", facet: "ANODE", hits: 610, type: "circuit" },
+        { s: "diode_d2", t: "axis_thermal", facet: "CATHODE", hits: 610, type: "circuit" },
+        { s: "axis_thermal", t: "diode_d3", facet: "RAIL", hits: 610, type: "circuit" },
+        { s: "axis_thermal", t: "diode_d4", facet: "RAIL", hits: 580, type: "circuit" }
+      ]
+    };
+
+    // =========================================================================
+    // Canvas & Setup
+    // =========================================================================
+    const canvas = document.getElementById("graph-canvas");
+    const ctx = canvas.getContext("2d");
+    let width, height;
+
+    function resize() {
+      width = canvas.parentElement.clientWidth;
+      height = canvas.parentElement.clientHeight;
+      canvas.width = width * window.devicePixelRatio;
+      canvas.height = height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    // Camera State
+    let zoom = 1.0;
+    let panX = 40;
+    let panY = -30;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let selectedNode = graphData.nodes[0];
+    let currentFilter = "all";
+    let activeMode = "syntactic"; // 'syntactic' | 'rectifier'
+
+    // =========================================================================
+    // Physics Engine: Spring Relaxation for Clean 2D Layout
+    // =========================================================================
+    let isSettling = false;
+    function relaxPhysicsStep() {
+      const kRepel = 2400;
+      const kSpring = 0.035;
+      const damping = 0.82;
+
+      for (let i = 0; i < graphData.nodes.length; i++) {
+        const n1 = graphData.nodes[i];
+        if (n1.isPinned) continue;
+
+        let fx = 0, fy = 0;
+
+        // Repulsion
+        for (let j = 0; j < graphData.nodes.length; j++) {
+          if (i === j) continue;
+          const n2 = graphData.nodes[j];
+          const dx = n1.x - n2.x;
+          const dy = n1.y - n2.y;
+          const distSq = dx * dx + dy * dy + 100;
+          const dist = Math.sqrt(distSq);
+          const force = kRepel / distSq;
+          fx += (dx / dist) * force;
+          fy += (dy / dist) * force;
+        }
+
+        // Springs
+        graphData.edges.forEach(e => {
+          if (e.s === n1.id) {
+            const n2 = graphData.nodes.find(n => n.id === e.t);
+            if (n2) {
+              const dx = n2.x - n1.x;
+              const dy = n2.y - n1.y;
+              const dist = Math.hypot(dx, dy);
+              const targetDist = e.type === "circuit" ? 90 : 130;
+              const springF = (dist - targetDist) * kSpring;
+              fx += (dx / dist) * springF;
+              fy += (dy / dist) * springF;
+            }
+          }
+        });
+
+        n1.vx = ((n1.vx || 0) + fx) * damping;
+        n1.vy = ((n1.vy || 0) + fy) * damping;
+
+        n1.x += Math.max(-12, Math.min(12, n1.vx));
+        n1.y += Math.max(-12, Math.min(12, n1.vy));
+      }
+    }
+
+    // =========================================================================
+    // Mouse & Touch Interaction
+    // =========================================================================
+    canvas.addEventListener("mousedown", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = (e.clientX - rect.left - panX) / zoom;
+      const mouseY = (e.clientY - rect.top - panY) / zoom;
+
+      let clickedNode = null;
+      for (const n of graphData.nodes) {
+        if (!isNodeVisible(n)) continue;
+        const dist = Math.hypot(n.x - mouseX, n.y - mouseY);
+        if (dist <= n.r + 4) {
+          clickedNode = n;
+          break;
+        }
+      }
+
+      if (clickedNode) {
+        selectedNode = clickedNode;
+        showInspector(clickedNode);
+        if (e.shiftKey) {
+          clickedNode.isPinned = !clickedNode.isPinned;
+        }
+      }
+
+      isDragging = true;
+      dragStartX = e.clientX - panX;
+      dragStartY = e.clientY - panY;
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        if (selectedNode && e.buttons === 1 && e.shiftKey) {
+          const rect = canvas.getBoundingClientRect();
+          selectedNode.x = (e.clientX - rect.left - panX) / zoom;
+          selectedNode.y = (e.clientY - rect.top - panY) / zoom;
+        } else {
+          panX = e.clientX - dragStartX;
+          panY = e.clientY - dragStartY;
+        }
+      }
+    });
+
+    window.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    canvas.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const zoomFactor = 1.08;
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      const oldZoom = zoom;
+
+      if (e.deltaY < 0) {
+        zoom *= zoomFactor;
+      } else {
+        zoom /= zoomFactor;
+      }
+      zoom = Math.min(Math.max(0.35, zoom), 3.5);
+
+      panX = mouseX - (mouseX - panX) * (zoom / oldZoom);
+      panY = mouseY - (mouseY - panY) * (zoom / oldZoom);
+    });
+
+    // =========================================================================
+    // Node Visibility & Filter Helper
+    // =========================================================================
+    function isNodeVisible(n) {
+      if (currentFilter === "all") return true;
+      if (currentFilter === "core") return n.cat === "core";
+      if (currentFilter === "frontier") return n.cat === "frontier";
+      if (currentFilter === "rectifier") return n.cat === "rectifier" || n.cat === "polar";
+      if (currentFilter === "bpe") return n.cat === "bpe";
+      return true;
+    }
+
+    // =========================================================================
+    // Inspector & Card Updater
+    // =========================================================================
+    function showInspector(node) {
+      if (!node) return;
+      document.getElementById("inspector-id").innerText = `ID: ${node.id}`;
+      const insp = document.getElementById("inspector-content");
+      const incoming = graphData.edges.filter(e => e.t === node.id);
+      const outgoing = graphData.edges.filter(e => e.s === node.id);
+
+      let polarityInfo = "";
+      if (node.pole) {
+        polarityInfo = `<div style="margin-top:4px;"><span class="badge badge-amber">Pole: ${node.pole} (AC Signal)</span> ➔ <strong>${node.axis}</strong></div>`;
+      } else if (node.kind === "AXIS") {
+        polarityInfo = `<div style="margin-top:4px;"><span class="badge badge-emerald">Collector Bus: +1.00V DC Rectified</span></div>`;
+      } else if (node.kind === "DIODE") {
+        polarityInfo = `<div style="margin-top:4px;"><span class="badge" style="background:#7c3aed; color:#fff;">Graetz Diode Junction</span></div>`;
+      } else {
+        polarityInfo = `<div style="margin-top:4px; font-size:10.5px; color:#ef4444;">Rectifier Status: <strong>OPEN CIRCUIT (Z = ∞)</strong> Fail-Closed</div>`;
+      }
+
+      let html = `
+        <div style="font-size:13.5px; font-weight:800; color:#38bdf8; margin-bottom:2px;">${node.label.toUpperCase()}</div>
+        <div style="font-size:11px; margin-bottom:4px;"><strong>Kind:</strong> ${node.kind} · <strong>Category:</strong> ${node.cat}</div>
+        ${node.note ? `<div style="font-size:11px; color:#cbd5e1; font-style:italic; margin-bottom:6px; background:#0f172a; padding:4px 6px; border-radius:4px;">"${node.note}"</div>` : ''}
+        ${polarityInfo}
+        <div style="font-size:11px; color:#94a3b8; margin: 8px 0 4px;"><strong>Synaptic Facets (${outgoing.length} out / ${incoming.length} in):</strong></div>
+        <div style="max-height: 110px; overflow-y:auto; border: 1px solid #1e293b; padding: 4px; border-radius:4px; background:#090d16;">
+      `;
+
+      outgoing.forEach(e => {
+        html += `<div style="font-size:10.5px; margin-bottom:2px;"><span class="reflector-badge" style="background:#0284c7; color:#fff;">${e.facet}</span> ➔ <strong>${e.t}</strong> (${e.hits || 1} hits)</div>`;
+      });
+      incoming.forEach(e => {
+        html += `<div style="font-size:10.5px; margin-bottom:2px;"><span class="reflector-badge" style="background:#475569; color:#cbd5e1;">${e.facet}</span> ⮌ from <strong>${e.s}</strong></div>`;
+      });
+
+      html += `</div>`;
+      insp.innerHTML = html;
+    }
+
+    // Terminal Logger
+    const terminal = document.getElementById("terminal-stream");
+    function logTerminal(msg) {
+      const time = new Date().toISOString().substring(11, 19);
+      terminal.innerHTML += `<div>[${time}] ${msg}</div>`;
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    // =========================================================================
+    // Simulation Engine: Dual Syntactic & Graetz Diamond Pulses
+    // =========================================================================
+    let activePulse = null;
+    let pulseParticles = [];
+    let isSimulating = false;
+    let simTimeoutId = null;
+
+    function getSpeed() {
+      return parseFloat(document.getElementById("speed-selector").value) || 0.065;
+    }
+
+    function stopSimulation() {
+      isSimulating = false;
+      if (simTimeoutId) {
+        clearTimeout(simTimeoutId);
+        simTimeoutId = null;
+      }
+      activePulse = null;
+      document.getElementById("btn-play").style.display = "flex";
+      document.getElementById("btn-stop").style.display = "none";
+    }
+
+    function triggerSimulation(presetVal) {
+      stopSimulation();
+      isSimulating = true;
+      document.getElementById("btn-play").style.display = "none";
+      document.getElementById("btn-stop").style.display = "flex";
+
+      // 1. Check if Rectifier Mode
+      if (presetVal === "hot" || presetVal === "cold" || presetVal === "true" || presetVal === "false" || presetVal === "carapace") {
+        runRectifierSimulation(presetVal);
+        return;
+      }
+
+      // 2. Syntactic Sentence Conduit Mode
+      const words = presetVal.toLowerCase().replace(/[^a-z ]/g, "").split(/\s+/).filter(Boolean);
+      logTerminal(`<strong>[EPISODE INITIATED]</strong> Synthesis Target: "${presetVal}"`);
+      logTerminal(`Dissecting token conduits: ${words.map(w => '[' + w + ']').join(' ')}`);
+
+      // Positional Locking Scaffolding sequence
+      let step = 0;
+      const trialPermutations = [
+        [words[0], words[2] || words[1], words[1], words[3] || words[0]].filter(Boolean),
+        [words[0], words[1], words[3] || words[2], words[2] || words[1]].filter(Boolean),
+        words
+      ];
+
+      function nextTrial() {
+        if (!isSimulating) return;
+
+        if (step >= trialPermutations.length) {
+          logTerminal(`<span style="color:#10b981; font-weight:700;">[RELOAD PASS 1/3] Route verified on cold reboot.</span>`);
+          simTimeoutId = setTimeout(() => {
+            if (!isSimulating) return;
+            logTerminal(`<span style="color:#10b981; font-weight:700;">[RELOAD PASS 2/3] Synaptic conductance confirmed.</span>`);
+            simTimeoutId = setTimeout(() => {
+              if (!isSimulating) return;
+              logTerminal(`<span style="color:#10b981; font-weight:800;">[RELOAD PASS 3/3] 3-HIT HIGHWAY LOCKED into SQLite!</span>`);
+              stopSimulation();
+            }, 300);
+          }, 300);
+          return;
+        }
+
+        const currTrial = trialPermutations[step];
+        const isPass = (step === trialPermutations.length - 1);
+
+        if (!isPass) {
+          logTerminal(`Viv candidate: ${currTrial.join(" ")} | <span style="color:#ef4444;">Tutor: DENY (deflected)</span>`);
+          createPulse(currTrial, "#ef4444", () => {
+            if (!isSimulating) return;
+            step++;
+            simTimeoutId = setTimeout(nextTrial, 350);
+          });
+        } else {
+          logTerminal(`Viv candidate: ${currTrial.join(" ")} | <span style="color:#10b981; font-weight:700;">Tutor: ACCEPT: matches input order</span>`);
+          createPulse(currTrial, "#10b981", () => {
+            if (!isSimulating) return;
+            step++;
+            simTimeoutId = setTimeout(nextTrial, 300);
+          });
+        }
+      }
+
+      nextTrial();
+    }
+
+    function runRectifierSimulation(word) {
+      logTerminal(`<strong>[GRAETZ DIAMOND RECTIFIER]</strong> Evaluating AC potential for: '${word}'`);
+
+      if (word === "carapace") {
+        logTerminal(`[IMPEDANCE CHECK] '${word}' is a concrete entity without scalar physical opposite.`);
+        logTerminal(`<span style="color:#ef4444; font-weight:800;">[FAIL-CLOSED] Infinite Impedance (Z = ∞). 0.00V Conduction. Open Circuit.</span>`);
+        
+        // Spawn red sparks on carapace node
+        const n = graphData.nodes.find(n => n.id === word);
+        if (n) {
+          for (let i = 0; i < 25; i++) {
+            pulseParticles.push({
+              x: n.x, y: n.y,
+              vx: (Math.random() - 0.5) * 6,
+              vy: (Math.random() - 0.5) * 6,
+              alpha: 1.0,
+              color: "#ef4444"
+            });
+          }
+        }
+        document.getElementById("dc-voltage-display").innerText = "0.00V (Open)";
+        document.getElementById("dc-voltage-display").style.color = "#ef4444";
+        stopSimulation();
+        return;
+      }
+
+      const isPos = (word === "hot" || word === "true");
+      const axisId = (word === "hot" || word === "cold") ? "axis_thermal" : "axis_veracity";
+      const diodeA = isPos ? "diode_d1" : "diode_d2";
+      const diodeB = isPos ? "diode_d4" : "diode_d3";
+
+      logTerminal(`[AC HALF-CYCLE] Input Phase: ${isPos ? '+V_PEAK (+1.00V)' : '-V_PEAK (-1.00V)'}`);
+      logTerminal(`[DIODE PATH] Conducting through [${diodeA.toUpperCase()}] -> [${axisId}] -> [${diodeB.toUpperCase()}]`);
+      logTerminal(`<span style="color:#fbbf24; font-weight:800;">[RECTIFIED DC] Output = +1.00V Unipolar DC across ${axisId}!</span>`);
+
+      document.getElementById("dc-voltage-display").innerText = "+1.00V DC";
+      document.getElementById("dc-voltage-display").style.color = "#fbbf24";
+
+      const circuitPath = [word, diodeA, axisId, diodeB];
+      createPulse(circuitPath, "#fbbf24", () => {
+        logTerminal(`[SMOOTHING CAPACITOR] Filtering ripple voltage. Dream pass tau = 25,000.`);
+        stopSimulation();
+      });
+    }
+
+    function createPulse(nodeIds, color, onComplete) {
+      const points = [];
+      nodeIds.forEach(id => {
+        const node = graphData.nodes.find(n => n.id === id);
+        if (node) points.push({ x: node.x, y: node.y, node });
+      });
+
+      if (points.length < 2) {
+        if (onComplete) onComplete();
+        return;
+      }
+
+      let currentSegment = 0;
+      let progress = 0;
+
+      activePulse = {
+        color,
+        points,
+        finished: false,
+        update() {
+          if (this.finished) return;
+          progress += getSpeed();
+          if (progress >= 1.0) {
+            progress = 0;
+            currentSegment++;
+
+            if (points[currentSegment]) {
+              for (let i = 0; i < 14; i++) {
+                pulseParticles.push({
+                  x: points[currentSegment].x,
+                  y: points[currentSegment].y,
+                  vx: (Math.random() - 0.5) * 4,
+                  vy: (Math.random() - 0.5) * 4,
+                  alpha: 1.0,
+                  color
+                });
+              }
+            }
+
+            if (currentSegment >= points.length - 1) {
+              this.finished = true;
+              if (onComplete) setTimeout(onComplete, 20);
+            }
+          }
+        },
+        draw(c) {
+          if (this.finished || currentSegment >= points.length - 1) return;
+          const p1 = points[currentSegment];
+          const p2 = points[currentSegment + 1];
+          if (!p1 || !p2) return;
+
+          const currX = p1.x + (p2.x - p1.x) * progress;
+          const currY = p1.y + (p2.y - p1.y) * progress;
+
+          // Glowing energy head
+          c.beginPath();
+          c.arc(currX, currY, 8, 0, Math.PI * 2);
+          c.fillStyle = color;
+          c.shadowColor = color;
+          c.shadowBlur = 18;
+          c.fill();
+          c.shadowBlur = 0;
+
+          // Trail
+          c.beginPath();
+          c.moveTo(p1.x, p1.y);
+          c.lineTo(currX, currY);
+          c.strokeStyle = color;
+          c.lineWidth = 3.5;
+          c.stroke();
+        }
+      };
+    }
+
+    // =========================================================================
+    // Main 2D Render Loop (Ultra Resilient, 60 FPS)
+    // =========================================================================
+    function render() {
+      try {
+        if (isSettling) {
+          relaxPhysicsStep();
+        }
+
+        ctx.clearRect(0, 0, width, height);
+
+        ctx.save();
+        ctx.translate(panX, panY);
+        ctx.scale(zoom, zoom);
+
+        // 1. Draw Edges
+        graphData.edges.forEach(e => {
+          const sNode = graphData.nodes.find(n => n.id === e.s);
+          const tNode = graphData.nodes.find(n => n.id === e.t);
+          if (!sNode || !tNode) return;
+          if (!isNodeVisible(sNode) || !isNodeVisible(tNode)) return;
+
+          ctx.beginPath();
+          ctx.moveTo(sNode.x, sNode.y);
+          ctx.lineTo(tNode.x, tNode.y);
+
+          if (e.type === "circuit") {
+            ctx.strokeStyle = "rgba(251, 191, 36, 0.45)";
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([6, 3]);
+          } else if (e.facet === "CHILD") {
+            ctx.strokeStyle = "rgba(16, 185, 129, 0.35)";
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+          } else {
+            ctx.strokeStyle = "rgba(56, 189, 248, 0.25)";
+            ctx.lineWidth = Math.min(Math.max(1.2, (e.hits || 1) / 350), 4.5);
+            ctx.setLineDash([]);
+          }
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          // Reflector label
+          if (zoom > 0.85 && e.facet !== "CHILD") {
+            const midX = (sNode.x + tNode.x) / 2;
+            const midY = (sNode.y + tNode.y) / 2;
+            ctx.fillStyle = e.type === "circuit" ? "#fbbf24" : "#64748b";
+            ctx.font = "bold 9px monospace";
+            ctx.fillText(e.facet, midX - 6, midY - 3);
+          }
+        });
+
+        // 2. Pulse Trajectory
+        if (activePulse) {
+          activePulse.update();
+          if (activePulse && !activePulse.finished) {
+            activePulse.draw(ctx);
+          } else if (activePulse && activePulse.finished) {
+            activePulse = null;
+          }
+        }
+
+        // 3. Particle Sparks
+        for (let i = pulseParticles.length - 1; i >= 0; i--) {
+          const p = pulseParticles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.035;
+          if (p.alpha <= 0) {
+            pulseParticles.splice(i, 1);
+            continue;
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.fill();
+          ctx.globalAlpha = 1.0;
+        }
+
+        // 4. Draw Nodes
+        graphData.nodes.forEach(n => {
+          if (!isNodeVisible(n)) return;
+
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+
+          // Category Color Mapping
+          if (n.kind === "AXIS") {
+            ctx.fillStyle = "#78350f";
+            ctx.strokeStyle = "#fbbf24";
+          } else if (n.kind === "DIODE") {
+            ctx.fillStyle = "#4c1d95";
+            ctx.strokeStyle = "#a855f7";
+          } else if (n.cat === "frontier") {
+            ctx.fillStyle = "#1e1b4b";
+            ctx.strokeStyle = "#818cf8";
+          } else if (n.kind === "COMBINATION") {
+            ctx.fillStyle = "#064e3b";
+            ctx.strokeStyle = "#10b981";
+          } else if (n.cat === "polar") {
+            ctx.fillStyle = "#3b0764";
+            ctx.strokeStyle = "#d8b4fe";
+          } else {
+            ctx.fillStyle = "#0c4a6e";
+            ctx.strokeStyle = "#38bdf8";
+          }
+
+          if (selectedNode === n) {
+            ctx.strokeStyle = "#f59e0b";
+            ctx.lineWidth = 3.5;
+            ctx.shadowColor = "#f59e0b";
+            ctx.shadowBlur = 12;
+          } else {
+            ctx.lineWidth = 2;
+            ctx.shadowBlur = 0;
+          }
+
+          ctx.fill();
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+
+          // Label
+          ctx.fillStyle = "#f8fafc";
+          ctx.font = `bold ${n.kind === 'COMBINATION' ? 10 : (n.kind === 'AXIS' ? 10.5 : 12)}px sans-serif`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(n.label, n.x, n.y);
+
+          // Pinned pin marker
+          if (n.isPinned) {
+            ctx.beginPath();
+            ctx.arc(n.x + n.r * 0.7, n.y - n.r * 0.7, 3, 0, Math.PI * 2);
+            ctx.fillStyle = "#f59e0b";
+            ctx.fill();
+          }
+        });
+
+        ctx.restore();
+      } catch (err) {
+        console.error("2D Render exception:", err);
+      }
+
+      requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+
+    // =========================================================================
+    // UI Event Wiring
+    // =========================================================================
+    document.getElementById("btn-play").addEventListener("click", () => {
+      const preset = document.getElementById("preset-selector").value;
+      triggerSimulation(preset);
+    });
+
+    document.getElementById("btn-stop").addEventListener("click", () => {
+      stopSimulation();
+      logTerminal("<span style='color:#94a3b8;'>Pulse halted by user.</span>");
+    });
+
+    document.getElementById("btn-reset").addEventListener("click", () => {
+      panX = 40;
+      panY = -30;
+      zoom = 1.0;
+    });
+
+    // Settle Physics Toggle
+    const settleBtn = document.getElementById("btn-settle");
+    settleBtn.addEventListener("click", () => {
+      isSettling = !isSettling;
+      if (isSettling) {
+        settleBtn.style.background = "#059669";
+        settleBtn.innerText = "⏸ Pause Physics";
+        setTimeout(() => {
+          isSettling = false;
+          settleBtn.style.background = "";
+          settleBtn.innerText = "⚡ Settle Physics";
+        }, 3500);
+      } else {
+        settleBtn.style.background = "";
+        settleBtn.innerText = "⚡ Settle Physics";
+      }
+    });
+
+    // Mode Tabs
+    const tabSyn = document.getElementById("tab-syntactic");
+    const tabRec = document.getElementById("tab-rectifier");
+    tabSyn.addEventListener("click", () => {
+      activeMode = "syntactic";
+      tabSyn.classList.add("active");
+      tabRec.classList.remove("active");
+      currentFilter = "all";
+      document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+      document.querySelector('[data-filter="all"]').classList.add("active");
+      logTerminal("[MODE] Switched to Syntactic Sentence Conduit Mode.");
+    });
+    tabRec.addEventListener("click", () => {
+      activeMode = "rectifier";
+      tabRec.classList.add("active");
+      tabSyn.classList.remove("active");
+      currentFilter = "rectifier";
+      document.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+      document.querySelector('[data-filter="rectifier"]').classList.add("active");
+      logTerminal("[MODE] Switched to Graetz Diamond Rectifier Mode. Center on thermal & veracity buses.");
+      panX = -120;
+      panY = -320;
+      zoom = 1.25;
+    });
+
+    // Filter Pills
+    document.querySelectorAll(".filter-pill").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-pill").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentFilter = btn.dataset.filter;
+      });
+    });
+
+    // Node Search
+    document.getElementById("node-search").addEventListener("input", (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      if (!q) return;
+      const target = graphData.nodes.find(n => n.id.toLowerCase().includes(q));
+      if (target) {
+        selectedNode = target;
+        showInspector(target);
+        panX = (width / 2) - target.x * zoom;
+        panY = (height / 2) - target.y * zoom;
+      }
+    });
+
+    // Initial inspection
+    showInspector(selectedNode);
+  </script>
+</body>
+</html>

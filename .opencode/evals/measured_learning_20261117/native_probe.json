@@ -1,0 +1,50 @@
+{
+  "schema": "viv_restored_native_probe_v1",
+  "body_gate": {
+    "active_without_health_report": [],
+    "allowed": true,
+    "architect_permission": {
+      "expires_unix": 1794860251,
+      "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+      "gpu_memory_ceiling_percent": 97.6,
+      "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+      "observed_gpu_memory_percent": 96.6,
+      "observed_gpu_memory_source": "hwinfo",
+      "observed_gpu_sensor_age_seconds": 1.7,
+      "observed_ram_percent": 84.8,
+      "scope": "localcoder_runtime",
+      "status": "expired",
+      "waived_reasons": []
+    },
+    "authority": "deterministic_aios_body_rust",
+    "bound_core_count": 19,
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "expected_core_count": 19,
+    "minimum_stability_sn": 0.45,
+    "reasons": [],
+    "requested_threads": 1,
+    "stability_sn": 1.0,
+    "schema": "aios_mind_runtime_gate_v1",
+    "gate": "rust",
+    "execution_boundary": "wsl_docker",
+    "body_image": "sha256:4105faf7e533e66370b2e1d357f4b4b874babee7ed7c959c28dac51d4e900693",
+    "resource_diagnostics": {
+      "gpu_memory_percent": 96.6,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "observed",
+      "sensor_age_seconds": 1.7,
+      "host_ram_percent": 84.8,
+      "host_sample_window_seconds": 0.05
+    }
+  },
+  "module_path": "L:\\LocalCoder\\workspace\\native_nn_source\\nn_local\\cuda_backend.py",
+  "native_version": "NN_FIXED_BUCKET_CUDA_RUST_V7_DYNAMIC_HEPT_128",
+  "cuda_available": true,
+  "classes_available": [
+    "Neuronizer",
+    "UniversalCurriculumEngine",
+    "SQLiteNeuronGraphStore"
+  ],
+  "learning_executed": false,
+  "explicit_toolkit_probes": false
+}

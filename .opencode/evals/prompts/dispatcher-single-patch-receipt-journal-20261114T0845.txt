@@ -1,0 +1,47 @@
+Continue the dispatcher task in this session. The previous patch was refused because it used duplicate file paths in a batch. Use the single-file localcoder_patch form with top-level filePath, oldString, and newString; make one replacement only. The authorized Python file was already read in this session. Then run the AST syntax check with shell and return a short visible result.
+
+Use this oldString:
+    report = dict(elapsed_seconds=round(time.monotonic()-start, 3), exit_code=effective_exit_code,
+                  transport_exit_code=transport_exit_code, session_outcomes=session_outcomes, timed_out=timed_out,
+                  sessions=sessions, prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
+                  tools=tools_used,
+                  model_ids=model_ids, shell_checks=shell_checks,
+                  final_text=visible_final_text, session_exports_terminal=bool(sessions) and all(export_terminal_states),
+                  background_interrupted=background_interrupted, evidence=str(directory))
+    (directory / 'receipt.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+    tools = ', '.join(f"{item['tool']}:{item['status']}" for item in report['tools']) or 'none'
+    checks = '; '.join(f"exit={item['exit']} output={item['output']!r}" for item in shell_checks) or 'none'
+    result = ('timed out' if timed_out else
+              ('session succeeded; CLI transport exited nonzero' if session_succeeded and code else
+               ('dispatcher exit 0' if code == 0 else f'dispatcher exit {code}')))
+    final_state = 'present' if visible_final_text else 'missing from visible text channel'
+    next_step = 'Repeat a bounded coding task and require visible final text.' if not visible_final_text else 'Continue with the next Architect-assigned bounded task.'
+
+Use this newString:
+    report = dict(elapsed_seconds=round(time.monotonic()-start, 3), exit_code=effective_exit_code,
+                  transport_exit_code=transport_exit_code, session_outcomes=session_outcomes, timed_out=timed_out,
+                  sessions=sessions, prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
+                  tools=tools_used,
+                  model_ids=model_ids, shell_checks=shell_checks,
+                  task_succeeded=task_succeeded, task_errors=task_errors,
+                  tool_errors=tool_errors, shell_check_errors=shell_check_errors,
+                  final_text=visible_final_text, session_exports_terminal=session_exports_terminal,
+                  background_interrupted=background_interrupted, evidence=str(directory))
+    (directory / 'receipt.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+    tools = ', '.join(f"{item['tool']}:{item['status']}" for item in report['tools']) or 'none'
+    checks = '; '.join(f"exit={item['exit']} output={item['output']!r}" for item in shell_checks) or 'none'
+    result = ('task succeeded' if task_succeeded else
+              'task incomplete: ' + ', '.join(task_errors))
+    if task_succeeded and transport_exit_code:
+        result += f'; CLI transport exited {transport_exit_code}'
+    final_state = 'present' if visible_final_text else 'missing from visible text channel'
+    next_step = ('Continue with the next Architect-assigned bounded task.'
+                 if task_succeeded else
+                 f'Review this task receipt and task_errors={",".join(task_errors)}; prepare one bounded repair step.')
+
+Call shell with: & 'L:\.venv\Scripts\python.exe' -c "import ast; from pathlib import Path; ast.parse(Path('.opencode/evals/run_local_agent_task.py').read_text(encoding='utf-8')); print('PASS: dispatcher AST syntax')"
+
+Authorized path:
+<localcoder_patch_paths>
+.opencode/evals/run_local_agent_task.py
+</localcoder_patch_paths>

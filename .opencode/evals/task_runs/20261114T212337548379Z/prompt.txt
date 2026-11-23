@@ -1,0 +1,11 @@
+[ARCHITECT-AUTHORIZED DRONE TASK]
+The Architect explicitly authorized adding this exact new Python file:
+workspace/autonomy/hive_agent_message_contract_candidate.py
+
+Use only the localcoder_add_python tool once to add that file, then use shell once to verify it with L:\.venv\Scripts\python.exe -B. Do not use any other tool, and do not retry a failed tool.
+
+Implement a pure function validate_agent_message(value) returning a tuple of stable error-code strings. Invalid inputs must not raise; valid envelopes return (). Validate required field types and these values: agent_type=model|human; status=DONE|NEEDS_USER|BLOCKED; audience=mind; trust_class=unverified_model_output for model and human_agent_statement for human. Each claim must be a mapping with string text, list evidence_ids, and kind=retrieved_fact|inference|proposal. artifact_refs, uncertainties, conflicts_with are lists of strings. parent_task_id may be null or a non-empty string. Check only shape and closed values. Do not evaluate truth, route, authorize, redact, read or write other paths, persist data, or modify existing files; Rust remains authoritative for routing/trust/admission.
+
+After the add tool returns, emit a visible [DRONE SELF-PROMPT] with Agenda, one Verified fact from the result, and Next bounded action naming shell. Then call shell once for a concise import check covering valid model and human envelopes, missing task_id, invalid status, invalid audience, mismatched trust_class, malformed claim. Print exactly: PASS: candidate envelope checks
+
+Final response starts [DRONE], reports actual tool and verification outcome, then ends with [DRONE SELF-PROMPT] fields Agenda, Verified facts, Next bounded action: STOP; await Queen.

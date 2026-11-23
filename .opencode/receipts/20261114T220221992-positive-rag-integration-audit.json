@@ -1,0 +1,16 @@
+{
+  "schema": "positive_rag_integration_audit_v1",
+  "write_permission_adapter": "workspace/autonomy/drone_store_write_authority_v1.py",
+  "positive_store": "workspace/autonomy/drone_positive_store_v2.py",
+  "rust_contract": "workspace/aios_rebuild/local_security_core/src/durable_admission/contract.rs",
+  "rust_action": "ADMIT_FIXTURE_FACT_V1",
+  "production_compatible": false,
+  "reason": "Existing signed durable admission is explicitly fixture-only; runtime ALLOW is not correctness evidence",
+  "required_binding": [
+    "trusted candidate and test hashes",
+    "Rust-owned evidence verification",
+    "Architect grant bound to admission action",
+    "replay and expiry checks"
+  ],
+  "activation": "DENY until production evidence binding exists"
+}

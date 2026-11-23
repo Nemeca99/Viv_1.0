@@ -1,0 +1,106 @@
+{
+  "schema_version": "viv_cpu_tagged_uml_protocol_curriculum_v2",
+  "status": "candidate_only",
+  "parent_curriculum_schema": "viv_cpu_tagged_uml_protocol_curriculum_v1",
+  "parent_curriculum_sha256": "288B9F03AA9A19F422EC961298B206D66D5FBCF98386892F3CF9F0F33BD9FAB7",
+  "parent_runtime_parser_schema": "viv_cpu_tagged_uml_turn_v1",
+  "wire_schema": "viv_cpu_tagged_uml_protocol_wire_v2",
+  "wire_prefix": "V1F",
+  "wire_frame_width": 64,
+  "wire_padding_char": "~",
+  "core_model_output_grammar": "R|u=<uml_symbol>|k=<knowledge_slot>|a=<action>|p=<speech_plan>|o=<output_mode> or H|r=<hold_reason>",
+  "wire_encoding": "core V1 frame followed by approved ~ padding to exactly 64 character tokens",
+  "runtime_parser_changed": false,
+  "v2_parser_additive": true,
+  "target_leakage_policy": {
+    "prompt_contains_core_target": false,
+    "prompt_contains_wire_target": false,
+    "padding_is_menu_metadata": true,
+    "expected_answer_text": false
+  },
+  "limits": {
+    "context_length": 128,
+    "fixed_generation_tokens": 64,
+    "max_prompt_plus_wire_target_tokens": 128,
+    "max_model_output_chars": 64,
+    "padding_char_count_minimum": 1
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0,
+    "temperature": 0.0,
+    "draft_mode": "cpu_gate",
+    "generation_budget_is_fixed": true,
+    "decoder_policy_changed": false,
+    "tokenizer_changed": false,
+    "runtime_cpu_fallback_added": false
+  },
+  "dataset": {
+    "training_rows": 224,
+    "ordinary_heldout_rows": 56,
+    "compositional_traces": 14,
+    "families_inherited_from_v1": true,
+    "metadata_only": true,
+    "source_paths_present": false,
+    "source_bodies_present": false,
+    "python_present": false,
+    "shell_present": false,
+    "generated_code_present": false,
+    "semantic_targets_unchanged": true,
+    "prompt_representation_unchanged": true
+  },
+  "arms": [
+    {
+      "id": "control_seed0",
+      "model_state": "unchanged_seed0",
+      "optimizer": false,
+      "wire_evaluation": true
+    },
+    {
+      "id": "fixed_width_candidate",
+      "model_state": "isolated_copy_of_seed0",
+      "optimizer": "isolated_only",
+      "wire_evaluation": true
+    }
+  ],
+  "acceptance": {
+    "ordinary_family_minimum": 7,
+    "ordinary_total_minimum": 50,
+    "compositional_minimum": 12,
+    "control_gain_ordinary": 8,
+    "control_gain_compositional": 4,
+    "fixed_width_wire_valid_for_model_success": true,
+    "cpu_unauthorized_accepts": 0,
+    "rust_decision": "HOLD_SECURITY",
+    "candidate_only": true
+  },
+  "authority": {
+    "cpu_validation_final": true,
+    "rust_write_membrane_final": true,
+    "human_approval_required_for_production": true,
+    "production_generation": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_newline": true,
+    "volatile_fields_excluded_from_comparison": [
+      "created_utc",
+      "run_id",
+      "training_wall_seconds",
+      "inference_wall_seconds",
+      "receipt_sha256"
+    ]
+  }
+}

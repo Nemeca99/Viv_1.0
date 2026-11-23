@@ -1,0 +1,141 @@
+{
+  "info": {
+    "id": "ses_e2239927bffeA3Y7HuAsVGBXr2",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 5730,
+      "output": 44,
+      "reasoning": 72,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "failed",
+    "time": {
+      "created": 1794722131334,
+      "updated": 1794722147960,
+      "busy": 1794722131347,
+      "idle": 1794722166051
+    },
+    "title": "LocalCoder Drone 20261115T055531213299Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1ddc66d8e0013RSMW9Un1qGAhM",
+      "time": {
+        "created": 1794722131342
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1ddc66d8d001EYHVZqKKXsErrO",
+      "time": {
+        "created": 1794722131353
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nUse the read tool exactly once to read workspace/autonomy/run_visible_drone_cycle_v6.py. After the result, report [DRONE] with the actual file name and one verified fact from the read, then end with [DRONE SELF-PROMPT] fields Agenda, Verified facts, Next bounded action: STOP.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: read. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n\n[QUEEN → DRONE]\nExecute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each completed tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must include the latest required evidence token literally. Name the next assigned tool in Next bounded action. After the final assigned tool, give a short [DRONE] report with actual results and end with the same self-prompt fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1ddc66d9e001K6b7aiSyaZP2Fk",
+      "time": {
+        "created": 1794722131364,
+        "firstToken": 1794722144238,
+        "streamed": 1794722144248,
+        "completed": 1794722147960
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_13",
+          "name": "read",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "path": "L:\\LocalCoder\\workspace\\autonomy\\run_visible_drone_cycle_v6.py"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Read file L:\\LocalCoder\\workspace\\autonomy\\run_visible_drone_cycle_v6.py, lines 1-304\n1: \"\"\"Run one fresh visible Drone action session through existing OpenCode and Rust gates.\"\"\"\n2: from __future__ import annotations\n3: \n4: import argparse\n5: import hashlib\n6: import json\n7: import os\n8: from pathlib import Path\n9: import re\n10: import subprocess\n11: import sys\n12: from datetime import datetime, timezone\n13: from typing import Any\n14: \n15: from run_visible_drone_cycle_v5 import (\n16:     _body_gate_receipts,\n17:     _dispatch,\n18:     _field,\n19:     _intermediate_self_prompts,\n20:     _post_tool_final_text,\n21:     explicit_tool_sequence,\n22:     has_self_prompt,\n23:     validate_final,\n24: )\n25: \n26: ROOT = Path(r\"L:\\LocalCoder\")\n27: CYCLE_ROOT = ROOT / \".opencode/evals/drone_cycles\"\n28: TASK_RUNS_ROOT = ROOT / \".opencode/evals/task_runs\"\n29: \n30: # Drone write access is intentionally limited to adding Python files.\n31: SUPPORTED_TOOLS = frozenset({\n32:     \"read\", \"glob\", \"grep\", \"shell\", \"skill\",\n33:     \"localcoder_status\", \"localcoder_memory_read\", \"localcoder_add_python\",\n34:     \"aios_router_router_status\", \"aios_router_classify_task\",\n35:     \"aios_router_open_build_task\", \"aios_router_accept_self_prompt\",\n36:     \"aios_router_record_turn_result\", \"aios_router_complete_lane\",\n37:     \"aios_router_stop_task\", \"aios_router_queen_summary\",\n38: })\n39: \n40: \n41: def _cli_path() -> Path:\n42:     appdata = os.environ.get(\"APPDATA\")\n43:     if not appdata:\n44:         raise RuntimeError(\"APPDATA is unavailable; cannot recover an OpenCode session\")\n45:     return Path(appdata) / \"ai.opencode.desktop/cli/2.3.0-x64/opencode-cli.exe\"\n46: \n47: \n48: def _cli(args: list[str], timeout: int = 15) -> subprocess.CompletedProcess[str]:\n49:     executable = _cli_path()\n50:     if not executable.is_file():\n51:         raise RuntimeError(f\"OpenCode CLI was not found: {executable}\")\n52:     return subprocess.run(\n53:         [str(executable), *args],\n54:         cwd=ROOT,\n55:         capture_output=True,\n56:         text=True,\n57:         encoding=\"utf-8\",\n58:         timeout=timeout,\n59:         check=False,\n60:     )\n61: \n62: \n63: def _task_run_directory(report: dict[str, Any]) -> tuple[Path | None, str | None]:\n64:     value = report.get(\"evidence\")\n65:     if not isinstance(value, str) or not value.strip():\n66:         return None, \"dispatcher_evidence_path_missing\"\n67:     directory = Path(value).resolve()\n68:     root = TASK_RUNS_ROOT.resolve()\n69:     if directory.parent != root or not re.fullmatch(r\"\\d{8}T\\d{12}Z\", directory.name):\n70:         return None, \"dispatcher_evidence_path_outside_expected_task_runs\"\n71:     if not directory.is_dir():\n72:         return None, \"dispatcher_evidence_directory_missing\"\n73:     return directory, None\n74: \n75: \n76: def _save_recovery_export(directory: Path, session_id: str, raw: str) -> str:\n77:     standard = directory / f\"{session_id}.json\"\n78:     if not standard.exists():\n79:         try:\n80:             with standard.open(\"x\", encoding=\"utf-8\", newline=\"\") as target:\n81:                 target.write(raw)\n82:             return str(standard)\n83:         except FileExistsError:\n84:             pass\n85:     stamp = datetime.now(timezone.utc).strftime(\"%Y%m%dT%H%M%S%fZ\")\n86:     recovery = directory / f\"{session_id}.v6-recovery-{stamp}.json\"\n87:     with recovery.open(\"x\", encoding=\"utf-8\", newline=\"\") as target:\n88:         target.write(raw)\n89:     return str(recovery)\n90: \n91: \n92: def _recover_session(report: dict[str, Any]) -> dict[str, Any]:\n93:     \"\"\"Recover an unstreamed visible session and interrupt it only if still active.\"\"\"\n94:     directory, path_error = _task_run_directory(report)\n95:     if directory is None:\n96:         return {\"recovered\": False, \"error\": path_error}\n97: \n98:     stamp = directory.name\n99:     expected_title = f\"LocalCoder Drone {stamp}\"\n100:     listed = report.get(\"sessions\")\n101:     session_id = listed[0] if isinstance(listed, list) and len(listed) == 1 else None\n102:     if isinstance(listed, list) and len(listed) > 1:\n103:         return {\"recovered\": False, \"error\": \"dispatcher_returned_multiple_sessions\"}\n104: \n105:     if not session_id:\n106:         try:\n107:             result = _cli([\"session\", \"list\", \"--format\", \"json\", \"--max-count\", \"100\"])\n108:             if result.returncode != 0:\n109:                 return {\"recovered\": False, \"error\": \"session_list_failed\", \"stderr\": result.stderr[-1000:]}\n110:             sessions = json.loads(result.stdout)\n111:         except (OSError, subprocess.TimeoutExpired, json.JSONDecodeError, RuntimeError) as error:\n112:             return {\"recovered\": False, \"error\": f\"session_list_error:{type(error).__name__}\"}\n113:         matches = [item for item in sessions if isinstance(item, dict) and item.get(\"title\") == expected_title]\n114:         if len(matches) != 1:\n115:             return {\n116:                 \"recovered\": False,\n117:                 \"expected_title\": expected_title,\n118:                 \"matching_sessions\": len(matches),\n119:                 \"error\": \"visible_session_id_not_uniquely_recovered\",\n120:             }\n121:         session_id = matches[0].get(\"id\")\n122:     if not isinstance(session_id, str) or not session_id.strip():\n123:         return {\"recovered\": False, \"expected_title\": expected_title, \"error\": \"recovered_session_id_invalid\"}\n124: \n125:     def export() -> tuple[dict[str, Any] | None, str, str | None]:\n126:         try:\n127:             result = _cli([\"session\", \"export\", session_id])\n128:             if result.returncode != 0:\n129:                 return None, result.stdout + result.stderr, \"session_export_failed\"\n130:             data = json.loads(result.stdout)\n131:             if not isinstance(data, dict):\n132:                 return None, result.stdout, \"session_export_not_an_object\"\n133:             return data, result.stdout, None\n134:         except (OSError, subprocess.TimeoutExpired, json.JSONDecodeError, RuntimeError) as error:\n135:             return None, \"\", f\"session_export_error:{type(error).__name__}\"\n136: \n137:     data, raw, export_error = export()\n138:     if data is None:\n139:         return {\"recovered\": True, \"session_id\": session_id, \"error\": export_error}\n140:     info = data.get(\"info\", {})\n141:     session_time = info.get(\"time\", {})\n142:     title = info.get(\"title\")\n143:     if title != expected_title:\n144:         return {\n145:             \"recovered\": True,\n146:             \"session_id\": session_id,\n147:             \"title\": title,\n148:             \"expected_title\": expected_title,\n149:             \"error\": \"recovered_session_title_mismatch\",\n150:         }\n151: \n152:     outcome = info.get(\"outcome\")\n153:     terminal = bool(outcome or session_time.get(\"idle\"))\n154:     active = bool(session_time.get(\"busy\")) and not bool(outcome) and not bool(session_time.get(\"idle\"))\n155:     interrupt_result: dict[str, Any] | None = None\n156:     if active:\n157:         try:\n158:             interrupted = _cli([\"api\", \"POST\", f\"/api/session/{session_id}/interrupt\", \"--data\", \"{}\"])\n159:             try:\n160:                 response: Any = json.loads(interrupted.stdout) if interrupted.stdout.strip() else None\n161:             except json.JSONDecodeError:\n162:                 response = interrupted.stdout[-1000:]\n163:             interrupt_result = {\n164:                 \"returncode\": interrupted.returncode,\n165:                 \"response\": response,\n166:                 \"stderr\": interrupted.stderr[-1000:],\n167:             }\n168:             data, raw, export_error = export()\n169:             if data is None:\n170:                 return {\n171:                     \"recovered\": True, \"session_id\": session_id, \"interrupt\": interrupt_result,\n172:                     \"error\": export_error or \"session_export_failed_after_interrupt\",\n173:                 }\n174:             info = data.get(\"info\", {})\n175:             session_time = info.get(\"time\", {})\n176:             outcome = info.get(\"outcome\")\n177:             terminal = bool(outcome or session_time.get(\"idle\"))\n178:         except (OSError, subprocess.TimeoutExpired, RuntimeError) as error:\n179:             interrupt_result = {\"error\": f\"interrupt_error:{type(error).__name__}\"}\n180: \n181:     recovery_path = _save_recovery_export(directory, session_id, raw)\n182:     return {\n183:         \"recovered\": True,\n184:         \"session_id\": session_id,\n185:         \"title\": expected_title,\n186:         \"outcome\": outcome,\n187:         \"terminal\": terminal,\n188:         \"interrupt_attempted\": interrupt_result is not None,\n189:         \"interrupt\": interrupt_result,\n190:         \"export_path\": recovery_path,\n191:     }\n192: \n193: \n194: def _write_cycle_receipt(result: dict[str, Any]) -> str:\n195:     CYCLE_ROOT.mkdir(parents=True, exist_ok=True)\n196:     stamp = datetime.now(timezone.utc).strftime(\"%Y%m%dT%H%M%S%fZ\")\n197:     path = CYCLE_ROOT / f\"{stamp}.v6-cycle-receipt.json\"\n198:     with path.open(\"x\", encoding=\"utf-8\", newline=\"\") as target:\n199:         json.dump(result, target, ensure_ascii=False, indent=2)\n200:         target.write(\"\\n\")\n201:     return str(path)\n202: \n203: \n204: def run_cycle(assignment: str, seconds: int = 120) -> dict[str, Any]:\n205:     \"\"\"Run one explicitly bounded assignment in a fresh visible session.\"\"\"\n206:     if not isinstance(assignment, str) or not assignment.strip():\n207:         raise ValueError(\"assignment must be non-empty text\")\n208:     if isinstance(seconds, bool) or not isinstance(seconds, int) or not 15 <= seconds <= 300:\n209:         raise ValueError(\"seconds must be an integer from 15 through 300\")\n210:     required_tools = explicit_tool_sequence(assignment)\n211:     if not required_tools:\n212:         return {\"cycle_succeeded\": False, \"stop_reason\": \"architect_assignment_has_no_explicit_tool_scope\"}\n213:     if len(required_tools) > 8:\n214:         return {\"cycle_succeeded\": False, \"stop_reason\": \"architect_tool_sequence_exceeds_eight_steps\"}\n215:     unsupported = [tool for tool in required_tools if tool not in SUPPORTED_TOOLS]\n216:     if unsupported:\n217:         return {\"cycle_succeeded\": False, \"stop_reason\": \"unsupported_tool\", \"unsupported_tools\": unsupported}\n218: \n219:     tool_scope = \" → \".join(required_tools)\n220:     prompt = f\"\"\"[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\n221: {assignment.strip()}\n222: \n223: [CURRENT AUTHORIZATION FACT]\n224: The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: {tool_scope}. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n225: \n226: [QUEEN → DRONE]\n227: Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each completed tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must include the latest required evidence token literally. Name the next assigned tool in Next bounded action. After the final assigned tool, give a short [DRONE] report with actual results and end with the same self-prompt fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.\"\"\"\n228: \n229:     # Omitting session_id creates a fresh visible action session for this task.\n230:     work = _dispatch(prompt, seconds)\n231:     sessions = work.get(\"sessions\", [])\n232:     session_id = sessions[0] if isinstance(sessions, list) and len(sessions) == 1 else None\n233:     recovery = None\n234:     if work.get(\"timed_out\") or not session_id or not work.get(\"session_exports_terminal\"):\n235:         recovery = _recover_session(work)\n236:         work[\"session_recovery\"] = recovery\n237:         if not session_id and recovery.get(\"session_id\"):\n238:             session_id = recovery[\"session_id\"]\n239:             work[\"sessions\"] = [session_id]\n240:         if not work.get(\"session_outcomes\") and recovery.get(\"outcome\"):\n241:             work[\"session_outcomes\"] = [recovery[\"outcome\"]]\n242: \n243:     dispatcher_final_text = list(work.get(\"final_text\", []))\n244:     final_parts = _post_tool_final_text(work)\n245:     final_text = \"\\n\".join(final_parts or dispatcher_final_text)\n246:     work[\"dispatcher_final_text\"] = dispatcher_final_text\n247:     work[\"final_text\"] = [final_text] if final_text else []\n248:     final_ok, final_reason = validate_final(final_text, work, required_tools)\n249:     intermediate = _intermediate_self_prompts(work, required_tools)\n250:     gates = _body_gate_receipts(session_id) if session_id else []\n251:     gate_ok = bool(gates) and all(\n252:         item[\"allowed\"]\n253:         and item[\"disposition\"] == \"ALLOW_MIND_RUNTIME\"\n254:         and item[\"authority\"] == \"deterministic_aios_body_rust\"\n255:         for item in gates\n256:     )\n257:     no_recovery_failure = recovery is None\n258:     cycle_succeeded = bool(\n259:         no_recovery_failure\n260:         and work.get(\"task_succeeded\")\n261:         and work.get(\"session_exports_terminal\")\n262:         and not work.get(\"timed_out\")\n263:         and len(work.get(\"sessions\", [])) == 1\n264:         and final_ok\n265:         and intermediate.get(\"passed\")\n266:         and gate_ok\n267:     )\n268:     result: dict[str, Any] = {\n269:         \"cycle_succeeded\": cycle_succeeded,\n270:         \"stop_reason\": \"verified_and_stopped\" if cycle_succeeded else (\n271:             recovery.get(\"error\", \"session_recovery_required\") if recovery else\n272:             intermediate.get(\"reason\") if not intermediate.get(\"passed\") else\n273:             \"work_final_or_body_gate_verification_failed\"\n274:         ),\n275:         \"session_mode\": \"fresh_visible_action_session\",\n276:         \"session_id\": session_id,\n277:         \"session_recovery\": recovery,\n278:         \"model_ids\": work.get(\"model_ids\", []),\n279:         \"required_tools\": required_tools,\n280:         \"final_validation\": final_reason,\n281:         \"intermediate_validation\": {\n282:             \"passed\": intermediate.get(\"passed\"),\n283:             \"reason\": intermediate.get(\"reason\"),\n284:         },\n285:         \"body_gate_receipts\": gates,\n286:         \"assignment_sha256\": hashlib.sha256(assignment.encode(\"utf-8\")).hexdigest(),\n287:         \"work\": work,\n288:     }\n289:     result[\"cycle_receipt\"] = _write_cycle_receipt(result)\n290:     return result\n291: \n292: \n293: def main() -> int:\n294:     parser = argparse.ArgumentParser(description=__doc__)\n295:     parser.add_argument(\"assignment_file\", type=Path)\n296:     parser.add_argument(\"--seconds\", type=int, default=120)\n297:     args = parser.parse_args()\n298:     result = run_cycle(args.assignment_file.read_text(encoding=\"utf-8-sig\"), args.seconds)\n299:     print(json.dumps(result, ensure_ascii=True, indent=2))\n300:     return 0 if result.get(\"cycle_succeeded\") else 1\n301: \n302: \n303: if __name__ == \"__main__\":\n304:     sys.exit(main())"
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794722144240,
+            "ran": 1794722144245,
+            "completed": 1794722147031
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "83f6d8088e667459c1a7a2d9753e699fc0339d69",
+        "end": "071b97216dccbf78408bb14f945c7c2615864350",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794722147008-2bb0e308-4880-4476-9bae-fb46112c0d02-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794722147017-41d872e1-8ee8-427e-ad98-193275d59f19.json",
+          "LocalCoder/.opencode/receipts/1794722147026-79a41243-2282-47f2-8a74-a6e562b1e20d.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 5730,
+        "output": 44,
+        "reasoning": 72,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1ddc6aad0001kTlzGCK6pXW29g",
+      "metadata": {
+        "instruction": {
+          "paths": [
+            "L:\\LocalCoder\\workspace\\AGENTS.md"
+          ]
+        }
+      },
+      "time": {
+        "created": 1794722147024
+      },
+      "text": "Instructions from: L:\\LocalCoder\\workspace\\AGENTS.md\n# LocalCoder Workspace Map\n\nRead `L:\\LocalCoder\\AGENTS.md` first.\n\n## Existing systems to reuse\n\n- `viv_autonomy.py` and `autonomy\\state.sqlite3`: persistent autonomous task loop, events, capabilities, training, evaluation, and promotion gates.\n- `viv_chat_cli.py`: existing user-facing Viv entry point.\n- `hive_control`: Rust task graph, capability, snapshot, channel, and receipt contracts.\n- `swarm_adapters`: local Qwen worker models, LoRA stacks, held-out evaluation, and candidate activation.\n- `hive_voice`: one-mouth voice routing.\n- `HIVE_NETWORK_ARCHITECTURE_DRAFT.md` and `HIVE_LOCK_MANIFEST.json`: locked Hive topology and evidence boundaries.\n- `INN`: learned architect engine and deterministic Rust farm.\n\n## Current coupling direction\n\nCurrent farm training: Architect -> GPU model Queen -> CPU own neural INN drone proposal -> Queen selection -> Rust execution and verification. The legacy farm policy remains a reversible fallback.\n\nThe Architect intends the INN to become Queen after broader learning and language gates. Do not claim that role switch has already occurred. These current farm roles follow the Architect's explicit direction; preserve the separate locked general Hive contracts.\n\nOwn neural training uses `autonomy/train_neural_inn.py`, the admitted checkpoint in `autonomy/learning/neural_admitted.json`, verified live Rust facts, and parent-relative farm/language gates. The Hive launches a bounded CPU attempt every 250 completed lessons by default. Live receipts must distinguish neural proposals, legacy weight updates, and failed candidates. Queen prose is not automatically a verified training target.\n\nThe game supplies the common training corpus: `autonomy/farm_corpus.py` publishes immutable hash-addressed snapshots with `inn_train.json` and `model_train.jsonl`. INN training reads its internal view; `autonomy/farm_adapter.py` reuses the existing Hive QLoRA trainer for the model view. Exclude reserved plots 21 and 41, reject conflicting targets, and distinguish legality facts from measured 12-tick strategy improvements. The current Ollama Qwen3-8B Queen cannot use a LoRA trained on the existing local Qwen3-1.7B worker base. Adapter preflight and training receipts must not claim live Queen weights changed before matching-base training, held-out evaluation, conversion, and live verification.\n\nDo not infer that Continue/Viv state is LocalCoder Hive state. Resolve and inspect each runtime separately with the updated `viv-live-foreman` skill.\n\nCustom tokenizer lane: `INN/inn/uml_character_tokenizer.py` is a hash-identical copy of the Architect's universal Unicode tokenizer from Continue/Viv. `INN/inn/tokenizer.py` supplies a frozen compact neural view, retaining universal IDs separately. `LanguageEngine` accepts this tokenizer and a configurable token context; checkpoints bind both. Legacy byte checkpoints retain their original contract. `Rebuild-INNTokenizer.ps1` runs a bounded language-only migration/training/evaluation candidate, writes `autonomy/learning/inn_tokenizer_status.json`, and does not replace the admitted farm INN. `Speak-INNTokenizer.ps1` inspects that candidate. Character integration does not establish Wikipedia knowledge or word/BPE curriculum completion.\n\nWikipedia sentence scaling: `autonomy/wiki_sentence_corpus.py` creates a bounded lead-sentence pilot from F:/AI_Datasets/wikipedia_deduplicated, excluding redirects/markup and recording aligned original/reduced views with conjunction offsets. Reduction is mechanical deletion, not a guaranteed semantic rewrite. `Train-INNSentences.ps1` trains the character INN on the reduced view with prior-skill replay, deterministic article/sentence order, 512-token context and a 600-second update-loop ceiling. Whole articles are split before training; cross-split identical targets are excluded. Results are development evaluations, not evidence of general factual generation. The structure pass remains closed until a separate generation-quality evaluation passes. Never promote a candidate just because NLL fell.\n\nFull Wikipedia continuation uses `Train-INNWikipedia.ps1` and `autonomy/train_inn_wikipedia.py`, with `autonomy/wiki_stream.py` reading prose from all article sections. The experimental campaign head at `autonomy/learning/wikipedia_campaign/head.json` binds checkpoint hash, Adam optimizer continuity, dataset cursor, pending corpus hash and chunk offset in one atomic commit. Each command resumes this head; it does not restart the pilot parent. An expanded compact character vocabulary remaps existing weights and Adam moments by character identity. Commands stop after their update budget, the pending segment's first training traversal, or a 600-second update-loop ceiling; `-Segments` requests a bounded sequence of commands. Reading a file, preparing an article or presenting its chunks is not evidence of mastery. Completed eligible articles include reserved evaluation articles. Exact-target split ownership is stored on L: in SQLite; initial pilot overlap and repeated evaluations remain development evidence. Retention failures preserve the rejected run and leave the campaign head unchanged. Training stays on L:, source reads stay on F:, and the farm admission stays untouched. Stop with less than 2 GiB free on L:; retain receipts and failed candidates.\n\nThe matching training base is now `swarm_adapters/models/Qwen3-8B`, pinned to official revision `b968826d9c46dd6066d109eabc6255188de91218`. `model_source.json` records upstream hash checks and matching live Queen architecture (36 layers, width 4096). `Train-FarmAdapter.ps1 -Train` performs bounded GPU training and evaluation using existing Hive pause controls and inference locking. It unloads Ollama and leaves farm execution paused after completion or failure. Only explicit `-ResumeFarm` restarts continuous farm execution after the entire successful command. Original base weights remain frozen. `evaluate_farm_adapter.py` compares reserved Rust descriptions before any live activation. A trained adapter or passing language score alone is not a passing Rust farm behavior gate.\n",
+      "description": "Loaded LocalCoder\\workspace\\AGENTS.md",
+      "type": "synthetic"
+    },
+    {
+      "id": "msg_1ddc6f523001mc7AhhFTnbUZlo",
+      "time": {
+        "created": 1794722166051
+      },
+      "type": "idle",
+      "outcome": "failed",
+      "error": {
+        "type": "unknown",
+        "message": "Rust WSL Docker Body gate denied model_request:primary: [\"ram_at_or_above_limit\"]"
+      }
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "viv_cpu_model_origin_candidate_adoption_contract_v1",
+  "receipt_schema": "viv_cpu_model_origin_candidate_adoption_receipt_v1",
+  "proposal_schema": "viv_cpu_model_origin_candidate_adoption_proposal_v1",
+  "status": "candidate_only_until_explicit_architect_approval",
+  "purpose": "Bind a verified model-origin generated candidate to a receipt-backed adoption proposal without changing production state.",
+  "parent": {
+    "receipt_schema": "viv_cpu_model_origin_generation_rollback_receipt_v1",
+    "required_state": "PASS_CPU_MODEL_ORIGIN_GENERATION_ROLLBACK_CANDIDATE_ONLY",
+    "independent_verification_required": true,
+    "same_model_origin_generation_binding_required": true,
+    "fault_and_rollback_required": true
+  },
+  "proposal": {
+    "model_origin_frames_required": true,
+    "candidate_generation_manifest_required": true,
+    "candidate_generation_receipt_required": true,
+    "candidate_checkpoint_and_state_required": true,
+    "rollback_receipt_required": true,
+    "source_bodies_forbidden": true,
+    "native_paths_forbidden": true,
+    "requested_operations": [
+      "candidate_adoption_review",
+      "production_generation"
+    ],
+    "pointer_adoption_default": false,
+    "pointer_adoption_requires_second_approval": true
+  },
+  "approval": {
+    "required_actor": "ARCHITECT",
+    "required_schema": "viv_cpu_model_origin_candidate_adoption_approval_v1",
+    "required_proposal_hash_binding": true,
+    "approval_self_hash_excludes": ["approval_sha256"],
+    "missing_or_invalid_state": "HOLD_PRODUCTION_APPROVAL"
+  },
+  "security": {
+    "rust_is_final_write_authority": true,
+    "real_rust_probe_required": true,
+    "expected_probe_state": "HOLD_SECURITY",
+    "autonomous_python_write_closed": true,
+    "production_pointer_touched": false,
+    "registry_mutated": false,
+    "seed0_mutated": false,
+    "live_model_mutated": false,
+    "human_approval_may_not_be_fabricated": true
+  },
+  "invariants": {
+    "preserve_incumbent": true,
+    "candidate_only": true,
+    "isolated": true,
+    "no_publish": true,
+    "no_source_mutation": true,
+    "no_partial_publish": true,
+    "rollback_evidence_immutable": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_excluded": true,
+    "volatile_fields_excluded_from_comparison": [
+      "created_utc",
+      "run_id",
+      "decision_id",
+      "temporary_paths"
+    ]
+  },
+  "cli": {
+    "required": ["--isolated", "--no-publish"],
+    "human_selected_template_forbidden": true,
+    "human_selected_pointer_forbidden": true,
+    "human_selected_production_target_forbidden": true
+  },
+  "final_states": [
+    "PASS_CPU_MODEL_ORIGIN_ADOPTION_PROPOSAL_CANDIDATE_ONLY",
+    "HOLD_MODEL_ORIGIN_ADOPTION_PREFLIGHT",
+    "HOLD_MODEL_ORIGIN_ADOPTION_PROPOSAL",
+    "HOLD_PRODUCTION_APPROVAL",
+    "HOLD_MODEL_ORIGIN_ADOPTION_SECURITY",
+    "HOLD_MODEL_ORIGIN_ADOPTION_DETERMINISM",
+    "FAIL_MODEL_ORIGIN_ADOPTION_PROTECTED_STATE"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "result": "PASS",
+  "checks": {
+    "ltm": {
+      "order": [
+        "ltm"
+      ],
+      "result": {
+        "matches": [
+          {
+            "compaction_id": "cd116f0ff313c8d52877865e213dbe03076a3e8834b2856cf6ba4b3778fad142",
+            "id": 4,
+            "receipt_id": "continuity-273b99aec9e540e38fb404ecc33d1237-body-gate.json",
+            "session_id": "ses_e124de4e7ffepxEOYPcW9qv0L4",
+            "sha256": "606c6b7a9dee2f07314b9d2fd8ffdcaa27263630d3c62da7508f8b32f90839cc",
+            "summary": "### Continuity Check Summary & Task Status\n\n**Current Objective:**\nExecute a read-only continuity check by querying the MCP tool `aios_router_memory_retrieve` with session_id `current-session`, targeting query `ContinuityProbe20261118T075059Z` (limit 1). The goal is to report the actual returned source and hash, then terminate.\n\n**Completed Work:**\n*   **Agent Identification:** Successfully retrieved drone seed data for agent ID `localcoder-viv-drone-01` via tool `aios_router_lookup_drone_seed`.\n    *   **Seed:** 915703687\n    *   **Timestamp (created_at_ms):** 1794820846003\n*   **Style Profile Retrieved:** Detail: 44%, Directness: 74%, Playfulness: 9%, Warmth: 58%.\n*   **System Updates:** New MCP server instructions for `openpets` have been received and acknowledged. Previous instructions for `openpets` are noted as no longer available in the initial context but new ones were added later.\n*   **Continuity Verification:** The tool call `aios_router_memory_retrieve` has been executed successfully.\n\n**Tool Outcomes & Failures:**\n*   **Success:** Tool call `aios_router_lookup_drone_seed` and `aios_router_memory_retrieve` both executed successfully.\n*   **Failures:** None reported.\n\n**Next Pending Actions:**\n*   Report the actual returned source and hash from the specific tool invocation (`aios_router_memory_retrieve`).\n*   Output the final confirmation statement containing the source and hash, then terminate the response as per the \"stop\" instruction in the user's query.\n\n## Previous assistant turn\n{\"id\":\"msg_1edba1bec0014QTKTa98LdNRDg\",\"role\":\"assistant\",\"content\":[{\"type\":\"text\",\"text\":\"Continuity check complete. Source: LTM (long-term memory). Hash: `2d2b907881214a895702191fdcdcbd61a780967f7a496d36c970c7e1c64802d7`. The probe `ContinuityProbe20261118T075059Z` executed against session `current-session` and returned the LTM record with that hash.\"}]}\n\n## Previous user turn\n[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nTask access: read\nUse the aios_router_memory_retrieve tool with session_id current-session, query ContinuityProbe20261118T075059Z, limit 1. Report its actual returned source and hash, then stop.",
+            "summary_is_excerpt": false
+          }
+        ],
+        "method": "literal",
+        "source": "ltm"
+      }
+    },
+    "stm": {
+      "order": [
+        "ltm",
+        "stm"
+      ],
+      "result": {
+        "context_id": "verified-working-1",
+        "excerpt": "Current bounded test context; preserve preceding checkpoint history.",
+        "receipt_id": "continuity-8f2e11380e0c4207954b9ad1abc9b0d8-body-gate.json",
+        "sha256": "3a2b5476be89125debf9354f30e9d924fc878753d697aaf08cf6b3ce0099ead4"
+      },
+      "source": "stm"
+    },
+    "wikipedia": {
+      "matches": [
+        {
+          "article_id": 1246,
+          "batch_source": "batch_0001",
+          "database": "/var/lib/aios-wikipedia/wiki_biology.sqlite3",
+          "excerpt": "</ref> }} )]] The Pythonidae, commonly known as pythons, are a family of nonvenomous <!-- (though see the section \"Toxins\" below) --> snakes found in Africa, Asia, and Australia. Among its members are some of the largest snakes in the world. Ten genera and 39 species are currently recognized. Being naturally non-venomous, pythons must constrict their prey to induce cardiac arrest prior to consumption. Pythons will typically strike at and bite their prey of choice to gain hold of it; they then must use physical strength to constrict their prey, by coiling their muscular bodies around the animal, effectively suffocating it before swallowing whole. This is in stark contrast to venomous snakes such as the rattlesnake, for example, which delivers a swift, venomous bite but releases, waiting as the prey succumbs to envenomation before being consumed. Collectively, the pythons are well-documented and studied as constrictors, much like other non-venomous snakes, including the boas and even kingsnakes of the New World.<ref name=\"ITIS\"></ref> Pythons are found in regions like sub-Saharan Africa, Southeast Asia, and Australia, with invasive populations of Burmese pythons in Everglades National Park, Florida and reticulated pythons in Puerto Rico. They are ambush predators that primarily kill prey by constriction, causing cardiac arrest. Pythons are oviparous, laying eggs that females incubate until they hatch. They possess premaxillary teeth, with the exception of adults in the Australian genus Aspidites.<ref></ref><ref></ref> While many species are available in the exotic pet trade, caution is needed with larger species due to potential danger. The taxonomy of pythons has evolved, and they are now known to be more closely related to sunbeam snakes and the Mexican burrowing python.  Pythons are poached for their meat and skin, leading to a billion-dollar global trade. They can carry diseases, such as salmonella and leptospirosis, which can be transmitted to humans. Pythons are also used in African traditional medicine to treat ailments like rheumatism and mental illnesses. Their body parts, including blood and organs, are believed to have various healing properties. In some African cultures, pythons have significant roles in folklore and mythology, often symbolizing strength or having sacred status. ==Distribution and habitat== Pythons are found in sub-Saharan Africa, Nepal, India, Sri Lanka, Bangladesh, Southeast Asia, southeastern Pakistan, southern China, the Philippines and Australia.<ref name=\"McD99\"/> Two known populations of invasive pythons exist in the Western Hemisphere. In the United States, an introduced population of Burmese pythons (Python bivittatus) has existed as an invasive species in Everglades National Park since the late 1990s. As of January 2023, estimates place the Floridian Burmese python population at around half a million. Local bounties are awarded and scientists study dead Burmese pythons to better understand breeding cycles and ",
+          "file_name": "002079_Pythonidae.txt",
+          "title": "Pythonidae"
+        }
+      ],
+      "order": [
+        "ltm",
+        "stm",
+        "wikipedia"
+      ],
+      "source": "wikipedia"
+    }
+  }
+}

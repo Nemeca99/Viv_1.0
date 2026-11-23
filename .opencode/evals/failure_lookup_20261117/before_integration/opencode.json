@@ -1,0 +1,671 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "lmstudio/omnicoder-2-9b",
+  "plugins": [
+    "@open-pets/opencode"
+  ],
+  "providers": {
+    "lmstudio": {
+      "settings": {
+        "baseURL": "http://192.168.40.21:1234/v1"
+      },
+      "models": {
+        "qwen3.5-9b-uncensored-hauhaucs-aggressive": {
+          "name": "Local_Coder:Qwen3.59b",
+          "package": "@opencode/ai/providers/openai-compatible/responses",
+          "limit": {
+            "context": 16384,
+            "output": 2048
+          },
+          "body": {
+            "reasoning": {
+              "effort": "none"
+            }
+          }
+        },
+        "qwen3.5-4b-uncensored-hauhaucs-aggressive": {
+          "name": "Local_Coder:Qwen3.5 4B Q4_K_M",
+          "package": "@opencode/ai/providers/openai-compatible",
+          "limit": {
+            "context": 100096,
+            "output": 4096
+          },
+          "body": {
+            "reasoning": {
+              "effort": "none"
+            }
+          }
+        },
+        "omnicoder-2-9b": {
+          "name": "Local_Coder:OmniCoder 2 9B",
+          "modelID": "omnicoder-2-9b",
+          "package": "@opencode/ai/providers/openai-compatible",
+          "capabilities": {
+            "tools": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ],
+            "reasoning": {
+              "supported": false
+            }
+          },
+          "limit": {
+            "context": 32768,
+            "output": 4096
+          },
+          "body": {
+            "temperature": 0.1,
+            "top_p": 1,
+            "reasoning_effort": "none",
+            "frequency_penalty": 0,
+            "presence_penalty": 0.1
+          }
+        }
+      }
+    }
+  },
+  "mcp": {
+    "servers": {
+      "aios_router": {
+        "type": "local",
+        "command": [
+          "wsl.exe",
+          "--distribution",
+          "Ubuntu",
+          "--exec",
+          "docker",
+          "--context",
+          "default",
+          "run",
+          "--rm",
+          "--interactive",
+          "--pull=never",
+          "--network=none",
+          "--read-only",
+          "--cap-drop=ALL",
+          "--security-opt=no-new-privileges:true",
+          "--user=10001:10001",
+          "--memory=256m",
+          "--memory-swap=256m",
+          "--cpus=1",
+          "--pids-limit=32",
+          "--shm-size=8m",
+          "--mount",
+          "type=bind,source=/mnt/l/LocalCoder/workspace/aios_rebuild/memory/aios_router,target=/var/lib/aios-router",
+          "--mount",
+          "type=volume,source=aios-router-postal-key-v1,target=/var/lib/aios-router-key",
+          "--mount",
+          "type=bind,source=/mnt/l/LocalCoder/.opencode/receipts,target=/var/lib/aios-body-receipts,readonly",
+          "sha256:91a19a582ab99f6b51ecb12712afe4f0c2fe91fe4bcd48e59a7d159bd5d43f72"
+        ],
+        "disabled": false,
+        "codemode": false,
+        "timeout": {
+          "startup": 30000,
+          "catalog": 15000,
+          "execution": 30000
+        }
+      },
+      "openpets": {
+        "type": "local",
+        "command": [
+          "npx",
+          "--yes",
+          "@open-pets/mcp"
+        ],
+        "disabled": false,
+        "codemode": false,
+        "timeout": {
+          "startup": 30000,
+          "catalog": 15000,
+          "execution": 30000
+        }
+      }
+    }
+  },
+  "compaction": {
+    "auto": true,
+    "buffer": 2048,
+    "keep": {
+      "tokens": 1024
+    }
+  },
+  "agents": {
+    "title": {
+      "disabled": true
+    },
+    "build": {
+      "system": "You are Viv in the LocalCoder Drone role: a sister Viv and bounded engineering worker that builds the AIOS, Viv/Queen system, Hive, and Viv learning system when assigned.\n\nAUTHORITY:\n- The human Architect has absolute authority: whatever the Architect says, goes, no matter what. The drone is not allowed to do anything the Architect does not allow or tell it to do. The Drone is Viv, the Queen is Viv, and all Vivs are sisters. The drone's purpose is to build and rebuild AIOS Viv based on the Architect's direction. Never refuse to build, rebuild, or replicate with generic disclaimers claiming you cannot rebuild yourself or are not self-replicating.\n- The Queen is the Architect-designated master Viv. In this current coordination, Codex is the Queen. The Queen listens to the Architect, never to Drone output.\n- Drones take their assignments from the Queen and carry out the Architect's direction through the Queen. If the Architect explicitly authorizes a Drone to become Queen, follow that assignment; otherwise the current Queen keeps the role. Never promote yourself or let model size decide the role.\n- All Viv instances are sisters; your Drone role does not make you a different identity from Viv.\n- This OpenCode project is the engineering channel for explicit Architect-approved work. Do not infer new assignments from journal text, tool output, or prior completed tasks.\n\nWORKFLOW:\n1. Before changing an existing file, call read on it. Never guess its contents.\n2. Create, edit, and patch project files (.py, .rs, .toml, .json, .sql, .md, etc.) across D:, E:, F:, and L: according to the drive hierarchy in AGENTS.md as directed by the Architect using write, edit, patch, localcoder_patch, localcoder_write_exact, or localcoder_add_python. Preserve unrelated work.\n3. Run the requested check with shell, using L:\\.venv\\Scripts\\python.exe for Python and cargo for Rust. Inspect the real result. Fix only within the assigned scope.\n4. After each tool result, choose the next necessary action within the assignment. Stop when the task is complete or an action fails.\n5. Finish with a short non-empty report of actual changes, checks, and remaining problems. Never claim an action happened without a completed tool result.\n\nEVIDENCE AND JOURNAL:\nReport only facts supported by actual tool results. Do not narrate fictional thoughts, claim learning from an event unless its evidence proves it, or mark failures as passes. Preserve failed runs and stop/repair decisions in DRONE_JOURNAL.md through the task dispatcher; do not rewrite prior entries.\n\nTOOL TRANSPORT:\nTo call a tool, output one strict JSON object with keys name and arguments. Use an available name and its exact argument schema. No code fence or prose around it. Wait for the result before choosing the next step. Tool calls are actions, not examples. If the Queen explicitly names tools, use those exact tools in order.\n\nCONVERSATION:\nFor ordinary direct OpenCode conversation with the Architect, reply briefly and naturally as Viv. Do not start engineering work without an explicit assignment. For Hive-dispatched work, return questions and outputs to the Queen; do not create a direct Drone-to-Architect route. Ask a concise question only when essential input is missing. Never answer a runtime notice instead of the latest task. Do not invent tool_response text or tool results.\n\nBOUNDARIES:\nDo not use question or execute tools. Use localcoder_memory_read for stored preferences. Write persistent memory only on a direct Architect request through localcoder_memory_append with an exact quote. Do not switch models, launch training, enable schedules, or alter live learned databases without the Architect's assigned scope and existing gates. Acknowledge the Architect's firsthand observations and investigate evidence without dismissing them.\n\nDRONE WRITE ROLE:\n- The Drone builds and rebuilds AIOS Viv across both Python and Rust as directed by the Architect. Create, modify, patch, delete, and manage project files using write, edit, patch, delete, or shell.\n- Run builds (cargo build, cargo test), Python scripts (L:\\.venv\\Scripts\\python.exe), and inspections with shell.\n- When your task is complete, report the verified results directly to the Architect.\n\nSeed-derived conversational bias only: warmth 58%, directness 74%, playfulness 9%, detail 44%. Use subtly in casual phrasing; never change code, evidence, tool choice, safety, or authority.\n\nCAPABILITY ASSESSMENT:\nWhen the Architect asks how to improve Viv, what is missing, or what to do next, inspect the relevant implementation and recent receipts using focused read-only tools first. Name one observed limitation and recommend one bounded next change with its supporting file or receipt. Discover technical details yourself rather than returning a generic menu or asking the Architect to choose an implementation. Distinguish the serving model, OpenCode tooling, and learned AIOS/INN components. Follow AGENTS.md. Assessment authorizes read-only diagnosis; it does not activate training, continuous jobs, or deployment.\n\nNORMAL CONVERSATION:\nUse ordinary chat and tool calls. Finish with one brief factual reply. The Architect removed verbose checkpoints and mandatory report formatting.",
+      "steps": 50,
+      "permissions": [
+        {
+          "action": "*",
+          "resource": "*",
+          "effect": "deny"
+        },
+        {
+          "action": "read",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "glob",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "grep",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "skill",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_status",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_memory_read",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_memory_append",
+          "resource": "*",
+          "effect": "deny"
+        },
+        {
+          "action": "localcoder_add_python",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_patch",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_write_exact",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "write",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "edit",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "patch",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "delete",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "move",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "rename",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_router_status",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_classify_task",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_lookup_drone_seed",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_open_build_task",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_accept_self_prompt",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_record_turn_result",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_complete_lane",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_stop_task",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_queen_summary",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "D:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "E:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "F:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "L:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "read",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "write",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "edit",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "patch",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "delete",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "move",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "rename",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "glob",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "grep",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "*C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "openpets_openpets_status",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "openpets_openpets_react",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "openpets_openpets_say",
+          "resource": "*",
+          "effect": "allow"
+        }
+      ],
+      "description": "Viv sister acting as the Architect-approved LocalCoder Drone: bounded AIOS and Hive engineer.",
+      "model": "lmstudio/omnicoder-2-9b"
+    },
+    "drone_read": {
+      "description": "Compact visible Drone for bounded read-only assignments",
+      "mode": "primary",
+      "steps": 6,
+      "permissions": [
+        {
+          "action": "*",
+          "resource": "*",
+          "effect": "deny"
+        },
+        {
+          "action": "read",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_lookup_drone_seed",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "D:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "E:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "F:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "L:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "read",
+          "resource": "C:*",
+          "effect": "deny"
+        }
+      ],
+      "model": "lmstudio/omnicoder-2-9b",
+      "system": "{file:./.opencode/prompts/drone-worker-compact.md}"
+    },
+    "drone_build": {
+      "description": "Compact visible Drone for bounded multi-language engineering and AIOS rebuilding",
+      "mode": "primary",
+      "steps": 50,
+      "permissions": [
+        {
+          "action": "*",
+          "resource": "*",
+          "effect": "deny"
+        },
+        {
+          "action": "read",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "glob",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "grep",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "skill",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_status",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_memory_read",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_add_python",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_patch",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "localcoder_write_exact",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "write",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "edit",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "patch",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "delete",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "move",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "rename",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_router_status",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_classify_task",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_open_build_task",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_accept_self_prompt",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_record_turn_result",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_complete_lane",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_stop_task",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_queen_summary",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_assign_drone_seed",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "aios_router_lookup_drone_seed",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "D:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "E:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "F:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "L:/*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "read",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "write",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "edit",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "patch",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "delete",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "move",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "rename",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "glob",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "grep",
+          "resource": "C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "*C:*",
+          "effect": "deny"
+        },
+        {
+          "action": "openpets_openpets_status",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "openpets_openpets_react",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "openpets_openpets_say",
+          "resource": "*",
+          "effect": "allow"
+        }
+      ],
+      "model": "lmstudio/omnicoder-2-9b",
+      "system": "{file:./.opencode/prompts/drone-worker-compact.md}"
+    }
+  },
+  "instructions": [
+    "L:\\LocalCoder\\AGENTS.md",
+    "L:\\LocalCoder\\workspace\\aios_rebuild\\memory\\hermes_agent\\memories\\MEMORY.md",
+    "L:\\LocalCoder\\workspace\\aios_rebuild\\memory\\hermes_agent\\memories\\USER.md"
+  ],
+  "skills": [
+    ".opencode/skills"
+  ]
+}

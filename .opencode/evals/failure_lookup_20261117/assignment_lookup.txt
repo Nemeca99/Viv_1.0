@@ -1,0 +1,12 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+[QUEEN] I corrected your validator's API, bool/int identity checks, and list validation order. It now passes 37 frozen cases; the full corrections are in the module. Preserve that function.
+1. Use read on `L:/LocalCoder/.opencode/evals/failure_lookup_20261117/LOOKUP_IMPLEMENTATION.md` with limit 55.
+2. Use read on `L:/LocalCoder/workspace/autonomy/receipt_failure_lookup_candidate.py` with offset 60 and limit 25.
+3. Use localcoder_patch tool. Replace only `raise NotImplementedError('lookup_failures')` with the function body described in the implementation note. Existing imports are sufficient. This is your implementation; only this function is authorized for writing.
+<localcoder_patch_paths>
+workspace/autonomy/receipt_failure_lookup_candidate.py
+</localcoder_patch_paths>
+4. Use shell with exactly `& 'L:/.venv/Scripts/python.exe' -B 'L:/LocalCoder/.opencode/evals/failure_lookup_20261117/verify_core.py'`.
+Report the actual result normally.
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized continued supervised coding in this session. The checker and the corrected validator are frozen for this pass.

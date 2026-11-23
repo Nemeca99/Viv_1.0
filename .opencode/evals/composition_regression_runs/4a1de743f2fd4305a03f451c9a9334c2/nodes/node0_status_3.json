@@ -1,0 +1,204 @@
+{
+  "schema": "viv_typed_composition_execution_v1",
+  "created_utc": "2026-11-16T00:14:41.267782+00:00",
+  "entry_task_id": "py24_gregorian_leap_rule",
+  "entry_version_id": 17,
+  "entry_function": "gregorian_leap",
+  "execution_order": [
+    6,
+    17
+  ],
+  "node_count": 2,
+  "relay_count": 3,
+  "typed_relays": [
+    {
+      "callsite": {
+        "arguments": [
+          {
+            "actual_type": "int",
+            "compatible": true,
+            "expression": "year",
+            "provider_parameter": "value",
+            "required_type": "int"
+          },
+          {
+            "actual_type": "int",
+            "compatible": true,
+            "expression": "100",
+            "provider_parameter": "divisor",
+            "required_type": "int"
+          }
+        ],
+        "ast_sha256": "c0ad44a9da684854c018afcce6eb44c7b140a521b4db3100bf2abc47455ef513",
+        "column": 47,
+        "consumer_return_type": "bool",
+        "consumer_use": "boolean_negation:bool",
+        "dependency_name": "divisible_or_false",
+        "line": 2,
+        "provider_return_type": "bool"
+      },
+      "consumer_code_sha256": "cb175b7e8081fe97bf463d18c3f8d1c850c044377cbb87d87175d41cbdd32aab",
+      "consumer_contract_sha256": "ac4ea58a344fe0f96de066a25745c16d9632d1cebd15cb1f8d2a9f10a0b54f01",
+      "consumer_function_key": "913d5a08f98d4c0cf363e45ad773686b74ac1302077eed9fa303e5c01f5659be",
+      "consumer_function_name": "gregorian_leap",
+      "consumer_input_type": "bool",
+      "consumer_source_kind": "model_composition_candidate_epoch_10027",
+      "consumer_source_sha256": "f1009e3c78b6b1b463778c4e3cbdbe4761cff4346b04001708a8bb417a01822d",
+      "consumer_tests_sha256": "61704dccfa417f1c639bd6558b8f087a41dce44f5ed9353a2ac519d591edeaed",
+      "consumer_version_id": 17,
+      "direction": "PROVIDER_RETURN_TO_CALLER_TYPED_USE",
+      "provider_code_sha256": "92b05cd8511998b725357605d54f94c9b8ced3a5c0c2945c31ac058acfc1eda8",
+      "provider_contract_sha256": "cc22890ae16aad1ca8170ed688e47247497125761d4ad233036728de09dd3948",
+      "provider_function_key": "6351624e606a21f9128080169bcc7a6f899b39e6315cf376ce711d5481488f41",
+      "provider_function_name": "divisible_or_false",
+      "provider_output_type": "bool",
+      "provider_source_kind": "epoch_10024_gate_passed_training_example",
+      "provider_source_sha256": "0038b28d3b0385918fcb31a658a359760eb3ecb84fa27bcd7c82bf31dc0fd506",
+      "provider_tests_sha256": "69810f1c2ece7d35cb9b6c9c017417b4937d5f0e24e51121f4e9068486afe122",
+      "provider_version_id": 6,
+      "receipt_sha256": "52e9d41c571ea5ecc05d2ad266832dc6e3a070d9f39e3bffeeeab694b2aff715",
+      "relay_key": "52d317b1ad2dc2a1450789c16e88f1de0bf8de2145a58b55f315e7f87c95a031",
+      "schema": "viv_typed_function_relay_v1",
+      "type_contract_source": "admitted_candidate_function_signature"
+    },
+    {
+      "callsite": {
+        "arguments": [
+          {
+            "actual_type": "int",
+            "compatible": true,
+            "expression": "year",
+            "provider_parameter": "value",
+            "required_type": "int"
+          },
+          {
+            "actual_type": "int",
+            "compatible": true,
+            "expression": "4",
+            "provider_parameter": "divisor",
+            "required_type": "int"
+          }
+        ],
+        "ast_sha256": "c2638609dd4e78df0000340943937fb2a51d1183f5b6cbb76806cc574c91100a",
+        "column": 11,
+        "consumer_return_type": "bool",
+        "consumer_use": "boolean_operator:bool",
+        "dependency_name": "divisible_or_false",
+        "line": 2,
+        "provider_return_type": "bool"
+      },
+      "consumer_code_sha256": "cb175b7e8081fe97bf463d18c3f8d1c850c044377cbb87d87175d41cbdd32aab",
+      "consumer_contract_sha256": "ac4ea58a344fe0f96de066a25745c16d9632d1cebd15cb1f8d2a9f10a0b54f01",
+      "consumer_function_key": "913d5a08f98d4c0cf363e45ad773686b74ac1302077eed9fa303e5c01f5659be",
+      "consumer_function_name": "gregorian_leap",
+      "consumer_input_type": "bool",
+      "consumer_source_kind": "model_composition_candidate_epoch_10027",
+      "consumer_source_sha256": "f1009e3c78b6b1b463778c4e3cbdbe4761cff4346b04001708a8bb417a01822d",
+      "consumer_tests_sha256": "61704dccfa417f1c639bd6558b8f087a41dce44f5ed9353a2ac519d591edeaed",
+      "consumer_version_id": 17,
+      "direction": "PROVIDER_RETURN_TO_CALLER_TYPED_USE",
+      "provider_code_sha256": "92b05cd8511998b725357605d54f94c9b8ced3a5c0c2945c31ac058acfc1eda8",
+      "provider_contract_sha256": "cc22890ae16aad1ca8170ed688e47247497125761d4ad233036728de09dd3948",
+      "provider_function_key": "6351624e606a21f9128080169bcc7a6f899b39e6315cf376ce711d5481488f41",
+      "provider_function_name": "divisible_or_false",
+      "provider_output_type": "bool",
+      "provider_source_kind": "epoch_10024_gate_passed_training_example",
+      "provider_source_sha256": "0038b28d3b0385918fcb31a658a359760eb3ecb84fa27bcd7c82bf31dc0fd506",
+      "provider_tests_sha256": "69810f1c2ece7d35cb9b6c9c017417b4937d5f0e24e51121f4e9068486afe122",
+      "provider_version_id": 6,
+      "receipt_sha256": "18aff15c0de9d60c541d9c36d5456989670beeb2d82bf770bb44f97c6fe5f18c",
+      "relay_key": "090c3c52e26936e7576749005d08696489ca117662d1df94a8285b36049135cd",
+      "schema": "viv_typed_function_relay_v1",
+      "type_contract_source": "admitted_candidate_function_signature"
+    },
+    {
+      "callsite": {
+        "arguments": [
+          {
+            "actual_type": "int",
+            "compatible": true,
+            "expression": "year",
+            "provider_parameter": "value",
+            "required_type": "int"
+          },
+          {
+            "actual_type": "int",
+            "compatible": true,
+            "expression": "400",
+            "provider_parameter": "divisor",
+            "required_type": "int"
+          }
+        ],
+        "ast_sha256": "aa4842a1bf503c1d7ef0ed40607e31aebb93bee0df51b59dfcb858e1a963d1a9",
+        "column": 80,
+        "consumer_return_type": "bool",
+        "consumer_use": "boolean_operator:bool",
+        "dependency_name": "divisible_or_false",
+        "line": 2,
+        "provider_return_type": "bool"
+      },
+      "consumer_code_sha256": "cb175b7e8081fe97bf463d18c3f8d1c850c044377cbb87d87175d41cbdd32aab",
+      "consumer_contract_sha256": "ac4ea58a344fe0f96de066a25745c16d9632d1cebd15cb1f8d2a9f10a0b54f01",
+      "consumer_function_key": "913d5a08f98d4c0cf363e45ad773686b74ac1302077eed9fa303e5c01f5659be",
+      "consumer_function_name": "gregorian_leap",
+      "consumer_input_type": "bool",
+      "consumer_source_kind": "model_composition_candidate_epoch_10027",
+      "consumer_source_sha256": "f1009e3c78b6b1b463778c4e3cbdbe4761cff4346b04001708a8bb417a01822d",
+      "consumer_tests_sha256": "61704dccfa417f1c639bd6558b8f087a41dce44f5ed9353a2ac519d591edeaed",
+      "consumer_version_id": 17,
+      "direction": "PROVIDER_RETURN_TO_CALLER_TYPED_USE",
+      "provider_code_sha256": "92b05cd8511998b725357605d54f94c9b8ced3a5c0c2945c31ac058acfc1eda8",
+      "provider_contract_sha256": "cc22890ae16aad1ca8170ed688e47247497125761d4ad233036728de09dd3948",
+      "provider_function_key": "6351624e606a21f9128080169bcc7a6f899b39e6315cf376ce711d5481488f41",
+      "provider_function_name": "divisible_or_false",
+      "provider_output_type": "bool",
+      "provider_source_kind": "epoch_10024_gate_passed_training_example",
+      "provider_source_sha256": "0038b28d3b0385918fcb31a658a359760eb3ecb84fa27bcd7c82bf31dc0fd506",
+      "provider_tests_sha256": "69810f1c2ece7d35cb9b6c9c017417b4937d5f0e24e51121f4e9068486afe122",
+      "provider_version_id": 6,
+      "receipt_sha256": "b5837170393185bd551e534c802d66d4a35c9b4dcb952e70f1e4fed5ec90edc5",
+      "relay_key": "8c840c035e981760e998207501cd166bc321c3804321affd4c0747c184010ff6",
+      "schema": "viv_typed_function_relay_v1",
+      "type_contract_source": "admitted_candidate_function_signature"
+    }
+  ],
+  "node_gates": [
+    {
+      "version_id": 6,
+      "task_id": "py24_divisible_zero_safe",
+      "function_name": "divisible_or_false",
+      "code_sha256": "92b05cd8511998b725357605d54f94c9b8ced3a5c0c2945c31ac058acfc1eda8",
+      "tests_sha256": "69810f1c2ece7d35cb9b6c9c017417b4937d5f0e24e51121f4e9068486afe122",
+      "relay_count": 0,
+      "gate": {
+        "status": true,
+        "output": ""
+      }
+    },
+    {
+      "version_id": 17,
+      "task_id": "offsplit_composed_gregorian_leap_v1",
+      "function_name": "gregorian_leap",
+      "code_sha256": "cb175b7e8081fe97bf463d18c3f8d1c850c044377cbb87d87175d41cbdd32aab",
+      "tests_sha256": "61704dccfa417f1c639bd6558b8f087a41dce44f5ed9353a2ac519d591edeaed",
+      "relay_count": 3,
+      "gate": {
+        "status": "ALLOW",
+        "output": ""
+      }
+    }
+  ],
+  "candidate_store_sha256": "42aed803524ef7b1c73e838b41f4f2175be25f59b98ca5b0775209a53766ace5",
+  "candidate_store_quick_check": "ok",
+  "candidate_store_read_only": true,
+  "body_preflight": {
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "body_image": "sha256:0564d9ac9f4ecc9eb257b3e03fe808b9b724e64229ca04c09f4aaaf557283ff9"
+  },
+  "live_viv_modified": false,
+  "promoted": false,
+  "model_weights_changed": false,
+  "receipt_path": "L:\\LocalCoder\\workspace\\autonomy\\learning\\neural_runs\\composition_receipts\\typed_composition_execution_20261116T001444Z_62c3fffb.json",
+  "receipt_sha256": "7b0e54d3d3dfe4bb9915022d8a0bc21e4817f27eb0474939ad0e93139de6e4e0"
+}

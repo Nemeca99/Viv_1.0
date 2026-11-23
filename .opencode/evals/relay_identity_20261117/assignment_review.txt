@@ -1,0 +1,9 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Task access: write
+[QUEEN] Review: your second patch reached 9/11. I preserved it and corrected one comparison from canonical_hash(payload) != canonical_hash(claimed_key) to canonical_hash(payload) != claimed_key. The claimed key is already the digest. Your binding logic plus this correction now passes all 11 frozen identity probes and all 53 existing flag cases. Both checkers and the real database stayed unchanged. Provenance is in `.opencode/evals/relay_identity_20261117/review_receipt.json`.
+1. Use shell with exactly `L:/.venv/Scripts/python.exe -B L:/LocalCoder/workspace/autonomy/typed_composition_receipt_audit_v2_candidate.py --self-check`.
+2. Use write to create only `.opencode/session_summaries/20261117-relay-identity-supervision.md`. Under 150 words: describe the relay-integrity bug, your two drafts, my final comparison correction, the independently verified 11/11 and 53/53, and the actual fresh self-check outcome. This is a candidate audit repair, not model training, circuit promotion, or a new authorization. Failed attempts are retained in `.opencode/evals/relay_identity_20261117/`.
+3. Use read on `L:/LocalCoder/.opencode/session_summaries/20261117-relay-identity-supervision.md` with limit 35.
+Finish with one short factual reply.
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized continued supervised coding and verification in this same chat.

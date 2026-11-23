@@ -1,0 +1,54 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 401.359,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1eed8e29ffecfrfqZXDZavhiI"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "e2df5eaf04f3375367be4e655c2fd44e4dcd21e8c01574af515154dc4867ca2d",
+  "tools": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Case 0: MISMATCH\r\n  Expected: (True, 'accepted_for_local_inbox')\r\n  Actual:   (False, 'missing_required_field')\r\nCase 1: MISMATCH\r\n  Expected: (False, 'not_for_local_inbox')\r\n  Actual:   (False, 'missing_required_field')\r\nCase 4: MISMATCH\r\n  Expected: (False, 'invalid_recipient_id')\r\n  Actual:   (False, 'missing_required_field')\r\nCase 5: MISMATCH\r\n  Expected: (False, 'invalid_kind')\r\n  Actual:   (False, 'missing_required_field')\r\nCase 6: MISMATCH\r\n  Expected: (False, 'invalid_body')\r\n  Actual:  "
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Case 0: MISMATCH\r\n  Expected: (True, 'accepted_for_local_inbox')\r\n  Actual:   (False, 'missing_required_field')\r\nCase 1: MISMATCH\r\n  Expected: (False, 'not_for_local_inbox')\r\n  Actual:   (False, 'missing_required_field')\r\nCase 4: MISMATCH\r\n  Expected: (False, 'invalid_recipient_id')\r\n  Actual:   (False, 'missing_required_field')\r\nCase 5: MISMATCH\r\n  Expected: (False, 'invalid_kind')\r\n  Actual:   (False, 'missing_required_field')\r\nCase 6: MISMATCH\r\n  Expected: (False, 'invalid_body')\r\n  Actual:  "
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE]\nFile: L:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_contract_v3_check_candidate.py\nFact: 6 of 8 test cases failed with MISMATCH, showing validate_message_for_local_inbox returns \"missing_required_field\" for most cases instead of expected validation errors.\n\n[DRONE SELF-PROMPT]\nAgenda: Fix validate_message_for_local_inbox to properly check envelope structure before task_id validation.\nVerified facts: Test output shows 6 MISMATCH entries with exit code 1; required_evidence_tokens include \"MISMATCH\".\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T211724676397Z"
+}

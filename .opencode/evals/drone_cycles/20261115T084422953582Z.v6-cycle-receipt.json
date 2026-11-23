@@ -1,0 +1,160 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "work_or_body_gate_verification_failed",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e21a07e3cffe3zHIAdznbl2nOq",
+  "session_recovery": null,
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "localcoder_add_python"
+  ],
+  "final_validation": "final_report_and_tool_receipts_verified",
+  "read_evidence_validation": null,
+  "intermediate_validation": {
+    "passed": true,
+    "reason": "no_intermediate_tool_boundary"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794732167509-1b9825f3-c619-4379-bf17-f94d59113671-body-gate.json",
+      "sha256": "e9dcb919c481596d54c7057e77839d4c8d6d101925a15e15ec147ed5fbd8dd2d",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 91.8,
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.5,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 91.8,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.1
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794732238489-fe60e0fa-59f6-4138-b725-f9ca9df7c35b-body-gate.json",
+      "sha256": "fdaf3b22d7b543915e1bc61b243da8a8d95e49467334868524d7e29ee9e2280f",
+      "source": "tool:localcoder_add_python",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 91.6,
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 91.6,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.6
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794732243109-8f096b5c-7a16-443d-a223-e218ca0dc2dd-body-gate.json",
+      "sha256": "0120612c2e03ced4f979a8f88a712da5e34202b8adc010cce842e9a3f1c97a2c",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 92.5,
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.5,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 92.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.1
+      },
+      "reasons": []
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 81.3,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 90.2,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 1.7
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "e72c9bdeb717b42d707b7c863a429a62d1ad2dbef596ce1689f2746b16cfbbb3",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 99.485,
+    "exit_code": 1,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e21a07e3cffe3zHIAdznbl2nOq"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "fab103edf98f72e02a89102593ccb48e5f16bebb839bbc5a7e4f8db9d6098b40",
+    "tools": [
+      {
+        "tool": "localcoder_add_python",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "verification_check_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE]\nCreated `workspace/autonomy/hive_agent_message_contract_v2_candidate.py` with 3228 bytes and SHA-256 hash `4f14cd6761437b78db76094612a15155f037fb3e8c623af42d9ad08e63b1a9c0`.\n\n[DRONE SELF-PROMPT]\nAgenda: Complete bounded verification of the new Python candidate.\nVerified facts: Tool returned `{\"ok\":true,\"created\":true}` confirming successful file creation at the exact project-relative path.\nNext bounded action: STOP"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T084243369915Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T084243265244Z.prompt.txt",
+    "dispatcher_final_text": [
+      "[DRONE]\nCreated `workspace/autonomy/hive_agent_message_contract_v2_candidate.py` with 3228 bytes and SHA-256 hash `4f14cd6761437b78db76094612a15155f037fb3e8c623af42d9ad08e63b1a9c0`.\n\n[DRONE SELF-PROMPT]\nAgenda: Complete bounded verification of the new Python candidate.\nVerified facts: Tool returned `{\"ok\":true,\"created\":true}` confirming successful file creation at the exact project-relative path.\nNext bounded action: STOP"
+    ]
+  }
+}

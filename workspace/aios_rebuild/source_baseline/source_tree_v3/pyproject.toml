@@ -1,0 +1,113 @@
+[project]
+name = "aios-clean"
+version = "1.0.0"
+description = "AIOS - Modular AI Operating System"
+requires-python = ">=3.10"
+
+[tool.ruff]
+# Enable pycodestyle (E), Pyflakes (F), isort (I), pylint (PL), flake8-simplify (SIM), tryceratops (TRY), and annotations (ANN)
+select = ["E", "F", "I", "PL", "SIM", "TRY", "ANN"]
+ignore = [
+    "ANN101",  # Missing type annotation for self
+    "ANN102",  # Missing type annotation for cls
+    "ANN401",  # Dynamically typed expressions (Any)
+    "PLR0913", # Too many arguments
+    "PLR2004", # Magic value used in comparison
+    "TRY003",  # Avoid specifying long messages outside exception class
+]
+target-version = "py310"
+line-length = 120
+
+# Exclude common directories
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "*.egg-info",
+    ".pytest_cache",
+    ".mypy_cache",
+    "streamlit_core/streamlit_main",  # Large submodule
+    "streamlit_core/streamlit_components",  # Large submodule
+    "streamlit_core/streamlit_docs",  # Large submodule
+    "streamlit_core/streamlit_examples",  # Large submodule
+    "streamlit_core/streamlit_llm_examples",  # Large submodule
+]
+
+[tool.ruff.per-file-ignores]
+# Test files don't need type annotations
+"tests/**/*.py" = ["ANN"]
+# Scripts can be more lenient
+"scripts/**/*.py" = ["ANN", "PLR"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false  # Start lenient, tighten over time
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_optional = true
+strict_equality = true
+
+# Exclude large submodules
+exclude = [
+    "streamlit_core/streamlit_main",
+    "streamlit_core/streamlit_components", 
+    "streamlit_core/streamlit_docs",
+    "streamlit_core/streamlit_examples",
+    "streamlit_core/streamlit_llm_examples",
+]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+[tool.bandit]
+skips = ["B101"]  # Allow assert in tests
+exclude_dirs = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "tests",
+    "streamlit_core/streamlit_main",
+    "streamlit_core/streamlit_components",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+    "--disable-warnings",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "contract: marks tests as contract tests",
+]
+
+[tool.coverage.run]
+source = ["."]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/.venv/*",
+    "*/venv/*",
+    "streamlit_core/streamlit_main/*",
+    "streamlit_core/streamlit_components/*",
+]
+
+[tool.coverage.report]
+precision = 2
+show_missing = true
+skip_covered = false
+

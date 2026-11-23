@@ -1,0 +1,55 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 300.484,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e2192f500ffeurpLIUmo8xFQm8"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "394ae4bbec5f807c30c7a83c9b8f6971f71534cbc8f55cb732d27a7eea90f217",
+  "tools": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v4_candidate.py\", line 96\r\n    elif 'kind' not in claim or claim.get('kind') not in ['retrieved_fact', 'inference', 'proposal']:\r\n    ^^^^\r\nSyntaxError: invalid syntax\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out",
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v4_candidate.py\", line 96\r\n    elif 'kind' not in claim or claim.get('kind') not in ['retrieved_fact', 'inference', 'proposal']:\r\n    ^^^^\r\nSyntaxError: invalid syntax\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Execute shell verification of v4 contract validator.\nVerified facts: File created at L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v4_candidate.py with sha256 b9ad244fcaa42b9d363cca319cda3854d532fc47b9be2c3590659e76b21421c0.\nNext bounded action: Use shell tool to run the assigned contract checks."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T085730477441Z"
+}

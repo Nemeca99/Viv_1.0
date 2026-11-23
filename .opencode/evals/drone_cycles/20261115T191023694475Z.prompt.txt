@@ -1,0 +1,12 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Call the read tool for `workspace/hive_control/src/lib.rs` and inspect the existing Control.seal_peer and Control.open_peer envelope fields.
+Call the localcoder_add_python tool with filePath exactly `workspace/autonomy/hive_postal_transport_envelope_v1_candidate.py` and content=source. Add this one new Python file only.
+Call the shell tool in the foreground (background=false) with exactly `& 'L:\.venv\Scripts\python.exe' -B 'workspace\autonomy\hive_postal_transport_envelope_v1_candidate.py' --self-check` and inspect actual output.
+Implement a shape-only `validate_sealed_transport_envelope(envelope)` for the exact Rust seal_peer result fields: source, destination, task_id, grant_id, nonce, ciphertext. Require exactly those keys. Require distinct non-empty trimmed source/destination IDs, a non-empty trimmed task_id, lowercase hex grant_id of 24 characters, lowercase hex nonce of 24 characters, and lowercase even-length ciphertext hex containing at least the 16-byte GCM tag. Return `(True, "accepted")` or `(False, stable_reason_code)`. This Python function is only a shape check; it must not authorize routing, claim identity, decrypt, or replace Rust authority. Include a `--self-check` CLI with exactly 9 checks covering a valid envelope, non-object, missing key, unexpected key, empty/untrimmed IDs, malformed grant_id, malformed nonce, and malformed ciphertext. On success print exactly `PASS: 9 checks`; nonzero exit on failure.
+Do not modify any existing file.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: read → localcoder_add_python → shell. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

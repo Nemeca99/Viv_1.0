@@ -1,0 +1,25 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+<localcoder_patch_paths>
+workspace/autonomy/hive_agent_message_contract_candidate.py
+</localcoder_patch_paths>
+
+The Architect authorized the Drone to add this exact candidate earlier and directed the Queen to correct Drone work as needed. The target is existing; use the patch tool only for this exact path.
+
+Use the read tool exactly once to inspect workspace/autonomy/hive_agent_message_contract_candidate.py, then use the localcoder_patch tool exactly once on that target, then use the shell tool exactly once to verify. No other tools or retries.
+
+Correct validate_agent_message(value) to match the common envelope example in workspace/HIVE_NETWORK_ARCHITECTURE_DRAFT.md:
+- Return tuple of stable error codes. Return () for a valid envelope. Never raise on malformed input. Ignore unknown extra fields.
+- Required fields and types: agent_id, agent_type, task_id, status, audience, trust_class, message are strings; agent_id and task_id are non-empty. artifact_refs, claims, uncertainties, conflicts_with are lists.
+- agent_type=model|human; status=DONE|NEEDS_USER|BLOCKED; audience=mind; model trust_class=unverified_model_output; human trust_class=human_agent_statement.
+- Each claims list item is an object with string text, list-of-string evidence_ids, and kind=retrieved_fact|inference|proposal.
+- artifact_refs, uncertainties, conflicts_with are lists of strings.
+- parent_task_id is optional; if present it is null or a non-empty string.
+- Use stable codes without embedding invalid input values. If agent_type is absent or invalid, report that and skip trust-class comparison rather than raising.
+- This function checks only envelope shape and closed values. It does not determine truth, route, authorize, redact, read other files, or persist data. Rust remains authoritative.
+
+After the read result, emit a visible [DRONE SELF-PROMPT] with Agenda, one Verified fact, Next bounded action naming localcoder_patch. After patch result, emit the same fields naming shell. After shell, begin final with [DRONE], quote actual output exactly, and end with [DRONE SELF-PROMPT] fields Agenda, Verified facts, Next bounded action: STOP; await Queen.
+
+Use this exact PowerShell command for the single shell call:
+L:\.venv\Scripts\python.exe -B -c "(lambda f,b: (lambda r: print('PASS: candidate envelope checks' if all(a==e for n,a,e in r) else r))([('valid_model',f(b),()),('valid_human',f(dict(b,agent_type='human',trust_class='human_agent_statement')),()),('missing_task_id',f({k:v for k,v in b.items() if k!='task_id'}),('MISSING_TASK_ID',)),('invalid_status',f(dict(b,status='NOPE')),('INVALID_STATUS',)),('invalid_audience',f(dict(b,audience='queen')),('INVALID_AUDIENCE',)),('mismatched_trust_class',f(dict(b,trust_class='human_agent_statement')),('TRUST_CLASS_MISMATCH',)),('malformed_claim',f(dict(b,claims=[None])),('CLAIM_NOT_OBJECT',)),('missing_agent_type',f({k:v for k,v in b.items() if k!='agent_type'}),('MISSING_AGENT_TYPE',)),('bad_evidence_ids',f(dict(b,claims=[{'text':'claim','evidence_ids':None,'kind':'proposal'}])),('CLAIM_EVIDENCE_IDS_NOT_LIST',))]))(__import__('workspace.autonomy.hive_agent_message_contract_candidate',fromlist=['validate_agent_message']).validate_agent_message,{'agent_id':'a','agent_type':'model','task_id':'t','parent_task_id':None,'status':'DONE','audience':'mind','trust_class':'unverified_model_output','message':'check','artifact_refs':[],'claims':[{'text':'claim','evidence_ids':['e1'],'kind':'retrieved_fact'}],'uncertainties':[],'conflicts_with':[]})"
+[CURRENT AUTHORIZATION FACT]
+The existing Python correction is within the Architect's prior direction to correct Drone work. Scope is the single target above and the exact sequence read → localcoder_patch → shell. Rust WSL Docker Body and OpenCode tool gates remain active. This is one visible bounded task, not a standing worker.

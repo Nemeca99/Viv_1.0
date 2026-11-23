@@ -1,0 +1,47 @@
+{
+  "status": "HOLD",
+  "scope": "one task-scoped Python file; staged before dispatch",
+  "source": "L:\\LocalCoder\\workspace\\template_rebuild\\reference\\fixture_echo.py",
+  "source_sha256": "8F84915A7C291691F6E5A5028B75E7E43573A68AF7F46CD91CE46CF1774FA82C",
+  "prepared": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707668753101600_bd51debe\\fixture_echo.py",
+  "prepared_sha256": "8F84915A7C291691F6E5A5028B75E7E43573A68AF7F46CD91CE46CF1774FA82C",
+  "diff": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707668753101600_bd51debe\\preparation.diff",
+  "checks": {
+    "format": {
+      "argv": [
+        "black",
+        "--quiet",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707668753101600_bd51debe\\fixture_echo.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\black\\__main__.py\", line 3, in <module>\n    patched_main()\n  File \"src\\black\\__init__.py\", line 1702, in patched_main\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\click\\core.py\", line 1631, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\click\\core.py\", line 1551, in main\n    with self.make_context(prog_name, args, **extra) as ctx:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\click\\core.py\", line 1362, in make_context\n    self.parse_args(ctx, args)\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\click\\core.py\", line 1373, in parse_args\n    _, args = param.handle_parse_result(ctx, opts, args)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\click\\core.py\", line 2778, in handle_parse_result\n    value = self.process_value(ctx, value)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\click\\core.py\", line 3660, in process_value\n    return super().process_value(ctx, value)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\click\\core.py\", line 2655, in process_value\n    value = self.callback(ctx, self, value)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"src\\black\\__init__.py\", line 125, in read_pyproject_toml\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\black\\files.py\", line 102, in find_pyproject_toml\n    path_project_root, _ = find_project_root(path_search_start, stdin_filename)\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\black\\files.py\", line 91, in find_project_root\n    pyproject_toml = _load_toml(directory / \"pyproject.toml\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\black\\files.py\", line 38, in _load_toml\n    return tomllib.load(f)\n           ^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 66, in load\n    return loads(s, parse_float=parse_float)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 102, in loads\n    pos = key_value_rule(src, pos, out, header, parse_float)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 326, in key_value_rule\n    pos, key, value = parse_key_value_pair(src, pos, parse_float)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 369, in parse_key_value_pair\n    pos, value = parse_value(src, pos, parse_float)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 598, in parse_value\n    return parse_one_line_basic_str(src, pos)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 409, in parse_one_line_basic_str\n    return parse_basic_str(src, pos, multiline=False)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 575, in parse_basic_str\n    pos, parsed_escape = parse_escapes(src, pos)\n                         ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 494, in parse_basic_str_escape\n    raise suffixed_err(src, pos, \"Unescaped '\\\\' in a string\") from None\ntomllib.TOMLDecodeError: Unescaped '\\' in a string (at line 4, column 27)\n"
+    },
+    "ruff": {
+      "argv": [
+        "ruff",
+        "check",
+        "--no-cache",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707668753101600_bd51debe\\fixture_echo.py"
+      ],
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "ruff failed\n  Cause: Failed to parse L:\\LocalCoder\\workspace\\pyproject.toml\n  Cause: TOML parse error at line 4, column 26\n  |\n4 | extend-exclude = \"(^|/)(\\.venv|\\.hive_proof_env|runs|outputs|models|artifacts)(/|$)\"\n  |                          ^\nmissing escaped value, expected `b`, `e`, `f`, `n`, `r`, `\\`, `\"`, `x`, `u`, `U`\n\n"
+    },
+    "vulture": {
+      "argv": [
+        "vulture",
+        "--min-confidence",
+        "100",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707668753101600_bd51debe\\fixture_echo.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\vulture\\__main__.py\", line 3, in <module>\n    main()\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\vulture\\core.py\", line 666, in main\n    config = make_config()\n             ^^^^^^^^^^^^^\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\vulture\\config.py\", line 209, in make_config\n    config = _parse_toml(fconfig)\n             ^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\LocalCoder\\workspace\\.hive_proof_env\\Lib\\site-packages\\vulture\\config.py\", line 84, in _parse_toml\n    data = tomllib.load(infile)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 66, in load\n    return loads(s, parse_float=parse_float)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 102, in loads\n    pos = key_value_rule(src, pos, out, header, parse_float)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 326, in key_value_rule\n    pos, key, value = parse_key_value_pair(src, pos, parse_float)\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 369, in parse_key_value_pair\n    pos, value = parse_value(src, pos, parse_float)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 598, in parse_value\n    return parse_one_line_basic_str(src, pos)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 409, in parse_one_line_basic_str\n    return parse_basic_str(src, pos, multiline=False)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 575, in parse_basic_str\n    pos, parsed_escape = parse_escapes(src, pos)\n                         ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"L:\\Python312\\Lib\\tomllib\\_parser.py\", line 494, in parse_basic_str_escape\n    raise suffixed_err(src, pos, \"Unescaped '\\\\' in a string\") from None\ntomllib.TOMLDecodeError: Unescaped '\\' in a string (at line 4, column 27)\n"
+    },
+    "compile": {
+      "exit_code": 0,
+      "diagnostic": ""
+    }
+  }
+}

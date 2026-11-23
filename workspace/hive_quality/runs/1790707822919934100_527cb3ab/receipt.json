@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "scope": "one task-scoped Python file; staged before dispatch",
+  "source": "L:\\LocalCoder\\workspace\\hive_quality\\tmp2ahscpcq\\sample.py",
+  "source_sha256": "1ECEAEADB9088775FA5ED22EF2C28EBE957EA91CC626BDFC26F5CF33678882EB",
+  "prepared": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707822919934100_527cb3ab\\sample.py",
+  "prepared_sha256": "2C49599EF32224F15F6B0564987E9EABF10B647051076139C576A759537DA93A",
+  "diff": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707822919934100_527cb3ab\\preparation.diff",
+  "checks": {
+    "format": {
+      "argv": [
+        "black",
+        "--quiet",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707822919934100_527cb3ab\\sample.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "ruff": {
+      "argv": [
+        "ruff",
+        "check",
+        "--no-cache",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707822919934100_527cb3ab\\sample.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    "vulture": {
+      "argv": [
+        "vulture",
+        "--min-confidence",
+        "100",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790707822919934100_527cb3ab\\sample.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "compile": {
+      "exit_code": 0,
+      "diagnostic": ""
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 600.547,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e1e25cab7ffeISb5hzWrCKIYNH"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "c9b6f5c8b543fe85d69e5510014ceabfa487b64ac8b5f9e70d13e1e5fc9535e6",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE]\nFile: `workspace/autonomy/typed_composition_receipt_audit_v1_candidate.py`\nFact: Executor uses `sha256_bytes()` and canonical hashing via `json.dumps(..., sort_keys=True)` matching receipt schema validation requirements.\n\n[DRONE SELF-PROMPT]\nAgenda: Implement audit checker with 8 self-checks per executor constants\nVerified facts: Read confirmed `candidate_typed_composition_executor_v2.py` uses `sha256_bytes()`, canonical hashing via JSON sort_keys, and SQLite readonly mode; receipt schema is `viv_typed_composition_execution_v1`; database path from `store.DB_PATH`; PRAGMA quick_check must be \"ok\"; three relay rows match count; two unique execution nodes end with entry version; provider/consumer types agree; candidate_store_read_only=true, live_viv_modified=false, model_weights_changed=false\nNext bounded action: Call the localcoder_add_python tool"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261116T005536362553Z"
+}

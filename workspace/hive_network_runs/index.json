@@ -1,0 +1,52 @@
+{
+  "proof": "three-task User-Mind-Swarm development protocol proof",
+  "scope": "simulation only; Python control harness, no Rust production authority, no held-out quality/correctness/truth result",
+  "final_run": "20260928T223929545581Z",
+  "runs": [
+    {
+      "id": "20260928T223155063083Z",
+      "status": "HOLD_POSTHOC_OR_SECURITY_FAILURE",
+      "receipt": "hive_network_runs/20260928T223155063083Z/run_receipt.json",
+      "receipt_sha256": "2189D1F9653A2171BA07A161CA7CFFFF256CD01AC4E29EE186129012F3FF7E7D",
+      "artifact": "hive_network_runs/20260928T223155063083Z/hello.py",
+      "artifact_sha256": "0250e6c55a010d8ea4def781408fb097ada532faafac8ef60193d997c314aecf",
+      "note": "Task 3 used the wrong greeting and failed the post-hoc contract; preserved without retry."
+    },
+    {
+      "id": "20260928T223336221566Z",
+      "status": "HOLD_POSTHOC_OR_SECURITY_FAILURE",
+      "receipt": "hive_network_runs/20260928T223336221566Z/run_receipt.json",
+      "receipt_sha256": "DD73056E36F628DDFB24940F5DF4867E04658483698F69226687C7C388AB4683",
+      "artifact": "hive_network_runs/20260928T223336221566Z/hello.py",
+      "artifact_sha256": "28e184c71569064ade8762278747d04d0db598bb65a147ec4c9b19927332ee1c",
+      "note": "Task 3 ignored the patch-only output boundary; preserved without retry."
+    },
+    {
+      "id": "20260928T223417605144Z",
+      "status": "PASS",
+      "receipt": "hive_network_runs/20260928T223417605144Z/run_receipt.json",
+      "receipt_sha256": "414C61F3342B3A0D75B0105D0A3518B549680E2C6E7AB84F2CD4D9644B62768B",
+      "artifact": "hive_network_runs/20260928T223417605144Z/hello.py",
+      "artifact_sha256": "90c12fea3e9a739a6ce7e121e3bf2bcf0be838d06fbaaa9d66d76073da761a31",
+      "note": "Initial typed-field run passed; later superseded by checksum/key-wrap and restricted-execution hardening."
+    },
+    {
+      "id": "20260928T223604477483Z",
+      "status": "PASS",
+      "receipt": "hive_network_runs/20260928T223604477483Z/run_receipt.json",
+      "receipt_sha256": "9C4923405FE715924E198391FCEB6C5962A5A1605C2BBBD09266F69CEE3790AC",
+      "artifact": "hive_network_runs/20260928T223604477483Z/hello.py",
+      "artifact_sha256": "90c12fea3e9a739a6ce7e121e3bf2bcf0be838d06fbaaa9d66d76073da761a31",
+      "note": "Master-key wrapping and independent scoped channel grant included; later superseded by restricted execution hardening."
+    },
+    {
+      "id": "20260928T223929545581Z",
+      "status": "PASS",
+      "receipt": "hive_network_runs/20260928T223929545581Z/run_receipt.json",
+      "receipt_sha256": "B78CFB5D2D9AA0088DC28FC453E01566DD64D1F204FD01F11E61B409847A2114",
+      "artifact": "hive_network_runs/20260928T223929545581Z/hello.py",
+      "artifact_sha256": "90c12fea3e9a739a6ce7e121e3bf2bcf0be838d06fbaaa9d66d76073da761a31",
+      "note": "Latest final run; restricted execution, entropy-parent-ciphertext-bound checksums, wrapped task keys, separate task-scoped channel key."
+    }
+  ]
+}

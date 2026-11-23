@@ -1,0 +1,47 @@
+{
+  "schema_version": "viv_cpu_unified_recursive_self_building_contract_v2",
+  "receipt_schema": "viv_cpu_unified_recursive_self_building_receipt_v2",
+  "status": "candidate_only",
+  "parent": {
+    "receipt_schema": "viv_cpu_unified_self_building_adaptation_receipt_v1",
+    "receipt_sha256": "26593DD78D42E408FB795734DB63C72DA9672ECBDCD2E1F011445886A26CAFCE",
+    "candidate_checkpoint_sha256": "0652699B8EC09EFE3FD2256D8FEDE5682D056C48D5F4B6E0808D2E5F66D8ACE1",
+    "candidate_state_sha256": "B3FD3694ABCDFAFA4029D9F69D6233A1AB105065168004D6D2DB072AACD29BBA"
+  },
+  "lifecycle": ["OBSERVE", "RETRIEVE", "HYPOTHESIZE", "CPU_VALIDATE", "CANDIDATE_PLAN", "SANDBOX_TEST", "MEASURE", "RECORD", "SCHEDULE", "OBSERVE"],
+  "limits": {
+    "device": "cpu",
+    "repeats": 2,
+    "max_cycles": 2,
+    "max_schedule_repeats": 1,
+    "concurrency": 1,
+    "daemon": false,
+    "isolated": true,
+    "no_publish": true
+  },
+  "authority": {
+    "cpu_final_semantic_authority": true,
+    "rust_final_write_authority": true,
+    "expected_rust_state": "HOLD_SECURITY",
+    "pointer_adoption": false,
+    "registry_mutation": false,
+    "seed0_mutation": false,
+    "live_model_mutation": false,
+    "production_generation": false,
+    "human_approval_fabricated": false
+  },
+  "recursive_requirement": {
+    "second_cycle_consumes_prior_result": true,
+    "prior_receipt_hash_required": true,
+    "prior_evidence_refs_required": true,
+    "direct_hypothesize_to_sandbox": false,
+    "operator_resume_on_failure": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "volatile_fields_excluded_from_behavior_digest": ["created_utc", "run_id", "cycle_receipt_sha256", "cycle_receipt_file_sha256", "normalized_cycle_sha256", "decision_id", "request_id"]
+  }
+}

@@ -1,0 +1,20 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add only new `workspace/autonomy/hive_postal_outbox_proposal_v4_candidate.py`; stop if it exists.
+Import `SCHEMA`, `VALID_KINDS`, and `validate_postal_message` from sibling `hive_postal_message_contract_queen_v3_candidate`; do not redefine them.
+Implement pure `prepare_queen_outbox_proposal(message_id, sender_id, authority_queen_id, task_id, body, *, kind="REPORT", proposed_recipient_id=None, parent_message_sha256=None)`. Build the exact envelope keys `schema,message_id,sender_id,recipient_id,task_id,kind,body`, with `recipient_id=authority_queen_id` and a deep copy of body. If the optional parent hash is supplied, use the exact key `parent_message_sha256`. Call `valid, reason = validate_postal_message(message)` exactly once. If invalid, return `(None, (reason,))`. If valid and proposed recipient is `Queen` case-insensitively, return `(None, ("proposed_recipient_is_queen",))`. Otherwise return `(proposal, ())`, where proposal has schema `hive_postal_outbox_proposal_v1`, the validated message, and `routing_request` set to `None` or `{"recipient_id": proposed_recipient_id}`. A peer stays outside the validated message as untrusted routing metadata. Pure function only: no I/O, crypto, identity, permission, or delivery.
+Add `--self-check` with exactly these 9 checks: exact valid default envelope; valid peer stays outside envelope; nested body is deep-copied; empty message ID rejected; non-dict body rejected; invalid kind rejected; malformed parent hash rejected; Queen peer rejected; valid 64-character lowercase SHA-256 parent hash preserved under the exact key. Print exactly one line `PASS: 9 checks` and exit 0 only if all checks pass. On any failure print a `FAIL:` line and exit nonzero. Do not print per-check PASS lines. Keep the file under 120 lines.
+Call the `aios_router_open_build_task` tool.
+Call the `aios_router_accept_self_prompt` tool for lane `drone`, turn 0.
+Call the `localcoder_add_python` tool with only `filePath=workspace/autonomy/hive_postal_outbox_proposal_v4_candidate.py` and the source.
+Call the `read` tool on that exact path.
+Call the `shell` tool with exactly: `& 'L:/.venv/Scripts/python.exe' -B 'workspace/autonomy/hive_postal_outbox_proposal_v4_candidate.py' --self-check`.
+Call the `aios_router_record_turn_result` tool for lane `drone`, turn 0, with the actual result.
+Call the `aios_router_complete_lane` tool with an accurate receipt.
+If any tool fails, do not retry it; continue the remaining assigned sequence once and record the failure accurately.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task and the goal. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only this exact tool sequence, in order: `aios_router_open_build_task` → `aios_router_accept_self_prompt` → `localcoder_add_python` → `read` → `shell` → `aios_router_record_turn_result` → `aios_router_complete_lane`. Use one tool at a time. After each non-final tool result, emit a visible `[DRONE SELF-PROMPT]` with exactly these labels on separate lines: `Agenda:`, `Verified facts:`, `Next bounded action:`. Ground verified facts in the latest actual tool evidence and name the next assigned tool. After the final tool, combine report and self-prompt in one final message: start exactly with `[DRONE]`, state the actual target filename and one concrete fact from returned content, then end with `[DRONE SELF-PROMPT]` and the same fields; `Next bounded action:` must be `STOP`. Do not invent tool results or claim unverified work.

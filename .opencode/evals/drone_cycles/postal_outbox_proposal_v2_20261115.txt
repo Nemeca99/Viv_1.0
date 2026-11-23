@@ -1,0 +1,19 @@
+Goal 01a1d847-3b27-7533-bbc2-c718ace48ae7: one bounded Python proposal adapter for the Hive postal router.
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add only this new file: `workspace/autonomy/hive_postal_outbox_proposal_candidate.py`. Stop without writing if it already exists.
+
+Implement `prepare_queen_outbox_proposal(message_id, sender_id, authority_queen_id, task_id, body, *, kind="REPORT", proposed_recipient_id=None, parent_message_sha256=None)`. Return `(envelope, error_codes)`; on valid input return the `hive_postal_message_v1` mapping and an empty tuple, otherwise return `None` and stable error-code strings. The top-level `recipient_id` must equal the supplied current `authority_queen_id`; do not hardcode a person or Queen identity. A proposed peer ID may appear only in untrusted `routing_request` metadata nested in the body and must never become the envelope recipient. Copy caller data without mutation. This pure candidate does no I/O, crypto, identity, permission, or delivery; document that Rust decides acceptance and routing.
+
+Provide `--self-check` cases for valid Queen addressing, peer proposal remaining metadata, input unchanged, invalid IDs/body/kind/hash, and conflicting `routing_request`; print a concise PASS line only if all checks pass, otherwise exit nonzero.
+
+Execute this exact tool sequence once each, serially:
+1. Call `aios_router_open_build_task` for this bounded task.
+2. Call `aios_router_accept_self_prompt` for Drone lane turn 0, grounded in the actual open result.
+3. Call `read` for `workspace/HIVE_NETWORK_ARCHITECTURE_DRAFT.md`, lines 569–626.
+4. Use `localcoder_add_python` exactly once to add the named target.
+5. Call `read` for the new target and identify the function definition.
+6. Call `shell` exactly once with `L:\.venv\Scripts\python.exe -B workspace\autonomy\hive_postal_outbox_proposal_candidate.py --self-check`.
+7. Call `aios_router_record_turn_result` with an accurate result grounded in the read and shell outputs.
+8. Call `aios_router_complete_lane` with a concise nonempty receipt.
+
+After each completed tool, show a visible `[DRONE SELF-PROMPT]` with nonempty `Agenda:`, `Verified facts:`, and `Next bounded action:` lines. Cite the latest actual result and name only the next assigned action. After all eight tools, give one `[DRONE]` report with the exact target filename, the function name from the completed read, and the actual self-check output; end the self-prompt with `Next bounded action: STOP`. Do not claim unobserved work.

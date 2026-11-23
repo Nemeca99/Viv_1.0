@@ -1,0 +1,24 @@
+Architect-assigned bounded smoke task. The target is new and was checked absent immediately before this run. Add exactly one file at .opencode/evals/agent_created_probe_20261114T0740367666Z.py. Add only; do not modify, delete, move, or create any other project file. Use Python only.
+
+Invoke the localcoder_write_exact tool first. Its content must match the single fenced Python block below exactly. Wait for its completed tool result. Then invoke the shell tool with the command `L:\.venv\Scripts\python.exe .opencode/evals/agent_created_probe_20261114T0740367666Z.py` to run that file; wait for the completed tool result. Do not use alternate tools or retry a failed step. If either action fails, stop and report the exact error. In the final normal user-facing text, report the created path and exact PASS line shown by the Python run, then stop.
+
+```python
+"""Add-only Python smoke probe for the LocalCoder Drone."""
+
+
+def normalize_workspace_name(value: str) -> str:
+    """Lowercase and join whitespace or underscore separated words with hyphens."""
+    return "-".join(value.strip().lower().replace("_", " ").split())
+
+
+def _verify() -> None:
+    assert normalize_workspace_name("  AIOS   Queen  ") == "aios-queen"
+    assert normalize_workspace_name("Drone__Worker") == "drone-worker"
+    assert normalize_workspace_name("") == ""
+    assert normalize_workspace_name("Hive\tVoice\nDaemon") == "hive-voice-daemon"
+
+
+if __name__ == "__main__":
+    _verify()
+    print("PASS: normalize_workspace_name handles whitespace, underscores, and empty input")
+```

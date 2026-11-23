@@ -1,0 +1,19 @@
+{
+  "schema_version": "viv_query_evidence_robustness_v1",
+  "purpose": "diagnose exact-document-ID false negatives without changing the frozen query gate",
+  "status": "candidate_only",
+  "authority": "cpu_diagnostic_only",
+  "model_capability_conclusion_allowed": false,
+  "cpu_gate_changed": false,
+  "harness_repair_allowed": false,
+  "source_body_exposed_to_model": false,
+  "requirements": [
+    "oracle state must be VERIFIED",
+    "canonical document bytes must hash to the recorded content hash",
+    "the result must be conflict-free",
+    "query terms and source-surface hints must be measured from the returned document",
+    "topic relevance may never replace exact-gate scoring in the source receipt"
+  ],
+  "generic_query_terms": ["guide", "overview", "details", "document", "docs", "phase", "phases", "current", "v1", "v2", "v3", "v4"],
+  "next_probe": "seal_semantic_equivalence_contract_before_training_penalty"
+}

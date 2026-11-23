@@ -1,0 +1,2 @@
+VALUE_B = PLACEHOLDER_B
+assert VALUE_B == 2

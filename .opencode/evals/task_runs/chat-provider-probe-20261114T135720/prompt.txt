@@ -1,0 +1,3 @@
+[ARCHITECT] Verify the local Drone runtime after the 4B provider transport change. This is read-only.
+
+[QUEEN → DRONE] First emit a concise visible message beginning `[DRONE SELF-PROMPT]` stating this check. Then use exactly one `shell` tool call to run `L:\.venv\Scripts\python.exe -B -c "import ast,pathlib; p=pathlib.Path('workspace/autonomy/opencode_drone_cycle.py'); t=ast.parse(p.read_text(encoding='utf-8')); ns={}; exec(compile(t,str(p),'exec'),ns); r=ns['read_newest_journal_entry'](); print(next(line for line in r.splitlines() if line.startswith('## '))); print('characters='+str(len(r)))"` from L:\LocalCoder. Do not change files. Finish with `[DRONE]` and report the actual shell output. Do not repeat the tool call.

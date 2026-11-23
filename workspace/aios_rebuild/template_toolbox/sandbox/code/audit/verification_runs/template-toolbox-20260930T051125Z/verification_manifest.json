@@ -1,0 +1,63 @@
+{
+  "schema_version": "localcoder_template_toolbox_verification_v1",
+  "run_id": "template-toolbox-20260930T051125Z",
+  "scope": "candidate-only; no live pointer or moved Viv tree",
+  "security_core_pyd_sha256": "0948f78a8d11b3069b7a172e795c5fdb5ee6a0539c1e9f97141e7209ce21ffdd",
+  "rust_unit_test_summary": "test result: ok. 52 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.38s",
+  "python_unit_test_summary": "Ran 40 tests in 1.670s",
+  "dry_run_state": "HOLD_SECURITY",
+  "dry_run_writes_performed": false,
+  "isolated_self_test_state": "PASS_WITH_EXPECTED_SECURITY_HOLD",
+  "isolated_self_test_repeats": 10,
+  "isolated_self_test_deterministic": true,
+  "isolated_self_test_protected_state_unchanged": true,
+  "results": [
+    {
+      "name": "rust_format",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051125Z/rust_format.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "rust_tests",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051125Z/rust_tests.log",
+      "log_sha256": "d05cec7d7a20e7d5ef8bad60496fc85ef964d5b2c480d7e49da95c8660633b0c"
+    },
+    {
+      "name": "rust_build",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051125Z/rust_build.log",
+      "log_sha256": "8c798c75014ca8e4571a98e4be7530a89ec2ce9032dc7862466150bbd077d744"
+    },
+    {
+      "name": "python_tests",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051125Z/python_tests.log",
+      "log_sha256": "97c663fe34134e5bb2b0101ed75b9c40e70e769fbf7a4f9241744b259513a04d"
+    },
+    {
+      "name": "security_bridge",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051125Z/security_bridge.log",
+      "log_sha256": "e6d3db03a44faa96653be76bfeede73921307449dc0155333496db3f6a758290"
+    },
+    {
+      "name": "mind_request_dry_run",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051125Z/mind_request_dry_run.log",
+      "log_sha256": "34841a3bdabe527df36b1810e9542db9f3ebe24c96b2094f34e46248176d08f0"
+    },
+    {
+      "name": "isolated_runtime_self_test",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051125Z/isolated_runtime_self_test.log",
+      "log_sha256": "b57f77aa2ca0932f1fe2da7daf009d3aa64e62d256afeb0ecc62a82cbb3ec68d"
+    }
+  ],
+  "expected_limits": [
+    "autonomous Python writes remain closed in Rust",
+    "dry-run must report HOLD_SECURITY and writes_performed=false",
+    "isolated self-test uses disposable assembly only and expects Rust denial"
+  ]
+}

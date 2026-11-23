@@ -1,0 +1,81 @@
+{
+  "cycle_succeeded": true,
+  "stop_reason": "verified_and_stopped",
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "session_id": "ses_e24437757ffeceAZoN7elonNWw",
+  "visible_pre_work_self_prompt": "[DRONE SELF-PROMPT]\nAgenda: Await Architect's explicit authorization before executing localcoder_status tool call; prepare to report project_root value once assigned.\nVerified facts: None checked in this turn per Queen instruction; no repository facts verified yet.\nNext bounded action: STOP; await Queen for explicit work assignment and tool execution authorization.",
+  "plan": {
+    "elapsed_seconds": 26.734,
+    "exit_code": 1,
+    "transport_exit_code": 1,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e24437757ffeceAZoN7elonNWw"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "1dbef1515a66d98787af2b102d2e95819637d268b2eaf3ebbeed1b00bef5263f",
+    "tools": [],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Await Architect's explicit authorization before executing localcoder_status tool call; prepare to report project_root value once assigned.\nVerified facts: None checked in this turn per Queen instruction; no repository facts verified yet.\nNext bounded action: STOP; await Queen for explicit work assignment and tool execution authorization."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T202528377471Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T202528293666Z.prompt.txt"
+  },
+  "work": {
+    "elapsed_seconds": 41.0,
+    "exit_code": 0,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e24437757ffeceAZoN7elonNWw"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "a01e55cef21155d45c5b92b46b5d9baa2100912a8b011923b32761cf0aaa186c",
+    "tools": [
+      {
+        "tool": "localcoder_status",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": true,
+    "task_errors": [],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "project_root: L:\\LocalCoder\n\n[DRONE SELF-PROMPT]\nAgenda: Verify Python execution environment; run bounded verification test using L:.venv\\Scripts\\python.exe -B.\nVerified facts: project_root = L:\\LocalCoder confirmed via localcoder_status tool call.\nNext bounded action: STOP; await Queen for explicit work assignment and verification command authorization."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T202555204901Z",
+    "wrapper_exit": 0,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T202555125552Z.prompt.txt"
+  },
+  "assignment_sha256": "30e0cb29b6f40b46b5ee8b8d60487746348c77696b0e5a21dac4ccfafa4e5177"
+}

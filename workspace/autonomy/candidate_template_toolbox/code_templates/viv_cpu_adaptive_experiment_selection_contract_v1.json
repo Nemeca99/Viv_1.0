@@ -1,0 +1,44 @@
+{
+  "schema_version": "viv_cpu_adaptive_experiment_selection_v1",
+  "receipt_schema": "viv_cpu_adaptive_experiment_selection_receipt_v1",
+  "parent_receipt_schema": "viv_cpu_staged_autonomous_candidate_loop_receipt_v4",
+  "parent_receipt_sha256": "9F74430FDDA0969058C7135CADF4A1A1A43891A3F47CC1D65E77652B9B98BF18",
+  "parent_candidate_sha256": "C631CFDFC7878F715F486DAEBA3EECCEEC777909645A453B322078DD1A53418F",
+  "parent_candidate_state_sha256": "4270D408A5209F9FE3DCBDEEDBEECD6EE7DE872400D6F1662827DFACD0C426E0",
+  "model_output_grammar": "E|<experiment_slot>|<repeat_count>|<budget>",
+  "experiment_slots": [0, 1, 2, 3, 4],
+  "route_status_codes": {
+    "h": "survived_current_evidence",
+    "l": "failed_current_condition"
+  },
+  "selection_policy": "first_survivor_after_prior_preserve_all_routes",
+  "route_invariants": {
+    "all_routes_retained": true,
+    "failed_routes_retained": true,
+    "first_survivor_not_final": true,
+    "pruning_requires_explicit_cpu_rule": true
+  },
+  "causal_fields": ["prior_slot", "predecision_measurement_matrix"],
+  "forbidden_model_fields": ["expected_target", "cpu_final_disposition", "post_decision_state", "source_body", "source_path", "generated_code"],
+  "recipe": {
+    "device": "cpu",
+    "training": "reused_verified_v4_candidate_no_new_training",
+    "inference": "greedy_argmax",
+    "temperature": 0.0,
+    "repeats": 2
+  },
+  "protected_boundaries": {
+    "candidate_only": true,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "registry_mutation": false,
+    "production_generation": false,
+    "gpu_authority": false,
+    "rust_python_write_open": false,
+    "human_approval_required_for_adoption": true
+  },
+  "cli_guards": ["--isolated", "--no-publish"],
+  "model_output_repair": false,
+  "cpu_answer_substitution": false,
+  "known_limitation": "The candidate chooses one next probe; the receipt preserves every route and does not claim that one survivor is absolute truth."
+}

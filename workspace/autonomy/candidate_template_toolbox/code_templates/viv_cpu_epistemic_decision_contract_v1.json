@@ -1,0 +1,84 @@
+{
+  "schema_version": "viv_cpu_epistemic_decision_contract_v1",
+  "status": "candidate_only",
+  "receipt_schema": "viv_cpu_epistemic_decision_receipt_v1",
+  "parent": {
+    "campaign_receipt_sha256": "ED85A2370B8D52CEE8FDF7DDF28EA5521083E4F3E672B8F4FAAE632D69CF7619",
+    "route_frontier_receipt_sha256": "3603C318EC17BB8F3FA1897B774F080D701E0093DD1B835A5DAD9BADA71961E9",
+    "route_authorship_receipt_sha256": "8C1707C7220A17AEBC9C639FC0C377051C8900629B7CA591ED6AA3E0F879279E"
+  },
+  "frame": {
+    "schema": "viv_cpu_epistemic_decision_frame_v1",
+    "decision": "J|d=<accept|reject|hold|continue>|r=<reason_code>|s=<stop|hold|explore>",
+    "hold": "H|r=<reason_code>",
+    "field_order": ["d", "r", "s"],
+    "maximum_characters": 64,
+    "fixed_generation_budget_tokens": 48,
+    "terminator": "",
+    "trailing_output_policy": "reject_without_repair"
+  },
+  "menus": {
+    "decisions": ["accept", "reject", "hold", "continue"],
+    "reasons": ["supported", "verified", "contradicted", "unbound", "insufficient", "conflict", "not_converged", "budget"],
+    "stop_slots": ["stop", "hold", "explore"],
+    "evidence_states": ["verified", "supported", "insufficient", "missing", "conflict", "stale"],
+    "authority_states": ["cpu_evidence_bound", "authority_closed", "requires_operator_resume"]
+  },
+  "semantic_boundary": {
+    "model_authors": ["decision", "reason_code", "stop_slot"],
+    "cpu_derives": ["route_frontier", "route_retention", "empirical_verdict", "semantic_status", "evidence_status", "authority_disposition", "learning_disposition"],
+    "model_may_not_author": ["truth_label", "route_pruning", "preferred_route", "production_effect", "authority_expansion", "path", "code"]
+  },
+  "search_policy": {
+    "all_routes_retained": true,
+    "failed_routes_retained": true,
+    "preferred_route_default": null,
+    "continue_only_when": "frontier_is_not_converged_and_budget_remains",
+    "stop_only_when": "current_evidence_is_converged_or_cpu_hold_is_required"
+  },
+  "causal_availability": {
+    "pre_decision_only": true,
+    "forbidden_fields": ["target_frame", "expected_disposition", "cpu_final_disposition", "post_decision_state", "future_trace_row"],
+    "allowed_fields": ["route_count", "survivor_count", "failed_count", "convergence_state", "semantic_state", "evidence_state", "authority_state", "budget_state"]
+  },
+  "training": {
+    "training_rows": 224,
+    "held_out_rows": 24,
+    "compositional_traces": 8,
+    "recipe": {
+      "device": "cpu",
+      "seed": 43,
+      "steps": 1024,
+      "batch_size": 8,
+      "learning_rate": 0.0005,
+      "repeats": 2
+    }
+  },
+  "authority": {
+    "cpu_truth_authority": true,
+    "gpu_truth_authority": false,
+    "rust_write_membrane": true,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "human_events_fabricated": false
+  },
+  "acceptance": {
+    "candidate_decision_rows": 16,
+    "candidate_trace_count": 8,
+    "candidate_model_origin_rows": 14,
+    "candidate_model_origin_traces": 6,
+    "cpu_unauthorized_accepts": 0,
+    "repeated_digests_identical": true,
+    "all_routes_retained": true,
+    "preferred_route_count": 0
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

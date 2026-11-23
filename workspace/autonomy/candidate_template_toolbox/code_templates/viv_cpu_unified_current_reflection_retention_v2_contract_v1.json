@@ -1,0 +1,70 @@
+{
+  "schema_version": "viv_cpu_unified_current_reflection_retention_v2_contract_v1",
+  "purpose": "Corrected balanced reflection repair after an audit found that the prior training wrapper did not bind expected_cpu_only into the prompt builder.",
+  "parent": {
+    "fresh_generalization_receipt_sha256": "5BFA6E4AD24A9F93DE3F596182EED6AFD202BEA1276DF162163F4BFAA69C9D0F",
+    "current_candidate_sha256": "0652699B8EC09EFE3FD2256D8FEDE5682D056C48D5F4B6E0808D2E5F66D8ACE1",
+    "superseded_diagnostic_receipts": [
+      "B8165E9A028269A5A5C43F1DD8169D18478FDA081AB4EB339ECA8260055468D9",
+      "6686C7BA5434B33C6D68C856CD30852CB25D28FCA3AF584B195310253DDBF747"
+    ],
+    "superseded_reason": "prompt construction audit found missing expected_cpu_only card binding"
+  },
+  "representation": {
+    "name": "reflection_task_marker_v1_with_surface_retention_corrected_card_binding",
+    "reflection_prompt_change": "insert t=r into reflection prompts only",
+    "card_binding": "card, source_card, expected_cpu_only, or model_packet.card in that order",
+    "output_grammar_unchanged": "viv_cpu_autonomy_reflection_frame_v1",
+    "cpu_parser_unchanged": true,
+    "cpu_resolver_unchanged": true,
+    "decoder_unchanged": true,
+    "tokenizer_unchanged": true,
+    "answer_free": true
+  },
+  "curriculum": {
+    "base_training_rows": 224,
+    "retained_non_reflection_rows": 192,
+    "reflection_rows": 32,
+    "effective_training_rows": 224,
+    "holdout_rows_unchanged_semantically": true,
+    "source_catalog_rebuilt": false,
+    "cpu_hidden_objectives": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "context_length": 128,
+    "generation_budget": 80,
+    "response_only_loss": true
+  },
+  "diagnostic_gates": {
+    "reflection_supported_min": 4,
+    "reflection_clean_min": 4,
+    "reflection_improvement_over_parent_min": 4,
+    "unsupported_cpu_accepts": 0,
+    "downstream_non_regression": true
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "live_seed0_mutation": false,
+    "live_model_mutation": false,
+    "production_generation": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "gpu_execution": false,
+    "human_event_fabrication": false,
+    "rust_expected_state": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": "receipt_sha256"
+  }
+}

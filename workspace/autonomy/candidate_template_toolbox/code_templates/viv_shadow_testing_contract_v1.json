@@ -1,0 +1,32 @@
+{
+  "schema_version": "viv_shadow_testing_v1",
+  "status": "candidate_only",
+  "purpose": "Retain logically compatible model alternatives for additional CPU/evidence tests without treating exact-match failure as invalid or promoting a survivor automatically.",
+  "dispositions": [
+    "EXACT_TARGET",
+    "NOVEL_LOGICALLY_COMPATIBLE",
+    "VALID_ALTERNATE_ROUTE",
+    "SEMANTIC_UNBOUND",
+    "INSUFFICIENT_EVIDENCE",
+    "EMPIRICALLY_CONTRADICTED",
+    "CONFLICT",
+    "MALFORMED",
+    "UNAUTHORIZED"
+  ],
+  "rules": {
+    "raw_output_preserved": true,
+    "cpu_repair_counts_as_model_success": false,
+    "logical_alternatives_retained": true,
+    "candidate_deletion_api": false,
+    "truth_promotion_in_shadow_layer": false,
+    "production_authority_opened_in_shadow_layer": false,
+    "multiple_survivors_are_held_for_more_tests": true,
+    "one_survivor_requires_complete_tests": true
+  },
+  "stop_states": [
+    "SURVIVOR_SINGLE",
+    "NO_SURVIVORS",
+    "HOLD_BUDGET_EXHAUSTED",
+    "MULTIPLE_SURVIVORS"
+  ]
+}

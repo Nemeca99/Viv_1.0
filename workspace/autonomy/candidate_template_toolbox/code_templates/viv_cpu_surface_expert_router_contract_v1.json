@@ -1,0 +1,38 @@
+{
+  "schema_version": "viv_cpu_surface_expert_router_contract_v1",
+  "experiment_id": "cpu_surface_expert_router_v1",
+  "purpose": "Compose independently verified, surface-specialized candidate evidence behind a CPU-owned route table without claiming a unified checkpoint.",
+  "route_owner": "CPU_RULE",
+  "allowed_surfaces": ["reflection", "query", "action", "variable", "result", "scheduler", "template"],
+  "route_selection": {
+    "model_may_select_route": false,
+    "phase_to_surface_is_cpu_owned": true,
+    "unknown_surface": "HOLD",
+    "ambiguous_surface": "HOLD"
+  },
+  "expert_requirements": {
+    "same_first_party_model": true,
+    "same_tokenizer": true,
+    "checkpoint_candidate_only": true,
+    "receipt_self_hash": true,
+    "independent_confirmation": true,
+    "surface_gate_only": true
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "new_model_inference": false,
+    "training": false,
+    "production_write": "HOLD_SECURITY",
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "seed_mutation": false
+  },
+  "deterministic_canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sorted_object_keys": true,
+    "trailing_lf": true,
+    "volatile_fields_excluded_from_route_digest": ["created_utc", "run_id"]
+  }
+}

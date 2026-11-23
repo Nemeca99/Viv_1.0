@@ -1,0 +1,62 @@
+{
+  "schema_version": "viv_cpu_unified_self_building_loop_v3",
+  "receipt_schema": "viv_cpu_unified_self_building_adaptation_receipt_v1",
+  "status": "candidate_only",
+  "purpose": "Adapt the verified unified CPU candidate to the source-attributed live auto coverage-gap reflection shape without changing the protocol or authority boundary.",
+  "parent": {
+    "receipt_schema": "viv_cpu_unified_self_building_receipt_v2",
+    "receipt_sha256": "CE284CE7E8AAE1EF9E9DB7859567DE51B3D1E48B286E5F400D66F00752F09F80",
+    "candidate_checkpoint_sha256": "98419AFD6A80C1C67B822AB76217FA95D1D9AAF8B99DAA81DD58735243B92CB3",
+    "candidate_state_sha256": "FF97583FDFACA109430696E48222113A6EBAE1D178D36004B1C150CF024835FE",
+    "candidate_role": "unified_v2_repeat_0"
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "context_length": 128,
+    "response_only_loss": true
+  },
+  "curriculum": {
+    "training_row_count": 320,
+    "sampler_index_space": 320,
+    "parent_rows_unchanged": 304,
+    "live_reflection_repair_rows": 16,
+    "replacement_scope": "reflection_relative_positions",
+    "replacement_positions": [0, 1, 4, 5, 8, 9, 12, 13, 16, 17, 20, 21, 24, 25, 28, 29],
+    "parent_unique_row_coverage_note": "The 16 selected positions are explicit representation replacements; the remaining 304 v2 rows are byte-equivalent copies. Replaced parent row IDs and hashes are recorded in the curriculum manifest."
+  },
+  "live_reflection_shape": {
+    "prompt": "VIV|f|s=a|m=c|e=0|v=v|a=v|n=<bounded_index>|o=",
+    "target_core": "DEFICIENCY_CANDIDATE|auto|0|coverage_gap|stable",
+    "source_module": "auto_main",
+    "source_class": "live_observation",
+    "evidence_state": "VERIFIED",
+    "authority_state": "verified",
+    "pre_decision": true,
+    "target_hidden": true
+  },
+  "frozen": {
+    "grammar": "viv_cpu_model_directed_fixed_width_wire_v1",
+    "tokenizer_unchanged": true,
+    "decoder_unchanged": true,
+    "cpu_resolver_unchanged": true,
+    "registry_mutation": false,
+    "seed0_mutation": false,
+    "live_model_mutation": false,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "gpu_execution": false,
+    "rust_expected_state": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "volatile_fields_excluded_from_dataset_digest": ["created_utc", "run_id", "checkpoint_path", "wall_seconds"]
+  }
+}

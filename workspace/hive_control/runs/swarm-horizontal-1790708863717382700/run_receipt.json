@@ -1,0 +1,246 @@
+{
+  "accepted_artifact_sha256": {
+    "A": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+    "B": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+    "C": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+    "E": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe"
+  },
+  "actual_artifact_sha256": {
+    "A": "ec39b67830c0c34d71b0b6bf1d1c424eb7caab9222eb401fdaef044cf2145e9b",
+    "B": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+    "C": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+    "E": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe"
+  },
+  "cohorts": [
+    [
+      "A",
+      "B",
+      "C"
+    ],
+    [
+      "D",
+      "E"
+    ]
+  ],
+  "events": [
+    {
+      "finish_ns": 1790708863818824700,
+      "generation_count": 0,
+      "output_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+      "output_text": "A\n",
+      "packet": {
+        "body": {
+          "parents": {},
+          "task": {
+            "agent_id": "rust-worker-A",
+            "agent_kind": "deterministic",
+            "capability": "write-own-file",
+            "depends_on": [],
+            "id": "A",
+            "objective": "Write the bounded A artifact"
+          }
+        },
+        "capability": "write-own-file",
+        "checksum": "933b78954b52126f7b23a1fe23b4ac4dee360acb4b426a7d41ebfd7360c4f2e6",
+        "payload_sha256": "4203e8adf9f8d702c534b26624787f512da5fa216564041c159af4aa9edf5661",
+        "task_id": "A"
+      },
+      "packet_checksum": "933b78954b52126f7b23a1fe23b4ac4dee360acb4b426a7d41ebfd7360c4f2e6",
+      "parent_sha256": {},
+      "start_ns": 1790708863718485300,
+      "status": "PASS",
+      "task_id": "A"
+    },
+    {
+      "finish_ns": 1790708863819255300,
+      "generation_count": 0,
+      "output_sha256": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+      "output_text": "C\n",
+      "packet": {
+        "body": {
+          "parents": {},
+          "task": {
+            "agent_id": "rust-worker-C",
+            "agent_kind": "deterministic",
+            "capability": "write-own-file",
+            "depends_on": [],
+            "id": "C",
+            "objective": "Write the bounded C artifact"
+          }
+        },
+        "capability": "write-own-file",
+        "checksum": "360d7240e679c8215077219890290ea7e78c7a30c3cb6c6d7e756454f5308563",
+        "payload_sha256": "b230008d90daca5efba35d77682aea8d90c7b72f6c0d7c24f28ca9a6037385b9",
+        "task_id": "C"
+      },
+      "packet_checksum": "360d7240e679c8215077219890290ea7e78c7a30c3cb6c6d7e756454f5308563",
+      "parent_sha256": {},
+      "start_ns": 1790708863718639800,
+      "status": "PASS",
+      "task_id": "C"
+    },
+    {
+      "finish_ns": 1790708863819294600,
+      "generation_count": 0,
+      "output_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+      "output_text": "B\n",
+      "packet": {
+        "body": {
+          "parents": {},
+          "task": {
+            "agent_id": "rust-worker-B",
+            "agent_kind": "deterministic",
+            "capability": "write-own-file",
+            "depends_on": [],
+            "id": "B",
+            "objective": "Write the bounded B artifact"
+          }
+        },
+        "capability": "write-own-file",
+        "checksum": "85eab5136a003eed731647e5fcf4572dfb641491b13698dfcc8407d5093bb3f7",
+        "payload_sha256": "5904c69845aefa78f0feed1585e5ad50366bc43718f0d2dbd6dba1d3fbdff1c1",
+        "task_id": "B"
+      },
+      "packet_checksum": "85eab5136a003eed731647e5fcf4572dfb641491b13698dfcc8407d5093bb3f7",
+      "parent_sha256": {},
+      "start_ns": 1790708863718561300,
+      "status": "PASS",
+      "task_id": "B"
+    },
+    {
+      "failure": "parent artifact changed before dispatch: A",
+      "generation_count": 0,
+      "objective": "Write the bounded D artifact",
+      "parent_sha256": {
+        "A": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+        "B": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+      },
+      "status": "HOLD",
+      "task_id": "D"
+    },
+    {
+      "finish_ns": 1790708863820329400,
+      "generation_count": 0,
+      "output_sha256": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+      "output_text": "C\n",
+      "packet": {
+        "body": {
+          "parents": {
+            "C": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe"
+          },
+          "task": {
+            "agent_id": "rust-worker-E",
+            "agent_kind": "deterministic",
+            "capability": "write-own-file",
+            "depends_on": [
+              "C"
+            ],
+            "id": "E",
+            "objective": "Write the bounded E artifact"
+          }
+        },
+        "capability": "write-own-file",
+        "checksum": "e6e25c38c8d06aa7c4965c75a4e47cb9b6da062491738191eecce562d3cb811e",
+        "payload_sha256": "d6dfca00de4c9ab92f169ac62d2c0b3855a8e835cdb8b9326dce00c6a226ad30",
+        "task_id": "E"
+      },
+      "packet_checksum": "e6e25c38c8d06aa7c4965c75a4e47cb9b6da062491738191eecce562d3cb811e",
+      "parent_sha256": {
+        "C": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe"
+      },
+      "start_ns": 1790708863820205800,
+      "status": "PASS",
+      "task_id": "E"
+    }
+  ],
+  "failure": "parent artifact changed before dispatch: A",
+  "fault_injected": true,
+  "final_text": null,
+  "first_cohort_overlapped": true,
+  "schema": "hive_swarm_horizontal_v1",
+  "scope": "Rust-only bottom Swarm layer with entropy-bound encrypted task snapshots; no Python bridge or Mind model",
+  "status": "HOLD",
+  "task_graph": [
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-worker-A",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [],
+        "id": "A",
+        "objective": "Write the bounded A artifact"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-worker-B",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [],
+        "id": "B",
+        "objective": "Write the bounded B artifact"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-worker-C",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [],
+        "id": "C",
+        "objective": "Write the bounded C artifact"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": null,
+      "spec": {
+        "agent_id": "rust-worker-D",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [
+          "A",
+          "B"
+        ],
+        "id": "D",
+        "objective": "Write the bounded D artifact"
+      },
+      "state": "failed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-worker-E",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [
+          "C"
+        ],
+        "id": "E",
+        "objective": "Write the bounded E artifact"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": null,
+      "spec": {
+        "agent_id": "rust-worker-F",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [
+          "D",
+          "E"
+        ],
+        "id": "F",
+        "objective": "Write the bounded F artifact"
+      },
+      "state": "pending"
+    }
+  ],
+  "task_transcript": "L:\\LocalCoder\\workspace\\hive_control\\runs\\swarm-horizontal-1790708863717382700\\task_transcript.jsonl"
+}

@@ -1,0 +1,155 @@
+{
+  "cycle_succeeded": true,
+  "stop_reason": "verified_and_stopped",
+  "plan_validation": "plan_matches_current_architect_assignment",
+  "final_validation": "final_report_and_tool_receipts_verified",
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "required_tools": [
+    "localcoder_status"
+  ],
+  "session_id": "ses_e242971d3ffe0624h6LuwhQbXx",
+  "visible_pre_work_self_prompt": "[DRONE SELF-PROMPT]\n\nAgenda: Execute localcoder_status diagnostic per Queen authorization; report project_root from returned result.\n\nVerified facts: Architect authorized continuing Drone workflow goal via `localcoder_status` tool sequence only for this diagnostic. No repository facts checked in this turn.\n\nNext bounded action: Call `localcoder_status` exactly once and capture its returned project_root value.",
+  "assignment_sha256": "8947cea5a0bcc0e0a446efbc9681a5b60323194abcc9976940b2838b5f36df22",
+  "plan": {
+    "elapsed_seconds": 28.75,
+    "exit_code": 1,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e242971d3ffe0624h6LuwhQbXx"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "74bd8156a8ed440b0d13f533c7dd46cffc3b535800d2eb1e09853fb0563f8017",
+    "tools": [],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\n\nAgenda: Execute localcoder_status diagnostic per Queen authorization; report project_root from returned result.\n\nVerified facts: Architect authorized continuing Drone workflow goal via `localcoder_status` tool sequence only for this diagnostic. No repository facts checked in this turn.\n\nNext bounded action: Call `localcoder_status` exactly once and capture its returned project_root value."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T205353731642Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T205353649577Z.prompt.txt"
+  },
+  "work": {
+    "elapsed_seconds": 38.75,
+    "exit_code": 0,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e242971d3ffe0624h6LuwhQbXx"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "1c3cf5e34d4b0ee0cc95a92a2b85341f9505844f67a35f6eff0eca139a12e1a4",
+    "tools": [
+      {
+        "tool": "localcoder_status",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": true,
+    "task_errors": [],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE]\nproject_root: L:\\LocalCoder\n\n[DRONE SELF-PROMPT]\nAgenda: Diagnostic complete; awaiting Architect direction.\nVerified facts: localcoder_status returned project_root=L:\\LocalCoder with integration_root=L:\\LocalCoder\\workspace and execution_policy=Only the current Architect-assigned task; no standing autonomous assignment.\nNext bounded action: STOP; await Queen."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T205422568271Z",
+    "wrapper_exit": 0,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T205422491955Z.prompt.txt",
+    "dispatcher_final_text": [
+      "[DRONE]\nproject_root: L:\\LocalCoder\n\n[DRONE SELF-PROMPT]\nAgenda: Diagnostic complete; awaiting Architect direction.\nVerified facts: localcoder_status returned project_root=L:\\LocalCoder with integration_root=L:\\LocalCoder\\workspace and execution_policy=Only the current Architect-assigned task; no standing autonomous assignment.\nNext bounded action: STOP; await Queen."
+    ]
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794689641539-222c84d9-8b65-4ad5-b8a0-30bd8b29ba35-body-gate.json",
+      "sha256": "ba003c82b6c58ed1badcdb9c5e37926dede2698256fee9ef84ddf9e1dff3047e",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794689670690-1dc78000-1d6e-4730-a95c-ec13520bcf5c-body-gate.json",
+      "sha256": "6f6f1c86f81da09b3929e49c38101c13900119c2447f85fd2ae5478cce5b6824",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794689681012-92cf7eff-7e39-483b-aa64-e5e044b0d85e-body-gate.json",
+      "sha256": "f1fb5cc8792f9391fdfe76cd1623fb002da7511a8d8ca31e0bf0c778a8556648",
+      "source": "tool:localcoder_status",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794689684818-466585ce-9c4c-49f5-b482-5322bd9ef767-body-gate.json",
+      "sha256": "b1256231255c7db0f6b3665e55d8e09303df9cba83bb119179a5cde3e3ef3740",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    }
+  ]
+}

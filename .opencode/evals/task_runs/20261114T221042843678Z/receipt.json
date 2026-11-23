@@ -1,0 +1,35 @@
+{
+  "elapsed_seconds": 51.531,
+  "exit_code": 0,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e23e31d40ffe0WUQ6ybwL6XvNk"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "bb499473d6e9cd90e351d3efdb07885996f6492a257ff13c6327028ae540cf23",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "shell_checks": [],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE] Function `validate_agent_message` performs pure validation of agent message envelopes without raising exceptions. It returns a tuple of error-code strings (empty on valid input). Required fields: `agent_type`, `status`, `audience`, `trust_class`, `claims`. Additional optional fields validated per schema rules. Model agents require `trust_class=\"unverified_model_output\"`, human agents require `trust_class=\"human_agent_statement\"`. Audience must be `\"mind\"`. Claims structure requires dict with text, evidence_ids list, and kind in [\"retrieved_fact\", \"inference\", \"proposal\"].\n\n[DRONE SELF-PROMPT]\nAgenda: Await Queen direction for next bounded action.\nVerified facts: Read completed successfully; function returns error tuple on invalid input, empty tuple on valid input.\nNext bounded action: STOP; await Queen."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T221042843678Z"
+}

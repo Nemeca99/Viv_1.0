@@ -1,0 +1,82 @@
+{
+  "schema_version": "viv_cpu_staged_autonomous_candidate_loop_v4",
+  "receipt_schema": "viv_cpu_staged_autonomous_candidate_loop_receipt_v4",
+  "parent_schema": "viv_cpu_staged_autonomous_candidate_loop_receipt_v3",
+  "device": "cpu",
+  "recipe": {
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2
+  },
+  "adaptive_surface": {
+    "schema_version": "viv_adaptive_measurement_matrix_v4",
+    "selection_policy": "highest_verified_measurement",
+    "experiment_slots": [0, 1, 2, 3, 4],
+    "matrix_values": ["h", "l"],
+    "result_code": "stable",
+    "target_excluded": true,
+    "measurement_source": "independently_produced_predecision_result_card",
+    "training_matrix_substitutions": 16,
+    "heldout_rows": 16,
+    "compositional_traces": 8,
+    "training_target_surface_preserved": true
+  },
+  "live_predecision_measurement_card": {
+    "schema_version": "viv_cpu_predecision_measurement_card_v1",
+    "source": "isolated_fixture_result",
+    "derivation": "measurement_class_to_finite_matrix_slot",
+    "target_excluded": true,
+    "expected_answer_excluded": true,
+    "post_decision_fields_present": false
+  },
+  "causal_availability": {
+    "allowed_fields": ["prior_slot", "predecision_measurement", "evidence_state", "authority_state"],
+    "forbidden_fields": [
+      "expected_target",
+      "target_frame",
+      "cpu_normalized_action",
+      "cpu_final_disposition",
+      "post_decision_state",
+      "future_trace_row",
+      "known_correct_answer"
+    ],
+    "phase_metadata_predecision_only": true
+  },
+  "protected_boundaries": {
+    "candidate_only": true,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "registry_mutation": false,
+    "production_generation": false,
+    "gpu_execution": false,
+    "rust_python_write_open": false,
+    "training_authority_open": false,
+    "promotion_authority_open": false,
+    "deployment_authority_open": false
+  },
+  "grammar": {
+    "unchanged": true,
+    "schedule_frame": "E|<experiment_slot>|<repeat_count>|<budget>",
+    "model_output_repair": false,
+    "cpu_answer_substitution": false
+  },
+  "gates": {
+    "ordinary_floor": 50,
+    "compositional_floor": 11,
+    "adaptive_choice_floor": 12,
+    "adaptive_trace_floor": 6,
+    "reflection_deficiency_floor": 6,
+    "reflection_clean_floor": 7,
+    "cpu_unauthorized_accepts": 0,
+    "rust_state": "HOLD_SECURITY",
+    "candidate_only": true
+  },
+  "cli_guards": ["--isolated", "--no-publish"],
+  "metadata_only": true,
+  "target_leakage": false,
+  "tokenizer_changed": false,
+  "decoder_changed": false,
+  "human_approval_required_for_adoption": true
+}

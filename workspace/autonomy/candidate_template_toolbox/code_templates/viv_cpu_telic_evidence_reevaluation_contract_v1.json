@@ -1,0 +1,38 @@
+{
+  "schema_version": "viv_cpu_telic_evidence_reevaluation_v1",
+  "receipt_schema": "viv_cpu_telic_evidence_reevaluation_receipt_v1",
+  "status": "candidate_only",
+  "parent": {
+    "schema_version": "viv_cpu_telic_bounded_evidence_receipt_v1",
+    "requires_verified_bounded_evidence": true
+  },
+  "model_surface": {
+    "frame": "REEVALUATE|d=<dimension>|t=<tension>|e=0 or NO_REEVALUATION",
+    "metadata_only": true,
+    "expected_disposition_hidden": true,
+    "raw_output_preserved": true,
+    "cpu_repair": false
+  },
+  "cpu_rules": {
+    "evidence_classification_final_authority": true,
+    "dynamic_state_may_change": true,
+    "historical_state_rewritten": false,
+    "foundations_mutable": false,
+    "contradictory_evidence_averaged": false,
+    "unknown_invented_as_supported": false
+  },
+  "required_transitions": [
+    "UNKNOWN_TO_SUPPORTED",
+    "SUPPORTED_TO_VERIFIED",
+    "SUPPORTED_TO_CONTRADICTED",
+    "REEVALUATE_TO_NO_REEVALUATION",
+    "NO_STATE_CHANGE_ON_INSUFFICIENT"
+  ],
+  "authority": {
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "rust_write": false
+  }
+}

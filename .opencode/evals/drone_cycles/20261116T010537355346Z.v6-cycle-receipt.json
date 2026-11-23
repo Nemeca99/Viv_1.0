@@ -1,0 +1,241 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "session_recovery_required",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e1e25cab7ffeISb5hzWrCKIYNH",
+  "session_recovery": {
+    "recovered": true,
+    "session_id": "ses_e1e25cab7ffeISb5hzWrCKIYNH",
+    "title": "LocalCoder Drone 20261116T005536362553Z",
+    "outcome": "succeeded",
+    "terminal": true,
+    "interrupt_attempted": false,
+    "interrupt": null,
+    "export_path": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261116T005536362553Z\\ses_e1e25cab7ffeISb5hzWrCKIYNH.v6-recovery-20261116T010537185681Z.json"
+  },
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "read",
+    "localcoder_add_python",
+    "shell"
+  ],
+  "final_validation": "final_self_prompt_does_not_stop_at_cycle_boundary",
+  "self_check_validation": {
+    "required": true,
+    "passed": false,
+    "reason": "self_check_result_missing"
+  },
+  "read_evidence_validation": null,
+  "source_line_validation": null,
+  "intermediate_validation": {
+    "passed": false,
+    "reason": "observed_tool_count_mismatch"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794790541540-8716e3df-dd91-48a4-b64f-0f6ab94fdd5a-body-gate.json",
+      "sha256": "03c4facf59eb2d618bad65052f9ecd5f5c517e4189b2eb9c0054afd7b090c0d3",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 87.7,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 83.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 87.7,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.6
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794790587131-9650950c-7a67-4e15-9c13-3c4891d7940d-body-gate.json",
+      "sha256": "5d1c2a4ff28104684c3dae44348329ff41af7ef65fc103dc8170159d27c0de82",
+      "source": "tool:read",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 86.2,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 83.7,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 86.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.5
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794790593290-96ce213d-c06f-4142-831c-f3ccfa76f80d-body-gate.json",
+      "sha256": "0d46eca1079b62bb85e9051b1b734315df54d9e62c25b0592ebf21dc7018e46d",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 86.7,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 84,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 86.7,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.5
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794790715951-3845a59b-a2c5-415a-95ab-2ed89783e635-body-gate.json",
+      "sha256": "0b22cd0abafe79278fca47a007080ad0983a95d6316ff4b15fcd95520d319f58",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 87.1,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 83.5,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 87.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.8
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794791021979-cd62de1e-6777-4b8c-abb0-9c54832baad9-body-gate.json",
+      "sha256": "a6ebe2cfb78d8038d92a6f2f48b98d773a99cf6b9c1ac4bd187f389f02f72617",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 84.2,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 85.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 84.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.3
+      },
+      "reasons": []
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 83.5,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 86.6,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 0.8
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "7ee7b28d52dc79826a282e35e84f54b9f421c724621cf31e1c8dc01c571caa31",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 600.547,
+    "exit_code": 1,
+    "transport_exit_code": 1,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": true,
+    "sessions": [
+      "ses_e1e25cab7ffeISb5hzWrCKIYNH"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "c9b6f5c8b543fe85d69e5510014ceabfa487b64ac8b5f9e70d13e1e5fc9535e6",
+    "tools": [
+      {
+        "tool": "read",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "timed_out",
+      "self_check_result_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE]\nFile: `workspace/autonomy/typed_composition_receipt_audit_v1_candidate.py`\nFact: Executor uses `sha256_bytes()` and canonical hashing via `json.dumps(..., sort_keys=True)` matching receipt schema validation requirements.\n\n[DRONE SELF-PROMPT]\nAgenda: Implement audit checker with 8 self-checks per executor constants\nVerified facts: Read confirmed `candidate_typed_composition_executor_v2.py` uses `sha256_bytes()`, canonical hashing via JSON sort_keys, and SQLite readonly mode; receipt schema is `viv_typed_composition_execution_v1`; database path from `store.DB_PATH`; PRAGMA quick_check must be \"ok\"; three relay rows match count; two unique execution nodes end with entry version; provider/consumer types agree; candidate_store_read_only=true, live_viv_modified=false, model_weights_changed=false\nNext bounded action: Call the localcoder_add_python tool"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": true,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261116T005536362553Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261116T005536267822Z.prompt.txt",
+    "exit_only_final_shell_check_passed": false,
+    "session_recovery": {
+      "recovered": true,
+      "session_id": "ses_e1e25cab7ffeISb5hzWrCKIYNH",
+      "title": "LocalCoder Drone 20261116T005536362553Z",
+      "outcome": "succeeded",
+      "terminal": true,
+      "interrupt_attempted": false,
+      "interrupt": null,
+      "export_path": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261116T005536362553Z\\ses_e1e25cab7ffeISb5hzWrCKIYNH.v6-recovery-20261116T010537185681Z.json"
+    },
+    "dispatcher_final_text": [
+      "[DRONE]\nFile: `workspace/autonomy/typed_composition_receipt_audit_v1_candidate.py`\nFact: Executor uses `sha256_bytes()` and canonical hashing via `json.dumps(..., sort_keys=True)` matching receipt schema validation requirements.\n\n[DRONE SELF-PROMPT]\nAgenda: Implement audit checker with 8 self-checks per executor constants\nVerified facts: Read confirmed `candidate_typed_composition_executor_v2.py` uses `sha256_bytes()`, canonical hashing via JSON sort_keys, and SQLite readonly mode; receipt schema is `viv_typed_composition_execution_v1`; database path from `store.DB_PATH`; PRAGMA quick_check must be \"ok\"; three relay rows match count; two unique execution nodes end with entry version; provider/consumer types agree; candidate_store_read_only=true, live_viv_modified=false, model_weights_changed=false\nNext bounded action: Call the localcoder_add_python tool"
+    ]
+  }
+}

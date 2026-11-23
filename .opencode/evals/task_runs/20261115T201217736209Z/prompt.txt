@@ -1,0 +1,10 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Read file `workspace/autonomy/hive_postal_recipient_predicate_v19_candidate.py`. Report this source fact: `is_valid_drone_recipient` rejects non-string values, empty strings, and strings with surrounding whitespace.
+Use the read tool to read the assigned file.
+Use the shell tool to run `L:\.venv\Scripts\python.exe workspace\autonomy\hive_postal_recipient_predicate_v19_candidate.py` in the foreground. Report the actual output and exit code. After the second assigned tool, begin the final report with `[DRONE]`, include the filename and the observed check result, then emit one `[DRONE SELF-PROMPT]` whose `Next bounded action:` is `STOP`. Do not write, modify, delete, move, or route anything.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: read → shell. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

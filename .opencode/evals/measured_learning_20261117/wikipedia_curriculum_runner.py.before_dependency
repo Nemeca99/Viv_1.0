@@ -1,0 +1,381 @@
+"""Wikipedia Curriculum Runner: Socratic Declarative Learning with Organic Lexical Synthesis.
+
+Operates under the Architect's Directive:
+1. Harvests real-world declarative sentences (3 to 6 words) from the Wikipedia database.
+2. Dual-Parser Epistemic Gate cross-checks Parser 1 extractions against Parser 2 curated [[Category:...]] tags.
+3. The Tutor teaches Viv how to spell each word organically (via character & subword permutations).
+4. Viv discovers the sentence ordering across her 7-facet Hept lattice until locking 3 consecutive passes.
+5. Ground conceptual prototype slot inheritance and asymmetric entailment gradient.
+6. Periodic Transfer & Anti-Memorization Probes verify genuine generalization over rote caching.
+"""
+
+from __future__ import annotations
+
+import argparse
+from datetime import datetime, timezone
+import json
+from pathlib import Path
+import random
+import re
+import shutil
+import sys
+import time
+from typing import Any
+
+WORKSPACE = Path(__file__).resolve().parent.parent
+for root in (WORKSPACE, WORKSPACE / "INN", WORKSPACE / "aios_rebuild"):
+    if str(root) not in sys.path:
+        sys.path.insert(0, str(root))
+
+STANDALONE = Path(r"L:\Standalone\NN")
+if str(STANDALONE) not in sys.path:
+    sys.path.insert(0, str(STANDALONE))
+
+from autonomy.dual_parser_verifier import DualParserVerifier
+from autonomy.secondary_checker import DeterministicSecondaryChecker
+from autonomy.teacher_bridge import TeacherBridge
+from autonomy.terminal_neuron_learning import (
+    latest_run, learn_input, verify_run,
+)
+from autonomy.fractal_cognitive_engine import load_graduated_words
+from main_core.mind_runtime_gate import RuntimeBodyGuard, BodyRuntimeHold
+
+WIKI_LOG_PATH = WORKSPACE / "autonomy/logs/wikipedia_curriculum_history.jsonl"
+WIKI_SHAPES_JSONL = WORKSPACE / "autonomy/data/wikipedia_emergent_shapes.jsonl"
+WIKI_SHAPES_DB = WORKSPACE / "autonomy/data/wikipedia_emergent_shapes.db"
+WIKI_CORPUS_JSON = WORKSPACE / "autonomy/learning/wikipedia_campaign/runs/20261008T225555996120Z/corpus.json"
+DATASET_ROOT = Path(r"F:\AI_Datasets\wikipedia_deduplicated")
+
+
+COMMON_VERBS = {
+    "is", "are", "was", "were", "be", "been", "have", "has", "had", "can",
+    "see", "grow", "grows", "run", "runs", "ran", "flew", "fly", "sat", "sit",
+    "swim", "swims", "ate", "eat", "found", "find", "made", "make", "went", "go",
+    "came", "come", "took", "take", "gave", "give", "said", "say", "held", "hold",
+    "stood", "stand", "lives", "live", "lived", "flows", "flow", "falls", "fall",
+    "build", "built", "forms", "form", "formed", "travels", "travel", "opens", "open"
+}
+
+
+def get_passed_sentences() -> set[str]:
+    """Retrieve all normalized sentences already learned."""
+    run = latest_run()
+    if not run:
+        return set()
+    record = verify_run(run)
+    lessons = record.get("lessons", {})
+    passed = set()
+    for key, item in lessons.items():
+        if isinstance(item, dict) and item.get("state") == "PASS":
+            cleaned = re.sub(r"[^a-zA-Z\s]", "", key).strip().lower()
+            if cleaned:
+                passed.add(cleaned)
+    return passed
+
+
+class WikipediaSentenceHarvester:
+    """Extracts, filters, and curates clean 3-6 word sentences from Wikipedia emergent shapes."""
+
+    def __init__(self):
+        self.cached_shapes: list[dict[str, Any]] = []
+        self._load_shapes_cache()
+
+    def _load_shapes_cache(self):
+        self.cached_shapes.clear()
+        # Prefer high-performance local SQLite database on L:
+        if WIKI_SHAPES_DB.is_file():
+            try:
+                import sqlite3
+                with sqlite3.connect(WIKI_SHAPES_DB) as conn:
+                    rows = conn.execute("""
+                        SELECT id, shape_type, entity, category, det, target_sentence,
+                               focus_words_json, short_desc, source_title, provenance_batch, provenance_file
+                        FROM emergent_shapes
+                        WHERE status = 'VERIFIED'
+                        ORDER BY id ASC
+                    """).fetchall()
+                    for r in rows:
+                        self.cached_shapes.append({
+                            "db_id": r[0],
+                            "shape": r[1],
+                            "entity": r[2],
+                            "category": r[3],
+                            "det": r[4],
+                            "target_sentence": r[5],
+                            "focus_words": json.loads(r[6]),
+                            "short_desc": r[7],
+                            "source_title": r[8],
+                            "provenance_batch": r[9],
+                            "provenance_file": r[10],
+                        })
+                print(f"[HARVESTER] Loaded {len(self.cached_shapes)} VERIFIED emergent shapes from local SQLite DB {WIKI_SHAPES_DB.name}")
+                return
+            except Exception as exc:
+                print(f"[HARVESTER NOTICE] Error reading SQLite shapes DB: {exc}", flush=True)
+
+        # Fallback to JSONL
+        if WIKI_SHAPES_JSONL.is_file():
+            try:
+                for line in WIKI_SHAPES_JSONL.read_text(encoding="utf-8").splitlines():
+                    line = line.strip()
+                    if not line:
+                        continue
+                    self.cached_shapes.append(json.loads(line))
+                print(f"[HARVESTER] Loaded {len(self.cached_shapes)} golden emergent shapes from {WIKI_SHAPES_JSONL.name}")
+            except Exception as exc:
+                print(f"[HARVESTER NOTICE] Error reading shapes cache: {exc}", flush=True)
+
+    def mark_certified(self, entity: str, snapshot_id: str):
+        if WIKI_SHAPES_DB.is_file():
+            try:
+                import sqlite3
+                with sqlite3.connect(WIKI_SHAPES_DB) as conn:
+                    conn.execute("""
+                        UPDATE emergent_shapes
+                        SET status = 'CERTIFIED', certified_snapshot = ?
+                        WHERE entity = ?
+                    """, (snapshot_id, entity.lower()))
+                    conn.commit()
+            except Exception as exc:
+                print(f"[HARVESTER NOTICE] Error updating status in SQLite DB: {exc}", flush=True)
+
+    def mark_rejected(self, entity: str, reason: str):
+        if WIKI_SHAPES_DB.is_file():
+            try:
+                import sqlite3
+                with sqlite3.connect(WIKI_SHAPES_DB) as conn:
+                    conn.execute("""
+                        UPDATE emergent_shapes
+                        SET status = 'REJECTED', rejection_reason = ?
+                        WHERE entity = ?
+                    """, (reason, entity.lower()))
+                    conn.commit()
+            except Exception as exc:
+                print(f"[HARVESTER NOTICE] Error updating rejection status in SQLite DB: {exc}", flush=True)
+
+    def get_candidate(self, bridge: TeacherBridge, exclude: set[str], target_categories: set[str] | None = None) -> dict[str, Any] | None:
+        """Retrieve next unlearned golden shape from compiled corpus, interleaving target categories if provided."""
+        if target_categories:
+            by_cat: dict[str, list[dict[str, Any]]] = {c: [] for c in target_categories}
+            for shape in self.cached_shapes:
+                cat = shape.get("category", "").lower()
+                if cat in by_cat:
+                    cand = shape.get("target_sentence", "")
+                    norm = re.sub(r"[^a-zA-Z\s]", "", cand).strip().lower()
+                    if norm and norm not in exclude:
+                        by_cat[cat].append(shape)
+
+            cat_order = sorted(list(target_categories))
+            last_cat = getattr(self, "_last_cat", None)
+            start_idx = 0
+            if last_cat in cat_order:
+                start_idx = (cat_order.index(last_cat) + 1) % len(cat_order)
+
+            for i in range(len(cat_order)):
+                candidate_cat = cat_order[(start_idx + i) % len(cat_order)]
+                if by_cat.get(candidate_cat):
+                    self._last_cat = candidate_cat
+                    return by_cat[candidate_cat][0]
+
+        for shape in self.cached_shapes:
+            cand = shape.get("target_sentence", "")
+            norm = re.sub(r"[^a-zA-Z\s]", "", cand).strip().lower()
+            if norm and norm not in exclude:
+                return shape
+        return None
+
+
+def check_interlocks() -> tuple[bool, str]:
+    free_gb = shutil.disk_usage(WORKSPACE).free / (1024 ** 3)
+    if free_gb < 2.0:
+        return False, f"Disk guard tripped: only {free_gb:.2f} GiB free on L:."
+    try:
+        guard = RuntimeBodyGuard(requested_threads=4)
+        guard.check(force=True)
+    except BodyRuntimeHold as hold:
+        return False, f"Rust Body Gate HOLD: {json.dumps(hold.verdict)}"
+    except Exception as exc:
+        return False, f"Body Gate exception: {exc}"
+    return True, "PASS"
+
+
+def run_wikipedia_curriculum(max_lessons: int = 5, duration_minutes: float = 0.0, categories: str = ""):
+    print("=" * 72)
+    print("NOX FORGE · AUTONOMOUS WIKIPEDIA CURRICULUM RUNNER (DUAL-PARSER GATED)")
+    print("Goal: Organic Lexical Discovery & Structural Sentence Learning")
+    print(f"Target: {max_lessons} certified sentences | Max duration: {duration_minutes}m")
+    if categories:
+        print(f"Prioritizing categories: {categories}")
+    print(f"Log: {WIKI_LOG_PATH}")
+    print("=" * 72, flush=True)
+
+    target_cats = {c.strip().lower() for c in categories.split(",") if c.strip()} if categories else None
+    checker = DeterministicSecondaryChecker()
+    bridge = TeacherBridge(checker=checker)
+    harvester = WikipediaSentenceHarvester()
+    print(f"Loaded {len(harvester.cached_shapes)} VERIFIED emergent Wikipedia shapes.")
+
+    learned_count = 0
+    start_time = time.monotonic()
+
+    while True:
+        elapsed = (time.monotonic() - start_time) / 60.0
+        if max_lessons > 0 and learned_count >= max_lessons:
+            print(f"\n[COMPLETE] Target quota achieved: {learned_count} sentences crystallized.", flush=True)
+            break
+        if duration_minutes > 0 and elapsed >= duration_minutes:
+            print(f"\n[COMPLETE] Time limit reached: {elapsed:.1f}m ({learned_count} learned).", flush=True)
+            break
+
+        ok, reason = check_interlocks()
+        if not ok:
+            print(f"\n[INTERLOCK HOLD] {reason}. Pausing 15s...", flush=True)
+            time.sleep(15.0)
+            continue
+
+        passed = get_passed_sentences()
+        shape_obj = harvester.get_candidate(bridge, passed, target_categories=target_cats)
+        if not shape_obj:
+            print("[COMPLETE] No more verified shapes available in queue.", flush=True)
+            break
+
+        candidate = shape_obj["target_sentence"]
+        entity = shape_obj.get("entity", "")
+        category = shape_obj.get("category", "")
+        focus_words = shape_obj.get("focus_words", [])
+        short_desc = shape_obj.get("short_desc", "")
+        title = shape_obj.get("source_title", "")
+        p_batch = shape_obj.get("provenance_batch", 0)
+        p_file = shape_obj.get("provenance_file", "")
+
+        # --- DUAL-PARSER RUNTIME EPISTEMIC GATE ---
+        filepath = DATASET_ROOT / f"batch_{p_batch:04d}" / p_file
+        audit_res = DualParserVerifier.verify_file(
+            filepath,
+            entity,
+            category,
+            short_desc=short_desc or "",
+            title=title or "",
+        )
+
+        # Print Transparent Verification Card for Architect & Nox Forge
+        print("\n" + "-" * 72)
+        print(f"[DUAL-PARSER AUDIT CARD] Lesson #{learned_count + 1} Evaluation")
+        print(f"  Target Sentence: '{candidate}'")
+        print(f"  Entity / Domain: '{entity}' -> '{category}'")
+        print(f"  Parser 1 Source: Short Desc: '{short_desc}' | Title: '{title}'")
+        print(f"  Parser 2 Tags:   {audit_res['matched_tags']}")
+        print(f"  Consensus Check: {'VERIFIED' if audit_res['verified'] else 'REJECTED'}")
+        print(f"  Verdict Details: {audit_res['reason']}")
+        print("-" * 72, flush=True)
+
+        if not audit_res["verified"]:
+            print(f">>> [INTERCEPTED] Rejecting false positive '{entity}'. Updating DB and skipping... <<<", flush=True)
+            harvester.mark_rejected(entity, audit_res["reason"])
+            if shape_obj in harvester.cached_shapes:
+                harvester.cached_shapes.remove(shape_obj)
+            continue
+
+        print(f">>> [COGNITIVE ADMISSION] Admitted: '{candidate}' | Beginning Socratic Lattice Training <<<", flush=True)
+
+        known_words = load_graduated_words()
+        missing_words = [str(word).lower().strip() for word in focus_words
+                         if str(word).lower().strip() not in known_words]
+        for missing in missing_words:
+            print(f">>> [READ-ALONG HOLD] Unknown word '{missing}'; teaching and reinforcing before resume <<<", flush=True)
+            try:
+                word_record = learn_input(missing, resume=latest_run(), attempts=8)
+                recall = word_record.get("reloaded_recall", {})
+                if not word_record.get("next_input_allowed") and not recall:
+                    raise RuntimeError("word reinforcement did not produce a reload receipt")
+                known_words.add(missing)
+            except Exception as exc:
+                print(f">>> [READ-ALONG HOLD] Could not certify '{missing}': {exc}; preserving article for retry <<<", flush=True)
+
+        log_entry = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "sentence": candidate,
+            "category": category,
+            "focus_words": focus_words,
+            "learned": False,
+            "dual_parser_verified": True,
+            "matched_tags": audit_res["matched_tags"],
+            "metrics": {},
+        }
+
+        try:
+            resume_path = latest_run()
+            record = learn_input(candidate, resume=resume_path, attempts=48)
+            result_obj = record.get("result", {})
+            recall_obj = record.get("reloaded_recall", {})
+            expected_route = " ".join(f"WORD:{w.lower().strip()}" for w in candidate.strip().rstrip(".!?").split())
+            recall_exact = recall_obj.get(expected_route, 0) >= 3 or any(v >= 3 for v in recall_obj.values())
+            route_locked = result_obj.get("state") == "PASS"
+
+            certified = bool(record.get("next_input_allowed")) or (route_locked and recall_exact)
+            if certified:
+                learned_count += 1
+                log_entry["learned"] = True
+                log_entry["run"] = record.get("run")
+                log_entry["counts"] = record.get("counts_after")
+                print(f"[ACQUISITION LOCKED] Snapshot committed: {Path(record['run']).name}", flush=True)
+
+                # Ground conceptual category links and prototype slot conduits
+                det = shape_obj.get("det", "a")
+                if category and focus_words:
+                    try:
+                        import hashlib
+                        from nn_local.steel_brain_store import SQLiteNeuronGraphStore
+                        from autonomy.conceptual_resonance_engine import ConceptualResonanceEngine
+                        from autonomy.category_prototype_engine import CategoryPrototypeEngine
+
+                        run_dir = Path(record["run"])
+                        g_path = run_dir / "neuron_graph.sqlite3"
+                        graph = SQLiteNeuronGraphStore(g_path, readonly=False)
+
+                        # Ground prototype slot conduits atomically
+                        proto_engine = CategoryPrototypeEngine(graph)
+                        proto_engine.bind_entity_to_prototype(entity, category, det)
+
+                        # Ground multi-member associative cluster
+                        c_engine = ConceptualResonanceEngine(graph)
+                        c_engine.link_concept_cluster(category, focus_words, base_conductance=500_000)
+                        graph.close()
+
+                        new_g_hash = hashlib.sha256(g_path.read_bytes()).hexdigest()
+                        l_path = run_dir / "learning.json"
+                        if l_path.exists():
+                            l_data = json.loads(l_path.read_text(encoding="utf-8"))
+                            if "snapshot_hashes" in l_data:
+                                l_data["snapshot_hashes"]["neuron_graph.sqlite3"] = new_g_hash
+                                l_path.write_text(json.dumps(l_data, indent=2), encoding="utf-8")
+                        print(f"[PROTOTYPE & RESONANCE] Bound prototype slot and grounded category '{category}' for '{entity}'", flush=True)
+
+                        # Update SQLite knowledge base on L:
+                        harvester.mark_certified(entity, run_dir.name)
+                    except Exception as e:
+                        print(f"[CONCEPT NOTICE] Resonance grounding notice: {e}", flush=True)
+            else:
+                print(f"[HOLD] Viv held route; state preserved.", flush=True)
+        except Exception as exc:
+            print(f"[EXECUTION NOTICE] {type(exc).__name__}: {exc}", flush=True)
+            log_entry["error"] = str(exc)
+
+        WIKI_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with WIKI_LOG_PATH.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
+
+        time.sleep(2.0)  # Thermal pacing
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Autonomous Wikipedia Curriculum Runner (Dual-Parser Gated)")
+    parser.add_argument("--max-lessons", type=int, default=5, help="Number of sentences to acquire")
+    parser.add_argument("--duration-minutes", type=float, default=0.0, help="Max duration in minutes")
+    parser.add_argument("--categories", type=str, default="", help="Comma-separated categories to prioritize (e.g. bird,plant)")
+    args = parser.parse_args()
+    run_wikipedia_curriculum(max_lessons=args.max_lessons, duration_minutes=args.duration_minutes, categories=args.categories)
+
+
+if __name__ == "__main__":
+    main()

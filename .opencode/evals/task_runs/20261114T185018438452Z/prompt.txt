@@ -1,0 +1,13 @@
+Create a new Python file at .opencode/evals/provider_patch_probe_20261114.py with this exact source:
+def status():
+    return "before"
+
+if __name__ == "__main__":
+    print(status())
+
+Call localcoder_add_python tool first with filePath exactly .opencode/evals/provider_patch_probe_20261114.py and that Python content.
+Call read tool second on .opencode/evals/provider_patch_probe_20261114.py.
+Call localcoder_patch tool third on .opencode/evals/provider_patch_probe_20261114.py. Replace the exact text `return "before"` with `return "after"`.
+Call shell tool fourth with command exactly: L:\.venv\Scripts\python.exe .opencode\evals\provider_patch_probe_20261114.py
+
+After the shell result, reply in one concise visible sentence with the stdout, then finish.

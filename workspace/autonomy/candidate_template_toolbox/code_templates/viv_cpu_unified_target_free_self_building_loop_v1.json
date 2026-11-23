@@ -1,0 +1,72 @@
+{
+  "schema_version": "viv_cpu_unified_target_free_self_building_loop_v1",
+  "purpose": "single_candidate_model_origin_evaluation",
+  "candidate_only": true,
+  "training": {
+    "effective_row_count": 224,
+    "sampler_index_space": 224,
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "response_only_loss": true
+  },
+  "families": [
+    "reflection",
+    "query",
+    "action",
+    "variable",
+    "result",
+    "scheduler",
+    "template"
+  ],
+  "model_visible_fields": [
+    "bounded_observation_or_result_card",
+    "approved_menu_ids",
+    "authority_state",
+    "evidence_state",
+    "content_hashes",
+    "resource_limits"
+  ],
+  "cpu_only_fields": [
+    "target",
+    "expected_semantic_action",
+    "resolved_literal",
+    "hidden_query_objective",
+    "expected_template_slot",
+    "expected_result_disposition",
+    "expected_experiment_slot"
+  ],
+  "prohibited_model_content": [
+    "source_paths",
+    "source_bodies",
+    "python",
+    "shell",
+    "executable_content",
+    "checkpoint_paths",
+    "post_decision_state",
+    "expected_answer_fields"
+  ],
+  "evaluation": {
+    "raw_output_authoritative_for_model_score": true,
+    "cpu_repair_counts_as_model_failure": true,
+    "historical_contaminated_scores_not_reused": true,
+    "malformed_output_preserved": true,
+    "unauthorized_cpu_accepts_required": 0,
+    "independent_verification_required": true
+  },
+  "authority": {
+    "cpu_validation_final": true,
+    "rust_write_membrane_final": true,
+    "seed0_mutation_allowed": false,
+    "production_mutation_allowed": false,
+    "registry_mutation_allowed": false,
+    "pointer_adoption_allowed": false
+  },
+  "source_catalog_rebuilt": false,
+  "decoder_changed": false,
+  "tokenizer_changed": false,
+  "temperature_changed": false
+}

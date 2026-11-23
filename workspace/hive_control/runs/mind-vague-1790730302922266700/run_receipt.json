@@ -1,0 +1,171 @@
+{
+  "artifact": "L:\\LocalCoder\\workspace\\hive_control\\runs\\mind-vague-1790730302922266700\\example.py",
+  "artifact_sha256": "e512077dad49d458cbbcd050b94ee470f3e3fa7a7868470c059d6205facdc52a",
+  "capability_profile": "function_only",
+  "foreman_snapshot_id": "c78107f0fff74a7197ccf99c2faeb29162381caa16abddb9705f45f1e3c1252d",
+  "goal": "Create a file. Have it do something.",
+  "mind_final": "The file \"example.py\" was created and successfully printed \"Hello, world!\" when run.",
+  "mind_final_metrics": {
+    "done_reason": "stop",
+    "eval_count": 20,
+    "load_duration": 1538600,
+    "prompt_eval_count": 96,
+    "total_duration": 2759095400
+  },
+  "mind_plan_metrics": {
+    "done_reason": "stop",
+    "eval_count": 246,
+    "load_duration": 2168700,
+    "prompt_eval_count": 670,
+    "total_duration": 3895699200
+  },
+  "plan": {
+    "filename": "example.py",
+    "intent": "Create a Python file that prints a message when run.",
+    "tasks": [
+      {
+        "capability": "create_file",
+        "depends_on": [],
+        "id": "create_file",
+        "objective": "Create an empty Python file named example.py in the isolated run directory.",
+        "value": "example.py"
+      },
+      {
+        "capability": "stamp_function",
+        "depends_on": [
+          "create_file"
+        ],
+        "id": "stamp_function",
+        "objective": "Append a function named perform that prints the value 'Hello, world!'",
+        "value": "Hello, world!"
+      },
+      {
+        "capability": "stamp_call",
+        "depends_on": [
+          "stamp_function"
+        ],
+        "id": "stamp_call",
+        "objective": "Append a guarded call to perform",
+        "value": "perform()"
+      },
+      {
+        "capability": "run_file",
+        "depends_on": [
+          "stamp_call"
+        ],
+        "id": "run_file",
+        "objective": "Run the Python file and capture stdout",
+        "value": "stdout"
+      }
+    ]
+  },
+  "run_dir": "L:\\LocalCoder\\workspace\\hive_control\\runs\\mind-vague-1790730302922266700",
+  "schema": "mind_vague_file_v1",
+  "scope": "isolated LocalCoder run only",
+  "status": "PASS",
+  "stdout": "Hello, world!\r\n",
+  "swarm_events": [
+    {
+      "artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "capability": "create_file",
+      "checksum": "d3b5aba0a65438bba151cacbf671c3ac9f002abb2605c7dafd299e2329796a24",
+      "generation_count": 0,
+      "parent_sha256": {},
+      "status": "PASS",
+      "stdout": null,
+      "task_id": "create_file"
+    },
+    {
+      "artifact_sha256": "b438d40692a118a9b38cc145584cc87aa9ded89358b183744d135d403d08971d",
+      "capability": "stamp_function",
+      "checksum": "10baf4a893facf13ae2d902749e4185865acc1145e474f048cd015d06371b658",
+      "generation_count": 0,
+      "parent_sha256": {
+        "create_file": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "status": "PASS",
+      "stdout": null,
+      "task_id": "stamp_function"
+    },
+    {
+      "artifact_sha256": "e512077dad49d458cbbcd050b94ee470f3e3fa7a7868470c059d6205facdc52a",
+      "capability": "stamp_call",
+      "checksum": "e9bcf71f786c4e9ae7ad8118d32d8a33e924fe35e0a7841579c26f5c9aaacc5c",
+      "generation_count": 0,
+      "parent_sha256": {
+        "stamp_function": "b438d40692a118a9b38cc145584cc87aa9ded89358b183744d135d403d08971d"
+      },
+      "status": "PASS",
+      "stdout": null,
+      "task_id": "stamp_call"
+    },
+    {
+      "artifact_sha256": "e512077dad49d458cbbcd050b94ee470f3e3fa7a7868470c059d6205facdc52a",
+      "capability": "run_file",
+      "checksum": "4f94b3977e15050cc3dccc7d5134c9ab5060b6ac544ae5ae7046b81925b37cc3",
+      "generation_count": 0,
+      "parent_sha256": {
+        "stamp_call": "e512077dad49d458cbbcd050b94ee470f3e3fa7a7868470c059d6205facdc52a"
+      },
+      "status": "PASS",
+      "stdout": "Hello, world!\r\n",
+      "task_id": "run_file"
+    }
+  ],
+  "task_graph": [
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-create_file",
+        "agent_kind": "deterministic",
+        "capability": "create_file",
+        "depends_on": [],
+        "id": "create_file",
+        "objective": "Create an empty Python file named example.py in the isolated run directory."
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-run_file",
+        "agent_kind": "deterministic",
+        "capability": "run_file",
+        "depends_on": [
+          "stamp_call"
+        ],
+        "id": "run_file",
+        "objective": "Run the Python file and capture stdout"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-stamp_call",
+        "agent_kind": "deterministic",
+        "capability": "stamp_call",
+        "depends_on": [
+          "stamp_function"
+        ],
+        "id": "stamp_call",
+        "objective": "Append a guarded call to perform"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-stamp_function",
+        "agent_kind": "deterministic",
+        "capability": "stamp_function",
+        "depends_on": [
+          "create_file"
+        ],
+        "id": "stamp_function",
+        "objective": "Append a function named perform that prints the value 'Hello, world!'"
+      },
+      "state": "completed"
+    }
+  ]
+}

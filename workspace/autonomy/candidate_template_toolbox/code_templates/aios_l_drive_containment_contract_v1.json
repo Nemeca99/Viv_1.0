@@ -1,0 +1,116 @@
+{
+  "schema_version": "aios_l_drive_containment_contract_v1",
+  "surface_id": "aios_l_drive_containment_v1",
+  "purpose": "Viv coder/helm/retrieve/watch paths resolve under L: unless Rust allows the exact target or the captain issues a temporary one-shot grant. C: is the OS plane and stays denied.",
+  "metaphor": {
+    "captain": "human Architect / user",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "home": "L: (LUNA_HOME / AIOS plane)",
+    "os_plane": "C:",
+    "cargo": ["D:", "E:", "F:"],
+    "leash": "Rust allow or captain one-shot grant"
+  },
+  "default_rule": {
+    "home": "L:",
+    "viv_paths_resolve_under": "L:\\",
+    "dotdot_escape": "HOLD_PATH_ESCAPE",
+    "reparse_symlink_junction": "HOLD_PATH_REPARSE",
+    "fail_closed": true,
+    "standing_off_l_permission": false
+  },
+  "exceptions": {
+    "rust_explicit_allow": {
+      "if_denied_or_api_missing": "HOLD_L_DRIVE",
+      "does_not_override_c_drive": true
+    },
+    "captain_one_shot_grant": {
+      "append_only_jsonl": true,
+      "rewrite_forbidden": true,
+      "uses_remaining": 1,
+      "consumed_default": false,
+      "operations": ["read", "query"],
+      "cannot_authorize": ["promote", "delete", "rust_write", "pointer", "seed"],
+      "c_drive": "HOLD_C_DRIVE",
+      "second_use": "HOLD_GRANT_CONSUMED",
+      "not_a_viv_helm_verb": true
+    }
+  },
+  "roles": {
+    "viv": "default; L: only unless rust_allowed or matching unused grant",
+    "captain": "host inventory/read/query may target cargo D/E/F; never C:; grants are captain-only"
+  },
+  "grant_fields": [
+    "id",
+    "utc",
+    "path_prefix",
+    "operation",
+    "uses_remaining",
+    "expires_utc",
+    "consumed"
+  ],
+  "log": {
+    "path": "foundation/artifacts/auto/agentic/l_drive_containment/grants.jsonl",
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "trailing_lf": true,
+    "one_json_object_per_line": true,
+    "append_only": true,
+    "consume_appends_new_line": true
+  },
+  "states": {
+    "pass": "PASS",
+    "l_drive": "HOLD_L_DRIVE",
+    "c_drive": "HOLD_C_DRIVE",
+    "grant_consumed": "HOLD_GRANT_CONSUMED",
+    "grant_expired": "HOLD_GRANT_EXPIRED",
+    "grant_forbidden": "HOLD_GRANT_FORBIDDEN_OPERATION",
+    "path_invalid": "HOLD_PATH_INVALID",
+    "path_not_absolute": "HOLD_PATH_NOT_ABSOLUTE",
+    "path_escape": "HOLD_PATH_ESCAPE",
+    "path_reparse": "HOLD_PATH_REPARSE"
+  },
+  "forbidden_grant_operations": [
+    "promote",
+    "delete",
+    "rust_write",
+    "pointer",
+    "seed"
+  ],
+  "allowed_grant_operations": ["read", "query"],
+  "protected_untouched": [
+    "Seed 0",
+    "template registry",
+    "active pointer",
+    "Rust security binary",
+    "add-only/delete HOLD"
+  ],
+  "expected_rust_sha256": "6BCA1C84F9BE871D8F5876A7F84DE8D4437E21A10C602A9E67F55EB162005261",
+  "rust_binary": "security_core/runtime/security_core.pyd",
+  "pointer_path": "sandbox/code/template_current.json",
+  "expected_pointer_generation": "gen_c6be6ff385aed99f",
+  "isolated_candidate_root": "L:/Continue/Viv/sandbox",
+  "cli": {
+    "runner": "build_tools/run_aios_l_drive_containment_v1.py",
+    "commands": ["status", "check", "grant"],
+    "grant_is_captain_only": true,
+    "grant_not_a_helm_verb": true
+  },
+  "retrieve_wire": {
+    "module": "foundation/lib/viv_file_index_retrieve.py",
+    "caller_role_default": "viv",
+    "captain_flag": "captain=True",
+    "off_l_without_leash": "HOLD_L_DRIVE"
+  },
+  "safety": {
+    "isolated": true,
+    "candidate_only": true,
+    "no_publish": true,
+    "production_generation": false,
+    "live_model_mutation": false,
+    "pointer_mutation": false,
+    "seed_mutation": false,
+    "delete": false,
+    "gpu_execution": false
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 301.078,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e2161c98effeBYxZGIh2VOwkdV"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "70c8f6e8eae8cdbae371c56fd96b12895d6bef519c8a1591655372dc7ca4e54d",
+  "tools": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Case 1: FAILED - expected True, got (False, 'ERR_INVALID_KIND_')\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out",
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Case 1: FAILED - expected True, got (False, 'ERR_INVALID_KIND_')\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "<tool_call>\n<function=localcoder_add_python>\n<parameter=filePath>\nworkspace/autonomy/hive_postal_message_contract_v2_candidate.py\n</parameter>\n<parameter=content>\nimport argparse\nimport re\nimport sys\n\n\nREQUIRED_KEYS = {\"sender_id\", \"task_id\", \"parent_message_sha256\"}\nALLOWED_KEYS = REQUIRED_KEYS | {\"body\", \"kind\"}\nVALID_KINDS = {\"REPORT\", \"REQUEST\", \"ACKNOWLEDGE\"}\n\nSCHEMA = {\n    \"required\": REQUIRED_KEYS,\n    \"allowed\": ALLOWED_KEYS,\n    \"valid_kind\": VALID_KINDS,\n}\n\n\ndef validate_postal_message(message):\n    \"\"\"Validate postal message structure and return (True, 'accepted') or (False, error_code).\"\"\"\n    if not isinstance(message, dict):\n        return False, \"ERR_NON_DICT\"\n\n    # Type validation before string methods\n    for key in REQUIRED_KEYS:\n        if key not in message:\n            return False, f\"ERR_MISSING_{key.upper()}\"\n\n    sender_id = message.get(\"sender_id\")\n    task_id = message.get(\"task_id\")\n    parent_message_sha256 = message.get(\"parent_message_sha256\")\n    \n    # Kind is optional - default to REPORT if not present\n    kind = message.get(\"kind\", \"REPORT\")\n\n    # Trim before string methods\n    if not isinstance(sender_id, str):\n        return False, \"ERR_SENDER_ID_TYPE\"\n    sender_id = sender_id.strip()\n\n    if not task_id:\n        return False, \"ERR_TASK_ID_EMPTY\"\n\n    # Validate kind exactly as listed (or default REPORT)\n    if kind not in VALID_KINDS:\n        return False, f\"ERR_INVALID_KIND_{kind}\"\n\n    # Validate parent_message_sha256: lowercase-hex full match of 64 characters\n    if not isinstance(parent_message_sha256, str):\n        return False, \"ERR_PARENT_HASH_TYPE\"\n    \n    parent_hash = parent_message_sha256.strip()\n    hex_pattern = re.compile(r'^[0-9a-f]{64}$')\n    \n    if not hex_pattern.match(parent_hash.lower()):\n        return False, \"ERR_MALFORMED_PARENT_HASH\"\n\n    return True, \"accepted\"\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Postal message validator\")\n    parser.add_argument(\"--self-check\", action=\"store_true\", help=\"Run self-check mode\")\n    args = parser.parse_args()\n\n    if args.self_check:\n        # Self-check table of nine cases\n        test_cases = [\n            ({\"sender_id\": \"test\", \"task_id\": \"123\", \"parent_message_sha256\": \"a\" * 64}, True),\n            (\"not a dict\", False),\n            ({}, False),\n            ({\"sender_id\": \"\", \"task_id\": \"123\", \"parent_message_sha256\": \"a\" * 64}, False),\n            ({\"sender_id\": \"test\", \"task_id\": \"123\", \"parent_message_sha256\": \"A\" * 64, \"kind\": \"REPORT\"}, True),\n            ({\"sender_id\": \"test\", \"task_id\": \"123\", \"parent_message_sha256\": \"a\" * 64}, False),\n            ({\"sender_id\": \"test\", \"task_id\": \"123\", \"parent_message_sha256\": \"invalid\"}, False),\n            ({\"sender_id\": \"test\", \"task_id\": \"123\", \"parent_message_sha256\": \"a\" * 64, \"kind\": \"REPORT\"}, True),\n            ({\"sender_id\": \"test\", \"task_id\": \"123\", \"parent_message_sha256\": \"a\" * 64, \"body\": \"hello\", \"kind\": \"REQUEST\"}, True),\n        ]\n\n        all_passed = True\n        for i, (msg, expected) in enumerate(test_cases):\n            result = validate_postal_message(msg)\n            actual = result[0] == expected\n            \n            if not actual:\n                print(f\"Case {i+1}: FAILED - expected {expected}, got {result}\")\n                all_passed = False\n\n        if all_passed:\n            print(\"PASS: postal envelope checks\")\n            sys.exit(0)\n        else:\n            sys.exit(1)\n    else:\n        # Normal validation mode\n        message = None\n        try:\n            message = sys.stdin.read()\n        except Exception:\n            pass\n\n        if not isinstance(message, str):\n            print(\"ERR_INPUT_TYPE\")\n            sys.exit(1)\n\n        result = validate_postal_message(message)\n        if result[0]:\n            print(result[1])\n            sys.exit(0)\n        else:\n            print(result[1])\n            sys.exit(1)\n\n\nif __name__ == \"__main__\":\n    main()\n</parameter>\n</function>\n</tool_call>"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T095112873091Z"
+}

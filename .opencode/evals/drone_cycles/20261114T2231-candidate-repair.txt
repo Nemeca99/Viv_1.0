@@ -1,0 +1,20 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+<localcoder_patch_paths>
+workspace/autonomy/hive_agent_message_contract_candidate.py
+</localcoder_patch_paths>
+
+Correct `validate_agent_message` in this existing Python file to match the Hive envelope. Use the read tool exactly once first; after that result, use the localcoder_patch tool exactly once to make the correction. Do not call any other tool.
+
+Requirements:
+- Return a tuple of stable error codes; valid envelope returns (). Never raise on malformed JSON-like input. Ignore unknown extra fields.
+- Required string fields: agent_id, agent_type, task_id, status, audience, trust_class, message. agent_id and task_id must be non-empty.
+- Required list fields: artifact_refs, claims, uncertainties, conflicts_with. artifact_refs, uncertainties, conflicts_with contain only strings.
+- agent_type is model|human; status is DONE|NEEDS_USER|BLOCKED; audience is mind.
+- trust_class is unverified_model_output for model and human_agent_statement for human. If agent_type is missing/invalid, report it and skip trust-class comparison.
+- Each claims item is an object with string text, list-of-string evidence_ids, and kind retrieved_fact|inference|proposal.
+- parent_task_id is optional; if present it is null or a non-empty string.
+- Error codes must not embed invalid values or raw claims. Check structure and closed values only; do not add truth, routing, authorization, redaction, file, or persistence logic. Rust remains authoritative.
+
+Emit `[DRONE SELF-PROMPT]` after the read result with Agenda, one Verified fact, and Next bounded action naming localcoder_patch. After the patch result, final starts `[DRONE]`, reports the actual result without claiming tests, and ends with the same fields and Next bounded action: STOP; await Queen.
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this exact candidate correction. Only this Python target is in scope. The existing Rust Body gate and OpenCode permission gates remain active.

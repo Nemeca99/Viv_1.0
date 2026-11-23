@@ -1,0 +1,34 @@
+{
+  "schema": "viv_post_restart_failure_feedback_observation_v1",
+  "captured_utc": "2026-10-05T03:06:33.766012+00:00",
+  "events": [
+    {
+      "id": 4048,
+      "at": 1791169461.178575,
+      "kind": "plan_rejected",
+      "data": {
+        "proposal_sha256": "62d4427f4afdbc0d8c70f99add160391f3fbd8155a0460e86d345f759f2dfba9",
+        "reason": "Rejected malformed proposal. Return exactly title, requirement, and cases; cases must contain 3-30 objects, each with input and expected. Every input must contain exactly data and options, with options an object. Validation error: current_state must map every task name to an explicit status"
+      }
+    },
+    {
+      "id": 4063,
+      "at": 1791169558.79647,
+      "kind": "drive_agent_index_feedback_delivered",
+      "data": {
+        "current_source_sha256": "c597bf507a49f2f07b4a54fe2b77a4d3ddaa2edada684f830ec9205c8687e82e",
+        "drive": "F",
+        "failure_event_id": null,
+        "failure_reason": "Proposal must contain exactly the four response fields",
+        "previous_failure_count": 13
+      }
+    }
+  ],
+  "worker_process": {
+    "pid": 143600,
+    "running": true,
+    "cpu_seconds": 241.8125,
+    "rss_bytes": 2931519488
+  },
+  "scope_note": "Event 4048 shows a malformed dependency-planning proposal was stopped by explicit task-state validation before build; event 4063 shows an earlier F: indexing rejection was delivered to the expert. Neither event proves the terminal-family gate or a successful repaired outcome."
+}

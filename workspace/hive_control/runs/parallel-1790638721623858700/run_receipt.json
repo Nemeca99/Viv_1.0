@@ -1,0 +1,143 @@
+{
+  "cohorts": [
+    [
+      "A",
+      "B",
+      "C"
+    ],
+    [
+      "D",
+      "E"
+    ],
+    [
+      "F"
+    ]
+  ],
+  "events": [
+    {
+      "finish_ns": 1790638721725537500,
+      "start_ns": 1790638721624432300,
+      "task_id": "A"
+    },
+    {
+      "finish_ns": 1790638721725572000,
+      "start_ns": 1790638721624614000,
+      "task_id": "C"
+    },
+    {
+      "finish_ns": 1790638721725602400,
+      "start_ns": 1790638721624466000,
+      "task_id": "B"
+    },
+    {
+      "finish_ns": 1790638721726175300,
+      "start_ns": 1790638721725959500,
+      "task_id": "D"
+    },
+    {
+      "finish_ns": 1790638721726277900,
+      "start_ns": 1790638721726083000,
+      "task_id": "E"
+    },
+    {
+      "finish_ns": 1790638721726715700,
+      "start_ns": 1790638721726562400,
+      "task_id": "F"
+    }
+  ],
+  "file_sha256": {
+    "A.txt": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+    "B.txt": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+    "C.txt": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+    "D.txt": "daee1cd25194ae952d046ad9b9c81d3c07dc5332440b58d6d7461b248be56712",
+    "E.txt": "12f37a8a84034d3e623d726fe10e5031f4df997ac13f4d5571b5a90c41fb84fe",
+    "F.txt": "706204f15ce1834ad298c8e8d270315652bbd6e40cec489f65802db2fdd03167"
+  },
+  "final_text": "A\nB\nC\n",
+  "first_cohort_overlapped": true,
+  "schema": "hive_parallel_file_proof_v1",
+  "scope": "scheduler and file-composition proof; no Mind model or encrypted task snapshots",
+  "status": "PASS",
+  "task_graph": [
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-A",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [],
+        "id": "A",
+        "objective": "Write the bounded A artifact"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-B",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [],
+        "id": "B",
+        "objective": "Write the bounded B artifact"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-C",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [],
+        "id": "C",
+        "objective": "Write the bounded C artifact"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-D",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [
+          "A",
+          "B"
+        ],
+        "id": "D",
+        "objective": "Write the bounded D artifact"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-E",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [
+          "C"
+        ],
+        "id": "E",
+        "objective": "Write the bounded E artifact"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-F",
+        "agent_kind": "deterministic",
+        "capability": "write-own-file",
+        "depends_on": [
+          "D",
+          "E"
+        ],
+        "id": "F",
+        "objective": "Write the bounded F artifact"
+      },
+      "state": "completed"
+    }
+  ]
+}

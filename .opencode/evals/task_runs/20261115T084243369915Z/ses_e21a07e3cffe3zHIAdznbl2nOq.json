@@ -1,0 +1,172 @@
+{
+  "info": {
+    "id": "ses_e21a07e3cffe3zHIAdznbl2nOq",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "drone_build",
+    "cost": 0,
+    "tokens": {
+      "input": 11466,
+      "output": 1003,
+      "reasoning": 214,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794732163526,
+      "updated": 1794732262617,
+      "busy": 1794732163549,
+      "idle": 1794732262621
+    },
+    "title": "LocalCoder Drone 20261115T084243369915Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1de5f81d2001ll1F14yWkvNRVz",
+      "time": {
+        "created": 1794732163538
+      },
+      "type": "agent-switched",
+      "agent": "drone_build",
+      "previous": "drone_build"
+    },
+    {
+      "id": "msg_1de5f81d1001YpXg4kFmheYC0b",
+      "time": {
+        "created": 1794732163557
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\n[BOUNDED ARCHITECT ASSIGNMENT]\nThe Queen verified the Hive envelope contract in workspace/HIVE_NETWORK_ARCHITECTURE_DRAFT.md. Create exactly one new Python candidate at `workspace/autonomy/hive_agent_message_contract_v2_candidate.py`.\n\nUse the localcoder_add_python tool exactly once. Its `filePath` argument must be the exact project-relative string `workspace/autonomy/hive_agent_message_contract_v2_candidate.py`. Do not add a drive prefix or absolute path. Add one pure function `validate_agent_message(value)` returning a deterministic tuple of stable error-code strings; a valid envelope returns `()`. It must handle every JSON-shaped input without raising and must not import, use I/O, persist, route, decide trust, or claim facts are verified.\n\nRequired trimmed non-empty string fields: agent_id, agent_type, task_id, status, audience, trust_class, message. agent_type is exactly model or human. status is exactly DONE, NEEDS_USER, or BLOCKED. audience is exactly mind. trust_class must match agent_type: unverified_model_output for model; human_agent_statement for human. artifact_refs, claims, uncertainties, and conflicts_with are required lists. The first, third, and fourth contain only strings. claims contains objects with string text, list-of-string evidence_ids, and kind exactly retrieved_fact, inference, or proposal. parent_task_id is optional and must be null or a non-empty string. Allow extra envelope fields. Use stable codes MISSING_TASK_ID, MISSING_AGENT_TYPE, CLAIMS_NOT_LIST, INVALID_TRUST_CLASS, and INVALID_PARENT_TASK_ID where applicable. A missing agent_type with trust_class present must include MISSING_AGENT_TYPE without raising. Guard types before string operations such as strip/lower/upper; never call a string method on a non-string JSON value.\n\nAfter the tool, start with `[DRONE]`, report the exact created filename and one fact from the tool result, then finish with one `[DRONE SELF-PROMPT]` containing Agenda:, Verified facts:, and `Next bounded action: STOP`. Copy one exact token from the tool result into Verified facts. Do not claim anything the tool result does not establish.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: localcoder_add_python. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n\n[QUEEN → DRONE]\nExecute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1de5f81ed00133xhIcXgI6EJgG",
+      "time": {
+        "created": 1794732163575,
+        "firstToken": 1794732235132,
+        "streamed": 1794732235139,
+        "completed": 1794732239621
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_6",
+          "name": "localcoder_add_python",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "workspace/autonomy/hive_agent_message_contract_v2_candidate.py",
+              "content": "def validate_agent_message(value):\n    \"\"\"Validate agent message envelope JSON structure.\"\"\"\n    errors = []\n    \n    # Must be a dict\n    if not isinstance(value, dict):\n        return tuple(errors)  # Empty list is valid for non-dict\n    \n    # Check required string fields exist and are strings\n    required_strings = ['agent_id', 'agent_type', 'task_id', 'status', 'audience', 'trust_class', 'message']\n    \n    for field in required_strings:\n        if field not in value or not isinstance(value[field], str):\n            errors.append(field)\n    \n    # Validate agent_type exactly matches model or human\n    valid_agent_types = ['model', 'human']\n    if 'agent_type' in value and value['agent_type'] not in valid_agent_types:\n        errors.append('INVALID_AGENT_TYPE')\n    \n    # Validate status exactly matches DONE, NEEDS_USER, or BLOCKED\n    valid_statuses = ['DONE', 'NEEDS_USER', 'BLOCKED']\n    if 'status' in value and value['status'] not in valid_statuses:\n        errors.append('INVALID_STATUS')\n    \n    # Validate audience exactly matches mind\n    if 'audience' in value and value['audience'] != 'mind':\n        errors.append('INVALID_AUDIENCE')\n    \n    # Validate trust_class based on agent_type\n    model_trust = ['unverified_model_output']\n    human_trust = ['human_agent_statement']\n    \n    if 'trust_class' in value:\n        if value['agent_type'] == 'model':\n            if value['trust_class'] not in model_trust:\n                errors.append('INVALID_TRUST_CLASS')\n        elif value['agent_type'] == 'human':\n            if value['trust_class'] not in human_trust:\n                errors.append('INVALID_TRUST_CLASS')\n    \n    # Validate artifact_refs is a list of strings (optional)\n    if 'artifact_refs' in value and not isinstance(value['artifact_refs'], list):\n        errors.append('MISSING_ARTIFACT_REFS')\n    \n    # Validate claims is a list of objects with specific structure\n    if 'claims' in value:\n        if not isinstance(value['claims'], list):\n            errors.append('CLAIMS_NOT_LIST')\n        else:\n            for claim in value['claims']:\n                if not isinstance(claim, dict):\n                    continue  # Allow extra fields or malformed entries\n                required_claim_fields = ['text', 'evidence_ids', 'kind']\n                for field in required_claim_fields:\n                    if field not in claim or not isinstance(claim[field], str):\n                        errors.append('INVALID_CLAIM')\n    \n    # Validate uncertainties is a list of strings (optional)\n    if 'uncertainties' in value and not isinstance(value['uncertainties'], list):\n        errors.append('MISSING_UNCERTAINTIES')\n    \n    # Validate conflicts_with is a list of strings (optional)\n    if 'conflicts_with' in value and not isinstance(value['conflicts_with'], list):\n        errors.append('MISSING_CONFLICTS_WITH')\n    \n    # Validate parent_task_id is optional, must be null or non-empty string\n    if 'parent_task_id' in value:\n        if value['parent_task_id'] is None:\n            pass  # Valid\n        elif not isinstance(value['parent_task_id'], str) or len(value['parent_task_id']) == 0:\n            errors.append('INVALID_PARENT_TASK_ID')\n    \n    return tuple(errors)\n"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"ok\":true,\"created\":true,\"path\":\"L:\\\\LocalCoder\\\\workspace\\\\autonomy\\\\hive_agent_message_contract_v2_candidate.py\",\"bytes\":3228,\"sha256\":\"4f14cd6761437b78db76094612a15155f037fb3e8c623af42d9ad08e63b1a9c0\"}"
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794732235134,
+            "ran": 1794732235137,
+            "completed": 1794732238507
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "61cd7b0ba7ab4e3ee9806bb0a9ef4790b457e40e",
+        "end": "80f1c82f77fcb679a1d42c4f41612bc349023241",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794732238489-fe60e0fa-59f6-4138-b725-f9ca9df7c35b-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794732238494-99f2603a-afa8-49c1-8521-7598982f797d.json",
+          "LocalCoder/.opencode/receipts/1794732238503-8fcaee1b-4877-4a46-bb10-267bc25678db.json",
+          "LocalCoder/workspace/autonomy/hive_agent_message_contract_v2_candidate.py"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 5441,
+        "output": 848,
+        "reasoning": 169,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1de60ab10001ih7EFBS78pMBBO",
+      "time": {
+        "created": 1794732239641,
+        "firstToken": 1794732261340,
+        "streamed": 1794732261384,
+        "completed": 1794732262617
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "Tool succeeded. Report the exact filename and one concrete fact from the result, then emit [DRONE SELF-PROMPT] with Agenda:, Verified facts: (including a token from the result), Next bounded action: STOP.",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794732261342,
+            "completed": 1794732261380
+          }
+        },
+        {
+          "type": "text",
+          "text": "[DRONE]\nCreated `workspace/autonomy/hive_agent_message_contract_v2_candidate.py` with 3228 bytes and SHA-256 hash `4f14cd6761437b78db76094612a15155f037fb3e8c623af42d9ad08e63b1a9c0`.\n\n[DRONE SELF-PROMPT]\nAgenda: Complete bounded verification of the new Python candidate.\nVerified facts: Tool returned `{\"ok\":true,\"created\":true}` confirming successful file creation at the exact project-relative path.\nNext bounded action: STOP"
+        }
+      ],
+      "snapshot": {
+        "start": "40b7b9821f9a726cab180253dd93ffab4d579c43",
+        "end": "40b7b9821f9a726cab180253dd93ffab4d579c43",
+        "files": []
+      },
+      "finish": "stop",
+      "rawFinish": "stop",
+      "cost": 0,
+      "tokens": {
+        "input": 6025,
+        "output": 155,
+        "reasoning": 45,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1de6104dd001lCbPQFOLuyMn0Q",
+      "time": {
+        "created": 1794732262621
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    }
+  ]
+}

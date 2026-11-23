@@ -1,0 +1,75 @@
+{
+  "C:": {
+    "role": "OS Kernel & Core System",
+    "lora_adapter": "L:\\_models\\adapters\\c_drive_os_v1.gguf",
+    "permission": "READ_ONLY",
+    "allowed_tools": [
+      "sys_read_log",
+      "check_service_status",
+      "os_version_info"
+    ],
+    "denied_operations": [
+      "file_delete",
+      "file_write",
+      "registry_modify"
+    ]
+  },
+  "D:": {
+    "role": "Testing Proving Ground",
+    "lora_adapter": "L:\\_models\\adapters\\d_drive_test_v1.gguf",
+    "permission": "READ_WRITE_SANDBOX",
+    "allowed_tools": [
+      "test_run",
+      "build_exec",
+      "py_test_execute",
+      "sandbox_file_write",
+      "sandbox_file_delete"
+    ],
+    "denied_operations": [
+      "escape_sandbox",
+      "modify_host_system"
+    ]
+  },
+  "E:": {
+    "role": "Universal Long-Term Quarantine Vault",
+    "lora_adapter": "L:\\_models\\adapters\\e_drive_vault_v1.gguf",
+    "permission": "VAULT_ONLY",
+    "allowed_tools": [
+      "quarantine_list_manifest",
+      "vault_audit",
+      "restore_quarantine_item"
+    ],
+    "denied_operations": [
+      "permanent_purge_without_user_key"
+    ]
+  },
+  "F:": {
+    "role": "Games & World Knowledge Base",
+    "lora_adapter": "L:\\_models\\adapters\\f_drive_knowledge_v1.gguf",
+    "permission": "READ_ONLY",
+    "allowed_tools": [
+      "game_config_query",
+      "knowledge_vector_search",
+      "media_catalog_scan"
+    ],
+    "denied_operations": [
+      "file_delete",
+      "mod_file_overwrite"
+    ]
+  },
+  "L:": {
+    "role": "Sovereign AI OS Core & Workspace",
+    "lora_adapter": "L:\\_models\\adapters\\l_drive_hviv_master.gguf",
+    "permission": "SOVEREIGN_CORE",
+    "allowed_tools": [
+      "rust_queen_cani",
+      "index_diff_scan",
+      "triadic_mutex_acquire",
+      "hviv_docker_exec",
+      "dataset_distill"
+    ],
+    "denied_operations": [
+      "unapproved_host_mutation"
+    ]
+  }
+}

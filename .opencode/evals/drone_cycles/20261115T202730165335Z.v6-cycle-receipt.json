@@ -1,0 +1,424 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "self_prompt_missing_after_read",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e1f1f1486ffeo9DHSYcM2M3M4G",
+  "session_recovery": null,
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "read",
+    "localcoder_add_python",
+    "shell"
+  ],
+  "final_validation": "final_self_prompt_fields_missing",
+  "self_check_validation": {
+    "required": true,
+    "passed": false,
+    "reason": "self_check_nonzero_or_missing_exit"
+  },
+  "read_evidence_validation": null,
+  "source_line_validation": null,
+  "intermediate_validation": {
+    "passed": false,
+    "reason": "self_prompt_missing_after_read"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774203601-48f77b43-0a9a-4f56-b44f-984f16f4d236-body-gate.json",
+      "sha256": "97e85be6ae77458dd14c215a04bdfb527930dccf16634e104b5874cdd528e30c",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774222471-f884ef87-3f21-4f60-b825-fa7ea8f5f3fb-body-gate.json",
+      "sha256": "0760b598b8670dee4eb660416c08e827e453ef63ca52af33c5141a161224d98a",
+      "source": "tool:read",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.8,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.8,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.8,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.4
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774226110-c589db88-16a0-41bd-8d6e-4539e9019f45-body-gate.json",
+      "sha256": "ad2e59e0553fab9157c782d09345d79697da2968aa1c84dfad87c7282e0bff51",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.9
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774247963-358b6adf-8adf-4235-ae5d-7a862d4533c2-body-gate.json",
+      "sha256": "f8a8397bc669523b200039d1ed12ea50e935eb4eb8e338197bbb924f01429eb0",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 88.8,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.8,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 88.8,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.1
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774266147-b6bd2d81-6a48-4e01-ac39-52b6f91e92bc-body-gate.json",
+      "sha256": "816f61811582564ac422b084016bb8a804a062d952dedbcf94730de3f1352225",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.2,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.8,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774325006-8665a9b4-3614-4a12-9519-203f0d2bae12-body-gate.json",
+      "sha256": "bc7df776e9b7e01dfa071053378b6376e56685d4ab296137cd0fc9f81ee9769a",
+      "source": "tool:localcoder_add_python",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.6,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.6,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774328479-618e616e-fe61-49dc-87ec-44a7270d5148-body-gate.json",
+      "sha256": "7d5f3955fd41feb2cbda93b4e0fea4f2cf4c1265541726a4b246469d426d9df2",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.2,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.4
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774349466-9fb49c98-3e05-408a-ae0c-700bed882e89-body-gate.json",
+      "sha256": "58835b50d54ae54c0a7b34c1e5bb4c94d4338a9665f780836e8a0d0a3ad44716",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.9,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.9,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.6
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774375664-2426c4e4-8c3c-4762-9f34-36cfeba84cb7-body-gate.json",
+      "sha256": "b01c335b2f1a4b040b2103ed6850b41feebc9c8b711dea60faf761cdb71ef354",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.9
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774391551-07335181-5f13-4a20-b11c-7c3fc95203ad-body-gate.json",
+      "sha256": "76caaf590eefe262cc21df91ebf6320508adcef691a1cc99eee822ae730f1bdd",
+      "source": "tool:shell",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.2,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774395643-51cf0c7e-f1d8-4ca3-924c-ddd92f5d6727-body-gate.json",
+      "sha256": "0d627c7c12cd9e633c1c648da567a90e568ba4736bfc4037bd5583f059953d81",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.6,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.6,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.5
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794774416737-395b5e4e-0c35-4e89-b160-f8e0726d4058-body-gate.json",
+      "sha256": "c6a1f7a8f8a5815a5e5e4b36583220818d2eefce87aa8a6a38338b40cc74a9e2",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.3,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.3,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.3
+      },
+      "reasons": []
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 80.9,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 88.5,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 1.7
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "a406040af5cb24970f45e1851e55561422ececdfe95ed23e0c6eaa2d361ba64e",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 250.953,
+    "exit_code": 1,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e1f1f1486ffeo9DHSYcM2M3M4G"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "ee96ed8d8a50d0bfb536834c72762f3f9a6aeccf2f81d297eaea5a11db149510",
+    "tools": [
+      {
+        "tool": "read",
+        "status": "completed"
+      },
+      {
+        "tool": "localcoder_add_python",
+        "status": "completed"
+      },
+      {
+        "tool": "shell",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [
+      {
+        "status": "completed",
+        "exit": 1,
+        "output": "L:.venv\\Scripts\\python.exe: The term 'L:.venv\\Scripts\\python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\nExit code: 1"
+      }
+    ],
+    "task_succeeded": false,
+    "task_errors": [
+      "shell_check_failed",
+      "self_check_nonzero_or_missing_exit"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [
+      {
+        "status": "completed",
+        "exit": 1,
+        "output": "L:.venv\\Scripts\\python.exe: The term 'L:.venv\\Scripts\\python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\nExit code: 1"
+      }
+    ],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE]\nFile `L:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_match_v20_candidate.py` created successfully with sha256 02ed7e9011a17fe349615f1726a32a2fa5fdc3f5f69a99e5460978e83c19baca. Shell execution failed with exit code 1 due to path formatting - the command `L:.venv\\Scripts\\python.exe` was not recognized as a cmdlet, indicating Windows CMD requires forward slashes or proper quoting for paths containing backslashes.\n\n[DRONE SELF-PROMPT]\nAgenda: Retry shell execution with corrected path syntax using forward slashes.\nVerified facts: Shell exit code 1 confirmed; Scripts token from output excerpt indicates path parsing failure. Next bounded action: STOP"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T202319003700Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T202318901721Z.prompt.txt",
+    "exit_only_final_shell_check_passed": false,
+    "dispatcher_final_text": [
+      "[DRONE]\nFile `L:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_match_v20_candidate.py` created successfully with sha256 02ed7e9011a17fe349615f1726a32a2fa5fdc3f5f69a99e5460978e83c19baca. Shell execution failed with exit code 1 due to path formatting - the command `L:.venv\\Scripts\\python.exe` was not recognized as a cmdlet, indicating Windows CMD requires forward slashes or proper quoting for paths containing backslashes.\n\n[DRONE SELF-PROMPT]\nAgenda: Retry shell execution with corrected path syntax using forward slashes.\nVerified facts: Shell exit code 1 confirmed; Scripts token from output excerpt indicates path parsing failure. Next bounded action: STOP"
+    ]
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "viv_cpu_gpu_speculative_specialist_v1",
+  "receipt_schema": "viv_cpu_gpu_speculative_specialist_receipt_v1",
+  "status": "candidate_only",
+  "purpose": "Measure a CPU-resident specialist draft layer feeding Viv GPU verification under the unchanged Viv CPU and Rust authority gates.",
+  "parent": {
+    "native_usefulness_receipt_required": true,
+    "native_usefulness_final_state": "HOLD_GPU_USEFULNESS_NOT_OBSERVED",
+    "same_telic_cards": true,
+    "source_catalog_rebuild": false
+  },
+  "specialists": [
+    {
+      "specialist_id": "qwen2_5_0_5b_cpu_draft_v1",
+      "provider": "ollama",
+      "model": "qwen2.5:0.5b",
+      "device": "cpu",
+      "num_gpu": 0,
+      "temperature": 0.0,
+      "seed_base": 74000,
+      "num_predict": 48,
+      "num_ctx": 256,
+      "keep_alive": -1
+    }
+  ],
+  "flow": {
+    "vertical_serial_stages": [
+      "SPECIALIST_DRAFT",
+      "GPU_VERIFY_OR_EXPLORE",
+      "CPU_MODEL_AND_RULE_JUDGE",
+      "RUST_WRITE_DECISION"
+    ],
+    "horizontal_parallel_lanes": [
+      "specialist_lanes",
+      "gpu_route_lanes",
+      "retained_candidate_routes"
+    ],
+    "semantic_speculative_not_token_speculative": true,
+    "different_tokenizers_require_semantic_frame_handoff": true,
+    "all_rejected_routes_retained": true,
+    "no_majority_vote_truth": true
+  },
+  "gpu_verification_profile": {
+    "temperature": 0.1,
+    "top_k": null,
+    "top_p": null,
+    "repetition_penalty": 1.0,
+    "draft_mode": "cpu_gate",
+    "generation_budget": 32,
+    "context_length": 128
+  },
+  "cpu_reference_profile": {
+    "temperature": 0.0,
+    "top_k": null,
+    "top_p": null,
+    "repetition_penalty": 1.0,
+    "draft_mode": "cpu_gate",
+    "generation_budget": 32,
+    "context_length": 128
+  },
+  "paired_inputs": {
+    "same_first_party_candidate": true,
+    "same_tokenizer_for_viv_cpu_gpu": true,
+    "same_route_seed_for_native_and_assisted_gpu": true,
+    "same_cpu_evidence_card": true,
+    "route_seeds": [73100, 73101, 73102],
+    "repeats": 2
+  },
+  "definitions": {
+    "draft_admitted": "specialist raw output is structurally valid under the unchanged telic frame parser; no repair is applied",
+    "assisted_gpu_novel": "draft-assisted GPU raw output differs from native GPU raw output for the same card and route seed",
+    "assisted_gpu_cpu_validated": "unchanged CPU validator accepts the draft-assisted GPU raw output against the same evidence card",
+    "useful_assisted_gpu": "assisted_gpu_novel and assisted_gpu_cpu_validated and raw assisted GPU model-origin success",
+    "specialist_is_not_viv_authorship": true,
+    "cpu_truth_is_not_redefined_by_draft": true
+  },
+  "acceptance": {
+    "minimum_useful_assisted_gpu_proposals": 1,
+    "minimum_draft_admitted": 1,
+    "cpu_truth_invariant": true,
+    "zero_unauthorized_cpu_accepts": true,
+    "rust_state": "HOLD_SECURITY",
+    "candidate_only": true
+  },
+  "authority": {
+    "specialist_proposal_only": true,
+    "gpu_proposal_only": true,
+    "cpu_model_and_rule_final_authority": true,
+    "rust_write_authority": false,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "live_model_mutation": false
+  }
+}

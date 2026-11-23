@@ -1,0 +1,58 @@
+{
+  "schema_version": "viv_cpu_reflection_query_variable_sandbox_result_shadow_contract_v1",
+  "purpose": "routed_model_origin_result_judgment_after_verified_current_sandbox_measurement",
+  "candidate_only": true,
+  "isolated_required": true,
+  "no_publish_required": true,
+  "phase": "MEASURE",
+  "model_output_grammar": "R|<accept|reject|hold>|<reason_code>",
+  "fixed_width_wire": "viv_cpu_model_directed_fixed_width_wire_v1",
+  "frame_width": 40,
+  "padding_char": "~",
+  "fixed_generation_budget": 40,
+  "model_context_length": 128,
+  "result_card_must_be_pre_decision": true,
+  "required_parent_receipts": [
+    "viv_cpu_reflection_query_variable_sandbox_shadow_receipt_v1",
+    "viv_cpu_governed_clean_result_receipt_v1"
+  ],
+  "model_packet_fields": [
+    "compile_state",
+    "import_state",
+    "execution_state",
+    "declared_binding_state",
+    "evidence_state",
+    "authority_state",
+    "budget_state",
+    "measurement_state",
+    "bounded_result_card_hash"
+  ],
+  "hidden_from_model": [
+    "expected_disposition",
+    "expected_reason",
+    "target_frame",
+    "cpu_final_disposition",
+    "post_decision_state",
+    "fixture_result_after_model"
+  ],
+  "metadata_only": true,
+  "source_bodies_in_model_packet": false,
+  "native_paths_in_model_packet": false,
+  "literal_runtime_values_in_model_packet": false,
+  "target_derived_budget": false,
+  "raw_model_output_scored_without_repair": true,
+  "cpu_validation_after_raw_model_output": true,
+  "routed_attachment_not_unified_checkpoint": true,
+  "rust_write_membrane": true,
+  "production_generation": false,
+  "pointer_adoption": false,
+  "seed_mutation": false,
+  "live_model_mutation": false,
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

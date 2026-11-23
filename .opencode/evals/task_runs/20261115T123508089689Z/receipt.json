@@ -1,0 +1,52 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 354.313,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e20cbb6c1ffeGRIu5AwyNqXXzf"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "8a886f27c1e0911f0535f87ef66d49d5059dbf09c8376c8467fae113fb0e9ddd",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "error"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "tool_error",
+    "verification_check_missing"
+  ],
+  "tool_errors": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "error"
+    }
+  ],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "<tool_call>\n<function=localcoder_add_python>\n<parameter=file_path>\nworkspace\\autonomy\\hive_postal_outbox_proposal_candidate.py\n</parameter>\n<parameter=function>\nprepare_queen_outbox_proposal(message_id, sender_id, authority_queen_id, task_id, body, *, kind=\"REPORT\", proposed_recipient_id=None, parent_message_sha256=None)\n</parameter>\n<parameter=description>\nImplement pure prepare_queen_outbox_proposal function with --self-check CLI. Return (envelope, errors): valid input gives hive_postal_message_v1 mapping and empty tuple; invalid gives None and stable error strings. Top-level recipient is always supplied Queen ID. Copy inputs without mutation. No I/O, crypto, identity, permission, or delivery. Rust decides routing and acceptance.\n</parameter>\n<parameter=command>\nL:\\.venv\\Scripts\\python.exe -B workspace\\autonomy\\hive_postal_outbox_proposal_candidate.py --self-check\n</parameter>\n</function>\n</tool_call>"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T123508089689Z"
+}

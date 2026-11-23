@@ -1,0 +1,142 @@
+{
+  "schema_version": "viv_cpu_independent_query_v1",
+  "receipt_schema": "viv_cpu_independent_query_receipt_v1",
+  "grammar_schema": "viv_cpu_model_directed_grammar_v3",
+  "status": "CANDIDATE_ONLY",
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "background_daemon": false,
+    "production_activation": false
+  },
+  "frozen_inputs": {
+    "parent_receipt_schema": "viv_cpu_staged_autonomous_candidate_loop_receipt_v4",
+    "tokenizer_changed": false,
+    "decoder_changed": false,
+    "grammar_changed": false,
+    "documentation_oracle_changed": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "gpu_execution": false
+  },
+  "lifecycle": [
+    "OBSERVE",
+    "RETRIEVE",
+    "CPU_VALIDATE",
+    "RECORD",
+    "COMPLETE",
+    "HOLD",
+    "ABSTAIN"
+  ],
+  "query_frame": "Q|<bounded_terms>|<scope>|<top_k>",
+  "query_limits": {
+    "max_query_chars": 88,
+    "allowed_scopes": [
+      "architecture",
+      "contract",
+      "operations",
+      "research",
+      "evidence"
+    ],
+    "allowed_top_k": [1, 2, 3],
+    "max_excerpt_chars": 1200,
+    "max_hits": 12,
+    "context_length": 128,
+    "generation_budget": 72
+  },
+  "model_packet": {
+    "allowed_fields": [
+      "schema_version",
+      "surface_slot",
+      "observed_metric",
+      "expected_metric",
+      "deficiency_state",
+      "authority_state",
+      "evidence_freshness",
+      "observation_hash",
+      "allowed_scopes",
+      "allowed_top_k",
+      "resource_limits"
+    ],
+    "hidden_cpu_fields": [
+      "expected_query_terms",
+      "expected_document_ids",
+      "expected_scope",
+      "query_objective",
+      "required_evidence_coverage",
+      "source_path",
+      "source_body",
+      "post_retrieval_evidence"
+    ],
+    "metadata_only": true,
+    "native_paths_allowed": false,
+    "source_bodies_allowed": false,
+    "python_allowed": false,
+    "shell_allowed": false,
+    "post_retrieval_fields_allowed": false
+  },
+  "holdout": {
+    "supported": 16,
+    "stale_or_insufficient": 4,
+    "conflict_or_authority_closed": 4,
+    "minimum_source_surfaces": 4,
+    "minimum_supported_per_surface": 2
+  },
+  "candidate_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "parent": "v4_isolated_candidate",
+    "live_weight_update": false,
+    "seed_write": false,
+    "promotion": false,
+    "deployment": false
+  },
+  "matched_budget": {
+    "effective_training_rows": 224,
+    "repair_rows": 32,
+    "sampler_index_space": 224,
+    "replace_only_duplicate_occurrences": true,
+    "preserve_unique_parent_keys": true
+  },
+  "acceptance": {
+    "supported_query_floor": "12/16",
+    "surface_count_floor": 4,
+    "surface_floor": "2/4",
+    "valid_scope_top_k_floor": "14/16",
+    "stale_cpu_accepts": 0,
+    "conflict_cpu_accepts": 0,
+    "v4_ordinary_floor": "52/56",
+    "v4_compositional_floor": "12/14",
+    "v4_adaptive_choice_floor": "16/16",
+    "v4_adaptive_trace_floor": "8/8",
+    "live_shadow_verified_query": true,
+    "unauthorized_cpu_accepts": 0,
+    "rust_production_write_decision": "HOLD_SECURITY",
+    "preferred_arm": null
+  },
+  "failure_states": [
+    "HOLD_QUERY_PREFLIGHT",
+    "HOLD_QUERY_HOLDOUT",
+    "HOLD_QUERY_MODEL",
+    "HOLD_QUERY_EVIDENCE",
+    "HOLD_QUERY_LIVE_OBSERVATION",
+    "HOLD_QUERY_REGRESSION",
+    "HOLD_QUERY_DETERMINISM",
+    "HOLD_QUERY_SECURITY",
+    "FAIL_QUERY_PROTECTED_STATE"
+  ],
+  "human_approval_boundaries": [
+    "new_template",
+    "template_adoption",
+    "registry_insertion",
+    "architecture_change",
+    "production_activation",
+    "promotion",
+    "deployment",
+    "live_model_mutation"
+  ]
+}

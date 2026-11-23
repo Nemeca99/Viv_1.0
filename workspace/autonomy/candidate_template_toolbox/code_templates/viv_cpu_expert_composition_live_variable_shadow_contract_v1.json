@@ -1,0 +1,63 @@
+{
+  "schema_version": "viv_cpu_expert_composition_live_variable_shadow_contract_v1",
+  "contract_status": "current_candidate_only",
+  "purpose": "Attach the independently verified variable specialist to one live CANDIDATE_PLAN phase while preserving the already-proven CPU expert route.",
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "foreground_only": true,
+    "no_cli_action_selection": true,
+    "no_cli_variable_selection": true
+  },
+  "route_map": {
+    "OBSERVE": "reflection_specialist",
+    "RETRIEVE": "unified_parent",
+    "CANDIDATE_PLAN": "variable_specialist",
+    "MEASURE": "unified_parent",
+    "SCHEDULE": "unified_parent"
+  },
+  "route_authority": "CPU_RULE",
+  "parent_requirements": {
+    "expert_composition_receipt": "PASS_CPU_EXPERT_COMPOSITION_CANDIDATE_ONLY",
+    "variable_receipt": "PASS_CPU_GOVERNED_CLEAN_VARIABLE_CANDIDATE_ONLY",
+    "variable_surface": "model_origin_variable_and_isolated_fixture",
+    "no_fusion": true
+  },
+  "variable_surface": {
+    "template_slot": 0,
+    "template_id": "fixture.echo",
+    "approved_tasks": ["render_preview"],
+    "declared_keys": ["message", "suffix"],
+    "value_slots": {
+      "message": ["msg_hello", "msg_preview"],
+      "suffix": ["sfx_safe", "sfx_ok"]
+    },
+    "literal_values_model_visible": false,
+    "source_bodies_model_visible": false,
+    "expected_frame_model_visible": false
+  },
+  "inference_contract": {
+    "device": "cpu",
+    "model_eval_mode": true,
+    "optimizer_calls": 0,
+    "checkpoint_writes": 0,
+    "gpu_execution": false,
+    "temperature_effective": 0.0,
+    "repetition_penalty": 1.0,
+    "generation_budget": 40,
+    "context_length": 128,
+    "seed": 43
+  },
+  "lifecycle": {
+    "allowed": ["OBSERVE", "RETRIEVE", "HYPOTHESIZE", "CPU_VALIDATE", "CANDIDATE_PLAN", "SANDBOX_TEST", "MEASURE", "RECORD", "SCHEDULE", "COMPLETE", "HOLD"],
+    "forbidden_direct_transition": ["HYPOTHESIZE", "SANDBOX_TEST"]
+  },
+  "nonclaims": [
+    "single_fused_checkpoint",
+    "autonomous_route_selection",
+    "independent_live_deficiency_discovery_by_one_checkpoint",
+    "broad_template_discrimination",
+    "production_self_modification",
+    "gpu_usefulness"
+  ]
+}

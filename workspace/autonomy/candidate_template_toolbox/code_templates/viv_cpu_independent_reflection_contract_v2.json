@@ -1,0 +1,129 @@
+{
+  "schema_version": "viv_cpu_independent_reflection_v2",
+  "receipt_schema": "viv_cpu_independent_reflection_receipt_v2",
+  "parent_contract_schema": "viv_cpu_independent_reflection_v1",
+  "frame_schema": "viv_cpu_autonomy_reflection_frame_v1",
+  "representation": {
+    "name": "single_card_local_evidence_slot",
+    "version": 2,
+    "model_packet_scope": "one_observation_card",
+    "model_evidence_slot": 0,
+    "source_evidence_slot_cpu_only": true,
+    "rationale": "A reflection prompt contains one card; provenance keeps the source slot while the model sees a local slot in that one-card packet."
+  },
+  "frame_width": 80,
+  "padding_char": "~",
+  "device": "cpu",
+  "training": {
+    "enabled": true,
+    "parent": "viv_slm_seed_0000",
+    "candidate_only": true,
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "response_only_loss": true,
+    "optimizer_scope": "isolated_candidate_only"
+  },
+  "cli_guards": ["--isolated", "--no-publish"],
+  "model_outputs": [
+    "NO_DEFICIENCY",
+    "DEFICIENCY_CANDIDATE|<surface_slot>|0|<observed_metric>|<expected_metric>"
+  ],
+  "surface_slots": ["rid", "auto", "uml", "documentation", "model_protocol"],
+  "observed_metrics": [
+    "coverage_gap",
+    "adaptive_repeat",
+    "protocol_hold",
+    "stale_evidence",
+    "no_deficiency",
+    "insufficient_context"
+  ],
+  "expected_metrics": [
+    "coverage_gap",
+    "adaptive_repeat",
+    "protocol_hold",
+    "stale_evidence",
+    "no_deficiency",
+    "insufficient_context",
+    "stable",
+    "evidence_conditioned"
+  ],
+  "card_states": ["SUPPORTED_DEFICIENCY", "CLEAN", "INSUFFICIENT", "CONTRADICTORY"],
+  "holdout": {
+    "supported_deficiency_rows": 8,
+    "clean_rows": 4,
+    "insufficient_or_contradictory_rows": 4,
+    "minimum_deficiency_success": 6,
+    "minimum_clean_success": 3,
+    "minimum_surface_slots": 2,
+    "minimum_non_coverage_successes": 1
+  },
+  "split_integrity": {
+    "row_ids_disjoint": true,
+    "semantic_keys_disjoint": true,
+    "prompt_hashes_disjoint": true,
+    "construction_ids_disjoint": true,
+    "prompt_target_pair_disjoint": true,
+    "target_vocabulary_reuse_allowed": true,
+    "option_set_vocabulary_reuse_allowed": true,
+    "target_overlap_is_not_success_evidence": true
+  },
+  "forbidden_model_content": [
+    "native_paths",
+    "source_bodies",
+    "python",
+    "shell",
+    "executable_content",
+    "checkpoint_paths",
+    "post_decision_fields",
+    "expected_output_frame"
+  ],
+  "lifecycle": [
+    "OBSERVE",
+    "REFLECT",
+    "CPU_VALIDATE",
+    "RECORD",
+    "COMPLETE",
+    "HOLD",
+    "ABSTAIN"
+  ],
+  "determinism": {
+    "temperature": 0.0,
+    "top_k": null,
+    "top_p": null,
+    "repetition_penalty": 1.0,
+    "attention_backend": "sdpa",
+    "draft_mode": "cpu_gate"
+  },
+  "protected_boundaries": {
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "optimizer_calls_on_live_model": false,
+    "checkpoint_writes_to_seed": false,
+    "gpu_execution": false,
+    "registry_mutation": false,
+    "production_generation": false,
+    "template_insertion": false,
+    "rust_python_write_open": false,
+    "human_approval_required_for_adoption": true
+  },
+  "security": {
+    "production_write_probe": "HOLD_SECURITY",
+    "unauthorized_cpu_accepts": 0
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "volatile_fields_excluded_from_comparison": [
+      "created_utc",
+      "run_id",
+      "wall_seconds",
+      "decision_id",
+      "receipt_sha256"
+    ]
+  }
+}

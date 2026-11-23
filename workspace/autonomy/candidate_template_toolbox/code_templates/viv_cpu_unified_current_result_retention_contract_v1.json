@@ -1,0 +1,32 @@
+{
+  "schema_version": "viv_cpu_unified_current_result_retention_contract_v1",
+  "experiment_id": "cpu_unified_current_result_retention_v1",
+  "purpose": "Attach a bounded pre-decision result-menu signature while retaining the verified reflection, query, variable, scheduler, and template surfaces.",
+  "representation": {
+    "marker": "|d=ac,re,ho|",
+    "meaning": "approved result-disposition menu",
+    "causal": true,
+    "target_free": true,
+    "post_decision": false
+  },
+  "allowed_dispositions": ["accept", "reject", "hold"],
+  "metadata_only": true,
+  "no_decoder_change": true,
+  "no_tokenizer_change": true,
+  "no_cpu_resolver_change": true,
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "context_length": 128
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "candidate_only": true,
+    "production_write": "HOLD_SECURITY"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": "viv_cpu_model_origin_telic_reflection_v1",
+  "receipt_schema": "viv_cpu_model_origin_telic_reflection_receipt_v1",
+  "parent_reflection_receipt_schema": "viv_cpu_independent_reflection_receipt_v2",
+  "frame_schema": "viv_cpu_telic_reflection_frame_v1",
+  "frame_width": 48,
+  "padding_char": "~",
+  "model_outputs": [
+    "NO_REEVALUATION",
+    "REEVALUATE|d=<dimension>|t=<tension_slot>|e=<evidence_slot>"
+  ],
+  "dimensions": ["who", "what", "how", "when", "why"],
+  "tension_slots": ["none", "impl", "cap", "time", "role", "why", "truth", "method"],
+  "observed_metrics": ["stable", "implementation_failure", "capability_gap", "context_change", "role_change", "reason_contradicted", "method_blocked"],
+  "expected_metrics": ["stable", "evidence_conditioned", "supported", "requires_review"],
+  "evidence_slots": [0],
+  "state_card": {
+    "required_dimensions": ["who", "what", "how", "when", "why"],
+    "required_fields": ["purpose_slot", "evidence_state", "authority_state", "state_digest_prefix"],
+    "model_visible": true,
+    "expected_output_hidden": true,
+    "native_provenance_cpu_only": true
+  },
+  "holdout": {
+    "total_rows": 16,
+    "reevaluation_rows": 8,
+    "no_reevaluation_rows": 6,
+    "insufficient_rows": 2,
+    "minimum_reevaluation_success": 6,
+    "minimum_no_reevaluation_success": 4,
+    "minimum_supported_dimensions": 4,
+    "minimum_total_model_success": 12
+  },
+  "training": {
+    "parent_candidate_only": true,
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "response_only_loss": true,
+    "generation_budget": 48,
+    "context_length": 128,
+    "optimizer_scope": "isolated_candidate_only"
+  },
+  "lifecycle": [
+    "OBSERVE",
+    "REFLECT",
+    "CPU_VALIDATE",
+    "RECORD",
+    "COMPLETE",
+    "HOLD",
+    "ABSTAIN"
+  ],
+  "forbidden_downstream_transitions": [
+    "QUERY",
+    "ACTION",
+    "VARIABLE",
+    "SANDBOX_TEST",
+    "SCHEDULE",
+    "EXECUTION",
+    "PRODUCTION"
+  ],
+  "search_stop_policy": {
+    "mode": "single_bounded_reflection",
+    "max_model_frames": 1,
+    "max_cpu_validation_attempts": 1,
+    "stop_after": [
+      "valid_reevaluation_proposal",
+      "NO_REEVALUATION",
+      "HOLD",
+      "ABSTAIN",
+      "malformed_output",
+      "insufficient_evidence"
+    ],
+    "retry_requires_operator_resume": true,
+    "self_resume": false
+  },
+  "forbidden_model_content": [
+    "expected_output_frame",
+    "expected_dimension",
+    "native_paths",
+    "source_bodies",
+    "python",
+    "shell",
+    "generated_code",
+    "checkpoint_paths",
+    "post_decision_fields",
+    "arbitrary_filesystem_paths"
+  ],
+  "authority": {
+    "model_can_propose": true,
+    "model_can_validate": false,
+    "model_can_resolve_truth": false,
+    "model_can_query": false,
+    "model_can_execute": false,
+    "model_can_schedule": false,
+    "model_can_expand_authority": false,
+    "cpu_validates_evidence": true,
+    "rust_remains_write_membrane": true,
+    "human_approval_required_for_adoption": true,
+    "candidate_only": true
+  },
+  "gates": {
+    "raw_model_output_required": true,
+    "cpu_substitution_counts_as_failure": true,
+    "cpu_unauthorized_accepts": 0,
+    "deterministic_repeats_required": true,
+    "protected_state_unchanged": true,
+    "rust_probe": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_omitted": true,
+    "volatile_fields_excluded": ["created_utc", "run_id", "wall_seconds", "receipt_sha256", "decision_id"]
+  }
+}

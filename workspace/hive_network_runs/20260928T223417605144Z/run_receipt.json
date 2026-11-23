@@ -1,0 +1,119 @@
+{
+  "proof": "synthetic_three_model_tasks_plus_human_wait_resume",
+  "scope": "simulation; Python harness; not Rust authority or held-out evaluation",
+  "started_utc": "2026-09-28T22:34:17.606150+00:00",
+  "model": "qwen3:1.7b",
+  "python": "3.12.10",
+  "host": "Travis",
+  "resource": {
+    "ollama_ps_before": "NAME          ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nqwen3:1.7b    8f68893c685c    1.9 GB    100% CPU     4096       9 minutes from now",
+    "ollama_ps_after": "NAME          ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nqwen3:1.7b    8f68893c685c    1.9 GB    100% CPU     4096       9 minutes from now",
+    "nvidia_smi_before": "NVIDIA GeForce RTX 3060 Ti, 1476 MiB, 8192 MiB, 21 %",
+    "nvidia_smi_after": "NVIDIA GeForce RTX 3060 Ti, 1476 MiB, 8192 MiB, 2 %"
+  },
+  "model_tasks": [
+    {
+      "task_id": "task-001",
+      "owner": "swarm-1",
+      "checksum": "9fce59ec80f9fe92acf3b36bdcec19e976444bb1ec906d65908f3b14eecf7393",
+      "parent_checksum": "",
+      "snapshot_id": "c6d1ec4221817dd2c3c99e8c94c919c7a94824682fe282adf125d540de384fb8",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "metrics": {
+        "total_duration": 413298800,
+        "load_duration": 2644900,
+        "prompt_eval_count": 106,
+        "prompt_eval_duration": 35074000,
+        "eval_count": 12,
+        "eval_duration": 364868000,
+        "done_reason": "stop",
+        "wall_seconds": 0.431,
+        "raw": "{\"module_docstring\": \"Hive greeting module\"}"
+      }
+    },
+    {
+      "task_id": "task-002",
+      "owner": "swarm-2",
+      "checksum": "dba9da7fcf73df159a6cc22f47a65a5f29cb5d55006cbf80c95e8f971c9b3efd",
+      "parent_checksum": "9fce59ec80f9fe92acf3b36bdcec19e976444bb1ec906d65908f3b14eecf7393",
+      "snapshot_id": "5853e715c05b41acaea8bec7fd59554a50bc3dc9c3801846c0d3af7b5937c4c9",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "metrics": {
+        "total_duration": 464611700,
+        "load_duration": 1998900,
+        "prompt_eval_count": 120,
+        "prompt_eval_duration": 34178000,
+        "eval_count": 14,
+        "eval_duration": 420842000,
+        "done_reason": "stop",
+        "wall_seconds": 0.465,
+        "raw": "{\n  \"import_statement\": \"from typing import Final\"\n}"
+      }
+    },
+    {
+      "task_id": "task-003",
+      "owner": "swarm-3",
+      "checksum": "850c1950eaf542feccb8cb230c2f7422a593d7745905f4c8dcbad99c669c094e",
+      "parent_checksum": "dba9da7fcf73df159a6cc22f47a65a5f29cb5d55006cbf80c95e8f971c9b3efd",
+      "snapshot_id": "aba3e712c319d13d8e9b7d381887132764c97ec2bdf7713dd9aa281e3af3b358",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "metrics": {
+        "total_duration": 1424017400,
+        "load_duration": 1999200,
+        "prompt_eval_count": 153,
+        "prompt_eval_duration": 537749000,
+        "eval_count": 28,
+        "eval_duration": 877532000,
+        "done_reason": "stop",
+        "wall_seconds": 1.449,
+        "raw": "{\"greeting\": \"Hello from the Hive!\", \"function_name\": \"greet\", \"return_name\": \"GREETING\"}"
+      }
+    }
+  ],
+  "human_events": [
+    {
+      "task_id": "human-greeting",
+      "status": "REPLIED",
+      "route": "Queen -> Viv -> task-003 input",
+      "reply": "Hello from the Hive!",
+      "resumed_parent": "task-003"
+    }
+  ],
+  "security_checks": {
+    "worker_prompt_key_isolation_passed": true,
+    "wrong_worker_decryption_denied": true,
+    "tamper_detection_passed": true,
+    "mind_only_index_updates": true,
+    "peer_channel_without_grant_denied": true
+  },
+  "artifact": {
+    "path": "hive_network_runs\\20260928T223417605144Z\\hello.py",
+    "sha256": "90c12fea3e9a739a6ce7e121e3bf2bcf0be838d06fbaaa9d66d76073da761a31"
+  },
+  "snapshot_index": {
+    "task-001": {
+      "owner": "swarm-1",
+      "checksum": "9fce59ec80f9fe92acf3b36bdcec19e976444bb1ec906d65908f3b14eecf7393",
+      "parent_checksum": "",
+      "snapshot_id": "c6d1ec4221817dd2c3c99e8c94c919c7a94824682fe282adf125d540de384fb8"
+    },
+    "task-002": {
+      "owner": "swarm-2",
+      "checksum": "dba9da7fcf73df159a6cc22f47a65a5f29cb5d55006cbf80c95e8f971c9b3efd",
+      "parent_checksum": "9fce59ec80f9fe92acf3b36bdcec19e976444bb1ec906d65908f3b14eecf7393",
+      "snapshot_id": "5853e715c05b41acaea8bec7fd59554a50bc3dc9c3801846c0d3af7b5937c4c9"
+    },
+    "task-003": {
+      "owner": "swarm-3",
+      "checksum": "850c1950eaf542feccb8cb230c2f7422a593d7745905f4c8dcbad99c669c094e",
+      "parent_checksum": "dba9da7fcf73df159a6cc22f47a65a5f29cb5d55006cbf80c95e8f971c9b3efd",
+      "snapshot_id": "aba3e712c319d13d8e9b7d381887132764c97ec2bdf7713dd9aa281e3af3b358"
+    }
+  },
+  "mind_index_sha256": "dc6ded459c085be2e659fd2ac329c4e1dc2aff679094e18837019ddce47cf2d9",
+  "status": "PASS",
+  "finished_utc": "2026-09-28T22:34:20.206786+00:00"
+}

@@ -1,0 +1,42 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 108.453,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1e9e80fdffekqSg3m9eY7Gjur"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "81e1262ad8a4c0438c664db39e752837b4637cc6399a27430b769129f0445950",
+  "tools": [
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: 8 checks"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "[DRONE]\nTarget file: `L:/LocalCoder/workspace/autonomy/hive_postal_inbox_contract_v7_check_candidate.py`\nVerified fact: Tool output is exactly \"PASS: 8 checks\", confirming all 8 self-checks passed for the V7 candidate.\n\n[DRONE SELF-PROMPT]\nAgenda: Bounded verification complete; no further action required per Architect instruction.\nVerified facts: Shell executed `--self-check` on `hive_postal_inbox_contract_v7_check_candidate.py`; returned \"PASS: 8 checks\" with exit code 0. No errors, warnings, or failures detected in the output stream.\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T224345389414Z"
+}

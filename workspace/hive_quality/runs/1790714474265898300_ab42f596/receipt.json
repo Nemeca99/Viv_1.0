@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "scope": "one task-scoped Python file; staged before dispatch",
+  "source": "L:\\LocalCoder\\workspace\\template_rebuild\\reference\\fixture_echo.py",
+  "source_sha256": "8F84915A7C291691F6E5A5028B75E7E43573A68AF7F46CD91CE46CF1774FA82C",
+  "prepared": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790714474265898300_ab42f596\\fixture_echo.py",
+  "prepared_sha256": "592A75CC9F904345DACB41CC6FFA0F55D128F39ACFDA25445744DC593AD1D5E0",
+  "diff": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790714474265898300_ab42f596\\preparation.diff",
+  "checks": {
+    "format": {
+      "argv": [
+        "black",
+        "--quiet",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790714474265898300_ab42f596\\fixture_echo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "ruff": {
+      "argv": [
+        "ruff",
+        "check",
+        "--no-cache",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790714474265898300_ab42f596\\fixture_echo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    "vulture": {
+      "argv": [
+        "vulture",
+        "--min-confidence",
+        "100",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790714474265898300_ab42f596\\fixture_echo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "compile": {
+      "exit_code": 0,
+      "diagnostic": ""
+    }
+  }
+}

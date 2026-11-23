@@ -1,0 +1,45 @@
+{
+  "schema_version": "viv_cpu_governed_clean_variable_gate_contract_v1",
+  "purpose": "target_free_model_origin_variable_selection_and_isolated_fixture_gate",
+  "candidate_only": true,
+  "isolated_required": true,
+  "no_publish_required": true,
+  "model_output_grammar": "viv_cpu_model_directed_grammar_v3",
+  "phase": "CANDIDATE_PLAN",
+  "supported_rows": 16,
+  "blocked_rows": 8,
+  "fixed_generation_budget": 40,
+  "fixed_width_wire": "viv_cpu_model_directed_fixed_width_wire_v1",
+  "frame_width": 40,
+  "padding_char": "~",
+  "model_context_length": 128,
+  "value_slots_cpu_owned": true,
+  "model_literal_values_allowed": false,
+  "target_in_model_packet": false,
+  "expected_answer_in_model_packet": false,
+  "source_bodies_in_model_packet": false,
+  "native_paths_in_model_packet": false,
+  "source_rewrite": false,
+  "fixture_template": "fixture.echo",
+  "approved_template_slots": [0],
+  "declared_variable_keys": ["message", "suffix"],
+  "value_slot_menu": {
+    "message": ["msg_hello", "msg_preview"],
+    "suffix": ["sfx_safe", "sfx_ok"]
+  },
+  "training_or_evaluation_policy": {
+    "target_free_prompt": true,
+    "target_free_model_packet": true,
+    "fixed_generation_budget_not_target_derived": true,
+    "raw_model_output_scored_without_repair": true,
+    "cpu_resolution_after_raw_model_success_only": true
+  },
+  "protected_state": {
+    "seed_zero": true,
+    "live_model": true,
+    "registry": true,
+    "pointer": true,
+    "production_generation": true,
+    "rust_authority": true
+  }
+}

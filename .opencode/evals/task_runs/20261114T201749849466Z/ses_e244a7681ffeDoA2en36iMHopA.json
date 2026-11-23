@@ -1,0 +1,145 @@
+{
+  "info": {
+    "id": "ses_e244a7681ffeDoA2en36iMHopA",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 7414,
+      "output": 120,
+      "reasoning": 68,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "interrupted",
+    "time": {
+      "created": 1794687469954,
+      "updated": 1794687546101,
+      "busy": 1794687469969,
+      "idle": 1794687546106
+    },
+    "title": "LocalCoder Drone 20261114T201749849466Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1dbb5898b0010gFBJSdLAIfv8f",
+      "time": {
+        "created": 1794687469963
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1dbb58989001NS04wZ9CvVo608",
+      "time": {
+        "created": 1794687469975
+      },
+      "text": "[ARCHITECT] Prepare one bounded LocalCoder Drone work cycle for this assignment:\n[ARCHITECT] Verify the self-prompt helper at `workspace/autonomy/opencode_drone_prompts.py`. Use `read` exactly once on that path. Then use `shell` exactly once with `L:\\.venv\\Scripts\\python.exe -B -c \"import ast,pathlib,runpy; p=pathlib.Path('workspace/autonomy/opencode_drone_prompts.py'); ast.parse(p.read_text(encoding='utf-8')); f=runpy.run_path(str(p))['format_drone_self_prompt']; s=f('agenda','evidence','next'); assert s.startswith('[DRONE SELF-PROMPT]'); assert 'Verified facts: evidence' in s; print('PASS: drone prompt helper')\"`. Final report must include the actual shell output and a concise `[DRONE SELF-PROMPT]` with Agenda, Verified facts, and Next bounded action: STOP; await Queen. Do not change files.\n\n[QUEEN → DRONE] First send visible text beginning `[DRONE SELF-PROMPT]` with exactly these labeled fields: Agenda, Verified facts, Next bounded action. State that repository facts have not yet been checked; the next action is to inspect project status. Then use the `localcoder_status` tool exactly once. Do not start the assignment yet, use any other tool, or modify files. After the status result, finish with a short `[DRONE]` factual report. The self-prompt is a proposal; the Architect assignment remains authoritative.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1dbb5899d001CRhF6e0yHzh7tA",
+      "time": {
+        "created": 1794687469986,
+        "firstToken": 1794687506310,
+        "streamed": 1794687506321,
+        "completed": 1794687514266
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_4",
+          "name": "localcoder_status",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {},
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"project_root\":\"L:\\\\LocalCoder\",\"python\":\"L:/.venv/Scripts/python.exe\",\"integration_root\":\"L:\\\\LocalCoder\\\\workspace\",\"instructions\":\"L:\\\\LocalCoder\\\\AGENTS.md\",\"agent_guide\":\"L:\\\\LocalCoder\\\\AGENT.md\",\"memory_directory\":\"L:\\\\LocalCoder\\\\workspace\\\\aios_rebuild\\\\memory\\\\hermes_agent\\\\memories\",\"memory_files\":{\"MEMORY.md\":true,\"USER.md\":true},\"opencode_receipt_directory\":\"L:\\\\LocalCoder\\\\.opencode\\\\receipts\",\"opencode_receipt_count\":1008,\"opencode_latest_receipt\":\"L:\\\\LocalCoder\\\\.opencode\\\\receipts\\\\queen-preflight-agent-write-policy-20261114T080612219027Z-efa46bb2-19ab-4435-aeb9-6dbd33334825.json\",\"hermes_receipt_directory\":\"L:\\\\LocalCoder\\\\workspace\\\\aios_rebuild\\\\memory\\\\hermes_agent\\\\receipts\",\"hermes_receipt_count\":42,\"hermes_latest_receipt\":\"L:\\\\LocalCoder\\\\workspace\\\\aios_rebuild\\\\memory\\\\hermes_agent\\\\receipts\\\\memory-8d11250110d0441d9703bf39f13153f8.json\",\"execution_policy\":\"Only the current Architect-assigned task; no standing autonomous assignment.\"}"
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794687506313,
+            "ran": 1794687506319,
+            "completed": 1794687513328
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "91bc8f8d8c62dbe94c267d951383fab28c5b01d8",
+        "end": "e8378e194073a22c747ec8684ef59fd8b1760747",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794687513310-4a83892d-8f29-4c80-842f-b75661b35037-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794687513316-de7d5f05-d8e9-4d29-9e6b-b9a4b4c286d0.json",
+          "LocalCoder/.opencode/receipts/1794687513323-531c8085-2ea4-4009-9bda-1f119a0e2d23.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 7414,
+        "output": 120,
+        "reasoning": 68,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1dbb636a2001AviIUZwNheHDzq",
+      "time": {
+        "created": 1794687514278,
+        "completed": 1794687546101
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m",
+        "providerID": "lmstudio"
+      },
+      "content": [],
+      "snapshot": {
+        "start": "5e0be3abba6f65a881d12299085e98f249282855",
+        "end": "4b19eaefb9faab9824bdf10f2f4ef12ebb9644c4",
+        "files": [
+          "LocalCoder/.opencode/evals/task_runs/20261114T201749849466Z/interrupt.txt"
+        ]
+      },
+      "finish": "error",
+      "error": {
+        "type": "aborted",
+        "message": "Step interrupted"
+      }
+    },
+    {
+      "id": "msg_1dbb6b2fa001urI23B9PTd1DnP",
+      "time": {
+        "created": 1794687546106
+      },
+      "type": "idle",
+      "outcome": "interrupted"
+    }
+  ]
+}

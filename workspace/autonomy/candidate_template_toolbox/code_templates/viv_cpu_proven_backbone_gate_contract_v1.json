@@ -1,0 +1,50 @@
+{
+  "schema_version": "viv_cpu_proven_backbone_gate_contract_v1",
+  "experiment_id": "cpu_proven_self_building_backbone_gate_v1",
+  "candidate_only": true,
+  "purpose": "Seal independently verified evidence for the current model-origin self-building backbone before attaching new unproven surfaces.",
+  "required_cli_flags": [
+    "--isolated",
+    "--no-publish"
+  ],
+  "authority": {
+    "cpu_validation": true,
+    "rust_write_membrane": true,
+    "human_production_approval": true,
+    "live_pointer_adoption": false,
+    "seed_mutation": false,
+    "daemon_activation": false
+  },
+  "sealed_parent_surfaces": [
+    "unified_recursive_two_cycle",
+    "unified_two_template_selection",
+    "model_origin_generation_rollback",
+    "model_origin_adoption_proposal"
+  ],
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "separators": [",", ":"],
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  },
+  "proof_rules": [
+    "Each parent receipt must match its sealed SHA-256.",
+    "Each parent must pass its independent verifier in a separate read-only process.",
+    "Model-origin frames, CPU validation, scaffold transitions, and Rust decisions remain separate evidence.",
+    "A generation failure must be detected from actual execution and followed by verified isolated rollback.",
+    "Production approval absence is a required hold boundary, not an error to repair.",
+    "Current Seed 0, registry, pointer, Rust integrity, workers, authority, and protected state must remain unchanged."
+  ],
+  "next_attachment_policy": {
+    "order": [
+      "fresh_generalization",
+      "paired_gpu_usefulness",
+      "production_approval_gate"
+    ],
+    "one_new_surface_at_a_time": true,
+    "frozen_backbone_required": true,
+    "cpu_fallback_is_not_model_success": true
+  }
+}

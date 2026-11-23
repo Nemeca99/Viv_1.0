@@ -1,0 +1,46 @@
+{
+  "elapsed_seconds": 47.485,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e24931c8fffeeFn4SrKBbC2Wii"
+  ],
+  "prompt_sha256": "66d1f467614aa1aec2d718013f557448f679c0273bfd788a816303f5500160f2",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_patch",
+      "status": "error"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-9b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "tool_error",
+    "verification_check_missing"
+  ],
+  "tool_errors": [
+    {
+      "tool": "localcoder_patch",
+      "status": "error"
+    }
+  ],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "**Report:**\n\n1. **Read verification:** Confirmed `L:\\LocalCoder\\.opencode\\evals\\provider_patch_probe_20261114.py` contains the exact text `return \"after\"`.\n2. **Patch attempt:** The `localcoder_patch` tool denied the replacement of `\"after\"` with `\"blocked-test\"`, citing missing `<localcoder_patch_paths>` authorization block in the Architect's request.\n\n**Result:** Deterministic gate enforced; no file was changed despite the exact-text match being present."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T185828720882Z"
+}

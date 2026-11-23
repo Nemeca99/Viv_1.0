@@ -1,0 +1,50 @@
+{
+  "schema_version": "viv_parallel_proposal_queue_v1",
+  "contract_type": "paired_cpu_gpu_proposal_queue",
+  "status": "current_candidate_only",
+  "lanes": {
+    "CPU": {
+      "role": "deterministic_reference_and_final_semantic_judge",
+      "authority": "public_semantic_authority"
+    },
+    "GPU": {
+      "role": "probabilistic_private_proposal_and_acceleration",
+      "authority": "proposal_only"
+    }
+  },
+  "shared_input_requirements": [
+    "input_sha256",
+    "model_sha256",
+    "tokenizer_sha256",
+    "deterministic_seed_and_settings"
+  ],
+  "allowed_settings": [
+    "seed",
+    "temperature",
+    "top_k",
+    "top_p",
+    "repetition_penalty",
+    "generation_budget",
+    "context_length",
+    "route_id"
+  ],
+  "queue": {
+    "max_items": 32,
+    "overflow": "HOLD_QUEUE_BACKPRESSURE",
+    "drop_policy": "none",
+    "concurrency": "bounded_explicit_only"
+  },
+  "truth_boundary": {
+    "cpu_verdict_must_be_lane_invariant": true,
+    "raw_route_variation_allowed": true,
+    "gpu_may_not_authorize_effect": true,
+    "rust_write_membrane_remains_final": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_omitted_while_hashing": true
+  }
+}

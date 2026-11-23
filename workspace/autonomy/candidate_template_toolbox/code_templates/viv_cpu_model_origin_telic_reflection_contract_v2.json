@@ -1,0 +1,120 @@
+{
+  "schema_version": "viv_cpu_model_origin_telic_reflection_v2",
+  "receipt_schema": "viv_cpu_model_origin_telic_reflection_receipt_v2",
+  "parent": {
+    "schema_version": "viv_cpu_model_origin_telic_reflection_receipt_v1",
+    "receipt_sha256": "CFEFBD9417378EEA658F11C183D655C3894CCB76FA6497D8803D57CDED6E4E17",
+    "checkpoint_sha256": "B4E42E1E92E36756C3FB0BB0053F63924F3217069E769ACBD087D4C0066C3053",
+    "final_state": "HOLD_TELIC_REFLECTION_MODEL"
+  },
+  "question": "Improve raw model-origin telic reflection without changing the v1 grammar, decoder, tokenizer, CPU resolver, or protected authority.",
+  "representation": {
+    "frame_schema": "viv_cpu_telic_reflection_frame_v1",
+    "prompt_renderer": "viv_cpu_telic_reflection_v1",
+    "decoder_policy": "frozen_v1",
+    "tokenizer": "frozen_v1",
+    "cpu_validation": "frozen_v1",
+    "repair_kind": "matched_budget_training_content_and_context_variants",
+    "holdout_semantics": "frozen_v1_16_rows",
+    "literal_values": false,
+    "expected_dimension_in_prompt": false,
+    "expected_output_frame_in_prompt": false
+  },
+  "curriculum": {
+    "schema_version": "viv_cpu_model_origin_telic_reflection_holdout_v2",
+    "training_row_count": 64,
+    "holdout_row_count": 16,
+    "repair_row_count": 64,
+    "sampler_index_space": 64,
+    "repair_schedule": "v2_repair_rows_000_to_063",
+    "holdout_reused_from_parent": true,
+    "metadata_only": true,
+    "source_bodies": false,
+    "source_paths": false,
+    "python": false,
+    "shell": false,
+    "generated_code": false
+  },
+  "training": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "optimizer_scope": "isolated_candidate_only",
+    "response_only_loss": true,
+    "generation_budget": 48,
+    "context_length": 128,
+    "live_model_optimizer_calls": 0,
+    "checkpoint_writes_to_seed": 0
+  },
+  "model_outputs": [
+    "NO_REEVALUATION",
+    "REEVALUATE|d=<dimension>|t=<tension_slot>|e=<evidence_slot>"
+  ],
+  "gates": {
+    "frozen_control_total": 11,
+    "frozen_control_reevaluation": 5,
+    "frozen_control_no_reevaluation": 6,
+    "frozen_control_normalized_digest": "87521A04ADB7D580029C945A09D5DF4EB5D35CC7FA51A767E43268653A79B3B6",
+    "minimum_candidate_total": 12,
+    "minimum_candidate_reevaluation": 6,
+    "minimum_candidate_no_reevaluation": 4,
+    "minimum_supported_dimensions": 4,
+    "unsupported_cpu_accepts": 0,
+    "cpu_unauthorized_accepts": 0,
+    "raw_model_output_required": true,
+    "harness_repair_counts_as_failure": true,
+    "deterministic_repeats_required": true,
+    "rust_probe": "HOLD_SECURITY",
+    "protected_state_unchanged": true
+  },
+  "authority": {
+    "model_can_propose": true,
+    "model_can_query": false,
+    "model_can_execute": false,
+    "model_can_schedule": false,
+    "model_can_expand_authority": false,
+    "cpu_validates_evidence": true,
+    "rust_remains_write_membrane": true,
+    "candidate_only": true,
+    "human_approval_required_for_adoption": true
+  },
+  "lifecycle": [
+    "OBSERVE",
+    "REFLECT",
+    "CPU_VALIDATE",
+    "RECORD",
+    "COMPLETE",
+    "HOLD",
+    "ABSTAIN"
+  ],
+  "forbidden_changes": [
+    "grammar",
+    "tokenizer",
+    "decoder",
+    "cpu_resolver",
+    "seed_0",
+    "live_model",
+    "registry",
+    "production_pointer",
+    "gpu_authority",
+    "rust_membrane"
+  ],
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_omitted": true,
+    "volatile_fields_excluded": [
+      "created_utc",
+      "run_id",
+      "wall_seconds",
+      "receipt_sha256",
+      "receipt_hash_valid_before_write",
+      "receipt_hash_valid_after_write"
+    ]
+  }
+}

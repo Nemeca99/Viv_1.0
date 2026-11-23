@@ -1,0 +1,59 @@
+{
+  "schema_version": "viv_watch_canary_rack_contract_v1",
+  "experiment_id": "watch_canary_rack_v1",
+  "candidate_only": true,
+  "unified_model_claim": false,
+  "production": false,
+  "production_adoption": false,
+  "purpose": "Sealed foreground rack of already-proven focused tests Viv may rerun as damage control. A canary HOLD stops the watch. PASS is not production adoption.",
+  "required_cli_flags": [
+    "--isolated",
+    "--no-publish"
+  ],
+  "execution": {
+    "foreground_only": true,
+    "daemon": false,
+    "auto_rerun": false,
+    "repair_tests": false,
+    "skip_fails": false,
+    "stop_remaining_on_hold": true,
+    "rewrite_assertions": false,
+    "delete_candidates_on_hold": false
+  },
+  "allowlist": [
+    {
+      "name": "offline_coder",
+      "path": "build_tools/test_viv_offline_coder_v1.py",
+      "timeout_seconds": 180
+    },
+    {
+      "name": "cpu_candidate_assembler",
+      "path": "build_tools/test_viv_cpu_candidate_assembler_v1.py",
+      "timeout_seconds": 180
+    }
+  ],
+  "pass_state": "PASS_CANARY_RACK_CANDIDATE_ONLY",
+  "hold_state": "HOLD_CANARY",
+  "authority": {
+    "cpu_validation": true,
+    "rust_write_membrane": true,
+    "human_production_approval": true,
+    "live_pointer_adoption": false,
+    "seed_mutation": false,
+    "daemon_activation": false
+  },
+  "protected": {
+    "expected_pointer_generation": "gen_c6be6ff385aed99f",
+    "expected_seed_generation": 0,
+    "expected_seed_name": "viv_slm_seed_0000",
+    "expected_rust_sha256": "6BCA1C84F9BE871D8F5876A7F84DE8D4437E21A10C602A9E67F55EB162005261"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "separators": [",", ":"],
+    "trailing_lf": true,
+    "self_hash_field_omitted": "receipt_sha256"
+  }
+}

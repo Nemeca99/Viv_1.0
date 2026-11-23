@@ -1,0 +1,213 @@
+{
+  "info": {
+    "id": "ses_e27362a12ffedEG34Q5P5vm7Ri",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "time": {
+      "created": 1794638468599,
+      "updated": 1794638574002,
+      "busy": 1794638469867,
+      "archived": 1794638468608
+    },
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1d8c9d909001I3V8jFys9xaztL",
+      "time": {
+        "created": 1794638469385
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1d8c9d615001lBffObS13GSI0e",
+      "time": {
+        "created": 1794638469890
+      },
+      "text": "Read L:\\LocalCoder\\.opencode\\evals\\agent_coding_probe_20261113.py using the read tool. Report the function name, explain its behavior in one sentence, and state the exact success message printed when run. Do not use shell or make changes.\n",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1d8c9db12001m7x2dB5dX611PL",
+      "time": {
+        "created": 1794638469920,
+        "firstToken": 1794638484264,
+        "streamed": 1794638484303,
+        "completed": 1794638485325
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The user wants me to read a specific Python file and report on its contents - specifically the function name, behavior, and success message. I'll use the read tool to get the file contents.",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794638484271,
+            "completed": 1794638484289
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "3b56c633fd68349b0fa6dcf2738311283dfe3fa7",
+        "end": "5154aca80aa75aa69e81293bb9ec789dcc845cce",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794638477330-40fbf6e5-4942-406c-ae31-18acff627073-body-gate.json"
+        ]
+      },
+      "finish": "error",
+      "error": {
+        "type": "provider.internal",
+        "message": "Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+        "status": 200,
+        "response": {
+          "body": "{\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"},\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"}"
+        }
+      },
+      "retry": {
+        "attempt": 2,
+        "at": 1794638487654,
+        "error": {
+          "type": "provider.internal",
+          "message": "Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+          "status": 200,
+          "response": {
+            "body": "{\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"},\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"}"
+          }
+        }
+      }
+    },
+    {
+      "id": "msg_1d8ca20660013ShDaGOOqOwcVh",
+      "time": {
+        "created": 1794638502486,
+        "firstToken": 1794638517697,
+        "streamed": 1794638517707,
+        "completed": 1794638518622
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794638517699,
+            "completed": 1794638517705
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "65c686cafce7a3a411dd105bbd9b975d9969bb7a",
+        "end": "42dba9b231ca8811d1098f13631095e8d54b6468",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794638506868-ba030b2e-e63d-403a-a722-3d30cc01fa81-body-gate.json"
+        ]
+      },
+      "finish": "error",
+      "error": {
+        "type": "provider.internal",
+        "message": "Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+        "status": 200,
+        "response": {
+          "body": "{\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"},\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"}"
+        }
+      },
+      "retry": {
+        "attempt": 4,
+        "at": 1794638526341,
+        "error": {
+          "type": "provider.internal",
+          "message": "Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+          "status": 200,
+          "response": {
+            "body": "{\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"},\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"}"
+          }
+        }
+      }
+    },
+    {
+      "id": "msg_1d8cab786001OsTLXQWl7fjwbi",
+      "time": {
+        "created": 1794638554819,
+        "firstToken": 1794638573094,
+        "streamed": 1794638573107,
+        "completed": 1794638574002
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794638573097,
+            "completed": 1794638573102
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "27a98c9538d7f89f2a073f3c726a1ddc3b8ab09f",
+        "end": "27a98c9538d7f89f2a073f3c726a1ddc3b8ab09f",
+        "files": []
+      },
+      "finish": "error",
+      "error": {
+        "type": "provider.internal",
+        "message": "Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+        "status": 200,
+        "response": {
+          "body": "{\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"},\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"}"
+        }
+      },
+      "retry": {
+        "attempt": 6,
+        "at": 1794638583139,
+        "error": {
+          "type": "provider.internal",
+          "message": "Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+          "status": 200,
+          "response": {
+            "body": "{\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"},\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"}"
+          }
+        }
+      }
+    }
+  ]
+}

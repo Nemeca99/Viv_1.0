@@ -1,0 +1,36 @@
+{
+  "schema": "aios_viv_three_lora_inference_receipt_v2",
+  "created_at_utc": "2026-09-30T00:51:36.959680+00:00",
+  "status": "PASS_RUNTIME_COMPOSITION",
+  "peft_version": "0.18.1",
+  "torch_version": "2.6.0+cu124",
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "active_adapters": [
+    "behavior_lora",
+    "identity_lora",
+    "task_lora"
+  ],
+  "active_lora_layer_count": 196,
+  "all_layers_have_all_adapters_active": true,
+  "trainable_lora_parameter_count": 0,
+  "adapter_sha256": {
+    "behavior_lora": "6589d4e4cf2dab36297977b4fb1aa6cff5ea1d7036672cd84c762aa719198364",
+    "identity_lora": "3520302f29ccfb36020e6447c5c8c100ed20b8925dab63ca55de5941ca6f0e08",
+    "task_lora": "565ec3f517b2dd7aca61dd1cce81712700adc8f3198b6b70b153b5f7db46d420"
+  },
+  "outputs": [
+    {
+      "prompt": "Who are you? Answer without claiming consciousness.",
+      "answer": "I am a program."
+    },
+    {
+      "prompt": "Write a Python function that adds two integers.",
+      "answer": "def add(a, b): return a + b"
+    },
+    {
+      "prompt": "What evidence would you require before stating a retrieved fact?",
+      "answer": "To state a retrieved fact, the following evidence would be required:\n\n1. **Source of the fact**: The origin of the information (e.g., a website, book, article, or expert).\n2. **Date of the fact**: The time when the information was published or updated.\n3. **Relevance**:"
+    }
+  ],
+  "content_correctness_or_truth_claimed": false
+}

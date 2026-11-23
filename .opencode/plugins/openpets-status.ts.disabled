@@ -1,0 +1,36 @@
+export const openpets_status = {
+  name: "openpets_status",
+  description: "Check availability or the targeted pet status.",
+  parameters: {
+    type: "object",
+    properties: {},
+    required: []
+  },
+  returns: "Pet status string (available, busy, blocked)"
+};
+
+export const openpets_say = {
+  name: "openpets_say", 
+  description: "Send meaningful coding progress message to OpenPets.",
+  parameters: {
+    type: "object",
+    properties: {
+      text: { type: "string" }
+    },
+    required: ["text"]
+  },
+  returns: "Acknowledgment of message sent"
+};
+
+export const openpets_react = {
+  name: "openpets_react",
+  description: "Small visual or emotional feedback reaction.",
+  parameters: {
+    type: "object", 
+    properties: {
+      emotion: { type: "string", enum: ["happy", "neutral", "thinking", "success", "error"] }
+    },
+    required: ["emotion"]
+  },
+  returns: "Visual reaction acknowledgment"
+};

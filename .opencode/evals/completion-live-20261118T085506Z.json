@@ -1,0 +1,596 @@
+{
+  "session_id": "completion-test-9b174e43bd4c44d3",
+  "task_id": "verify-9b174e43bd4c44d3",
+  "binding": {
+    "session_id": "completion-test-9b174e43bd4c44d3",
+    "task_id": "verify-9b174e43bd4c44d3",
+    "assignment_hash": "8e190ea537a78bd6f0fbe09566f83efe53b9c7e3d866ac204f75dbf26596d7ce"
+  },
+  "contract": {
+    "version": 1,
+    "kind": "artifacts",
+    "artifacts": [
+      ".opencode/evals/completion-fixture/value.txt",
+      ".opencode/evals/completion-fixture/check.py"
+    ],
+    "checks": [
+      {
+        "id": "behavior-and-readonly-scope",
+        "argv": [
+          "/usr/local/bin/python",
+          "-B",
+          ".opencode/evals/completion-fixture/check.py"
+        ],
+        "timeout_seconds": 5
+      }
+    ]
+  },
+  "assignment": "Architect-approved bounded deterministic completion test.\nAcceptance JSON: {\"version\":1,\"kind\":\"artifacts\",\"artifacts\":[\".opencode/evals/completion-fixture/value.txt\",\".opencode/evals/completion-fixture/check.py\"],\"checks\":[{\"id\":\"behavior-and-readonly-scope\",\"argv\":[\"/usr/local/bin/python\",\"-B\",\".opencode/evals/completion-fixture/check.py\"],\"timeout_seconds\":5}]}",
+  "steps": [
+    {
+      "tool": "open_build_task",
+      "authority": {
+        "receipt_id": "completion-96c0dd4bf9c9481c8612304ab800d3d3-body-gate.json"
+      },
+      "result": {
+        "acceptance_kind": "artifacts",
+        "assignment_sha256": "8e190ea537a78bd6f0fbe09566f83efe53b9c7e3d866ac204f75dbf26596d7ce",
+        "destination_role": "drone",
+        "lanes": [
+          "drone"
+        ],
+        "max_turns_per_lane": 1,
+        "state": "open",
+        "task_class": "build",
+        "task_id": "verify-9b174e43bd4c44d3"
+      }
+    },
+    {
+      "tool": "accept_self_prompt",
+      "authority": {
+        "receipt_id": "completion-64c181f8813243cabe23f77eee098b15-body-gate.json"
+      },
+      "result": {
+        "lane_id": "drone",
+        "recorded": true,
+        "sha256": "2015722366ab0b1cb4b7fc5c3dcc9b5b9f0874c74829efd8ceda62161752d2be",
+        "task_id": "verify-9b174e43bd4c44d3",
+        "turn": 0
+      }
+    },
+    {
+      "tool": "record_turn_result",
+      "authority": {
+        "receipt_id": "completion-a89ae6f2c75147d28784dde62f48af54-body-gate.json"
+      },
+      "result": {
+        "lane_id": "drone",
+        "recorded": true,
+        "sha256": "f1557d4b57881de26b0d8cbab18a2adf3e02a351052ccb17cdd937c4177aa6ec",
+        "task_id": "verify-9b174e43bd4c44d3",
+        "turn": 0
+      }
+    },
+    {
+      "expected_rejection": "model_prose_without_rust_execution",
+      "error": "{\"error\": \"matching_rust_execution_receipt_required\", \"ok\": false}"
+    },
+    {
+      "tool": "verify_task",
+      "authority": {
+        "receipt_id": "completion-5000892f3b2844e19463fcea88b0a385-body-gate.json",
+        "verification": {
+          "contract_sha256": "1a327b9aa702c123e44ca259214e233c3eb62646df643a70eaef3d0f1e180c84",
+          "evidence": {
+            "artifacts": {
+              ".opencode/evals/completion-fixture/check.py": "319a17b7f235eec1d98ea5f377bc90a39b63cae4c1cdd646c2bb201f17f5f16c",
+              ".opencode/evals/completion-fixture/value.txt": "cea23dd4b87e8b00d19fb9ccaaef93e97353c7353e2070f3baf05aeb3995dff4"
+            },
+            "checks": [
+              {
+                "argv": [
+                  "/usr/local/bin/python",
+                  "-B",
+                  ".opencode/evals/completion-fixture/check.py"
+                ],
+                "exit_code": 0,
+                "id": "behavior-and-readonly-scope",
+                "passed": true,
+                "stderr": {
+                  "bytes": 0,
+                  "excerpt": "",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "truncated": false
+                },
+                "stdout": {
+                  "bytes": 82,
+                  "excerpt": "Candidate claims PASS; exit status and assertions decide\nactual behavior verified\n",
+                  "sha256": "ea019e65f1f6870f53e8497a264c69fb9b50b36e32233bf6a6f2f8b008834efc",
+                  "truncated": false
+                },
+                "timed_out": false
+              }
+            ],
+            "inputs_unchanged_during_checks": true,
+            "kind": "artifacts",
+            "verified": true
+          },
+          "executable_sha256": "33c151c90221ec199b6e12395be33e116160550d9136a0cf1174bf5243a22896",
+          "executor": "deterministic_rust_verifier_v1"
+        }
+      },
+      "result": {
+        "contract_sha256": "1a327b9aa702c123e44ca259214e233c3eb62646df643a70eaef3d0f1e180c84",
+        "evidence": {
+          "artifacts": {
+            ".opencode/evals/completion-fixture/check.py": "319a17b7f235eec1d98ea5f377bc90a39b63cae4c1cdd646c2bb201f17f5f16c",
+            ".opencode/evals/completion-fixture/value.txt": "cea23dd4b87e8b00d19fb9ccaaef93e97353c7353e2070f3baf05aeb3995dff4"
+          },
+          "checks": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-B",
+                ".opencode/evals/completion-fixture/check.py"
+              ],
+              "exit_code": 0,
+              "id": "behavior-and-readonly-scope",
+              "passed": true,
+              "stderr": {
+                "bytes": 0,
+                "excerpt": "",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "truncated": false
+              },
+              "stdout": {
+                "bytes": 82,
+                "excerpt": "Candidate claims PASS; exit status and assertions decide\nactual behavior verified\n",
+                "sha256": "ea019e65f1f6870f53e8497a264c69fb9b50b36e32233bf6a6f2f8b008834efc",
+                "truncated": false
+              },
+              "timed_out": false
+            }
+          ],
+          "inputs_unchanged_during_checks": true,
+          "kind": "artifacts",
+          "verified": true
+        },
+        "receipt_id": "completion-5000892f3b2844e19463fcea88b0a385-body-gate.json",
+        "verification_sha256": "b97b8aa9408c2c799e387fe599bf75aaadc4b9ad424b44046ec6d1fbaef3347f"
+      }
+    },
+    {
+      "tool": "complete_lane",
+      "authority": {
+        "receipt_id": "completion-bf5dbc810bdb49f7a74d315afc3bb69c-body-gate.json",
+        "verification": {
+          "contract_sha256": "1a327b9aa702c123e44ca259214e233c3eb62646df643a70eaef3d0f1e180c84",
+          "evidence": {
+            "artifacts": {
+              ".opencode/evals/completion-fixture/check.py": "319a17b7f235eec1d98ea5f377bc90a39b63cae4c1cdd646c2bb201f17f5f16c",
+              ".opencode/evals/completion-fixture/value.txt": "cea23dd4b87e8b00d19fb9ccaaef93e97353c7353e2070f3baf05aeb3995dff4"
+            },
+            "checks": [
+              {
+                "argv": [
+                  "/usr/local/bin/python",
+                  "-B",
+                  ".opencode/evals/completion-fixture/check.py"
+                ],
+                "exit_code": 0,
+                "id": "behavior-and-readonly-scope",
+                "passed": true,
+                "stderr": {
+                  "bytes": 0,
+                  "excerpt": "",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "truncated": false
+                },
+                "stdout": {
+                  "bytes": 82,
+                  "excerpt": "Candidate claims PASS; exit status and assertions decide\nactual behavior verified\n",
+                  "sha256": "ea019e65f1f6870f53e8497a264c69fb9b50b36e32233bf6a6f2f8b008834efc",
+                  "truncated": false
+                },
+                "timed_out": false
+              }
+            ],
+            "inputs_unchanged_during_checks": true,
+            "kind": "artifacts",
+            "verified": true
+          },
+          "executable_sha256": "33c151c90221ec199b6e12395be33e116160550d9136a0cf1174bf5243a22896",
+          "executor": "deterministic_rust_verifier_v1"
+        }
+      },
+      "result": {
+        "lane_completed": true,
+        "receipt_sha256": "1d31a94090b16cc0bf84f763c665028208e5e835bc419ca58e6ee1607a37f6bb",
+        "task_verified": true,
+        "verification": {
+          "contract_sha256": "1a327b9aa702c123e44ca259214e233c3eb62646df643a70eaef3d0f1e180c84",
+          "evidence": {
+            "artifacts": {
+              ".opencode/evals/completion-fixture/check.py": "319a17b7f235eec1d98ea5f377bc90a39b63cae4c1cdd646c2bb201f17f5f16c",
+              ".opencode/evals/completion-fixture/value.txt": "cea23dd4b87e8b00d19fb9ccaaef93e97353c7353e2070f3baf05aeb3995dff4"
+            },
+            "checks": [
+              {
+                "argv": [
+                  "/usr/local/bin/python",
+                  "-B",
+                  ".opencode/evals/completion-fixture/check.py"
+                ],
+                "exit_code": 0,
+                "id": "behavior-and-readonly-scope",
+                "passed": true,
+                "stderr": {
+                  "bytes": 0,
+                  "excerpt": "",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "truncated": false
+                },
+                "stdout": {
+                  "bytes": 82,
+                  "excerpt": "Candidate claims PASS; exit status and assertions decide\nactual behavior verified\n",
+                  "sha256": "ea019e65f1f6870f53e8497a264c69fb9b50b36e32233bf6a6f2f8b008834efc",
+                  "truncated": false
+                },
+                "timed_out": false
+              }
+            ],
+            "inputs_unchanged_during_checks": true,
+            "kind": "artifacts",
+            "verified": true
+          },
+          "receipt_id": "completion-bf5dbc810bdb49f7a74d315afc3bb69c-body-gate.json",
+          "verification_sha256": "b97b8aa9408c2c799e387fe599bf75aaadc4b9ad424b44046ec6d1fbaef3347f"
+        }
+      }
+    },
+    {
+      "tool": "verify_task",
+      "authority": {
+        "receipt_id": "completion-7da19ce473144b01b8dd53c9117fc76d-body-gate.json",
+        "verification": {
+          "contract_sha256": "1a327b9aa702c123e44ca259214e233c3eb62646df643a70eaef3d0f1e180c84",
+          "evidence": {
+            "artifacts": {
+              ".opencode/evals/completion-fixture/check.py": "319a17b7f235eec1d98ea5f377bc90a39b63cae4c1cdd646c2bb201f17f5f16c",
+              ".opencode/evals/completion-fixture/value.txt": "c9b288105ec9db047e3c114b96642f7cb044c8061edcd00d172c2b70e2335530"
+            },
+            "checks": [
+              {
+                "argv": [
+                  "/usr/local/bin/python",
+                  "-B",
+                  ".opencode/evals/completion-fixture/check.py"
+                ],
+                "exit_code": 1,
+                "id": "behavior-and-readonly-scope",
+                "passed": false,
+                "stderr": {
+                  "bytes": 260,
+                  "excerpt": "Traceback (most recent call last):\n  File \"/var/lib/aios-project/.opencode/evals/completion-fixture/check.py\", line 4, in <module>\n    assert p.read_text()=='expected', 'behavior mismatch'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: behavior mismatch\n",
+                  "sha256": "946e9596f74fba6cc3e03f5d4b790fb17b1f98bfa18f018fdb2e3fbdd8d5d188",
+                  "truncated": false
+                },
+                "stdout": {
+                  "bytes": 57,
+                  "excerpt": "Candidate claims PASS; exit status and assertions decide\n",
+                  "sha256": "e2805a6f5264ec615f1a608da750ef0292652af4414a50c6b876fd03d4c0eb18",
+                  "truncated": false
+                },
+                "timed_out": false
+              }
+            ],
+            "inputs_unchanged_during_checks": true,
+            "kind": "artifacts",
+            "verified": false
+          },
+          "executable_sha256": "33c151c90221ec199b6e12395be33e116160550d9136a0cf1174bf5243a22896",
+          "executor": "deterministic_rust_verifier_v1"
+        }
+      },
+      "result": {
+        "contract_sha256": "1a327b9aa702c123e44ca259214e233c3eb62646df643a70eaef3d0f1e180c84",
+        "evidence": {
+          "artifacts": {
+            ".opencode/evals/completion-fixture/check.py": "319a17b7f235eec1d98ea5f377bc90a39b63cae4c1cdd646c2bb201f17f5f16c",
+            ".opencode/evals/completion-fixture/value.txt": "c9b288105ec9db047e3c114b96642f7cb044c8061edcd00d172c2b70e2335530"
+          },
+          "checks": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-B",
+                ".opencode/evals/completion-fixture/check.py"
+              ],
+              "exit_code": 1,
+              "id": "behavior-and-readonly-scope",
+              "passed": false,
+              "stderr": {
+                "bytes": 260,
+                "excerpt": "Traceback (most recent call last):\n  File \"/var/lib/aios-project/.opencode/evals/completion-fixture/check.py\", line 4, in <module>\n    assert p.read_text()=='expected', 'behavior mismatch'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: behavior mismatch\n",
+                "sha256": "946e9596f74fba6cc3e03f5d4b790fb17b1f98bfa18f018fdb2e3fbdd8d5d188",
+                "truncated": false
+              },
+              "stdout": {
+                "bytes": 57,
+                "excerpt": "Candidate claims PASS; exit status and assertions decide\n",
+                "sha256": "e2805a6f5264ec615f1a608da750ef0292652af4414a50c6b876fd03d4c0eb18",
+                "truncated": false
+              },
+              "timed_out": false
+            }
+          ],
+          "inputs_unchanged_during_checks": true,
+          "kind": "artifacts",
+          "reason": "failed_or_stale_verification_evidence",
+          "verified": false
+        },
+        "receipt_id": "completion-7da19ce473144b01b8dd53c9117fc76d-body-gate.json",
+        "verification_sha256": "571e5b8aca429665153630445401da194136620f100df41e6fb0a0517b9316ad"
+      }
+    },
+    {
+      "tool": "verify_task",
+      "authority": {
+        "receipt_id": "completion-c3015c70507e4902b481b4e6a193854b-body-gate.json",
+        "verification": {
+          "contract_sha256": "1a327b9aa702c123e44ca259214e233c3eb62646df643a70eaef3d0f1e180c84",
+          "evidence": {
+            "artifacts": {
+              ".opencode/evals/completion-fixture/check.py": "319a17b7f235eec1d98ea5f377bc90a39b63cae4c1cdd646c2bb201f17f5f16c",
+              ".opencode/evals/completion-fixture/value.txt": "cea23dd4b87e8b00d19fb9ccaaef93e97353c7353e2070f3baf05aeb3995dff4"
+            },
+            "checks": [
+              {
+                "argv": [
+                  "/usr/local/bin/python",
+                  "-B",
+                  ".opencode/evals/completion-fixture/check.py"
+                ],
+                "exit_code": 0,
+                "id": "behavior-and-readonly-scope",
+                "passed": true,
+                "stderr": {
+                  "bytes": 0,
+                  "excerpt": "",
+                  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "truncated": false
+                },
+                "stdout": {
+                  "bytes": 82,
+                  "excerpt": "Candidate claims PASS; exit status and assertions decide\nactual behavior verified\n",
+                  "sha256": "ea019e65f1f6870f53e8497a264c69fb9b50b36e32233bf6a6f2f8b008834efc",
+                  "truncated": false
+                },
+                "timed_out": false
+              }
+            ],
+            "inputs_unchanged_during_checks": true,
+            "kind": "artifacts",
+            "verified": true
+          },
+          "executable_sha256": "33c151c90221ec199b6e12395be33e116160550d9136a0cf1174bf5243a22896",
+          "executor": "deterministic_rust_verifier_v1"
+        }
+      },
+      "result": {
+        "contract_sha256": "1a327b9aa702c123e44ca259214e233c3eb62646df643a70eaef3d0f1e180c84",
+        "evidence": {
+          "artifacts": {
+            ".opencode/evals/completion-fixture/check.py": "319a17b7f235eec1d98ea5f377bc90a39b63cae4c1cdd646c2bb201f17f5f16c",
+            ".opencode/evals/completion-fixture/value.txt": "cea23dd4b87e8b00d19fb9ccaaef93e97353c7353e2070f3baf05aeb3995dff4"
+          },
+          "checks": [
+            {
+              "argv": [
+                "/usr/local/bin/python",
+                "-B",
+                ".opencode/evals/completion-fixture/check.py"
+              ],
+              "exit_code": 0,
+              "id": "behavior-and-readonly-scope",
+              "passed": true,
+              "stderr": {
+                "bytes": 0,
+                "excerpt": "",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "truncated": false
+              },
+              "stdout": {
+                "bytes": 82,
+                "excerpt": "Candidate claims PASS; exit status and assertions decide\nactual behavior verified\n",
+                "sha256": "ea019e65f1f6870f53e8497a264c69fb9b50b36e32233bf6a6f2f8b008834efc",
+                "truncated": false
+              },
+              "timed_out": false
+            }
+          ],
+          "inputs_unchanged_during_checks": true,
+          "kind": "artifacts",
+          "verified": true
+        },
+        "receipt_id": "completion-c3015c70507e4902b481b4e6a193854b-body-gate.json",
+        "verification_sha256": "b97b8aa9408c2c799e387fe599bf75aaadc4b9ad424b44046ec6d1fbaef3347f"
+      }
+    }
+  ],
+  "initial_completed": {
+    "event_receipts": [
+      {
+        "event": "open_build",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "8e190ea537a78bd6f0fbe09566f83efe53b9c7e3d866ac204f75dbf26596d7ce",
+        "turn": 1
+      },
+      {
+        "event": "turn_started",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "2015722366ab0b1cb4b7fc5c3dcc9b5b9f0874c74829efd8ceda62161752d2be",
+        "turn": 0
+      },
+      {
+        "event": "turn_result",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "f1557d4b57881de26b0d8cbab18a2adf3e02a351052ccb17cdd937c4177aa6ec",
+        "turn": 0
+      },
+      {
+        "event": "denial",
+        "lane": null,
+        "reason_code": "router_rejected",
+        "sha256": "08e255df86a0552450a127ab43b2f2980353257d2aa37c14d4dca18cec2ac08c",
+        "turn": null
+      },
+      {
+        "event": "lane_done",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "1d31a94090b16cc0bf84f763c665028208e5e835bc419ca58e6ee1607a37f6bb",
+        "turn": null
+      }
+    ],
+    "lanes": [
+      {
+        "active_turn": null,
+        "completed": true,
+        "completed_turns": 1,
+        "lane_id": "drone"
+      }
+    ],
+    "queen_summary": "Derived from router events and current deterministic acceptance evidence; model-authored completion claims are not evidence.",
+    "state": "completed",
+    "task_class": "build",
+    "task_id": "verify-9b174e43bd4c44d3",
+    "verification": {
+      "kind": "artifacts",
+      "reason": "current_evidence",
+      "receipt_id": "completion-bf5dbc810bdb49f7a74d315afc3bb69c-body-gate.json",
+      "verification_sha256": "b97b8aa9408c2c799e387fe599bf75aaadc4b9ad424b44046ec6d1fbaef3347f",
+      "verified": true
+    }
+  },
+  "invalidated": {
+    "event_receipts": [
+      {
+        "event": "open_build",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "8e190ea537a78bd6f0fbe09566f83efe53b9c7e3d866ac204f75dbf26596d7ce",
+        "turn": 1
+      },
+      {
+        "event": "turn_started",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "2015722366ab0b1cb4b7fc5c3dcc9b5b9f0874c74829efd8ceda62161752d2be",
+        "turn": 0
+      },
+      {
+        "event": "turn_result",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "f1557d4b57881de26b0d8cbab18a2adf3e02a351052ccb17cdd937c4177aa6ec",
+        "turn": 0
+      },
+      {
+        "event": "denial",
+        "lane": null,
+        "reason_code": "router_rejected",
+        "sha256": "08e255df86a0552450a127ab43b2f2980353257d2aa37c14d4dca18cec2ac08c",
+        "turn": null
+      },
+      {
+        "event": "lane_done",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "1d31a94090b16cc0bf84f763c665028208e5e835bc419ca58e6ee1607a37f6bb",
+        "turn": null
+      }
+    ],
+    "lanes": [
+      {
+        "active_turn": null,
+        "completed": true,
+        "completed_turns": 1,
+        "lane_id": "drone"
+      }
+    ],
+    "queen_summary": "Derived from router events and current deterministic acceptance evidence; model-authored completion claims are not evidence.",
+    "state": "awaiting_verification",
+    "task_class": "build",
+    "task_id": "verify-9b174e43bd4c44d3",
+    "verification": {
+      "kind": "artifacts",
+      "reason": "artifact_changed_after_verification",
+      "receipt_id": "completion-bf5dbc810bdb49f7a74d315afc3bb69c-body-gate.json",
+      "verification_sha256": "b97b8aa9408c2c799e387fe599bf75aaadc4b9ad424b44046ec6d1fbaef3347f",
+      "verified": false
+    }
+  },
+  "final_completed": {
+    "event_receipts": [
+      {
+        "event": "open_build",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "8e190ea537a78bd6f0fbe09566f83efe53b9c7e3d866ac204f75dbf26596d7ce",
+        "turn": 1
+      },
+      {
+        "event": "turn_started",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "2015722366ab0b1cb4b7fc5c3dcc9b5b9f0874c74829efd8ceda62161752d2be",
+        "turn": 0
+      },
+      {
+        "event": "turn_result",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "f1557d4b57881de26b0d8cbab18a2adf3e02a351052ccb17cdd937c4177aa6ec",
+        "turn": 0
+      },
+      {
+        "event": "denial",
+        "lane": null,
+        "reason_code": "router_rejected",
+        "sha256": "08e255df86a0552450a127ab43b2f2980353257d2aa37c14d4dca18cec2ac08c",
+        "turn": null
+      },
+      {
+        "event": "lane_done",
+        "lane": "drone",
+        "reason_code": null,
+        "sha256": "1d31a94090b16cc0bf84f763c665028208e5e835bc419ca58e6ee1607a37f6bb",
+        "turn": null
+      }
+    ],
+    "lanes": [
+      {
+        "active_turn": null,
+        "completed": true,
+        "completed_turns": 1,
+        "lane_id": "drone"
+      }
+    ],
+    "queen_summary": "Derived from router events and current deterministic acceptance evidence; model-authored completion claims are not evidence.",
+    "state": "completed",
+    "task_class": "build",
+    "task_id": "verify-9b174e43bd4c44d3",
+    "verification": {
+      "kind": "artifacts",
+      "reason": "current_evidence",
+      "receipt_id": "completion-c3015c70507e4902b481b4e6a193854b-body-gate.json",
+      "verification_sha256": "b97b8aa9408c2c799e387fe599bf75aaadc4b9ad424b44046ec6d1fbaef3347f",
+      "verified": true
+    }
+  },
+  "result": "PASS"
+}

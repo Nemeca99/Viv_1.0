@@ -1,0 +1,53 @@
+{
+  "schema_version": "viv_python_builtin_surface_v1",
+  "description": "Human-approved Python built-in primitives available to deterministic template reconstruction.",
+  "source": "architect_attachment_4e223dc7-a490-482a-abaa-db4590ac7e1a",
+  "categories": {
+    "core_io_debugging": ["print", "input", "type", "help"],
+    "type_conversion": ["int", "float", "str", "bool", "list", "tuple", "set", "dict"],
+    "sequence_length": ["len", "sorted", "reversed", "enumerate", "zip", "range"],
+    "mathematical_aggregation": ["sum", "min", "max", "abs", "round", "pow"],
+    "logic_validation": ["all", "any", "isinstance"],
+    "functional_programming": ["map", "filter"],
+    "object_identity_attributes": ["id", "dir"]
+  },
+  "automatic_reconstruction": {
+    "allowed": [
+      "print",
+      "type",
+      "int",
+      "float",
+      "str",
+      "bool",
+      "list",
+      "tuple",
+      "set",
+      "dict",
+      "len",
+      "sorted",
+      "reversed",
+      "enumerate",
+      "zip",
+      "range",
+      "sum",
+      "min",
+      "max",
+      "abs",
+      "round",
+      "pow",
+      "all",
+      "any",
+      "isinstance",
+      "map",
+      "filter"
+    ],
+    "review_only": ["input", "help", "id", "dir"],
+    "policy": "Only calls to allowed names may be copied into an automatically recreated body. The source body still comes from an indexed catalog span; the model cannot submit a body or a built-in call list."
+  },
+  "deterministic_rebuild": {
+    "source_bytes_or_code_in_request": false,
+    "model_generated_body": false,
+    "unknown_or_sensitive_builtin": "hold",
+    "builtins_module_import": "forbidden"
+  }
+}

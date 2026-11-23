@@ -1,0 +1,69 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 513.468,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e209ba251ffeZ8pEDP9IKspswB"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "2a2ac5e7e53ff58df6adf6d3ed900077a64c10d46d1d559b087c2e7ec80a641c",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_record_turn_result",
+      "status": "error"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "(no output)"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "tool_error"
+  ],
+  "tool_errors": [
+    {
+      "tool": "aios_router_record_turn_result",
+      "status": "error"
+    }
+  ],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "The current Architect task stopped after router_mutation_binding_failed:aios_router_record_turn_result. No further tool will run."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T132739036860Z"
+}

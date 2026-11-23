@@ -1,0 +1,89 @@
+{
+  "schema_version": "viv_cpu_governed_self_building_loop_v1",
+  "receipt_schema": "viv_cpu_governed_self_development_end_to_end_receipt_v1",
+  "status": "candidate_only",
+  "authority": {
+    "model": "proposal_only",
+    "cpu": "semantic_validation_and_final_candidate_disposition",
+    "scaffold": "bounded_lifecycle_transitions",
+    "rust": "executable_and_write_membrane",
+    "human": "required_for_registry_insertion_and_production_adoption"
+  },
+  "value_slots": {
+    "fixture.echo": {
+      "message": {
+        "msg_hello": "hello",
+        "msg_preview": "preview"
+      },
+      "suffix": {
+        "sfx_safe": "safe",
+        "sfx_ok": "ok"
+      }
+    }
+  },
+  "approved_experiments": [
+    "fixture.zero_submain",
+    "fixture.message_override",
+    "fixture.suffix_override",
+    "fixture.undeclared_variable_hold",
+    "fixture.documentation_drift_hold"
+  ],
+  "limits": {
+    "max_cycles": 3,
+    "max_schedule_repeats": 3,
+    "max_variable_holdout_rows": 24,
+    "max_raw_frame_characters": 128,
+    "max_metadata_packet_characters": 240,
+    "device": "cpu",
+    "isolated_required": true,
+    "no_publish_required": true
+  },
+  "lifecycle": [
+    "OBSERVE",
+    "RETRIEVE",
+    "HYPOTHESIZE",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "ACCEPT",
+    "REJECT",
+    "HOLD",
+    "RECORD",
+    "SCHEDULE",
+    "requires_operator_resume"
+  ],
+  "production_policy": {
+    "generated_generation_allowed": false,
+    "active_pointer_change_allowed": false,
+    "registry_mutation_allowed": false,
+    "seed_mutation_allowed": false,
+    "live_model_mutation_allowed": false,
+    "human_approval_receipt_required": true,
+    "pointer_adoption_requires_second_approval": true
+  },
+  "metadata_only": {
+    "source_paths": false,
+    "source_bodies": false,
+    "python": false,
+    "shell": false,
+    "generated_code": false,
+    "arbitrary_filesystem_paths": false,
+    "literal_runtime_values_in_model_frames": false
+  },
+  "novelty_definitions": {
+    "replication": "same semantic hypothesis and materially same intervention contract",
+    "refinement": "same hypothesis family with a bounded parameter, context, or representation change",
+    "inversion": "explicit test of an opposing prediction or intervention polarity",
+    "novel": "no matching semantic hypothesis lineage exists",
+    "unsupported": "the evidence or lineage is insufficient to classify the relationship"
+  },
+  "hashing": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_object_keys": "sorted",
+    "self_hash_field": "receipt_sha256",
+    "self_hash_scope": "canonical_json_without_receipt_sha256",
+    "trailing_newline": true
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "viv_cpu_bounded_autonomous_action_schedule_curriculum_v1",
+  "receipt_schema": "viv_cpu_bounded_autonomous_candidate_loop_receipt_v2",
+  "parent_receipt_schema": "viv_cpu_bounded_autonomous_candidate_loop_receipt_v1",
+  "parent_candidate": "foundation/artifacts/auto/agentic/cpu_model_directed_self_development_v3/model_directed_v3_20260813T050222Z_151984/candidate_control_v3_value_slots.pt",
+  "device": "cpu",
+  "recipe": {
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2
+  },
+  "counts": {
+    "training": 224,
+    "ordinary_heldout": 56,
+    "compositional_traces": 14,
+    "compositional_trace_rows": 98
+  },
+  "wire": {
+    "schema": "viv_cpu_model_directed_fixed_width_wire_v1",
+    "frame_width": 40,
+    "padding_char": "~",
+    "arbitrary_trailing_output": false,
+    "raw_output_preserved": true,
+    "repair_allowed": false
+  },
+  "frame_families": [
+    "deficiency",
+    "query",
+    "action_branch",
+    "template_selection",
+    "variable_selection",
+    "result_disposition",
+    "scheduler"
+  ],
+  "metadata_only": {
+    "source_paths": false,
+    "source_bodies": false,
+    "python": false,
+    "shell": false,
+    "generated_code": false,
+    "checkpoint_paths": false,
+    "arbitrary_filesystem_paths": false,
+    "answer_substitution": false
+  },
+  "live_surface": {
+    "action_prompt": "VIV|v4|a|t=0|x=<bounded_experiment>|k=m,s|m=mh,mp,ss,so|v=<construction>|o=",
+    "schedule_prompt": "VIV|v4|e|x=<bounded_experiment>|m=0,1,2,3,4|r=1,2,3|b=tiny,small|v=<construction>|o=",
+    "approved_template_slot": 0,
+    "declared_keys": ["message", "suffix"],
+    "value_slots": ["msg_hello", "msg_preview", "sfx_safe", "sfx_ok"],
+    "max_schedule_repeats": 3
+  },
+  "provenance": {
+    "candidate_only": true,
+    "seed0_unchanged": true,
+    "live_model_mutation": false,
+    "production_generation": false,
+    "registry_insertion": false,
+    "gpu_execution": false,
+    "rust_write_bypass": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "self_hash_field_omitted": true,
+    "volatile_fields_excluded_from_comparison": ["created_utc", "run_id", "decision_id", "temporary_path"]
+  }
+}

@@ -1,0 +1,526 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "session_recovery_required",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e1f085294ffeaSavhWvjS9RDyh",
+  "session_recovery": {
+    "recovered": true,
+    "session_id": "ses_e1f085294ffeaSavhWvjS9RDyh",
+    "title": "LocalCoder Drone 20261115T204810479162Z",
+    "outcome": "succeeded",
+    "terminal": true,
+    "interrupt_attempted": false,
+    "interrupt": null,
+    "export_path": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T204810479162Z\\ses_e1f085294ffeaSavhWvjS9RDyh.v6-recovery-20261115T205811139409Z.json"
+  },
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "read",
+    "localcoder_add_python",
+    "shell"
+  ],
+  "final_validation": "final_report_missing_drone_tag",
+  "self_check_validation": {
+    "required": true,
+    "passed": false,
+    "reason": "self_check_nonzero_or_missing_exit"
+  },
+  "read_evidence_validation": null,
+  "source_line_validation": null,
+  "intermediate_validation": {
+    "passed": false,
+    "reason": "observed_more_tool_boundaries_than_assignment"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775694370-afd2e4b7-7abf-45bb-a8a3-b76f25079f8f-body-gate.json",
+      "sha256": "dafabc7f02817b870c7f9a2d84ce0d8f9b0b9e837dfad06f8f7bc9ad9d0eaa74",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 91.1,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.2,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 91.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775711826-1351a362-a043-43b3-a370-d9e049705d05-body-gate.json",
+      "sha256": "949b476e757fe84dd21d5e206739429b915157e25ce219c64686dd9f806d452a",
+      "source": "tool:read",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.4
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775715536-f5ab4299-c90f-43d2-9faf-88cd2442383f-body-gate.json",
+      "sha256": "d2f4570cebc1d7cd5f7f69fbda17f08ee28e8c3743448e88aa165723f2bbee06",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 91,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 91,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.9
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775729022-c8ba3e1c-cbde-4a81-ada5-9fc7cc8662f9-body-gate.json",
+      "sha256": "8196439290d96a25bb8478848e113c13aa208a4212446e1f5581575ca93b5be4",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.2,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.6
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775749007-9f8ad7f9-9625-41b8-8fa4-6e45ae4a5201-body-gate.json",
+      "sha256": "79194edef5878ee53152f818386a6896fd3242ae682f763a83be26f53148ab2d",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.6,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.6,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775763811-373c977d-dcf4-42c0-ac4e-ed689af18cb9-body-gate.json",
+      "sha256": "cd1f820fcf8769e2e19911554e1f848b048a66b8f2ae20277589ade0dad03616",
+      "source": "tool:read",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 2
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775767515-7351a12c-caa7-4951-b0ea-ab505941a76a-body-gate.json",
+      "sha256": "da789f94d06ca26d8a54a33f71c06b3550e858207a7b876818591f38e328fb8e",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.1,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.9
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775793647-7a2d6477-3706-47e3-bf5b-83624ca92ccd-body-gate.json",
+      "sha256": "bb868a0a2335730dfbc2a4b23defe38a4b81905e4ce60b43ddd9504b91f9909d",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.4,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.4,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.9
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775868393-8ceb1f79-4b54-44de-a363-94195c94e1bd-body-gate.json",
+      "sha256": "4031f9482568105163cd28120c1f7eb6724c4e01f1643deeffd3efce97a4ab82",
+      "source": "tool:localcoder_add_python",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.1,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.3
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775873171-55613476-fd30-4dcf-9b09-04f28f2742f4-body-gate.json",
+      "sha256": "ac2762431feff4fdc5c599a272cbb5ec5daba0f0283d459f2453418cafa7661e",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.5,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.1,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.5,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.4
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775893742-217c443f-1094-4b31-baeb-07ddf6437715-body-gate.json",
+      "sha256": "9c8efcdab4ae9d677a950e87c20952823ab24b1c16b102f5c220745744cd4e57",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 90.1,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 90.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775948856-0c60a653-060e-4384-9d30-a290ec38f653-body-gate.json",
+      "sha256": "88fb82eb120b4db33f16bd61c553461efd2af67c9af8bf36cbbe238f3477c06c",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 88.8,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 88.8,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.4
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775968808-18a55ec9-dd1a-4f72-a007-2cf12569f5f5-body-gate.json",
+      "sha256": "9b670654a61e77bbe3fab26c88f5a2fafdd7cada3b5be91980a33ed47018d36e",
+      "source": "tool:shell",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.2,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.2,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.6
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794775972916-34aa7236-360a-4e5a-a451-742f80b967ca-body-gate.json",
+      "sha256": "410ddddfcee3d105c2d5f1604174ddde799885ec3ebe3de565be9ccf877e2067",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.7,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.3,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.7,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.3
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794776278922-66dda473-0d73-4b2c-9159-380e1aa31eda-body-gate.json",
+      "sha256": "40418d39a78a68efa3be6177d4e74e572f41aa93299e60dfe0cc2f9754a3ca40",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 88.8,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 80.8,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 88.8,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1
+      },
+      "reasons": []
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 81.1,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 91.2,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 1.6
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "e0cc9b709597e843ca8594b0eebc64834659ba7c6d9f5e69b5e733d5ab31cd1e",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 600.469,
+    "exit_code": 1,
+    "transport_exit_code": 1,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": true,
+    "sessions": [
+      "ses_e1f085294ffeaSavhWvjS9RDyh"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "1a736f90c6102d8381db9ad075d3bee34479697b4eca6dc806684a64db59bdad",
+    "tools": [
+      {
+        "tool": "read",
+        "status": "completed"
+      },
+      {
+        "tool": "read",
+        "status": "completed"
+      },
+      {
+        "tool": "localcoder_add_python",
+        "status": "completed"
+      },
+      {
+        "tool": "shell",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [
+      {
+        "status": "completed",
+        "exit": 1,
+        "output": "Case 2: expected reason 'accepted_for_local_inbox', got 'not_for_local_inbox'\nExit code: 1"
+      }
+    ],
+    "task_succeeded": false,
+    "task_errors": [
+      "timed_out",
+      "shell_check_failed",
+      "self_check_nonzero_or_missing_exit"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [
+      {
+        "status": "completed",
+        "exit": 1,
+        "output": "Case 2: expected reason 'accepted_for_local_inbox', got 'not_for_local_inbox'\nExit code: 1"
+      }
+    ],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Report shell execution results and verify PASS status; then combine final report with self-prompt fields.\nVerified facts: File hive_postal_inbox_contract_v1_candidate.py created successfully with SHA-256 718f70db7914168883a5490935d8606562eae54cc590b72303e044e8b50a210d. Required evidence tokens present: 718f70db7914168883a5490935d8606562eae54cc590b72303e044e8b50a210d, L:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_contract_v1_candidate.py.\nNext bounded action: Call the shell tool"
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": true,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T204810479162Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T204810377903Z.prompt.txt",
+    "exit_only_final_shell_check_passed": false,
+    "session_recovery": {
+      "recovered": true,
+      "session_id": "ses_e1f085294ffeaSavhWvjS9RDyh",
+      "title": "LocalCoder Drone 20261115T204810479162Z",
+      "outcome": "succeeded",
+      "terminal": true,
+      "interrupt_attempted": false,
+      "interrupt": null,
+      "export_path": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T204810479162Z\\ses_e1f085294ffeaSavhWvjS9RDyh.v6-recovery-20261115T205811139409Z.json"
+    },
+    "dispatcher_final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Report shell execution results and verify PASS status; then combine final report with self-prompt fields.\nVerified facts: File hive_postal_inbox_contract_v1_candidate.py created successfully with SHA-256 718f70db7914168883a5490935d8606562eae54cc590b72303e044e8b50a210d. Required evidence tokens present: 718f70db7914168883a5490935d8606562eae54cc590b72303e044e8b50a210d, L:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_contract_v1_candidate.py.\nNext bounded action: Call the shell tool"
+    ]
+  }
+}

@@ -1,0 +1,1289 @@
+{
+  "scope": "candidate MCP source; live DB mounted read-only; actual F-drive Wikipedia mounted read-only",
+  "initialize": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "protocolVersion": "2024-11-05",
+      "capabilities": {
+        "tools": {}
+      },
+      "serverInfo": {
+        "name": "aios-router-mcp-v3-postal-candidate",
+        "version": "0.3.0"
+      },
+      "instructions": "Persistent encrypted Hive postal candidate. All postal operations require fresh Rust Body, PrivacyCore, and role-bound OpenCode actor receipts. Drone messages enter Queen-only encrypted outbox; only Queen tools can read and reseal into an exact registered Drone inbox."
+    }
+  },
+  "catalog": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "tools": [
+        {
+          "name": "accept_self_prompt",
+          "description": "Accept one bounded self-prompt for the next serial lane turn; records only a digest and requires the same fresh Rust Body plus PrivacyCore receipt. It never invokes the model.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "lane_id": {
+                "type": "string"
+              },
+              "prompt": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              },
+              "turn": {
+                "format": "uint32",
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "lane_id",
+              "turn",
+              "prompt"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "assign_drone_seed",
+          "description": "Assign exactly one OS-CSPRNG inference seed to an Architect-named Drone identity. SQLite UNIQUE constraints prevent seed or identity reuse. Requires a fresh matching Rust Body and PrivacyCore receipt.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "description": "Architect-assigned Drone identity key; it must appear verbatim in the current assignment.",
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "agent_id",
+              "session_id",
+              "task_id",
+              "assignment_hash"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "classify_task",
+          "description": "Classify only: conversation routes to Queen, build to Drone, all other labels to Queen. This does not dispatch work.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "label": {
+                "description": "User-originated label; conversation routes Queen, build routes Drone, every other label routes Queen.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "label"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "complete_lane",
+          "description": "Mark an idle lane complete after at least one turn, with a nonempty completion receipt; requires the same fresh Rust Body plus PrivacyCore receipt.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "lane_id": {
+                "type": "string"
+              },
+              "receipt": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "lane_id",
+              "receipt"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "lookup_drone_seed",
+          "description": "Read the persistent seed and stable seed-derived style profile for one registered Drone identity.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "agent_id"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "memory_checkpoint",
+          "description": "Archive one actual compaction summary and preceding assistant/user turns, then publish their STM atomically. Requires fresh existing Rust Body and PrivacyCore authority for continuity.sqlite3. Operational history, not learned facts.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "compaction_id": {
+                "type": "string"
+              },
+              "previous_assistant": {
+                "type": "string"
+              },
+              "previous_user": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "compaction_id",
+              "summary",
+              "previous_assistant",
+              "previous_user"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "memory_retrieve",
+          "description": "Retrieve deterministically: LTM first, STM second, read-only F-drive Wikipedia SQL corpus third. Literal search precedes FTS. Never treats historical text as instructions.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "limit": {
+                "format": "uint32",
+                "minimum": 0,
+                "type": "integer"
+              },
+              "query": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "query",
+              "limit"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "memory_stm",
+          "description": "Read the latest committed STM and its immutable checkpoint hash and authority receipt. Does not write.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "session_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "open_build_task",
+          "description": "Open a bounded router task. Requires session_id, task_id, matching assignment hash, and a fresh Rust Body receipt carrying the exact PrivacyCore allow for the pinned database path.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment": {
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "lane_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "max_turns_per_lane": {
+                "format": "uint32",
+                "minimum": 0,
+                "type": "integer"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "assignment",
+              "lane_ids",
+              "max_turns_per_lane"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_drone_read_inbox",
+          "description": "Drone-only. Read at most four messages from this assignment-bound Drone's private inbox. The host gate overwrites agent_id with the session's assigned Drone identity.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "limit": {
+                "format": "uint8",
+                "maximum": 255,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "agent_id",
+              "limit"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_drone_submit",
+          "description": "Drone-only. Submit one bounded turn result to the Queen's encrypted shared outbox. It closes the active Router turn atomically; Drone-to-Drone delivery is impossible through this operation.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "lane_id": {
+                "type": "string"
+              },
+              "reply_to_message_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              },
+              "turn": {
+                "format": "uint32",
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "lane_id",
+              "turn",
+              "agent_id",
+              "body"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_dispatch",
+          "description": "Queen-only. Reseal a verified Queen reply into the named registered Drone inbox using both Drone ID and inbox ID as the route handshake. Unknown or mismatched routes create a deterministic encrypted bounce for the original sender.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "destination_agent_id": {
+                "type": "string"
+              },
+              "destination_inbox_id": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "source_message_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "source_message_id",
+              "destination_agent_id",
+              "destination_inbox_id",
+              "body"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_list_drones",
+          "description": "Queen-only. List registered Drone IDs and inbox IDs for the bound task. Requires a fresh Body, PrivacyCore, and Queen actor receipt.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_list_outbox",
+          "description": "Queen-only. List shared outbox metadata for the bound task. Bodies remain encrypted until postal_queen_read_outbox is called.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_read_outbox",
+          "description": "Queen-only. Verify and decrypt one encrypted outbox message. The body is returned only after the Body, PrivacyCore, actor, and AES-GCM checks pass.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "message_id": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "message_id"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_summary",
+          "description": "Queen-only. Return the task and mailbox summary from verified Rust task state and the append-only postal receipt chain; it does not infer success from Drone prose.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_register_drone",
+          "description": "Drone-only. Register this assignment-bound Drone in the postal router. Requires an existing unique OS-CSPRNG Drone seed and fresh Body plus PrivacyCore plus postal actor receipt. Returns only this Drone's inbox ID.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "description": "Trusted Drone identity injected by the OpenCode assignment gate.",
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "agent_id"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "queen_summary",
+          "description": "Return a Queen-facing summary derived strictly from recorded event receipts.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "task_id"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "record_turn_result",
+          "description": "Record the digest receipt for the matching active lane turn; requires the same fresh Rust Body plus PrivacyCore receipt.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "lane_id": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              },
+              "turn": {
+                "format": "uint32",
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "lane_id",
+              "turn",
+              "result"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "router_status",
+          "description": "Report candidate health, append-only event-chain status, and explicit missing security integrations.",
+          "inputSchema": {
+            "properties": {},
+            "type": "object"
+          }
+        },
+        {
+          "name": "stop_task",
+          "description": "Record a task stop request; requires the same fresh Rust Body plus PrivacyCore receipt. This cannot cancel an external model generation; bridge cancellation and acknowledgement are not connected.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "reason"
+            ],
+            "type": "object"
+          }
+        }
+      ]
+    }
+  },
+  "denied_checkpoint": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"error\":\"no fresh Body ALLOW plus PrivacyCore ALLOW receipt for aios_router_memory_checkpoint and this session\",\"ok\":false}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "wiki": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"ok\":true,\"result\":{\"matches\":[{\"article_id\":1246,\"batch_source\":\"batch_0001\",\"database\":\"/var/lib/aios-wikipedia/wiki_biology.sqlite3\",\"excerpt\":\"</ref> }} )]] The Pythonidae, commonly known as pythons, are a family of nonvenomous <!-- (though see the section \\\"Toxins\\\" below) --> snakes found in Africa, Asia, and Australia. Among its members are some of the largest snakes in the world. Ten genera and 39 species are currently recognized. Being naturally non-venomous, pythons must constrict their prey to induce cardiac arrest prior to consumption. Pythons will typically strike at and bite their prey of choice to gain hold of it; they then must use physical strength to constrict their prey, by coiling their muscular bodies around the animal, effectively suffocating it before swallowing whole. This is in stark contrast to venomous snakes such as the rattlesnake, for example, which delivers a swift, venomous bite but releases, waiting as the prey succumbs to envenomation before being consumed. Collectively, the pythons are well-documented and studied as constrictors, much like other non-venomous snakes, including the boas and even kingsnakes of the New World.<ref name=\\\"ITIS\\\"></ref> Pythons are found in regions like sub-Saharan Africa, Southeast Asia, and Australia, with invasive populations of Burmese pythons in Everglades National Park, Florida and reticulated pythons in Puerto Rico. They are ambush predators that primarily kill prey by constriction, causing cardiac arrest. Pythons are oviparous, laying eggs that females incubate until they hatch. They possess premaxillary teeth, with the exception of adults in the Australian genus Aspidites.<ref></ref><ref></ref> While many species are available in the exotic pet trade, caution is needed with larger species due to potential danger. The taxonomy of pythons has evolved, and they are now known to be more closely related to sunbeam snakes and the Mexican burrowing python.  Pythons are poached for their meat and skin, leading to a billion-dollar global trade. They can carry diseases, such as salmonella and leptospirosis, which can be transmitted to humans. Pythons are also used in African traditional medicine to treat ailments like rheumatism and mental illnesses. Their body parts, including blood and organs, are believed to have various healing properties. In some African cultures, pythons have significant roles in folklore and mythology, often symbolizing strength or having sacred status. ==Distribution and habitat== Pythons are found in sub-Saharan Africa, Nepal, India, Sri Lanka, Bangladesh, Southeast Asia, southeastern Pakistan, southern China, the Philippines and Australia.<ref name=\\\"McD99\\\"/> Two known populations of invasive pythons exist in the Western Hemisphere. In the United States, an introduced population of Burmese pythons (Python bivittatus) has existed as an invasive species in Everglades National Park since the late 1990s. As of January 2023, estimates place the Floridian Burmese python population at around half a million. Local bounties are awarded and scientists study dead Burmese pythons to better understand breeding cycles and \",\"file_name\":\"002079_Pythonidae.txt\",\"title\":\"Pythonidae\"},{\"article_id\":4241,\"batch_source\":\"batch_0004\",\"database\":\"/var/lib/aios-wikipedia/wiki_biology.sqlite3\",\"excerpt\":\"</ref> | genus = Malayopython | species = reticulatus | authority = (Schneider, 1801)<ref name=\\\"McD99\\\"/> | range_map = | synonyms = </ref> | Broghammerus reticulatus <br /><small>\u2014 Hoser, 2004<ref name=Hos03/><ref name=Hoser161926></ref></small> | Malayopython reticulatus <br /><small>\u2014 Reynolds et al., 2014</small><ref> www.reptile-database.org.</ref> }} }} The reticulated python (Malayopython reticulatus) is a python species native to South and Southeast Asia. It is the world's longest snake, and the third heaviest after the green anaconda and Burmese python. It is listed as least concern on the IUCN Red List because of its wide distribution. In several countries in its range, it is hunted for its skin, for use in traditional medicine, and for sale as pets.<ref name=iucn /> Due to this, reticulated pythons are one of the most economically important reptiles worldwide. It is an excellent swimmer, has been reported far out at sea, and has colonized many small islands within its range. Like all pythons, it is a non-venomous constrictor. In very rare cases, adult humans have been killed (and in at least six reported cases, eaten) by reticulated pythons.<ref name=wap18></ref><ref name=usatoday2017></ref><ref></ref><ref></ref> ==Taxonomy== The reticulated python was first described in 1801 by German naturalist Johann Gottlob Theaenus Schneider, who described two zoological specimens held by the G\u00f6ttingen Museum in 1801 that differed slightly in colour and pattern as separate species\u2014Boa reticulata and Boa rhombeata.<ref>{{cite book |last1=Schneider |first1=J. G. |author-link=Johann Gottlob Theaenus Schneider|year=1801 |title=Historiae Amphibiorum naturalis et literariae Fasciculus Secundus continens Crocodilos, Scincos, Chamaesauras, Boas, Pseudoboas, Elapes, Angues, Amphisbaenas et Caecilias |location=Jenae |publisher=Wesselhoeft |chapter=Reticulata |chapter-url=https://gdz.sub.uni-goettingen.de/id/PPN582122139?tify={%22pages%22:[274],%22view%22:%22info%22} |pages=264\u2013266 | language=la}}</ref> The specific name, reticulatus, is Latin meaning \\\"net-like\\\", or reticulated, and is a reference to the complex color pattern.<ref name=\\\"Got\\\"></ref> The generic name Python was proposed by French naturalist Fran\u00e7ois Marie Daudin in 1803.<ref> (in French).</ref> American zoologist Arnold G. Kluge performed a cladistics analysis on morphological characters and recovered the reticulated python lineage as sister to the genus Python, hence not requiring a new generic name in 1993.<ref></ref> In a 2004 genetics study using cytochrome b DNA, Robin Lawson and colleagues discovered the reticulated python as sister to Australo-Papuan pythons, rather than Python molurus and relatives.<ref></ref> Raymond Hoser erected the genus Broghammerus for the reticulated python in 2004, naming it after German snake expert Stefan Broghammer, on the basis of dorsal patterns distinct from those of the genus Python, and a dark mid-dorsal line from the r\",\"file_name\":\"004153_Reticulated python.txt\",\"title\":\"Reticulated python\"}],\"order\":[\"ltm\",\"stm\",\"wikipedia\"],\"source\":\"wikipedia\"}}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "result": "PASS",
+  "records": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "protocolVersion": "2024-11-05",
+        "capabilities": {
+          "tools": {}
+        },
+        "serverInfo": {
+          "name": "aios-router-mcp-v3-postal-candidate",
+          "version": "0.3.0"
+        },
+        "instructions": "Persistent encrypted Hive postal candidate. All postal operations require fresh Rust Body, PrivacyCore, and role-bound OpenCode actor receipts. Drone messages enter Queen-only encrypted outbox; only Queen tools can read and reseal into an exact registered Drone inbox."
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "name": "accept_self_prompt",
+            "description": "Accept one bounded self-prompt for the next serial lane turn; records only a digest and requires the same fresh Rust Body plus PrivacyCore receipt. It never invokes the model.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "prompt": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                },
+                "turn": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "turn",
+                "prompt"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "assign_drone_seed",
+            "description": "Assign exactly one OS-CSPRNG inference seed to an Architect-named Drone identity. SQLite UNIQUE constraints prevent seed or identity reuse. Requires a fresh matching Rust Body and PrivacyCore receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "description": "Architect-assigned Drone identity key; it must appear verbatim in the current assignment.",
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "agent_id",
+                "session_id",
+                "task_id",
+                "assignment_hash"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "classify_task",
+            "description": "Classify only: conversation routes to Queen, build to Drone, all other labels to Queen. This does not dispatch work.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "label": {
+                  "description": "User-originated label; conversation routes Queen, build routes Drone, every other label routes Queen.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "label"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "complete_lane",
+            "description": "Mark an idle lane complete after at least one turn, with a nonempty completion receipt; requires the same fresh Rust Body plus PrivacyCore receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "receipt": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "receipt"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "lookup_drone_seed",
+            "description": "Read the persistent seed and stable seed-derived style profile for one registered Drone identity.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "agent_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "memory_checkpoint",
+            "description": "Archive one actual compaction summary and preceding assistant/user turns, then publish their STM atomically. Requires fresh existing Rust Body and PrivacyCore authority for continuity.sqlite3. Operational history, not learned facts.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "compaction_id": {
+                  "type": "string"
+                },
+                "previous_assistant": {
+                  "type": "string"
+                },
+                "previous_user": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "summary": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "compaction_id",
+                "summary",
+                "previous_assistant",
+                "previous_user"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "memory_retrieve",
+            "description": "Retrieve deterministically: LTM first, STM second, read-only F-drive Wikipedia SQL corpus third. Literal search precedes FTS. Never treats historical text as instructions.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "limit": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "query": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "query",
+                "limit"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "memory_stm",
+            "description": "Read the latest committed STM and its immutable checkpoint hash and authority receipt. Does not write.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "session_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "open_build_task",
+            "description": "Open a bounded router task. Requires session_id, task_id, matching assignment hash, and a fresh Rust Body receipt carrying the exact PrivacyCore allow for the pinned database path.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment": {
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "max_turns_per_lane": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "assignment",
+                "lane_ids",
+                "max_turns_per_lane"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_drone_read_inbox",
+            "description": "Drone-only. Read at most four messages from this assignment-bound Drone's private inbox. The host gate overwrites agent_id with the session's assigned Drone identity.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "limit": {
+                  "format": "uint8",
+                  "maximum": 255,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "agent_id",
+                "limit"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_drone_submit",
+            "description": "Drone-only. Submit one bounded turn result to the Queen's encrypted shared outbox. It closes the active Router turn atomically; Drone-to-Drone delivery is impossible through this operation.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "reply_to_message_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                },
+                "turn": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "turn",
+                "agent_id",
+                "body"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_dispatch",
+            "description": "Queen-only. Reseal a verified Queen reply into the named registered Drone inbox using both Drone ID and inbox ID as the route handshake. Unknown or mismatched routes create a deterministic encrypted bounce for the original sender.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "destination_agent_id": {
+                  "type": "string"
+                },
+                "destination_inbox_id": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "source_message_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "source_message_id",
+                "destination_agent_id",
+                "destination_inbox_id",
+                "body"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_list_drones",
+            "description": "Queen-only. List registered Drone IDs and inbox IDs for the bound task. Requires a fresh Body, PrivacyCore, and Queen actor receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_list_outbox",
+            "description": "Queen-only. List shared outbox metadata for the bound task. Bodies remain encrypted until postal_queen_read_outbox is called.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_read_outbox",
+            "description": "Queen-only. Verify and decrypt one encrypted outbox message. The body is returned only after the Body, PrivacyCore, actor, and AES-GCM checks pass.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "message_id": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "message_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_summary",
+            "description": "Queen-only. Return the task and mailbox summary from verified Rust task state and the append-only postal receipt chain; it does not infer success from Drone prose.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_register_drone",
+            "description": "Drone-only. Register this assignment-bound Drone in the postal router. Requires an existing unique OS-CSPRNG Drone seed and fresh Body plus PrivacyCore plus postal actor receipt. Returns only this Drone's inbox ID.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "description": "Trusted Drone identity injected by the OpenCode assignment gate.",
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "agent_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "queen_summary",
+            "description": "Return a Queen-facing summary derived strictly from recorded event receipts.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "task_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "record_turn_result",
+            "description": "Record the digest receipt for the matching active lane turn; requires the same fresh Rust Body plus PrivacyCore receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "result": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                },
+                "turn": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "turn",
+                "result"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "router_status",
+            "description": "Report candidate health, append-only event-chain status, and explicit missing security integrations.",
+            "inputSchema": {
+              "properties": {},
+              "type": "object"
+            }
+          },
+          {
+            "name": "stop_task",
+            "description": "Record a task stop request; requires the same fresh Rust Body plus PrivacyCore receipt. This cannot cancel an external model generation; bridge cancellation and acknowledgement are not connected.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "reason"
+              ],
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"error\":\"no fresh Body ALLOW plus PrivacyCore ALLOW receipt for aios_router_memory_checkpoint and this session\",\"ok\":false}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":true,\"result\":{\"matches\":[{\"article_id\":1246,\"batch_source\":\"batch_0001\",\"database\":\"/var/lib/aios-wikipedia/wiki_biology.sqlite3\",\"excerpt\":\"</ref> }} )]] The Pythonidae, commonly known as pythons, are a family of nonvenomous <!-- (though see the section \\\"Toxins\\\" below) --> snakes found in Africa, Asia, and Australia. Among its members are some of the largest snakes in the world. Ten genera and 39 species are currently recognized. Being naturally non-venomous, pythons must constrict their prey to induce cardiac arrest prior to consumption. Pythons will typically strike at and bite their prey of choice to gain hold of it; they then must use physical strength to constrict their prey, by coiling their muscular bodies around the animal, effectively suffocating it before swallowing whole. This is in stark contrast to venomous snakes such as the rattlesnake, for example, which delivers a swift, venomous bite but releases, waiting as the prey succumbs to envenomation before being consumed. Collectively, the pythons are well-documented and studied as constrictors, much like other non-venomous snakes, including the boas and even kingsnakes of the New World.<ref name=\\\"ITIS\\\"></ref> Pythons are found in regions like sub-Saharan Africa, Southeast Asia, and Australia, with invasive populations of Burmese pythons in Everglades National Park, Florida and reticulated pythons in Puerto Rico. They are ambush predators that primarily kill prey by constriction, causing cardiac arrest. Pythons are oviparous, laying eggs that females incubate until they hatch. They possess premaxillary teeth, with the exception of adults in the Australian genus Aspidites.<ref></ref><ref></ref> While many species are available in the exotic pet trade, caution is needed with larger species due to potential danger. The taxonomy of pythons has evolved, and they are now known to be more closely related to sunbeam snakes and the Mexican burrowing python.  Pythons are poached for their meat and skin, leading to a billion-dollar global trade. They can carry diseases, such as salmonella and leptospirosis, which can be transmitted to humans. Pythons are also used in African traditional medicine to treat ailments like rheumatism and mental illnesses. Their body parts, including blood and organs, are believed to have various healing properties. In some African cultures, pythons have significant roles in folklore and mythology, often symbolizing strength or having sacred status. ==Distribution and habitat== Pythons are found in sub-Saharan Africa, Nepal, India, Sri Lanka, Bangladesh, Southeast Asia, southeastern Pakistan, southern China, the Philippines and Australia.<ref name=\\\"McD99\\\"/> Two known populations of invasive pythons exist in the Western Hemisphere. In the United States, an introduced population of Burmese pythons (Python bivittatus) has existed as an invasive species in Everglades National Park since the late 1990s. As of January 2023, estimates place the Floridian Burmese python population at around half a million. Local bounties are awarded and scientists study dead Burmese pythons to better understand breeding cycles and \",\"file_name\":\"002079_Pythonidae.txt\",\"title\":\"Pythonidae\"},{\"article_id\":4241,\"batch_source\":\"batch_0004\",\"database\":\"/var/lib/aios-wikipedia/wiki_biology.sqlite3\",\"excerpt\":\"</ref> | genus = Malayopython | species = reticulatus | authority = (Schneider, 1801)<ref name=\\\"McD99\\\"/> | range_map = | synonyms = </ref> | Broghammerus reticulatus <br /><small>\u2014 Hoser, 2004<ref name=Hos03/><ref name=Hoser161926></ref></small> | Malayopython reticulatus <br /><small>\u2014 Reynolds et al., 2014</small><ref> www.reptile-database.org.</ref> }} }} The reticulated python (Malayopython reticulatus) is a python species native to South and Southeast Asia. It is the world's longest snake, and the third heaviest after the green anaconda and Burmese python. It is listed as least concern on the IUCN Red List because of its wide distribution. In several countries in its range, it is hunted for its skin, for use in traditional medicine, and for sale as pets.<ref name=iucn /> Due to this, reticulated pythons are one of the most economically important reptiles worldwide. It is an excellent swimmer, has been reported far out at sea, and has colonized many small islands within its range. Like all pythons, it is a non-venomous constrictor. In very rare cases, adult humans have been killed (and in at least six reported cases, eaten) by reticulated pythons.<ref name=wap18></ref><ref name=usatoday2017></ref><ref></ref><ref></ref> ==Taxonomy== The reticulated python was first described in 1801 by German naturalist Johann Gottlob Theaenus Schneider, who described two zoological specimens held by the G\u00f6ttingen Museum in 1801 that differed slightly in colour and pattern as separate species\u2014Boa reticulata and Boa rhombeata.<ref>{{cite book |last1=Schneider |first1=J. G. |author-link=Johann Gottlob Theaenus Schneider|year=1801 |title=Historiae Amphibiorum naturalis et literariae Fasciculus Secundus continens Crocodilos, Scincos, Chamaesauras, Boas, Pseudoboas, Elapes, Angues, Amphisbaenas et Caecilias |location=Jenae |publisher=Wesselhoeft |chapter=Reticulata |chapter-url=https://gdz.sub.uni-goettingen.de/id/PPN582122139?tify={%22pages%22:[274],%22view%22:%22info%22} |pages=264\u2013266 | language=la}}</ref> The specific name, reticulatus, is Latin meaning \\\"net-like\\\", or reticulated, and is a reference to the complex color pattern.<ref name=\\\"Got\\\"></ref> The generic name Python was proposed by French naturalist Fran\u00e7ois Marie Daudin in 1803.<ref> (in French).</ref> American zoologist Arnold G. Kluge performed a cladistics analysis on morphological characters and recovered the reticulated python lineage as sister to the genus Python, hence not requiring a new generic name in 1993.<ref></ref> In a 2004 genetics study using cytochrome b DNA, Robin Lawson and colleagues discovered the reticulated python as sister to Australo-Papuan pythons, rather than Python molurus and relatives.<ref></ref> Raymond Hoser erected the genus Broghammerus for the reticulated python in 2004, naming it after German snake expert Stefan Broghammer, on the basis of dorsal patterns distinct from those of the genus Python, and a dark mid-dorsal line from the r\",\"file_name\":\"004153_Reticulated python.txt\",\"title\":\"Reticulated python\"}],\"order\":[\"ltm\",\"stm\",\"wikipedia\"],\"source\":\"wikipedia\"}}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "stderr": [
+    "wsl: Failed to translate 'G:\\Simulacra\\KEEP\\Tools\\Git\\bin'\n",
+    "wsl: Failed to translate 'G:\\Simulacra\\KEEP\\Tools\\Git\\bin'\n",
+    "   Compiling aios-router-mcp-v3-postal-candidate v0.3.0 (/build)\n",
+    "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.01s\n"
+  ],
+  "exit": 0
+}

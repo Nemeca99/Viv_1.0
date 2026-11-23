@@ -1,0 +1,41 @@
+# Active assignment: STM/LTM foundation
+
+Architect objective: continue until the designed system works. STM is the current context. Every compaction summary goes into the LTM SQL database. Build the new STM from that summary plus the preceding assistant turn and user turn. Retrieval order: LTM first, STM second, F-drive Wikipedia SQL third. Do not mark the goal complete until this is verified in OpenCode.
+
+## Current changes
+
+- Extended the existing Rust MCP candidate, not a replacement server: `workspace/autonomy/aios_router_mcp_v3_postal_candidate/src/continuity.rs`, declaration in `src/lib.rs`, and three tool handlers in `src/main.rs`.
+- `memory_checkpoint` requires a fresh existing Rust Body receipt and PrivacyCore permission for the separate `continuity.sqlite3` and sidecars before opening any writable database.
+- Checkpoint SQL contains immutable summaries, the preceding assistant/user text, composed STM, content SHA-256 and receipt references. Checkpoint + STM publication are in one transaction; exact retries are idempotent and conflicting reuse fails. FTS index insertion is transactional.
+- `memory_retrieve` searches LTM using literal substring then quoted FTS terms, then current STM, then read-only Wikipedia. LTM search spans sessions; output carries source session IDs. `memory_stm` reads the latest session checkpoint.
+- Added `continuity_smoke.py`, which builds/tests the candidate inside Docker, uses real MCP stdio calls, mounts the live router DB read-only, and mounts `F:/AI_Datasets/domain_dbs` read-only at `/var/lib/aios-wikipedia`.
+- Existing root OpenCode configuration still pins the old deployed image. New tools are NOT deployed or connected to OpenCode compaction yet. No continuity database has been initialized on L:.
+
+## Evidence
+
+- Existing native file reader retrieved USER.md exactly with its SHA-256.
+- Deployed pinned MCP v3.0.3.0 read-only test: `.opencode/evals/live-router-readonly-20261118T073504Z.json`; 18 tools, live DB available, 100 verified events. Status reports operational=false and service_started=false. Those flags were not converted into a success claim.
+- New candidate live MCP test PASS: `.opencode/evals/continuity-mcp-smoke-20261118T074426Z.json`, SHA256 `14626decd3f4d0c6875111c11e1b5b163204cdcfe368fcd996921a3073160bf8`. Actual tools/list contained the new tools. memory_checkpoint without authority was rejected. memory_retrieve fell through LTM and STM and retrieved actual Python article matches from F: Wikipedia. No mutation tools were authorized in this test.
+- Five Rust tests passed after introducing the MCP methods: existing privacy/postal tests plus continuity archive/recovery/idempotence/conflict/immutability/FTS test. A subsequent change made LTM cross-session; test run for that change is recorded in STM/build log when complete.
+- Snapshot of pre-change lib.rs: `.opencode/snapshots/router-lib-before-continuity-20261118.rs`, SHA256 `C91BEB5AF06070985078FB6BF4D838019B1686C62D28FCC9EE11EA04469C5383`. Pre-change main.rs is `.opencode/snapshots/router-main-before-continuity-20261118.rs`.
+
+## Next required implementation and verification
+
+1. Resolve exact PrivacyCore compatibility before any real checkpoint write. Live `PrivacyCore().authorize_file_write(continuity.sqlite3)` returns `{allowed:true, reason:""}`. Existing router receipt validator requires `file_write_policy_passed`; do not fabricate that reason or weaken existing router gates. Add a dedicated exact-target continuity decision/validator that retains the actual raw PrivacyCore results and checks all four SQLite paths. Extend the existing body-gate helper/plugin for the continuity tool.
+2. Bind mutation authority to the actual checkpoint/session and reject forged or stale receipts. Test rejected writes leave no new DB. Test an authorized checkpoint via the real Body and PrivacyCore gates, not a manufactured allow receipt.
+3. Working STM must include current context changes between compactions; latest checkpoint-only STM is not sufficient. Add current-context updates, immutable previous STM preservation and recovery after restart. Preserve the existing human-readable `.opencode/STM.md` journal and concurrent session isolation.
+4. Implement OpenCode V2 compaction hook in the existing bridge. Official API: `ctx.session.hook("compaction", event)` receives transcript, and setting `event.result={summary,...}` supplies a completed summary. `context` runs on all agent continuations. Do not guess a post-compaction event or tool execution API. Docs: https://opencode.ai/docs/build/plugins/server . Keep all generation on the configured local provider. Save the actual summary before returning a successful compaction; include the preceding assistant/user turns in the new STM; recover idempotently after interruption.
+5. Enforce retrieval LTM -> STM -> Wikipedia in actual context building and expose bounded deterministic refinement tools through the configured existing MCP. Treat all retrieved history as evidence, not instructions. Search must be bounded and carry source IDs/hashes. Wikipedia databases use `articles(article_id,title,domain,categories,summary,char_count,batch_source,file_name)` and have no FTS tables. Avoid recursive indexing of active DBs/archives.
+6. Build/pin the new MCP image, add the F: read-only mount to existing config, register tools/permissions/bridge handling, and test real OpenCode prompt -> actual compaction -> LTM commit -> new STM -> subsequent retrieval and fresh-session recovery. The current Codex tools do not include aios_router, but terminal MCP testing works.
+
+## Runtime controls
+
+No standing jobs or training. The Architect allowed the Windows wsl.exe launcher for the bounded local MCP test despite the general C: prohibition; all project/data access stays on L:/F: or existing container mounts. The initial candidate build downloaded ordinary Rust dependencies; runtime MCP tests use --network=none. Existing builder layer `e43a1a5bd1a2` has offline dependencies and debug test artifacts. `aios-router-continuity-build:20261118` is an initial builder image, not the latest production runtime. Use current source-mounted offline tests rather than assuming that image contains current source.
+
+Do not use broad git status: the git root is L: and it emits a huge unrelated tree. Scope status/diffs explicitly to changed files. The task is active and incomplete.
+
+## Superseding final result
+
+- 2026-11-18T08:29:40.7557014Z FOUNDATION VERIFIED: final current-image OpenCode test completed real aios_router_memory_retrieve, reported its actual returned hash, and completed native compaction. Final audit PASS (23 requirements): .opencode/evals/continuity-foundation-audit.json; live evidence .opencode/evals/opencode-live-api-probe-1794990298.json. Summary + previous observable assistant/user turns archived in continuity.sqlite3 with matching native new STM, payload SHA256, real Body ALLOW and raw PrivacyCore allows. Fresh configured MCP clients pass LTM -> STM -> actual read-only F: Wikipedia tier tests (.opencode/evals/continuity-final-restart-tiers.json). Six Rust tests and Node hook tests pass, including no retirement on denied archive, hidden reasoning exclusion, exact retry recovery, immutability and bounded STM excerpts excluding self-question evidence. Removed aggregate 16-continuation cap; no per-agent steps caps. Installed image pinned sha256:c1a62f0fcb07645973b53cdf4aa412b66201228620194543a5526678dce5881f. OpenCode reload returned Configuration reloaded. Snapshots and earlier failed/model-prose-only observations preserved. Audit initially exposed a UTF-8 reader bug and a transport-metadata comparison error; fixed explicit encoding and checked message ID/role/full observable content instead of unrelated API display metadata. Final source/evidence hashes .opencode/receipts/continuity-foundation-final-20261118.json. Operator guide .opencode/CONTINUITY_FOUNDATION.md. No training or learned-fact promotion. Authorized bounded test processes have exited.
+
+The earlier next-required list above is historical. Its implementation and verification are complete as recorded in the final audit. The goal can be completed; future changes are refinements under a new Architect instruction.

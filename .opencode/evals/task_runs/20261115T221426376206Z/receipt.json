@@ -1,0 +1,59 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 600.484,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e1eb9580fffeMz4M1Gq0xZJPSv"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "b8f5ce57c55eb3250030e790b0956b6388566bd2d8661716918894914dbb70bb",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Case 1: expected (True, 'accepted_for_local_inbox'), got (True, accepted_for_local_inbox)\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out",
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Case 1: expected (True, 'accepted_for_local_inbox'), got (True, accepted_for_local_inbox)\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "<tool_call>\n<function=localcoder_add_python>\n<parameter=filePath>\nL:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_contract_v6_check_candidate.py\n</parameter>\n<parameter=content>\nfrom hive_postal_inbox_contract_v1_candidate import validate_message_for_local_inbox\n\n\nEXPECTED_RESULTS = [\n    (\"valid/queen\", (True, \"accepted_for_local_inbox\")),\n    (\"valid/drone_1\", (False, \"not_for_local_inbox\")),\n    (\"string/queen\", (False, \"message_not_object\")),\n    (\"missing task_id/queen\", (False, \"missing_required_field\")),\n    (\"padded recipient/queen\", (False, \"invalid_recipient_id\")),\n    (\"unknown kind/queen\", (False, \"invalid_kind\")),\n    (\"list body/queen\", (False, \"invalid_body\")),\n    (\"valid/padded local ID\", (False, \"not_for_local_inbox\")),\n]\n\n\ndef _self_check() -> int:\n    \"\"\"Run self-check with exactly eight test cases.\"\"\"\n    valid_envelope = {\n        \"schema\": \"hive_postal_message_v1\",\n        \"message_id\": \"msg_001\",\n        \"sender_id\": \"drone_1\",\n        \"recipient_id\": \"queen\",\n        \"task_id\": \"task_1\",\n        \"kind\": \"REPORT\",\n        \"body\": {\"status\": \"complete\"},\n    }\n\n    cases = [\n        # Case 1: matching valid envelope => accepted\n        (valid_envelope, \"queen\"),\n        \n        # Case 2: valid envelope for another ID => not_for_local_inbox\n        (valid_envelope, \"drone_1\"),\n        \n        # Case 3: string => message_not_object\n        (\"not an object\", \"queen\"),\n        \n        # Case 4: missing task_id => missing_required_field\n        ({k: v for k, v in valid_envelope.items() if k != \"task_id\"}, \"queen\"),\n        \n        # Case 5: padded recipient => invalid_recipient_id (envelope fails)\n        ({**valid_envelope, \"recipient_id\": \" queen\"}, \"queen\"),\n        \n        # Case 6: kind UNKNOWN => invalid_kind (envelope fails)\n        ({**valid_envelope, \"kind\": \"UNKNOWN\"}, \"queen\"),\n        \n        # Case 7: list body => invalid_body (envelope fails)\n        ({**valid_envelope, \"body\": []}, \"queen\"),\n        \n        # Case 8: matching envelope with padded local ID => not_for_local_inbox\n        (valid_envelope, \" queen\"),\n    ]\n\n    passed = 0\n    for index, (message, local_inbox_id) in enumerate(cases, start=1):\n        actual, reason = validate_message_for_local_inbox(message, local_inbox_id)\n        expected = EXPECTED_RESULTS[index - 1][1]\n\n        if actual is not expected or reason != expected[1]:\n            print(f\"Case {index}: expected {expected}, got ({actual}, {reason})\")\n            return 1\n\n    print(\"PASS: 8 checks\")\n    return 0\n\n\ndef main() -> int:\n    import argparse\n    parser = argparse.ArgumentParser(description=\"Inbox contract candidate validator\")\n    parser.add_argument(\"--self-check\", action=\"store_true\")\n    args = parser.parse_args()\n\n    if not args.self_check:\n        parser.error(\"--self-check is required\")\n\n    return _self_check()\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n</parameter>\n</function>\n</tool_call>"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T221426376206Z"
+}

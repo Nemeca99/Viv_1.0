@@ -1,0 +1,26 @@
+{
+  "schema_version": "viv_cpu_unified_multi_template_selection_current_contract_v1",
+  "receipt_schema": "viv_cpu_unified_multi_template_selection_current_receipt_v1",
+  "purpose": "Evaluate the same unified candidate checkpoint against the current two-template registry without changing the active pointer or registry.",
+  "parent": {
+    "receipt_schema": "viv_cpu_unified_recursive_self_building_receipt_v2",
+    "candidate_only": true,
+    "unified_checkpoint_required": true
+  },
+  "menu": ["fixture.echo", "fixture.echo_companion"],
+  "limits": {
+    "device": "cpu",
+    "repeats": 2,
+    "isolated": true,
+    "no_publish": true,
+    "no_registry_mutation": true,
+    "no_pointer_adoption": true,
+    "no_production_generation": true
+  },
+  "authority": {
+    "raw_model_output_required": true,
+    "cpu_repair_is_not_model_success": true,
+    "rust_denial_expected": true,
+    "human_approval_required_for_adoption": true
+  }
+}

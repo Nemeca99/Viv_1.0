@@ -1,0 +1,16 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Create one new Python file: workspace/autonomy/hive_postal_message_contract_candidate.py.
+Use localcoder_add_python tool to create that exact file. You must issue the actual tool call now; do not paste proposed source into assistant text. A code block instead of the tool call is a failed task.
+
+Implement a pure function validate_postal_message(message) returning (True, "accepted") or (False, stable_error_code). Invalid non-dict input must not raise. Allowed keys: schema, message_id, sender_id, recipient_id, task_id, kind, body, optional parent_message_sha256. Required keys: schema, message_id, sender_id, recipient_id, task_id, kind, body. schema must equal "hive_postal_message_v1"; each of message_id, sender_id, recipient_id, task_id, kind must be a nonempty trimmed string; kind must be REPORT, SELF_PROMPT, ROUTED_REPORT, ACK, or STOP; body must be a dict; optional parent_message_sha256 must be exactly 64 lowercase hexadecimal characters. Reject missing and extra keys with stable error codes. Include a --self-check entry point with nine explicit checks: valid REPORT accepted; non-dict rejected; missing task_id rejected; blank sender_id rejected; unsupported kind rejected; non-dict body rejected; unknown key rejected; malformed parent hash rejected; valid 64-character lowercase hash accepted. Print exactly PASS: postal envelope checks on success and exit nonzero on failure.
+
+Then use shell tool once to run exactly:
+L:.venvScriptspython.exe -B L:LocalCoderworkspaceautonomyhive_postal_message_contract_candidate.py --self-check
+Do not use shell to write files. Do not change existing files, Rust, SQLite, memory, or model settings. After the add result, emit a visible [DRONE SELF-PROMPT] with Agenda:, Verified facts: quoting one exact fact from the result, and Next bounded action: Use shell tool to run the assigned self-check. After shell, report actual output and STOP.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: localcoder_add_python → shell. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

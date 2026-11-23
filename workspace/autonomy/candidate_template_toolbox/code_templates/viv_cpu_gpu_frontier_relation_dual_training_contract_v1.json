@@ -1,0 +1,82 @@
+{
+  "schema_version": "viv_cpu_gpu_frontier_relation_dual_training_v1",
+  "receipt_schema": "viv_cpu_gpu_frontier_relation_dual_training_receipt_v1",
+  "contract_status": "candidate_only",
+  "parent": {
+    "receipt_path": "foundation/artifacts/auto/agentic/cpu_gpu_frontier_relation_v1/cpu_gpu_frontier_relation_v1_20260815T164559Z_3020/receipt.json",
+    "receipt_sha256": "15F831B00D780A8E29A2C050A32046170ACD8EAFC236E5724D333F1B07A20DA7",
+    "candidate_sha256": "66D9E1D9253DC7ADB589AB3E6118F91655CD2F4DF20B13FD1EC6605FD89F4F31",
+    "candidate_state_sha256": "240EAEAB20CB112AAEFA85B077BD7DBA8D12BCD4B5C4CCA9CBD9937E803F50C0",
+    "parent_final_state": "HOLD_FRONTIER_RELATION_MODEL"
+  },
+  "frozen_authority": {
+    "seed_zero_generation": 0,
+    "cpu_is_deterministic_judge": true,
+    "gpu_is_private_probability_proposal": true,
+    "same_parent_weights": true,
+    "same_sampler_plan": true,
+    "same_seed_and_recipe": true,
+    "routes_retained": true,
+    "pruning_allowed": false,
+    "preferred_route_allowed": false,
+    "production_mutation": false,
+    "expected_rust_state": "HOLD_SECURITY"
+  },
+  "training": {
+    "curriculum_schema": "viv_cpu_gpu_frontier_relation_curriculum_v1",
+    "curriculum_sha256": "1E66310F340CEC301B4529A7BCFC89D08BD70E4F6AF9EC4F8776E91ECF5176FE",
+    "effective_training_rows": 224,
+    "sampler_index_space": 224,
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "devices": ["cpu", "cuda:0"],
+    "parallel_start_barrier": true,
+    "device_neutral_optimizer": "AdamW",
+    "weight_decay": 0.0,
+    "repeat_count": 2
+  },
+  "comparison": {
+    "truth_card_source": "same_curriculum_row_card",
+    "cpu_validates_both_routes": true,
+    "all_routes_retained": true,
+    "pruning_applied": false,
+    "preferred_route": null,
+    "first_survivor_is_final": false,
+    "gpu_output_is_authority": false,
+    "state_hashes_may_differ_by_device": true,
+    "repeat_state_hashes_must_match_per_device": true
+  },
+  "gates": {
+    "gpu_available": true,
+    "shared_plan_verified": true,
+    "parallel_overlap_verified": true,
+    "paired_truth_cards_equal": true,
+    "gpu_nonempty_required": true,
+    "cpu_unauthorized_accepts": 0,
+    "rust_denial_required": true,
+    "protected_state_unchanged": true,
+    "independent_verification_required": true
+  },
+  "failure_states": [
+    "HOLD_FRONTIER_DUAL_TRAINING_PREFLIGHT",
+    "HOLD_FRONTIER_DUAL_TRAINING_SYNC",
+    "HOLD_FRONTIER_DUAL_TRAINING_DETERMINISM",
+    "HOLD_FRONTIER_DUAL_TRAINING_MODEL",
+    "HOLD_FRONTIER_DUAL_TRAINING_SECURITY",
+    "FAIL_FRONTIER_DUAL_TRAINING_PROTECTED_STATE"
+  ],
+  "model_packet_exclusions": [
+    "expected_relation",
+    "selected_route",
+    "target_frame",
+    "cpu_final_disposition",
+    "post_decision_state",
+    "source_body",
+    "source_path",
+    "shell",
+    "python",
+    "generated_code"
+  ]
+}

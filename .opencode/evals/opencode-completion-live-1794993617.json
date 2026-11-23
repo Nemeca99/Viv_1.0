@@ -1,0 +1,42 @@
+{
+  "assignment": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nTask access: write\nRouter bounds JSON: {\"task_class\":\"build\",\"lane_ids\":[\"drone\"],\"max_turns_per_lane\":1}\nAcceptance JSON: {\"version\":1,\"kind\":\"artifacts\",\"artifacts\":[\".opencode/evals/completion-fixture/value.txt\",\".opencode/evals/completion-fixture/check.py\"],\"checks\":[{\"id\":\"behavior-and-readonly-scope\",\"argv\":[\"/usr/local/bin/python\",\"-B\",\".opencode/evals/completion-fixture/check.py\"],\"timeout_seconds\":5,\"inputs\":[\".opencode/evals/completion-fixture/check.py\"]}]}\nBounded control and verification test of existing artifacts. No source edits. Use aios_router_open_build_task. Then use aios_router_accept_self_prompt for lane drone turn 0 with Agenda, Verified facts, Next bounded action. Then use aios_router_record_turn_result for lane drone turn 0: artifacts are ready for deterministic verification, no success is claimed yet. Then use aios_router_complete_lane for lane drone with a nonempty receipt; Rust must run the frozen checks. Finally use aios_router_queen_summary and report the actual state and verification hash, then stop. The frontend supplies trusted session/task/assignment bindings.",
+  "contract": {
+    "version": 1,
+    "kind": "artifacts",
+    "artifacts": [
+      ".opencode/evals/completion-fixture/value.txt",
+      ".opencode/evals/completion-fixture/check.py"
+    ],
+    "checks": [
+      {
+        "id": "behavior-and-readonly-scope",
+        "argv": [
+          "/usr/local/bin/python",
+          "-B",
+          ".opencode/evals/completion-fixture/check.py"
+        ],
+        "timeout_seconds": 5,
+        "inputs": [
+          ".opencode/evals/completion-fixture/check.py"
+        ]
+      }
+    ]
+  },
+  "observations": [],
+  "result": "FAIL",
+  "error": "RuntimeError('temporary OpenCode server exited')",
+  "logs": [
+    "ServeError: \n",
+    "    at F (B:/~BUN/root/chunk-c2xa869t.js:52:10000)\n",
+    "    at applyHandlers (node:events:64:20)\n",
+    "    at emitError (node:events:44:27)\n",
+    "    at emitListenErrorNextTick (node:_http_server:166:12)\n",
+    "    at processTicksAndRejections (native:7:39) {\n",
+    "  [cause]: Error: Failed to start server. Is port 28895 in use?\n",
+    "      at serve (unknown)\n",
+    "      at <anonymous> (node:_http_server:438:35)\n",
+    "      at <anonymous> (node:_http_server:410:33)\n",
+    "      at <anonymous> (B:/~BUN/root/chunk-c2xa869t.js:52:10038)\n",
+    "}\n"
+  ]
+}

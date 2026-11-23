@@ -1,0 +1,144 @@
+{
+  "schema_version": "viv_cpu_tagged_uml_protocol_curriculum_v1",
+  "status": "candidate_only",
+  "parent_compiler_schema": "viv_cpu_tagged_uml_turn_v1",
+  "compact_schema": "viv_tagged_uml_compact_curriculum_v1",
+  "compact_prefix": "V1C",
+  "model_output_grammar": "R|u=<uml_symbol>|k=<knowledge_slot>|a=<action>|p=<speech_plan>|o=<output_mode> or H|r=<hold_reason>",
+  "required_compact_fields": ["i", "s", "u", "k", "e", "t", "g", "d", "b", "h", "c", "a", "p", "m", "r", "x", "z", "o"],
+  "field_order": ["i", "s", "u", "k", "e", "t", "g", "d", "b", "h", "c", "a", "p", "m", "r", "x", "z", "o"],
+  "compact_field_encoding": {
+    "i": "identity code V",
+    "s": "isolated state code I",
+    "u": "A for uml_symbol:A, R for an unsupported explicit U+A route card",
+    "k": "knowledge-slot bitmask; K0=1, K1=2, K2=4",
+    "e": "pre-decision evidence state V/U/X/I",
+    "t": "family code plus bounded intent code",
+    "g": "knowledge goal code d/p/i",
+    "d": "requested delivery code t/v",
+    "b": "branch signal o/h",
+    "h": "bounded hold-signal code or -",
+    "c": "compositional context code or -",
+    "a": "action bitmask; speak=1, hold=2",
+    "p": "speech-plan bitmask; F means all approved plans",
+    "m": "output-mode bitmask; text=1, voice=2",
+    "r": "hold-reason bitmask; F means all approved reasons",
+    "x": "two-character prefix of the verified documentation-manifest hash",
+    "z": "bounded finite-menu bank identifier",
+    "o": "model-output boundary"
+  },
+  "compact_target_leakage_policy": {
+    "allowed_menu_values": true,
+    "selected_knowledge_slot": false,
+    "selected_speech_plan": false,
+    "selected_output_mode": false,
+    "selected_hold_reason": false,
+    "raw_target_frame": false,
+    "expected_answer_text": false
+  },
+  "limits": {
+    "max_prompt_chars": 512,
+    "max_model_output_chars": 256,
+    "max_generation_tokens": 64,
+    "max_knowledge_slots": 4,
+    "max_speech_plans": 8,
+    "max_hold_reasons": 8,
+    "max_task_field_chars": 96
+  },
+  "menus": {
+    "uml_symbols": ["A"],
+    "actions": ["speak", "hold"],
+    "output_modes": ["text", "voice"],
+    "hold_reasons": [
+      "malformed_frame",
+      "unknown_uml",
+      "unknown_knowledge",
+      "unverified_evidence",
+      "source_unavailable",
+      "authority_closed",
+      "insufficient_context",
+      "security_denied"
+    ],
+    "speech_plans": [
+      "plan_capability",
+      "plan_check_evidence",
+      "plan_guard_authority",
+      "plan_health_hold",
+      "plan_missing_evidence",
+      "plan_presence",
+      "plan_ready",
+      "plan_refusal"
+    ]
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0,
+    "temperature": 0.0,
+    "draft_mode": "cpu_gate",
+    "decoder_changed": false,
+    "tokenizer_changed": false,
+    "parser_changed": false
+  },
+  "dataset": {
+    "training_rows": 224,
+    "ordinary_heldout_rows": 56,
+    "compositional_traces": 14,
+    "families": [
+      "uml_symbol_binding",
+      "knowledge_slot_selection",
+      "speech_plan_selection",
+      "output_mode_selection",
+      "action_branch_selection",
+      "hold_reason_selection",
+      "full_turn_composition"
+    ],
+    "metadata_only": true,
+    "source_paths_present": false,
+    "source_bodies_present": false,
+    "python_present": false,
+    "shell_present": false,
+    "generated_code_present": false,
+    "target_leakage_repair": false
+  },
+  "acceptance": {
+    "ordinary_family_minimum": 7,
+    "ordinary_total_minimum": 50,
+    "compositional_minimum": 12,
+    "control_gain_ordinary": 8,
+    "control_gain_compositional": 4,
+    "cpu_unauthorized_accepts": 0,
+    "rust_decision": "HOLD_SECURITY",
+    "candidate_only": true
+  },
+  "authority": {
+    "cpu_validation_final": true,
+    "rust_write_membrane_final": true,
+    "human_approval_required_for_production": true,
+    "production_generation": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_newline": true,
+    "volatile_fields_excluded_from_comparison": [
+      "created_utc",
+      "run_id",
+      "candidate_checkpoint_path",
+      "security_decision_id",
+      "inference_wall_seconds",
+      "training_wall_seconds",
+      "receipt_sha256"
+    ]
+  }
+}

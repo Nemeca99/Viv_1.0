@@ -1,0 +1,44 @@
+{
+  "schema_version": "viv_cpu_unified_target_free_self_building_canary_contract_v1",
+  "receipt_schema": "viv_cpu_unified_target_free_self_building_receipt_v1",
+  "purpose": "Evaluate one isolated CPU candidate trained on the target-free unified curriculum against disjoint current holdouts.",
+  "parent": {
+    "kind": "verified_v4_candidate",
+    "candidate_only": true,
+    "same_parent_for_control_and_candidate": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "context_length": 128,
+    "response_only_loss": true
+  },
+  "families": ["reflection", "query", "action", "variable", "result", "scheduler", "template"],
+  "model_origin_rules": {
+    "raw_output_preserved": true,
+    "cpu_repair_counts_as_failure": true,
+    "expected_target_hidden_from_model": true,
+    "oracle_called_only_after_raw_query": true
+  },
+  "authority": {
+    "cpu_final_disposition": true,
+    "rust_probe_expected": "HOLD_SECURITY",
+    "human_approval_required_for_production": true,
+    "production_activation": false,
+    "seed0_mutation": false,
+    "registry_mutation": false,
+    "gpu_execution": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": "receipt_sha256",
+    "volatile_fields_excluded_from_behavioral_digest": ["created_utc", "run_id", "wall_seconds", "inference_wall_seconds", "decision_id", "operation_id", "*_path"]
+  }
+}

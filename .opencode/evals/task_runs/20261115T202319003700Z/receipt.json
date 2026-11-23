@@ -1,0 +1,58 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 250.953,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1f1f1486ffeo9DHSYcM2M3M4G"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "ee96ed8d8a50d0bfb536834c72762f3f9a6aeccf2f81d297eaea5a11db149510",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "L:.venv\\Scripts\\python.exe: The term 'L:.venv\\Scripts\\python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "L:.venv\\Scripts\\python.exe: The term 'L:.venv\\Scripts\\python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE]\nFile `L:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_match_v20_candidate.py` created successfully with sha256 02ed7e9011a17fe349615f1726a32a2fa5fdc3f5f69a99e5460978e83c19baca. Shell execution failed with exit code 1 due to path formatting - the command `L:.venv\\Scripts\\python.exe` was not recognized as a cmdlet, indicating Windows CMD requires forward slashes or proper quoting for paths containing backslashes.\n\n[DRONE SELF-PROMPT]\nAgenda: Retry shell execution with corrected path syntax using forward slashes.\nVerified facts: Shell exit code 1 confirmed; Scripts token from output excerpt indicates path parsing failure. Next bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T202319003700Z"
+}

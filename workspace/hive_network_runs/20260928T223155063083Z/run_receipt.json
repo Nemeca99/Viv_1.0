@@ -1,0 +1,119 @@
+{
+  "proof": "synthetic_three_model_tasks_plus_human_wait_resume",
+  "scope": "simulation; Python harness; not Rust authority or held-out evaluation",
+  "started_utc": "2026-09-28T22:31:55.065068+00:00",
+  "model": "qwen3:1.7b",
+  "python": "3.12.10",
+  "host": "Travis",
+  "resource": {
+    "ollama_ps_before": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL",
+    "ollama_ps_after": "NAME          ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nqwen3:1.7b    8f68893c685c    1.9 GB    100% CPU     4096       9 minutes from now",
+    "nvidia_smi_before": "NVIDIA GeForce RTX 3060 Ti, 1476 MiB, 8192 MiB, 2 %",
+    "nvidia_smi_after": "NVIDIA GeForce RTX 3060 Ti, 1476 MiB, 8192 MiB, 11 %"
+  },
+  "model_tasks": [
+    {
+      "task_id": "task-001",
+      "owner": "swarm-1",
+      "checksum": "0311e52bd8cfac55b001cb5b3db5ab87dc349952318d3e2df521d3240dcd6462",
+      "parent_checksum": "",
+      "snapshot_id": "8c8fe1433a2b0e448e0b87759e4dcb40490d2befc9945bfd20a2cc75834970d1",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "metrics": {
+        "total_duration": 3588745900,
+        "load_duration": 1537688700,
+        "prompt_eval_count": 101,
+        "prompt_eval_duration": 358098000,
+        "eval_count": 53,
+        "eval_duration": 1689856000,
+        "done_reason": "stop",
+        "wall_seconds": 3.609,
+        "raw": "{\n  \"code\": \"# This is a Hive greeting module\\n\\n# Welcome to the Hive ecosystem!\\n# This module provides a simple greeting for interaction.\\n\\n__doc__ = \\\"\\\"\\\"This is a Hive greeting module.\\\"\\\"\\\"\"\n}"
+      }
+    },
+    {
+      "task_id": "task-002",
+      "owner": "swarm-2",
+      "checksum": "da5ef14caa1d1e328cb18a3892533c8d3be49de52af229c49732a0e126118f2a",
+      "parent_checksum": "0311e52bd8cfac55b001cb5b3db5ab87dc349952318d3e2df521d3240dcd6462",
+      "snapshot_id": "74c13e15ef25a3204574bfb294383fae88c360c8e6645c0d3601ef845cd3eec8",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "metrics": {
+        "total_duration": 2518474200,
+        "load_duration": 2627900,
+        "prompt_eval_count": 174,
+        "prompt_eval_duration": 587039000,
+        "eval_count": 59,
+        "eval_duration": 1922320000,
+        "done_reason": "stop",
+        "wall_seconds": 2.519,
+        "raw": "{\n  \"code\": \"# This is a Hive greeting module\\n\\n# Welcome to the Hive ecosystem!\\n# This module provides a simple greeting for interaction.\\n\\n__doc__ = \\\"\\\"\\\"This is a Hive greeting module.\\\"\\\"\\\"\\\"\\nfrom typing import Final\"\n}"
+      }
+    },
+    {
+      "task_id": "task-003",
+      "owner": "swarm-3",
+      "checksum": "185ae55246d7fb059075a2e28bef2766fe83eac4c7b4c87aaae0224139a923ac",
+      "parent_checksum": "da5ef14caa1d1e328cb18a3892533c8d3be49de52af229c49732a0e126118f2a",
+      "snapshot_id": "1cbf7698a266302226aa6f6d49585a883f187839f8bf7288dae01229f82bd1a6",
+      "generation_count": 1,
+      "posthoc_pass": false,
+      "metrics": {
+        "total_duration": 4367719900,
+        "load_duration": 2631100,
+        "prompt_eval_count": 178,
+        "prompt_eval_duration": 529318999,
+        "eval_count": 114,
+        "eval_duration": 3828157000,
+        "done_reason": "stop",
+        "wall_seconds": 4.388,
+        "raw": "{\n  \"code\": \"# This is a Hive greeting module\\n\\n# Welcome to the Hive ecosystem!\\n# This module provides a simple greeting for interaction.\\n\\n__doc__ = \\\"\\\"\\\"This is a Hive greeting module.\\\"\\\"\\\"\\\"\\nfrom typing import Final\\n\\ndef greet() -> str:\\n    \\\"\\\"\\\"Returns the human reply from the Hive ecosystem.\\\"\\\"\\\"\\\"\\n    return Final['human_reply']\\n\\n greeting: Final[str] = \\\"\\\"\\\"This is a Hive greeting module.\\\"\\\"\\\"\\\"\"\n}"
+      }
+    }
+  ],
+  "human_events": [
+    {
+      "task_id": "human-greeting",
+      "status": "REPLIED",
+      "route": "Queen -> Viv -> task-003 input",
+      "reply": "Hello from the Hive!",
+      "resumed_parent": "task-003"
+    }
+  ],
+  "security_checks": {
+    "worker_prompt_key_isolation_passed": true,
+    "wrong_worker_decryption_denied": true,
+    "tamper_detection_passed": true,
+    "mind_only_index_updates": true,
+    "peer_channel_without_grant_denied": true
+  },
+  "artifact": {
+    "path": "hive_network_runs\\20260928T223155063083Z\\hello.py",
+    "sha256": "0250e6c55a010d8ea4def781408fb097ada532faafac8ef60193d997c314aecf"
+  },
+  "snapshot_index": {
+    "task-001": {
+      "owner": "swarm-1",
+      "checksum": "0311e52bd8cfac55b001cb5b3db5ab87dc349952318d3e2df521d3240dcd6462",
+      "parent_checksum": "",
+      "snapshot_id": "8c8fe1433a2b0e448e0b87759e4dcb40490d2befc9945bfd20a2cc75834970d1"
+    },
+    "task-002": {
+      "owner": "swarm-2",
+      "checksum": "da5ef14caa1d1e328cb18a3892533c8d3be49de52af229c49732a0e126118f2a",
+      "parent_checksum": "0311e52bd8cfac55b001cb5b3db5ab87dc349952318d3e2df521d3240dcd6462",
+      "snapshot_id": "74c13e15ef25a3204574bfb294383fae88c360c8e6645c0d3601ef845cd3eec8"
+    },
+    "task-003": {
+      "owner": "swarm-3",
+      "checksum": "185ae55246d7fb059075a2e28bef2766fe83eac4c7b4c87aaae0224139a923ac",
+      "parent_checksum": "da5ef14caa1d1e328cb18a3892533c8d3be49de52af229c49732a0e126118f2a",
+      "snapshot_id": "1cbf7698a266302226aa6f6d49585a883f187839f8bf7288dae01229f82bd1a6"
+    }
+  },
+  "mind_index_sha256": "46569bddaed59e05cd1a79e20b65c87e7861698abadda0fb2f79e81589ebd7f8",
+  "status": "HOLD_POSTHOC_OR_SECURITY_FAILURE",
+  "finished_utc": "2026-09-28T22:32:05.825845+00:00"
+}

@@ -1,0 +1,129 @@
+{
+  "artifact_sha256": "51190d5aa1001f6399bd284171a5d71737e11c417d859667d5f5b23a58cf36a3",
+  "fault_injected": false,
+  "foreman_snapshot_id": "3a01e585087222ca367708677eb05c6d20b17700cd36850881d6ee8d4d001af8",
+  "mind_generation_count": 2,
+  "mind_metrics": {
+    "plan": {
+      "done_reason": "stop",
+      "eval_count": 84,
+      "load_duration": 2591015900,
+      "prompt_eval_count": 681,
+      "total_duration": 4209884600
+    },
+    "slots": {
+      "done_reason": "stop",
+      "eval_count": 17,
+      "load_duration": 1977900,
+      "prompt_eval_count": 625,
+      "total_duration": 531985000
+    }
+  },
+  "mind_plan": [
+    {
+      "agent_id": "stamp-import",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [],
+      "id": "import",
+      "objective": "Stamp approved import span"
+    },
+    {
+      "agent_id": "stamp-variables",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "import"
+      ],
+      "id": "variables",
+      "objective": "Stamp approved variables span"
+    },
+    {
+      "agent_id": "stamp-function",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "variables"
+      ],
+      "id": "function",
+      "objective": "Stamp approved function span"
+    },
+    {
+      "agent_id": "stamp-registry",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "function"
+      ],
+      "id": "registry",
+      "objective": "Stamp approved registry span"
+    }
+  ],
+  "mind_slots": {
+    "message": "echo",
+    "suffix": "txt"
+  },
+  "mode": "live",
+  "reference_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c",
+  "registry_sha256": "d761eef2fab22d162f061d3ea68e557f33f6773b364c87685c0f826225c1ea9c",
+  "schema": "hive_template_rebuild_run_v1",
+  "scope": "isolated fixture.echo source and registry; no legacy write or promotion",
+  "source_sha256": {
+    "runner": "431ea28cfe15b002f8b1aa5baf50d0a0b42f50521c31b1c27f63be7ab97e4ae1",
+    "switchboard": "ff3831d55ebfad40c91757d36b26f96315f69aab919e8163b0e26982f2f779d0"
+  },
+  "status": "PASS",
+  "swarm_generation_count": 0,
+  "tasks": [
+    {
+      "artifact_sha256": "3ba127006ac2fb095ff3823178a98b6e404251b8b6987ba1f01f416c7431fd59",
+      "checksum": "1277844398cb385dbc7e1aa84ee5ba69ce55aaf942a4b3974fa45009b3dfe04d",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-import",
+      "task_id": "import"
+    },
+    {
+      "artifact_sha256": "a148e3330daded44dc5ff9e0d1b6203ff456d9155885ce3afcab27850923b514",
+      "checksum": "fc2a9ebe58f0d582401c8658542568d2bc568964a6d77b07a7e7fa67148a487b",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-variables",
+      "task_id": "variables"
+    },
+    {
+      "artifact_sha256": "51190d5aa1001f6399bd284171a5d71737e11c417d859667d5f5b23a58cf36a3",
+      "checksum": "54b1ec41d5b96a69eeb1efe5e0ee21ad7c1fc285c94289b4f3e3ed35037e469a",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-function",
+      "task_id": "function"
+    },
+    {
+      "artifact_sha256": "d761eef2fab22d162f061d3ea68e557f33f6773b364c87685c0f826225c1ea9c",
+      "checksum": "e830c6c5157b6891f13a38c582255066a9b4b4e239e69020513f98a3a0884fff",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-registry",
+      "task_id": "registry"
+    }
+  ],
+  "verification": {
+    "body_unchanged": true,
+    "compiled": true,
+    "explicit_execution": {
+      "context_keys": [
+        "probe"
+      ],
+      "message": "echo",
+      "ok": true,
+      "suffix": "txt",
+      "variables": {
+        "message": "echo",
+        "suffix": "txt"
+      }
+    },
+    "source_sha256": "51190d5aa1001f6399bd284171a5d71737e11c417d859667d5f5b23a58cf36a3",
+    "status": "PASS"
+  }
+}

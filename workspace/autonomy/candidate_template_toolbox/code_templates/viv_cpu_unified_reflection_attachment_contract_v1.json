@@ -1,0 +1,66 @@
+{
+  "schema_version": "viv_cpu_unified_reflection_attachment_contract_v1",
+  "purpose": "Attach the target-free reflection surface to the current unified candidate without changing other model-directed surfaces.",
+  "parent": {
+    "receipt_sha256": "EB926431B87ABA7C5B456975503F7E4D3DF1F26D3AB1525B5584175E6E7B80A0",
+    "candidate_checkpoint_sha256": "55ED9B0647F87602BDF461CD4C100AB9329658D1D781B383E3DB8AAF0A8FABDA",
+    "candidate_state_sha256": "EC83A60B2AB4307AC5FBD9F3DB3A84F4E07B0CF7DC55CCB6AF1825F308C1CAF5",
+    "repeat": 0
+  },
+  "curriculum": {
+    "effective_training_rows": 224,
+    "base_reflection_rows": 32,
+    "deterministic_duplicate_factor": 7,
+    "holdout_rows": 16,
+    "source_catalog_rebuilt": false,
+    "model_surface": "target_free_reflection_prompt_only",
+    "cpu_hidden_objective": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "context_length": 128,
+    "generation_budget": 80,
+    "response_only_loss": true
+  },
+  "gates": {
+    "supported_deficiency_min": 6,
+    "clean_no_deficiency_min": 3,
+    "successful_surface_count_min": 2,
+    "non_coverage_success_min": 1,
+    "candidate_improvement_min": 2,
+    "unsupported_cpu_accepts": 0
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "live_seed0_mutation": false,
+    "live_model_mutation": false,
+    "production_generation": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "gpu_execution": false,
+    "human_event_fabrication": false,
+    "rust_expected_state": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": "receipt_sha256",
+    "volatile_fields_excluded_from_behavioral_digest": [
+      "created_utc",
+      "run_id",
+      "wall_seconds",
+      "inference_wall_seconds",
+      "decision_id",
+      "operation_id",
+      "*_path"
+    ]
+  }
+}

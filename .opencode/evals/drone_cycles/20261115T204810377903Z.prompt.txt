@@ -1,0 +1,14 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Read file `workspace/autonomy/hive_postal_message_contract_queen_v3_candidate.py`. Use the read tool first; report SCHEMA and `validate_postal_message`'s return shape.
+Read file `workspace/autonomy/hive_postal_inbox_match_v20_candidate.py`. Use the read tool second; report exact case-sensitive recipient matching.
+Add file `workspace/autonomy/hive_postal_inbox_contract_v1_candidate.py` as the Python-only composition helper. Import and compose the two existing functions; do not duplicate their logic. Define `validate_message_for_local_inbox(message, local_inbox_id)`: propagate the envelope validator's invalid reason; otherwise return `(False, "not_for_local_inbox")` on mismatch or `(True, "accepted_for_local_inbox")` on match.
+Add `--self-check` with exactly eight cases and exact `(bool, reason)` comparison: matching valid envelope => accepted; valid envelope for another ID => not_for_local_inbox; string => message_not_object; missing task_id => missing_required_field; padded recipient => invalid_recipient_id; kind UNKNOWN => invalid_kind; list body => invalid_body; matching envelope with padded local ID => not_for_local_inbox. Success prints only `PASS: 8 checks`; mismatch names case and exits nonzero.
+Use the localcoder_add_python tool to add the assigned file.
+Use the shell tool to run `& 'L:/.venv/Scripts/python.exe' 'workspace/autonomy/hive_postal_inbox_contract_v1_candidate.py' --self-check` in the foreground.
+Tool order: read, read, localcoder_add_python, shell. Do not retry failed or denied calls. After each non-final result self-prompt visibly. Final starts `[DRONE]`, names the target and one verified code fact, then ends with `[DRONE SELF-PROMPT]` fields Agenda:, Verified facts:, Next bounded action: STOP.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: read → localcoder_add_python → shell. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

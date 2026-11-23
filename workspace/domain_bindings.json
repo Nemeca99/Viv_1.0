@@ -1,0 +1,40 @@
+{
+  "system_binding_rule": "LoRA Adapters and Voice Profiles must match 1-to-1 per Drive Domain",
+  "domain_bindings": {
+    "L:": {
+      "domain_name": "L: Sovereign AI OS Core",
+      "lora_adapter": "L:\\_models\\adapters\\l_drive_hviv_master.gguf",
+      "voice_profile": "L:\\AIOS_V2\\voice_hive\\l_drive_sovereign.wav",
+      "voice_mode": "mode_1_single_sovereign",
+      "pacing": "Deliberate, exact, 1Hz synchronized"
+    },
+    "C:": {
+      "domain_name": "C: OS Kernel & System",
+      "lora_adapter": "L:\\_models\\adapters\\c_drive_os_v1.gguf",
+      "voice_profile": "L:\\AIOS_V2\\voice_hive\\outer_hive_blended.wav",
+      "voice_mode": "mode_2_single_outer",
+      "pacing": "Fast, dynamic, OS-tuned"
+    },
+    "D:": {
+      "domain_name": "D: Testing Proving Ground",
+      "lora_adapter": "L:\\_models\\adapters\\d_drive_test_v1.gguf",
+      "voice_profile": "L:\\AIOS_V2\\voice_hive\\outer_hive_blended.wav",
+      "voice_mode": "mode_2_single_outer",
+      "pacing": "Fast, experimental, test-tuned"
+    },
+    "E:": {
+      "domain_name": "E: Universal Quarantine Vault",
+      "lora_adapter": "L:\\_models\\adapters\\e_drive_vault_v1.gguf",
+      "voice_profile": "L:\\AIOS_V2\\voice_hive\\base_persona_voice.wav",
+      "voice_mode": "mode_4_quad_mixed_base",
+      "pacing": "Clinical, archival, quad-mixed"
+    },
+    "F:": {
+      "domain_name": "F: Games & World Knowledge",
+      "lora_adapter": "L:\\_models\\adapters\\f_drive_knowledge_v1.gguf",
+      "voice_profile": "L:\\AIOS_V2\\voice_hive\\outer_hive_blended.wav",
+      "voice_mode": "mode_3_triple_blend",
+      "pacing": "Rich, multi-domain blended"
+    }
+  }
+}

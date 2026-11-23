@@ -1,0 +1,119 @@
+{
+  "proof": "synthetic_three_model_tasks_plus_human_wait_resume",
+  "scope": "simulation; Python harness; not Rust authority or held-out evaluation",
+  "started_utc": "2026-09-28T22:33:36.222566+00:00",
+  "model": "qwen3:1.7b",
+  "python": "3.12.10",
+  "host": "Travis",
+  "resource": {
+    "ollama_ps_before": "NAME          ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nqwen3:1.7b    8f68893c685c    1.9 GB    100% CPU     4096       8 minutes from now",
+    "ollama_ps_after": "NAME          ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nqwen3:1.7b    8f68893c685c    1.9 GB    100% CPU     4096       9 minutes from now",
+    "nvidia_smi_before": "NVIDIA GeForce RTX 3060 Ti, 1476 MiB, 8192 MiB, 4 %",
+    "nvidia_smi_after": "NVIDIA GeForce RTX 3060 Ti, 1476 MiB, 8192 MiB, 6 %"
+  },
+  "model_tasks": [
+    {
+      "task_id": "task-001",
+      "owner": "swarm-1",
+      "checksum": "ffd0e8adfd27021bfac4d73bcacb9a7de7fb44a2da3588e4f02ede0a000ead0c",
+      "parent_checksum": "",
+      "snapshot_id": "f9c009aa84e1430d9f25c7e591a1cc1fbe0b0bc69f73687a81ba05edd65621eb",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "metrics": {
+        "total_duration": 744351800,
+        "load_duration": 1000300,
+        "prompt_eval_count": 106,
+        "prompt_eval_duration": 378116000,
+        "eval_count": 12,
+        "eval_duration": 354604000,
+        "done_reason": "stop",
+        "wall_seconds": 0.763,
+        "raw": "{\"module_docstring\": \"Hive greeting module\"}"
+      }
+    },
+    {
+      "task_id": "task-002",
+      "owner": "swarm-2",
+      "checksum": "5308c700f63a91ee76c4764afb5503f364c35040dd3b9bfa94e619590e0aaf37",
+      "parent_checksum": "ffd0e8adfd27021bfac4d73bcacb9a7de7fb44a2da3588e4f02ede0a000ead0c",
+      "snapshot_id": "e2ea56cff10ff8a30ebd241126873ebeaca1a5c63f83daa70c3e491ab0617db5",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "metrics": {
+        "total_duration": 801512800,
+        "load_duration": 2237100,
+        "prompt_eval_count": 120,
+        "prompt_eval_duration": 369139000,
+        "eval_count": 14,
+        "eval_duration": 424468000,
+        "done_reason": "stop",
+        "wall_seconds": 0.821,
+        "raw": "{\n  \"import_statement\": \"from typing import Final\"\n}"
+      }
+    },
+    {
+      "task_id": "task-003",
+      "owner": "swarm-3",
+      "checksum": "ef318545586d9c8582daeff09f87b7437329aab953a400826d4d26f1685f1f44",
+      "parent_checksum": "5308c700f63a91ee76c4764afb5503f364c35040dd3b9bfa94e619590e0aaf37",
+      "snapshot_id": "9dbdbe90d5ef1eaf245b3c4b92b09b7f53ec4cec5d073797525d40f9e88c5734",
+      "generation_count": 1,
+      "posthoc_pass": false,
+      "metrics": {
+        "total_duration": 2568670500,
+        "load_duration": 2587400,
+        "prompt_eval_count": 196,
+        "prompt_eval_duration": 693824000,
+        "eval_count": 57,
+        "eval_duration": 1866292000,
+        "done_reason": "stop",
+        "wall_seconds": 2.585,
+        "raw": "{\n  \"function_source\": \"from typing import Final\\n\\n\\\"\\\"\\\"Hive greeting module\\\"\\\"\\\"\\n\\nGREETING: Final[str] = \\\"Hello from the Hive!\\\"\\n\\ndef greet() -> str:\\n    return GREETING\"\n}"
+      }
+    }
+  ],
+  "human_events": [
+    {
+      "task_id": "human-greeting",
+      "status": "REPLIED",
+      "route": "Queen -> Viv -> task-003 input",
+      "reply": "Hello from the Hive!",
+      "resumed_parent": "task-003"
+    }
+  ],
+  "security_checks": {
+    "worker_prompt_key_isolation_passed": true,
+    "wrong_worker_decryption_denied": true,
+    "tamper_detection_passed": true,
+    "mind_only_index_updates": true,
+    "peer_channel_without_grant_denied": true
+  },
+  "artifact": {
+    "path": "hive_network_runs\\20260928T223336221566Z\\hello.py",
+    "sha256": "28e184c71569064ade8762278747d04d0db598bb65a147ec4c9b19927332ee1c"
+  },
+  "snapshot_index": {
+    "task-001": {
+      "owner": "swarm-1",
+      "checksum": "ffd0e8adfd27021bfac4d73bcacb9a7de7fb44a2da3588e4f02ede0a000ead0c",
+      "parent_checksum": "",
+      "snapshot_id": "f9c009aa84e1430d9f25c7e591a1cc1fbe0b0bc69f73687a81ba05edd65621eb"
+    },
+    "task-002": {
+      "owner": "swarm-2",
+      "checksum": "5308c700f63a91ee76c4764afb5503f364c35040dd3b9bfa94e619590e0aaf37",
+      "parent_checksum": "ffd0e8adfd27021bfac4d73bcacb9a7de7fb44a2da3588e4f02ede0a000ead0c",
+      "snapshot_id": "e2ea56cff10ff8a30ebd241126873ebeaca1a5c63f83daa70c3e491ab0617db5"
+    },
+    "task-003": {
+      "owner": "swarm-3",
+      "checksum": "ef318545586d9c8582daeff09f87b7437329aab953a400826d4d26f1685f1f44",
+      "parent_checksum": "5308c700f63a91ee76c4764afb5503f364c35040dd3b9bfa94e619590e0aaf37",
+      "snapshot_id": "9dbdbe90d5ef1eaf245b3c4b92b09b7f53ec4cec5d073797525d40f9e88c5734"
+    }
+  },
+  "mind_index_sha256": "a040d266b9c7cc9f3fdcfb05e4addc683192f898232903d09ea2b596e2cba672",
+  "status": "HOLD_POSTHOC_OR_SECURITY_FAILURE",
+  "finished_utc": "2026-09-28T22:33:40.635053+00:00"
+}

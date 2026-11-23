@@ -1,0 +1,17 @@
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add only new file `workspace/autonomy/hive_postal_outbox_proposal_candidate.py`; stop if it exists.
+
+Implement pure `prepare_queen_outbox_proposal(message_id, sender_id, authority_queen_id, task_id, body, *, kind="REPORT", proposed_recipient_id=None, parent_message_sha256=None)`. Return `(envelope, errors)`: valid input gives a `hive_postal_message_v1` mapping and empty tuple; invalid gives `None` and stable error strings. The top-level recipient is always the supplied current Queen ID, never a hardcoded identity. A proposed peer is only untrusted nested `routing_request` metadata. Copy inputs without mutation; reject conflicting routing metadata. No I/O, crypto, identity, permission, or delivery. Rust decides routing and acceptance.
+
+Add `--self-check` for valid routing, untrusted peer metadata, unchanged input, and invalid IDs/body/kind/hash/conflicting metadata. Print PASS only when all pass; otherwise exit nonzero.
+
+Use exactly this serial tool sequence:
+1. Call `aios_router_open_build_task` tool.
+2. Call `aios_router_accept_self_prompt` tool for lane `drone`, turn 0, grounded in the open result.
+3. Use `localcoder_add_python` tool once to add the target.
+4. Call `read` tool for the new target and identify its function.
+5. Call `shell` tool once with `L:\.venv\Scripts\python.exe -B workspace\autonomy\hive_postal_outbox_proposal_candidate.py --self-check`.
+6. Call `aios_router_record_turn_result` tool with actual read/check facts.
+7. Call `aios_router_complete_lane` tool with a nonempty receipt.
+
+After each tool, emit visible `[DRONE SELF-PROMPT]` fields `Agenda:`, `Verified facts:`, `Next bounded action:` grounded in the latest result. Final response starts `[DRONE]`, names the target and function, includes actual PASS output, then ends with the same fields and `Next bounded action: STOP`.

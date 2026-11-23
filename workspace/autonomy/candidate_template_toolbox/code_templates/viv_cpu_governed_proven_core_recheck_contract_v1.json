@@ -1,0 +1,48 @@
+{
+  "schema_version": "viv_cpu_governed_proven_core_recheck_contract_v1",
+  "receipt_schema": "viv_cpu_governed_proven_core_recheck_receipt_v1",
+  "purpose": "Aggregate independently verified current-state evidence for the already-working governed CPU candidate surfaces without claiming a unified checkpoint.",
+  "mode": {
+    "candidate_only": true,
+    "isolated": true,
+    "no_publish": true,
+    "training_started": false,
+    "source_catalog_rebuilt": false
+  },
+  "included_surfaces": [
+    "target_free_variable_mutation",
+    "target_free_result_judgment",
+    "target_free_adaptive_choice",
+    "linked_recursive_cycle",
+    "current_registry_multi_template_recheck"
+  ],
+  "not_claimed": [
+    "unified_single_checkpoint",
+    "fresh_live_model_origin",
+    "production_self_modification",
+    "unrestricted_autonomy",
+    "historical_contaminated_evaluator_score"
+  ],
+  "required_parent_states": {
+    "variable": "PASS_CPU_GOVERNED_CLEAN_VARIABLE_CANDIDATE_ONLY",
+    "result": "PASS_CPU_GOVERNED_CLEAN_RESULT_CANDIDATE_ONLY",
+    "adaptive": "PASS_CPU_GOVERNED_CLEAN_ADAPTIVE_CANDIDATE_ONLY",
+    "recursive": "PASS_CPU_GOVERNED_RECURSIVE_LINKED_CYCLE_CANDIDATE_ONLY",
+    "multi_template": "PASS_MULTI_TEMPLATE_CURRENT_REGISTRY_RECHECK_CANDIDATE_ONLY"
+  },
+  "authority_rules": {
+    "raw_model_output_is_required_for_model_origin": true,
+    "cpu_repair_is_not_model_success": true,
+    "rust_denial_expected": true,
+    "human_approval_required_for_production": true,
+    "protected_state_must_remain_unchanged": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": "receipt_sha256",
+    "volatile_fields_excluded_from_comparison": ["created_utc", "run_id", "receipt_sha256"]
+  }
+}

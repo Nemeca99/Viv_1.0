@@ -1,0 +1,97 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "final_report_missing_drone_tag",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_read",
+  "session_id": "ses_e21e1db24ffeVSQ1ZAe3xlQmCn",
+  "session_recovery": null,
+  "model_ids": [],
+  "required_tools": [
+    "read"
+  ],
+  "final_validation": "final_report_missing_drone_tag",
+  "read_evidence_validation": null,
+  "intermediate_validation": {
+    "passed": true,
+    "reason": "no_intermediate_tool_boundary"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794727883663-79a83f11-5baa-49bf-85bd-948556c637c0-body-gate.json",
+      "sha256": "0e1f9cbb01664365ee784376de29e7591bb31deb8cbaccbc23ece14ea38eb4be",
+      "source": "model_request:primary",
+      "allowed": false,
+      "disposition": "HOLD_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 83.9,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 95.4,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.2
+      },
+      "reasons": [
+        "ram_at_or_above_limit"
+      ]
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 83.7,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 94.7,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 1.3
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "c2494748d5fd192ddcbbe199b90a88136af06aebbb6f7d397e73c51c817ea6b1",
+  "work": {
+    "agent": "drone_read",
+    "elapsed_seconds": 19.031,
+    "exit_code": 1,
+    "transport_exit_code": 1,
+    "session_outcomes": [
+      "failed"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e21e1db24ffeVSQ1ZAe3xlQmCn"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "d726a4541d88c5dd02b2f64f95399e48b300874056a0f3320dc766a5a324cb0a",
+    "tools": [],
+    "model_ids": [],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing",
+      "session_outcome_not_succeeded",
+      "visible_final_text_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T073119771207Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T073119679031Z.prompt.txt",
+    "dispatcher_final_text": []
+  }
+}

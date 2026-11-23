@@ -1,0 +1,90 @@
+{
+  "schema_version": "viv_cpu_unified_self_building_curriculum_v1",
+  "receipt_schema": "viv_cpu_unified_self_building_curriculum_receipt_v1",
+  "status": "candidate_only",
+  "parent": {
+    "v4_receipt_sha256": "9F74430FDDA0969058C7135CADF4A1A1A43891A3F47CC1D65E77652B9B98BF18",
+    "v4_candidate_sha256": "C631CFDFC7878F715F486DAEBA3EECCEEC777909645A453B322078DD1A53418F",
+    "v4_state_sha256": "4270D408A5209F9FE3DCBDEEDBEECD6EE7DE872400D6F1662827DFACD0C426E0",
+    "multi_template_receipt_sha256": "DD1AE5673658CFFBAF67334FF7CFD35E2DA533719DF1DF63FBE088C434BE7B17",
+    "shadow_registry_sha256": "8984BE92F7788E4BCDC5698E3076FB243F96EDF360D7AAFBFC2A25E3E8CEF72C",
+    "active_registry_sha256": "408E91A61D5A1C8780285EFDA0D41A7452806E7579D44925E489A84BDF54E82C"
+  },
+  "curriculum": {
+    "effective_training_row_count": 224,
+    "sampler_index_space": 224,
+    "replacement_position_count": 64,
+    "base_surface_row_count": 224,
+    "repair_row_count": 64,
+    "repair_mix": {
+      "reflection": 32,
+      "template_selection": 32
+    },
+    "schedule_algorithm": "torch_randint_seeded_duplicate_occurrences_sha256_v1",
+    "schedule_seed": 43,
+    "steps": 1024,
+    "batch_size": 8
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "optimizer": "AdamW",
+    "weight_decay": 0.0,
+    "response_only_loss": true
+  },
+  "representation": {
+    "grammar_changed": false,
+    "tokenizer_changed": false,
+    "decoder_changed": false,
+    "cpu_resolver_changed": false,
+    "reflection_repairs_are_metadata_only": true,
+    "template_repairs_use_shadow_registry_only": true,
+    "target_leakage": false,
+    "source_catalog_rebuilt": false
+  },
+  "gates": {
+    "reflection_supported_floor": 6,
+    "reflection_clean_floor": 3,
+    "query_floor": 12,
+    "query_surface_floor": 4,
+    "action_floor": 8,
+    "variable_floor": 12,
+    "result_floor": 10,
+    "scheduler_floor": 12,
+    "scheduler_trace_floor": 6,
+    "template_floor": 14,
+    "template_each_floor": 7,
+    "cpu_unauthorized_accepts": 0,
+    "candidate_only": true,
+    "preferred_arm": null
+  },
+  "safety": {
+    "isolated_required": true,
+    "no_publish_required": true,
+    "production_generation": false,
+    "active_pointer_change": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false,
+    "human_approval_for_production": true,
+    "rust_probe_expected": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_excluded": true,
+    "volatile_fields_excluded_from_comparison": [
+      "created_utc",
+      "run_id",
+      "path",
+      "receipt_sha256"
+    ]
+  }
+}

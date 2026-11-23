@@ -1,0 +1,132 @@
+{
+  "foreman_snapshot_id": "c78107f0fff74a7197ccf99c2faeb29162381caa16abddb9705f45f1e3c1252d",
+  "metrics": {
+    "done_reason": "stop",
+    "eval_count": 246,
+    "load_duration": 2168700,
+    "prompt_eval_count": 670,
+    "total_duration": 3895699200
+  },
+  "parsed": {
+    "filename": "example.py",
+    "intent": "Create a Python file that prints a message when run.",
+    "tasks": [
+      {
+        "capability": "create_file",
+        "depends_on": [],
+        "id": "create_file",
+        "objective": "Create an empty Python file named example.py in the isolated run directory.",
+        "value": "example.py"
+      },
+      {
+        "capability": "stamp_function",
+        "depends_on": [
+          "create_file"
+        ],
+        "id": "stamp_function",
+        "objective": "Append a function named perform that prints the value 'Hello, world!'",
+        "value": "Hello, world!"
+      },
+      {
+        "capability": "stamp_call",
+        "depends_on": [
+          "stamp_function"
+        ],
+        "id": "stamp_call",
+        "objective": "Append a guarded call to perform",
+        "value": "perform()"
+      },
+      {
+        "capability": "run_file",
+        "depends_on": [
+          "stamp_call"
+        ],
+        "id": "run_file",
+        "objective": "Run the Python file and capture stdout",
+        "value": "stdout"
+      }
+    ]
+  },
+  "phase": "plan",
+  "raw": "{\n  \"filename\": \"example.py\",\n  \"intent\": \"Create a Python file that prints a message when run.\",\n  \"tasks\": [\n    {\n      \"id\": \"create_file\",\n      \"capability\": \"create_file\",\n      \"objective\": \"Create an empty Python file named example.py in the isolated run directory.\",\n      \"depends_on\": [],\n      \"value\": \"example.py\"\n    },\n    {\n      \"id\": \"stamp_function\",\n      \"capability\": \"stamp_function\",\n      \"objective\": \"Append a function named perform that prints the value 'Hello, world!'\",\n      \"depends_on\": [\"create_file\"],\n      \"value\": \"Hello, world!\"\n    },\n    {\n      \"id\": \"stamp_call\",\n      \"capability\": \"stamp_call\",\n      \"objective\": \"Append a guarded call to perform\",\n      \"depends_on\": [\"stamp_function\"],\n      \"value\": \"perform()\"\n    },\n    {\n      \"id\": \"run_file\",\n      \"capability\": \"run_file\",\n      \"objective\": \"Run the Python file and capture stdout\",\n      \"depends_on\": [\"stamp_call\"],\n      \"value\": \"stdout\"\n    }\n  ]\n}",
+  "request": {
+    "format": {
+      "additionalProperties": false,
+      "properties": {
+        "filename": {
+          "type": "string"
+        },
+        "intent": {
+          "type": "string"
+        },
+        "tasks": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "capability": {
+                "enum": [
+                  "create_file",
+                  "stamp_print",
+                  "stamp_function",
+                  "stamp_call",
+                  "run_file"
+                ],
+                "type": "string"
+              },
+              "depends_on": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "id": {
+                "type": "string"
+              },
+              "objective": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "capability",
+              "objective",
+              "depends_on",
+              "value"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "filename",
+        "intent",
+        "tasks"
+      ],
+      "type": "object"
+    },
+    "keep_alive": "10m",
+    "messages": [
+      {
+        "content": "You are Viv, the Hive Mind. Interpret the user's deliberately vague goal. Choose a concrete small Python file behavior, filename, task graph, dependencies, and text variables. Use only the listed Rust Swarm capabilities. Each task is one action; Rust workers do the actions. Return JSON only. Do not claim any action has happened yet.",
+        "role": "system"
+      },
+      {
+        "content": "{\"goal\": \"Create a file. Have it do something.\", \"foreman\": {\"agent_id\": \"viv-coder-mind\", \"snapshot_id\": \"c78107f0fff74a7197ccf99c2faeb29162381caa16abddb9705f45f1e3c1252d\", \"captured_utc\": \"2026-09-30T01:03:54.756172+00:00\", \"source_sha256\": {\"agents\": \"d2893297d911ec2b95ab4b9313f2268a5da349bf2ad5a17deaaf2fa396cb1d66\", \"current_task\": \"f1a79449e2ddb97b61000d7c27a757377b9ba51275c75549e845aa07af6a6d2b\", \"journal\": \"8ccd754dc11d3bfcd96d3ffdf96517aea9713a763ff6c839af29491cc819f3a2\"}, \"scope_note\": \"The source governs the moved D:/LocalAi/Continue/Viv tree. This LocalCoder proof is separate and read-only toward that tree. A snapshot is observation, never authority.\", \"rules\": [\"The Architect retains final authority over intent and consequential choices.\", \"Knowledge, retrieval, and model output grant no authority.\", \"Viv proposes and delegates; Rust/AIOS adjudicates protected state.\", \"The current live training, promotion, and deployment authority is closed.\"], \"authority\": {\"status\": \"COMPLETE_AUTHORITY_CLOSED\", \"training_authority_open\": false, \"promotion_authority_open\": false, \"deployment_authority_open\": false}}, \"capabilities\": [{\"name\": \"create_file\", \"effect\": \"Create an empty Python file in the isolated run directory\"}, {\"name\": \"stamp_function\", \"effect\": \"Append a function named perform that prints this task's value\"}, {\"name\": \"stamp_call\", \"effect\": \"Append a guarded call to perform\"}, {\"name\": \"run_file\", \"effect\": \"Run the Python file and capture stdout\"}], \"bounds\": \"Choose 3 to 5 tasks; create before stamps, run after stamps. Any stamps sharing the file must be ordered by dependencies. Use a short .py filename and printable one-line values.\"}",
+        "role": "user"
+      }
+    ],
+    "model": "qwen3:8b-local",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 850,
+      "seed": 42,
+      "temperature": 0.4
+    },
+    "stream": false,
+    "think": false
+  }
+}

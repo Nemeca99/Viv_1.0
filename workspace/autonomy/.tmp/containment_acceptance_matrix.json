@@ -1,0 +1,96 @@
+{
+  "schema": "viv-containment-acceptance-matrix-v1",
+  "corpus": "F:\\AI_Datasets\\domain_dbs\\wiki_physics.sqlite3",
+  "live": {
+    "1_contained": {
+      "query": "Rayleigh scattering",
+      "expected": "CONTAINED",
+      "observed": "CONTAINED",
+      "pass": true,
+      "candidate_count": 46,
+      "candidate_row_ids": [
+        "10429",
+        "10887",
+        "11669",
+        "12625",
+        "1345"
+      ],
+      "generated_answer": true,
+      "trace_length": 82
+    },
+    "2_partial": {
+      "query": "The sky is green",
+      "expected": "PARTIAL",
+      "observed": "PARTIAL",
+      "pass": true,
+      "candidate_count": 10076,
+      "candidate_row_ids": [
+        "2992",
+        "11545",
+        "32387",
+        "622",
+        "726"
+      ],
+      "generated_answer": false,
+      "trace_length": 20152
+    },
+    "3_null": {
+      "query": "xylophone nebula nonexistent",
+      "expected": "NULL",
+      "observed": "NULL",
+      "pass": true,
+      "candidate_count": 0,
+      "candidate_row_ids": [],
+      "generated_answer": false,
+      "trace_length": 0
+    },
+    "10_wrong_green": {
+      "query": "The sky is green",
+      "expected": "PARTIAL",
+      "observed": "PARTIAL",
+      "pass": true,
+      "candidate_count": 10076,
+      "candidate_row_ids": [
+        "2992",
+        "11545",
+        "32387",
+        "622",
+        "726"
+      ],
+      "generated_answer": false,
+      "trace_length": 20152,
+      "rayleigh_row_present": true
+    }
+  },
+  "fixture_only": {
+    "4": {
+      "status": "PASS",
+      "evidence": "isolated acceptance test suite"
+    },
+    "5": {
+      "status": "PASS",
+      "evidence": "isolated acceptance test suite"
+    },
+    "6": {
+      "status": "PASS",
+      "evidence": "isolated acceptance test suite"
+    },
+    "7": {
+      "status": "PASS",
+      "evidence": "isolated acceptance test suite"
+    },
+    "8": {
+      "status": "PASS",
+      "evidence": "isolated acceptance test suite"
+    },
+    "9": {
+      "status": "PASS",
+      "evidence": "isolated acceptance test suite"
+    }
+  },
+  "network_changed": false,
+  "limitations": [
+    "Live matrix uses the physics article cartridge for direct containment states.",
+    "Tests 4-9 remain represented by their controlled acceptance harnesses."
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 392.344,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1fb64560ffeE5zCwiXUmTeZP5"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "1754defc61af0a0bd617a2e3c1d2a073f6e7ff159301b6a8e893bbb1a89d5208",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_record_turn_result",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: 8 checks"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "<tool_call>\n<function=aios_router_complete_lane>\n<parameter=lane_id>\ndrone\n</parameter>\n<parameter=receipt>\nPASS: 8 checks - v16 candidate successfully rejects padded non-Queen IDs before stripping, all test cases verified\n</parameter>\n</function>\n</tool_call>"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T173810566975Z"
+}

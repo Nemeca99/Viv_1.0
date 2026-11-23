@@ -1,0 +1,67 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 99.625,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e19c664c8ffeQKL4sBC2Zd9FMu"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "372262671db4299d68b9cfb1d11c4d5ce9e72fd973d0b7986701515de2113fd4",
+  "tools": [
+    {
+      "tool": "aios_router_lookup_drone_seed",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_drone_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_drone_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_drone_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    }
+  ],
+  "model_ids": [
+    "omnicoder-2-9b"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "tool_error"
+  ],
+  "tool_errors": [
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "error"
+    }
+  ],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "The current Architect task stopped after router_mutation_binding_failed:aios_router_accept_self_prompt. No further tool will run."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261116T211817281125Z"
+}

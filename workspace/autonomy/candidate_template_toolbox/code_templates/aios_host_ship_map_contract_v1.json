@@ -1,0 +1,184 @@
+{
+  "schema_version": "aios_host_ship_map_contract_v1",
+  "surface_id": "aios_host_ship_map_v1",
+  "purpose": "Read-only mold inventory of the physical Windows PC as AIOS ship compartments. Captain molds the box. Viv later observes through the helm. This surface does not teach, does not daemon, and does not remold PATH/GPU/power.",
+  "metaphor": {
+    "captain": "human Architect",
+    "ship": "this Windows PC molded into AIOS hardware",
+    "computer": "Viv",
+    "computer_in_command": false,
+    "helm": "later observation surface",
+    "this_surface": "mold_inventory"
+  },
+  "mode": {
+    "plan_only": true,
+    "read_only": true,
+    "mold_inventory": true,
+    "daemon": false,
+    "teaching": false,
+    "aios_runtime_start": false,
+    "gpu_train_start": false,
+    "production_write": false,
+    "fail_soft": true
+  },
+  "write_policy": {
+    "this_surface_never_writes": true,
+    "C": {
+      "allowed": false,
+      "she_may": "none",
+      "reason": "windows_sideload_never_write"
+    },
+    "L": {
+      "allowed": false,
+      "she_may": "observe",
+      "is_home": true,
+      "reason": "luna_home_observe_only_this_surface"
+    },
+    "D": {
+      "allowed": false,
+      "she_may": "observe",
+      "reason": "archives_retrieve_not_delete"
+    },
+    "E": {
+      "allowed": false,
+      "she_may": "observe",
+      "reason": "data_retrieve_not_delete"
+    },
+    "F": {
+      "allowed": false,
+      "she_may": "observe",
+      "reason": "datasets_retrieve_not_delete"
+    }
+  },
+  "expected_rust_sha256": "6BCA1C84F9BE871D8F5876A7F84DE8D4437E21A10C602A9E67F55EB162005261",
+  "pyd_path": "security_core/runtime/security_core.pyd",
+  "canonical_python": "L:/Continue/.venv/Scripts/python.exe",
+  "system_python": "L:/Python312/python.exe",
+  "c_python_gone": true,
+  "expected_volume_labels": {
+    "L": "LUNA_HOME",
+    "C": "Windows",
+    "D": "New Volume",
+    "E": "DATA",
+    "F": "Games"
+  },
+  "compartments": {
+    "keel": {
+      "id": "keel",
+      "path": "L:/Continue/Viv/security_core/runtime/security_core.pyd",
+      "role": "Rust executable/write membrane",
+      "she_may": "observe",
+      "captain_molds": "offline-only",
+      "criticality": "keel",
+      "she_may_not": ["modify", "unlink", "hot_patch", "import_to_hash"]
+    },
+    "brain_gpu": {
+      "id": "brain_gpu",
+      "path": "NVIDIA GeForce RTX 3060 Ti",
+      "role": "GPU compute engine",
+      "she_may": "observe",
+      "captain_molds": "yes",
+      "criticality": "engine",
+      "she_may_not": ["schedule_training", "change_power", "kill_pid"],
+      "nvidia_smi_fail": "ABSTAIN"
+    },
+    "radio_ollama": {
+      "id": "radio_ollama",
+      "path": "C:/Users/nemec/AppData/Local/Programs/Ollama/ollama.exe",
+      "role": "local model radio on Windows user sideload",
+      "she_may": "observe",
+      "captain_molds": "yes",
+      "criticality": "radio",
+      "not_truth": true
+    },
+    "plane_L": {
+      "id": "plane_L",
+      "path": "L:/",
+      "role": "LUNA_HOME - Viv home plane",
+      "she_may": "observe",
+      "captain_molds": "yes",
+      "criticality": "keel",
+      "is_home": true
+    },
+    "os_C": {
+      "id": "os_C",
+      "path": "C:/",
+      "role": "Windows OS sideload provider",
+      "she_may": "none",
+      "captain_molds": "yes",
+      "criticality": "hold",
+      "she_never_writes": true
+    },
+    "archives_D": {
+      "id": "archives_D",
+      "path": "D:/LocalAi",
+      "role": "LocalAi archives",
+      "she_may": "observe",
+      "captain_molds": "yes",
+      "criticality": "hold",
+      "she_may_not": ["delete"]
+    },
+    "data_E": {
+      "id": "data_E",
+      "path": "E:/",
+      "role": "DATA volume",
+      "she_may": "observe",
+      "captain_molds": "yes",
+      "criticality": "hold",
+      "she_may_not": ["delete"]
+    },
+    "datasets_F": {
+      "id": "datasets_F",
+      "path": "F:/AI_Datasets",
+      "role": "Games volume datasets hold",
+      "she_may": "observe",
+      "captain_molds": "yes",
+      "criticality": "hold",
+      "she_may_not": ["delete"]
+    },
+    "venv": {
+      "id": "venv",
+      "path": "L:/Continue/.venv",
+      "role": "canonical Viv Python runtime",
+      "she_may": "observe",
+      "captain_molds": "yes",
+      "criticality": "engine"
+    },
+    "leftover_junk": {
+      "id": "leftover_junk",
+      "path": "PATH",
+      "role": "leftover Windows PATH drift",
+      "she_may": "none",
+      "captain_molds": "offline-only",
+      "criticality": "junk",
+      "markers": ["anaconda3", "stable-diffusion-webui-forge", "Strawberry", "AppData/Local/Programs/Python/Python312"],
+      "do_not_fix_while_training": true
+    }
+  },
+  "hot_work": {
+    "do_not_kill": ["pretrain", "indexer", "bot"],
+    "do_not_remold_while_hot": ["PATH", "GPU", "power"],
+    "do_not_change_scheduled_tasks": true,
+    "known_hot_example": "viv_chat_86m_v1"
+  },
+  "fail_soft": {
+    "nvidia_smi_fail": "ABSTAIN",
+    "volume_missing": "ABSTAIN",
+    "process_query_fail": "ABSTAIN",
+    "never_start_training": true
+  },
+  "protected_untouched": [
+    "security_core.pyd bytes",
+    "Seed 0",
+    "template registry",
+    "active pointer",
+    "PATH",
+    "power plan",
+    "scheduled tasks",
+    "C: system dirs"
+  ],
+  "cli": {
+    "runner": "build_tools/run_aios_host_ship_map_v1.py",
+    "allowed_commands": ["status"]
+  }
+}

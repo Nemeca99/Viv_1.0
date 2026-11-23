@@ -1,0 +1,92 @@
+.gitignore for the Viv 1.0 repo. Weights, corpora, venvs, binaries and caches stay on disk;
+# only source, docs, receipts and manifests are tracked.
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+
+# Virtual environments anywhere in the tree
+**/.venv/
+**/venv/
+**/env/
+
+# Model weights and training binaries
+models/
+**/*.pt
+**/*.gguf
+**/*.safetensors
+**/*.bin
+**/*.onnx
+**/*.npy
+**/*.npz
+
+# Toolchain binaries (llama.cpp builds etc.)
+tools/
+
+# Large corpora and training data
+**/viv_identity_soda.txt
+**/viv_soda_dialogue.txt
+**/viv_full_training*.txt
+**/viv_consolidation.txt
+**/viv_safety_training*.txt
+**/viv_grammar_corpus.txt
+
+# Learning checkpoints and run output
+workspace/autonomy/learning/
+workspace/*/learning/
+
+# Databases and local state
+**/*.sqlite3
+**/*.db
+**/*.faiss
+
+# Generated reports and scratch
+.opencode/reports/
+.opencode/tmp/
+**/*.log
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Rust build artifacts anywhere
+**/target/
+
+# Stray copies of tool state
+**/data/opencode/
+
+# Hardware telemetry dumps
+Hardware/
+
+# Generated indexes (rebuildable)
+**/foundation_source_index.json
+**/target_sources.json
+
+# SQLite sidecar files
+**/*.db-wal
+**/*.db-shm
+**/*.sqlite3-wal
+**/*.sqlite3-shm
+
+# Nested checkouts of the repo itself
+viv/
+
+# Generated candidate rebuilds (each is a full tree copy)
+workspace/aios_rebuild/rebuild_runs/
+
+# Vendored upstream docs
+workspace/aios_rebuild/streamlit_core/streamlit_docs/
+
+# Model adapter bases and weights
+workspace/swarm_adapters/
+
+# Throwaway proof environments and provider tests
+workspace/.hive_proof_env/
+.hermes/
+
+# OpenCode tool snapshots and scratch
+.opencode/snapshots/
+.opencode/tmp/

@@ -1,0 +1,169 @@
+{
+  "info": {
+    "id": "ses_e248b97b1ffevaxBygia0c77sO",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 396,
+      "output": 165,
+      "reasoning": 0,
+      "cache": {
+        "read": 14227,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794683201618,
+      "updated": 1794683235644,
+      "busy": 1794683201634,
+      "idle": 1794683235648
+    },
+    "title": "LocalCoder Drone 20261114T190641497033Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1db74685d001FAGuYjUDHdpcyL",
+      "time": {
+        "created": 1794683201629
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1db74685b001x0IxUYj4cNuxoz",
+      "time": {
+        "created": 1794683201640
+      },
+      "text": "Drone, this is a read-only visibility check from the Queen. The Architect wants to see this exact conversation in OpenCode Desktop. Call localcoder_status exactly once and report the returned project_root in your final response. Do not use any other tool. Do not edit files, start jobs, or launch background work.\n",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1db74686f001HyE20M5CdgY15M",
+      "time": {
+        "created": 1794683201654,
+        "firstToken": 1794683213231,
+        "streamed": 1794683213244,
+        "completed": 1794683218096
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_1548565401380072",
+          "name": "localcoder_status",
+          "executed": false,
+          "native": {
+            "itemId": "fc_9pjeuibk6epf2geg4zm1"
+          },
+          "state": {
+            "status": "completed",
+            "input": {},
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"project_root\":\"L:\\\\LocalCoder\",\"python\":\"L:/.venv/Scripts/python.exe\",\"integration_root\":\"L:\\\\LocalCoder\\\\workspace\",\"instructions\":\"L:\\\\LocalCoder\\\\AGENTS.md\",\"agent_guide\":\"L:\\\\LocalCoder\\\\AGENT.md\",\"memory_directory\":\"L:\\\\LocalCoder\\\\workspace\\\\aios_rebuild\\\\memory\\\\hermes_agent\\\\memories\",\"memory_files\":{\"MEMORY.md\":true,\"USER.md\":true},\"opencode_receipt_directory\":\"L:\\\\LocalCoder\\\\.opencode\\\\receipts\",\"opencode_receipt_count\":922,\"opencode_latest_receipt\":\"L:\\\\LocalCoder\\\\.opencode\\\\receipts\\\\queen-preflight-agent-write-policy-20261114T080612219027Z-efa46bb2-19ab-4435-aeb9-6dbd33334825.json\",\"hermes_receipt_directory\":\"L:\\\\LocalCoder\\\\workspace\\\\aios_rebuild\\\\memory\\\\hermes_agent\\\\receipts\",\"hermes_receipt_count\":42,\"hermes_latest_receipt\":\"L:\\\\LocalCoder\\\\workspace\\\\aios_rebuild\\\\memory\\\\hermes_agent\\\\receipts\\\\memory-8d11250110d0441d9703bf39f13153f8.json\",\"execution_policy\":\"Only the current Architect-assigned task; no standing autonomous assignment.\"}"
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794683213233,
+            "ran": 1794683213241,
+            "completed": 1794683216991
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "0d72d7e4b3f1f9c2efc1eda38f9b7c43855a353e",
+        "end": "e4efc8aa6f2730c58cc049df4b13477e2fc504da",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794683216961-a5c0cfb0-0c49-4fee-b1d4-a3f7303fe7dd-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794683216980-2d712a18-f429-41f0-b104-ec56e98cb919.json",
+          "LocalCoder/.opencode/receipts/1794683216987-59a9647e-1b0d-4821-a78e-bfb35627819d.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "native": {
+        "responseId": "resp_2bee83229db22693b2baaa5b3d10e75be42575bd197ecc57",
+        "serviceTier": "default"
+      },
+      "cost": 0,
+      "tokens": {
+        "input": 76,
+        "output": 16,
+        "reasoning": 0,
+        "cache": {
+          "read": 7068,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1db74a8b9001SCilVGQimNOHRm",
+      "time": {
+        "created": 1794683218110,
+        "firstToken": 1794683234687,
+        "streamed": 1794683234706,
+        "completed": 1794683235644
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "**Project Root:** `L:\\LocalCoder`\n\n---\n\n**Receipt Grounding:** 922 OpenCode receipts, 42 Hermes receipts. Latest: `queen-preflight-agent-write-policy-20261114T080612219027Z-efa46bb2-19ab-4435-aeb9-6dbd33334825.json` and `memory-8d11250110d0441d9703bf39f13153f8.json`.\n\n**Execution Policy:** Only the current Architect-assigned task; no standing autonomous assignment.",
+          "native": {
+            "itemId": "msg_14swe2c8cjka3p1a9s1egq"
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "a8c07a5259545d3f176de19f29e578aa104cb961",
+        "end": "a8c07a5259545d3f176de19f29e578aa104cb961",
+        "files": []
+      },
+      "finish": "stop",
+      "native": {
+        "responseId": "resp_57f3b689cfa599c178399594e1dd9119835c270b1cf412de",
+        "serviceTier": "default"
+      },
+      "cost": 0,
+      "tokens": {
+        "input": 320,
+        "output": 149,
+        "reasoning": 0,
+        "cache": {
+          "read": 7159,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1db74ed40001e2cBACokK0udTO",
+      "time": {
+        "created": 1794683235648
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    }
+  ]
+}

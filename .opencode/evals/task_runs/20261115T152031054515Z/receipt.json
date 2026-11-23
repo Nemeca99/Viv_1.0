@@ -1,0 +1,66 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 716.109,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e20344cecffebkBabBf7H2WntA"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "2444b4b191ac08782e1d300b02380510fcf188a113db991688aff0e9a8cafc83",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_postal_outbox_proposal_v7_candidate.py\", line 116, in <module>\r\n    run_self_checks()\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_postal_outbox_proposal_v7_candidate.py\", line 85, in run_self_checks\r\n    if result[0][0][\"body\"] == [\"a\", \"b\"]:\r\n       ~~~~~~~~~^^^\r\nKeyError: 0\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_postal_outbox_proposal_v7_candidate.py\", line 116, in <module>\r\n    run_self_checks()\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_postal_outbox_proposal_v7_candidate.py\", line 85, in run_self_checks\r\n    if result[0][0][\"body\"] == [\"a\", \"b\"]:\r\n       ~~~~~~~~~^^^\r\nKeyError: 0\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "<tool_call>\n<function=localcoder_add_python>\n<parameter=content>\nfrom hive_postal_message_contract_queen_v3_candidate import SCHEMA, VALID_KINDS, validate_postal_message\n\n\ndef prepare_queen_outbox_proposal(\n    message_id: str,\n    sender_id: str,\n    authority_queen_id: str,\n    task_id: str,\n    body: list,\n    *,\n    kind: str = \"REPORT\",\n    proposed_recipient_id: str | None = None,\n    parent_message_sha256: str | None = None,\n) -> tuple[list[dict], dict[str, any] | None]:\n    \"\"\"Prepare a queen outbox proposal.\"\"\"\n    # Deep-copy body to avoid mutation of original\n    deep_body = list(body)\n\n    # Build message keys\n    message_keys = {\n        \"schema\": SCHEMA,\n        \"message_id\": message_id,\n        \"sender_id\": sender_id,\n        \"recipient_id\": authority_queen_id,\n        \"task_id\": task_id,\n        \"kind\": kind,\n        \"body\": deep_body,\n    }\n\n    # Add parent_message_sha256 only if given\n    if parent_message_sha256 is not None:\n        message_keys[\"parent_message_sha256\"] = parent_message_sha256\n\n    # Validate the message\n    validation_result = validate_postal_message(message_keys)\n    if validation_result[0] is None:\n        return (None, validation_result[1])\n\n    # Determine routing_request based on peer casefold\n    peer = authority_queen_id.lower()\n    if peer == \"queen\":\n        return ([message_keys], None)\n    else:\n        routing_request = {authority_queen_id: authority_queen_id}\n        return ([message_keys], routing_request)\n\n\n# Self-check exactly 5\ndef run_self_checks():\n    checks_passed = 0\n\n    # Check 1: default proposal/route None (validation fails for invalid schema)\n    result, _ = prepare_queen_outbox_proposal(\n        message_id=\"msg_001\",\n        sender_id=\"user_001\",\n        authority_queen_id=\"queen\",\n        task_id=\"task_001\",\n        body=[\"test\"],\n    )\n    # Validation should fail because SCHEMA requires specific structure\n    if result[0] is None:\n        checks_passed += 1\n\n    # Check 2: peer casefold == \"queen\" -> proposed_recipient_is_queen error\n    result, reason = prepare_queen_outbox_proposal(\n        message_id=\"msg_002\",\n        sender_id=\"user_002\",\n        authority_queen_id=\"QUEEN\",\n        task_id=\"task_002\",\n        body=[\"test\"],\n    )\n    if reason == (\"proposed_recipient_is_queen\",):\n        checks_passed += 1\n\n    # Check 3: nested deep-copy survives changing original\n    original_body = [\"a\", \"b\"]\n    result, _ = prepare_queen_outbox_proposal(\n        message_id=\"msg_003\",\n        sender_id=\"user_003\",\n        authority_queen_id=\"queen\",\n        task_id=\"task_003\",\n        body=original_body,\n    )\n    # Modify original after call\n    original_body.append(\"c\")\n    if result[0][0][\"body\"] == [\"a\", \"b\"]:\n        checks_passed += 1\n\n    # Check 4: list body rejected (non-list) - validation fails\n    try:\n        result, _ = prepare_queen_outbox_proposal(\n            message_id=\"msg_004\",\n            sender_id=\"user_004\",\n            authority_queen_id=\"queen\",\n            task_id=\"task_004\",\n            body={\"not\": \"a list\"},  # This will fail validation\n        )\n    except Exception:\n        checks_passed += 1\n\n    # Check 5: peer casefold == \"QUEEN\" -> proposed_recipient_is_queen error\n    result, reason = prepare_queen_outbox_proposal(\n        message_id=\"msg_005\",\n        sender_id=\"user_005\",\n        authority_queen_id=\"Queen\",\n        task_id=\"task_005\",\n        body=[\"test\"],\n    )\n    if reason == (\"proposed_recipient_is_queen\",):\n        checks_passed += 1\n\n    print(f\"PASS: {checks_passed} checks\")\n    return checks_passed == 5\n\n\nif __name__ == \"__main__\":\n    run_self_checks()\n</parameter>\n<parameter=filePath>\nworkspace/autonomy/hive_postal_outbox_proposal_v7_candidate.py\n</parameter>\n</function>\n</tool_call>"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T152031054515Z"
+}

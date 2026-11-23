@@ -1,0 +1,60 @@
+{
+  "schema_version": "viv_cpu_gpu_frontier_viability_ablation_v1",
+  "receipt_schema": "viv_cpu_gpu_frontier_viability_ablation_receipt_v1",
+  "contract_status": "candidate_only",
+  "parent": {
+    "receipt_sha256": "9F74430FDDA0969058C7135CADF4A1A1A43891A3F47CC1D65E77652B9B98BF18",
+    "candidate_sha256": "C631CFDFC7878F715F486DAEBA3EECCEEC777909645A453B322078DD1A53418F",
+    "candidate_state_sha256": "4270D408A5209F9FE3DCBDEEDBEECD6EE7DE872400D6F1662827DFACD0C426E0"
+  },
+  "arms": {
+    "compact_control": {
+      "schema": "viv_cpu_gpu_frontier_viability_v2_control_curriculum_v1",
+      "dataset_sha256": "3EF677FB913507C2883A95DFDE87FF6188430E50C0AE76325886A831119B15F0",
+      "phase_fields_in_prompt": false,
+      "trace_prompt_reuse_expected": true
+    },
+    "compact_phase_context": {
+      "schema": "viv_cpu_gpu_frontier_viability_curriculum_v2",
+      "dataset_sha256": "40D2EBB1647C80C14E0A714D4AAD64B8D07FF48176ADEA28F0DE2D5DC060B087",
+      "phase_fields_in_prompt": true,
+      "causal_availability_required": true
+    }
+  },
+  "shared": {
+    "training_rows": 224,
+    "sampler_index_space": 224,
+    "repair_rows": 32,
+    "validation_rows": 16,
+    "negative_rows": 8,
+    "trace_count": 8,
+    "output_encoding": "V|<three_labels>|<reason>|<repeat_count>|<budget>",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "same_parent": true,
+    "same_sampler_index_space": true,
+    "same_validation_and_negative_cases": true,
+    "tokenizer_changed": false,
+    "decoder_changed": false,
+    "parser_changed": false
+  },
+  "authority": {
+    "cpu_validates_both_routes": true,
+    "gpu_private_proposal_only": true,
+    "rust_write_membrane": true,
+    "expected_rust_state": "HOLD_SECURITY",
+    "candidate_only": true,
+    "all_routes_retained": true,
+    "labels_do_not_delete_routes": true
+  },
+  "failure_states": [
+    "HOLD_FRONTIER_ABLATION_PREFLIGHT",
+    "HOLD_FRONTIER_ABLATION_MODEL",
+    "HOLD_FRONTIER_ABLATION_DETERMINISM",
+    "HOLD_FRONTIER_ABLATION_SECURITY",
+    "FAIL_FRONTIER_ABLATION_PROTECTED_STATE"
+  ]
+}

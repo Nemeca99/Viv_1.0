@@ -1,0 +1,108 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "work_receipt_or_final_self_prompt_invalid",
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "session_id": "ses_e2446aaf1ffeHFVUZzBvyf3Oxp",
+  "visible_pre_work_self_prompt": "[DRONE SELF-PROMPT]\n\n**Agenda:** Verify the Drone prompt helper by reading `workspace/autonomy/opencode_drone_prompts.py` once and executing a Python AST/import test to confirm `format_drone_self_prompt` function works correctly with arguments `(agenda, evidence, next)`.\n\n**Verified facts:** None yet. No repository facts have been checked in this turn.\n\n**Next bounded action:** Call `read` on `workspace/autonomy/opencode_drone_prompts.py` exactly once to inspect the file contents before executing the verification test.",
+  "plan": {
+    "elapsed_seconds": 36.875,
+    "exit_code": 1,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e2446aaf1ffeHFVUZzBvyf3Oxp"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "baeb44e4eead232bfb4ec929817baf391ea8c961e413fd6fe727d46b539b42df",
+    "tools": [],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\n\n**Agenda:** Verify the Drone prompt helper by reading `workspace/autonomy/opencode_drone_prompts.py` once and executing a Python AST/import test to confirm `format_drone_self_prompt` function works correctly with arguments `(agenda, evidence, next)`.\n\n**Verified facts:** None yet. No repository facts have been checked in this turn.\n\n**Next bounded action:** Call `read` on `workspace/autonomy/opencode_drone_prompts.py` exactly once to inspect the file contents before executing the verification test."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T202158545460Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T202158456388Z.prompt.txt"
+  },
+  "work": {
+    "elapsed_seconds": 120.5,
+    "exit_code": 1,
+    "transport_exit_code": 1,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": true,
+    "sessions": [
+      "ses_e2446aaf1ffeHFVUZzBvyf3Oxp"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "2a87ff051a8c932c1322481106085068050bedca2b7551da688a39d7b148d7f1",
+    "tools": [
+      {
+        "tool": "read",
+        "status": "completed"
+      },
+      {
+        "tool": "shell",
+        "status": "completed"
+      },
+      {
+        "tool": "shell",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [
+      {
+        "status": "completed",
+        "exit": 1,
+        "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"L:\\Python312\\Lib\\pathlib.py\", line 1027, in read_text\r\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"L:\\Python312\\Lib\\pathlib.py\", line 1013, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] "
+      },
+      {
+        "status": "completed",
+        "exit": 0,
+        "output": "PASS: drone prompt helper"
+      }
+    ],
+    "task_succeeded": false,
+    "task_errors": [
+      "timed_out"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [
+      {
+        "status": "completed",
+        "exit": 1,
+        "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"L:\\Python312\\Lib\\pathlib.py\", line 1027, in read_text\r\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"L:\\Python312\\Lib\\pathlib.py\", line 1013, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] "
+      }
+    ],
+    "final_shell_check_passed": true,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\n\n**Agenda:** Verify the Drone prompt helper by reading `workspace/autonomy/opencode_drone_prompts.py` once and executing a Python AST/import test to confirm `format_drone_self_prompt` function works correctly with arguments `(agenda, evidence, next)`.\n\n**Verified facts:** None yet. No repository facts have been checked in this turn.\n\n**Next bounded action:** Call `read` on `workspace/autonomy/opencode_drone_prompts.py` exactly once to inspect the file contents before executing the verification test."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": true,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T202235518398Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T202235436751Z.prompt.txt"
+  },
+  "assignment_sha256": "13e4e58f9ab9d203d9d7ae95d1f1bbfb612ccde5b99e5b1b6558391181ec7bfa"
+}

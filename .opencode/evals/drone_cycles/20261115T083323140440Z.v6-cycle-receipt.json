@@ -1,0 +1,105 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "observed_tool_count_mismatch",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e21aa21f5ffe3wC7zSUfkdIUwG",
+  "session_recovery": null,
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "localcoder_add_python",
+    "shell"
+  ],
+  "final_validation": "final_report_missing_drone_tag",
+  "read_evidence_validation": null,
+  "intermediate_validation": {
+    "passed": false,
+    "reason": "observed_tool_count_mismatch"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794731535825-ce3588e0-7ef8-4031-b496-66f83ae4364a-body-gate.json",
+      "sha256": "4e2161a1c0b0477cdf32051bd7b2f8b0ea84fe3d9029e76838e749826124f81a",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794743412,
+        "goal_id": "01a1d847-3b27-7533-bbc2-c718ace48ae7",
+        "grant_id": "architect-localcoder-drone-ram-20261115T075012Z",
+        "observed_ram_percent": 89.4,
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 81.5,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "below_limit",
+        "host_ram_percent": 89.4,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.5
+      },
+      "reasons": []
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 81.3,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "host_ram_percent": 87.7,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 1.6
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "1eae1b7ee4885c0b4046ef8e50de79a352d2c4fc6d3d947c03c42a61d5afb7b8",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 71.422,
+    "exit_code": 1,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e21aa21f5ffe3wC7zSUfkdIUwG"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "17745e8031e6e4e5752d9b33cb4d608ba7e30bb45b815094be3b9707ea6c94cb",
+    "tools": [],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing",
+      "tool_request_blocked"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "Blocked localcoder_add_python: the user's current request is explicitly read-only. No mutating tool was executed."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T083211636983Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T083211534303Z.prompt.txt",
+    "dispatcher_final_text": [
+      "Blocked localcoder_add_python: the user's current request is explicitly read-only. No mutating tool was executed."
+    ]
+  }
+}

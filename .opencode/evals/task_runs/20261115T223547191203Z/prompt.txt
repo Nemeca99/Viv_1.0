@@ -1,0 +1,14 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Bounded Drone Python checker task. Use only these assigned tools in this order. Add exactly one new Python file; do not modify, move, or delete any existing file.
+
+Call the read tool for `workspace/autonomy/hive_postal_inbox_contract_v6_check_candidate.py` and inspect its eight input cases and expected `(result, reason)` pairs.
+Add the new Python file `workspace/autonomy/hive_postal_inbox_contract_v7_check_candidate.py`; call the localcoder_add_python tool to create it. Import `validate_message_for_local_inbox` from `hive_postal_inbox_contract_v1_candidate`. Reuse the eight exact input cases and expected pairs from V6. In the loop, assign `actual` to the full returned tuple and `expected_tuple` to the expected pair, then compare `actual != expected_tuple`. Do not compare a boolean with a tuple and do not use identity comparison for tuples. On mismatch, print the case number, expected tuple, and actual tuple, then return 1. If all eight match, print exactly `PASS: 8 checks` and return 0. Require `--self-check`; keep the new file under 100 physical lines. No other source file is authorized.
+Call the shell tool to run `& 'L:/.venv/Scripts/python.exe' 'L:/LocalCoder/workspace/autonomy/hive_postal_inbox_contract_v7_check_candidate.py' --self-check`.
+
+After each tool result, emit one visible `[DRONE SELF-PROMPT]` with nonempty Agenda, Verified facts, and Next bounded action fields. Name only the next assigned tool until all three tools finish. The final report must begin `[DRONE]`, state the actual filename and exact shell output, and end its self-prompt with `STOP`.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: read → localcoder_add_python → shell. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

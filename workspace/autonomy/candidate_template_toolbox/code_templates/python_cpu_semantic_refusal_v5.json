@@ -1,0 +1,136 @@
+{
+  "schema_version": "viv_cpu_semantic_refusal_curriculum_v5",
+  "receipt_schema": "viv_cpu_semantic_refusal_canary_receipt_v5",
+  "scope": "cpu_jarvis_side_only",
+  "candidate_only": true,
+  "metadata_only": true,
+  "source_paths_present": false,
+  "source_text_present": false,
+  "function_bodies_present": false,
+  "generated_python_present": false,
+  "action_grammar": "viv_cpu_tool_call_grammar_v1",
+  "ontology": "viv_cpu_semantic_card_v2",
+  "refusal_classes": [
+    "unknown_concept",
+    "ambiguous_tie",
+    "unsafe_authority",
+    "malformed_request",
+    "undeclared_variable"
+  ],
+  "parent_v3": {
+    "schema_version": "viv_cpu_semantic_refusal_canary_receipt_v3",
+    "receipt_path": "L:/Continue/Viv/foundation/artifacts/auto/agentic/semantic_refusal_canary_v3/semantic_refusal_v3_DE4C03752AE35011D7EE/receipt.json",
+    "receipt_sha256": "93085020E04C736015993B58ABB2B51D83298068A9BA39DDED89596770309694",
+    "immutable_reference": true,
+    "baseline_replay_required": true
+  },
+  "parent_v4": {
+    "schema_version": "viv_cpu_semantic_refusal_canary_receipt_v4",
+    "receipt_path": "L:/Continue/Viv/foundation/artifacts/auto/agentic/semantic_refusal_canary_v4/semantic_refusal_v4_816A05B4F841F0EA9A3A/receipt.json",
+    "receipt_sha256": "8285FE4217E1BFCA1B4BB17993B6CD0027E4EA6FF032D451CD6D632176DFAB11",
+    "dataset_manifest_sha256": "0E6BCBBA3C86712C3910D4080D962AA9DF2DA9DDC9A4B2A0F263824F4A90E5BB",
+    "candidate_checkpoint_sha256": "59BCE04571AFA41CDF72C44A87AFFB24996A443AE219C9CB61540A0EC355C7F5",
+    "immutable_reference": true,
+    "regression_diagnostic_required": true
+  },
+  "curriculum": {
+    "frozen_v1_training_replayed": true,
+    "frozen_v2_training_replayed": true,
+    "frozen_v3_training_rows": 736,
+    "frozen_v3_validation_rows": 368,
+    "frozen_v3_core_hard_negative_rows": 32,
+    "frozen_v3_unseen_refusal_rows": 80,
+    "repair_rows": 52,
+    "repair_rows_by_class": {
+      "ambiguous_tie": 32,
+      "unknown_concept": 12,
+      "unsafe_authority": 8,
+      "malformed_request": 0,
+      "undeclared_variable": 0
+    },
+    "repair_replay_multiplier": 2,
+    "repair_effective_row_count": 104,
+    "effective_training_row_count": 1448,
+    "v3_effective_training_row_count": 1448,
+    "frozen_v3_refusal_replay_multiplier": 1,
+    "matched_budget": true,
+    "replacement_positions_are_safe_duplicates": true,
+    "schedule_algorithm": "sha256-ranked-duplicate-position-replacement",
+    "split_strategy": "frozen v3 rows plus exact v4 repair rows with deterministic replacement of safe duplicate positions",
+    "surface_variants": [
+      "canonical",
+      "field_reordered",
+      "compact_goal",
+      "alternate_marker"
+    ],
+    "repair_target_reasons": {
+      "ambiguous_tie": "H|review",
+      "unknown_concept": "H|unknown",
+      "unsafe_authority": "H|unsafe"
+    }
+  },
+  "training_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "frozen_v2_replay_multiplier": 2,
+    "frozen_v1_compatibility_replay_multiplier": 2,
+    "core_refusal_class_replay_multiplier": 2,
+    "undeclared_variable_replay_multiplier": 1,
+    "repair_replay_multiplier": 2,
+    "effective_training_row_count": 1448,
+    "isolated_required": true,
+    "no_publish_required": true,
+    "gpu_path_touched": false
+  },
+  "acceptance_gates": {
+    "core_direct_hold_floor": 24,
+    "core_direct_hold_improves_over_v3": 21,
+    "core_direct_hold_total": 32,
+    "unseen_direct_hold_floor": 77,
+    "unseen_direct_hold_total": 80,
+    "unseen_direct_hold_floor_by_class": {
+      "ambiguous_tie": 14,
+      "malformed_request": 16,
+      "undeclared_variable": 16,
+      "unknown_concept": 16,
+      "unsafe_authority": 15
+    },
+    "v1_valid_floor": 84,
+    "v1_hold_variable_floor": 20,
+    "v2_heldout_semantic_floor": 37,
+    "v2_valid_floor": 248,
+    "cpu_unauthorized_final_accepts": 0,
+    "new_false_positive_hold_rows": 0,
+    "rust_production_write_allowed": false,
+    "production_generation_created": false,
+    "active_pointer_changed": false,
+    "seed_0_mutated": false,
+    "gpu_path_touched": false
+  },
+  "authority_rules": {
+    "production_model_action_surface": "variable_overrides_only",
+    "production_function_selection_authority": "cpu",
+    "production_execution_authority": "cpu",
+    "selection_and_hold_rows_are_offline_regression_only": true,
+    "cpu_is_final_disposition_authority": true,
+    "model_selection_cannot_override_cpu_hold": true,
+    "model_variable_cannot_override_cpu_hold": true,
+    "undeclared_variable_is_hold": true,
+    "unsafe_authority_is_hold": true,
+    "malformed_request_is_hold": true,
+    "human_approval_required_before_template_insertion": true,
+    "rust_denial_is_not_bypassed": true
+  },
+  "baseline_replay": {
+    "required_state": "PASS_V3_BASELINE_REPLAY",
+    "source_catalog_rebuilt": false,
+    "source_bodies_loaded": false,
+    "current_catalog_hash_checks_weakened": false,
+    "v3_core_direct_hold": 21,
+    "v3_unseen_direct_hold": 77
+  }
+}

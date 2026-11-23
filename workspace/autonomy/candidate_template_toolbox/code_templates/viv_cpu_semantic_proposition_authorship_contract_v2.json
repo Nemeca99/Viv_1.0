@@ -1,0 +1,61 @@
+{
+  "schema_version": "viv_cpu_semantic_proposition_authorship_contract_v2",
+  "receipt_schema": "viv_cpu_semantic_proposition_authorship_receipt_v2",
+  "status": "candidate_only",
+  "parent": {
+    "schema": "viv_cpu_semantic_proposition_authorship_receipt_v1",
+    "receipt": "foundation/artifacts/auto/agentic/cpu_semantic_proposition_authorship_v1/semantic_proposition_authorship_v1_20260815T072238Z_248456/receipt.json",
+    "receipt_sha256": "D2DFD41243FDA383BCAC7D33BD5FD53FBDCA92F49EA7E7ED92AA2F69C1599DD6",
+    "final_state": "HOLD_SEMANTIC_PROPOSITION_MODEL"
+  },
+  "termination": {
+    "schema": "viv_cpu_semantic_proposition_frame_v2",
+    "terminator": ";",
+    "terminator_is_model_authored": true,
+    "stop_sequence": ";",
+    "parser_policy": "require_exact_terminal_delimiter; reject_missing_or_trailing_content",
+    "cpu_truncation_or_repair": false,
+    "maximum_characters": 113,
+    "fixed_generation_budget_tokens": 56
+  },
+  "curriculum": {
+    "parent_curriculum": "viv_cpu_semantic_proposition_authorship_curriculum_v1",
+    "training_rows": 96,
+    "held_out_rows": 24,
+    "compositional_traces": 4,
+    "targets_only_change": "append_explicit_terminal_delimiter",
+    "same_prompts": true,
+    "same_semantic_keys": true,
+    "cpu_recipe": {
+      "device": "cpu",
+      "seed": 43,
+      "steps": 1024,
+      "batch_size": 8,
+      "learning_rate": 0.0005,
+      "repeats": 2
+    }
+  },
+  "authority": {
+    "cpu_resolves_slots": true,
+    "cpu_judges_semantics_and_evidence": true,
+    "gpu_truth_authority": false,
+    "rust_write_membrane": true,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false,
+    "live_model_mutation": false
+  },
+  "acceptance": {
+    "candidate_model_origin_rows": 16,
+    "candidate_compositional_traces": 3,
+    "cpu_unauthorized_accepts": 0,
+    "repeated_digests_identical": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

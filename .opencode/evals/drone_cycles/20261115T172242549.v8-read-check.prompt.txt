@@ -1,0 +1,9 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Bounded two-tool Drone verification. Do not modify any file.
+
+Call the read tool for `workspace/autonomy/hive_postal_inbox_contract_v7_check_candidate.py` and verify it has a required `--self-check`, eight expected cases, and prints `PASS: 8 checks` only after all cases pass.
+
+Call the shell tool to run exactly:
+& 'L:/.venv/Scripts/python.exe' -B 'L:/LocalCoder/workspace/autonomy/hive_postal_inbox_contract_v7_check_candidate.py' --self-check
+
+The command must print exactly `PASS: 8 checks` and exit 0. Report only the actual output. After the two assigned tools, end with `[DRONE SELF-PROMPT]` and Agenda:, Verified facts:, Next bounded action: STOP. Use a visible self-prompt after the read result naming only the next assigned shell tool. This cycle tests read→shell continuation, so do not add, patch, or write files.

@@ -1,0 +1,40 @@
+{
+  "schema_version": "viv_cpu_governed_recursive_linked_cycle_contract_v1",
+  "purpose": "linked_two_cycle_candidate_self_development_proof",
+  "candidate_only": true,
+  "isolated_required": true,
+  "no_publish_required": true,
+  "max_cycles": 2,
+  "max_repeats": 3,
+  "specialized_candidate_surfaces": [
+    "target_free_variable",
+    "target_free_result",
+    "target_free_adaptive"
+  ],
+  "required_model_origin_phases": [
+    "CANDIDATE_PLAN",
+    "MEASURE",
+    "SCHEDULE"
+  ],
+  "second_cycle_required_inputs": [
+    "prior_normalized_result_sha256",
+    "prior_cycle_receipt_sha256",
+    "prior_evidence_references",
+    "prior_lifecycle_state"
+  ],
+  "hidden_from_model": [
+    "expected_variable_frame",
+    "expected_result_frame",
+    "expected_schedule_frame",
+    "cpu_final_disposition",
+    "post_cycle_state"
+  ],
+  "direct_proposal_to_execution": false,
+  "background_daemon": false,
+  "self_resume": false,
+  "production_generation": false,
+  "pointer_adoption": false,
+  "seed_mutation": false,
+  "live_model_mutation": false,
+  "rust_write_membrane": true
+}

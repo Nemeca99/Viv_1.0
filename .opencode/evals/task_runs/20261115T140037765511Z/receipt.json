@@ -1,0 +1,52 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 527.75,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e207d7103ffeflco8PUhtVtC7k"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "f9e84040b36d3db9a705b55f2de2bd7aefa395127e8bd19bc9f006a118a824aa",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "error"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "tool_error",
+    "verification_check_missing"
+  ],
+  "tool_errors": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "error"
+    }
+  ],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Retry localcoder_add_python tool with exact project-relative path workspace/autonomy/hive_postal_outbox_proposal_v4_candidate.py.\nVerified facts: Previous attempt used absolute path L:/LocalCoder/workspace/... which was rejected; correct path is relative to project root.\nNext bounded action: Use localcoder_add_python tool"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T140037765511Z"
+}

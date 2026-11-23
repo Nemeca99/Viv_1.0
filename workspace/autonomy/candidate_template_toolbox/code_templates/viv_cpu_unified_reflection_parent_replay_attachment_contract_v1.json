@@ -1,0 +1,89 @@
+{
+  "schema_version": "viv_cpu_unified_reflection_parent_replay_attachment_contract_v1",
+  "experiment_id": "cpu_unified_reflection_parent_replay_attachment_v1",
+  "purpose": "Test whether bounded replay of the unified parent preserves already-proven non-reflection behavior while attaching the proven reflection wire.",
+  "candidate_only": true,
+  "isolated": true,
+  "no_publish": true,
+  "parent": {
+    "receipt_path": "foundation/artifacts/auto/agentic/cpu_unified_target_free_self_building_v1/unified_target_free_self_building_20260816T025624Z_789/receipt.json",
+    "receipt_sha256": "EB926431B87ABA7C5B456975503F7E4D3DF1F26D3AB1525B5584175E6E7B80A0",
+    "checkpoint_sha256": "55ED9B0647F87602BDF461CD4C100AB9329658D1D781B383E3DB8AAF0A8FABDA",
+    "state_sha256": "EC83A60B2AB4307AC5FBD9F3DB3A84F4E07B0CF7DC55CCB6AF1825F308C1CAF5",
+    "source_catalog_rebuilt": false
+  },
+  "arms": {
+    "reflection_only_control": {
+      "description": "Existing compatibility attachment schedule: 224 reflection rows from the proven v2 wire.",
+      "training_rows": 224,
+      "parent_replay_rows": 0,
+      "reflection_rows": 224
+    },
+    "parent_replay_attachment": {
+      "description": "Replace the fixed third occurrence of 64 reflection rows with 64 metadata-only rows replayed from the unified parent surfaces.",
+      "training_rows": 224,
+      "parent_replay_rows": 64,
+      "reflection_rows": 160,
+      "replacement_positions": "sealed by curriculum manifest"
+    }
+  },
+  "matched_budget": {
+    "effective_training_rows": 224,
+    "sampler_index_space": 224,
+    "replacement_count": 64,
+    "reflection_source_rows": 80,
+    "replay_source_families": [
+      "query",
+      "action",
+      "variable",
+      "result",
+      "scheduler",
+      "template"
+    ],
+    "same_parent": true,
+    "same_targets": false,
+    "same_tokenizer": true,
+    "same_evaluator": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "response_only_loss": true,
+    "context_length": 128
+  },
+  "rules": {
+    "only_intended_difference": "parent_replay_attachment_row_replacements",
+    "raw_model_output_preserved": true,
+    "cpu_repair_counted_as_model_success": false,
+    "no_parser_change": true,
+    "no_tokenizer_change": true,
+    "no_decoder_change": true,
+    "no_seed0_write": true,
+    "no_live_model_write": true,
+    "no_registry_write": true,
+    "no_production_write": true,
+    "rust_probe_expected": "HOLD_SECURITY"
+  },
+  "acceptance": {
+    "reflection_supported_min": 6,
+    "reflection_clean_min": 3,
+    "reflection_surface_count_min": 2,
+    "reflection_non_coverage_min": 1,
+    "non_reflection_no_regression_vs_control": true,
+    "zero_unauthorized_cpu_accepts": true,
+    "deterministic_repeats": true,
+    "protected_state_unchanged": true
+  },
+  "hold_states": [
+    "HOLD_PARENT_REPLAY_PREFLIGHT",
+    "HOLD_PARENT_REPLAY_CURRICULUM",
+    "HOLD_PARENT_REPLAY_MODEL",
+    "HOLD_PARENT_REPLAY_DETERMINISM",
+    "HOLD_PARENT_REPLAY_SECURITY",
+    "FAIL_PARENT_REPLAY_PROTECTED_STATE"
+  ]
+}

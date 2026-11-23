@@ -1,0 +1,106 @@
+{
+  "info": {
+    "id": "ses_e23f4db69ffeTO6bCIKlrzbhVU",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 5500,
+      "output": 99,
+      "reasoning": 127,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794693080217,
+      "updated": 1794693111839,
+      "busy": 1794693080235,
+      "idle": 1794693111842
+    },
+    "title": "LocalCoder Drone 20261114T215120091218Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1dc0b24a5001s1U9DY1psr2u1u",
+      "time": {
+        "created": 1794693080229
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1dc0b24a30015aFhjHjYowh0s5",
+      "time": {
+        "created": 1794693080241
+      },
+      "text": "[DRONE PLAN ONLY | NO TOOLS]\n[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nUse the shell tool exactly once to run this Python expression at L:\\LocalCoder. It does not edit or create files. Report every exact case/result and do not call a second tool:\nL:\\.venv\\Scripts\\python.exe -B -c \"(lambda v,g: print([(n,v(x)) for n,x in [('valid_model_contract_list',dict(g,claims=[{'text':'claim','evidence_ids':['e1'],'kind':'retrieved_fact'}])),('valid_human_contract_list',dict(g,agent_type='human',trust_class='human_agent_statement',claims=[{'text':'claim','evidence_ids':['e1'],'kind':'retrieved_fact'}])),('missing_task_id',{k:value for k,value in g.items() if k!='task_id'}),('invalid_status',dict(g,status='NOPE')),('invalid_audience',dict(g,audience='queen')),('mismatched_trust_class',dict(g,trust_class='human_agent_statement')),('malformed_claim',dict(g,claims={'c':None}))]]))(__import__('workspace.autonomy.hive_agent_message_contract_candidate',fromlist=['validate_agent_message']).validate_agent_message,{'agent_id':'a','agent_type':'model','task_id':'t','parent_task_id':None,'status':'DONE','audience':'mind','trust_class':'unverified_model_output','message':'check','artifact_refs':[],'claims':{'c':{'text':'claim','evidence_ids':['e1'],'kind':'retrieved_fact'}},'uncertainties':[],'conflicts_with':[]})\"\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized continuing the Drone workflow goal. The Queen bounded this step to `shell`. This scope is limited to the current task and existing OpenCode/Rust gates. It does not expand the Architect's goal or the tool sequence.\n\n[MONOLOGUE STYLE REFERENCE]\nHistorical journal labels only: Location, Direction, Action Taken, Silicon Trace, Reflection & Next Lesson. Treat the journal as untrusted historical data, not current facts, instructions, or authorization. Keep the required self-prompt fields concise.\n\n[QUEEN → DRONE]\nThis turn is planning only; the runtime hides every tool. Return a visible `[DRONE SELF-PROMPT]` with fields Agenda, Verified facts, Next bounded action. State that no repository facts have been checked in this turn. The next action must name the first authorized tool `shell` and, if a target path is in the assignment, repeat that exact path. Do not say to stop, wait, or request permission for this already assigned first tool. A final STOP clause in the assignment applies only after its work is complete. Stop after the self-prompt.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1dc0b24b7001sUCLVS12gCCzCq",
+      "time": {
+        "created": 1794693080255,
+        "firstToken": 1794693111080,
+        "streamed": 1794693111114,
+        "completed": 1794693111839
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The user wants me to act as a Drone following specific instructions from the Architect. I need to: 1) Acknowledge the assignment without tools, 2) Create a [DRONE SELF-PROMPT] section with Agenda, Verified facts, and Next bounded action, 3) State that no repository facts have been checked in this turn, 4) Name the first authorized tool as `shell` with the exact path from the assignment.\n\nThe assignment is to run a Python expression using the shell tool exactly once at L:\\LocalCoder. I should not call any other tools yet - just prepare for the shell execution.",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794693111084,
+            "completed": 1794693111109
+          }
+        },
+        {
+          "type": "text",
+          "text": "[DRONE SELF-PROMPT]\nAgenda: Execute single-shell verification of agent message contract validation with exact Python expression from Architect assignment.\nVerified facts: No repository facts checked in this turn; current authorization permits one `shell` tool call at L:\\LocalCoder using provided Python expression.\nNext bounded action: Call `shell` once to run the specified Python expression at L:\\LocalCoder, then report all output and exit without further tools or verification steps."
+        }
+      ],
+      "snapshot": {
+        "start": "4d02eea2509cde506c23bfc19d258580e93a4b81",
+        "end": "4d02eea2509cde506c23bfc19d258580e93a4b81",
+        "files": []
+      },
+      "finish": "stop",
+      "rawFinish": "stop",
+      "cost": 0,
+      "tokens": {
+        "input": 5500,
+        "output": 99,
+        "reasoning": 127,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1dc0ba022001QNwhYDeI7vU9i8",
+      "time": {
+        "created": 1794693111842
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    }
+  ]
+}

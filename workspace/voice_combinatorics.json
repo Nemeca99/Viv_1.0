@@ -1,0 +1,31 @@
+{
+  "voice_hive_combinatorics": "4-Voice Dynamic Synthesizer Matrix",
+  "voice_hive_directory": "L:\\AIOS_V2\\voice_hive",
+  "voice_sources": {
+    "v1": "L:\\AIOS_V2\\voice_hive\\l_drive_sovereign.wav",
+    "v2": "L:\\AIOS_V2\\voice_hive\\outer_hive_blended.wav",
+    "v3_base": "L:\\AIOS_V2\\voice_hive\\base_persona_voice.wav"
+  },
+  "voice_modes": {
+    "mode_1_single_sovereign": {
+      "name": "Solo L: Sovereign Voice",
+      "formula": "v1 (100%)",
+      "description": "Pure L: Drive Sovereign Voice (Deliberate 1Hz)"
+    },
+    "mode_2_single_outer": {
+      "name": "Solo Outer Hive Voice",
+      "formula": "v2 (100%)",
+      "description": "Pure Outer Drive Hive Voice (Fast Blended)"
+    },
+    "mode_3_triple_blend": {
+      "name": "The Tri-Voice Swarm Blend",
+      "formula": "0.4 * v1 + 0.4 * v2 + 0.2 * v3_base",
+      "description": "Blends Sovereign + Outer Hive + Base Persona for multi-domain swarm tasks"
+    },
+    "mode_4_quad_mixed_base": {
+      "name": "The Quad Base-Mixed Voice",
+      "formula": "0.5 * mode_3_triple_blend + 0.5 * v3_base",
+      "description": "Mixes the 3-Voice Blend with Base Persona for master system announcements"
+    }
+  }
+}

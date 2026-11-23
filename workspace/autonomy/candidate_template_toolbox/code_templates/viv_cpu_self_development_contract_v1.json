@@ -1,0 +1,57 @@
+{
+  "schema_version": "viv_cpu_self_development_contract_v1",
+  "contract_status": "current",
+  "learning_mode": "CPU_EVIDENCE_TOOL_CANDIDATE",
+  "state_machine": [
+    "OBSERVE",
+    "RETRIEVE",
+    "HYPOTHESIZE",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "ACCEPT",
+    "REJECT",
+    "HOLD",
+    "RECORD"
+  ],
+  "forbidden_transition": "HYPOTHESIZE->SANDBOX_TEST",
+  "required_request_flags": {
+    "isolated": true,
+    "no_publish": true
+  },
+  "allowed_request_fields": [
+    "schema_version",
+    "experiment_id",
+    "goal",
+    "documentation_queries",
+    "template_id",
+    "pillar",
+    "section_ids",
+    "variable_overrides",
+    "budget",
+    "isolated",
+    "no_publish",
+    "model_action"
+  ],
+  "allowed_model_actions": [
+    "select",
+    "hold",
+    "variable"
+  ],
+  "human_approval_boundaries": [
+    "template_adoption",
+    "template_insertion",
+    "architecture_change",
+    "registry_change",
+    "production_activation",
+    "promotion",
+    "deployment",
+    "live_model_mutation"
+  ],
+  "weight_updates": false,
+  "seed_mutation": false,
+  "production_generation": false,
+  "active_pointer_mutation": false,
+  "rust_write_denial_is_expected": true
+}

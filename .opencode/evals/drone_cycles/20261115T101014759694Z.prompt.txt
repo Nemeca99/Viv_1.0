@@ -1,0 +1,14 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Architect-approved assignment under goal `01a1d847-3b27-7533-bbc2-c718ace48ae7`.
+
+Add exactly one Python file at `workspace/autonomy/privacy_core_router_db_gate.py`. First call the `localcoder_add_python` tool to add that file, then call the `shell` tool to run its check.
+
+Purpose: create a host-side probe for the existing `aios_rebuild.privacy_core.privacy_core.PrivacyCore`. Pin the only router database target to `L:\LocalCoder\workspace\aios_rebuild\memory\aios_router\router.sqlite3`. The helper must call `PrivacyCore.authorize_file_write()` for that target and report the returned decision as JSON. Add a self-check that confirms this pinned path is allowed and a path under `L:\LocalCoder\workspace\autonomy` is denied. The helper only computes policy decisions; it must not create directories/files, open SQLite, write receipts, or change policy/configuration.
+
+Use `L:\.venv\Scripts\python.exe -B` from `L:\LocalCoder\workspace` to run the new file. Keep the script small and deterministic. Do not touch any other project file or model setting. Final response must begin `[DRONE]` and state the exact shell output and any failure.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: localcoder_add_python → shell. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

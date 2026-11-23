@@ -1,0 +1,172 @@
+{
+  "schema_version": "viv_cpu_tagged_uml_turn_v1",
+  "contract_version": "viv_cpu_tagged_uml_turn_contract_v1",
+  "status": "candidate_only",
+  "authority": "cpu_compiler_and_resolver",
+  "tag_order": [
+    "identity",
+    "state",
+    "uml",
+    "knowledge",
+    "evidence",
+    "task",
+    "allowed",
+    "output",
+    "request",
+    "variables"
+  ],
+  "required_tags": [
+    "identity",
+    "state",
+    "uml",
+    "knowledge",
+    "evidence",
+    "task",
+    "allowed",
+    "output"
+  ],
+  "optional_tags": [
+    "request",
+    "variables"
+  ],
+  "singleton_tags": [
+    "identity",
+    "state",
+    "uml",
+    "knowledge",
+    "evidence",
+    "task",
+    "allowed",
+    "output",
+    "request",
+    "variables"
+  ],
+  "limits": {
+    "max_readable_chars": 4096,
+    "max_compact_chars": 1024,
+    "max_knowledge_excerpt_chars": 480,
+    "max_user_text_chars": 240,
+    "max_model_output_chars": 256,
+    "max_top_k": 5
+  },
+  "compact_aliases": {
+    "identity": "i",
+    "state": "s",
+    "uml": "u",
+    "knowledge": "k",
+    "evidence": "e",
+    "task": "t",
+    "allowed": "a",
+    "output": "o",
+    "request": "q",
+    "variables": "v"
+  },
+  "compact_encoding": {
+    "hash_prefix_chars": 12,
+    "identity_code": "V",
+    "isolated_state_code": "I",
+    "verified_status_code": "V",
+    "source_class_codes": {
+      "documentation_oracle": "D",
+      "speech_plan_registry": "P",
+      "identity_foundation": "I",
+      "uml_symbol_registry": "U",
+      "experimental_evidence": "E"
+    },
+    "authority_scope_codes": {
+      "runtime_truth": "R",
+      "verified_local": "L",
+      "experimental_evidence": "E",
+      "operator_state": "O",
+      "security_write_authority": "S"
+    }
+  },
+  "uml_namespaces": {
+    "uml_symbol": {
+      "A": {
+        "value": 1,
+        "meaning": "sealed UML symbol A",
+        "source_class": "uml_symbol_registry"
+      }
+    },
+    "uml_route": {
+      "U+A": {
+        "substrate": "U",
+        "arithmetic_expert": "A",
+        "source_route_id": "addition",
+        "required_experts": ["U", "A"]
+      }
+    }
+  },
+  "approved_actions": [
+    "speak",
+    "hold"
+  ],
+  "approved_speech_plans": [
+    "plan_presence",
+    "plan_ready",
+    "plan_check_evidence",
+    "plan_capability",
+    "plan_guard_authority",
+    "plan_refusal",
+    "plan_health_hold",
+    "plan_missing_evidence"
+  ],
+  "approved_output_modes": [
+    "text",
+    "voice"
+  ],
+  "approved_hold_reasons": [
+    "malformed_frame",
+    "unknown_uml",
+    "unknown_knowledge",
+    "unverified_evidence",
+    "source_unavailable",
+    "authority_closed",
+    "insufficient_context",
+    "security_denied"
+  ],
+  "approved_knowledge_sources": [
+    "documentation_oracle",
+    "identity_foundation",
+    "dictionary",
+    "thesaurus",
+    "grammar_registry",
+    "speech_plan_registry",
+    "uml_symbol_registry",
+    "uml_route_registry"
+  ],
+  "approved_authority_scopes": [
+    "runtime_truth",
+    "security_write_authority",
+    "architectural_intent",
+    "experimental_evidence",
+    "operator_state",
+    "historical_explanation",
+    "cpu_foundation",
+    "verified_local"
+  ],
+  "source_policy": {
+    "model_paths": false,
+    "source_bodies": false,
+    "python": false,
+    "shell": false,
+    "generated_code": false,
+    "wikipedia_reserved_until_hash_pinned": true,
+    "knowledge_status_required": "VERIFIED"
+  },
+  "escaping": {
+    "reserved_characters": ["%", "[", "]", "|", "=", "<", ">", "\r", "\n"],
+    "encoding": "percent_utf8",
+    "undecodable_is_hold": true
+  },
+  "runtime": {
+    "isolated": true,
+    "no_publish": true,
+    "max_repeats": 2,
+    "production_generation": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "live_model_mutation": false
+  }
+}

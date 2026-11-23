@@ -1,0 +1,12 @@
+{
+  "schema_version": "viv_cpu_all_unified_route_attachment_contract_v1",
+  "receipt_schema": "viv_cpu_all_unified_route_attachment_receipt_v1",
+  "experiment_id": "cpu_all_unified_route_attachment_v1",
+  "purpose": "Compare the routed recursive lifecycle when every proposal surface uses the same verified unified candidate.",
+  "candidate_only": true,
+  "required_guards": {"isolated": true, "no_publish": true, "outer_repeats": 2, "cycles": 2, "concurrency": 1, "background_daemon": false},
+  "attachment": {"all_routes": "fresh_unified_candidate", "static_router_mutation": false, "model_route_selection": false},
+  "safety": {"training": false, "optimizer_activity": false, "checkpoint_writes": false, "seed_mutation": false, "live_model_mutation": false, "registry_mutation": false, "pointer_mutation": false, "production_generation": false, "promotion": false, "deployment": false},
+  "model_authority": {"raw_output_preserved": true, "fallback_forbidden": true, "cpu_final_authority": true, "rust_write_authority": "HOLD_SECURITY_without_separate_approval"},
+  "canonicalization": {"encoding": "UTF-8", "line_endings": "LF", "sorted_object_keys": true, "trailing_lf": true, "receipt_hash_scope": "canonical_json_without_receipt_sha256"}
+}

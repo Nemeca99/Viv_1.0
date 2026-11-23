@@ -1,0 +1,82 @@
+{
+  "accepted_hashes": {
+    "py-task": "6f6571436a39d931d639303a94acd0515c29241df38f784ae31d5ab5d1418e91",
+    "rust-task": "d1a7fe81bbe7ad12b0a8aa2529a18f20bd81cfb1c07ffcff0c3aeaba4be5d500"
+  },
+  "cohorts": [
+    [
+      "py-task",
+      "rust-task"
+    ],
+    [
+      "verify-cohort"
+    ]
+  ],
+  "events": [
+    {
+      "finish_ns": 1790712534462867600,
+      "generation_count": 1,
+      "output_sha256": "6f6571436a39d931d639303a94acd0515c29241df38f784ae31d5ab5d1418e91",
+      "packet": {
+        "body": {
+          "parents": {},
+          "task": {
+            "agent_id": "viv-python-specialist",
+            "agent_kind": "model",
+            "capability": "execute-python-task",
+            "depends_on": [],
+            "id": "py-task",
+            "objective": "Python task: Implement exactly `def increment(value: int) -> int` to return value plus one. Return only that function as the result string. No imports."
+          }
+        },
+        "capability": "execute-python-task",
+        "checksum": "e0908fcd8715fbaec9473fe32b85a5b5c6a07a9c0b443c0fc9c6605255dfe22c",
+        "payload_sha256": "09e979eadc803bc14a1d3580c0e834d52daca6a6836728985dd720570977eb6b",
+        "task_id": "py-task"
+      },
+      "start_ns": 1790712516379541300,
+      "status": "PASS",
+      "task_id": "py-task"
+    },
+    {
+      "finish_ns": 1790712537866377800,
+      "generation_count": 1,
+      "output_sha256": "d1a7fe81bbe7ad12b0a8aa2529a18f20bd81cfb1c07ffcff0c3aeaba4be5d500",
+      "packet": {
+        "body": {
+          "parents": {},
+          "task": {
+            "agent_id": "viv-rust-specialist",
+            "agent_kind": "model",
+            "capability": "execute-rust-task",
+            "depends_on": [],
+            "id": "rust-task",
+            "objective": "Rust task: Implement exactly `fn increment(value: i32) -> i32` to return value plus one. Return only that function as the result string. No crates."
+          }
+        },
+        "capability": "execute-rust-task",
+        "checksum": "c8f06b8abd6e70cfd6fe82489b1e58094be1f356c14137da1f110f2f4895a405",
+        "payload_sha256": "34c9541678d09430105dcd81204b43a9a6e6bb19c3768576a8ce801d8b8428ac",
+        "task_id": "rust-task"
+      },
+      "start_ns": 1790712516379687800,
+      "status": "PASS",
+      "task_id": "rust-task"
+    },
+    {
+      "failure": "parent artifact changed before dispatch: py-task",
+      "generation_count": 0,
+      "objective": "Verify both specialist outputs pass sandboxed assertions",
+      "parent_sha256": {
+        "py-task": "6f6571436a39d931d639303a94acd0515c29241df38f784ae31d5ab5d1418e91",
+        "rust-task": "d1a7fe81bbe7ad12b0a8aa2529a18f20bd81cfb1c07ffcff0c3aeaba4be5d500"
+      },
+      "status": "HOLD",
+      "task_id": "verify-cohort"
+    }
+  ],
+  "failure_reason": "parent artifact changed before dispatch: py-task",
+  "fault_injected": true,
+  "schema": "hive_horizontal_specialist_proof_v1",
+  "status": "HOLD"
+}

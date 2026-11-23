@@ -1,0 +1,12 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add new file `workspace/autonomy/hive_postal_recipient_predicate_v15_candidate.py`; stop if it exists.
+First source line exactly: `def is_valid_drone_recipient(value):`
+The function returns True only for a nonempty str that equals value.strip() and whose casefold() is not "queen". Reject non-strings without coercion. Add a --self-check that evaluates exactly these cases: "drone_2" True; "queen" False; "QUEEN" False; " QUEEN" False; " drone_2 " False; "" False; None False; 123 False. The only successful stdout is exactly `PASS: 8 checks`; print it once after all cases pass. Exit nonzero on any mismatch. No per-case output. Keep source under 30 lines.
+Call the aios_router_open_build_task tool; call the aios_router_accept_self_prompt tool for lane drone turn 0; call the localcoder_add_python tool with only filePath=workspace/autonomy/hive_postal_recipient_predicate_v15_candidate.py and content=source; call the shell tool in the foreground (background=false) with exactly `& 'L:\.venv\Scripts\python.exe' -B 'workspace\autonomy\hive_postal_recipient_predicate_v15_candidate.py' --self-check`; call the aios_router_record_turn_result tool with the actual shell output; call the aios_router_complete_lane tool with a truthful receipt.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: aios_router_open_build_task → aios_router_accept_self_prompt → localcoder_add_python → shell → aios_router_record_turn_result → aios_router_complete_lane. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

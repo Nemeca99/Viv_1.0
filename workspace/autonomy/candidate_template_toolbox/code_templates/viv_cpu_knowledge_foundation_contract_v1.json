@@ -1,0 +1,90 @@
+{
+  "schema_version": "viv_cpu_knowledge_foundation_contract_v1",
+  "status": "candidate_only",
+  "purpose": "Unify verified identity, bounded language knowledge, and UML arithmetic foundations into one CPU-owned candidate curriculum.",
+  "model_boundary": {
+    "parent": "viv_slm_seed_0000",
+    "device": "cpu",
+    "external_model_or_api": false,
+    "live_weight_updates": false,
+    "candidate_weights_in_memory_only": true,
+    "raw_corpus_to_model": false,
+    "source_paths_to_model": false,
+    "source_bodies_to_model": false
+  },
+  "knowledge_order": [
+    "identity",
+    "language",
+    "uml_structure",
+    "addition",
+    "subtraction",
+    "multiplication",
+    "division"
+  ],
+  "identity_foundation": {
+    "expert_id": "I",
+    "name": "Viv",
+    "nature": "Adaptive Intelligent Operating System (AIOS)",
+    "human_identity": false,
+    "authority_owner": "cpu_foundation",
+    "canonical_meaning_immutable": true,
+    "uncertainty_preserved": true
+  },
+  "language_foundation": {
+    "expert_ids": ["L_DICT", "L_THES", "L_GRAM", "L_PLAN"],
+    "registry": "foundation/artifacts/auto/agentic/LANGUAGE_EXPERT_REGISTRY_V1.json",
+    "dictionary": "bounded_word_inventory_and_spelling_presence",
+    "thesaurus": "bounded_pos_definition_and_synonym_relations",
+    "grammar": "finite_sentence_structure_rules",
+    "speech_plan": "approved_plan_and_slot_identifiers",
+    "free_form_literal_values": false,
+    "unknown_or_ambiguous_meaning": "HOLD"
+  },
+  "uml_foundation": {
+    "mandatory_substrate": "U",
+    "expert_ids": ["U", "A", "S", "M", "D"],
+    "domains": {
+      "U": "sealed_nested_pemdas_structure_codec_roundtrip_and_malformed_rejection",
+      "A": "addition_axioms_identities_valid_transforms_and_cost",
+      "S": "subtraction_axioms_identities_valid_transforms_and_cost",
+      "M": "multiplication_axioms_identities_valid_transforms_and_cost",
+      "D": "division_axioms_identities_valid_transforms_and_cost"
+    },
+    "route_policy": "U_is_required_before_arithmetic_domain_selection",
+    "cpu_evaluator": "foundation/lib/cpu_knowledge_foundation.py::validate_uml_foundation",
+    "canonical_route_order": ["U", "A", "S", "M", "D"],
+    "answer_seal": "destination_is_fixed_before_route_choice",
+    "invalid_route": "HOLD"
+  },
+  "packet_policy": {
+    "bounded_cards_only": true,
+    "native_paths_cpu_side_only": true,
+    "raw_dictionary_or_thesaurus_body": false,
+    "python_or_shell": false,
+    "arbitrary_paths": false,
+    "private_expert_ids_rendered": false,
+    "source_hashes_retained_for_audit": true
+  },
+  "candidate_training": {
+    "recipe_id": "cpu_knowledge_foundation_v1",
+    "seed": 43,
+    "steps_per_repeat": 32,
+    "repeats": 2,
+    "learning_rate": 0.0005,
+    "optimizer": "isolated_in_memory_only",
+    "checkpoint_write": false,
+    "promotion": false,
+    "deployment": false
+  },
+  "authority": {
+    "training_authorized": false,
+    "promotion_authorized": false,
+    "deployment_authorized": false,
+    "knowledge_admission": false,
+    "registry_mutation": false,
+    "live_model_changed": false,
+    "gpu_execution": false,
+    "rust_write_authority_opened": false
+  },
+  "receipt_schema": "viv_cpu_knowledge_foundation_receipt_v1"
+}

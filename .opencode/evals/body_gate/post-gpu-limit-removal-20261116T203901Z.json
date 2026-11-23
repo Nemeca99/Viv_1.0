@@ -1,0 +1,15 @@
+{
+  "schema": "body_gate_probe_negative_evidence_v1",
+  "captured_at": "2026-11-16T20:39:01.968748+00:00",
+  "image_id": "sha256:2daf73b8da203bf327561968441354dc60af28998651a99a29abd60642232d81",
+  "result": {
+    "allowed": false,
+    "reason": "core_binding_incomplete",
+    "expected_core_count": 19,
+    "bound_core_count": 17,
+    "gpu_memory_percent": 96.8,
+    "architect_permission_status": "expired"
+  },
+  "diagnostic": "enterprise_core import failed: No module named utils_core.unicode_safe_output; utils_core main module was not included in the curated Docker context.",
+  "next_action": "Rebuild from the corrected context with top-level utils_core Python modules included; keep the Rust core-binding hold."
+}

@@ -1,0 +1,46 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 153.157,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1e6a15feffekN1Mx5u9fbYGPl"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "fe83e9b36d3187ec785f4b1574a7d70b7c756657a22bf1dc00c1da8fa1820652",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: 8 checks"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "[DRONE]\nVerified file `hive_postal_inbox_contract_v7_check_candidate.py` contains exactly eight expected test cases in `EXPECTED_RESULTS` array, and `_self_check()` prints \"PASS: 8 checks\" only after all cases pass. The shell execution confirmed the script outputs exactly `PASS: 8 checks` and exits with code 0.\n\n[DRONE SELF-PROMPT]\nAgenda:, Verified facts: Script executed successfully with output PASS: 8 checks and exit code 0, confirming all eight test cases passed as required by the Architect's authorization. Next bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T234100666416Z"
+}

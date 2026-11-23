@@ -1,0 +1,41 @@
+{
+  "schema": "lmstudio_toolbridge_diagnostic_v1",
+  "event": "provider_request",
+  "request_id": "f12f5d6e-534e-4775-ad0d-1fdcd4473637",
+  "session_id": "ses_e17e97865ffeqBHUup02dTc68O",
+  "request_path": "/v1/chat/completions",
+  "model": "omnicoder-2-9b",
+  "prompt_chars": 1425,
+  "prompt_sha256": "d992c5a3c18f2f77b0b9dec3448ae7c33ca2d5b22ba3fedd2ceddb80b1bd8670",
+  "request_body_chars": 71120,
+  "request_text_chars": 58152,
+  "system_text_chars": 32643,
+  "output_token_limit": 4096,
+  "inference_parameters": {
+    "temperature": 0.1,
+    "top_p": 1,
+    "seed": 915703687,
+    "reasoning_effort": "none",
+    "frequency_penalty": 0,
+    "presence_penalty": 0.1
+  },
+  "tool_field_count": 1,
+  "tool_schemas": [
+    {
+      "name": "shell",
+      "required": [
+        "command"
+      ],
+      "property_names": [
+        "background",
+        "command",
+        "timeout",
+        "workdir"
+      ],
+      "additional_properties": false
+    }
+  ],
+  "tool_choice": "required",
+  "forced_drone_tool_choice": "shell",
+  "captured_at": "2026-11-17T08:25:10.949Z"
+}

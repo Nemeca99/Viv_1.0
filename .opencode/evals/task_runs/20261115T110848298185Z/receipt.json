@@ -1,0 +1,64 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 300.391,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e211ac057ffeuiRnVUhZow7Kt8"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "7bbf87227f74644b261ba4b10433dba781b39ef774ee7796583c6eb24df419fd",
+  "tools": [
+    {
+      "tool": "aios_router_classify_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "error"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out",
+    "tool_error"
+  ],
+  "tool_errors": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "error"
+    },
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "error"
+    }
+  ],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Execute aios_router_open_build_task to open assigned build task under router bounds.\nVerified facts: destination_role=drone, dispatch=classification_only, task_class=build from classify tool output.\nNext bounded action: Use aios_router_open_build_task tool"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T110848298185Z"
+}

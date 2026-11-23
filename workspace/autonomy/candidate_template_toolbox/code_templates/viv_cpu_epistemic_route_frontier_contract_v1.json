@@ -1,0 +1,55 @@
+{
+  "schema_version": "viv_cpu_epistemic_route_frontier_v1",
+  "receipt_schema": "viv_cpu_epistemic_route_frontier_receipt_v1",
+  "status": "candidate_only",
+  "purpose": "Preserve and compare multiple bounded proposal routes against invariant CPU semantic and evidence truth.",
+  "parent": {
+    "schema": "viv_cpu_semantic_truth_adversarial_v1",
+    "receipt": "foundation/artifacts/auto/agentic/cpu_semantic_truth_adversarial_v1/semantic_truth_adversarial_v1_20260815T070018Z/receipt.json",
+    "receipt_sha256": "15C3BE8CED2C3DBC672527A804C697830D8D3548D3E61E3BDD62FAEB2D878846"
+  },
+  "route_space": {
+    "probabilities": [0.01, 0.25, 0.5, 0.99],
+    "route_ids": ["route_00", "route_01", "route_02", "route_03"],
+    "same_semantic_binding": true,
+    "same_evidence": true,
+    "same_cpu_judgment": true,
+    "preserve_all_routes": true,
+    "preserve_failed_routes": true,
+    "prune_before_receipt": false,
+    "posthoc_preferred_route": false
+  },
+  "epistemic_rules": {
+    "survivor_means": "survived_current_evidence",
+    "failure_means": "failed_or_unresolved_current_condition",
+    "convergence_means": "same_cpu_verdict_and_provenance_under_current_evidence",
+    "convergence_is_not_global_truth": true,
+    "probability_cannot_redefine_truth": true,
+    "new_evidence_may_change_verdict": true,
+    "historical_receipts_are_not_rewritten": true,
+    "missing_or_conflicting_evidence_fails_closed": true,
+    "stop_requires_declared_rule": true
+  },
+  "model_origin": {
+    "verified": false,
+    "reason": "route variants are CPU-side epistemic fixtures; this phase measures the judgment and frontier boundary, not model authorship"
+  },
+  "authority": {
+    "cpu_is_semantic_and_evidence_authority": true,
+    "gpu_probability_is_proposal_only": true,
+    "rust_is_executable_write_membrane": true,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "live_model_mutation": false
+  },
+  "metadata_only": true,
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

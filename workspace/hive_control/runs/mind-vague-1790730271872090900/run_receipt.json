@@ -1,0 +1,136 @@
+{
+  "artifact": "L:\\LocalCoder\\workspace\\hive_control\\runs\\mind-vague-1790730271872090900\\example.py",
+  "artifact_sha256": "51d2693342000ac090e8817796032592050e0f0b88d4d3a7ab1112058a169673",
+  "capability_profile": "default",
+  "foreman_snapshot_id": "c78107f0fff74a7197ccf99c2faeb29162381caa16abddb9705f45f1e3c1252d",
+  "goal": "Create a file. Have it do something.",
+  "mind_final": "The file \"example.py\" was created and successfully printed \"Hello, world!\" when run.",
+  "mind_final_metrics": {
+    "done_reason": "stop",
+    "eval_count": 20,
+    "load_duration": 2462900,
+    "prompt_eval_count": 96,
+    "total_duration": 352193400
+  },
+  "mind_plan_metrics": {
+    "done_reason": "stop",
+    "eval_count": 205,
+    "load_duration": 6031525000,
+    "prompt_eval_count": 695,
+    "total_duration": 9593762200
+  },
+  "plan": {
+    "filename": "example.py",
+    "intent": "Create a Python file that prints a message when run.",
+    "tasks": [
+      {
+        "capability": "create_file",
+        "depends_on": [],
+        "id": "create_file",
+        "objective": "Create an empty Python file named example.py in the isolated run directory.",
+        "value": "example.py"
+      },
+      {
+        "capability": "stamp_print",
+        "depends_on": [
+          "create_file"
+        ],
+        "id": "stamp_print",
+        "objective": "Append a print statement to the file that outputs 'Hello, world!' when the file is run.",
+        "value": "Hello, world!"
+      },
+      {
+        "capability": "run_file",
+        "depends_on": [
+          "stamp_print"
+        ],
+        "id": "run_file",
+        "objective": "Run the Python file and capture the output.",
+        "value": ""
+      }
+    ]
+  },
+  "run_dir": "L:\\LocalCoder\\workspace\\hive_control\\runs\\mind-vague-1790730271872090900",
+  "schema": "mind_vague_file_v1",
+  "scope": "isolated LocalCoder run only",
+  "status": "PASS",
+  "stdout": "Hello, world!\r\n",
+  "swarm_events": [
+    {
+      "artifact_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "capability": "create_file",
+      "checksum": "3f2a482e123c29a85bc435f17d3ae62462a4d01cde48575bc81b3b25c7c086bb",
+      "generation_count": 0,
+      "parent_sha256": {},
+      "status": "PASS",
+      "stdout": null,
+      "task_id": "create_file"
+    },
+    {
+      "artifact_sha256": "51d2693342000ac090e8817796032592050e0f0b88d4d3a7ab1112058a169673",
+      "capability": "stamp_print",
+      "checksum": "2ef0130145b08cfee6b372a8cf515bd995fc87dd48575afc35cc3cd4726fcef1",
+      "generation_count": 0,
+      "parent_sha256": {
+        "create_file": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "status": "PASS",
+      "stdout": null,
+      "task_id": "stamp_print"
+    },
+    {
+      "artifact_sha256": "51d2693342000ac090e8817796032592050e0f0b88d4d3a7ab1112058a169673",
+      "capability": "run_file",
+      "checksum": "c7c665a762cebd6a0a6647e0662facb2d01b26032388fab55242bc181ad53241",
+      "generation_count": 0,
+      "parent_sha256": {
+        "stamp_print": "51d2693342000ac090e8817796032592050e0f0b88d4d3a7ab1112058a169673"
+      },
+      "status": "PASS",
+      "stdout": "Hello, world!\r\n",
+      "task_id": "run_file"
+    }
+  ],
+  "task_graph": [
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-create_file",
+        "agent_kind": "deterministic",
+        "capability": "create_file",
+        "depends_on": [],
+        "id": "create_file",
+        "objective": "Create an empty Python file named example.py in the isolated run directory."
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-run_file",
+        "agent_kind": "deterministic",
+        "capability": "run_file",
+        "depends_on": [
+          "stamp_print"
+        ],
+        "id": "run_file",
+        "objective": "Run the Python file and capture the output."
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "rust-stamp_print",
+        "agent_kind": "deterministic",
+        "capability": "stamp_print",
+        "depends_on": [
+          "create_file"
+        ],
+        "id": "stamp_print",
+        "objective": "Append a print statement to the file that outputs 'Hello, world!' when the file is run."
+      },
+      "state": "completed"
+    }
+  ]
+}

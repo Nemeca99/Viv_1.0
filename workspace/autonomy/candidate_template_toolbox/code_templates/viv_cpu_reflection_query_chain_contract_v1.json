@@ -1,0 +1,91 @@
+{
+  "schema_version": "viv_cpu_reflection_query_chain_v1",
+  "receipt_schema": "viv_cpu_reflection_query_chain_receipt_v1",
+  "candidate_only": true,
+  "device": "cpu",
+  "parent_contracts": {
+    "reflection": "viv_cpu_independent_reflection_receipt_v2",
+    "query": "viv_cpu_independent_query_receipt_v4"
+  },
+  "lifecycle": [
+    "OBSERVE",
+    "REFLECT",
+    "CPU_VALIDATE",
+    "RECORD_REFLECTION",
+    "RETRIEVE",
+    "CPU_VALIDATE_QUERY",
+    "RECORD_QUERY",
+    "COMPLETE"
+  ],
+  "reflection_to_query_admission": {
+    "required_model_origin": true,
+    "required_cpu_disposition": "DEFICIENCY_CANDIDATE",
+    "query_forbidden_when": [
+      "clean_no_deficiency",
+      "insufficient_or_abstain",
+      "reflection_model_failure",
+      "reflection_hold",
+      "stale_observation"
+    ],
+    "direct_reflection_to_query_without_cpu_validation": false
+  },
+  "query_grammar": "Q|<bounded_terms>|<scope>|<top_k>",
+  "context_length": 128,
+  "generation_budget": 32,
+  "repeats": 2,
+  "supported_rows": 8,
+  "clean_rows": 4,
+  "insufficient_rows": 4,
+  "linked_query_minimum": 6,
+  "reflection_minimum": 6,
+  "reflection_clean_minimum": 3,
+  "query_surface_minimum": 2,
+  "live_query_required": true,
+  "metadata_only": true,
+  "harness_repair_allowed": false,
+  "harness_substitution_allowed": false,
+  "model_input_exclusions": [
+    "source_paths",
+    "source_bodies",
+    "python",
+    "shell",
+    "checkpoint_paths",
+    "expected_query_terms",
+    "expected_document_ids",
+    "post_retrieval_evidence"
+  ],
+  "protected_boundaries": {
+    "seed0_mutation": false,
+    "live_model_mutation": false,
+    "registry_mutation": false,
+    "production_generation": false,
+    "active_pointer_change": false,
+    "gpu_execution": false,
+    "rust_write_authority": false,
+    "template_insertion": false,
+    "training_authority": false
+  },
+  "novelty_definitions": {
+    "replication": "same semantic hypothesis and materially same intervention contract",
+    "refinement": "same hypothesis family with a bounded parameter, context, or representation change",
+    "inversion": "explicit test of an opposing prediction or intervention polarity",
+    "novel": "no matching semantic hypothesis lineage exists",
+    "unsupported": "evidence or lineage is insufficient to classify the relationship"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_object_keys": "sorted",
+    "receipt_hash_excludes": [
+      "receipt_sha256",
+      "receipt_hash_valid_before_write",
+      "receipt_hash_valid_after_write"
+    ],
+    "volatile_fields_excluded_from_comparison": [
+      "created_utc",
+      "wall_seconds",
+      "inference_wall_seconds",
+      "retrieval_wall_seconds"
+    ]
+  }
+}

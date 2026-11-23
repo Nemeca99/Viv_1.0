@@ -1,0 +1,129 @@
+{
+  "artifact_sha256": "92e45e82fd0d6378f674c732a023bc41e880f8ef2d811b9550bb450fac30a65b",
+  "fault_injected": false,
+  "foreman_snapshot_id": "c636677433ef73748720ed6ef11d5355d9832c1900522d3960794566802b9cfb",
+  "mind_generation_count": 2,
+  "mind_metrics": {
+    "plan": {
+      "done_reason": "stop",
+      "eval_count": 84,
+      "load_duration": 5668489800,
+      "prompt_eval_count": 682,
+      "total_duration": 7361511100
+    },
+    "slots": {
+      "done_reason": "stop",
+      "eval_count": 19,
+      "load_duration": 2080900,
+      "prompt_eval_count": 626,
+      "total_duration": 632044000
+    }
+  },
+  "mind_plan": [
+    {
+      "agent_id": "stamp-import",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [],
+      "id": "import",
+      "objective": "Stamp approved import span"
+    },
+    {
+      "agent_id": "stamp-variables",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "import"
+      ],
+      "id": "variables",
+      "objective": "Stamp approved variables span"
+    },
+    {
+      "agent_id": "stamp-function",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "variables"
+      ],
+      "id": "function",
+      "objective": "Stamp approved function span"
+    },
+    {
+      "agent_id": "stamp-registry",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "function"
+      ],
+      "id": "registry",
+      "objective": "Stamp approved registry span"
+    }
+  ],
+  "mind_slots": {
+    "message": "Echo message",
+    "suffix": "Echo suffix"
+  },
+  "mode": "live",
+  "reference_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c",
+  "registry_sha256": "acbffe896ecef4662b5e602af529cb129a161be6e81532efa26095b4b1013e52",
+  "schema": "hive_template_rebuild_run_v1",
+  "scope": "isolated fixture.echo source and registry; no legacy write or promotion",
+  "source_sha256": {
+    "runner": "bf9b37bf627ef2357a4d1f788fb8ffa9dd28b029d113ae101bc28c8f4ec052bf",
+    "switchboard": "cdd79e5f59837b614bc95052f4a4b9476d6099b8d73c46c28efbbaf3881b391c"
+  },
+  "status": "PASS",
+  "swarm_generation_count": 0,
+  "tasks": [
+    {
+      "artifact_sha256": "3ba127006ac2fb095ff3823178a98b6e404251b8b6987ba1f01f416c7431fd59",
+      "checksum": "02f112360660b31d88a685b10b3665692712be7666447998bd89d8cf3b341ec2",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-import",
+      "task_id": "import"
+    },
+    {
+      "artifact_sha256": "91f65f9ef3039bb9b307989659ed67e7abb4c75f3c4cd28d2e0c04f936986d99",
+      "checksum": "ad1a4c349f11a2c53404829f4a27fb1f4b5b51e4b0d1690786626b717aee97ba",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-variables",
+      "task_id": "variables"
+    },
+    {
+      "artifact_sha256": "92e45e82fd0d6378f674c732a023bc41e880f8ef2d811b9550bb450fac30a65b",
+      "checksum": "fd7e635443f292440e0e62aed0dcc9ef6fcb7540c95fdaa7b286a10d3f18796c",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-function",
+      "task_id": "function"
+    },
+    {
+      "artifact_sha256": "acbffe896ecef4662b5e602af529cb129a161be6e81532efa26095b4b1013e52",
+      "checksum": "7c0786efab25a7d907179f4de154c873a83f2ab822383218f35864808f7b6c9c",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-registry",
+      "task_id": "registry"
+    }
+  ],
+  "verification": {
+    "body_unchanged": true,
+    "compiled": true,
+    "explicit_execution": {
+      "context_keys": [
+        "probe"
+      ],
+      "message": "Echo message",
+      "ok": true,
+      "suffix": "Echo suffix",
+      "variables": {
+        "message": "Echo message",
+        "suffix": "Echo suffix"
+      }
+    },
+    "source_sha256": "92e45e82fd0d6378f674c732a023bc41e880f8ef2d811b9550bb450fac30a65b",
+    "status": "PASS"
+  }
+}

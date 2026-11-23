@@ -1,0 +1,65 @@
+{
+  "schema_version": "aios_ship_skeleton_toolbox_contract_v1",
+  "surface_id": "aios_ship_skeleton_toolbox_v1",
+  "candidate_only": true,
+  "purpose": "One function catalog identity: the builder's admitted functions are exactly Viv's accessible functions. The 42-system / 13-bus-slot map is a plan-only ship skeleton. Architect admit is the only path into the toolbox.",
+  "roles": {
+    "captain": "human operator / Architect",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "toolbox": "the only steel; construction parts and Viv access share the same IDs"
+  },
+  "catalog_identity": {
+    "rule": "set(builder_admitted_function_ids) == set(viv_accessible_function_ids)",
+    "source": "active template registry only",
+    "admitted_means": "Architect has placed the ID in the production registry; this slice does not write that registry",
+    "viv_cannot_see_or_assemble": "IDs absent from this catalog",
+    "side_channel_unregistered_functions": "forbidden_policy",
+    "invented_bodies": "forbidden",
+    "fill_rule": "a slot may only be filled by copying indexed spans from admitted toolbox IDs"
+  },
+  "pointer": {
+    "must_remain_generation": "gen_c6be6ff385aed99f",
+    "must_remain_template": "fixture.echo",
+    "companion_registered_not_pointer_selected": "fixture.echo_companion",
+    "mutation": false
+  },
+  "migration_catalog": {
+    "activate": false,
+    "fix": false,
+    "promote": false,
+    "expected_state": "HOLD",
+    "human_review_required": true,
+    "function_count_observed": 3104,
+    "in_viv_access_list": false
+  },
+  "admit": {
+    "actor": "Architect / captain",
+    "without_captain": "HOLD_CAPTAIN_REQUIRED",
+    "writes_production_registry": false,
+    "this_slice": "status and skeleton only; admit is documented and always HOLD"
+  },
+  "skeleton": {
+    "systems_expected": 42,
+    "bus_slots_expected": 13,
+    "map_state_source": "live aios_skeleton_map; do not lie",
+    "required_function_ids_until_captain_admit": [],
+    "demo_slot": "template_core",
+    "demo_bound_function_ids": ["fixture.echo", "fixture.echo_companion"],
+    "completed_organism": false,
+    "toolbox_fill_language": ["VACANT", "PARTIAL", "BOUND"]
+  },
+  "authority": {
+    "seed_mutation": false,
+    "pointer_mutation": false,
+    "registry_mutation": false,
+    "rust_write": false,
+    "training_authority": false,
+    "production_activation": false,
+    "daemon": false
+  },
+  "cli": {
+    "path": "build_tools/run_aios_ship_skeleton_v1.py",
+    "commands": ["status", "skeleton", "functions", "admit"]
+  }
+}

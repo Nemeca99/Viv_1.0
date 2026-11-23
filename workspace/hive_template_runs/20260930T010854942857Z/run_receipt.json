@@ -1,0 +1,159 @@
+{
+  "proof": "Mind-generates-slots; deterministic-Swarm-stamps-templates",
+  "scope": "local simulation; not Rust production coordinator or held-out evaluation",
+  "mind_model": "qwen3:8b-local",
+  "swarm_worker_model_generations": 0,
+  "swarm_role": "deterministic template stampers; no source generation",
+  "fault_injection_mode": false,
+  "started_utc": "2026-09-30T01:08:54.946857+00:00",
+  "python": "3.12.10",
+  "host": "Travis",
+  "resource": {
+    "ollama_ps_before": "NAME              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nqwen3:8b-local    75b2aaf62291    5.6 GB    100% GPU     4096       8 minutes from now",
+    "ollama_ps_after": "NAME              ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \nqwen3:8b-local    75b2aaf62291    5.6 GB    100% GPU     4096       9 minutes from now",
+    "nvidia_smi_before": "NVIDIA GeForce RTX 3060 Ti, 6665 MiB, 8192 MiB, 8 %",
+    "nvidia_smi_after": "NVIDIA GeForce RTX 3060 Ti, 6665 MiB, 8192 MiB, 88 %"
+  },
+  "mind_generations": [
+    {
+      "stage": "prepare_header_and_import",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "metrics": {
+        "total_duration": 979789300,
+        "load_duration": 2520800,
+        "prompt_eval_count": 388,
+        "prompt_eval_duration": 250763000,
+        "eval_count": 30,
+        "eval_duration": 660791000,
+        "done_reason": "stop",
+        "wall_seconds": 0.999,
+        "raw": "{\"module_docstring\": \"Hive greeting module\", \"import_template_id\": \"python.typing_final_import\"}"
+      }
+    },
+    {
+      "stage": "resume_function_variables",
+      "generation_count": 1,
+      "posthoc_pass": true,
+      "metrics": {
+        "total_duration": 456566800,
+        "load_duration": 1651400,
+        "prompt_eval_count": 407,
+        "prompt_eval_duration": 183293000,
+        "eval_count": 19,
+        "eval_duration": 252373000,
+        "done_reason": "stop",
+        "wall_seconds": 0.458,
+        "raw": "{\"greeting\": \"Hello from the Hive!\", \"function_name\": \"greet\"}"
+      }
+    }
+  ],
+  "swarm_tasks": [
+    {
+      "task_id": "task-001",
+      "owner": "stamp-module-header",
+      "checksum": "14c9897881b459059865732b32f9771f2ea0b5e78893977ff9f131e7edb6a580",
+      "parent_checksum": "",
+      "snapshot_id": "baa4bb466b1931956b6f4f9d2fa5bf818efbf0bfa32df7a1706e1e060e94ce98",
+      "agent_type": "deterministic_template_stamper",
+      "stamp_count": 1,
+      "generation_count": 0,
+      "posthoc_pass": true,
+      "template_id": "python.module_docstring",
+      "template_sha256": "f13f73d2ad5457028632ac8af982012c047f7128f34c0c07eb25fa01c26511bd",
+      "artifact_sha256": "db10a840e452f8dfe4fbbbaec0a8d739b3ac17a6f2c6f42340322f6c63b2d7b5"
+    },
+    {
+      "task_id": "task-002",
+      "owner": "stamp-import",
+      "checksum": "07844f496ae4f529865e7db7e7b8ed04bf474c444ba22332691c7733a38bda27",
+      "parent_checksum": "14c9897881b459059865732b32f9771f2ea0b5e78893977ff9f131e7edb6a580",
+      "snapshot_id": "f057b75160586cd672226e0b920ea53a3940a6e9dfb6ed337f1e60f2b9929f83",
+      "agent_type": "deterministic_template_stamper",
+      "stamp_count": 1,
+      "generation_count": 0,
+      "posthoc_pass": true,
+      "template_id": "python.typing_final_import",
+      "template_sha256": "4cf00c254e8ae8a65f5174806728bbbbe379c0fc9da9863d1657b5a21a89d68b",
+      "parent_artifact_sha256": "db10a840e452f8dfe4fbbbaec0a8d739b3ac17a6f2c6f42340322f6c63b2d7b5",
+      "artifact_sha256": "2c8817e82319c554855f56708b75d6eae1438a6038e826122822f27cbab0c4f2"
+    },
+    {
+      "task_id": "task-003",
+      "owner": "stamp-greeting-function",
+      "checksum": "de9d5b35939d9c30f090ab76e19a40a2afb854df81ea6f0ea94efd53c02ad915",
+      "parent_checksum": "07844f496ae4f529865e7db7e7b8ed04bf474c444ba22332691c7733a38bda27",
+      "snapshot_id": "f208127426a059653e98163ed17d56a6521e7a6b2d55000c916c9a1039870331",
+      "agent_type": "deterministic_template_stamper",
+      "stamp_count": 1,
+      "generation_count": 0,
+      "posthoc_pass": true,
+      "template_id": "python.greeting_function",
+      "template_sha256": "3f23db0017c557fbaa6b8015b308e4a1549e5e478e110f261a0c99f32621fc4a",
+      "parent_artifact_sha256": "78da51a28947aa4fac95c044ff774f374b4283ba833f38aeb8b458d3e36b1bc5",
+      "artifact_sha256": "ca2b8c65d10f949a1945f4c1380b8b88e83f6e592a3ec86cf1adf5182d1b0148"
+    }
+  ],
+  "human_events": [
+    {
+      "task_id": "human-greeting",
+      "status": "REPLIED",
+      "route": "Queen -> Viv -> waiting task-003",
+      "reply": "Hello from the Hive!",
+      "resumed_by": "Mind generation 2"
+    }
+  ],
+  "foreman_context": {
+    "snapshot_path": "hive_snapshots\\20260930T010354759170Z-c78107f0fff7.json",
+    "snapshot_id": "c78107f0fff74a7197ccf99c2faeb29162381caa16abddb9705f45f1e3c1252d",
+    "snapshot_sha256": "c78107f0fff74a7197ccf99c2faeb29162381caa16abddb9705f45f1e3c1252d",
+    "source_scope": "The source governs the moved D:/LocalAi/Continue/Viv tree. This LocalCoder proof is separate and read-only toward that tree. A snapshot is observation, never authority.",
+    "authority": {
+      "status": "COMPLETE_AUTHORITY_CLOSED",
+      "training_authority_open": false,
+      "promotion_authority_open": false,
+      "deployment_authority_open": false
+    },
+    "governing_rules": [
+      "The Architect retains final authority over intent and consequential choices.",
+      "Knowledge, retrieval, and model output grant no authority.",
+      "Viv proposes and delegates; Rust/AIOS adjudicates protected state.",
+      "The current live training, promotion, and deployment authority is closed."
+    ],
+    "current_protected_action_allowed": false,
+    "localcoder_task_scope": "Architect-requested isolated workspace protocol proof; no training, promotion, or deployment."
+  },
+  "template_registry_sha256": "1d46049e78c5f74d0c335129ebb05e3d3347e9b779803534904e7cc6906f3a1c",
+  "template_sources": {
+    "python.module_docstring": "f13f73d2ad5457028632ac8af982012c047f7128f34c0c07eb25fa01c26511bd",
+    "python.typing_final_import": "4cf00c254e8ae8a65f5174806728bbbbe379c0fc9da9863d1657b5a21a89d68b",
+    "python.greeting_function": "3f23db0017c557fbaa6b8015b308e4a1549e5e478e110f261a0c99f32621fc4a"
+  },
+  "composition_chain": {
+    "task2_local_check_passed": true,
+    "task2_artifact_sha256": "2c8817e82319c554855f56708b75d6eae1438a6038e826122822f27cbab0c4f2",
+    "task3_input_sha256": "78da51a28947aa4fac95c044ff774f374b4283ba833f38aeb8b458d3e36b1bc5",
+    "task3_parent_checksum": "07844f496ae4f529865e7db7e7b8ed04bf474c444ba22332691c7733a38bda27",
+    "child_template_stamp_count": 1,
+    "fault_injected": false,
+    "fault": null,
+    "downstream_composition_passed": true,
+    "downstream_error": null,
+    "repair_generations": 0
+  },
+  "artifact": {
+    "path": "hive_template_runs\\20260930T010854942857Z\\hello.py",
+    "sha256": "ca2b8c65d10f949a1945f4c1380b8b88e83f6e592a3ec86cf1adf5182d1b0148",
+    "greet_result": "Hello from the Hive!"
+  },
+  "security_checks": {
+    "wrong_worker_decryption_denied": true,
+    "ciphertext_tamper_detected": true,
+    "task_keys_wrapped_by_mind_master": true,
+    "channel_key_separate_from_master": true,
+    "peer_channel_without_grant_denied": true,
+    "mind_key_material_excluded_from_prompt": true
+  },
+  "status": "PASS",
+  "finished_utc": "2026-09-30T01:08:56.573301+00:00"
+}

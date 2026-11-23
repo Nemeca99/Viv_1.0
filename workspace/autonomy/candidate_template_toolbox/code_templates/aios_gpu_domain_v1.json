@@ -1,0 +1,132 @@
+{
+  "schema_version": "aios_gpu_domain_v1",
+  "surface_id": "aios_gpu_domain_v1",
+  "epistemic": "FACT",
+  "purpose": "GPU is optional plasma: train, bounded-prob exploration, and voice/image/UI render when present and CPU-targeted. CPU is required internal movement. Rust is the OS breaker. Missing GPU ABSTAINs external lamps; helm, coder, watch, mailbox, skeleton, and organism stay up.",
+  "citation": "foundation/docs/architecture/AIOS_GPU_DOMAIN_V1.md",
+  "cpu_required": true,
+  "gpu_optional": true,
+  "cpu_requires_cuda": false,
+  "gpu_owns_truth": false,
+  "gpu_owns_authority": false,
+  "gpu_owns_os": false,
+  "gpu_never_bypasses_cpu": true,
+  "movement": {
+    "cpu": "internal",
+    "cpu_meaning": "truth, evidence, admission, allowing external",
+    "gpu": "external",
+    "gpu_meaning": "speak/voice, image, UI, bounded exploration render, training"
+  },
+  "cpu_owns": [
+    "target",
+    "evidence",
+    "admission",
+    "disposition",
+    "output_accuracy"
+  ],
+  "gpu_owns": [
+    "training",
+    "bounded_exploration",
+    "voice_render",
+    "image_render",
+    "ui_render"
+  ],
+  "rust_owns": [
+    "os_egress"
+  ],
+    "doctrine": {
+      "cpu": "target goal, evidence, admission, dispositions, output accuracy (universal translator end gate)",
+    "gpu": "train; explore proposals in a sealed probability envelope around that target; render voice / image / UI as surfaces of the CPU packet",
+    "rust": "breaker to OS (speakers, display, files) — 120V in/out; uses CPU translator truth packet before Security OUT"
+  },
+  "probability_envelope": {
+    "cpu_temperature": 0.0,
+    "gpu_temperature": 0.1,
+    "recorded": ["temperature", "top_k", "top_p", "seed"],
+    "source": "foundation/lib/viv_probability_profile.py",
+    "gpu_proposal_is_not_truth": true,
+    "latest_exploration_receipt_state": "HOLD_GPU_PROPOSAL_NOT_OBSERVED",
+    "cannot_mark_exploration_pass_without_receipt": true
+  },
+  "live_status": {
+    "training": "IN_PROGRESS_STANDALONE",
+    "training_run": "viv_chat_86m_v1",
+    "training_note": "86M radio-pretrain owns the 3060 Ti; not Seed 0, not helm SFT, not UI",
+    "exploration": "HOLD_NOT_OBSERVED",
+    "voice": "SKELETON",
+    "image": "SKELETON",
+    "ui": "SKELETON"
+  },
+  "skeleton_citations": {
+    "mouth_render": "PARTIAL — lib.aios_skeleton_bus mouth_render; voice_core is CPU-first boundary; viv_cpu_mouth_render* not cited as an edit surface",
+    "vision_core": "PARTIAL — lib.aios_adapter_vision image/meta presence, no effector",
+    "streamlit_core": "SKELETON — deferred UI slot, no adapter"
+  },
+  "lossless_render": {
+    "rule": "A prettier voice/image/UI cannot change HOLD/PASS/numbers/IDs",
+    "same_as": "mouth"
+  },
+  "gpu_arbiter": {
+    "vram_exclusive": true,
+    "occupants": ["none", "train", "infer", "voice", "image", "ui"],
+    "captain_jobs": ["viv_chat_86m_v1"],
+    "captain_job_markers": ["pretrain.py", "viv_chat_86m"],
+    "do_not_kill_example_pid": 254104,
+    "unload_live_pretrain": false,
+    "steal_vram": false,
+    "request_speak": {
+      "no_gpu": "ABSTAIN",
+      "no_gpu_state": "HOLD_GPU_ABSENT",
+      "train_and_captain_job": "HOLD_CAPTAIN_GPU",
+      "her_infer": "YIELD_THEN_SPEAK",
+      "captain_grant_required_for_captain_job": true,
+      "grant_path": "captain mailbox / captain grant",
+      "yield_plan_not_executed_against_live_pretrain": true
+    },
+    "helm_verb": {
+      "frame": "H|gpu|*",
+      "classification": "deny",
+      "state": "HOLD_NOT_TAUGHT",
+      "next_teach": true,
+      "this_slice_does_not_teach": true
+    }
+  },
+  "ship_ops_gpu_independent": [
+    "helm",
+    "coder",
+    "watch",
+    "mailbox",
+    "skeleton",
+    "organism"
+  ],
+  "nvidia_smi_fail": "ABSTAIN gpu lamps; ship_ops still ok; never start training",
+  "cli": {
+    "runner": "build_tools/run_aios_gpu_domain_v1.py",
+    "allowed_commands": ["status"],
+    "starts_training": false,
+    "kills_pretrain": false,
+    "steals_vram": false
+  },
+  "forbidden": {
+    "start_training": true,
+    "kill_pretrain": true,
+    "kill_indexer": true,
+    "kill_bot": true,
+    "unload_live_86m": true,
+    "share_gpu_with_new_job": true,
+    "mutate_pointer": true,
+    "mutate_seed_0": true,
+    "modify_pyd": true,
+    "claim_gpu_usefulness_observed": true,
+    "cpu_path_requires_cuda": true
+  },
+  "protected_untouched": [
+    "Seed 0",
+    "template registry",
+    "active pointer",
+    "Rust security binary",
+    "live 86M pretrain",
+    "indexer",
+    "bot"
+  ]
+}

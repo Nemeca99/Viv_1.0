@@ -1,0 +1,86 @@
+{
+  "schema": "viv_grounded_expert_response_repair_pre_restart_v1",
+  "captured_utc": "2026-10-05T03:15:11.985077+00:00",
+  "source_sha256": {
+    "viv_autonomy.py": "fa9e3a84c999793e831659b84b018b091a4d156653eb557d5193b12f14367f3e",
+    "viv_chat_cli.py": "4de156a6117bed29878529beb4c3158de9c4b79d76985b5cadfb12f600451725",
+    "swarm_adapters/drive_stacks/runtime.py": "b5cbcf8a89a43b068b01a3dbb1f10f090bc69582b84e2c051d5d31bf4e8597d8",
+    "autonomy/agent_index.py": "2fd0e6d9294aa7408b20e764a4a7a9a2f1ce69d2419d4cd95f5fadd719c9f28c"
+  },
+  "pre_restart_state": {
+    "enabled": false,
+    "worker": {
+      "at": 1791169684.6686616,
+      "pid": 143600,
+      "state": "stopped"
+    },
+    "supervisor": {
+      "at": 1791170111.8988655,
+      "child_launcher_pid": null,
+      "launches": 34,
+      "pid": 106692,
+      "restart_backoff_seconds": 0,
+      "state": "paused"
+    }
+  },
+  "observed_events": [
+    {
+      "id": 4048,
+      "at": 1791169461.178575,
+      "kind": "plan_rejected",
+      "data": {
+        "proposal_sha256": "62d4427f4afdbc0d8c70f99add160391f3fbd8155a0460e86d345f759f2dfba9",
+        "reason": "Rejected malformed proposal. Return exactly title, requirement, and cases; cases must contain 3-30 objects, each with input and expected. Every input must contain exactly data and options, with options an object. Validation error: current_state must map every task name to an explicit status"
+      }
+    },
+    {
+      "id": 4063,
+      "at": 1791169558.79647,
+      "kind": "drive_agent_index_feedback_delivered",
+      "data": {
+        "current_source_sha256": "c597bf507a49f2f07b4a54fe2b77a4d3ddaa2edada684f830ec9205c8687e82e",
+        "drive": "F",
+        "failure_event_id": null,
+        "failure_reason": "Proposal must contain exactly the four response fields",
+        "previous_failure_count": 13
+      }
+    },
+    {
+      "id": 4065,
+      "at": 1791169582.075835,
+      "kind": "drive_agent_index_proposal_rejected",
+      "data": {
+        "attempt_count": 14,
+        "drive": "F",
+        "feedback_delivered": true,
+        "proposal_sha256": "06dfb8dd6724135d967c07c61567454e93d0a60ae576a6b747bfbbfaa121e1bf",
+        "reason": "Proposal must contain exactly the four response fields",
+        "source_sha256": "c597bf507a49f2f07b4a54fe2b77a4d3ddaa2edada684f830ec9205c8687e82e"
+      }
+    },
+    {
+      "id": 4075,
+      "at": 1791169684.6381345,
+      "kind": "drive_agent_index_proposal_rejected",
+      "data": {
+        "attempt_count": 16,
+        "drive": "L",
+        "feedback_delivered": true,
+        "proposal_sha256": "a32a98edeb45e895f4bcec72596ae9b4950769f55e3c282204dccb5785f4df1f",
+        "reason": "Result does not match the index classification format",
+        "source_sha256": "990c00fe483a877f68b1f0f31242db63459c737a94d11e09ec39f19271c6a476"
+      }
+    },
+    {
+      "id": 4078,
+      "at": 1791169688.2520895,
+      "kind": "worker_process_exited",
+      "data": {
+        "exit_code": 0,
+        "launcher_pid": 146168
+      }
+    }
+  ],
+  "repair_policy": "Only canonicalize OBSERVED result punctuation when the response has exactly the required four fields, exact supplied source citation, unknowns=[], allowed category, nonempty summary, and an exact current ancestor choice. Missing/extra fields and non-ancestor paths remain rejected. Record hashes and normalization name. Feedback now identifies exact schema and result requirements.",
+  "verification": "Python compilation passed. Live F and L failures remain rejected by the unchanged validator; a synthetic malformed-separator response with an exact offered ancestor canonicalized and then passed the existing validator. No expert behavior pass claimed."
+}

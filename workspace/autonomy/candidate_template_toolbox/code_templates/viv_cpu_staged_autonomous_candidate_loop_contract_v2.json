@@ -1,0 +1,100 @@
+{
+  "schema_version": "viv_cpu_staged_autonomous_candidate_loop_v2",
+  "receipt_schema": "viv_cpu_staged_autonomous_candidate_loop_receipt_v2",
+  "status": "CANDIDATE_ONLY",
+  "parent": {
+    "schema_version": "viv_cpu_staged_autonomous_candidate_loop_v1",
+    "parent_receipt_immutable": true,
+    "parent_state": "HOLD_MODEL_PROTOCOL_REGRESSION",
+    "parent_v2_bounded_receipt_required": true,
+    "staged_parent_receipt_sha256": "00D1961879E7EAA009C8DDB4AEBD9B26239A81E11B33F7C513480FF08BEE6A75",
+    "staged_parent_candidate_sha256": "6C9AB292AA12827A25276039821435AC26490E56110CB2F02F0521A9BF4B3936",
+    "staged_parent_state_sha256": "C11425817AC4B7A27FA55954729400C576F371F0CAFE6F7D387A02A1D5710439",
+    "staged_parent_dataset_sha256": "80774C51B7755B2EFEB4BEB2DB3D7A842BDC54D9C3D51D53855576891CBB8CCF"
+  },
+  "candidate_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "training_rows": 224,
+    "candidate_only": true,
+    "optimizer_scope": "isolated_candidate_only",
+    "tokenizer_changed": false,
+    "grammar_semantics_changed": false,
+    "syntax_decoder_constraint": "cpu_finite_menu_only"
+  },
+  "adaptive_measurement_matrix": {
+    "schema_version": "viv_adaptive_measurement_matrix_v1",
+    "fields": ["prior_slot", "result_code", "slot_metrics", "selection_policy"],
+    "selection_policy": "highest_verified_measurement",
+    "target_must_be_derived_from_matrix": true,
+    "target_must_not_be_serialized_in_prompt": true,
+    "metrics_must_be_pre_decision": true,
+    "allowed_metric_codes": ["l", "h"]
+  },
+  "syntax_decoder": {
+    "schema_version": "viv_cpu_staged_protocol_decoder_v1",
+    "syntax_only": true,
+    "semantic_choice_masking": false,
+    "invalid_raw_output_preserved": true,
+    "cpu_substitution_counts_as_model_success": false
+  },
+  "reflection": {
+    "frame_schema": "viv_cpu_autonomy_reflection_frame_v1",
+    "finite_menu_constraint": true,
+    "heldout_deficiency_rows": 8,
+    "heldout_clean_rows": 8,
+    "minimum_deficiency": 6,
+    "minimum_clean": 7
+  },
+  "adaptive_schedule": {
+    "repair_rows": 32,
+    "repeat_correct_rows": 16,
+    "alternative_required_rows": 16,
+    "heldout_rows": 16,
+    "compositional_traces": 8,
+    "minimum_choices": 12,
+    "minimum_traces": 6,
+    "prior_slots_cover": [0, 1, 2, 3, 4],
+    "target_offsets_are_not_fixed": true,
+    "approved_experiment_slots": [0, 1, 2, 3, 4],
+    "max_repeat_count": 3
+  },
+  "live_prompt_contract": {
+    "expected_deficiency_in_prompt": false,
+    "expected_query_in_prompt": false,
+    "expected_action_in_prompt": false,
+    "expected_schedule_in_prompt": false,
+    "pre_decision_measurement_only": true,
+    "target_leakage_fails_preflight": true
+  },
+  "protected_boundaries": [
+    "seed_zero",
+    "live_model",
+    "registry",
+    "production_generation",
+    "active_pointer",
+    "template_insertion",
+    "training_authority",
+    "promotion_authority",
+    "deployment_authority",
+    "gpu_authority",
+    "rust_write_authority"
+  ],
+  "final_states": [
+    "PASS_CPU_BOUNDED_AUTONOMOUS_CANDIDATE_LOOP",
+    "HOLD_AUTONOMY_PREFLIGHT",
+    "HOLD_REFLECTION",
+    "HOLD_ADAPTIVE_SCHEDULER",
+    "HOLD_LIVE_OBSERVATION",
+    "HOLD_RECURSIVE_EVIDENCE",
+    "HOLD_MODEL_PROTOCOL_REGRESSION",
+    "HOLD_AUTONOMY_DETERMINISM",
+    "HOLD_AUTONOMY_SECURITY",
+    "HOLD_TEMPLATE_CHOICE_SINGLETON",
+    "FAIL_AUTONOMY_PROTECTED_STATE"
+  ]
+}

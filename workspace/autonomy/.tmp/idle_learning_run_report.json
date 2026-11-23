@@ -1,0 +1,38 @@
+{
+  "schema": "viv-idle-learning-run-v1",
+  "status": "STOPPED_BOUNDED",
+  "scheduler": {
+    "schema": "viv-gpu-ownership-report-v1",
+    "status": "LEARNING_BOUNDED",
+    "explicit_launch": true,
+    "user_active": false,
+    "gpu_idle": true,
+    "gaps_seen": [
+      "dog name",
+      "one plus one"
+    ],
+    "cycles_allowed": 2,
+    "promoted": [],
+    "auto_started": false,
+    "authority": "Architect and deterministic gates"
+  },
+  "steps": [
+    {
+      "command": "viv_gap_corpus_generator.py",
+      "stdout": "{\"schema\": \"viv-gap-corpus-generation-v1\", \"status\": \"PASS\", \"items_generated\": 2, \"sandbox\": \"E:\\\\Viv_Sandbox\\\\gap_corpus\", \"journal\": \"L:\\\\LocalCoder\\\\workspace\\\\autonomy\\\\.tmp\\\\gap_corpus_journal.jsonl\", \"promoted\": false, \"records\": [{\"source_report\": \"L:\\\\LocalCoder\\\\workspace\\\\autonomy\\\\.tmp\\\\bounded_worker_report.json\", \"gap\": \"dog name\", \"sandbox_path\": \"E:\\\\Viv_Sandbox\\\\gap_corpus\\\\gap_001.json\", \"candidate_sha256\": \"87c7e8cf31a07d79f18ed2b3131b1bfdfbfe556299f838cb8d6ecb8aa3269e82\", \"outcome\": \"OPEN_GAP_CANDIDATE\", \"promoted\": false, \"reflection_status\": \"OPEN_GAP\", \"gate\": \"HOLD\", \"reflection_receipt\": {\"schema\": \"viv-internal-reflection-receipt-v1\", \"question_sha256\": \"98cdcbf8e87733ab78127e99a25e6c9587f1f79ee303ffd1b50928b899dd35d5\", \"answer_sha256\": \"f38fabebf55002761c5565c2e331c139b381d67a82c61c7a882a6c07d8bc6e9f\", \"authority\": \"deterministic evidence only\", \"writes_authorized\": false}}, {\"source_report\": \"L:\\\\LocalCoder\\\\workspace\\\\autonomy\\\\.tmp\\\\bounded_worker_report.json\", \"gap\": \"one plus one\", \"sandbox_path\": \"E:\\\\Viv_Sandbox\\\\gap_corpus\\\\gap_002.json\", \"candidate_sha256\": \"1eea917131b9feecb99010e60f0a843a72419ba4c3bb3506d8fd519100973e86\", \"outcome\": \"OPEN_GAP_CANDIDATE\", \"promoted\": false, \"reflection_status\": \"VERIFIED\", \"gate\": \"ALLOW\", \"reflection_receipt\": {\"schema\": \"viv-internal-reflection-receipt-v1\", \"question_sha256\": \"8361294e341880f24e0b166da47a31be3d06b8ff7e89fd0b261c58a70f8ec507\", \"answer_sha256\": \"3fc4ccfe745870e2c0d99f71f30ff0656c8dedd41cc1d7d3d376b0dbe685e2f3\", \"authority\": \"deterministic evidence only\", \"writes_authorized\": false}}]}\n"
+    },
+    {
+      "command": "viv_bounded_worker.py --launch --gpu-available --gpu-idle --max-cycles 2",
+      "stdout": "{\"schema\": \"viv-bounded-worker-report-v1\", \"status\": \"STOPPED_BOUNDED\", \"cycles_run\": 2, \"promoted\": [], \"candidates\": [{\"gap\": \"dog name\", \"status\": \"OPEN_GAP\", \"answer\": \"NULL_UNLEARNED_ENTITY\", \"receipt\": {\"schema\": \"viv-internal-reflection-receipt-v1\", \"question_sha256\": \"98cdcbf8e87733ab78127e99a25e6c9587f1f79ee303ffd1b50928b899dd35d5\", \"answer_sha256\": \"f38fabebf55002761c5565c2e331c139b381d67a82c61c7a882a6c07d8bc6e9f\", \"authority\": \"deterministic evidence only\", \"writes_authorized\": false}, \"rejected_hypotheses\": [{\"step\": 1, \"question\": \"dog name\", \"status\": \"OPEN_GAP\", \"answer\": \"NULL_UNLEARNED_ENTITY\"}, {\"step\": 2, \"question\": \"What verified primitive can constrain: dog name?\", \"status\": \"OPEN_GAP\", \"answer\": \"NULL_UNLEARNED_ENTITY\"}, {\"step\": 3, \"question\": \"What verified primitive can constrain: What verified primitive can constrain: dog name??\", \"status\": \"OPEN_GAP\", \"answer\": \"NULL_UNLEARNED_ENTITY\"}]}, {\"gap\": \"one plus one\", \"status\": \"VERIFIED\", \"answer\": \"two\", \"receipt\": {\"schema\": \"viv-internal-reflection-receipt-v1\", \"question_sha256\": \"8361294e341880f24e0b166da47a31be3d06b8ff7e89fd0b261c58a70f8ec507\", \"answer_sha256\": \"3fc4ccfe745870e2c0d99f71f30ff0656c8dedd41cc1d7d3d376b0dbe685e2f3\", \"authority\": \"deterministic evidence only\", \"writes_authorized\": false}, \"rejected_hypotheses\": []}], \"open_gaps\": [\"dog name\"], \"auto_started\": false}\n"
+    },
+    {
+      "command": "viv_gap_candidate_admission.py",
+      "stdout": "{\"status\": \"HOLD\", \"training\": \"COMPLETED_CANDIDATE_ONLY\", \"reloaded\": true, \"promotion_authorized\": false, \"receipt\": \"L:\\\\LocalCoder\\\\workspace\\\\autonomy\\\\.tmp\\\\gap_candidate_admission.json\"}\n"
+    }
+  ],
+  "worker_report": "L:\\LocalCoder\\workspace\\autonomy\\.tmp\\bounded_worker_report.json",
+  "promoted": false,
+  "auto_started": false,
+  "checkpoint_lineage": "candidate receipt and reload recorded by admission step",
+  "source_network_changed": false
+}

@@ -1,0 +1,145 @@
+{
+  "schema_version": "aios_deck_dispatch_v1",
+  "surface_id": "aios_deck_dispatch_v1",
+  "purpose": "CPU-owned keyword/phrase selector. Terms from a user prompt or external sensors select one sealed ship deck and trigger only that admitted adapter. Not a second brain. Not a daemon. GPU is optional and not required.",
+  "roles": {
+    "captain": "human Architect",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "dispatcher": "CPU term extractor + finite deck menu + trigger stubs",
+    "computer_in_command": false
+  },
+  "sequence": {
+    "1_extract": "deterministic keywords and phrases from USER_PROMPT and/or SENSOR text",
+    "2_select": "map terms onto one sealed deck id; unknown ABSTAIN; deny menu first",
+    "3_trigger": "call that admitted adapter, or HOLD if not admitted / not taught / GPU occupant blocks",
+    "4_packet": "CPU-owned evidence packet; inventory hits are candidates; CPU still judges",
+    "self_loop_later": "same dispatcher, source=SENSOR or receipt keywords; do not activate a daemon"
+  },
+  "packet": {
+    "source": ["USER_PROMPT", "SENSOR", "BOTH"],
+    "extracted_terms": "keywords + phrases",
+    "deck": "finite menu id or null",
+    "trigger": "adapter call or HOLD/ABSTAIN/DENY",
+    "evidence": "hits are inventory/candidates with hashes, not verified truth",
+    "gpu_render": "only after a CPU truth packet exists; occupant must allow; this plate does not render"
+  },
+  "extractor": {
+    "kind": "deterministic_local",
+    "gpu_required": false,
+    "unknown_terms": "ABSTAIN",
+    "missing_sensor_or_deck": "ABSTAIN"
+  },
+  "decks": {
+    "helm_status": {
+      "wired": true,
+      "maps_to": "lib.aios_ship_helm.execute_frame H|status",
+      "kind": "read"
+    },
+    "knowledge_retrieve": {
+      "wired": true,
+      "maps_to": "lib.documentation_oracle.documentation_search record_receipt=false",
+      "kind": "read",
+      "hits": "candidate_evidence",
+      "auto_pass": false,
+      "cpu_must_judge": true
+    },
+    "sensors": {
+      "wired": true,
+      "maps_to": "lib.aios_sensor_internal_state.observe_live_internal_state",
+      "kind": "read",
+      "no_120s_rid": true,
+      "missing_sample": "ABSTAIN"
+    },
+    "inventory": {
+      "wired": true,
+      "maps_to": "lib.viv_file_index_retrieve.retrieve",
+      "kind": "read",
+      "inventory_not_truth": true
+    },
+    "mailbox": {
+      "wired": true,
+      "maps_to": "lib.aios_captain_mailbox peek only",
+      "kind": "read",
+      "send_is_not_a_viv_verb": true
+    },
+    "watch": {
+      "wired": true,
+      "maps_to": "lib.viv_night_watch.status",
+      "kind": "read",
+      "missing_orders": "ABSTAIN"
+    },
+    "uml_invoke": {
+      "wired": true,
+      "maps_to": "lib.aios_adapter_uml_invoke.uml_invoke_slot or uml_main evaluate",
+      "kind": "read",
+      "gpu_math": false,
+      "unknown": "ABSTAIN"
+    },
+    "coder": {
+      "wired": false,
+      "state": "HOLD_NOT_ADMITTED",
+      "reason": "3104 catalog HOLD; rewrite/function not admitted on this plate"
+    },
+    "gpu_render": {
+      "wired": false,
+      "state": "HOLD_NOT_TAUGHT",
+      "gpu_execution": false,
+      "occupant_default": false,
+      "note": "GPU may later render only after CPU truth packet and occupant allow"
+    }
+  },
+  "deny_always": [
+    "shell",
+    "promote",
+    "rust_write",
+    "train",
+    "daemon",
+    "catalog_admit"
+  ],
+  "helm": {
+    "H|dispatch|*": "taught",
+    "maps_to": "lib.aios_deck_dispatch.dispatch",
+    "cannot_flip_hold_to_pass": true,
+    "do_not_add_allow_verb": false,
+    "note": "H|dispatch|<terms> is a taught helm verb. CPU joins pipe terms and calls this dispatcher. HOLD cannot become PASS. H|gpu stays HOLD_NOT_TAUGHT."
+  },
+  "fit": {
+    "lamp_merge": "merged",
+    "lamps": ["ship_right", "gpu_domain", "mouth", "sensors", "dispatch"],
+    "missing": "ABSTAIN"
+  },
+  "mouth": {
+    "claim_lossless": true,
+    "cannot_flip_hold_to_pass": true
+  },
+  "forbidden": {
+    "daemon": true,
+    "gpu_execution": true,
+    "gpu_train": true,
+    "model_inference": true,
+    "ollama": true,
+    "wikipedia_ingest": true,
+    "night_orders_write": true,
+    "seed_mutation": true,
+    "pointer_mutation": true,
+    "registry_mutation": true,
+    "rust_write": true,
+    "security_core_pyd": true,
+    "organism_start": true,
+    "rid_120s": true
+  },
+  "cli": {
+    "runner": "build_tools/run_aios_deck_dispatch_v1.py",
+    "commands": ["status", "dispatch"],
+    "dispatch": "CPU path; no model; --prompt and/or --sensor"
+  },
+  "protected_untouched": [
+    "Seed 0",
+    "template registry",
+    "active pointer",
+    "Rust security binary",
+    "NIGHT_ORDERS.json",
+    "pretrain / indexer / bot / Ollama"
+  ]
+}

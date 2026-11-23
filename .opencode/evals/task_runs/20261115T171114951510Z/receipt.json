@@ -1,0 +1,62 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 506.672,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1fceec67ffeP9NypxPT4SzYHI"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "6fbc9f741f30e7dfd4f2836fa87b990ab1b422ab7997043d868a44aca9e155bb",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "FAIL\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "FAIL\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Fix is_valid_drone_recipient to require value.strip() equals value (no extra whitespace), then check casefold != \"queen\".\nVerified facts: Self-check failed with exit code 1, file path L:\\LocalCoder\\workspace\\autonomy\\hive_postal_recipient_predicate_v15_candidate.py.\nNext bounded action: Call the localcoder_add_python tool"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T171114951510Z"
+}

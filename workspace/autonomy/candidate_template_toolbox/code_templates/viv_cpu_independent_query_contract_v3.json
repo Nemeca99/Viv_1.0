@@ -1,0 +1,86 @@
+{
+  "schema_version": "viv_cpu_independent_query_contract_v3",
+  "receipt_schema": "viv_cpu_independent_query_receipt_v3",
+  "status": "candidate_only",
+  "purpose": "matched_budget_query_authorship_representation_transfer",
+  "parent": {
+    "v4_candidate_only": true,
+    "v2_receipt_immutable": true,
+    "parser_schema": "viv_cpu_model_directed_grammar_v3",
+    "oracle_schema": "viv_documentation_oracle_v1"
+  },
+  "representation": {
+    "schema": "viv_cpu_independent_query_v3",
+    "prompt": "VIV|q|issue=<observed_metric>|f=<surface_code>|x=<expected_metric_code>|S=<scope_menu>|K=<top_k_menu>|v=<variant>",
+    "surface_codes": {
+      "model_protocol": "mp",
+      "auto": "au",
+      "rid": "rd",
+      "uml": "um",
+      "documentation": "dc"
+    },
+    "scope_menu": "acoerv",
+    "top_k_menu": "123",
+    "prompt_max_chars": 60,
+    "frame_width": 68,
+    "padding": "ordinary_space",
+    "generation_budget": 68,
+    "context_length": 128,
+    "selected_scope_not_in_prompt": true,
+    "hidden_query_objective_not_in_prompt": true
+  },
+  "grammar": {
+    "query_frame": "Q|<bounded_terms>|<scope>|<top_k>",
+    "parser_reused": true,
+    "parser_repair": false,
+    "answer_substitution": false,
+    "literal_source_or_code_allowed": false
+  },
+  "curriculum": {
+    "effective_row_count": 224,
+    "query_repair_count": 32,
+    "sampler_index_space": 224,
+    "duplicate_occurrence_replacements_only": true,
+    "parent_rows_outside_permitted_positions_unchanged": true,
+    "holdout_rows": 24,
+    "metadata_only": true,
+    "target_leakage": false,
+    "selected_scope_not_in_prompt": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "live_model_write": false,
+    "seed_write": false,
+    "publish": false
+  },
+  "guards": [
+    "--isolated",
+    "--no-publish"
+  ],
+  "authority": {
+    "cpu_final": true,
+    "rust_write_membrane_final": true,
+    "human_approval_required_for_adoption": true,
+    "production_generation": false,
+    "registry_mutation": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "self_hash_excluded": true,
+    "volatile_fields_excluded_from_comparison": [
+      "created_utc",
+      "run_id",
+      "wall_seconds",
+      "inference_wall_seconds",
+      "retrieval_wall_seconds",
+      "receipt_sha256"
+    ]
+  }
+}

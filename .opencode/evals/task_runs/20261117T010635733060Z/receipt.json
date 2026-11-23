@@ -1,0 +1,50 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 42.36,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e18f55ef6ffeaCwLnte5oRNLaV"
+  ],
+  "visibility": "archived",
+  "prompt_sha256": "9e493347a006205c9262eed8cfe4c55dedb161e9305d13f2ebad0e8260617a7e",
+  "tools": [
+    {
+      "tool": "aios_router_lookup_drone_seed",
+      "status": "completed"
+    },
+    {
+      "tool": "write",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "omnicoder-2-9b"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "5\r\nSUM OK"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "The file `workspace/test_sum.py` was created and executed successfully. The output shows:\n- `5` (the result of 2 + 3)\n- `SUM OK` (as printed by the script)"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261117T010635733060Z"
+}

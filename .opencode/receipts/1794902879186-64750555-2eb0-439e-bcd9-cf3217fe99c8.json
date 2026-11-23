@@ -1,0 +1,40 @@
+{
+  "schema": "lmstudio_toolbridge_diagnostic_v1",
+  "event": "provider_request",
+  "request_id": "6c2fdcb6-ad40-48f3-ad8d-f392b7ebc54f",
+  "session_id": "ses_e17e97865ffeqBHUup02dTc68O",
+  "request_path": "/v1/chat/completions",
+  "model": "omnicoder-2-9b",
+  "prompt_chars": 1301,
+  "prompt_sha256": "df071c38ed7bb97148cb69633d9f9937485747f3058888d04936293f1278b70e",
+  "request_body_chars": 44825,
+  "request_text_chars": 40088,
+  "system_text_chars": 32642,
+  "output_token_limit": 4096,
+  "inference_parameters": {
+    "temperature": 0.1,
+    "top_p": 1,
+    "seed": 915703687,
+    "reasoning_effort": "none",
+    "frequency_penalty": 0,
+    "presence_penalty": 0.1
+  },
+  "tool_field_count": 1,
+  "tool_schemas": [
+    {
+      "name": "read",
+      "required": [
+        "path"
+      ],
+      "property_names": [
+        "limit",
+        "offset",
+        "path"
+      ],
+      "additional_properties": false
+    }
+  ],
+  "tool_choice": "required",
+  "forced_drone_tool_choice": "read",
+  "captured_at": "2026-11-17T08:07:59.185Z"
+}

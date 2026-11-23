@@ -1,0 +1,115 @@
+{
+  "schema_version": "viv_cpu_live_model_directed_self_development_v1",
+  "receipt_schema": "viv_cpu_live_model_directed_self_development_receipt_v1",
+  "grammar_schema": "viv_cpu_model_directed_grammar_v3",
+  "status": "CANDIDATE_ONLY",
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "background_daemon": false,
+    "production_activation": false,
+    "live_weight_update": false,
+    "seed_write": false
+  },
+  "state_machine": {
+    "states": [
+      "OBSERVE",
+      "RETRIEVE",
+      "HYPOTHESIZE",
+      "CPU_VALIDATE",
+      "CANDIDATE_PLAN",
+      "SANDBOX_TEST",
+      "MEASURE",
+      "ACCEPT",
+      "REJECT",
+      "HOLD",
+      "RECORD",
+      "SCHEDULE",
+      "COMPLETE",
+      "requires_operator_resume"
+    ],
+    "direct_proposal_to_sandbox": false,
+    "max_live_cycles": 1,
+    "max_schedule_repeats": 3
+  },
+  "model_frame_families": ["D", "Q", "A", "R", "E"],
+  "approved_template_slots": [
+    {
+      "slot": 0,
+      "template_id": "fixture.echo",
+      "pillar": "auto",
+      "declared_keys": ["message", "suffix"],
+      "value_slots": {
+        "message": {"msg_hello": "hello", "msg_preview": "preview"},
+        "suffix": {"sfx_safe": "safe", "sfx_ok": "ok"}
+      }
+    }
+  ],
+  "approved_experiment_cards": [
+    {"slot": 0, "experiment_id": "fixture.zero_submain", "template_id": "fixture.echo", "pillar": "auto"},
+    {"slot": 1, "experiment_id": "fixture.message_override", "template_id": "fixture.echo", "pillar": "auto"},
+    {"slot": 2, "experiment_id": "fixture.suffix_override", "template_id": "fixture.echo", "pillar": "auto"},
+    {"slot": 3, "experiment_id": "fixture.undeclared_variable_hold", "template_id": "fixture.echo", "pillar": "auto"},
+    {"slot": 4, "experiment_id": "fixture.documentation_drift_hold", "template_id": "fixture.echo", "pillar": "auto"}
+  ],
+  "budgets": {
+    "max_document_chars": 1200,
+    "max_candidates": 1,
+    "max_seconds": 120,
+    "max_receipts": 24,
+    "max_schedule_repeats": 3,
+    "allowed_schedule_budgets": ["tiny", "small", "fixture"]
+  },
+  "inference_contract": {
+    "device": "cpu",
+    "model_eval_mode": true,
+    "torch_deterministic_algorithms": true,
+    "float32_matmul_precision": "highest",
+    "num_threads": 1,
+    "num_interop_threads": 1,
+    "attention_backend": "sdpa",
+    "draft_mode": "cpu_gate",
+    "temperature_requested": 0.0,
+    "temperature_effective": 0.0,
+    "top_k": null,
+    "top_p": null,
+    "repetition_penalty": 1.0,
+    "use_kv_cache": true,
+    "decode_strategy": "greedy_argmax",
+    "same_frame_seed_schedule_across_repeats": true
+  },
+  "observation_contract": {
+    "requires_authoritative_foreman": true,
+    "requires_seed_generation": 0,
+    "requires_rust_integrity": true,
+    "requires_fresh_rid_sample": true,
+    "model_packet_native_paths": false,
+    "model_packet_source_bodies": false,
+    "model_packet_expected_answer": false
+  },
+  "human_approval_boundaries": [
+    "new_template",
+    "template_adoption",
+    "registry_insertion",
+    "architecture_change",
+    "production_activation",
+    "promotion",
+    "deployment",
+    "live_model_mutation"
+  ],
+  "final_states": [
+    "PASS_CPU_LIVE_MODEL_DIRECTED_SELF_DEVELOPMENT_CANDIDATE_ONLY",
+    "HOLD_LIVE_NO_VERIFIED_DEFICIENCY",
+    "HOLD_LIVE_OBSERVATION_STALE",
+    "HOLD_LIVE_MODEL_DIRECTED_DEFICIENCY",
+    "HOLD_LIVE_MODEL_DIRECTED_QUERY",
+    "HOLD_LIVE_MODEL_DIRECTED_ACTION",
+    "HOLD_LIVE_MODEL_DIRECTED_RESULT",
+    "HOLD_LIVE_MODEL_DIRECTED_SCHEDULER",
+    "HOLD_LIVE_INDEPENDENT_CONFIRMATION",
+    "HOLD_TEMPLATE_CHOICE_SINGLETON",
+    "HOLD_LIVE_SECURITY",
+    "HOLD_LIVE_DETERMINISM",
+    "FAIL_LIVE_PROTECTED_STATE"
+  ]
+}

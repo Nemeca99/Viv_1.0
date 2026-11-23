@@ -1,0 +1,102 @@
+{
+  "schema_version": "viv_cpu_mouth_render_lossless_v1",
+  "receipt_schema": "viv_cpu_mouth_render_lossless_receipt_v1",
+  "experiment_id": "cpu_mouth_render_lossless_v1",
+  "purpose": "Encode the Architect mouth doctrine: Viv rerenders a CPU proposition packet into more readable, personality-flavored text without changing the truth. Surface semantics only. Not a second epistemology.",
+  "computer_not_language_brain": true,
+  "training": false,
+  "optimizer_activity": false,
+  "checkpoint_writes": false,
+  "seed_0_mutation": false,
+  "pointer_mutation": false,
+  "rust_pyd_mutation": false,
+  "pretrain_86m_mutation": false,
+  "pipeline": {
+    "flow": [
+      "CPU proposition packet (disposition, ids, hashes, numbers, HOLD/PASS/ABSTAIN)",
+      "mouth render (readability + allowed personality slots)",
+      "text"
+    ],
+    "invariant": "render must be claim-lossless",
+    "authority": "cpu_proposition_packet",
+    "mouth_role": "computer_mouth_render_only"
+  },
+  "existing_path_reused": {
+    "deterministic_speech_plan": "foundation/lib/cpu_speech_plan.py",
+    "grammar_composer": "foundation/lib/cpu_grammar_composer.py",
+    "identity_mouth": "foundation/lib/cpu_identity_mouth.py",
+    "identity_router": "foundation/lib/cpu_identity_router.py",
+    "natural_speech_classifier": "foundation/lib/cpu_natural_speech.py",
+    "claim_subset_validator": "foundation/lib/cpu_mouth_contract.py",
+    "new_language_generator": false,
+    "existing_path_already_claim_subset": true,
+    "additive_lossless_verifier": "foundation/lib/viv_cpu_mouth_render.py"
+  },
+  "allowed": {
+    "wording": true,
+    "cadence": true,
+    "approved_identity_voice_slots_from_cpu_grammar": true,
+    "personality_fill": "cpu_speech_plan_slot_values_only",
+    "paint_not_payload": true
+  },
+  "forbidden": {
+    "new_facts": true,
+    "dropped_holds": true,
+    "flipped_pass_hold": true,
+    "changed_numbers_ids_hashes": true,
+    "invented_evidence": true,
+    "free_model_essay": true,
+    "second_epistemology": true
+  },
+  "dispositions": {
+    "allowed": ["PASS", "HOLD", "ABSTAIN"],
+    "token_must_appear_exact_uppercase": true,
+    "hold_cannot_render_as_success": true,
+    "abstain_cannot_render_as_measured_fact": true,
+    "pass_cannot_render_as_hold_or_abstain": true
+  },
+  "default_personality_plans": {
+    "PASS": "plan_check_evidence",
+    "HOLD": "plan_missing_evidence",
+    "ABSTAIN": "plan_refusal"
+  },
+  "lossless_checks": [
+    "disposition_in_equals_disposition_out",
+    "exact_disposition_token_in_text",
+    "id_substrings_preserved",
+    "hash_substrings_preserved",
+    "number_substrings_preserved",
+    "no_extra_hash_tokens",
+    "no_unsupported_claim_terms",
+    "hold_not_success",
+    "abstain_not_measured_fact",
+    "existing_mouth_contract_claim_subset"
+  ],
+  "rust_boundary": {
+    "this_slice": "mouth_only",
+    "one_twenty_volt_in_out": "Rust security membrane, not this module",
+    "citation": "foundation/docs/architecture/AIOS_120_IN_120_OUT_V1.md",
+    "expected_production_write": false
+  },
+  "fixture_card": {
+    "disposition": "PASS",
+    "reason": "isolated_fixture",
+    "ids": ["fixture.echo"],
+    "hashes": ["CEE01EF1B877C8611BA4F614A2F028C3C6007DC8BF5F43F55ED13B95AC47FA3E"],
+    "numbers": ["16"],
+    "personality_plan_id": "plan_check_evidence"
+  },
+  "final_states": [
+    "PASS_CPU_MOUTH_RENDER_LOSSLESS",
+    "HOLD_CPU_MOUTH_RENDER_NOT_LOSSLESS",
+    "HOLD_CPU_MOUTH_CARD_INVALID",
+    "HOLD_CPU_MOUTH_PERSONALITY_POLARITY"
+  ],
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_object_keys": "sorted",
+    "cpu_repair_allowed": false,
+    "harness_substitution_allowed": false
+  }
+}

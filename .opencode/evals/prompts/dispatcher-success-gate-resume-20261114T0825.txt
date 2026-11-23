@@ -1,0 +1,8 @@
+Continue the assigned dispatcher fix using the source already read in this session. Architect authorizes the existing Python target in the path contract below. Apply a focused localcoder_patch, then use shell to run the L:\.venv\Scripts\python.exe AST syntax check for that file, and give a short visible result.
+
+Make task completion fail closed. Derive session_exports_terminal as a nonempty session list with all exports terminal. Derive tool_errors for any used tool with status other than completed. Derive shell_check_errors for any shell check with status other than completed or exit other than numeric zero. Require at least one shell check if any used tool is localcoder_add_python, localcoder_write_exact, localcoder_patch, write, edit, or patch. Require every observed check to pass. Build stable task_errors for timeout, unsuccessful session outcome, missing/nonterminal export, missing visible final text, tool error, failed check, and missing required check. task_succeeded is true only when all required conditions pass. Put task_succeeded, task_errors, tool_errors, and shell_check_errors into receipt.json; keep transport_exit_code separate; exit_code is zero only on task_succeeded. Make the journal result and next self-prompt reflect task_succeeded and task_errors without model reasoning.
+
+Keep the launch, polling, timeout, interruption, paths, model, and privacy behavior unchanged. The target path is:
+<localcoder_patch_paths>
+.opencode/evals/run_local_agent_task.py
+</localcoder_patch_paths>

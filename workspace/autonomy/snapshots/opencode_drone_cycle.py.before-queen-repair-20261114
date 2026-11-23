@@ -1,0 +1,84 @@
+from pathlib import Path
+
+
+def read_newest_journal_entry(path: Path = None, max_bytes: int = 65536) -> str:
+    """Read the last N bytes of a journal file and return text from the final heading to end.
+
+    Args:
+        path: Journal file path (default: E:\\Viv_Sandbox\\playground\\monologue\\viv_monologue.md).
+        max_bytes: Maximum bytes to read from end of file.
+
+    Returns:
+        Text from the last matching heading (## Monologue # or ## Engineering Entry #) to EOF.
+
+    Raises:
+        ValueError: If path is invalid, max_bytes <= 0, or no matching heading found.
+    """
+    if path is None:
+        path = Path(r'E:\Viv_Sandbox\playground\monologue\viv_monologue.md')
+
+    # Validate inputs
+    if not isinstance(path, Path):
+        raise ValueError(f"Invalid path type: {type(path)}")
+    if max_bytes <= 0:
+        raise ValueError(f"max_bytes must be positive, got {max_bytes}")
+
+    # Check file exists
+    if not path.exists():
+        raise ValueError(f"Journal file not found: {path}")
+
+    # Read only the last max_bytes from end of file
+    file_size = path.stat().st_size
+    read_size = min(max_bytes, file_size)
+
+    with open(path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    if len(content.encode('utf-8')) < max_bytes:
+        # File smaller than max_bytes, read entire content
+        return content
+
+    # Get the last max_bytes of content
+    tail_content = content[-read_size:]
+
+    # Find the last matching heading in the tail
+    import re
+    
+    headings = [
+        (r'## Monologue #', 'Monologue'),
+        (r'## Engineering Entry #', 'Engineering')
+    ]
+    
+    last_heading_match = None
+    for pattern, _name in headings:
+        match = re.search(pattern, tail_content)
+        if match:
+            last_heading_match = match
+
+    if last_heading_match is None:
+        raise ValueError(f"No matching heading found in journal content")
+
+    # Return text from the heading to end of tail
+    return tail_content[last_heading_match.start():]
+
+
+if __name__ == '__main__':
+    import ast
+    
+    # AST-parse and execute the function
+    source = open(__file__).read()
+    tree = ast.parse(source)
+    
+    # Find read_newest_journal_entry function
+    func_node = None
+    for node in ast.walk(tree):
+        if isinstance(node, ast.FunctionDef) and node.name == 'read_newest_journal_entry':
+            func_node = node
+            break
+    
+    if func_node is None:
+        print("ERROR: read_newest_journal_entry function not found")
+        exit(1)
+
+    # Execute the function with default arguments
+    result = ast.literal_eval(ast.unparse(func_node))  # This won't work directly, need to call it

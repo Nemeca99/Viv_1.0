@@ -1,0 +1,69 @@
+{
+  "schema_version": "viv_cpu_human_approved_production_adoption_contract_v1",
+  "receipt_schema": "viv_cpu_human_approved_production_adoption_receipt_v1",
+  "status": "candidate_only_until_explicit_architect_approval",
+  "purpose": "Bind verified candidate evidence to a human-approved, Rust-mediated production-generation request.",
+  "candidate_parent": {
+    "route_receipt_sha256": "68233FEB380E5B04AF701E2AA008A824F26DD2F95EECFD27C2E517DF41C54961",
+    "route_manifest_sha256": "A9859A8E555E8BAC7FAC29DBFECBF9B032010AA0721CD146FB45715B2BABF0E2",
+    "template_receipt_sha256": "DD1AE5673658CFFBAF67334FF7CFD35E2DA533719DF1DF63FBE088C434BE7B17",
+    "active_registry_sha256": "408E91A61D5A1C8780285EFDA0D41A7452806E7579D44925E489A84BDF54E82C"
+  },
+  "approval": {
+    "required_actor": "ARCHITECT",
+    "required_schema": "viv_cpu_human_approved_production_adoption_approval_v1",
+    "required_operations": [
+      "template_insertion",
+      "production_generation"
+    ],
+    "pointer_adoption_requires_second_approval": true,
+    "approval_self_hash_excludes": ["approval_sha256"]
+  },
+  "security": {
+    "rust_is_final_write_authority": true,
+    "real_rust_probe_required": true,
+    "expected_closed_state": "HOLD_SECURITY",
+    "autonomous_python_write_api_remains_closed": true,
+    "human_approval_api": "authorize_human_approved_python_write",
+    "human_approval_requires_proposal_hash_binding": true,
+    "human_approval_requires_self_hash": true,
+    "human_approval_pointer_adoption_forbidden": true,
+    "local_test_adapter_allowed_only_in_isolated_temp_root": true,
+    "model_may_not_supply_source_bytes": true,
+    "model_may_not_supply_paths": true
+  },
+  "transaction": {
+    "preserve_incumbent": true,
+    "new_generation_immutable": true,
+    "rollback_receipt_required": true,
+    "source_index_refresh_required": true,
+    "registry_before_hash_required": true,
+    "pointer_change_default": false,
+    "no_partial_publish": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_excluded": true,
+    "volatile_fields_excluded_from_comparison": [
+      "created_utc",
+      "run_id",
+      "decision_id",
+      "temporary_paths"
+    ]
+  },
+  "safety": {
+    "isolated_canary_requires": [
+      "--isolated",
+      "--no-publish"
+    ],
+    "production_activation_not_automatic": true,
+    "seed0_mutation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false,
+    "promotion": false,
+    "deployment": false
+  }
+}

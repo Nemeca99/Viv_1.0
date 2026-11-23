@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "repair_test": "Injected wrong first candidate; real local model repair on second attempt",
+  "repair_attempts": 2,
+  "held_out": {
+    "task_id": "6c10bcdd3a9a8cf9943b",
+    "code_sha256": "af1ea1ba01067451c6f08f0af7003aec665cd68e437e31e3e097694635432a1a",
+    "input": [
+      {
+        "passed": false
+      },
+      {
+        "passed": 0
+      },
+      {
+        "passed": []
+      },
+      {
+        "passed": true
+      }
+    ],
+    "output": {
+      "passed": 1,
+      "failed": 1,
+      "unknown": 2
+    },
+    "scope": "sandbox_execution_observation"
+  },
+  "isolation": [
+    {
+      "passed": true,
+      "input": {},
+      "expected": {
+        "uid": 65534,
+        "host_mount": false,
+        "network": false
+      },
+      "actual": {
+        "uid": 65534,
+        "host_mount": false,
+        "network": false
+      }
+    }
+  ],
+  "chat_model_decision": {
+    "reply": "I have analyzed the provided receipts. Here is the summary:",
+    "tool_request": {
+      "name": "run_capability",
+      "query": "{\"task_id\": \"6c10bcdd3a9a8cf9943b\", \"input\": [{\"passed\": true}, {\"passed\": false}, {\"passed\": \"true\"}, {}]}"
+    }
+  },
+  "chat_capability_receipt": {
+    "task_id": "6c10bcdd3a9a8cf9943b",
+    "code_sha256": "c964338a2dcb995dda19ed72da75da5f033d162727cfd23977ebea7539a41c78",
+    "input": [
+      {
+        "passed": true
+      },
+      {
+        "passed": false
+      },
+      {
+        "passed": "true"
+      },
+      {}
+    ],
+    "output": {
+      "passed": 1,
+      "failed": 1,
+      "unknown": 2
+    },
+    "scope": "sandbox_execution_observation"
+  },
+  "weights_changed": false,
+  "scope": "initial_worker_and_chat_integration"
+}

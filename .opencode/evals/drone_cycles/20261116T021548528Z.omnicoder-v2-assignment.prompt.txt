@@ -1,0 +1,23 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Add exactly one new Python file: `workspace/autonomy/typed_composition_receipt_audit_v2_candidate.py`. V1 remains immutable negative evidence. This V2 path is authorized by the Architect.
+
+Use only this tool sequence: read -> localcoder_add_python -> shell. Stop on a denied or failed tool; after the self-check report its exact result and stop. Do not retry, overwrite, or self-assign repairs.
+
+Call the read tool for `workspace/autonomy/candidate_typed_composition_executor_v2.py`. Use its actual receipt schema and canonical-hash implementation. The deterministic candidate SQLite path is `workspace/autonomy/learning/neural_runs/candidate_verified_functions.sqlite3`; open it with SQLite URI `mode=ro`, and never import or call any writer.
+
+The new file must implement `--self-check` and print exactly `PASS: 8 checks` with exit 0 only if all eight checks pass:
+1. Receipt schema equals `viv_typed_composition_execution_v1`.
+2. Top-level receipt SHA-256 recomputes by removing only `receipt_sha256`, then canonical JSON with `ensure_ascii=False`, sorted keys, separators `(',', ':')`, UTF-8; compare with `receipt_sha256`.
+3. SHA-256 of the candidate DB bytes equals the separate `candidate_store_sha256` field.
+4. Read-only SQLite `PRAGMA quick_check` returns `ok`.
+5. `relay_count` equals the number of `typed_relays` and exactly three distinct relay keys; query those keys from `typed_function_relays_v1`, require exactly three matching rows, and compare each row's receipt digest, versions, and types to its receipt edge.
+6. `execution_order` contains two unique version IDs, its last ID equals `entry_version_id`, `node_count` equals two, and the node-gate version IDs match the execution order.
+7. For every edge, relay receipt hash recomputes after removing only `receipt_sha256`; relay key recomputes after removing `relay_key` and `receipt_sha256`; `provider_output_type` equals `consumer_input_type` and both agree with the DB row.
+8. `candidate_store_read_only` is true; `promoted`, `live_viv_modified`, and `model_weights_changed` are false.
+
+Use receipt `workspace/autonomy/learning/neural_runs/composition_receipts/typed_composition_execution_20261116T001444Z_62c3fffb.json`. On failed checks, print specific FAIL lines and exit nonzero; never print the PASS marker on failure. Keep the DB read-only.
+
+After each tool result emit a visible `[DRONE SELF-PROMPT]` with `Agenda:`, `Verified facts:`, and `Next bounded action:`. After read, Verified facts must include literal `candidate_typed_composition_executor_v2` plus a fact actually present in that read; Next bounded action exactly `Call the localcoder_add_python tool`. After add, Verified facts must copy the returned file SHA; next exactly `Call the shell tool`. After shell, Verified facts must include exact shell output and Next bounded action `STOP`. Final starts `[DRONE]`, names the actual V2 filename and one source fact, and ends with the self-prompt fields and `Next bounded action: STOP`.
+
+[QUEEN → DRONE]
+The Architect authorized this exact V2 path. Work only in it. Do not modify V1, the executor, the database, model settings, Rust policy, or other files. Do not use shell except for the one exact self-check command below.

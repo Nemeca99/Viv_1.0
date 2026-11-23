@@ -1,0 +1,46 @@
+{
+  "schema": "viv-live-learning-cycle-v1",
+  "status": "PASS",
+  "source": "F:\\AI_Datasets\\domain_dbs\\wiki_physics.sqlite3",
+  "source_sha256": "9904ee2407b60f2a5fc68a4757d9a2afce6c49ada929d87db1879a08351f0b5d",
+  "overlay": "L:\\LocalCoder\\workspace\\autonomy\\.tmp\\physics_learning_overlay.sqlite3",
+  "before": {
+    "state": "PARTIAL",
+    "candidate_count": 1
+  },
+  "reject": {
+    "decision": "REJECT",
+    "reason": "CONTRADICTION",
+    "rows": [
+      {
+        "article_id": 622,
+        "title": "Rayleigh scattering",
+        "summary": "Rayleigh scattering ( ) is the scattering or deflection of light, or other electromagnetic radiation, by particles with a size much smaller than the wavelength of the radiation. For light frequencies well below the resonance frequency of the scattering medium (normal dispersion regime), the amount of scattering is inversely proportional to the fourth power of the wavelength (e.g., a blue color is scattered much more than a red color as light propagates through air). The phenomenon is named after the 19th-century British physicist Lord Rayleigh (John William Strutt).<ref>Lord Rayleigh (John Strutt) refined his theory of scattering in a series of papers; see Works.</ref>  and monochromatic rainbows.]] Rayleigh scattering results from the electric polarizability of the particles. The oscillating electric field of a light wave acts on the charges within a particle, causing them to move at the same frequency. The particle, therefore, becomes a small radiating dipole whose radiation we see as scattered light. The particles may be individual atoms or molecules; it can occur when light travels through transparent solids and liquids, but is most prominently seen in gases. Rayleigh scattering of sunlight in Earth's atmosphere causes diffuse sky radiation, which is the reason for the blue color of the daytime and twilight sky, as well as the yellowish to reddish hue of the low Sun. Sunlight is also subject to Raman scattering, which changes the rotational state of the molecules and gives rise to polarization effects.<ref></ref> Scattering by particles with a size comparable to, or larger than, the wavelength of the light is typically treated by the Mie theory, the discrete dipole approximation and other computational techniques. Rayleigh scattering applies to particles that are small with respect to wavelengths of light, and that are optically \"soft\" (i.e., with a refractive index close to 1). Anomalous diffraction theory applies to optically soft but larger particles. ==History== In 1869, while attempting to determine whether any contaminants remained in the purified air he used for infrared experiments, John Tyndall discovered that bright light scattering off nanoscopic particulates was faintly blue-tinted.<ref></ref> He conjectured that a similar scattering of sunlight gave the sky its blue hue, but he could not explain the preference for blue light, nor could atmospheric dust explain the intensity of the sky's color. In 1871, Lord Rayleigh published two papers on the color and polarization of skylight to quantify Tyndall's effect in water droplets in terms of the tiny particulates' volumes and refractive indices.<ref></ref><ref></ref><ref></ref> In 1881, with the benefit of James Clerk Maxwell's 1865 proof of the electromagnetic nature of light, he showed that his equations followed from electromagnetism.<ref></ref> In 1899, he showed that they applied to individual molecules, with terms containing particulate volumes and refractive indices replaced with terms for molecular polarizability.<ref></ref> ==Small size parameter approximation== The size of a scattering particle is often parameterized by the ratio <math display=\"block\"> x = \\frac{2 \\pi r} {\\lambda}</math> where r is the particle's radius, \u03bb is the wavelength of the light and x is a dimensionless parameter that characterizes the particle's interaction with the incident radiation such that: Objects with x \u226b 1 act as geometric shapes, scattering light according to their projected area. At the intermediate x \u2243 1 of Mie scattering, interference effects develop through phase variations over the object's surface. Rayleigh scattering applies to the case when the scattering particle is very small (x \u226a 1, with a particle size < 1/10 of wavelength<ref>[http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html Blue Sky and Rayleigh Scattering]. Hyperphysics.phy-astr.gsu.edu. Retrieved on 2018-08-06.</ref>) and the whole surface re-radiates with the same phase. Because the particles are randomly positioned, the scattered light arrives at a particular point with a random collection of phases; it is incoherent and the resulting intensity is just the sum of the squares of the amplitudes from each particle and therefore proportional to the inverse fourth power of the wavelength and the sixth power of its size.<ref name=\"Cornell\"></ref><ref></ref> The wavelength dependence is characteristic of dipole scattering<ref name=Cornell/> and the volume dependence will apply to any scatteri",
+        "subject": "sky",
+        "relation": "is_color",
+        "object": "blue"
+      }
+    ]
+  },
+  "commit": {
+    "decision": "COMMIT",
+    "row": {
+      "article_id": 700000001,
+      "title": "sky green color",
+      "summary": "Admitted candidate fact for bounded learning verification.",
+      "subject": "sky",
+      "relation": "has_candidate_label",
+      "object": "greenish",
+      "id": "staged-2"
+    },
+    "commit_receipt": {
+      "before_sha256": "096f87dd47938620df7f0129b2ff2d2845c80d76fc580616c12808f0dbd633c0",
+      "after_sha256": "62002af3e66af2bdf2801651143b1e08a7bfdb760d1368d63c9bccff515194a8"
+    }
+  },
+  "after_reload": {
+    "state": "CONTAINED",
+    "row_id": "700000001"
+  },
+  "source_unchanged": true
+}

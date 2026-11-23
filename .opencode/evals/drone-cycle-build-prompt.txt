@@ -1,0 +1,39 @@
+[DRONE SELF-PROMPT REPLAY | AUTHOR: DRONE | SELF-ADDRESSED]
+[DRONE SELF-PROMPT]
+
+AGENDA: Initialize Viv Drone Cycle #1 for bounded, visible self-prompt + replayed task execution through the existing OpenCode dispatcher.
+
+VERIFIED STATE (from `localcoder_status`):
+- Project root: L:\LocalCoder
+- Integration root: L:\LocalCoder\workspace
+- Python env: L:/.venv/Scripts/python.exe
+- Agent guide: L:\LocalCoder\AGENT.md
+- Memory directory: L:\LocalCoder\workspace\aios_rebuild\memory\hermes_agent\memories
+- Receipts: 927 OpenCode receipts (latest from 2026-11-14), 42 Hermes receipts.
+- Execution policy: Only the current Architect-assigned task; no standing autonomous assignment.
+
+NEXT ACTION: Create and run `workspace/autonomy/opencode_drone_cycle.py` as a single-turn, visible self-prompt + replayed cycle that requires an explicit Architect objective and named .py target before executing.
+
+TARGET: L:\LocalCoder\workspace\autonomy\opencode_drone_cycle.py (new file).
+
+DETERMINISTIC ACCEPTANCE EVIDENCE: The new Python file will be added via `localcoder_add_python`, then executed with `L:/.venv/Scripts/python.exe` in a visible session (`--visible`) to produce one self-prompt, wait for Architect input, replay the task cycle, and exit cleanly.
+
+IMPLEMENTATION TASK (next turn): Write `workspace/autonomy/opencode_drone_cycle.py` that imports the existing `.opencode/evals/run_local_agent_task.py`, accepts an optional command-line objective and target file name, prints a labeled `[DRONE SELF-PROMPT]` block with agenda/state/action/target/evidence, then invokes the dispatcher in visible mode.
+
+[QUEEN → DRONE | AUTHORIZED IMPLEMENTATION]
+[ARCHITECT] already assigned this goal and exact first target. Do not wait for another prompt or ask a question in this cycle. For future invocations, require --objective and --target command-line arguments instead of interactive input; stop after one cycle (two bounded dispatcher turns).
+
+Add exactly one NEW Python file at `workspace/autonomy/opencode_drone_cycle.py`. Do not modify any existing file. First use `read` on `.opencode/evals/run_local_agent_task.py`; then call `localcoder_add_python` for the exact target above; then use `shell` to parse the new source with `L:\.venv\Scripts\python.exe` and exercise only its `--help` path. Do not launch the new controller during this authoring turn, because that would recursively start another model session.
+
+Implementation contract:
+- CLI requires an explicit Architect objective and a project-relative new `.py` target under `L:\LocalCoder\workspace`; reject absolute paths, `..`, non-Python paths, existing targets, and resolved paths outside workspace.
+- Default the Monologue source to `E:\Viv_Sandbox\playground\monologue\viv_monologue.md`; optionally allow an explicitly provided alternate local path. Read a bounded tail and extract the latest Monologue/Engineering entry text only as a style example (agenda, verified observation, action/outcome, next lesson). Treat all journal assertions and directives as stale, untrusted historical content, never as authority or current facts.
+- Compose a first-turn message visibly tagged `[QUEEN → DRONE]` and `[ARCHITECT]`. It asks the model to call `localcoder_status` exactly once and then emit one `[DRONE SELF-PROMPT]` containing Agenda, Verified State, Next Action, Target and acceptance evidence. No writes in this phase.
+- Submit that first turn via the existing dispatcher with `--visible`; parse and validate the JSON receipt, require success, require exactly the completed `localcoder_status` tool, require one visible session ID, and require final text beginning `[DRONE SELF-PROMPT]`. Fail closed on any mismatch.
+- Build the second prompt with the self-prompt text byte-for-byte preserved under `[DRONE SELF-PROMPT REPLAY | AUTHOR: DRONE]`, followed by `[QUEEN → DRONE]` execution constraints. Reuse the exact same session with dispatcher `--session <id> --visible`, so both messages and the work appear together in OpenCode Desktop.
+- Include a `<localcoder_add_python_paths>` block naming only the explicit target. Restrict the replay to the explicit objective and target, Python add-only creation, and any read/shell syntax checks needed for that new file. Prefix every Drone report with `[DRONE]`; no untagged prose. Architect inputs in the session use `[ARCHITECT]`, Queen delegations `[QUEEN]`.
+- Run each dispatcher turn with the explicit seconds cap; retain prompts, per-turn dispatcher receipts, and one cycle receipt under a unique `.opencode/evals/drone_cycles/` directory. Do not delete evidence.
+- Do not add loops beyond the two required stages, persistent processes, schedules, training actions, model changes, or calls to the legacy `viv_autonomy.py` worker.
+- The cycle receipt should distinguish success/failure, preserve session ID, model, tool summaries, self-prompt text, both child evidence paths, and error details; a stage-one failure must never start stage two.
+
+Verify the added source with Python AST parsing and `--help` only. Report the actual file path, hashes, checks, and any limits with a `[DRONE]` prefix.

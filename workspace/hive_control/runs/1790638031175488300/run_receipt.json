@@ -1,0 +1,61 @@
+{
+  "artifact": {
+    "path": "runs\\1790638031175488300\\hello.py",
+    "sha256": "8faf9631785fb8737cf65f292ed8d3c8686a18dea415ed4c284d75c26aa24b42"
+  },
+  "fault_detection": {
+    "expected_parent_sha256": "aabd92042d969ed0235db7d37a1bc051cb1c124e7a5398f011efe5a9d2359d2a",
+    "observed_parent_sha256": "8faf9631785fb8737cf65f292ed8d3c8686a18dea415ed4c284d75c26aa24b42",
+    "repair_generations": 0,
+    "task2_passed": true,
+    "task3_stamp_count": 0
+  },
+  "fault_injected": true,
+  "foreman_snapshot_id": "3a01e585087222ca367708677eb05c6d20b17700cd36850881d6ee8d4d001af8",
+  "human_reply": {
+    "route": "Queen -> Viv -> task-003",
+    "value": "Hello from the Hive!"
+  },
+  "mind_generations": 0,
+  "mode": "fixture",
+  "python_role": "data transport only",
+  "rust_owns": [
+    "task state",
+    "OS entropy and master key",
+    "snapshot encryption",
+    "tool grants",
+    "artifact commits",
+    "receipt"
+  ],
+  "schema": "hive_rust_control_run_v1",
+  "scope": "isolated LocalCoder proof; no training, promotion, or deployment",
+  "security_checks": {},
+  "status": "HOLD_PARENT_FAULT_CAUGHT",
+  "swarm_generation_count": 0,
+  "tasks": [
+    {
+      "artifact_sha256": "a51affadaa26ab8b02af350e040e3917515829e161c111655a4bdee384dec702",
+      "checksum": "05ae99150dd2fb6790136c04a4b85fc922407a37d0919adc22b25e89a515ed3d",
+      "generation_count": 0,
+      "owner": "stamp-header",
+      "parent": null,
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-001",
+      "template_id": "python.module_docstring",
+      "template_source_sha256": "f13f73d2ad5457028632ac8af982012c047f7128f34c0c07eb25fa01c26511bd"
+    },
+    {
+      "artifact_sha256": "aabd92042d969ed0235db7d37a1bc051cb1c124e7a5398f011efe5a9d2359d2a",
+      "checksum": "738b055fe4b16ec35ad8d5c845606b45abe0e006c83188f7e8d32fbd26952bce",
+      "generation_count": 0,
+      "owner": "stamp-import",
+      "parent": "task-001",
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-002",
+      "template_id": "python.typing_final_import",
+      "template_source_sha256": "4cf00c254e8ae8a65f5174806728bbbbe379c0fc9da9863d1657b5a21a89d68b"
+    }
+  ]
+}

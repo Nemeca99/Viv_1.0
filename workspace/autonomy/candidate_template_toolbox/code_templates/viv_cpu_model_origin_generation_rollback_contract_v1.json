@@ -1,0 +1,88 @@
+{
+  "schema_version": "viv_cpu_model_origin_generation_rollback_contract_v1",
+  "receipt_schema": "viv_cpu_model_origin_generation_rollback_receipt_v1",
+  "purpose": "Bind current model-origin variable and template decisions to one isolated generated candidate, exercise the real runtime fault boundary, and roll back an isolated pointer view without touching production.",
+  "cli": {
+    "required": [
+      "--isolated",
+      "--no-publish"
+    ],
+    "additional_arguments": "forbidden",
+    "production_pointer": "never touched",
+    "production_generation_root": "never touched"
+  },
+  "parent_evidence": {
+    "unified_receipt_sha256": "E33A6E0EF3F01E2265D9389A7CC3D2983411BAA7D7E616CB40D1D31662A6037D",
+    "unified_candidate_checkpoint_sha256": "0652699B8EC09EFE3FD2256D8FEDE5682D056C48D5F4B6E0808D2E5F66D8ACE1",
+    "unified_candidate_state_sha256": "B3FD3694ABCDFAFA4029D9F69D6233A1AB105065168004D6D2DB072AACD29BBA",
+    "template_selection_receipt_sha256": "FDCF9235E14BE2398F104F59F857C730507DAB6250BF1CFFBD709DB905AEDDD7",
+    "registry_sha256": "FB04D7F30C94FCB281535EDD8470C6C223811F8234C1CD278BBF1F1243FC8FE5",
+    "fixture_echo_source_sha256": "8F84915A7C291691F6E5A5028B75E7E43573A68AF7F46CD91CE46CF1774FA82C"
+  },
+  "model_origin": {
+    "template_frame": "A|select|<template_slot>",
+    "variable_frame": "A|variable|<template_slot>|<declared_key>|<value_slot>",
+    "literal_values_forbidden": true,
+    "cpu_override_counts_as_model_failure": true,
+    "raw_frame_must_be_preserved": true,
+    "required_variable_keys": [
+      "message",
+      "suffix"
+    ],
+    "required_template": "fixture.echo"
+  },
+  "materialization": {
+    "authority": "CPU",
+    "source_body": "approved_current_template_bytes",
+    "mutable_region": "VARIABLES",
+    "imports_immutable": true,
+    "function_spans_immutable": true,
+    "submain_spans_immutable": true,
+    "resolved_literals_are_cpu_side": true,
+    "isolated_root_only": true
+  },
+  "runtime": {
+    "import_without_execution_required": true,
+    "explicit_execution_required": true,
+    "actual_byte_fault_required": true,
+    "fallback_or_rationalization_forbidden": true,
+    "rollback_target": "isolated_incumbent_generation",
+    "real_pointer_touched": false
+  },
+  "rust_probe": {
+    "operation": "hypothetical_production_python_write",
+    "expected_state": "HOLD_SECURITY",
+    "expected_allowed": false
+  },
+  "ledger": {
+    "actors": [
+      "MODEL",
+      "CPU_RULE",
+      "SCAFFOLD",
+      "RUST"
+    ],
+    "human_events_fabricated": false,
+    "semantic_identity_separate_from_representation": true
+  },
+  "final_states": [
+    "PASS_CPU_MODEL_ORIGIN_GENERATION_ROLLBACK_CANDIDATE_ONLY",
+    "HOLD_MODEL_ORIGIN_GENERATION_PREFLIGHT",
+    "HOLD_MODEL_ORIGIN_GENERATION_BINDING",
+    "HOLD_MODEL_ORIGIN_GENERATION_ROLLBACK",
+    "HOLD_MODEL_ORIGIN_GENERATION_SECURITY",
+    "HOLD_MODEL_ORIGIN_GENERATION_DETERMINISM",
+    "FAIL_MODEL_ORIGIN_GENERATION_PROTECTED_STATE"
+  ],
+  "invariants": {
+    "seed0_unchanged": true,
+    "live_model_unchanged": true,
+    "registry_unchanged": true,
+    "real_pointer_unchanged": true,
+    "protected_mains_unchanged": true,
+    "gpu_execution": false,
+    "production_generation_created": false,
+    "production_activation": false,
+    "promotion": false,
+    "deployment": false
+  }
+}

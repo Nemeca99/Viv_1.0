@@ -1,0 +1,12 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Task access: write
+[QUEEN] Chain milestone 1 verified: 32/32 node cases, 53/53 flag cases, 11/11 relay cases. I restored status/output checks dropped by your second patch; both attempts are preserved. Milestone 2 baseline is 3/35: forged node identities still pass. I added the early scalar/list type guards. Your task is the database and dependency binding block only.
+1. Use read on `L:/LocalCoder/workspace/autonomy/typed_composition_receipt_audit_v2_candidate.py` with offset 178 and limit 32.
+2. Use localcoder_patch to insert validation after version_ids equals execution_order, before Check 6 increments checks_passed. Open db_path in SQLite mode=ro, fetch version rows for the two execution_order IDs using SQL placeholders, then close. Join function_versions v to functions f USING(function_key); select v.version_id,v.task_id,f.function_name,v.code_sha256,v.tests_sha256,v.gate_status,f.language. Rows are tuples, not dictionaries. Require each node's task_id, function_name, code_sha256, tests_sha256 to equal its database row, gate_status='ALLOW', language='python'. Require an actual int node relay_count equal to number of existing rows whose consumer_version_id is that node. Use the existing rows list from Check 5. Require set(execution_order) equals all provider/consumer IDs from rows; every provider must precede its consumer. Require receipt.entry_function equals the last verified node function_name. Print check6_ failures and return 1 for mismatches; handle sqlite3.Error as failure. Do not compare entry_task_id to v.task_id: requested curriculum task and stored-version task can legitimately differ. Keep every other check unchanged.
+<localcoder_patch_paths>
+workspace/autonomy/typed_composition_receipt_audit_v2_candidate.py
+</localcoder_patch_paths>
+3. Use shell with exactly `L:/.venv/Scripts/python.exe -B L:/LocalCoder/.opencode/evals/verify_circuit_identity_20261117.py`.
+Give the actual score. Only this audit file may change; checks and database are frozen.
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized continued supervised goal chaining.

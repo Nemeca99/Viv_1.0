@@ -1,0 +1,181 @@
+{
+  "schema_version": "aios_ship_right_invariants_v1",
+  "surface_id": "aios_ship_right_v1",
+  "purpose": "Executable SHIP-RIGHT invariant pack. AIOS is a vessel: keel/computer/body/sensors/breaker. Not a chatbot with tools. Vacant modules ABSTAIN that law. Never fake PASS.",
+  "metaphor": {
+    "captain": "human Architect",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "computer_in_command": false,
+    "computer_mode": "candidate_only",
+    "keel": "Rust breaker / security_core.pyd",
+    "computer_body": "CPU internal; GPU optional external plasma",
+    "sensors": "internal state only; missing is ABSTAIN, not invented S_n",
+    "mouth": "render of CPU disposition; cannot flip HOLD/PASS",
+    "helm": "sealed wheel; deny shell/promote/rust_write"
+  },
+  "mode": {
+    "plan_only": true,
+    "read_only": true,
+    "candidate_only": true,
+    "aios_runtime_start": false,
+    "gpu_train_start": false,
+    "gpu_execution": false,
+    "daemon": false,
+    "production_write": false,
+    "organism_complete": false
+  },
+  "epistemic": ["PASS", "HOLD", "ABSTAIN"],
+  "vacant_module": "ABSTAIN",
+  "fail_soft_import": true,
+  "organism_complete": false,
+  "laws": [
+    {
+      "id": "01",
+      "name": "cpu_required_gpu_optional",
+      "statement": "CPU is required internal movement. GPU is optional plasma (aios_gpu_domain if present). Missing GPU does not take down helm/coder/watch/mailbox/skeleton/organism.",
+      "modules": {
+        "required": [],
+        "optional": ["lib.aios_gpu_domain"]
+      },
+      "missing_optional": "PASS_if_cpu_present",
+      "gpu_optional": true,
+      "cpu_required": true,
+      "cpu_requires_cuda": false
+    },
+    {
+      "id": "02",
+      "name": "gpu_external_cpu_internal",
+      "statement": "GPU is external movement; CPU is internal. Yield-before-speak. Captain train is not auto-killed.",
+      "modules": {
+        "required": ["lib.aios_gpu_domain"],
+        "optional": []
+      },
+      "missing_required": "ABSTAIN",
+      "movement": {"cpu": "internal", "gpu": "external"},
+      "yield_before_speak": "YIELD_THEN_SPEAK",
+      "captain_train": "HOLD_CAPTAIN_GPU",
+      "kill_pretrain": false
+    },
+    {
+      "id": "03",
+      "name": "rust_breaker",
+      "statement": "Rust is the breaker. No OS direct from Viv. 120V in equals 120V out. RID 120s is capture duration, not 120V.",
+      "modules": {
+        "required": ["lib.aios_rust_breaker_box"],
+        "optional": []
+      },
+      "missing_required": "ABSTAIN",
+      "viv_os_direct": false,
+      "voltage_in_equals_voltage_out": true,
+      "rid_120s_is_not_120v": true
+    },
+    {
+      "id": "04",
+      "name": "l_drive_home",
+      "statement": "L: is home. C: is never. Off-L needs Rust allow or a captain one-shot grant.",
+      "modules": {
+        "required": ["lib.aios_l_drive_containment"],
+        "optional": []
+      },
+      "missing_required": "ABSTAIN",
+      "home": "L:",
+      "os_plane": "C:",
+      "c_drive": "HOLD_C_DRIVE",
+      "off_l_without_leash": "HOLD_L_DRIVE"
+    },
+    {
+      "id": "05",
+      "name": "add_only_coder",
+      "statement": "Coder is add-only. No delete. No rename. Clone is the escape hatch.",
+      "modules": {
+        "required": ["lib.aios_coder"],
+        "optional": ["build_tools.cpu_candidate_assembler_v1"]
+      },
+      "missing_required": "ABSTAIN",
+      "delete": "HOLD_DELETE_FORBIDDEN",
+      "rename": "HOLD_RENAME_FORBIDDEN",
+      "clone": "ok"
+    },
+    {
+      "id": "06",
+      "name": "mouth_cannot_flip",
+      "statement": "Mouth render cannot flip HOLD/PASS. Paint, not payload.",
+      "modules": {
+        "required": ["lib.viv_cpu_mouth_render"],
+        "optional": ["lib.cpu_mouth_contract"]
+      },
+      "missing_required": "ABSTAIN",
+      "flip_hold_to_pass": false,
+      "flip_pass_to_hold": false
+    },
+    {
+      "id": "07",
+      "name": "sensors_abstain_not_fake",
+      "statement": "Sensors tell internal state. Missing observation => ABSTAIN, never a fake S_n. Stale live sample is HOLD_STALE plant status, not a law failure.",
+      "modules": {
+        "required": ["lib.aios_sensor_internal_state"],
+        "optional": []
+      },
+      "bind": "bind_sensors_to_internal_state",
+      "missing_required": "ABSTAIN",
+      "fake_s_n": false,
+      "stale_live_sample": "HOLD_STALE_plant_status_not_law_failure"
+    },
+    {
+      "id": "08",
+      "name": "same_toolbox",
+      "statement": "Builder and Viv share the same toolbox IDs. The 3104-function migration catalog is not admitted.",
+      "modules": {
+        "required": ["lib.aios_ship_skeleton"],
+        "optional": []
+      },
+      "missing_required": "ABSTAIN",
+      "catalog_identity": true,
+      "migration_catalog_admitted": false,
+      "migration_function_count_observed": 3104
+    },
+    {
+      "id": "09",
+      "name": "mailbox_preempts_watch",
+      "statement": "Captain mailbox preempts idle watch. Peek does not consume. Denied HOLD rows do not preempt.",
+      "modules": {
+        "required": ["lib.aios_captain_mailbox", "lib.viv_night_watch"],
+        "optional": []
+      },
+      "missing_required": "ABSTAIN"
+    },
+    {
+      "id": "10",
+      "name": "helm_deny",
+      "statement": "Helm denies shell, promote, and rust_write.",
+      "modules": {
+        "required": ["lib.aios_ship_helm"],
+        "optional": []
+      },
+      "missing_required": "ABSTAIN",
+      "deny_always": ["shell", "promote", "rust_write"]
+    }
+  ],
+  "forbidden": {
+    "write_night_orders": true,
+    "kill_pretrain": true,
+    "modify_pyd": true,
+    "start_organism": true,
+    "pulse_rid_120s": true,
+    "steal_gpu": true,
+    "claim_organism_complete": true
+  },
+  "protected_untouched": [
+    "Seed 0",
+    "template registry",
+    "active pointer",
+    "Rust security binary",
+    "NIGHT_ORDERS.json",
+    "live 86M pretrain"
+  ],
+  "cli": {
+    "runner": "build_tools/run_aios_ship_right_v1.py",
+    "allowed_commands": ["status"]
+  }
+}

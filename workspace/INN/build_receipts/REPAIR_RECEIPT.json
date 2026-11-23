@@ -1,0 +1,570 @@
+{
+  "created_utc": "2026-10-08T07:43:09.948018+00:00",
+  "status": "SOURCE_FIDELITY_VERIFIED",
+  "python": "L:\\.venv\\Scripts\\python.exe",
+  "source_hashes": {
+    "FarmScript.txt": "0b236df2a87f5a3e48e09b2aefd93c139df491a39bd1639a52ef653a437e48ae",
+    "Integrated Neural Network Architecture.xlsx": "62f4aec7f14fb085838f5aa2d4cd788e81cd7b8fe25154b4e0d51aca5cebadd5"
+  },
+  "implementation_hashes": {
+    "inn\\cli.py": "ddeaf89a8087a41b2d2e3bdfbdf917fe4efc56dd7bb0fe2a1c72aaf32064a01d",
+    "inn\\engine.py": "cecd53500fbb45377ac339a587f18864d6ba0dc2e7d1c96ed64e13e8100cb947",
+    "inn\\farm.py": "b646478dc0bcd46ae2b7e18c5d6c9a7b55d73fa80bcc0679349d8ff0981929d8",
+    "inn\\import_sheet.py": "7f491ad85f4ce55adeefe4f80b4de1775138f69d620f417a3680674e7d73caa0",
+    "inn\\sheet_engine.py": "58bb0a03301ef997ab2198a67b538cba44b902e5be72aac41c9edee2325387bc",
+    "inn\\transformer.py": "62582e2932faf6ae8d3d86e85fe879121209342fbac259a593a26afaf518e360",
+    "inn\\__init__.py": "d9b35696c6dc5d9b2b4b20ba49b09ed3b3dfd0fc008f408788dced04e7fefc14",
+    "architecture.py": "cc3f2f49756ee2ecc254ed0f87122be9b8aacaa640010262a697b502a27444f3",
+    "control.py": "6653ea39a5c4f46a8ff0369e41891385d8bd55e6e6c98903662f97f52e95f4ae",
+    "import_source.py": "6650ca88a587ab0f627df37ff462838f089588d36cbd570adb1150858751459c",
+    "run.py": "286c3a77258ad7eefb968746419155df4592298b7dc40ce2c18abbb209b7592a",
+    "README.md": "715e927682b3026222485b3844a52d5fc8c50ee6dd9c3f0792aefaf830f2d6df",
+    "Run.ps1": "e8f99d6794e5cf5372b22f5a866056b33324f3d1ccadd08055731993d4b14b1e",
+    "farm_rust\\src\\lib.rs": "64bd9406d464b9a3fe3c35218b0de23889db4711eb8c86f094937de240f26ed9",
+    "farm_rust\\target\\release\\inn_farm.dll": "69aed9843cacfd7def9ab742d646f4e7cda09f764ba985d77ca8d9086870e571"
+  },
+  "evidence": {
+    "source-100000.json": {
+      "status": "PASS",
+      "steps": 100000,
+      "seed": 1,
+      "seconds": 34.393994199999725,
+      "steps_per_second": 2907.484353765484,
+      "initial_tick": 4872,
+      "final_tick": 104872,
+      "harvests": 3360,
+      "decays": 18325
+    },
+    "source-repair.json": {
+      "status": "PASS",
+      "source_steps": 2000,
+      "log_rows": 4577,
+      "log_columns": 31,
+      "all_action_transition_world_rows_match": true,
+      "source_resume_steps": 1000,
+      "original_replay_transitions_matched": 128,
+      "original_hard_reset_matched": true
+    },
+    "architecture.json": {
+      "formulas": 780,
+      "matched": 780,
+      "errors": [],
+      "changed_input_recalculation": "PASS: Pesonal B1=0 propagates to E7=0 and B13=BROKEN"
+    },
+    "cli-continuity.json": {
+      "status": "PASS",
+      "automatic_resume": true,
+      "steps": 16,
+      "history_rows": 2048,
+      "every_action_logged": true
+    },
+    "learning-evaluation.json": {
+      "status": "COMPLETE",
+      "training_steps": 100000,
+      "evaluation_steps_per_seed": 10000,
+      "seeds": [
+        101,
+        202,
+        303,
+        404,
+        505,
+        606,
+        707,
+        808
+      ],
+      "evaluation": "fresh paired farm for every seed; epsilon=0; engine learn/outcome updates frozen",
+      "elapsed_seconds": 101.61095339999974,
+      "policies": [
+        {
+          "policy": "zero",
+          "per_seed": [
+            {
+              "seed": 101,
+              "steps": 10000,
+              "harvests": 19,
+              "decays": 606,
+              "lifetime": 19.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -6889.800000000219
+            },
+            {
+              "seed": 202,
+              "steps": 10000,
+              "harvests": 22,
+              "decays": 592,
+              "lifetime": 22.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -6864.200000000214
+            },
+            {
+              "seed": 303,
+              "steps": 10000,
+              "harvests": 22,
+              "decays": 612,
+              "lifetime": 22.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -6853.200000000204
+            },
+            {
+              "seed": 404,
+              "steps": 10000,
+              "harvests": 28,
+              "decays": 601,
+              "lifetime": 28.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -6813.4000000002015
+            },
+            {
+              "seed": 505,
+              "steps": 10000,
+              "harvests": 25,
+              "decays": 611,
+              "lifetime": 25.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -6821.800000000207
+            },
+            {
+              "seed": 606,
+              "steps": 10000,
+              "harvests": 19,
+              "decays": 604,
+              "lifetime": 19.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -6884.800000000212
+            },
+            {
+              "seed": 707,
+              "steps": 10000,
+              "harvests": 18,
+              "decays": 612,
+              "lifetime": 18.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -6874.000000000202
+            },
+            {
+              "seed": 808,
+              "steps": 10000,
+              "harvests": 29,
+              "decays": 598,
+              "lifetime": 29.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -6840.600000000217
+            }
+          ],
+          "means": {
+            "harvests": 22.75,
+            "decays": 604.5,
+            "lifetime": 22.75,
+            "bank": 0.0,
+            "reward": -6855.22500000021
+          }
+        },
+        {
+          "policy": "sheet_checkpoint",
+          "per_seed": [
+            {
+              "seed": 101,
+              "steps": 10000,
+              "harvests": 100,
+              "decays": 2230,
+              "lifetime": 100.0,
+              "bank": 96.0,
+              "active": 2,
+              "max_plots": 2,
+              "reward": -1241.999999999994
+            },
+            {
+              "seed": 202,
+              "steps": 10000,
+              "harvests": 100,
+              "decays": 2230,
+              "lifetime": 100.0,
+              "bank": 96.0,
+              "active": 2,
+              "max_plots": 2,
+              "reward": -1241.999999999994
+            },
+            {
+              "seed": 303,
+              "steps": 10000,
+              "harvests": 100,
+              "decays": 2230,
+              "lifetime": 100.0,
+              "bank": 96.0,
+              "active": 2,
+              "max_plots": 2,
+              "reward": -1241.999999999994
+            },
+            {
+              "seed": 404,
+              "steps": 10000,
+              "harvests": 100,
+              "decays": 2230,
+              "lifetime": 100.0,
+              "bank": 96.0,
+              "active": 2,
+              "max_plots": 2,
+              "reward": -1241.999999999994
+            },
+            {
+              "seed": 505,
+              "steps": 10000,
+              "harvests": 100,
+              "decays": 2230,
+              "lifetime": 100.0,
+              "bank": 96.0,
+              "active": 2,
+              "max_plots": 2,
+              "reward": -1241.999999999994
+            },
+            {
+              "seed": 606,
+              "steps": 10000,
+              "harvests": 100,
+              "decays": 2230,
+              "lifetime": 100.0,
+              "bank": 96.0,
+              "active": 2,
+              "max_plots": 2,
+              "reward": -1241.999999999994
+            },
+            {
+              "seed": 707,
+              "steps": 10000,
+              "harvests": 100,
+              "decays": 2230,
+              "lifetime": 100.0,
+              "bank": 96.0,
+              "active": 2,
+              "max_plots": 2,
+              "reward": -1241.999999999994
+            },
+            {
+              "seed": 808,
+              "steps": 10000,
+              "harvests": 100,
+              "decays": 2230,
+              "lifetime": 100.0,
+              "bank": 96.0,
+              "active": 2,
+              "max_plots": 2,
+              "reward": -1241.999999999994
+            }
+          ],
+          "means": {
+            "harvests": 100,
+            "decays": 2230,
+            "lifetime": 100.0,
+            "bank": 96.0,
+            "reward": -1241.999999999994
+          }
+        },
+        {
+          "policy": "after_100000_training_steps",
+          "per_seed": [
+            {
+              "seed": 101,
+              "steps": 10000,
+              "harvests": 0,
+              "decays": 1250,
+              "lifetime": 0.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -750.0000000000169
+            },
+            {
+              "seed": 202,
+              "steps": 10000,
+              "harvests": 0,
+              "decays": 1250,
+              "lifetime": 0.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -750.0000000000169
+            },
+            {
+              "seed": 303,
+              "steps": 10000,
+              "harvests": 0,
+              "decays": 1250,
+              "lifetime": 0.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -750.0000000000169
+            },
+            {
+              "seed": 404,
+              "steps": 10000,
+              "harvests": 0,
+              "decays": 1250,
+              "lifetime": 0.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -750.0000000000169
+            },
+            {
+              "seed": 505,
+              "steps": 10000,
+              "harvests": 0,
+              "decays": 1250,
+              "lifetime": 0.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -750.0000000000169
+            },
+            {
+              "seed": 606,
+              "steps": 10000,
+              "harvests": 0,
+              "decays": 1250,
+              "lifetime": 0.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -750.0000000000169
+            },
+            {
+              "seed": 707,
+              "steps": 10000,
+              "harvests": 0,
+              "decays": 1250,
+              "lifetime": 0.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -750.0000000000169
+            },
+            {
+              "seed": 808,
+              "steps": 10000,
+              "harvests": 0,
+              "decays": 1250,
+              "lifetime": 0.0,
+              "bank": 0.0,
+              "active": 1,
+              "max_plots": 1,
+              "reward": -750.0000000000169
+            }
+          ],
+          "means": {
+            "harvests": 0,
+            "decays": 1250,
+            "lifetime": 0.0,
+            "bank": 0.0,
+            "reward": -750.0000000000169
+          }
+        }
+      ],
+      "interpretation": "Primary metrics are mean lifetime production, harvests, and decays. Eight seeds are an initial behavioral check, not a broad generalization claim."
+    },
+    "gate-threshold-sweep.json": [
+      {
+        "threshold": 0.5,
+        "per_seed": [
+          {
+            "seed": 101,
+            "harvests": 0,
+            "decays": 625,
+            "lifetime": 0.0,
+            "bank": 0.0
+          },
+          {
+            "seed": 202,
+            "harvests": 0,
+            "decays": 625,
+            "lifetime": 0.0,
+            "bank": 0.0
+          },
+          {
+            "seed": 303,
+            "harvests": 0,
+            "decays": 625,
+            "lifetime": 0.0,
+            "bank": 0.0
+          },
+          {
+            "seed": 404,
+            "harvests": 0,
+            "decays": 625,
+            "lifetime": 0.0,
+            "bank": 0.0
+          }
+        ],
+        "mean_harvests": 0,
+        "mean_decays": 625
+      },
+      {
+        "threshold": 0.45,
+        "per_seed": [
+          {
+            "seed": 101,
+            "harvests": 0,
+            "decays": 999,
+            "lifetime": 0.0,
+            "bank": 0.0
+          },
+          {
+            "seed": 202,
+            "harvests": 0,
+            "decays": 999,
+            "lifetime": 0.0,
+            "bank": 0.0
+          },
+          {
+            "seed": 303,
+            "harvests": 0,
+            "decays": 999,
+            "lifetime": 0.0,
+            "bank": 0.0
+          },
+          {
+            "seed": 404,
+            "harvests": 0,
+            "decays": 999,
+            "lifetime": 0.0,
+            "bank": 0.0
+          }
+        ],
+        "mean_harvests": 0,
+        "mean_decays": 999
+      },
+      {
+        "threshold": 0.4,
+        "per_seed": [
+          {
+            "seed": 101,
+            "harvests": 0,
+            "decays": 714,
+            "lifetime": 0.0,
+            "bank": 0.0
+          },
+          {
+            "seed": 202,
+            "harvests": 0,
+            "decays": 714,
+            "lifetime": 0.0,
+            "bank": 0.0
+          },
+          {
+            "seed": 303,
+            "harvests": 0,
+            "decays": 714,
+            "lifetime": 0.0,
+            "bank": 0.0
+          },
+          {
+            "seed": 404,
+            "harvests": 0,
+            "decays": 714,
+            "lifetime": 0.0,
+            "bank": 0.0
+          }
+        ],
+        "mean_harvests": 0,
+        "mean_decays": 714
+      }
+    ],
+    "learned-v9-evaluation.json": {
+      "status": "PASS",
+      "training_steps": 20000,
+      "evaluation_steps_per_seed": 10000,
+      "seeds": [
+        101,
+        202,
+        303,
+        404,
+        505,
+        606,
+        707,
+        808
+      ],
+      "epsilon": 0,
+      "mean_harvests": 1111,
+      "mean_decays": 0,
+      "per_seed": [
+        {
+          "seed": 101,
+          "harvests": 1111,
+          "decays": 0,
+          "lifetime": 1111.0,
+          "bank": 165.0
+        },
+        {
+          "seed": 202,
+          "harvests": 1111,
+          "decays": 0,
+          "lifetime": 1111.0,
+          "bank": 165.0
+        },
+        {
+          "seed": 303,
+          "harvests": 1111,
+          "decays": 0,
+          "lifetime": 1111.0,
+          "bank": 165.0
+        },
+        {
+          "seed": 404,
+          "harvests": 1111,
+          "decays": 0,
+          "lifetime": 1111.0,
+          "bank": 165.0
+        },
+        {
+          "seed": 505,
+          "harvests": 1111,
+          "decays": 0,
+          "lifetime": 1111.0,
+          "bank": 165.0
+        },
+        {
+          "seed": 606,
+          "harvests": 1111,
+          "decays": 0,
+          "lifetime": 1111.0,
+          "bank": 165.0
+        },
+        {
+          "seed": 707,
+          "harvests": 1111,
+          "decays": 0,
+          "lifetime": 1111.0,
+          "bank": 165.0
+        },
+        {
+          "seed": 808,
+          "harvests": 1111,
+          "decays": 0,
+          "lifetime": 1111.0,
+          "bank": 165.0
+        }
+      ],
+      "policy": "learned-v9; TD learning rate 0.01; learning frozen during evaluation"
+    }
+  },
+  "logged_run": "runs/20261008T072039584171Z",
+  "limitation": "After 100000 extra training steps the frozen policy scored zero harvests across eight held-out seeds. Useful learning is not achieved; the source update/selection algorithm requires repair. The added neural Transformer remains experimental.",
+  "supersedes": "BUILD_RECEIPT.json: previous default and completion claims",
+  "backup": "repair_backups/20261008T020749"
+}

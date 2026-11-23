@@ -1,0 +1,19 @@
+Architect authorizes this small change in the existing Python dispatcher. Use the tools in this exact sequence: call the read tool first on .opencode/evals/run_local_agent_task.py, then call the localcoder_patch tool with the single replacement below, then call the shell tool with the AST syntax check.
+
+OldString:
+    task_errors = []
+    if timed_out: task_errors.append('timed_out')
+
+NewString:
+    task_errors = []
+    blocked_tool_response = any(text.strip().lower().startswith('blocked ') for text in visible_final_text)
+    if not tools_used: task_errors.append('tool_action_missing')
+    if blocked_tool_response: task_errors.append('tool_request_blocked')
+    if timed_out: task_errors.append('timed_out')
+
+AST command for the last shell call: & 'L:\.venv\Scripts\python.exe' -c "import ast; from pathlib import Path; ast.parse(Path('.opencode/evals/run_local_agent_task.py').read_text(encoding='utf-8')); print('PASS: dispatcher AST syntax')"
+
+The single authorized patch path is:
+<localcoder_patch_paths>
+.opencode/evals/run_local_agent_task.py
+</localcoder_patch_paths>

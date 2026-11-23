@@ -1,0 +1,194 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "work_final_or_body_gate_verification_failed",
+  "plan_validation": "plan_matches_current_architect_assignment",
+  "final_validation": "final_report_missing_drone_tag",
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "required_tools": [
+    "localcoder_status"
+  ],
+  "session_id": "ses_e2434246affewfTdXN5bxSAa64",
+  "visible_pre_work_self_prompt": "[DRONE PLAN ONLY | NO TOOLS]\n[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\n[ARCHITECT] Use the `localcoder_status` tool exactly once and report the returned project_root.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect assigned this exact bounded work in the current user message. The explicitly named tool sequence is `localcoder_status`. It is authorized only for this assignment, subject to OpenCode policy and the Rust Body gate. This is not permission to expand the target or sequence.\n\n[QUEEN → DRONE]\nThis turn is planning only; the runtime hides every tool. Return a visible `[DRONE SELF-PROMPT]` with fields Agenda, Verified facts, Next bounded action. State that no repository facts have been checked in this turn. The next action must name the first authorized tool `localcoder_status` and, if a target path is in the assignment, repeat that exact path. Do not say to stop, wait, or request permission for this already assigned first tool. A final STOP clause in the assignment applies only after its work is complete. Stop after the self-prompt.\n\n[DRONE SELF-PROMPT]\nAgenda: Execute localcoder_status once and report project_root from result.\nVerified facts: None checked yet; no repository facts verified in this turn.\nNext bounded action: Call `localcoder_status` tool exactly once, then report returned project_root before stopping.",
+  "assignment_sha256": "e1da94ad2779830020d36e0cdcedc43234d340a2aca242eef2128f2c3f7fdaff",
+  "plan": {
+    "elapsed_seconds": 35.813,
+    "exit_code": 1,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e2434246affewfTdXN5bxSAa64"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "01d9b067bf0928f08f9f13947266373e7d275ed283424989b412827e95d20150",
+    "tools": [],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE PLAN ONLY | NO TOOLS]\n[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\n[ARCHITECT] Use the `localcoder_status` tool exactly once and report the returned project_root.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect assigned this exact bounded work in the current user message. The explicitly named tool sequence is `localcoder_status`. It is authorized only for this assignment, subject to OpenCode policy and the Rust Body gate. This is not permission to expand the target or sequence.\n\n[QUEEN → DRONE]\nThis turn is planning only; the runtime hides every tool. Return a visible `[DRONE SELF-PROMPT]` with fields Agenda, Verified facts, Next bounded action. State that no repository facts have been checked in this turn. The next action must name the first authorized tool `localcoder_status` and, if a target path is in the assignment, repeat that exact path. Do not say to stop, wait, or request permission for this already assigned first tool. A final STOP clause in the assignment applies only after its work is complete. Stop after the self-prompt.\n\n[DRONE SELF-PROMPT]\nAgenda: Execute localcoder_status once and report project_root from result.\nVerified facts: None checked yet; no repository facts verified in this turn.\nNext bounded action: Call `localcoder_status` tool exactly once, then report returned project_root before stopping."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T204212471272Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T204212384695Z.prompt.txt"
+  },
+  "work": {
+    "elapsed_seconds": 49.218,
+    "exit_code": 0,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e2434246affewfTdXN5bxSAa64"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "d42cb85348177e93338bc5fb61c2f911df5140babda268b82961c066f12b55de",
+    "tools": [
+      {
+        "tool": "localcoder_status",
+        "status": "completed"
+      },
+      {
+        "tool": "shell",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [
+      {
+        "status": "completed",
+        "exit": 0,
+        "output": "Python 3.12.10"
+      }
+    ],
+    "task_succeeded": true,
+    "task_errors": [],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": true,
+    "final_text": [
+      "[DRONE PLAN ONLY | NO TOOLS]\n[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\n[ARCHITECT] Use the `localcoder_status` tool exactly once and report the returned project_root.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect assigned this exact bounded work in the current user message. The explicitly named tool sequence is `localcoder_status`. It is authorized only for this assignment, subject to OpenCode policy and the Rust Body gate. This is not permission to expand the target or sequence.\n\n[QUEEN → DRONE]\nThis turn is planning only; the runtime hides every tool. Return a visible `[DRONE SELF-PROMPT]` with fields Agenda, Verified facts, Next bounded action. State that no repository facts have been checked in this turn. The next action must name the first authorized tool `localcoder_status` and, if a target path is in the assignment, repeat that exact path. Do not say to stop, wait, or request permission for this already assigned first tool. A final STOP clause in the assignment applies only after its work is complete. Stop after the self-prompt.\n\n[DRONE SELF-PROMPT]\nAgenda: Execute localcoder_status once and report project_root from result.\nVerified facts: None checked yet; no repository facts verified in this turn.\nNext bounded action: Call `localcoder_status` tool exactly once, then report returned project_root before stopping."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T204248390164Z",
+    "wrapper_exit": 0,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T204248305539Z.prompt.txt"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794688942000-4ce0fff2-b431-447a-96af-abc350009892-body-gate.json",
+      "sha256": "fc732f10b30d8829521cd06ed11056c31740fe5e42f8a3f3aa41f41863718ad5",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794688976291-f324d84f-b267-4497-9eb5-8a6a9e22e148-body-gate.json",
+      "sha256": "72e73a2d360f763a43521a48b1de0e7e6956b1426bc3e8c2d70c042d7cbe232b",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794688985784-b0cade72-b4dd-4de1-ae30-42da69a9296a-body-gate.json",
+      "sha256": "7533e5a2d6b7177634e6f2cc5eeb730297cbdf03276f758c0a67945894e297bd",
+      "source": "tool:localcoder_status",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794688991199-12bbdfd4-7f57-4cf9-a33e-f7e9701ed259-body-gate.json",
+      "sha256": "6d9e2864a866afb23f861744c0125166890ad72cd4ad04ba29b06b529a07ee25",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794689002260-34121a23-6b8d-41bb-b5f4-6da573622fa6-body-gate.json",
+      "sha256": "ebfcb7cd0f01a6d78179fda3fed6cd38109576b4028b5e2478bfca69aabac9e2",
+      "source": "tool:shell",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794689007635-923ce2d7-0a15-4e65-8bb9-c1547c16502e-body-gate.json",
+      "sha256": "a500bc60111a7f5484971f3017bed0f40e71542956b6c6d586f7c85f1bc3ff27",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    }
+  ]
+}

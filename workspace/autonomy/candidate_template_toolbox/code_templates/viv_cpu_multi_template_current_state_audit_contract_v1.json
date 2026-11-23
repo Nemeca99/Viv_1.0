@@ -1,0 +1,18 @@
+{
+  "schema_version": "viv_cpu_multi_template_current_state_audit_contract_v1",
+  "purpose": "reconcile_historical_multi_template_evidence_with_current_authority",
+  "read_only": true,
+  "historical_receipts_immutable": true,
+  "current_model_replay_required_after_source_or_registry_drift": true,
+  "model_capability_inference_permitted": false,
+  "active_registry_ids_required": ["fixture.echo", "fixture.echo_companion"],
+  "active_pointer_adoption_required": false,
+  "production_mutation": false,
+  "seed_mutation": false,
+  "rust_authority_change": false,
+  "dispositions": [
+    "PASS_CURRENT_STATE_RECONCILIATION",
+    "HOLD_MULTI_TEMPLATE_CURRENT_REPLAY_REQUIRED",
+    "HOLD_MULTI_TEMPLATE_HISTORICAL_RECEIPT"
+  ]
+}

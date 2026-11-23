@@ -1,0 +1,290 @@
+{
+  "assignment": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nTask access: write\nRouter bounds JSON: {\"task_class\":\"build\",\"lane_ids\":[\"drone\"],\"max_turns_per_lane\":1}\nAcceptance JSON: {\"version\":1,\"kind\":\"artifacts\",\"artifacts\":[\".opencode/evals/completion-fixture/value.txt\",\".opencode/evals/completion-fixture/check.py\"],\"checks\":[{\"id\":\"behavior-and-readonly-scope\",\"argv\":[\"/usr/local/bin/python\",\"-B\",\".opencode/evals/completion-fixture/check.py\"],\"timeout_seconds\":5,\"inputs\":[\".opencode/evals/completion-fixture/check.py\"]}]}\nBounded control and verification test of existing artifacts. No source edits. Use aios_router_open_build_task. Then use aios_router_accept_self_prompt for lane drone turn 0 with Agenda, Verified facts, Next bounded action. Then use aios_router_record_turn_result for lane drone turn 0: artifacts are ready for deterministic verification, no success is claimed yet. Then use aios_router_complete_lane for lane drone with a nonempty receipt; Rust must run the frozen checks. Finally use aios_router_queen_summary and report the actual state and verification hash, then stop. The frontend supplies trusted session/task/assignment bindings.",
+  "contract": {
+    "version": 1,
+    "kind": "artifacts",
+    "artifacts": [
+      ".opencode/evals/completion-fixture/value.txt",
+      ".opencode/evals/completion-fixture/check.py"
+    ],
+    "checks": [
+      {
+        "id": "behavior-and-readonly-scope",
+        "argv": [
+          "/usr/local/bin/python",
+          "-B",
+          ".opencode/evals/completion-fixture/check.py"
+        ],
+        "timeout_seconds": 5,
+        "inputs": [
+          ".opencode/evals/completion-fixture/check.py"
+        ]
+      }
+    ]
+  },
+  "observations": [
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout"
+  ],
+  "session": {
+    "id": "ses_e120ccf1bffeZ3jmHHGkUnSASl",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "model": {
+      "id": "omnicoder-2-9b",
+      "providerID": "lmstudio",
+      "variant": "default"
+    },
+    "cost": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "time": {
+      "created": 1794993500512,
+      "updated": 1794993500512
+    },
+    "title": "Bounded Rust completion gate check",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "prompt": {
+    "data": {
+      "id": "msg_1edf331aa001LOa7ZG9LZ5vvH5",
+      "sessionID": "ses_e120ccf1bffeZ3jmHHGkUnSASl",
+      "time": {
+        "created": 1794993501930
+      },
+      "type": "user",
+      "payload": {
+        "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nTask access: write\nRouter bounds JSON: {\"task_class\":\"build\",\"lane_ids\":[\"drone\"],\"max_turns_per_lane\":1}\nAcceptance JSON: {\"version\":1,\"kind\":\"artifacts\",\"artifacts\":[\".opencode/evals/completion-fixture/value.txt\",\".opencode/evals/completion-fixture/check.py\"],\"checks\":[{\"id\":\"behavior-and-readonly-scope\",\"argv\":[\"/usr/local/bin/python\",\"-B\",\".opencode/evals/completion-fixture/check.py\"],\"timeout_seconds\":5,\"inputs\":[\".opencode/evals/completion-fixture/check.py\"]}]}\nBounded control and verification test of existing artifacts. No source edits. Use aios_router_open_build_task. Then use aios_router_accept_self_prompt for lane drone turn 0 with Agenda, Verified facts, Next bounded action. Then use aios_router_record_turn_result for lane drone turn 0: artifacts are ready for deterministic verification, no success is claimed yet. Then use aios_router_complete_lane for lane drone with a nonempty receipt; Rust must run the frozen checks. Finally use aios_router_queen_summary and report the actual state and verification hash, then stop. The frontend supplies trusted session/task/assignment bindings."
+      },
+      "delivery": "steer"
+    }
+  },
+  "context": {
+    "data": [
+      {
+        "id": "msg_1edf331aa001LOa7ZG9LZ5vvH5",
+        "time": {
+          "created": 1794993503563
+        },
+        "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nTask access: write\nRouter bounds JSON: {\"task_class\":\"build\",\"lane_ids\":[\"drone\"],\"max_turns_per_lane\":1}\nAcceptance JSON: {\"version\":1,\"kind\":\"artifacts\",\"artifacts\":[\".opencode/evals/completion-fixture/value.txt\",\".opencode/evals/completion-fixture/check.py\"],\"checks\":[{\"id\":\"behavior-and-readonly-scope\",\"argv\":[\"/usr/local/bin/python\",\"-B\",\".opencode/evals/completion-fixture/check.py\"],\"timeout_seconds\":5,\"inputs\":[\".opencode/evals/completion-fixture/check.py\"]}]}\nBounded control and verification test of existing artifacts. No source edits. Use aios_router_open_build_task. Then use aios_router_accept_self_prompt for lane drone turn 0 with Agenda, Verified facts, Next bounded action. Then use aios_router_record_turn_result for lane drone turn 0: artifacts are ready for deterministic verification, no success is claimed yet. Then use aios_router_complete_lane for lane drone with a nonempty receipt; Rust must run the frozen checks. Finally use aios_router_queen_summary and report the actual state and verification hash, then stop. The frontend supplies trusted session/task/assignment bindings.",
+        "type": "user"
+      },
+      {
+        "id": "msg_1edf33d5a001G3F6XkZhg1NpSP",
+        "time": {
+          "created": 1794993525658,
+          "firstToken": 1794993533197,
+          "streamed": 1794993537963,
+          "completed": 1794993539658
+        },
+        "type": "assistant",
+        "agent": "build",
+        "model": {
+          "id": "omnicoder-2-9b",
+          "providerID": "lmstudio",
+          "variant": "default"
+        },
+        "content": [
+          {
+            "type": "tool",
+            "id": "call_toolbridge_1",
+            "name": "aios_router_lookup_drone_seed",
+            "executed": false,
+            "state": {
+              "status": "completed",
+              "input": {
+                "agent_id": "localcoder-viv-drone-01"
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "{\"ok\":true,\"result\":{\"agent_id\":\"localcoder-viv-drone-01\",\"created_at_ms\":1794820846003,\"seed\":915703687,\"style_profile\":{\"detail_percent\":44,\"directness_percent\":74,\"playfulness_percent\":9,\"warmth_percent\":58}}}"
+                }
+              ],
+              "metadata": {
+                "truncated": false
+              }
+            },
+            "time": {
+              "created": 1794993533201,
+              "ran": 1794993533213,
+              "completed": 1794993538037
+            }
+          }
+        ],
+        "snapshot": {
+          "start": "ed7e3a131df0299210c7b5a7df2583bfc523120b",
+          "end": "6663a68f2beaf054291210d9855c9c35aa1a4eff",
+          "files": [
+            "LocalCoder/.opencode/receipts/1794993532456-25433189-9efd-499c-a5ba-330ed6411074.json",
+            "LocalCoder/.opencode/receipts/1794993532471-4d0bce78-ca13-41eb-a676-72e4e83c2835.json",
+            "LocalCoder/.opencode/receipts/1794993537989-a29ca988-7168-4569-a0c5-091226ca76bc-body-gate.json",
+            "LocalCoder/.opencode/receipts/1794993537997-bbd93e9b-31aa-4da1-afac-6716653ab5f2.json",
+            "LocalCoder/.opencode/receipts/1794993538030-6bde8a21-83d6-4b28-a046-8e960ba77968.json"
+          ]
+        },
+        "finish": "tool-calls",
+        "rawFinish": "tool_calls",
+        "cost": 0,
+        "tokens": {
+          "input": 7937,
+          "output": 40,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        }
+      },
+      {
+        "id": "msg_1edf3ca5a0013lwekRH0zuADxv",
+        "metadata": {
+          "notice": "instructions",
+          "instructionSources": [
+            "core/mcp-guidance"
+          ]
+        },
+        "time": {
+          "created": 1794993539674
+        },
+        "type": "system",
+        "text": "New MCP server instructions are available in addition to those previously listed:\n  <server name=\"openpets\">\n    Interact with the user's OpenPets desktop companion. Use openpets_status first. Use openpets_say only for short status/personality messages, never code, logs, secrets, URLs, or file paths.\n  </server>",
+        "description": "Instructions updated: core/mcp-guidance"
+      },
+      {
+        "id": "msg_1edf3ca650010gsEQCGnG8FQ2S",
+        "time": {
+          "created": 1794993573346,
+          "firstToken": 1794993580844,
+          "streamed": 1794993580853,
+          "completed": 1794993589338
+        },
+        "type": "assistant",
+        "agent": "build",
+        "model": {
+          "id": "omnicoder-2-9b",
+          "providerID": "lmstudio",
+          "variant": "default"
+        },
+        "content": [
+          {
+            "type": "tool",
+            "id": "call_toolbridge_2",
+            "name": "aios_router_open_build_task",
+            "executed": false,
+            "state": {
+              "status": "error",
+              "input": {
+                "lane_ids": [
+                  "drone"
+                ]
+              },
+              "error": {
+                "type": "unknown",
+                "message": "Router open is not in the Architect's explicit tool sequence; no task was opened."
+              }
+            },
+            "time": {
+              "created": 1794993580846,
+              "ran": 1794993580850,
+              "completed": 1794993587421
+            }
+          }
+        ],
+        "snapshot": {
+          "start": "0353f76c4fc38b293c67e99693bf960165f93bff",
+          "end": "9dcbfede01f8fa3fda77b98b41d2a9df1a3a722f",
+          "files": [
+            "LocalCoder/.opencode/receipts/1794993587382-436f9559-1222-46c1-a5b9-6a3e040f1742-body-gate.json",
+            "LocalCoder/.opencode/receipts/1794993587410-2b5de3dc-f712-42d2-b868-5845436b34dd.json"
+          ]
+        },
+        "finish": "tool-calls",
+        "rawFinish": "tool_calls",
+        "cost": 0,
+        "tokens": {
+          "input": 8354,
+          "output": 34,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        }
+      },
+      {
+        "id": "msg_1edf48c700016726pTI1XGNdsr",
+        "time": {
+          "created": 1794993616649,
+          "firstToken": 1794993628676,
+          "streamed": 1794993628693,
+          "completed": 1794993630418
+        },
+        "type": "assistant",
+        "agent": "build",
+        "model": {
+          "id": "omnicoder-2-9b",
+          "providerID": "lmstudio",
+          "variant": "default"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "The current Architect task stopped after router_mutation_binding_failed:aios_router_open_build_task. No further tool will run."
+          }
+        ],
+        "snapshot": {
+          "start": "85bfef68a4d2cb60d950f87532f609acdee889b9",
+          "end": "85bfef68a4d2cb60d950f87532f609acdee889b9",
+          "files": []
+        },
+        "finish": "stop",
+        "rawFinish": "stop",
+        "cost": 0,
+        "tokens": {
+          "input": 8435,
+          "output": 66,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        }
+      },
+      {
+        "id": "msg_1edf52cd8001YLNJpvx8qNcxDd",
+        "time": {
+          "created": 1794993630424
+        },
+        "type": "idle",
+        "outcome": "succeeded"
+      }
+    ]
+  },
+  "result": "FAIL",
+  "error": "RuntimeError('[{\"type\": \"tool\", \"id\": \"call_toolbridge_2\", \"name\": \"aios_router_open_build_task\", \"executed\": false, \"state\": {\"status\": \"error\", \"input\": {\"lane_ids\": [\"drone\"]}, \"error\": {\"type\": \"unknown\", \"message\": \"Router open is not in the Architect\\'s explicit tool sequence; no task was opened.\"}}, \"time\": {\"created\": 1794993580846, \"ran\": 1794993580850, \"completed\": 1794993587421}}]')",
+  "logs": [
+    "server listening on http://127.0.0.1:28895\n",
+    "[localcoder-drone-assignment-gate] assignment session=ses_e120ccf1bffeZ3jmHHGkUnSASl next=aios_router_lookup_drone_seed authorized_sequence=aios_router_lookup_drone_seed,aios_router_open_build_task,aios_router_accept_self_prompt,aios_router_record_turn_result,aios_router_complete_lane,aios_router_queen_summary\n",
+    "[localcoder-toolbridge] drone_next_tool_required session=ses_e120ccf1bffeZ3jmHHGkUnSASl tool=aios_router_lookup_drone_seed\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_lookup_drone_seed\n",
+    "[localcoder-drone-assignment-gate] allowed session=ses_e120ccf1bffeZ3jmHHGkUnSASl tool=aios_router_lookup_drone_seed step=1/6\n",
+    "[localcoder-toolbridge] completed explicit tool step 1/1: aios_router_lookup_drone_seed\n",
+    "[localcoder-drone-assignment-gate] completed session=ses_e120ccf1bffeZ3jmHHGkUnSASl step=1/6\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e120ccf1bffeZ3jmHHGkUnSASl\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_open_build_task\n",
+    "[localcoder-toolbridge] router_mutation_denied session=ses_e120ccf1bffeZ3jmHHGkUnSASl tool=aios_router_open_build_task reason=Router open is not in the Architect's explicit tool sequence; no task was opened.\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e120ccf1bffeZ3jmHHGkUnSASl\n"
+  ]
+}

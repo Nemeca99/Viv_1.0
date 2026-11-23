@@ -1,0 +1,63 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "plan_receipt_or_authorization_alignment_failed",
+  "plan_validation": "preflight_plan_claims_unverified_repository_facts",
+  "required_tools": [
+    "localcoder_status"
+  ],
+  "plan_text": "[DRONE SELF-PROMPT]\nAgenda: Execute localcoder_status once to retrieve project_root for Architect verification.\nVerified facts: Assignment explicitly authorizes exactly one call to localcoder_status; no prior repository checks performed in this turn.\nNext bounded action: Call localcoder_status tool and report returned project_root.",
+  "plan": {
+    "elapsed_seconds": 26.984,
+    "exit_code": 1,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e242cb6c4ffeTACEpeCX4jYwl1"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "01d9b067bf0928f08f9f13947266373e7d275ed283424989b412827e95d20150",
+    "tools": [],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Execute localcoder_status once to retrieve project_root for Architect verification.\nVerified facts: Assignment explicitly authorizes exactly one call to localcoder_status; no prior repository checks performed in this turn.\nNext bounded action: Call localcoder_status tool and report returned project_root."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T205019317629Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T205019238360Z.prompt.txt"
+  },
+  "assignment_sha256": "e1da94ad2779830020d36e0cdcedc43234d340a2aca242eef2128f2c3f7fdaff",
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794689428398-65b5526f-6c02-47c6-af32-08a9972c5fe0-body-gate.json",
+      "sha256": "f66cb8b6f1bb5e6ad0b5ff473fe6e9185f36916c88dc6059ad0229fb6f059bf0",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    }
+  ],
+  "cycle_receipt": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\ses_e242cb6c4ffeTACEpeCX4jYwl1.cycle-receipt.json"
+}

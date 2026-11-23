@@ -1,0 +1,36 @@
+{
+  "schema_version": "viv_cpu_carma_vector_mycelium_contract_v1",
+  "experiment_id": "cpu_carma_vector_mycelium_v1",
+  "purpose": "CPU-first unified knowledge database: translate Wikipedia, foundation docs, and operator-owned language-side records into one CARMA cache + deterministic vector + mycelium graph store. Vectors are similarity sensors; CPU validation and source hashes remain authoritative. Evaluation priority: semantic truth first, efficiency second, speed last.",
+  "evaluation_priority": ["semantic_truth", "efficiency", "speed_last"],
+  "database_role": "unified_knowledge_side",
+  "admitted_to_carma_ltm": false,
+  "admitted_to_viv_chat_86m": false,
+  "gpu_required": false,
+  "semantic_authority": false,
+  "vector_is_sensor_not_oracle": true,
+  "embedding_backend": "viv_cpu_feature_hash_v1",
+  "standard_rag_baseline": "viv_adapter_keyword_v1",
+  "compare_same_corpus": true,
+  "cosine_edge_threshold": 0.7,
+  "mycelium_max_hops": 1,
+  "retrieval_top_k": 5,
+  "max_holdout_queries": 256,
+  "ingest_limits": {
+    "operator_want_train": 512,
+    "operator_want_holdout_eval": 64,
+    "wikipedia_rows": 64,
+    "adapter_index_chunks": 24,
+    "verify_wikipedia_source": true
+  },
+  "source_roots": {
+    "wikipedia_corpus": "F:/AI_Datasets/wikipedia_deduplicated",
+    "personal_operator": "F:/AI_Datasets/personal",
+    "foundation_docs_index": "foundation/artifacts/auto/knowledge/adapter_index.json"
+  },
+  "wikipedia_artifact_glob": "wikipedia_semantic_shard_clean_v1_*.json",
+  "forbidden_roots": [
+    "viv_chat_86m_v1",
+    "L:/Standalone/Viv_Discord"
+  ]
+}

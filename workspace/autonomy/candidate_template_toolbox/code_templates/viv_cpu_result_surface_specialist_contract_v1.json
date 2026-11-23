@@ -1,0 +1,39 @@
+{
+  "schema_version": "viv_cpu_result_surface_specialist_contract_v1",
+  "experiment_id": "cpu_result_surface_specialist_v1",
+  "purpose": "Test the result-disposition surface in isolation before attaching it to the CPU-owned expert route.",
+  "parent": {
+    "route_receipt": "foundation/artifacts/auto/agentic/cpu_surface_expert_router_v1/surface_expert_router_20260816T133009Z_207/receipt.json",
+    "surface": "result",
+    "parent_is_incumbent_route": true
+  },
+  "training_surface": "result_only",
+  "training_row_count": 32,
+  "held_out_row_count": 24,
+  "model_may_select_surface": false,
+  "acceptance": {
+    "candidate_result_must_meet_parent": true,
+    "minimum_supported_success": 16,
+    "raw_model_output_only": true,
+    "no_cpu_repair": true,
+    "candidate_only": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "response_only_loss": true,
+    "repeats": 2
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "live_seed0_optimizer_activity": false,
+    "live_seed0_checkpoint_activity": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "production_write": "HOLD_SECURITY"
+  }
+}

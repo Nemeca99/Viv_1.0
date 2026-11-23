@@ -1,0 +1,72 @@
+{
+  "schema_version": "viv_cpu_independent_query_curriculum_v4",
+  "receipt_schema": "viv_cpu_independent_query_receipt_v4",
+  "status": "candidate_only",
+  "purpose": "retention_aware_surface_isolated_query_authorship",
+  "parent": {
+    "v3_receipt_immutable": true,
+    "v4_protocol_parent_immutable": true,
+    "parser_schema": "viv_cpu_model_directed_grammar_v3",
+    "oracle_schema": "viv_documentation_oracle_v1"
+  },
+  "surface_model": {
+    "protocol_surface": "immutable_v4_parent",
+    "query_surface": "isolated_query_adapter",
+    "routing": "CPU lifecycle phase only",
+    "answer_dependent_routing": false,
+    "output_repair": false,
+    "query_phase": "RETRIEVE",
+    "protocol_phase": "PROTOCOL_REPLAY"
+  },
+  "curriculum": {
+    "adapter_effective_row_count": 224,
+    "parent_protocol_row_count": 224,
+    "query_repair_count": 32,
+    "parent_query_rows_replaced_in_adapter": true,
+    "parent_protocol_surface_not_retrained": true,
+    "holdout_rows": 24,
+    "metadata_only": true,
+    "target_leakage": false
+  },
+  "grammar": {
+    "query_frame": "Q|<bounded_terms>|<scope>|<top_k>",
+    "parser_reused": true,
+    "parser_repair": false,
+    "answer_substitution": false,
+    "literal_source_or_code_allowed": false
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "parent_logit_retention": "diagnostic_control_only",
+    "live_model_write": false,
+    "seed_write": false,
+    "publish": false
+  },
+  "guards": ["--isolated", "--no-publish"],
+  "authority": {
+    "cpu_final": true,
+    "rust_write_membrane_final": true,
+    "human_approval_required_for_adoption": true,
+    "production_generation": false,
+    "registry_mutation": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "self_hash_excluded": true,
+    "volatile_fields_excluded_from_comparison": [
+      "created_utc",
+      "run_id",
+      "wall_seconds",
+      "inference_wall_seconds",
+      "retrieval_wall_seconds",
+      "receipt_sha256"
+    ]
+  }
+}

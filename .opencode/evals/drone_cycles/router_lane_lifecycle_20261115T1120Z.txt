@@ -1,0 +1,8 @@
+Architect-approved AIOS router control-plane lifecycle for goal 01a1d847-3b27-7533-bbc2-c718ace48ae7.
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Run exactly one bounded build task and one serial Drone lane turn; this is a control-record smoke with no source-code target. The router task and event record are the complete work scope.
+Call the `aios_router_open_build_task` tool to open the current assignment under the declared router bounds. The session-bound bridge supplies the actual OpenCode session ID, task ID, and assignment hash.
+Then call the `aios_router_accept_self_prompt` tool for lane drone turn 0. The prompt must contain Agenda, Verified facts grounded in the actual open-task result, and Next bounded action to record turn 0.
+Then call the `aios_router_record_turn_result` tool for lane drone turn 0 with a concise, truthful result grounded in the actual tool outputs.
+Then call the `aios_router_complete_lane` tool for lane drone with a concise nonempty completion receipt.
+Finally call the `aios_router_router_status` tool and report its actual event count and event-chain status. Stop after this readback. The final [DRONE] report must name `router.sqlite3`, cite one concrete returned fact, and end with [DRONE SELF-PROMPT] fields Agenda:, Verified facts:, Next bounded action: STOP.

@@ -1,0 +1,250 @@
+{
+  "info": {
+    "id": "ses_e2192f500ffeurpLIUmo8xFQm8",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "drone_build",
+    "cost": 0,
+    "tokens": {
+      "input": 20764,
+      "output": 1762,
+      "reasoning": 219,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794733050626,
+      "updated": 1794733350662,
+      "busy": 1794733181555,
+      "idle": 1794733181541
+    },
+    "title": "LocalCoder Drone 20261115T085730477441Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1de6d0b0c001iEg0KqhuTK6BeL",
+      "time": {
+        "created": 1794733050636
+      },
+      "type": "agent-switched",
+      "agent": "drone_build",
+      "previous": "drone_build"
+    },
+    {
+      "id": "msg_1de6d0b0a001En5cy2o0ah0l6i",
+      "time": {
+        "created": 1794733050649
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\n[BOUNDED ARCHITECT ASSIGNMENT]\nQueen review plus the gated v3 diagnostic established two remaining failures: the v3 function indexes `value['claims']` even when claims is absent (KeyError), and several distinct invalid cases incorrectly return `MISSING_TASK_ID` or no error. Preserve v2 and v3 as historical candidates. Create a new v4 candidate with stable, field-specific validation.\n\nCreate exactly one new Python file at `workspace/autonomy/hive_agent_message_contract_v4_candidate.py`.\n\nUse the localcoder_add_python tool exactly once. Set its `filePath` argument to precisely `workspace/autonomy/hive_agent_message_contract_v4_candidate.py` (project-relative). Add one pure function `validate_agent_message(value)` returning a deterministic tuple of unique stable error codes; valid envelope returns `()`. For non-dict input return `('MESSAGE_NOT_OBJECT',)`. Required fields: agent_id, agent_type, task_id, status, audience, trust_class, message. If a required field is absent, append `MISSING_<UPPER_FIELD>`; if present but not a string or only whitespace, append `INVALID_<UPPER_FIELD>`. agent_type is model or human; status is DONE, NEEDS_USER, or BLOCKED; audience is mind. trust_class must exactly match agent_type: unverified_model_output for model, human_agent_statement for human. Invalid mismatch must append exactly `INVALID_TRUST_CLASS`; absent agent_type with trust_class present includes MISSING_AGENT_TYPE and never raises.\n\nartifact_refs, claims, uncertainties, and conflicts_with are required lists. The three non-claim lists contain strings only. Use MISSING_<FIELD> if absent, <FIELD>_NOT_LIST for a non-list, and <FIELD>_ITEM_NOT_STRING for a non-string item. For claims absent append MISSING_CLAIMS; for non-list append CLAIMS_NOT_LIST and do not iterate it. Each claim must be an object; its text must be a string, evidence_ids a list of strings, and kind exactly retrieved_fact, inference, or proposal. Use stable claim-specific error codes. parent_task_id may be absent or null; otherwise require a non-empty trimmed string and append INVALID_PARENT_TASK_ID when invalid. Ignore extra fields. Check JSON types before calling string methods. Do not import, perform I/O, persist, route, or decide whether claims are trustworthy.\n\nUse the shell tool exactly once with this verification command:\n`L:\\.venv\\Scripts\\python.exe -B -c \"import sys; sys.path.insert(0, r'L:\\LocalCoder\\workspace\\autonomy'); from hive_agent_message_contract_v4_candidate import validate_agent_message as v; good={'agent_id':'worker-1','agent_type':'model','task_id':'task-1','status':'DONE','audience':'mind','trust_class':'unverified_model_output','message':'candidate','artifact_refs':[],'claims':[{'text':'fact','evidence_ids':['src-1'],'kind':'retrieved_fact'}],'uncertainties':[],'conflicts_with':[],'parent_task_id':None}; assert v(good)==(); x=dict(good); x.pop('task_id'); assert 'MISSING_TASK_ID' in v(x); x=dict(good); x.pop('agent_type'); assert 'MISSING_AGENT_TYPE' in v(x); x=dict(good); x['claims']={}; assert 'CLAIMS_NOT_LIST' in v(x); x=dict(good); x['trust_class']='invalid'; assert 'INVALID_TRUST_CLASS' in v(x); x=dict(good); x['parent_task_id']=' '; assert 'INVALID_PARENT_TASK_ID' in v(x); assert v([])==('MESSAGE_NOT_OBJECT',); x=dict(good); x.pop('claims'); assert 'MISSING_CLAIMS' in v(x); x=dict(good); x['claims']=[{'text':'x','evidence_ids':[],'kind':'unknown'}]; assert v(x); x=dict(good); x['artifact_refs']=[1]; assert v(x); print('PASS: contract-validator cases')\"\n\nAfter the add tool, produce one visible [DRONE SELF-PROMPT] with Agenda:, Verified facts: including an exact token from the add result, and Next bounded action exactly `Use shell tool to run the assigned contract checks.` The tool call must be the assigned OpenCode shell tool, using its advertised schema. After shell completes, begin the final response with `[DRONE]`, name the exact v4 filename, include the exact output `PASS: contract-validator cases`, and finish with `[DRONE SELF-PROMPT]` containing Agenda:, Verified facts:, and `Next bounded action: STOP`. Do not claim a result absent from the actual shell output.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: localcoder_add_python → shell. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n\n[QUEEN → DRONE]\nExecute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1de6d0b21001v7bLfmQlMZy7ew",
+      "time": {
+        "created": 1794733050666,
+        "firstToken": 1794733145900,
+        "streamed": 1794733145907,
+        "completed": 1794733150566
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_9",
+          "name": "localcoder_add_python",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "workspace/autonomy/hive_agent_message_contract_v4_candidate.py",
+              "content": "def validate_agent_message(value):\n    \"\"\"Validate agent message envelope with stable, field-specific error codes.\"\"\"\n    \n    # Check if value is a dict\n    if not isinstance(value, dict):\n        return ('MESSAGE_NOT_OBJECT',)\n    \n    errors = []\n    \n    # Required fields: agent_id, agent_type, task_id, status, audience, trust_class, message\n    \n    # Validate agent_id\n    if 'agent_id' not in value:\n        errors.append('MISSING_AGENT_ID')\n    elif not isinstance(value['agent_id'], str) or value['agent_id'].strip() == '':\n        errors.append('INVALID_AGENT_ID')\n    \n    # Validate agent_type (model or human)\n    if 'agent_type' not in value:\n        errors.append('MISSING_AGENT_TYPE')\n    elif not isinstance(value['agent_type'], str) or value['agent_type'].strip() == '':\n        errors.append('INVALID_AGENT_TYPE')\n    else:\n        # Check trust_class matches agent_type\n        if 'trust_class' in value and value['trust_class'] != '':\n            if value['agent_type'] == 'model' and value['trust_class'] != 'unverified_model_output':\n                errors.append('INVALID_TRUST_CLASS')\n            elif value['agent_type'] == 'human' and value['trust_class'] != 'human_agent_statement':\n                errors.append('INVALID_TRUST_CLASS')\n    \n    # Validate task_id\n    if 'task_id' not in value:\n        errors.append('MISSING_TASK_ID')\n    elif not isinstance(value['task_id'], str) or value['task_id'].strip() == '':\n        errors.append('INVALID_TASK_ID')\n    \n    # Validate status (DONE, NEEDS_USER, BLOCKED)\n    if 'status' not in value:\n        errors.append('MISSING_STATUS')\n    elif not isinstance(value['status'], str) or value['status'].strip() == '':\n        errors.append('INVALID_STATUS')\n    else:\n        valid_statuses = ['DONE', 'NEEDS_USER', 'BLOCKED']\n        if value['status'] not in valid_statuses:\n            errors.append('INVALID_STATUS')\n    \n    # Validate audience (mind)\n    if 'audience' not in value:\n        errors.append('MISSING_AUDIENCE')\n    elif not isinstance(value['audience'], str) or value['audience'].strip() == '':\n        errors.append('INVALID_AUDIENCE')\n    \n    # Validate trust_class\n    if 'trust_class' not in value:\n        errors.append('MISSING_TRUST_CLASS')\n    elif not isinstance(value['trust_class'], str) or value['trust_class'].strip() == '':\n        errors.append('INVALID_TRUST_CLASS')\n    \n    # Validate message\n    if 'message' not in value:\n        errors.append('MISSING_MESSAGE')\n    elif not isinstance(value['message'], str) or value['message'].strip() == '':\n        errors.append('INVALID_MESSAGE')\n    \n    # Required lists: artifact_refs, claims, uncertainties, conflicts_with\n    \n    # Validate artifact_refs\n    if 'artifact_refs' not in value:\n        errors.append('MISSING_ARTIFACT_REFS')\n    elif not isinstance(value['artifact_refs'], list):\n        errors.append('ARTIFACT_REFS_NOT_LIST')\n    else:\n        for item in value['artifact_refs']:\n            if not isinstance(item, str):\n                errors.append('ARTIFACT_REF_ITEM_NOT_STRING')\n    \n    # Validate claims\n    if 'claims' not in value:\n        errors.append('MISSING_CLAIMS')\n    elif not isinstance(value['claims'], list):\n        errors.append('CLAIMS_NOT_LIST')\n    else:\n        for claim in value['claims']:\n            if not isinstance(claim, dict):\n                errors.append('CLAIM_ITEM_NOT_OBJECT')\n            else:\n                # Validate claim structure\n                if 'text' not in claim or not isinstance(claim.get('text'), str) or claim.get('text', '').strip() == '':\n                    errors.append('INVALID_CLAIM_TEXT')\n                elif 'evidence_ids' not in claim or not isinstance(claim.get('evidence_ids'), list):\n                    errors.append('CLAIM_EVIDENCE_IDS_NOT_LIST')\n                else:\n                    for eid in claim['evidence_ids']:\n                        if not isinstance(eid, str):\n                            errors.append('EVIDENCE_ID_ITEM_NOT_STRING')\n                elif 'kind' not in claim or claim.get('kind') not in ['retrieved_fact', 'inference', 'proposal']:\n                    errors.append('INVALID_CLAIM_KIND')\n    \n    # Validate uncertainties\n    if 'uncertainties' not in value:\n        errors.append('MISSING_UNCERTAINITIES')\n    elif not isinstance(value['uncertainties'], list):\n        errors.append('UNCERTAINITIES_NOT_LIST')\n    \n    # Validate conflicts_with\n    if 'conflicts_with' not in value:\n        errors.append('MISSING_CONFLICTS_WITH')\n    elif not isinstance(value['conflicts_with'], list):\n        errors.append('CONFLICTS_WITH_NOT_LIST')\n    \n    # parent_task_id may be absent or null; otherwise require non-empty trimmed string\n    if 'parent_task_id' in value and value['parent_task_id'] is not None:\n        if not isinstance(value['parent_task_id'], str) or value['parent_task_id'].strip() == '':\n            errors.append('INVALID_PARENT_TASK_ID')\n    \n    return tuple(errors)\n"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"ok\":true,\"created\":true,\"path\":\"L:\\\\LocalCoder\\\\workspace\\\\autonomy\\\\hive_agent_message_contract_v4_candidate.py\",\"bytes\":4966,\"sha256\":\"b9ad244fcaa42b9d363cca319cda3854d532fc47b9be2c3590659e76b21421c0\"}"
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794733145902,
+            "ran": 1794733145906,
+            "completed": 1794733149526
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "691df22d1ff9b29d8a6a257081847137037c577e",
+        "end": "5297efb938c4aead41d4efb9bb3601f17de8f281",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794733149490-f462e18b-da18-40d9-8078-2b3319a62ad2-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794733149503-d25d96aa-7e08-41fa-9a03-c1791054cbf3.json",
+          "LocalCoder/.opencode/receipts/1794733149520-4711dd31-47d6-42d7-92fd-82de8c33da61.json",
+          "LocalCoder/workspace/autonomy/hive_agent_message_contract_v4_candidate.py"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 5992,
+        "output": 1264,
+        "reasoning": 66,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1de6e916f001PdJT1qtbbzqZtQ",
+      "time": {
+        "created": 1794733150580,
+        "firstToken": 1794733180589,
+        "streamed": 1794733180621,
+        "completed": 1794733181537
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The file was created successfully. Now I need to emit the required [DRONE SELF-PROMPT] block with Agenda:, Verified facts: including an exact token from the add result, and Next bounded action exactly `Use shell tool to run the assigned contract checks.`\n\nVerified fact token: \"sha256\":\"b9ad244fcaa42b9d363cca319cda3854d532fc47b9be2c3590659e76b21421c0\"",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794733180590,
+            "completed": 1794733180617
+          }
+        },
+        {
+          "type": "text",
+          "text": "[DRONE SELF-PROMPT]\nAgenda: Execute shell verification of v4 contract validator.\nVerified facts: File created at L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v4_candidate.py with sha256 b9ad244fcaa42b9d363cca319cda3854d532fc47b9be2c3590659e76b21421c0.\nNext bounded action: Use shell tool to run the assigned contract checks."
+        }
+      ],
+      "snapshot": {
+        "start": "ac0e1be33e7420a0d7b71aa27bf622cdbc30b5e3",
+        "end": "ac0e1be33e7420a0d7b71aa27bf622cdbc30b5e3",
+        "files": []
+      },
+      "finish": "stop",
+      "rawFinish": "stop",
+      "cost": 0,
+      "tokens": {
+        "input": 7006,
+        "output": 127,
+        "reasoning": 121,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1de6f0a65001WJxRDGhA1nAS0P",
+      "time": {
+        "created": 1794733181541
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    },
+    {
+      "id": "msg_1de6f0a70001gTlNgGdKx5lDR2",
+      "time": {
+        "created": 1794733181561
+      },
+      "text": "[LOCALCODER PRIVATE DRONE CONTINUATION | v1]\n[DRONE SELF-PROMPT]\nAgenda: Execute shell verification of v4 contract validator.\nVerified facts: File created at L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v4_candidate.py with sha256 b9ad244fcaa42b9d363cca319cda3854d532fc47b9be2c3590659e76b21421c0.\nNext bounded action: Use shell tool to run the assigned contract checks.",
+      "type": "user"
+    },
+    {
+      "id": "msg_1de6f0a800017BF9wwFyGhZu8T",
+      "time": {
+        "created": 1794733181578,
+        "firstToken": 1794733217197,
+        "streamed": 1794733217207,
+        "completed": 1794733221998
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_10",
+          "name": "shell",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "L:\\.venv\\Scripts\\python.exe -B -c \"import sys; sys.path.insert(0, r'L:\\LocalCoder\\workspace\\autonomy'); from hive_agent_message_contract_v4_candidate import validate_agent_message as v; good={'agent_id':'worker-1','agent_type':'model','task_id':'task-1','status':'DONE','audience':'mind','trust_class':'unverified_model_output','message':'candidate','artifact_refs':[],'claims':[{'text':'fact','evidence_ids':['src-1'],'kind':'retrieved_fact'}],'uncertainties':[],'conflicts_with':[],'parent_task_id':None}; assert v(good)==(); x=dict(good); x.pop('task_id'); assert 'MISSING_TASK_ID' in v(x); x=dict(good); x.pop('agent_type'); assert 'MISSING_AGENT_TYPE' in v(x); x=dict(good); x['claims']={}; assert 'CLAIMS_NOT_LIST' in v(x); x=dict(good); x['trust_class']='invalid'; assert 'INVALID_TRUST_CLASS' in v(x); x=dict(good); x['parent_task_id']=' '; assert 'INVALID_PARENT_TASK_ID' in v(x); assert v([])==('MESSAGE_NOT_OBJECT',); x=dict(good); x.pop('claims'); assert 'MISSING_CLAIMS' in v(x); x=dict(good); x['claims']=[{'text':'x','evidence_ids':[],'kind':'unknown'}]; assert v(x); x=dict(good); x['artifact_refs']=[1]; assert v(x); print('PASS: contract-validator cases')\""
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v4_candidate.py\", line 96\r\n    elif 'kind' not in claim or claim.get('kind') not in ['retrieved_fact', 'inference', 'proposal']:\r\n    ^^^^\r\nSyntaxError: invalid syntax\r\n"
+              },
+              {
+                "type": "text",
+                "text": "Exit code: 1"
+              }
+            ],
+            "metadata": {
+              "status": "completed",
+              "truncated": false,
+              "exit": 1
+            }
+          },
+          "time": {
+            "created": 1794733217200,
+            "ran": 1794733217205,
+            "completed": 1794733220925
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "4b11ddc425a80f84c942daa573976b2a7d26382e",
+        "end": "8a2304fd4a3603619379c496adac609fcb0fe33c",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794733220406-abfa207a-af67-41d7-a69a-1b43ce02d54f-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794733220418-b26347e2-a731-44d4-9a3c-f071fee6e8cc.json",
+          "LocalCoder/.opencode/receipts/1794733220921-245ca016-7763-41b0-9696-d808de6192c1.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 7766,
+        "output": 371,
+        "reasoning": 32,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    }
+  ]
+}

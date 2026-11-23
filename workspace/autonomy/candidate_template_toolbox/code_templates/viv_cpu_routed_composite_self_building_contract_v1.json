@@ -1,0 +1,93 @@
+{
+  "schema_version": "viv_cpu_routed_composite_self_building_contract_v1",
+  "receipt_schema": "viv_cpu_routed_composite_self_building_receipt_v1",
+  "status": "candidate_only",
+  "purpose": "Compose independently verified specialized CPU candidate surfaces through an explicit CPU-owned phase router without claiming one unified checkpoint.",
+  "route_policy": {
+    "owner": "CPU_RULE",
+    "selection": "fixed_phase_to_verified_candidate_manifest",
+    "model_may_not_select_route": true,
+    "raw_model_output_is_authoritative_for_authorship": true,
+    "cpu_repair_counts_as_model_success": false,
+    "unknown_phase": "HOLD",
+    "stale_checkpoint": "HOLD"
+  },
+  "phases": [
+    "REFLECT",
+    "RETRIEVE",
+    "CANDIDATE_PLAN",
+    "VARIABLE",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "SCHEDULE",
+    "TEMPLATE"
+  ],
+  "required_routes": [
+    "reflection_v2",
+    "query_surface_v4",
+    "action_v1",
+    "variable_v3_value_slots",
+    "result_v4_parent",
+    "scheduler_v4_parent",
+    "template_shadow_v1"
+  ],
+  "lifecycle": [
+    "OBSERVE",
+    "REFLECT",
+    "RETRIEVE",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "VARIABLE",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "RECORD",
+    "SCHEDULE",
+    "COMPLETE"
+  ],
+  "forbidden_transitions": [
+    ["HYPOTHESIZE", "SANDBOX_TEST"],
+    ["CANDIDATE_PLAN", "SANDBOX_TEST"],
+    ["MODEL", "PRODUCTION_WRITE"]
+  ],
+  "model_output_rules": {
+    "no_source_paths": true,
+    "no_source_bodies": true,
+    "no_python": true,
+    "no_shell": true,
+    "no_generated_code": true,
+    "no_arbitrary_paths": true,
+    "no_target_substitution": true,
+    "no_parser_repair": true
+  },
+  "safety": {
+    "device": "cpu",
+    "isolated": true,
+    "no_publish": true,
+    "rust_production_write": "expected_HOLD_SECURITY",
+    "active_registry_mutation": false,
+    "seed0_mutation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false,
+    "daemon": false,
+    "human_event_fabrication": false
+  },
+  "parent_references": {
+    "reflection_receipt_sha256": "AD9D89D3872E2D88E93D045616D6132C6FE88364C776B27C419984EFA340D72",
+    "query_receipt_sha256": "FED292E43BEB2F181954D804C22BDADC4B4C0973231272FEB9F67560D8179DF7",
+    "action_receipt_sha256": "40D9B2E3A7E77B510A52307BFADCDDAECD006708E1745BBF76F6EBDC77675390",
+    "governed_receipt_sha256": "299E0F2ABB2019437B673ADF6860E8136118637728A21904D42A772B22984125",
+    "template_receipt_sha256": "DD1AE5673658CFFBAF67334FF7CFD35E2DA533719DF1DF63FBE088C434BE7B17",
+    "seed0_checkpoint_sha256": "8B4395B508BF8F92C9AFA5ED49AE426A4851A5B563D8DAC175F8EFD9BA71B45C",
+    "active_registry_sha256": "408E91A61D5A1C8780285EFDA0D41A7452806E7579D44925E489A84BDF54E82C",
+    "shadow_registry_sha256": "8984BE92F7788E4BCDC5698E3076FB243F96EDF360D7AAFBFC2A25E3E8CEF72C",
+    "rust_integrity_sha256": "494B38FA4A5617356E6763742172C5A091B649B062837E6034CA89424E277034"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_omitted": true,
+    "volatile_fields_excluded_from_comparison": ["created_utc", "run_id", "wall_seconds", "decision_id"]
+  }
+}

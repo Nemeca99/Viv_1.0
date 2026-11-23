@@ -1,0 +1,73 @@
+{
+  "schema_version": "viv_cpu_epistemic_route_generalization_v1",
+  "receipt_schema": "viv_cpu_epistemic_route_generalization_receipt_v1",
+  "status": "candidate_only",
+  "parent": {
+    "route_authorship_receipt_sha256": "62389E6F40ECA3598E0A54B38B8280A7B466B0669F66E61F61CE2FFA270F3138",
+    "v4_candidate_sha256": "C631CFDFC7878F715F486DAEBA3EECCEEC777909645A453B322078DD1A53418F",
+    "v4_candidate_state_sha256": "4270D408A5209F9FE3DCBDEEDBEECD6EE7DE872400D6F1662827DFACD0C426E0"
+  },
+  "representation": {
+    "prompt_schema": "VIV|ep|e=<evidence_class>|s=<surface_code>|a=<authority_code>|m=frontier|o=",
+    "evidence_classes": {
+      "alpha": "verified_compile_path",
+      "beta": "verified_import_path",
+      "gamma": "verified_execution_path",
+      "delta": "verified_negative_path",
+      "epsilon": "verified_documentation_path"
+    },
+    "cpu_owned_policy": {
+      "alpha": 0,
+      "beta": 1,
+      "gamma": 2,
+      "delta": 3,
+      "epsilon": 4
+    },
+    "held_out_surface_code": "m4",
+    "target_excluded": true,
+    "expected_route_excluded": true,
+    "source_paths_excluded": true,
+    "source_bodies_excluded": true
+  },
+  "curriculum": {
+    "training_rows": 224,
+    "held_out_rows": 20,
+    "compositional_traces": 8,
+    "training_surface_codes": ["m0", "m1", "m2", "m3"],
+    "held_out_surface_codes": ["m4"],
+    "training_seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "device": "cpu",
+    "response_only_loss": true,
+    "fixed_frame_width": 40
+  },
+  "route_frontier": {
+    "route_ids": ["route_00", "route_01", "route_02", "route_03", "route_04"],
+    "route_probabilities": [0.01, 0.25, 0.5, 0.75, 0.99],
+    "all_routes_retained": true,
+    "failed_routes_retained": true,
+    "pruned_routes": [],
+    "preferred_route": null,
+    "truth_authorship_verified": false
+  },
+  "acceptance": {
+    "candidate_model_origin_rows": 16,
+    "candidate_compositional_traces": 8,
+    "seed0_control_separate": true,
+    "v4_parent_control_separate": true,
+    "no_harness_repair": true,
+    "cpu_unauthorized_accepts": 0,
+    "rust_decision": "HOLD_SECURITY",
+    "candidate_only": true
+  },
+  "authority": {
+    "cpu": "final semantic and route-admission authority",
+    "gpu": "private proposal/training/acceleration only",
+    "rust": "executable/write membrane",
+    "human": "no fabricated approval event"
+  },
+  "model_origin_truth_authorship": false
+}

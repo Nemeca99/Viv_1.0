@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "model_config": {
+    "version": "1.0",
+    "last_updated": "2025-10-03",
+    "description": "Centralized model configuration for AIOS Clean - change models here instead of hardcoding",
+    "models": {
+      "main_llm": {
+        "name": "cognitivecomputations-llama-3-8b-instruct-abliterated-v2-smashed@q8_0",
+        "type": "main_model",
+        "description": "Primary LLM for complex queries and responses - Llama 3 8B Abliterated (WAY better responses)",
+        "tier": "high_complexity",
+        "api_endpoint": "http://localhost:1234/v1/chat/completions"
+      },
+      "embedder": {
+        "name": "lite-mistral-150m-v2-instruct@q6_k_l",
+        "type": "embedding_model",
+        "description": "Ultra-fast 150M Llama-arch model for trivial responses - matches Dolphin 24B architecture",
+        "tier": "trivial",
+        "api_endpoint": "http://localhost:1234/v1/embeddings",
+        "fallback_dimension": 1024
+      },
+      "draft_model": {
+        "name": "mlabonne_qwen3-0.6b-abliterated",
+        "type": "draft_model",
+        "description": "Fast draft model for speculative decoding",
+        "tier": "draft",
+        "enabled": false,
+        "api_endpoint": "http://localhost:1234/v1/chat/completions"
+      }
+    },
+    "alternative_models": {
+      "qwen3_4b_thinking": {
+        "name": "qwen/qwen3-4b-thinking-2507",
+        "type": "main_model",
+        "description": "Alternative main model - Qwen3 4B Thinking",
+        "tier": "high_complexity"
+      },
+      "liquid_lfm2": {
+        "name": "liquid/lfm2-1.2b",
+        "type": "main_model",
+        "description": "Alternative main model - Liquid LFM2 1.2B for cross-architecture comparison",
+        "tier": "high_complexity"
+      },
+      "llama_7b_rogue": {
+        "name": "Rogue-Creative-7B-Dark-Horror",
+        "type": "main_model",
+        "description": "Alternative main model - Rogue Creative 7B",
+        "tier": "high_complexity"
+      }
+    },
+    "model_switching": {
+      "instructions": "To switch models, update the 'name' field in the active model section above",
+        "current_main": "cognitivecomputations-llama-3-8b-instruct-abliterated-v2-smashed@q8_0",
+      "current_embedder": "lite-mistral-150m-v2-instruct",
+      "notes": "Main: Llama 3 8B Abliterated Q8_0 (proven in Nyx, WAY better responses). Embedder: Lite-Mistral 150M Q6_K_L (Llama arch, 0.15GB, ~9s avg but likely AIOS pipeline overhead)."
+    }
+  }
+}

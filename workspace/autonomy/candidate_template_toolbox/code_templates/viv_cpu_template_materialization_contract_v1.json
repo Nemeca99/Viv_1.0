@@ -1,0 +1,49 @@
+{
+  "schema_version": "viv_cpu_template_materialization_v1",
+  "contract_id": "viv_cpu_template_materialization_contract_v1",
+  "purpose": "Materialize CPU-resolved variable data into the VARIABLES section of an exact-span isolated template candidate.",
+  "model_output": {
+    "allowed": [
+      "template_slot",
+      "declared_key",
+      "value_slot"
+    ],
+    "literals_allowed": false,
+    "source_bodies_allowed": false,
+    "paths_allowed": false,
+    "function_generation_allowed": false,
+    "shell_or_executable_content_allowed": false
+  },
+  "cpu_materialization": {
+    "schema": "viv_cpu_template_materialization_v1",
+    "source_assembly_authority": "cpu",
+    "materialization_mode": "variables_section_only",
+    "source_template_mutation": false,
+    "imports_immutable": true,
+    "function_spans_immutable": true,
+    "submain_spans_immutable": true,
+    "resolved_values_cpu_side_only": true,
+    "isolated_required": true,
+    "no_publish_required": true
+  },
+  "verification": {
+    "source_sha256_required": true,
+    "variables_section_source_sha256_required": true,
+    "outside_variables_byte_equal_required": true,
+    "python_compile_required": true,
+    "post_materialization_hash_required": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "preserve_source",
+    "json_sort_keys": true,
+    "self_hash_excluded": true,
+    "trailing_lf": true
+  },
+  "authority": {
+    "model": "proposal_slots_only",
+    "cpu": "resolve_values_and_materialize_variables_section",
+    "rust": "authorize_any_production_write",
+    "human": "required_for_production_generation_and_pointer_adoption"
+  }
+}

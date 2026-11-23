@@ -1,0 +1,17 @@
+{
+  "schema": "viv_goal_chain_v1",
+  "current_goal_id": 7,
+  "chain": [
+    {"id": 1, "goal": "assemble the learner", "state": "learner assembled; rs_reverse ACCEPTED+stored"},
+    {"id": 2, "goal": "code-learning loop live", "state": "gate_rust stdin; rs_reverse passed live"},
+    {"id": 3, "goal": "causal explorer discovery live", "state": "BLOCKED BY MODEL (omnicoder empty/incomplete 6/6)"},
+    {"id": 4, "goal": "explorer runtime+verify independent of model", "state": "PASS: viv-vm trace + holdout verified"},
+    {"id": 5, "goal": "confirm all deterministic pieces work", "state": "all deterministic pieces proven; learn-by-experiment loop committed (110 discoveries, 36587 bonds)"},
+    {"id": 6, "goal": "locate the custom model (the final piece)", "state": "FOUND: INN = Viv's own 118k-param neural network, trained 10M ticks on the Rust farm, language accuracy 1.0, ADMITTED checkpoint passed"}
+  ],
+  "current": {
+    "id": 7,
+    "goal": "confirm the custom model (INN) runs live: resumed learned-v9 checkpoint and played the farm game, bank 5->15, harvests accumulating, loss stable 0.389",
+    "state": "INN runs: 200 steps/1.04s, learned-v9, cpu, tick 10004872, bank 5->15"
+  }
+}

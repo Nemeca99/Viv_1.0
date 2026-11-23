@@ -1,0 +1,36 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 188.453,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1f430f10ffez5XUUj8CI0n6FK"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "fd6391886683235c9336c58a8bd675c6c80b2158a8d7c83bccd8bf14638f0653",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "<tool_call>\n<function=localcoder_add_python>\n<parameter=path>\nL:\\LocalCoder\\workspace\\autonomy\\hive_postal_route_request_v13_candidate.py</parameter>\n<parameter>content</parameter>\n\"\"\"Python-only proposal helper for hive postal routing requests.\"\"\"\n\n\ndef prepare_routing_request(value):\n    \"\"\"Propose a route without delivering mail or authorizing.\n\n    Args:\n        value: The proposed recipient identifier.\n\n    Returns:\n        (None, error_tuple) if invalid, ({'recipient_id': s}, ()) if valid.\n\n    Valid values are non-empty strings with no surrounding whitespace\n    and not equal to 'queen' case-insensitively. Exact bytes preserved.\"\"\"\n    \n    # Case 1: None means no proposed route\n    if value is None:\n        return (None, (\"no_proposed_route\",))\n    \n    # Must be a string type\n    if not isinstance(value, str):\n        return (None, (\"non_string_value\",))\n    \n    # Preserve exact bytes - do NOT strip or coerce\n    s = value\n    \n    # Empty string is invalid\n    if not s:\n        return (None, (\"empty_string\",))\n    \n    # Leading/trailing whitespace makes it invalid\n    if s.startswith(' ') or s.endswith(' '):\n        return (None, (\"leading_trailing_whitespace\",))\n    \n    # Queen check case-insensitive - returns error, not success\n    if s.casefold() == \"queen\":\n        return (None, (\"is_queen\",))\n    \n    # Must be a valid non-empty string that is not queen\n    try:\n        # Accept any non-empty string that passes above checks\n        return ({'recipient_id': s}, ())\n    except Exception:\n        return (None, (\"validation_error\",))\n\n\nif __name__ == \"__main__\":\n    import sys\n    \n    cases = [\n        None,  # Case 1: None means no proposed route\n        \"drone_001\",  # Case 2: valid drone ID\n        \"a\" * 64,  # Case 3: valid 64-character lowercase hex ID\n        \"queen\",  # Case 4: queen (lowercase)\n        \"QUEEN\",  # Case 5: queen (uppercase)\n        \"  drone_001\",  # Case 6: leading whitespace\n        \"\",  # Case 7: empty string\n        123,  # Case 8: non-string integer\n    ]\n    \n    print(\"Running self-check with exactly eight cases...\")\n    passed = 0\n    \n    for i, value in enumerate(cases):\n        result = prepare_routing_request(value)\n        \n        if result[0] is None:\n            error_code = result[1][0]\n            expected_error = [\"no_proposed_route\", \"non_string_value\", \"empty_string\", \n                           \"leading_trailing_whitespace\", \"is_queen\"]\n            \n            # Map cases to expected errors\n            case_errors = {\n                0: \"no_proposed_route\",      # None\n                1: None,                     # valid drone ID\n                2: None,                     # valid 64-char hex\n                3: \"is_queen\",               # queen lowercase\n                4: \"is_queen\",               # QUEEN uppercase\n                5: \"leading_trailing_whitespace\",  # leading whitespace\n                6: \"empty_string\",           # empty string\n                7: \"non_string_value\",       # non-string integer\n            }\n            \n            if error_code == case_errors[i]:\n                passed += 1\n    \n    print(f\"PASS: {passed}/8 checks\")"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T194401120462Z"
+}

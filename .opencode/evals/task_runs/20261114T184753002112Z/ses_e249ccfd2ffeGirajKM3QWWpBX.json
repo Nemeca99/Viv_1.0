@@ -1,0 +1,245 @@
+{
+  "info": {
+    "id": "ses_e249ccfd2ffeGirajKM3QWWpBX",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 301,
+      "output": 148,
+      "reasoning": 0,
+      "cache": {
+        "read": 21863,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794682073135,
+      "updated": 1794682113394,
+      "busy": 1794682073153,
+      "idle": 1794682113400,
+      "archived": 1794682073140
+    },
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1db63303900173fjjVvCi9alSf",
+      "time": {
+        "created": 1794682073145
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1db633036001P22L8gNuuGIic7",
+      "time": {
+        "created": 1794682073158
+      },
+      "text": "Create a new Python file at .opencode/evals/provider_responses_probe2_20261114.py. It must define probe() returning \"responses-final-ready\" and print probe() when run as a script.\n\nCall localcoder_add_python tool first with filePath exactly .opencode/evals/provider_responses_probe2_20261114.py and the required Python content.\nCall shell tool second with command exactly: L:\\.venv\\Scripts\\python.exe .opencode\\evals\\provider_responses_probe2_20261114.py\n\nAfter the shell result, reply in one concise visible sentence with the stdout, then finish.\n",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1db63304b001MbXBhGl0ZyNw3j",
+      "time": {
+        "created": 1794682073168,
+        "firstToken": 1794682088882,
+        "streamed": 1794682088897,
+        "completed": 1794682092658
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_1548565401380050",
+          "name": "localcoder_add_python",
+          "executed": false,
+          "native": {
+            "itemId": "fc_lzsljya72z20w1d0okdic"
+          },
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": ".opencode/evals/provider_responses_probe2_20261114.py",
+              "content": "def probe():\n    return \"responses-final-ready\"\n\nif __name__ == \"__main__\":\n    print(probe())"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"ok\":true,\"created\":true,\"path\":\"L:\\\\LocalCoder\\\\.opencode\\\\evals\\\\provider_responses_probe2_20261114.py\",\"bytes\":94,\"sha256\":\"a4a36431bf2cb065c91a163088e1d48ca65af33fca0d0a99b2362ba8b2112957\"}"
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794682088885,
+            "ran": 1794682088895,
+            "completed": 1794682091661
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "54067ba37be485ab31237d78ff1b5b9da9e47687",
+        "end": "5961f1451201ef53aaa47164e2f442cc94867f86",
+        "files": [
+          "LocalCoder/.opencode/evals/provider_responses_probe2_20261114.py",
+          "LocalCoder/.opencode/receipts/1794682091631-1071a3c8-d9c4-4776-bff3-9a7e1233b5e2-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794682091646-083f9f41-a1cc-43ed-9624-220e871bf8d7.json",
+          "LocalCoder/.opencode/receipts/1794682091657-7c9c1ae4-e980-4454-8e19-10c0e2080531.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "native": {
+        "responseId": "resp_93aa543c43f2b6f3154232842bd952439cddf757e24a857c",
+        "serviceTier": "default"
+      },
+      "cost": 0,
+      "tokens": {
+        "input": 156,
+        "output": 85,
+        "reasoning": 0,
+        "cache": {
+          "read": 7068,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1db637c7b001x392KD4ouiRWuL",
+      "time": {
+        "created": 1794682092673,
+        "firstToken": 1794682100942,
+        "streamed": 1794682100956,
+        "completed": 1794682107253
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_1548565401380051",
+          "name": "shell",
+          "executed": false,
+          "native": {
+            "itemId": "fc_jgjjkmb2lz57gn0bvt2d6"
+          },
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "L:\\.venv\\Scripts\\python.exe .opencode\\evals\\provider_responses_probe2_20261114.py"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "responses-final-ready\r\n"
+              }
+            ],
+            "metadata": {
+              "status": "completed",
+              "truncated": false,
+              "exit": 0
+            }
+          },
+          "time": {
+            "created": 1794682100944,
+            "ran": 1794682100953,
+            "completed": 1794682106034
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "50a621530ff007215dd864cf928dd0fc22c5de20",
+        "end": "000ee9d967b135341ec2645ec0d9aae63ff91be4",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794682104411-47e69b5d-3110-43ec-be82-108c0bda1533-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794682104421-bf7bbd2d-b870-4960-aa46-86334559d807.json",
+          "LocalCoder/.opencode/receipts/1794682106028-2881dfe9-8458-4be3-9ebf-1c50be350061.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "native": {
+        "responseId": "resp_11b87421dea0ecd284701bbdfc86e61cb9dceb6a0073db2a",
+        "serviceTier": "default"
+      },
+      "cost": 0,
+      "tokens": {
+        "input": 124,
+        "output": 56,
+        "reasoning": 0,
+        "cache": {
+          "read": 7308,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1db63b57d001nBi1hRIYy5B0IV",
+      "time": {
+        "created": 1794682107266,
+        "firstToken": 1794682112663,
+        "streamed": 1794682112673,
+        "completed": 1794682113394
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "stdout printed \"responses-final-ready\".",
+          "native": {
+            "itemId": "msg_94gnzvjt5c7i3i9oy75o"
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "85ea99e0a661d27149a745757038724fe9eead68",
+        "end": "85ea99e0a661d27149a745757038724fe9eead68",
+        "files": []
+      },
+      "finish": "stop",
+      "native": {
+        "responseId": "resp_dd9e5ccf409f998bec1eaed7f5f830c6866d608cd72b70ba",
+        "serviceTier": "default"
+      },
+      "cost": 0,
+      "tokens": {
+        "input": 21,
+        "output": 7,
+        "reasoning": 0,
+        "cache": {
+          "read": 7487,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1db63cd770013WTtxa5MWc8H5V",
+      "time": {
+        "created": 1794682113400
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    }
+  ]
+}

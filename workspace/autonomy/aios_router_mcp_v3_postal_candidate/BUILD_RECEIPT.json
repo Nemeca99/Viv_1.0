@@ -1,0 +1,64 @@
+{
+  "schema": "aios_router_postal_v3_candidate_build_receipt",
+  "captured_at_utc": "2026-11-16T18:55:02.729Z",
+  "candidate_directory": "L:\\LocalCoder\\workspace\\autonomy\\aios_router_mcp_v3_postal_candidate",
+  "candidate_image_tag": "aios-router-mcp-v3-postal-candidate:0.3.0",
+  "candidate_image_id": "sha256:91a19a582ab99f6b51ecb12712afe4f0c2fe91fe4bcd48e59a7d159bd5d43f72",
+  "builder_image": "rust:1.90.0-slim-bookworm@sha256:64232e656c058f4468e8d024e990acff04f0fd5a5c0a88a574dc37773d7325c9",
+  "runtime_image": "aios-body-runtime:0.2.8-architect-runtime-permission@sha256:b1d7837fc4a78f60031bb5b0c3d68e639ecb786fa88b41776a5b64111f2a9634",
+  "checks": [
+    {
+      "command": "cargo fmt --check",
+      "result": "passed"
+    },
+    {
+      "command": "cargo test --locked",
+      "result": "passed: 4 tests"
+    },
+    {
+      "command": "wsl docker build --pull=false",
+      "result": "passed: Docker builder ran the same 4 tests and cargo build --release --locked"
+    }
+  ],
+  "scope": {
+    "daemon_or_scheduler_enabled": false,
+    "live_container_id": "0e847d46492b34259840898da8d92adf0ec5498cfbcbf839b8bfb59e04f9a57b",
+    "container_started_by_this_build": false,
+    "live_opencode_configuration_changed": false,
+    "current_opencode_agents": "title,build,drone_read,drone_build",
+    "current_mcp_server": "aios_router",
+    "live_image": "sha256:349682dbd6449d877569606bb086f66e088b9e7861b799461c09a6d010037316",
+    "live_receipt_mount_rw": false,
+    "live_database_mount_rw": true,
+    "live_container_status": "running"
+  },
+  "debug_findings": [
+    "Aligned postal turns to the existing zero-based Router contract after the initial fixture exposed a turn-1 rejection.",
+    "Separated key storage from the L: database bind mount after the first integration fixture exposed an incorrect key path.",
+    "Parsed bounce JSON as the message body string in the inbox fixture; encrypted bounce delivery and corrected route now pass."
+  ],
+  "integration_blockers": [
+    "The existing architect-body-gate.ts does not emit postal_actor receipts.",
+    "The existing Drone assignment gate does not recognize postal tools or enforce a Queen-only role.",
+    "Current OpenCode agent IDs are title, build, drone_read, drone_build; no Queen identity is configured.",
+    "Current OpenCode MCP remains pinned to the older running image; no live round trip was attempted."
+  ],
+  "sha256": {
+    ".dockerignore": "550AFFD89C8AED8E8C0B4EE76724658874E206C0342CBF5B02249622D1888F3C",
+    "Cargo.toml": "EB1AEA5DC07D4A45DE6270DF514EFA116536E0E0D27CC83E27A217A6ACC68145",
+    "Cargo.lock": "84C798E27CAA8AB4510752A3099C5B8D8CF04B48F74C2D2C3CD8DA9662FB04FC",
+    "Dockerfile": "250B624E56086D5564EB2BB4ACE74D657100923EAEE810E55191144A6AC25AFB",
+    "README.md": "8C2C27F79D6008A26ACE48199BC35FAE2B4CB97DA94959EB86C89BE4B945F950",
+    "src/lib.rs": "C91BEB5AF06070985078FB6BF4D838019B1686C62D28FCC9EE11EA04469C5383",
+    "src/main.rs": "5ACB98C00FA5AA2624FE6F91A51FACF37DEF7E199D6297D783B3C49C15C46E40",
+    "src/postal.rs": "FBBCD7B739261AD057CE1E91D95877365B126CC50CF32B016CADA2182BF1DD6A"
+  },
+  "live_router_observation": {
+    "observed_at_utc": "2026-11-16T18:55:02.733Z",
+    "router_event_rows": 75,
+    "postal_tables": 0,
+    "existing_drone_seed": "localcoder-viv-drone-01=915703687",
+    "candidate_database_mutated": false,
+    "live_router_replaced": false
+  }
+}

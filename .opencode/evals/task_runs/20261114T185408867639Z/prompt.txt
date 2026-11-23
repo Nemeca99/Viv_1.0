@@ -1,0 +1,11 @@
+Patch the named existing Python probe, then verify the result.
+
+<localcoder_patch_paths>
+.opencode/evals/provider_patch_probe_20261114.py
+</localcoder_patch_paths>
+
+Call read tool first on .opencode/evals/provider_patch_probe_20261114.py.
+Call localcoder_patch tool second on .opencode/evals/provider_patch_probe_20261114.py. Replace the exact text `return "before"` with `return "after"`.
+Call shell tool third with command exactly: L:\.venv\Scripts\python.exe .opencode\evals\provider_patch_probe_20261114.py
+
+After the shell result, reply in one concise visible sentence with the stdout, then finish.

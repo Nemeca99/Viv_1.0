@@ -1,0 +1,5 @@
+{
+  "files": {
+    "scheduler.py": "from helpers import sort_tasks\n\ndef solve(value):\n    data = value.get('data', [])\n    options = value.get('options', {})\n\n    eligible_tasks = []\n    for task in data:\n        if task['status'] not in ['queued', 'retry']:\n            continue\n        \n        dependencies = task.get('dependencies', [])\n        all_deps_met = True\n        for dep_id in dependencies:\n            dep = next((t for t in data if t['id'] == dep_id), None)\n            if not dep or dep['status'] not in ['queued', 'retry']:\n                all_deps_met = False\n                break\n        \n        if all_deps_met:\n            eligible_tasks.append(task)\n\n    sorted_tasks = sort_tasks(eligible_tasks)\n    return {'order': [task['id'] for task in sorted_tasks]}"
+  }
+}

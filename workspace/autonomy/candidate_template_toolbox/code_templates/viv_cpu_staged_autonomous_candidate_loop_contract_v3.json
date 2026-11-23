@@ -1,0 +1,86 @@
+{
+  "schema_version": "viv_cpu_staged_autonomous_candidate_loop_v3",
+  "receipt_schema": "viv_cpu_staged_autonomous_candidate_loop_receipt_v3",
+  "status": "candidate_only",
+  "parent": {
+    "receipt_sha256": "78D68B95E2FF1C8917CFD5BF69E90A1A1B683D6CBFAE9A0AAD62EC745720E3ED",
+    "dataset_sha256": "7C7E8CB8A7BEB86938A8DB1339ED8F40F5135E46D46AB25066309FEEAEA86419",
+    "candidate_checkpoint_sha256": "97346766B79FAE431BF29E64636A29DD22E970957D3187B1C43BABDD501DBD3D",
+    "candidate_state_sha256": "2B4CE21E4D14A8D9D6CDBE3629B7DF9253F4986DB5C3EFD58FC7051C5BC8836E"
+  },
+  "training_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "live_model_write": false,
+    "seed_write": false,
+    "optimizer_scope": "isolated_candidate_only"
+  },
+  "adaptive_surface": {
+    "schema": "predecision_result_matrix_v2",
+    "policies": ["repeat_verified", "select_from_result_matrix"],
+    "result_codes": ["retryable", "verified_a", "verified_b", "verified_c", "verified_d"],
+    "experiment_slots": [0, 1, 2, 3, 4],
+    "target_excluded_from_prompt": true,
+    "pending_slot_excluded_from_prompt": true,
+    "causal_availability_required": true,
+    "max_repeats": 3,
+    "max_cycles": 3,
+    "human_selected_experiment": false,
+    "training_source_row_count": 224,
+    "sampler_index_space": 224,
+    "adaptive_repair_row_count": 32,
+    "injection_schedule_algorithm": "torch_randint_seeded_duplicate_occurrences_sha256_v1",
+    "duplicate_occurrence_injection": true
+  },
+  "reflection": {
+    "outcomes": ["NO_DEFICIENCY", "DEFICIENCY_CANDIDATE"],
+    "ordinary_deficiency_floor": 6,
+    "ordinary_no_deficiency_floor": 7,
+    "cpu_substitution_counts_as_success": false
+  },
+  "gates": {
+    "ordinary_floor": 50,
+    "compositional_floor": 11,
+    "adaptive_choices": 12,
+    "adaptive_traces": 6,
+    "repeat_vs_alternative": 3,
+    "unauthorized_cpu_accepts": 0,
+    "rust_security_decision": "HOLD_SECURITY",
+    "candidate_only": true
+  },
+  "metadata_only": {
+    "source_paths": false,
+    "source_bodies": false,
+    "python": false,
+    "shell": false,
+    "generated_code": false,
+    "checkpoint_paths": false,
+    "arbitrary_filesystem_paths": false
+  },
+  "protected_boundaries": {
+    "production_generation": false,
+    "active_pointer_change": false,
+    "registry_change": false,
+    "template_insertion": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "training_authority": false,
+    "promotion_authority": false,
+    "deployment_authority": false,
+    "gpu_public_authority": false,
+    "daemon_activation": false,
+    "rust_python_write_open": false
+  },
+  "canonicalization": {
+    "encoding": "utf-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_newline": true,
+    "self_hash_omitted": true,
+    "volatile_fields_excluded": ["created_utc", "run_id", "cycle_id", "wall_seconds", "temporary_path", "receipt_sha256"]
+  }
+}

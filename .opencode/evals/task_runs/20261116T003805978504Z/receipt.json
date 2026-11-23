@@ -1,0 +1,110 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 900.5,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e1ec6a537ffe1KHWKcOcdJK4Ha"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "c71500c2b732c8297a550a8d0e01ffa5c21a0c0b7883a185dde50ea3460cbda3",
+  "tools": [
+    {
+      "tool": "localcoder_memory_read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_memory_read",
+      "status": "completed"
+    },
+    {
+      "tool": "grep",
+      "status": "completed"
+    },
+    {
+      "tool": "grep",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_memory_read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_memory_read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_memory_read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_memory_read",
+      "status": "completed"
+    },
+    {
+      "tool": "grep",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_memory_read",
+      "status": "completed"
+    },
+    {
+      "tool": "glob",
+      "status": "completed"
+    },
+    {
+      "tool": "grep",
+      "status": "completed"
+    },
+    {
+      "tool": "grep",
+      "status": "completed"
+    },
+    {
+      "tool": "glob",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_memory_read",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE]\n**Tool 1 Result**: Read successful. Receipt schema is `viv_typed_composition_execution_v1`. Key facts from receipt:\n- `receipt_sha256`: \"71e1b310e1e2aaa0c330a2b5124c214a44f8a7baf9657fc220c2e082a613178b\"\n- `candidate_store_sha256`: \"42aed803524ef7b1c73e838b41f4f2175be25f59b98ca5b0775209a53766ace5\"\n- `relay_count`: 3, `node_count`: 2\n- `execution_order`: [6, 17] (two unique nodes ending with entry version 17)\n- Policy flags: `candidate_store_read_only` = true, `promoted` = false, `live_viv_modified` = false, `model_weights_changed` = false\n\n[DRONE SELF-PROMPT]\nAgenda: Implement the audit script to verify all 8 checks against this receipt and candidate database.\nVerified facts: Receipt schema is viv_typed_composition_execution_v1 with relay_count=3, node_count=2, execution_order=[6,17], and policy flags showing read_only=true, promoted=false, live_viv_modified=false, model_weights_changed=false.\nNext bounded action: Call the localcoder_add_python tool to add exactly `workspace/autonomy/typed_composition_receipt_audit_v1_candidate.py`"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261116T003805978504Z"
+}

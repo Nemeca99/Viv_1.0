@@ -1,0 +1,17 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add only new `workspace/autonomy/hive_postal_outbox_proposal_v4_candidate.py`; stop if it exists.
+Import `SCHEMA`,`VALID_KINDS`,`validate_postal_message` from sibling contract; never redefine. Implement pure `prepare_queen_outbox_proposal(message_id,sender_id,authority_queen_id,task_id,body,*,kind="REPORT",proposed_recipient_id=None,parent_message_sha256=None)`. Build exact envelope keys schema,message_id,sender_id,recipient_id,task_id,kind,body; queen recipient; deepcopy body; optional key `parent_message_sha256`. Call validator once. Invalid -> `(None,(reason,))`; valid -> `(proposal,())` with proposal schema `hive_postal_outbox_proposal_v1`, message, routing_request. Reject peer `Queen` case-insensitively; peer stays outside envelope. No I/O/delivery.
+`--self-check`: 9 cases—exact valid default; peer; deep-copy; invalid empty ID/body/kind/hash/Queen peer; valid 64-hex hash. Only output one line `PASS: 9 checks` on all-pass, else `FAIL:` and exit nonzero.
+Call the `aios_router_open_build_task` tool. Call the `aios_router_accept_self_prompt` tool (drone turn 0). Call the `localcoder_add_python` tool (only target above). Call the `read` tool (target). Call the `shell` tool exactly: `& 'L:/.venv/Scripts/python.exe' -B 'workspace/autonomy/hive_postal_outbox_proposal_v4_candidate.py' --self-check`. Call the `aios_router_record_turn_result` tool (drone turn 0, actual result). Call the `aios_router_complete_lane` tool (accurate receipt).
+[CURRENT AUTHORIZATION FACT]
+Architect approved; OpenCode and Rust gates govern.
+[QUEEN → DRONE]
+After nonfinal results, emit `[DRONE SELF-PROMPT]` lines `Agenda:`, `Verified facts:`, `Next bounded action:` using latest evidence and naming next tool. Never retry; record failures. Final starts `[DRONE]`, names target and a read fact, and ends with the same fields and `Next bounded action: STOP`.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: aios_router_open_build_task → aios_router_accept_self_prompt → localcoder_add_python → read → shell → aios_router_record_turn_result → aios_router_complete_lane. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

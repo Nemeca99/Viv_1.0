@@ -1,0 +1,17 @@
+{
+  "task_id": "GOAL_REBUILD_BACKUP_CORE_1794881283_STEP_3_VERIFY",
+  "sealed_at": "2026-11-16T20:09:18.199942",
+  "objective": "Verify `backup_core` satisfies: State preservation checkpoint engine with `BackupCore(config)` class.\nConfig dict keys: `snapshot_dir` (default '.snapshots'), `max_snapshots` (default 5), and `quota_limit` (default 1000000000).\nRequired instance attributes:\n- `self.config`: the config dict passed into __init__\n- `self.snapshot_dir`: snapshot directory path (must call os.makedirs(self.snapshot_dir, exist_ok=True) in __init__)\n- `self.max_snapshots`: maximum allowed snapshot files\n- `self.quota_limit`: byte quota limit\nRequired methods:\n- `backup_file(self, file_path: str)`: saves snapshot copy of file_path to snapshot_dir and records sha256 hash\n- `get_health_status(self) -> dict`: returns dict with exact keys 'status' ('healthy' or 'over_quota'), 'snapshot_count' (int), and 'quota_used' (total bytes of snapshot files computed via os.path.getsize(os.path.join(self.snapshot_dir, f)))\n- `_calculate_hash(self, file_path: str) -> str`: returns sha256 hex digest of file_path\n- `_manage_snapshot_quota(self)`: prunes oldest snapshot files when count > max_snapshots\n- `_verify_hashes(self) -> bool`: checks snapshot file hashes against recorded digests, returning True if all valid, False on mismatch, missing file, or if no snapshots have been recorded yet (do not raise exceptions)\nZero external cloud dependencies.. Pass all assertions in `backup_core_test.py` on silicon.",
+  "evidence": {
+    "attempts": 2,
+    "exit_code": 0,
+    "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.024s\n\nOK"
+  },
+  "modified_files": {
+    "L:\\LocalCoder\\workspace\\aios_rebuild\\backup_core\\backup_core.py": {
+      "sha256": "235b7d591a028b907fb16952b65193c6a44f0c5752bb7ada8714a89d2e2499d6",
+      "bytes": 3133
+    }
+  },
+  "verified_on_silicon": true
+}

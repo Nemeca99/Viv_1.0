@@ -1,0 +1,88 @@
+{
+  "schema_version": "viv_cpu_template_variable_binding_contract_v1",
+  "status": "IMPLEMENTED_CANDIDATE_ONLY",
+  "purpose": "Keep Python source assembly CPU-owned while allowing a first-party model to propose only bounded template-variable bindings.",
+  "architecture": {
+    "source_assembly_authority": "cpu",
+    "source_assembly_method": "copy_exact_indexed_utf8_spans",
+    "model_surface": "typed_variable_slots_only",
+    "gpu_surface": "private_proposal_or_acceleration_only",
+    "final_semantic_authority": "cpu",
+    "executable_write_membrane": "rust",
+    "production_adoption_authority": "explicit_architect_approval_plus_rust"
+  },
+  "cpu_assembly": {
+    "source_registry": "foundation/code_templates/registry.json",
+    "source_index": "foundation/artifacts/auto/code_templates/source_function_index.json",
+    "required_sections": ["__imports__", "VARIABLES", "main"],
+    "optional_sections": ["sub_main_*"],
+    "section_order": ["__imports__", "VARIABLES", "main", "sub_main_*"],
+    "copy_exact_bytes": true,
+    "source_template_mutation": false,
+    "model_generated_source": false,
+    "model_generated_function_bodies": false,
+    "source_span_hashes_required": true,
+    "generated_module_hash_required": true
+  },
+  "model_variable_surface": {
+    "allowed_fields": ["template_slot", "declared_key", "value_slot"],
+    "value_slots_are_cpu_owned": true,
+    "literal_runtime_values_allowed_in_model_frame": false,
+    "source_paths_allowed": false,
+    "source_bodies_allowed": false,
+    "python_allowed": false,
+    "shell_allowed": false,
+    "expressions_allowed": false,
+    "arbitrary_output_paths_allowed": false
+  },
+  "cpu_binding": {
+    "steps": [
+      "verify_model_frame",
+      "verify_template_slot",
+      "verify_declared_key",
+      "verify_key_specific_value_slot",
+      "resolve_slot_to_runtime_literal",
+      "pass_data_only_override_to_verified_runtime"
+    ],
+    "source_rewrite": false,
+    "variables_section_rewritten": false,
+    "function_spans_rewritten": false,
+    "runtime_binding_only": true,
+    "unknown_key": "HOLD",
+    "unknown_slot": "HOLD",
+    "cross_template_slot": "HOLD",
+    "malformed_frame": "HOLD"
+  },
+  "execution": {
+    "runtime": "verified_active_template_generation_only",
+    "import_does_not_execute_main": true,
+    "main_invoked_explicitly": true,
+    "variable_overrides": "declared_keys_only",
+    "candidate_output": "isolated_sandbox_only",
+    "production_generation": "approval_gated",
+    "active_pointer_change": "separate_approval_required"
+  },
+  "evidence": {
+    "required_receipt_fields": [
+      "source_span_hashes",
+      "generated_module_sha256",
+      "model_output_scope",
+      "variable_binding_mode",
+      "cpu_slot_resolution",
+      "runtime_override_hash",
+      "source_rewrite"
+    ],
+    "model_success_requires_raw_frame": true,
+    "cpu_repair_counts_as_model_success": false,
+    "protected_state_invariance_required": true
+  },
+  "boundaries": {
+    "seed_0_mutation": false,
+    "live_model_mutation": false,
+    "registry_mutation": false,
+    "template_insertion": false,
+    "protected_main_mutation": false,
+    "gpu_authority": false,
+    "rust_bypass": false
+  }
+}

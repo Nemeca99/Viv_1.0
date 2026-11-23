@@ -1,0 +1,1169 @@
+{
+  "scope": "configured pinned MCP image with live router DB; read-only tool calls",
+  "command": [
+    "wsl.exe",
+    "--distribution",
+    "Ubuntu",
+    "--exec",
+    "docker",
+    "--context",
+    "default",
+    "run",
+    "--rm",
+    "--interactive",
+    "--pull=never",
+    "--network=none",
+    "--read-only",
+    "--cap-drop=ALL",
+    "--security-opt=no-new-privileges:true",
+    "--user=10001:10001",
+    "--memory=256m",
+    "--memory-swap=256m",
+    "--cpus=1",
+    "--pids-limit=32",
+    "--shm-size=8m",
+    "--mount",
+    "type=bind,source=/mnt/l/LocalCoder/workspace/aios_rebuild/memory/aios_router,target=/var/lib/aios-router",
+    "--mount",
+    "type=volume,source=aios-router-postal-key-v1,target=/var/lib/aios-router-key",
+    "--mount",
+    "type=bind,source=/mnt/l/LocalCoder/.opencode/receipts,target=/var/lib/aios-body-receipts,readonly",
+    "sha256:91a19a582ab99f6b51ecb12712afe4f0c2fe91fe4bcd48e59a7d159bd5d43f72"
+  ],
+  "initialize": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "protocolVersion": "2024-11-05",
+      "capabilities": {
+        "tools": {}
+      },
+      "serverInfo": {
+        "name": "aios-router-mcp-v3-postal-candidate",
+        "version": "0.3.0"
+      },
+      "instructions": "Persistent encrypted Hive postal candidate. All postal operations require fresh Rust Body, PrivacyCore, and role-bound OpenCode actor receipts. Drone messages enter Queen-only encrypted outbox; only Queen tools can read and reseal into an exact registered Drone inbox."
+    }
+  },
+  "catalog": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "tools": [
+        {
+          "name": "accept_self_prompt",
+          "description": "Accept one bounded self-prompt for the next serial lane turn; records only a digest and requires the same fresh Rust Body plus PrivacyCore receipt. It never invokes the model.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "lane_id": {
+                "type": "string"
+              },
+              "prompt": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              },
+              "turn": {
+                "format": "uint32",
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "lane_id",
+              "turn",
+              "prompt"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "assign_drone_seed",
+          "description": "Assign exactly one OS-CSPRNG inference seed to an Architect-named Drone identity. SQLite UNIQUE constraints prevent seed or identity reuse. Requires a fresh matching Rust Body and PrivacyCore receipt.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "description": "Architect-assigned Drone identity key; it must appear verbatim in the current assignment.",
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "agent_id",
+              "session_id",
+              "task_id",
+              "assignment_hash"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "classify_task",
+          "description": "Classify only: conversation routes to Queen, build to Drone, all other labels to Queen. This does not dispatch work.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "label": {
+                "description": "User-originated label; conversation routes Queen, build routes Drone, every other label routes Queen.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "label"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "complete_lane",
+          "description": "Mark an idle lane complete after at least one turn, with a nonempty completion receipt; requires the same fresh Rust Body plus PrivacyCore receipt.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "lane_id": {
+                "type": "string"
+              },
+              "receipt": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "lane_id",
+              "receipt"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "lookup_drone_seed",
+          "description": "Read the persistent seed and stable seed-derived style profile for one registered Drone identity.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "agent_id"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "open_build_task",
+          "description": "Open a bounded router task. Requires session_id, task_id, matching assignment hash, and a fresh Rust Body receipt carrying the exact PrivacyCore allow for the pinned database path.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment": {
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "lane_ids": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "max_turns_per_lane": {
+                "format": "uint32",
+                "minimum": 0,
+                "type": "integer"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "assignment",
+              "lane_ids",
+              "max_turns_per_lane"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_drone_read_inbox",
+          "description": "Drone-only. Read at most four messages from this assignment-bound Drone's private inbox. The host gate overwrites agent_id with the session's assigned Drone identity.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "limit": {
+                "format": "uint8",
+                "maximum": 255,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "agent_id",
+              "limit"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_drone_submit",
+          "description": "Drone-only. Submit one bounded turn result to the Queen's encrypted shared outbox. It closes the active Router turn atomically; Drone-to-Drone delivery is impossible through this operation.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "lane_id": {
+                "type": "string"
+              },
+              "reply_to_message_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              },
+              "turn": {
+                "format": "uint32",
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "lane_id",
+              "turn",
+              "agent_id",
+              "body"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_dispatch",
+          "description": "Queen-only. Reseal a verified Queen reply into the named registered Drone inbox using both Drone ID and inbox ID as the route handshake. Unknown or mismatched routes create a deterministic encrypted bounce for the original sender.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "destination_agent_id": {
+                "type": "string"
+              },
+              "destination_inbox_id": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "source_message_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "source_message_id",
+              "destination_agent_id",
+              "destination_inbox_id",
+              "body"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_list_drones",
+          "description": "Queen-only. List registered Drone IDs and inbox IDs for the bound task. Requires a fresh Body, PrivacyCore, and Queen actor receipt.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_list_outbox",
+          "description": "Queen-only. List shared outbox metadata for the bound task. Bodies remain encrypted until postal_queen_read_outbox is called.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_read_outbox",
+          "description": "Queen-only. Verify and decrypt one encrypted outbox message. The body is returned only after the Body, PrivacyCore, actor, and AES-GCM checks pass.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "message_id": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "message_id"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_queen_summary",
+          "description": "Queen-only. Return the task and mailbox summary from verified Rust task state and the append-only postal receipt chain; it does not infer success from Drone prose.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "postal_register_drone",
+          "description": "Drone-only. Register this assignment-bound Drone in the postal router. Requires an existing unique OS-CSPRNG Drone seed and fresh Body plus PrivacyCore plus postal actor receipt. Returns only this Drone's inbox ID.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "agent_id": {
+                "description": "Trusted Drone identity injected by the OpenCode assignment gate.",
+                "type": "string"
+              },
+              "assignment_hash": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "agent_id"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "queen_summary",
+          "description": "Return a Queen-facing summary derived strictly from recorded event receipts.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "task_id"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "record_turn_result",
+          "description": "Record the digest receipt for the matching active lane turn; requires the same fresh Rust Body plus PrivacyCore receipt.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "lane_id": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              },
+              "turn": {
+                "format": "uint32",
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "lane_id",
+              "turn",
+              "result"
+            ],
+            "type": "object"
+          }
+        },
+        {
+          "name": "router_status",
+          "description": "Report candidate health, append-only event-chain status, and explicit missing security integrations.",
+          "inputSchema": {
+            "properties": {},
+            "type": "object"
+          }
+        },
+        {
+          "name": "stop_task",
+          "description": "Record a task stop request; requires the same fresh Rust Body plus PrivacyCore receipt. This cannot cancel an external model generation; bridge cancellation and acknowledgement are not connected.",
+          "inputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {
+              "assignment_hash": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "session_id": {
+                "type": "string"
+              },
+              "task_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "session_id",
+              "task_id",
+              "assignment_hash",
+              "reason"
+            ],
+            "type": "object"
+          }
+        }
+      ]
+    }
+  },
+  "status": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"ok\":true,\"result\":{\"body_attestation\":\"fresh_rust_body_and_privacy_core_receipts_required_for_mutations\",\"candidate\":\"aios_router_mcp_v2_privacy_candidate\",\"database\":\"available\",\"event_chain\":\"verified\",\"event_count\":100,\"event_store\":\"router_state_and_negative_control_evidence_only\",\"filesystem_write_authority\":false,\"operational\":false,\"positive_rag\":\"separate_drone_owned_database\",\"service_started\":false}}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "classify": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"destination_role\":\"drone\",\"dispatch\":\"classification_only\",\"task_class\":\"build\"}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "transport": "PASS",
+  "process_exit": 0,
+  "stderr": [
+    "wsl: Failed to translate 'G:\\Simulacra\\KEEP\\Tools\\Git\\bin'\n",
+    "wsl: Failed to translate 'G:\\Simulacra\\KEEP\\Tools\\Git\\bin'\n"
+  ],
+  "records": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "result": {
+        "protocolVersion": "2024-11-05",
+        "capabilities": {
+          "tools": {}
+        },
+        "serverInfo": {
+          "name": "aios-router-mcp-v3-postal-candidate",
+          "version": "0.3.0"
+        },
+        "instructions": "Persistent encrypted Hive postal candidate. All postal operations require fresh Rust Body, PrivacyCore, and role-bound OpenCode actor receipts. Drone messages enter Queen-only encrypted outbox; only Queen tools can read and reseal into an exact registered Drone inbox."
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "result": {
+        "tools": [
+          {
+            "name": "accept_self_prompt",
+            "description": "Accept one bounded self-prompt for the next serial lane turn; records only a digest and requires the same fresh Rust Body plus PrivacyCore receipt. It never invokes the model.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "prompt": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                },
+                "turn": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "turn",
+                "prompt"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "assign_drone_seed",
+            "description": "Assign exactly one OS-CSPRNG inference seed to an Architect-named Drone identity. SQLite UNIQUE constraints prevent seed or identity reuse. Requires a fresh matching Rust Body and PrivacyCore receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "description": "Architect-assigned Drone identity key; it must appear verbatim in the current assignment.",
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "agent_id",
+                "session_id",
+                "task_id",
+                "assignment_hash"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "classify_task",
+            "description": "Classify only: conversation routes to Queen, build to Drone, all other labels to Queen. This does not dispatch work.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "label": {
+                  "description": "User-originated label; conversation routes Queen, build routes Drone, every other label routes Queen.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "label"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "complete_lane",
+            "description": "Mark an idle lane complete after at least one turn, with a nonempty completion receipt; requires the same fresh Rust Body plus PrivacyCore receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "receipt": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "receipt"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "lookup_drone_seed",
+            "description": "Read the persistent seed and stable seed-derived style profile for one registered Drone identity.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "agent_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "open_build_task",
+            "description": "Open a bounded router task. Requires session_id, task_id, matching assignment hash, and a fresh Rust Body receipt carrying the exact PrivacyCore allow for the pinned database path.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment": {
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "max_turns_per_lane": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "assignment",
+                "lane_ids",
+                "max_turns_per_lane"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_drone_read_inbox",
+            "description": "Drone-only. Read at most four messages from this assignment-bound Drone's private inbox. The host gate overwrites agent_id with the session's assigned Drone identity.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "limit": {
+                  "format": "uint8",
+                  "maximum": 255,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "agent_id",
+                "limit"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_drone_submit",
+            "description": "Drone-only. Submit one bounded turn result to the Queen's encrypted shared outbox. It closes the active Router turn atomically; Drone-to-Drone delivery is impossible through this operation.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "reply_to_message_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                },
+                "turn": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "turn",
+                "agent_id",
+                "body"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_dispatch",
+            "description": "Queen-only. Reseal a verified Queen reply into the named registered Drone inbox using both Drone ID and inbox ID as the route handshake. Unknown or mismatched routes create a deterministic encrypted bounce for the original sender.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "destination_agent_id": {
+                  "type": "string"
+                },
+                "destination_inbox_id": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "source_message_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "source_message_id",
+                "destination_agent_id",
+                "destination_inbox_id",
+                "body"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_list_drones",
+            "description": "Queen-only. List registered Drone IDs and inbox IDs for the bound task. Requires a fresh Body, PrivacyCore, and Queen actor receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_list_outbox",
+            "description": "Queen-only. List shared outbox metadata for the bound task. Bodies remain encrypted until postal_queen_read_outbox is called.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_read_outbox",
+            "description": "Queen-only. Verify and decrypt one encrypted outbox message. The body is returned only after the Body, PrivacyCore, actor, and AES-GCM checks pass.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "message_id": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "message_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_queen_summary",
+            "description": "Queen-only. Return the task and mailbox summary from verified Rust task state and the append-only postal receipt chain; it does not infer success from Drone prose.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "postal_register_drone",
+            "description": "Drone-only. Register this assignment-bound Drone in the postal router. Requires an existing unique OS-CSPRNG Drone seed and fresh Body plus PrivacyCore plus postal actor receipt. Returns only this Drone's inbox ID.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "agent_id": {
+                  "description": "Trusted Drone identity injected by the OpenCode assignment gate.",
+                  "type": "string"
+                },
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "agent_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "queen_summary",
+            "description": "Return a Queen-facing summary derived strictly from recorded event receipts.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "task_id"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "record_turn_result",
+            "description": "Record the digest receipt for the matching active lane turn; requires the same fresh Rust Body plus PrivacyCore receipt.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "lane_id": {
+                  "type": "string"
+                },
+                "result": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                },
+                "turn": {
+                  "format": "uint32",
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "lane_id",
+                "turn",
+                "result"
+              ],
+              "type": "object"
+            }
+          },
+          {
+            "name": "router_status",
+            "description": "Report candidate health, append-only event-chain status, and explicit missing security integrations.",
+            "inputSchema": {
+              "properties": {},
+              "type": "object"
+            }
+          },
+          {
+            "name": "stop_task",
+            "description": "Record a task stop request; requires the same fresh Rust Body plus PrivacyCore receipt. This cannot cancel an external model generation; bridge cancellation and acknowledgement are not connected.",
+            "inputSchema": {
+              "$schema": "https://json-schema.org/draft/2020-12/schema",
+              "properties": {
+                "assignment_hash": {
+                  "type": "string"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "session_id": {
+                  "type": "string"
+                },
+                "task_id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "session_id",
+                "task_id",
+                "assignment_hash",
+                "reason"
+              ],
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"ok\":true,\"result\":{\"body_attestation\":\"fresh_rust_body_and_privacy_core_receipts_required_for_mutations\",\"candidate\":\"aios_router_mcp_v2_privacy_candidate\",\"database\":\"available\",\"event_chain\":\"verified\",\"event_count\":100,\"event_store\":\"router_state_and_negative_control_evidence_only\",\"filesystem_write_authority\":false,\"operational\":false,\"positive_rag\":\"separate_drone_owned_database\",\"service_started\":false}}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"destination_role\":\"drone\",\"dispatch\":\"classification_only\",\"task_class\":\"build\"}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ]
+}

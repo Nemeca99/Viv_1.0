@@ -1,0 +1,156 @@
+{
+  "artifact": {
+    "path": "runs\\1790638104134463200\\hello.py",
+    "sha256": "539a41b22de5d96e39079a74b387ff1b11ce8cc5ccdc44e4274db19a1bf5afd9"
+  },
+  "fault_injected": false,
+  "foreman_snapshot_id": "3a01e585087222ca367708677eb05c6d20b17700cd36850881d6ee8d4d001af8",
+  "human_reply": {
+    "route": "Queen -> Viv -> task-003",
+    "value": "Hello from the Hive!"
+  },
+  "mind_generations": 2,
+  "mind_greeting_metrics": {
+    "done_reason": "stop",
+    "eval_count": 34,
+    "load_duration": 3033100,
+    "prompt_eval_count": 546,
+    "total_duration": 655250800
+  },
+  "mind_header_metrics": {
+    "done_reason": "stop",
+    "eval_count": 54,
+    "load_duration": 2249800,
+    "prompt_eval_count": 551,
+    "total_duration": 1514375700
+  },
+  "mode": "live",
+  "numeric_bridge": {
+    "numpy_version": "2.5.3",
+    "summary": {
+      "advanced_index_is_copy": true,
+      "astype_dtype": "float64",
+      "astype_is_copy": true,
+      "axis0_sum": [
+        12,
+        15,
+        18,
+        21
+      ],
+      "base_dtype": "int32",
+      "base_shape": [
+        3,
+        4
+      ],
+      "broadcast_shape": [
+        3,
+        4
+      ],
+      "elementwise_shape": [
+        2,
+        2
+      ],
+      "matrix_product": [
+        [
+          11.0
+        ]
+      ],
+      "reshape_shares_memory": true,
+      "slice_is_view": true
+    }
+  },
+  "python_role": "data transport only",
+  "rust_owns": [
+    "task state",
+    "OS entropy and master key",
+    "snapshot encryption",
+    "tool grants",
+    "artifact commits",
+    "receipt"
+  ],
+  "schema": "hive_rust_control_run_v1",
+  "scope": "isolated LocalCoder proof; no training, promotion, or deployment",
+  "security_checks": {
+    "master_key_in_worker_context": false,
+    "unapproved_peer_denied": true,
+    "unapproved_shell_denied": true,
+    "wrong_task_owner_denied": true
+  },
+  "source_sha256": {
+    "numpy_backend": "225046e86a4fafd4d8db260086fb4a82350bc9e27623c4f5c450c40adf2796f4",
+    "python_switchboard": "f0686f2f17730e3225610e3c735dc43d5be2e136b52ec3bab1046db3408d6ce2",
+    "rust_control": "0a623d718b3165e01c0ca6751baf99074595d03af28a7bc44899cf0b19b2e862",
+    "rust_runner": "fb087589c8bea3359c2b6708ba9b1bc905c313005c72b09af96bf902c5d87763",
+    "template_registry": "a8f887b9f153060c805c3ac703bd167ea4c380d40f74928ed082af26a9a30b2e"
+  },
+  "status": "PASS",
+  "swarm_generation_count": 0,
+  "task_index": [
+    {
+      "artifact_sha256": "a51affadaa26ab8b02af350e040e3917515829e161c111655a4bdee384dec702",
+      "checksum": "6a0aa2521fa0fbc3c0707208879633f33537750497386447f638d13705834486",
+      "owner": "stamp-header",
+      "parent": null,
+      "state": "Completed",
+      "task_id": "task-001"
+    },
+    {
+      "artifact_sha256": "aabd92042d969ed0235db7d37a1bc051cb1c124e7a5398f011efe5a9d2359d2a",
+      "checksum": "b2137cbed6f7ca878bae79ab3028184595cb86956df2247858a987430a100fbf",
+      "owner": "stamp-import",
+      "parent": "task-001",
+      "state": "Completed",
+      "task_id": "task-002"
+    },
+    {
+      "artifact_sha256": "539a41b22de5d96e39079a74b387ff1b11ce8cc5ccdc44e4274db19a1bf5afd9",
+      "checksum": "8ed4c49e259e07b1142153acdd054aaa4de01751f6efb4845c2c627f79902ea9",
+      "owner": "stamp-function",
+      "parent": "task-002",
+      "state": "Completed",
+      "task_id": "task-003"
+    }
+  ],
+  "tasks": [
+    {
+      "artifact_sha256": "a51affadaa26ab8b02af350e040e3917515829e161c111655a4bdee384dec702",
+      "checksum": "6a0aa2521fa0fbc3c0707208879633f33537750497386447f638d13705834486",
+      "generation_count": 0,
+      "owner": "stamp-header",
+      "parent": null,
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-001",
+      "template_id": "python.module_docstring",
+      "template_source_sha256": "f13f73d2ad5457028632ac8af982012c047f7128f34c0c07eb25fa01c26511bd"
+    },
+    {
+      "artifact_sha256": "aabd92042d969ed0235db7d37a1bc051cb1c124e7a5398f011efe5a9d2359d2a",
+      "checksum": "b2137cbed6f7ca878bae79ab3028184595cb86956df2247858a987430a100fbf",
+      "generation_count": 0,
+      "owner": "stamp-import",
+      "parent": "task-001",
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-002",
+      "template_id": "python.typing_final_import",
+      "template_source_sha256": "4cf00c254e8ae8a65f5174806728bbbbe379c0fc9da9863d1657b5a21a89d68b"
+    },
+    {
+      "artifact_sha256": "539a41b22de5d96e39079a74b387ff1b11ce8cc5ccdc44e4274db19a1bf5afd9",
+      "checksum": "8ed4c49e259e07b1142153acdd054aaa4de01751f6efb4845c2c627f79902ea9",
+      "generation_count": 0,
+      "owner": "stamp-function",
+      "parent": "task-002",
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-003",
+      "template_id": "python.greeting_function",
+      "template_source_sha256": "5aded09231abe636de33cf5f5808536f5d0f4a3664765cdb4d9b326457169573"
+    }
+  ],
+  "validation": {
+    "actual": "Hello from the Hive!",
+    "passed": true
+  }
+}

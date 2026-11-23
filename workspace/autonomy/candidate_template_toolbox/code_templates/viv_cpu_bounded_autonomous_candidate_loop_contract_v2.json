@@ -1,0 +1,87 @@
+{
+  "schema_version": "viv_cpu_bounded_autonomous_candidate_loop_v2",
+  "receipt_schema": "viv_cpu_bounded_autonomous_candidate_loop_receipt_v2",
+  "status": "CANDIDATE_ONLY",
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "background_daemon": false,
+    "production_activation": false
+  },
+  "parent": {
+    "v1_receipt_schema": "viv_cpu_bounded_autonomous_candidate_loop_receipt_v1",
+    "v3_model_candidate_only": true,
+    "seed_zero_writes": false
+  },
+  "candidate_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "fixed_response_wire_width": 40,
+    "global_rng_reset": ["python", "numpy", "torch"],
+    "candidate_state_hash_must_repeat": true,
+    "training_determinism_is_a_gate": true,
+    "decoder_changed": false,
+    "tokenizer_changed": false,
+    "cpu_fallback_changed": false
+  },
+  "fresh_holdout": {
+    "training_rows": 224,
+    "ordinary_heldout_rows": 56,
+    "compositional_traces": 14,
+    "minimum_ordinary": "48/56",
+    "minimum_compositional": "11/14",
+    "metadata_only": true,
+    "target_reuse_is_finite_grammar": true
+  },
+  "state_machine": {
+    "direct_proposal_to_sandbox": false,
+    "required_order": ["OBSERVE", "RETRIEVE", "HYPOTHESIZE", "CPU_VALIDATE", "CANDIDATE_PLAN", "SANDBOX_TEST", "MEASURE", "ACCEPT_OR_HOLD", "RECORD", "SCHEDULE", "OBSERVE_OR_COMPLETE"]
+  },
+  "bounded_scheduler": {
+    "max_repeats": 3,
+    "concurrent_execution": false,
+    "background_worker": false,
+    "requires_operator_resume_on_failure": true
+  },
+  "model_contract": {
+    "raw_output_is_preserved": true,
+    "harness_repair_allowed": false,
+    "cpu_substitution_counts_as_model_success": false,
+    "approved_frame_families": ["D", "Q", "A", "R", "E"],
+    "source_paths_allowed": false,
+    "source_bodies_allowed": false,
+    "python_allowed": false,
+    "shell_allowed": false,
+    "arbitrary_paths_allowed": false
+  },
+  "approved_template_menu": [
+    {"slot": 0, "template_id": "fixture.echo", "pillar": "auto", "keys": ["message", "suffix"], "status": "approved"}
+  ],
+  "final_states": [
+    "PASS_CPU_BOUNDED_AUTONOMOUS_CANDIDATE_LOOP",
+    "HOLD_FRESH_HOLDOUT_PROTOCOL",
+    "HOLD_LIVE_MODEL_DIRECTED_DEFICIENCY",
+    "HOLD_LIVE_MODEL_DIRECTED_QUERY",
+    "HOLD_LIVE_MODEL_DIRECTED_ACTION",
+    "HOLD_LIVE_MODEL_DIRECTED_RESULT",
+    "HOLD_LIVE_MODEL_DIRECTED_SCHEDULER",
+    "HOLD_RECURSIVE_EVIDENCE",
+    "HOLD_AUTONOMOUS_DETERMINISM",
+    "HOLD_AUTONOMOUS_SECURITY",
+    "FAIL_AUTONOMOUS_PROTECTED_STATE"
+  ],
+  "human_approval_boundaries": [
+    "new_template",
+    "template_adoption",
+    "registry_insertion",
+    "architecture_change",
+    "production_activation",
+    "promotion",
+    "deployment",
+    "live_model_mutation"
+  ]
+}

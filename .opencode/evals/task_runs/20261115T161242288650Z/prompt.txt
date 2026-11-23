@@ -1,0 +1,15 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add new file `workspace/autonomy/hive_postal_outbox_proposal_v10_candidate.py`; stop if it exists.
+Exact imports: `import copy`; `from hive_postal_message_contract_queen_v3_candidate import SCHEMA, validate_postal_message`. Never import copy from the contract.
+Implement prepare_queen_outbox_proposal(message_id,sender_id,authority_queen_id,task_id,body,*,kind="REPORT",proposed_recipient_id=None,parent_message_sha256=None); return (proposal,errors_tuple).
+Body is dict; use copy.deepcopy. Envelope keys exactly schema=SCHEMA,message_id,sender_id,recipient_id=authority_queen_id,task_id,kind,body; optional parent_message_sha256. Validator returns (bool,reason); call valid,reason=validate_postal_message(envelope) once; invalid -> (None,(reason,)).
+Peer is None or trimmed nonempty str; malformed -> (None,("invalid_proposed_recipient_id",)); casefold queen -> (None,("proposed_recipient_is_queen",)). "drone_2" is valid routing metadata only; never compare peer to authority_queen_id or change envelope recipient. Proposal schema hive_postal_outbox_proposal_v1, message=envelope, routing_request=None or {"recipient_id":peer}.
+--self-check: valid dict/Queen recipient; nested validation; peer separation; deep-copy; reject list body, bad kind/hash, QUEEN peer. Print PASS: 7 checks and exit 0 only on success; keep under 100 lines.
+Call aios_router_open_build_task tool; call aios_router_accept_self_prompt tool (drone,0); call localcoder_add_python tool (assigned target, source); call read tool; call shell tool: & 'L:\.venv\Scripts\python.exe' -B 'workspace\autonomy\hive_postal_outbox_proposal_v10_candidate.py' --self-check; call aios_router_record_turn_result tool (facts); call aios_router_complete_lane tool (receipt).
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: aios_router_open_build_task → aios_router_accept_self_prompt → localcoder_add_python → read → shell → aios_router_record_turn_result → aios_router_complete_lane. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

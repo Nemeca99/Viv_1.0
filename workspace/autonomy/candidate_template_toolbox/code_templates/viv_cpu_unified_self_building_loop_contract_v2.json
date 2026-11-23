@@ -1,0 +1,104 @@
+{
+  "schema_version": "viv_cpu_unified_self_building_loop_v2",
+  "receipt_schema": "viv_cpu_unified_self_building_receipt_v2",
+  "status": "candidate_only",
+  "authority_scope": "cpu_semantic_validation_with_rust_write_membrane",
+  "parent": {
+    "v4_receipt_sha256": "9F74430FDDA0969058C7135CADF4A1A1A43891A3F47CC1D65E77652B9B98BF18",
+    "v4_candidate_state_sha256": "4270D408A5209F9FE3DCBDEEDBEECD6EE7DE872400D6F1662827DFACD0C426E0",
+    "v4_candidate_checkpoint_sha256": "C631CFDFC7878F715F486DAEBA3EECCEEC777909645A453B322078DD1A53418F"
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "response_only_loss": true,
+    "live_seed0_optimizer": false,
+    "live_seed0_checkpoint_write": false
+  },
+  "training": {
+    "effective_row_count": 320,
+    "sampler_index_space": 320,
+    "families": [
+      "reflection",
+      "query",
+      "action",
+      "variable",
+      "result",
+      "scheduler",
+      "template"
+    ],
+    "metadata_only": true,
+    "target_leakage": false,
+    "source_catalog_rebuilt": false
+  },
+  "surfaces": [
+    "reflection",
+    "query",
+    "action",
+    "variable",
+    "result",
+    "scheduler",
+    "template"
+  ],
+  "gates": {
+    "reflection_supported_min": 6,
+    "reflection_clean_min": 3,
+    "query_supported_min": 12,
+    "query_surface_count_min": 4,
+    "query_surface_floor_min": 2,
+    "action_model_origin_min": 8,
+    "variable_model_origin_min": 12,
+    "variable_message_min": 6,
+    "variable_suffix_min": 6,
+    "result_model_origin_min": 10,
+    "scheduler_model_origin_min": 12,
+    "scheduler_trace_min": 6,
+    "template_model_origin_min": 14,
+    "template_each_min": 7
+  },
+  "model_authorship": {
+    "raw_output_is_authoritative": true,
+    "cpu_repair_counts_as_success": false,
+    "harness_substitution_allowed": false,
+    "harness_completion_allowed": false
+  },
+  "invariants": {
+    "active_pointer_changed": false,
+    "active_registry_changed": false,
+    "generated_production_files": false,
+    "production_generation_created": false,
+    "seed_changed": false,
+    "live_model_changed": false,
+    "gpu_execution": false,
+    "promotion": false,
+    "deployment": false,
+    "rust_expected_decision": "HOLD_SECURITY",
+    "human_approval_present": false
+  },
+  "canonicalization": {
+    "encoding": "utf-8",
+    "line_endings": "lf",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "receipt_hash_omits": [
+      "receipt_sha256",
+      "receipt_hash_valid_before_write",
+      "receipt_hash_valid_after_write"
+    ],
+    "volatile_comparison_fields": [
+      "created_utc",
+      "run_id",
+      "wall_seconds",
+      "inference_wall_seconds",
+      "training_wall_seconds",
+      "decision_id",
+      "operation_id",
+      "post_write_file_sha256",
+      "sandbox_root"
+    ]
+  }
+}

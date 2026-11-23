@@ -1,0 +1,54 @@
+{
+  "schema_version": "viv_cpu_gpu_frontier_viability_v3_context_ablation_v1",
+  "receipt_schema": "viv_cpu_gpu_frontier_viability_v3_context_receipt_v1",
+  "contract_status": "candidate_only",
+  "parent": {
+    "receipt_sha256": "9F74430FDDA0969058C7135CADF4A1A1A43891A3F47CC1D65E77652B9B98BF18",
+    "candidate_sha256": "C631CFDFC7878F715F486DAEBA3EECCEEC777909645A453B322078DD1A53418F",
+    "candidate_state_sha256": "4270D408A5209F9FE3DCBDEEDBEECD6EE7DE872400D6F1662827DFACD0C426E0",
+    "v1_viability_receipt_sha256": "C0E4CF4F8A68BE88E7B85F061C91FBE80CF4897666A3D03B9F31B5178C8AF3D9"
+  },
+  "curriculum": {
+    "schema": "viv_cpu_gpu_frontier_viability_v3_context_curriculum_v1",
+    "shared_dataset_sha256": "10362256C3D0BA7CBCF431495513F563482D401A2691A7899BE3A51F929C8F8C",
+    "control_dataset_sha256": "349901AE5980272BCEB0AFAE0D7CF506EB136DAF68AB4011B9C547265C445FC3",
+    "phase_dataset_sha256": "DF5ED41B08900ACE82A63424C4707C8C92B1B750199922608A4D2EBD6927E024",
+    "training_rows": 224,
+    "sampler_index_space": 224,
+    "repair_rows": 32,
+    "validation_rows": 16,
+    "negative_rows": 8,
+    "trace_count": 8
+  },
+  "representation": {
+    "shared_prefix": "V3|a=...|b=...|c=...|sa=...|sb=...|sc=...|g=...|m=...|x=...|e=...|u=...|o=",
+    "phase_suffix": "|p=<phase_alias>|v=<prior_alias>|n=<generic_next_alias>",
+    "context_field": "x=<bounded_pre_decision_context>",
+    "output": "V|<three_labels>|<reason>|<repeat_count>|<budget>",
+    "control_phase_fields_in_prompt": false,
+    "phase_fields_pre_decision": true,
+    "parser_changed": false,
+    "tokenizer_changed": false,
+    "decoder_changed": false,
+    "labels_non_destructive": true,
+    "pruning": false
+  },
+  "recipe": {
+    "devices": ["cpu", "cuda:0"],
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "same_parent": true,
+    "same_sampler_plan": true,
+    "same_targets": true
+  },
+  "authority": {
+    "cpu_validates_both_routes": true,
+    "gpu_private_proposal_only": true,
+    "rust_write_membrane": true,
+    "expected_rust_state": "HOLD_SECURITY",
+    "candidate_only": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "elapsed_seconds": 35.813,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e2434246affewfTdXN5bxSAa64"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "01d9b067bf0928f08f9f13947266373e7d275ed283424989b412827e95d20150",
+  "tools": [],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "tool_action_missing"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE PLAN ONLY | NO TOOLS]\n[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\n[ARCHITECT] Use the `localcoder_status` tool exactly once and report the returned project_root.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect assigned this exact bounded work in the current user message. The explicitly named tool sequence is `localcoder_status`. It is authorized only for this assignment, subject to OpenCode policy and the Rust Body gate. This is not permission to expand the target or sequence.\n\n[QUEEN \u2192 DRONE]\nThis turn is planning only; the runtime hides every tool. Return a visible `[DRONE SELF-PROMPT]` with fields Agenda, Verified facts, Next bounded action. State that no repository facts have been checked in this turn. The next action must name the first authorized tool `localcoder_status` and, if a target path is in the assignment, repeat that exact path. Do not say to stop, wait, or request permission for this already assigned first tool. A final STOP clause in the assignment applies only after its work is complete. Stop after the self-prompt.\n\n[DRONE SELF-PROMPT]\nAgenda: Execute localcoder_status once and report project_root from result.\nVerified facts: None checked yet; no repository facts verified in this turn.\nNext bounded action: Call `localcoder_status` tool exactly once, then report returned project_root before stopping."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T204212471272Z"
+}

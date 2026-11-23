@@ -1,0 +1,107 @@
+{
+  "accepted_hashes": {
+    "py-task": "6f6571436a39d931d639303a94acd0515c29241df38f784ae31d5ab5d1418e91",
+    "rust-task": "d1a7fe81bbe7ad12b0a8aa2529a18f20bd81cfb1c07ffcff0c3aeaba4be5d500",
+    "stage-prep": "69308697ac2b8d7b2694338dbb74b5625a04e02f067c554a122591ac1b65630b",
+    "verify-cohort": "4f4b9ce726ed8b33c3e9830434698a84bb2c1143eb66285cb678f256b1018f8e"
+  },
+  "cohorts": [
+    [
+      "py-task",
+      "rust-task",
+      "stage-prep"
+    ],
+    [
+      "verify-cohort"
+    ]
+  ],
+  "events": [
+    {
+      "finish_ns": 1790712837452408100,
+      "generation_count": 0,
+      "output_sha256": "69308697ac2b8d7b2694338dbb74b5625a04e02f067c554a122591ac1b65630b",
+      "packet": {
+        "body": {
+          "parents": {},
+          "task": {
+            "agent_id": "rust-file-stager",
+            "agent_kind": "deterministic",
+            "capability": "stage-input-source",
+            "depends_on": [],
+            "id": "stage-prep",
+            "objective": "Stage and verify template_rebuild/reference/fixture_echo.py"
+          }
+        },
+        "capability": "stage-input-source",
+        "checksum": "8f13a546decb938337ce9cebe930fdece87e57ba3197ddbf49427c92f1c3ffe8",
+        "payload_sha256": "3498d22cf745d87e22a405e119c8bd87e0f5a19e8ccb3ef3c73238ea789383b8",
+        "task_id": "stage-prep"
+      },
+      "start_ns": 1790712837036339500,
+      "status": "PASS",
+      "task_id": "stage-prep"
+    },
+    {
+      "finish_ns": 1790712855363239900,
+      "generation_count": 1,
+      "output_sha256": "6f6571436a39d931d639303a94acd0515c29241df38f784ae31d5ab5d1418e91",
+      "packet": {
+        "body": {
+          "parents": {},
+          "task": {
+            "agent_id": "viv-python-specialist",
+            "agent_kind": "model",
+            "capability": "execute-python-task",
+            "depends_on": [],
+            "id": "py-task",
+            "objective": "Python task: Implement exactly `def increment(value: int) -> int` to return value plus one. Return only that function as the result string. No imports."
+          }
+        },
+        "capability": "execute-python-task",
+        "checksum": "8eb8021a45ae143c1c9cfc8b95ed26e7051931bdcd6ba1a04fbce3dda9fc9167",
+        "payload_sha256": "09e979eadc803bc14a1d3580c0e834d52daca6a6836728985dd720570977eb6b",
+        "task_id": "py-task"
+      },
+      "start_ns": 1790712837036417700,
+      "status": "PASS",
+      "task_id": "py-task"
+    },
+    {
+      "finish_ns": 1790712858545864900,
+      "generation_count": 1,
+      "output_sha256": "d1a7fe81bbe7ad12b0a8aa2529a18f20bd81cfb1c07ffcff0c3aeaba4be5d500",
+      "packet": {
+        "body": {
+          "parents": {},
+          "task": {
+            "agent_id": "viv-rust-specialist",
+            "agent_kind": "model",
+            "capability": "execute-rust-task",
+            "depends_on": [],
+            "id": "rust-task",
+            "objective": "Rust task: Implement exactly `fn increment(value: i32) -> i32` to return value plus one. Return only that function as the result string. No crates."
+          }
+        },
+        "capability": "execute-rust-task",
+        "checksum": "b53cc0ddba96904b228134be6862f1a104c0143ebe215eba9020cef47fabdade",
+        "payload_sha256": "34c9541678d09430105dcd81204b43a9a6e6bb19c3768576a8ce801d8b8428ac",
+        "task_id": "rust-task"
+      },
+      "start_ns": 1790712837036305100,
+      "status": "PASS",
+      "task_id": "rust-task"
+    },
+    {
+      "artifact_sha256": "4f4b9ce726ed8b33c3e9830434698a84bb2c1143eb66285cb678f256b1018f8e",
+      "finish_ns": 1790712859016652500,
+      "generation_count": 0,
+      "start_ns": 1790712858546818800,
+      "status": "PASS",
+      "task_id": "verify-cohort"
+    }
+  ],
+  "failure_reason": null,
+  "fault_injected": false,
+  "schema": "hive_horizontal_specialist_proof_v1",
+  "status": "PASS"
+}

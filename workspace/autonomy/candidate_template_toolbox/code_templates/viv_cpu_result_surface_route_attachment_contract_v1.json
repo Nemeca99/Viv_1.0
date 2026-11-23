@@ -1,0 +1,26 @@
+{
+  "schema_version": "viv_cpu_result_surface_route_attachment_contract_v1",
+  "experiment_id": "cpu_result_surface_route_attachment_v1",
+  "purpose": "Attach the independently verified result-only specialist as a candidate overlay to the CPU-owned route control.",
+  "surface": "result",
+  "phase": "MEASURE",
+  "route_owner": "CPU_RULE",
+  "model_selected_route": false,
+  "incumbent_route_must_remain": true,
+  "candidate_overlay_only": true,
+  "acceptance": {
+    "candidate_result_must_meet_incumbent": true,
+    "minimum_supported_success": 16,
+    "candidate_only": true,
+    "new_model_inference": false,
+    "training": false
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "seed_mutation": false,
+    "production_write": "HOLD_SECURITY"
+  }
+}

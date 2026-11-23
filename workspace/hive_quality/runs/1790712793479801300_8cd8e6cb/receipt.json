@@ -1,0 +1,47 @@
+{
+  "status": "HOLD",
+  "scope": "one task-scoped Python file; staged before dispatch",
+  "source": "L:\\LocalCoder\\workspace\\template_rebuild\\reference\\fixture_echo.py",
+  "source_sha256": "8F84915A7C291691F6E5A5028B75E7E43573A68AF7F46CD91CE46CF1774FA82C",
+  "prepared": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790712793479801300_8cd8e6cb\\fixture_echo.py",
+  "prepared_sha256": "8F84915A7C291691F6E5A5028B75E7E43573A68AF7F46CD91CE46CF1774FA82C",
+  "diff": "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790712793479801300_8cd8e6cb\\preparation.diff",
+  "checks": {
+    "format": {
+      "argv": [
+        "black",
+        "--quiet",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790712793479801300_8cd8e6cb\\fixture_echo.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "L:\\LocalCoder\\workspace\\hive_voice\\.venv\\Scripts\\python.exe: No module named black\n"
+    },
+    "ruff": {
+      "argv": [
+        "ruff",
+        "check",
+        "--no-cache",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790712793479801300_8cd8e6cb\\fixture_echo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    "vulture": {
+      "argv": [
+        "vulture",
+        "--min-confidence",
+        "100",
+        "L:\\LocalCoder\\workspace\\hive_quality\\runs\\1790712793479801300_8cd8e6cb\\fixture_echo.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "L:\\LocalCoder\\workspace\\hive_voice\\.venv\\Scripts\\python.exe: No module named vulture\n"
+    },
+    "compile": {
+      "exit_code": 0,
+      "diagnostic": ""
+    }
+  }
+}

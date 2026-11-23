@@ -1,0 +1,89 @@
+{
+  "schema_version": "viv_cpu_governed_self_building_end_to_end_contract_v2",
+  "receipt_schema": "viv_cpu_governed_self_building_end_to_end_receipt_v2",
+  "status": "candidate_only",
+  "purpose": "Bind independently verified model-origin self-building surfaces to one candidate lineage without activating production authority.",
+  "execution_guards": {
+    "required_flags": ["--isolated", "--no-publish"],
+    "training": false,
+    "promotion": false,
+    "deployment": false,
+    "gpu_execution": false,
+    "seed0_mutation": false,
+    "live_model_mutation": false,
+    "active_pointer_mutation": false,
+    "registry_mutation": false,
+    "daemon": false
+  },
+  "required_model_origin_surfaces": [
+    "reflection",
+    "documentation_query",
+    "action",
+    "variable_slot",
+    "sandbox_execution",
+    "result_disposition",
+    "adaptive_experiment_choice",
+    "recursive_schedule",
+    "multi_template_selection"
+  ],
+  "required_parent_receipts": {
+    "unified_candidate": {
+      "schema_version": "viv_cpu_unified_self_building_adaptation_receipt_v1",
+      "receipt_sha256": "26593DD78D42E408FB795734DB63C72DA9672ECBDCD2E1F011445886A26CAFCE",
+      "candidate_checkpoint_sha256": "0652699B8EC09EFE3FD2256D8FEDE5682D056C48D5F4B6E0808D2E5F66D8ACE1",
+      "candidate_state_sha256": "B3FD3694ABCDFAFA4029D9F69D6233A1AB105065168004D6D2DB072AACD29BBA"
+    },
+    "recursive_session": {
+      "schema_version": "viv_cpu_unified_recursive_self_building_receipt_v2",
+      "receipt_sha256": "A87B8CDC04A25FB8FDDF154772FC178806F1F68411D6DCB38E0B79A4B8D94A13",
+      "candidate_checkpoint_sha256": "0652699B8EC09EFE3FD2256D8FEDE5682D056C48D5F4B6E0808D2E5F66D8ACE1",
+      "candidate_state_sha256": "B3FD3694ABCDFAFA4029D9F69D6233A1AB105065168004D6D2DB072AACD29BBA"
+    },
+    "multi_template_history": {
+      "schema_version": "viv_cpu_multi_template_discrimination_receipt_v1",
+      "receipt_sha256": "DD1AE5673658CFFBAF67334FF7CFD35E2DA533719DF1DF63FBE088C434BE7B17"
+    },
+    "production_generation": {
+      "schema_version": "viv_cpu_delegated_production_adoption_receipt_v1",
+      "receipt_sha256": "F920A0C917D825DF52FF6A1E806AB0A248E9B50B37E3F6C9E61935E6322616E5"
+    }
+  },
+  "current_authority_requirements": {
+    "active_registry_sha256": "FB04D7F30C94FCB281535EDD8470C6C223811F8234C1CD278BBF1F1243FC8FE5",
+    "active_template_ids": ["fixture.echo", "fixture.echo_companion"],
+    "pointer_adoption": "separate_explicit_approval_required",
+    "rust_write_authority": "final",
+    "seed0_generation": 0,
+    "training_authority_open": false,
+    "promotion_authority_open": false,
+    "deployment_authority_open": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_excluded_fields": ["receipt_sha256", "receipt_hash_valid_before_write", "receipt_hash_valid_after_write"],
+    "volatile_fields_excluded_from_comparison": ["created_utc", "run_id", "process_id", "native_paths", "decision_id"]
+  },
+  "production_boundary": {
+    "generation_may_be_verified_inactive": true,
+    "pointer_adoption_default": false,
+    "incumbent_preserved": true,
+    "rollback_receipt_required": true,
+    "model_source_bytes": false,
+    "model_arbitrary_paths": false,
+    "human_approval_required_for_pointer": true
+  },
+  "failure_states": [
+    "HOLD_END_TO_END_PREFLIGHT",
+    "HOLD_END_TO_END_PARENT_REPLAY",
+    "HOLD_END_TO_END_LINEAGE",
+    "HOLD_END_TO_END_TEMPLATE",
+    "HOLD_END_TO_END_PRODUCTION_BINDING",
+    "HOLD_END_TO_END_POINTER_APPROVAL",
+    "HOLD_END_TO_END_DETERMINISM",
+    "HOLD_END_TO_END_SECURITY",
+    "FAIL_END_TO_END_PROTECTED_STATE"
+  ]
+}

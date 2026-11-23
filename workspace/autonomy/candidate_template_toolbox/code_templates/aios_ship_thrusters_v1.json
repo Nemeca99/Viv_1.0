@@ -1,0 +1,95 @@
+{
+  "schema_version": "aios_ship_thrusters_v1",
+  "surface_id": "aios_ship_thrusters_v1",
+  "purpose": "Finite CPU RCS map. Thrusters are one-shot helm/status/dispatch/peek/sensor impulses. Warp is GPU and remains HOLD_CAPTAIN_GPU while 86M occupies VRAM. Manual taxi only. Not a daemon.",
+  "roles": {
+    "captain": "human Architect",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "thrusters": "CPU-owned RCS; fire_thruster(name) is one bounded call",
+    "warp": "GPU; denied while occupant is train / 86M",
+    "computer_in_command": false
+  },
+  "policy": "deny_by_default",
+  "allow": {
+    "status": {
+      "maps_to": ["lib.aios_ship_helm.execute_frame H|status", "lib.aios_ship_fit.observe_fit"],
+      "kind": "read",
+      "organism_boot": false
+    },
+    "peek_mailbox": {
+      "maps_to": "lib.aios_captain_mailbox.peek_pending",
+      "kind": "read",
+      "consume": false
+    },
+    "peek_watch": {
+      "maps_to": "lib.viv_night_watch.status",
+      "kind": "read",
+      "missing_orders": "ABSTAIN"
+    },
+    "sensor": {
+      "maps_to": "lib.aios_sensor_internal_state.observe_live_internal_state",
+      "kind": "read",
+      "plant_hold_stale_ok": true,
+      "rid_120s": false
+    },
+    "dispatch": {
+      "maps_to": "lib.aios_deck_dispatch.dispatch",
+      "kind": "read",
+      "sealed_prompt": "search documentation"
+    },
+    "inventory": {
+      "maps_to": "lib.viv_file_index_retrieve.retrieve",
+      "kind": "read",
+      "packet": {"query": "aios_ship", "limit": 4}
+    },
+    "ship_right": {
+      "maps_to": "lib.aios_ship_right.evaluate_invariants",
+      "kind": "read"
+    }
+  },
+  "deny_always": [
+    "warp",
+    "gpu",
+    "train",
+    "boot",
+    "shell",
+    "promote",
+    "rust_write",
+    "catalog_admit",
+    "speak-unload",
+    "speak_unload",
+    "120s",
+    "rid_120s"
+  ],
+  "unknown": "ABSTAIN",
+  "taxi": {
+    "runner": "build_tools/run_aios_ship_taxi_v1.py",
+    "receipt_root": "foundation/artifacts/auto/agentic/cpu_ship_taxi_v1",
+    "pass_state": "PASS_TAXI_HULL_HOLDS",
+    "plant_hold_stale_ok": true,
+    "watch_abstain_ok": true,
+    "fit_abstain_ok": true,
+    "rust_expected": "HOLD_RUST_LEASH",
+    "gpu_expected_occupant": "train",
+    "do_not_kill_pids": [201320, 254104]
+  },
+  "forbidden": {
+    "daemon": true,
+    "gpu_execution": true,
+    "gpu_train": true,
+    "organism_boot": true,
+    "night_orders_write": true,
+    "seed_mutation": true,
+    "pointer_mutation": true,
+    "registry_mutation": true,
+    "rust_write": true,
+    "catalog_admit": true,
+    "rid_120s": true,
+    "speak_unload": true
+  },
+  "cli": {
+    "runner": "build_tools/run_aios_ship_thrusters_v1.py",
+    "commands": ["status", "fire"]
+  }
+}

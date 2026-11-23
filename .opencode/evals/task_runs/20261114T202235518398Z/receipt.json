@@ -1,0 +1,62 @@
+{
+  "elapsed_seconds": 120.5,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e2446aaf1ffeHFVUZzBvyf3Oxp"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "2a87ff051a8c932c1322481106085068050bedca2b7551da688a39d7b148d7f1",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"L:\\Python312\\Lib\\pathlib.py\", line 1027, in read_text\r\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"L:\\Python312\\Lib\\pathlib.py\", line 1013, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] "
+    },
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: drone prompt helper"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"L:\\Python312\\Lib\\pathlib.py\", line 1027, in read_text\r\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\r\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"L:\\Python312\\Lib\\pathlib.py\", line 1013, in open\r\n    return io.open(self, mode, buffering, encoding, errors, newline)\r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\nFileNotFoundError: [Errno 2] "
+    }
+  ],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\n\n**Agenda:** Verify the Drone prompt helper by reading `workspace/autonomy/opencode_drone_prompts.py` once and executing a Python AST/import test to confirm `format_drone_self_prompt` function works correctly with arguments `(agenda, evidence, next)`.\n\n**Verified facts:** None yet. No repository facts have been checked in this turn.\n\n**Next bounded action:** Call `read` on `workspace/autonomy/opencode_drone_prompts.py` exactly once to inspect the file contents before executing the verification test."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T202235518398Z"
+}

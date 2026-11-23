@@ -1,0 +1,103 @@
+{
+  "schema_version": "viv_index_dupe_report_contract_v1",
+  "status": "candidate_only",
+  "purpose": "CPU-owned read-only duplicate candidate report over the local file-index SQLite inventory. Same-hash groups are inventory candidates, not a wipe verdict. Humans archive/delete. Viv never deletes canonical evidence.",
+  "classification": {
+    "authority_class": "evidentiary",
+    "authority_scope": "experimental_evidence",
+    "role": "inventory",
+    "runtime_truth": false,
+    "verified_claim_oracle": false,
+    "inventory_not_truth": true,
+    "dupes_are_candidates_not_verdict": true
+  },
+  "index": {
+    "scanner": "foundation/scripts/file_index_system.py",
+    "retrieve": "foundation/lib/viv_file_index_retrieve.py",
+    "default_db": "artifacts/file_index/file_index.db",
+    "schema_table": "files",
+    "grouping": "sha256",
+    "size_only": "HOLD_SIZE_COLLISION_not_dupe",
+    "create_if_missing": false,
+    "start_scan_if_absent": false,
+    "wait_for_scan": false,
+    "kill_scanner": false
+  },
+  "packet": {
+    "owner": "CPU",
+    "model_selects_slots": false,
+    "slots": ["min_bytes", "out", "max_groups", "max_paths", "stdout_groups"],
+    "cli": "report --min-bytes N --out path.json"
+  },
+  "caps": {
+    "default_min_bytes": 1,
+    "default_max_groups": 200,
+    "max_groups_hard": 500,
+    "default_max_paths": 32,
+    "max_paths_hard": 256,
+    "default_stdout_groups": 12,
+    "max_stdout_groups": 32,
+    "busy_timeout_ms": 2000
+  },
+  "sqlite": {
+    "uri_mode": "ro",
+    "query_only": true,
+    "journal_mode_pragma": false,
+    "schema_init": false,
+    "allowed_statements": ["SELECT", "PRAGMA table_info", "PRAGMA query_only", "PRAGMA busy_timeout"]
+  },
+  "group_fields": ["hash", "size", "count", "paths", "recoverable_bytes"],
+  "recoverable_bytes": "(count - 1) * size keep_one",
+  "sort": "recoverable_bytes desc",
+  "protected": {
+    "flag": "HOLD_PROTECTED",
+    "never_recommend_delete": [
+      "Seed/models under Continue",
+      "security_core.pyd",
+      "receipts/journals",
+      "Viv_Discord run dirs",
+      "Python312",
+      ".venv"
+    ]
+  },
+  "containment": {
+    "c_drive": "HOLD_C_DRIVE_EXCLUDED",
+    "off_l": "captain_visible_candidate_viv_must_not_delete",
+    "viv_delete_off_l": false
+  },
+  "states": {
+    "hashed_groups": "INVENTORY_CANDIDATES",
+    "partial": "PARTIAL_SCAN_IN_PROGRESS",
+    "scan_running_no_hash": "ABSTAIN_SCAN_IN_PROGRESS",
+    "missing_db": "ABSTAIN_INDEX_ABSENT",
+    "locked": "HOLD_INDEX_LOCKED",
+    "invalid": "HOLD_INDEX_INVALID",
+    "schema": "HOLD_SCHEMA_MISMATCH",
+    "size_only": "HOLD_SIZE_COLLISION",
+    "protected": "HOLD_PROTECTED",
+    "c_drive": "HOLD_C_DRIVE_EXCLUDED"
+  },
+  "forbidden": {
+    "index_write": true,
+    "scan_start": true,
+    "scan_kill": true,
+    "file_execute": true,
+    "file_delete": true,
+    "file_move": true,
+    "file_recycle": true,
+    "file_content_read": true,
+    "seed0_mutation": true,
+    "pointer_mutation": true,
+    "registry_mutation": true,
+    "rust_write": true,
+    "recommend_delete": true
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "candidate_only": true,
+    "production_generation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false
+  }
+}

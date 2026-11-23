@@ -1,0 +1,9 @@
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Read `workspace/autonomy/hive_postal_recipient_predicate_v17_qc_candidate.py` using the read tool. Treat it as read-only.
+Add new file `workspace/autonomy/hive_postal_recipient_predicate_v19_candidate.py`; stop if it exists.
+First source line exactly: `def is_valid_drone_recipient(value):`
+Behavior: True only for a nonempty str that is already trimmed and whose casefold() is not "queen"; non-strings are False. Reject padding before casefold; do not normalize or strip then accept.
+Keep the entire source under 30 physical lines, including blank lines.
+Add `--self-check` for exactly: "drone_2" True; "queen" False; "QUEEN" False; " QUEEN" False; " drone_2 " False; "" False; None False; 123 False. Only successful stdout: `PASS: 8 checks`; print once after every check passes, exit nonzero otherwise, no per-case output.
+Final report begins `[DRONE]`, names the exact V19 output file, and its final `[DRONE SELF-PROMPT]` Verified facts line includes literal `is_valid_drone_recipient`, `PASS: 8 checks`, and `lane_completed=true`, grounded in read/shell/Router tool results. Do not claim unverified work; final Next bounded action is STOP.
+Call the aios_router_open_build_task tool; call the aios_router_accept_self_prompt tool for lane drone turn 0; call the read tool for `workspace/autonomy/hive_postal_recipient_predicate_v17_qc_candidate.py`; call the localcoder_add_python tool with `filePath` exactly `workspace/autonomy/hive_postal_recipient_predicate_v19_candidate.py` (relative path, no drive prefix) and content=source; call the shell tool in the foreground (background=false) with exactly `& 'L:\.venv\Scripts\python.exe' -B 'workspace\autonomy\hive_postal_recipient_predicate_v19_candidate.py' --self-check`; call the aios_router_record_turn_result tool with actual shell output; call the aios_router_complete_lane tool with a truthful receipt.

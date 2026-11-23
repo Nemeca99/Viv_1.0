@@ -1,0 +1,66 @@
+{
+  "schema_version": "viv_cpu_semantic_proposition_authorship_contract_v3",
+  "receipt_schema": "viv_cpu_semantic_proposition_authorship_receipt_v3",
+  "status": "candidate_only",
+  "parent": {
+    "schema": "viv_cpu_semantic_proposition_authorship_receipt_v2",
+    "receipt": "foundation/artifacts/auto/agentic/cpu_semantic_proposition_authorship_v2/semantic_proposition_authorship_v2_20260815T073344Z_39276/receipt.json",
+    "receipt_sha256": "95FF083AEFA0EE8104A32D83F40E860BB5BD4D293A2DECB3FF7DC3CEDD3F3E2A",
+    "final_state": "HOLD_SEMANTIC_PROPOSITION_V2_MODEL"
+  },
+  "frame": {
+    "schema": "viv_cpu_semantic_proposition_frame_v3",
+    "proposition": "P|u=<uml>|s=<subject>|p=<predicate>|o=<operator>|v=<value>|e=<evidence>;",
+    "hold": "H|r=<reason>;",
+    "field_order": ["u", "s", "p", "o", "v", "e"],
+    "truth_claim_field": "absent_cpu_derived",
+    "terminator": ";",
+    "stop_sequence": ";",
+    "maximum_characters": 101,
+    "fixed_generation_budget_tokens": 56,
+    "trailing_output_policy": "reject_without_repair"
+  },
+  "semantic_boundary": {
+    "model_authors": ["uml_symbol", "subject", "predicate", "operator", "expected_value", "evidence_slot"],
+    "cpu_derives": ["semantic_binding", "provenance", "empirical_verdict", "learning_disposition", "authority_disposition"],
+    "model_may_not_author": ["truth_label", "production_effect", "foundation_mutation", "arbitrary_literal", "path", "code"]
+  },
+  "curriculum": {
+    "parent_curriculum": "viv_cpu_semantic_proposition_authorship_curriculum_v2",
+    "training_rows": 96,
+    "held_out_rows": 24,
+    "compositional_traces": 4,
+    "prompt_change": "remove_truth_claim_menu",
+    "target_change": "remove_truth_claim_field; preserve_explicit_terminator",
+    "cpu_recipe": {
+      "device": "cpu",
+      "seed": 43,
+      "steps": 1024,
+      "batch_size": 8,
+      "learning_rate": 0.0005,
+      "repeats": 2
+    }
+  },
+  "authority": {
+    "cpu_truth_authority": true,
+    "gpu_truth_authority": false,
+    "rust_write_membrane": true,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false,
+    "live_model_mutation": false
+  },
+  "acceptance": {
+    "candidate_model_origin_rows": 16,
+    "candidate_compositional_traces": 3,
+    "cpu_unauthorized_accepts": 0,
+    "repeated_digests_identical": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

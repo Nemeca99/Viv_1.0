@@ -1,0 +1,16 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add new file `workspace/autonomy/hive_postal_route_request_v11_candidate.py`; stop if it exists.
+Implement pure prepare_routing_request(proposed_recipient_id) returning (request,errors_tuple):
+- None -> (None,()).
+- Reject non-string, empty, or untrimmed values as (None,("invalid_proposed_recipient_id",)).
+- Reject casefold()=="queen" as (None,("proposed_recipient_is_queen",)).
+- Any other trimmed peer, e.g. "drone_2", -> ({"recipient_id":peer},()).
+Use only sys for --self-check. Four checks: None, drone_2, empty, QUEEN. Print exactly PASS: 4 routing request checks and exit 0 only if all pass; otherwise FAIL/nonzero. Keep it short and under 40 lines; no I/O except self-check.
+Call aios_router_open_build_task tool; call aios_router_accept_self_prompt tool (drone,0); call localcoder_add_python tool (assigned target, source); call shell tool: & 'L:\.venv\Scripts\python.exe' -B 'workspace\autonomy\hive_postal_route_request_v11_candidate.py' --self-check; call aios_router_record_turn_result tool (actual facts); call aios_router_complete_lane tool (receipt).
+
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: aios_router_open_build_task → aios_router_accept_self_prompt → localcoder_add_python → shell → aios_router_record_turn_result → aios_router_complete_lane. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.
+
+[QUEEN → DRONE]
+Execute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.

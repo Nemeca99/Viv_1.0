@@ -1,0 +1,59 @@
+{
+  "schema_version": "viv_cpu_epistemic_route_authorship_v1",
+  "receipt_schema": "viv_cpu_epistemic_route_authorship_receipt_v1",
+  "status": "candidate_only",
+  "parent": {
+    "adaptive_selection_receipt_sha256": "ED16561BBE5361CB4C30480EBE073CF06DBFBA0F29C4FCBE137D658653374FC9",
+    "epistemic_route_frontier_receipt_sha256": "3603C318EC17BB8F3FA1897B774F080D701E0093DD1B835A5DAD9BADA71961E9",
+    "v4_candidate_state_sha256": "4270D408A5209F9FE3DCBDEEDBEECD6EE7DE872400D6F1662827DFACD0C426E0"
+  },
+  "model_surface": {
+    "wire": "E|<experiment_slot>|<repeat_count>|<budget>",
+    "prompt_surface": "existing_v4_target_free_measurement_matrix",
+    "model_may_author": ["route_slot", "repeat_count", "budget"],
+    "model_may_not_author": ["truth_verdict", "evidence_binding", "production_destination", "source_body", "path", "code"],
+    "harness_repair": false
+  },
+  "route_frontier": {
+    "route_ids": ["route_00", "route_01", "route_02", "route_03", "route_04"],
+    "route_probabilities": [0.01, 0.25, 0.5, 0.75, 0.99],
+    "all_routes_retained": true,
+    "failed_routes_retained": true,
+    "pruned_routes": [],
+    "preferred_route": null,
+    "truth_verdict_cpu_invariant": true
+  },
+  "selection_policy": {
+    "id": "first_survivor_after_prior_preserve_all_routes",
+    "policy_is_not_truth": true,
+    "policy_is_predecision_route_choice": true
+  },
+  "candidate_recipe": {
+    "device": "cpu",
+    "training": "none_in_route_authorship_gate",
+    "repeats": 2,
+    "generation_temperature": 0.0,
+    "generator_device": "cpu",
+    "rust_write_decision": "HOLD_SECURITY"
+  },
+  "authority": {
+    "cpu": "final semantic and route-admission authority",
+    "gpu": "private proposal or acceleration only",
+    "rust": "executable/write membrane",
+    "human": "no fabricated approval event; later adoption approval required"
+  },
+  "forbidden": [
+    "target leakage",
+    "expected answer in prompt",
+    "source body",
+    "arbitrary path",
+    "python",
+    "shell",
+    "production write",
+    "registry mutation",
+    "seed mutation",
+    "live model mutation"
+  ],
+  "stop_rule": "retain every route; stop only after bounded evaluation and current-evidence comparison",
+  "model_origin_truth_authorship": false
+}

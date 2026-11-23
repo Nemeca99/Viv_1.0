@@ -1,0 +1,180 @@
+{
+  "info": {
+    "id": "ses_e24b0c8f8ffeVuih67Wlreo8Zy",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 9117,
+      "output": 83,
+      "reasoning": 0,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "time": {
+      "created": 1794680764173,
+      "updated": 1794680939604,
+      "busy": 1794680765393,
+      "archived": 1794680764183
+    },
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1db4f39f40011IEuCbiTt5VW6H",
+      "time": {
+        "created": 1794680764916
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1db4f3734001ifvQ97YJmD33Ji",
+      "time": {
+        "created": 1794680765402
+      },
+      "text": "Create a new Python file at .opencode/evals/provider_responses_probe_20261114.py using localcoder_add_python. The file must define probe() returning the string \"responses-ready\" and print the result when run as a script.\n\nAfter file creation, call the shell tool with this exact command: L:\\.venv\\Scripts\\python.exe .opencode\\evals\\provider_responses_probe_20261114.py\n\nAfter the shell result, reply with one concise visible sentence that includes the stdout, then finish.\n",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1db4f3be50015H0XKWfzw8nJnV",
+      "time": {
+        "created": 1794680782506,
+        "firstToken": 1794680799456,
+        "streamed": 1794680799471,
+        "completed": 1794680800496
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_1548565401380032",
+          "name": "localcoder_add_python",
+          "executed": false,
+          "state": {
+            "status": "error",
+            "input": {},
+            "error": {
+              "type": "provider.internal",
+              "message": "unknown: Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+              "status": 200,
+              "response": {
+                "body": "{\"type\":\"error\",\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\",\"type\":\"internal_error\",\"code\":\"unknown\",\"param\":null},\"sequence_number\":9}"
+              }
+            }
+          },
+          "time": {
+            "created": 1794680799460,
+            "completed": 1794680799473
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "ddc604c9c92676181b0c119eb38c97c8bb76050d",
+        "end": "d911ef3c6ac232948e6d8cf01bee19cc046cfd9d",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794680793088-cdf8ceac-ae8b-4cd6-bc1d-8d833665e07b-body-gate.json"
+        ]
+      },
+      "finish": "error",
+      "error": {
+        "type": "provider.internal",
+        "message": "unknown: Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+        "status": 200,
+        "response": {
+          "body": "{\"type\":\"error\",\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\",\"type\":\"internal_error\",\"code\":\"unknown\",\"param\":null},\"sequence_number\":9}"
+        }
+      },
+      "retry": {
+        "attempt": 3,
+        "at": 1794680804064,
+        "error": {
+          "type": "provider.internal",
+          "message": "unknown: Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+          "status": 200,
+          "response": {
+            "body": "{\"type\":\"error\",\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\",\"type\":\"internal_error\",\"code\":\"unknown\",\"param\":null},\"sequence_number\":9}"
+          }
+        }
+      }
+    },
+    {
+      "id": "msg_1db4fd2e0001Ss7z0KlPp83kpJ",
+      "time": {
+        "created": 1794680916340,
+        "firstToken": 1794680936232,
+        "streamed": 1794680936250,
+        "completed": 1794680939604
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_1548565401380033",
+          "name": "localcoder_add_python",
+          "executed": false,
+          "native": {
+            "itemId": "fc_ooti6fjm48nk3otympmdqr"
+          },
+          "state": {
+            "status": "error",
+            "input": {
+              "filePath": ".opencode/evals/provider_responses_probe_20261114.py",
+              "content": "def probe():\n    return \"responses-ready\"\n\n\nif __name__ == \"__main__\":\n    print(probe())\n"
+            },
+            "error": {
+              "type": "unknown",
+              "message": "Add-only Python writer target must be named in the Architect's current request; no file was changed."
+            }
+          },
+          "time": {
+            "created": 1794680936234,
+            "ran": 1794680936246,
+            "completed": 1794680938704
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "fc6fb13f7655a75099f70a3f4786fce887aa47a7",
+        "end": "8fd45eccbbb12905b5752864a8433341b1b6749b",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794680938684-ae558505-d466-4d46-9180-6233bbbd2c7b-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794680938693-8d85057c-7a70-433e-bd44-deb3708bb28c.json",
+          "LocalCoder/.opencode/receipts/1794680938700-8ff6ad04-38ab-4495-9798-04a468fb4b92.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "native": {
+        "responseId": "resp_3f7d19c2db6a952439d92b03da0aec8fd6c55e07e1343423",
+        "serviceTier": "default"
+      },
+      "cost": 0,
+      "tokens": {
+        "input": 9117,
+        "output": 83,
+        "reasoning": 0,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    }
+  ]
+}

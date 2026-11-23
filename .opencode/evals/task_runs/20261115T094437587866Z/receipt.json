@@ -1,0 +1,54 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 270.891,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e2167d1a0ffeaXsOfoz892d2HF"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "dd2880554c7ae40d3aa2621b7e68cf06d47215edba54ab0cf6ec556dd3a6a7d3",
+  "tools": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_postal_message_contract_candidate.py\", line 239, in <module>\r\n    sys.exit(main())\r\n    ^^^\r\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_postal_message_contract_candidate.py\", line 239, in <module>\r\n    sys.exit(main())\r\n    ^^^\r\nNameError: name 'sys' is not defined. Did you forget to import 'sys'?\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Fix sys import scope error and re-run self-check\nVerified facts: Shell output shows `NameError: name 'sys' is not defined` at line 239, indicating `sys` must be imported before use; the file currently imports it inside main() but uses it in the module-level if block.\nNext bounded action: Use shell tool to run the assigned self-check"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T094437587866Z"
+}

@@ -1,0 +1,105 @@
+{
+  "info": {
+    "id": "ses_e2730cdf0ffeLg0UZ8xn5uys7V",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "time": {
+      "created": 1794638819860,
+      "updated": 1794638932479,
+      "busy": 1794638820927,
+      "archived": 1794638819866
+    },
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1d8cf3489001Y3lD55dEOvvLWw",
+      "time": {
+        "created": 1794638820489
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1d8cf3228001Qef5TEtgymmHe4",
+      "time": {
+        "created": 1794638820938
+      },
+      "text": "Use these tools in this exact order: read, edit, shell. First call the read tool on L:\\LocalCoder\\.opencode\\evals\\agent_edit_probe_20261113.py and inspect its full contents. Then use the edit tool on that same file only: add def count_prefix(values: list[str], prefix: str) -> int that counts values starting with prefix, and add assertions for empty list, mixed matching values, and empty prefix. Finally use shell to run exactly L:\\.venv\\Scripts\\python.exe .opencode\\evals\\agent_edit_probe_20261113.py. Stop after reporting actual results.\n",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1d8cf365a0016hHcW3MPW42vEM",
+      "time": {
+        "created": 1794638820965,
+        "firstToken": 1794638838395,
+        "streamed": 1794638838442,
+        "completed": 1794638839557
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-9b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The user wants me to follow a specific order: read the file, edit it with two new",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794638838402,
+            "completed": 1794638838419
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "3045e97748bd8e6792bfd5414c8cdc0d49f3032c",
+        "end": "4a614f6c2897a1c7c2df5e250a5ef65040586ea6",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794638831994-28e75948-e1cb-4d89-8a4a-e75364749542-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794638831994-9a748d84-14b0-4e82-8ea6-0969055f5e7e-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794638831994-bee09498-dd1e-47fe-96b6-f66bd15c6993-body-gate.json"
+        ]
+      },
+      "finish": "error",
+      "error": {
+        "type": "provider.internal",
+        "message": "Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+        "status": 200,
+        "response": {
+          "body": "{\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"},\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"}"
+        }
+      },
+      "retry": {
+        "attempt": 2,
+        "at": 1794638841698,
+        "error": {
+          "type": "provider.internal",
+          "message": "Engine protocol predict stream returned an error: {\"code\":500,\"message\":\"Context size has been exceeded.\",\"type\":\"server_error\"}",
+          "status": 200,
+          "response": {
+            "body": "{\"error\":{\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"},\"message\":\"Engine protocol predict stream returned an error: {\\\"code\\\":500,\\\"message\\\":\\\"Context size has been exceeded.\\\",\\\"type\\\":\\\"server_error\\\"}\"}"
+          }
+        }
+      }
+    }
+  ]
+}

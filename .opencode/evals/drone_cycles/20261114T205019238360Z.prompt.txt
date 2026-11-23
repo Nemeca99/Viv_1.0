@@ -1,0 +1,9 @@
+[DRONE PLAN ONLY | NO TOOLS]
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+[ARCHITECT] Use the `localcoder_status` tool exactly once and report the returned project_root.
+
+[CURRENT AUTHORIZATION FACT]
+The Architect assigned this exact bounded work in the current user message. The explicitly named tool sequence is `localcoder_status`. It is authorized only for this assignment, subject to OpenCode policy and the Rust Body gate. This is not permission to expand the target or sequence.
+
+[QUEEN → DRONE]
+This turn is planning only; the runtime hides every tool. Return a visible `[DRONE SELF-PROMPT]` with fields Agenda, Verified facts, Next bounded action. State that no repository facts have been checked in this turn. The next action must name the first authorized tool `localcoder_status` and, if a target path is in the assignment, repeat that exact path. Do not say to stop, wait, or request permission for this already assigned first tool. A final STOP clause in the assignment applies only after its work is complete. Stop after the self-prompt.

@@ -1,0 +1,33 @@
+Continue this assigned dispatcher fix. Make one compact localcoder_patch replacement in the existing Python target, then call shell for the AST syntax check and return one short visible result. The prior attempt's patch argument was too large; this task is a single small replacement.
+
+Use one patch with this oldString:
+    transport_exit_code = code
+    session_succeeded = bool(session_outcomes) and all(value == 'succeeded' for value in session_outcomes)
+    effective_exit_code = 0 if session_succeeded and visible_final_text and not timed_out else code
+
+Use this newString:
+    transport_exit_code = code
+    session_succeeded = bool(session_outcomes) and all(value == 'succeeded' for value in session_outcomes)
+    session_exports_terminal = bool(sessions) and all(export_terminal_states)
+    tool_errors = [item for item in tools_used if item.get('status') != 'completed']
+    shell_check_errors = [item for item in shell_checks
+                          if item.get('status') != 'completed' or item.get('exit') != 0]
+    verification_tools = {'localcoder_add_python', 'localcoder_write_exact', 'localcoder_patch', 'write', 'edit', 'patch'}
+    verification_required = any(str(item.get('tool') or '').lower() in verification_tools for item in tools_used)
+    task_errors = []
+    if timed_out: task_errors.append('timed_out')
+    if not session_succeeded: task_errors.append('session_outcome_not_succeeded')
+    if not session_exports_terminal: task_errors.append('session_export_not_terminal')
+    if not visible_final_text: task_errors.append('visible_final_text_missing')
+    if tool_errors: task_errors.append('tool_error')
+    if shell_check_errors: task_errors.append('shell_check_failed')
+    if verification_required and not shell_checks: task_errors.append('verification_check_missing')
+    task_succeeded = not task_errors
+    effective_exit_code = 0 if task_succeeded else (code or 1)
+
+After the patch, call shell with: & 'L:\.venv\Scripts\python.exe' -c "import ast; from pathlib import Path; ast.parse(Path('.opencode/evals/run_local_agent_task.py').read_text(encoding='utf-8')); print('PASS: dispatcher AST syntax')"
+
+The sole authorized patch path is:
+<localcoder_patch_paths>
+.opencode/evals/run_local_agent_task.py
+</localcoder_patch_paths>

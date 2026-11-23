@@ -1,0 +1,50 @@
+{
+  "schema_version": "viv_cpu_reflection_query_variable_sandbox_result_adaptive_shadow_contract_v1",
+  "purpose": "routed_model_origin_adaptive_choice_after_verified_result_measurement",
+  "candidate_only": true,
+  "isolated_required": true,
+  "no_publish_required": true,
+  "phase": "SCHEDULE",
+  "model_output_grammar": "E|<experiment_slot>|<repeat_count>|<budget>",
+  "fixed_width_wire": "viv_cpu_model_directed_fixed_width_wire_v1",
+  "frame_width": 40,
+  "padding_char": "~",
+  "fixed_generation_budget": 40,
+  "model_context_length": 128,
+  "maximum_repeat_count": 3,
+  "approved_experiment_slots": [0, 1, 2, 3, 4],
+  "approved_budgets": ["tiny", "small", "fixture"],
+  "result_card_must_be_pre_decision": true,
+  "required_parent_receipts": [
+    "viv_cpu_reflection_query_variable_sandbox_result_shadow_receipt_v1",
+    "viv_cpu_governed_clean_adaptive_receipt_v1"
+  ],
+  "hidden_from_model": [
+    "expected_experiment_slot",
+    "expected_repeat_count",
+    "expected_budget",
+    "target_frame",
+    "cpu_final_disposition",
+    "post_schedule_state"
+  ],
+  "metadata_only": true,
+  "source_bodies_in_model_packet": false,
+  "native_paths_in_model_packet": false,
+  "target_derived_budget": false,
+  "raw_model_output_scored_without_repair": true,
+  "cpu_validation_after_raw_model_output": true,
+  "bounded_sequential_execution": true,
+  "daemon": false,
+  "routed_attachment_not_unified_checkpoint": true,
+  "production_generation": false,
+  "pointer_adoption": false,
+  "seed_mutation": false,
+  "live_model_mutation": false,
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

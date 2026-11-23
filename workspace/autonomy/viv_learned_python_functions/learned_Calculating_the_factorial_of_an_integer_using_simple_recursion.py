@@ -1,0 +1,1 @@
+print(factorial(5))   # expected output: 120

@@ -1,0 +1,68 @@
+{
+  "schema_version": "viv_cpu_unified_current_query_retention_contract_v1",
+  "purpose": "Narrow additive query representation attachment from the verified reflection-retention candidate.",
+  "parent": {
+    "receipt_path": "foundation/artifacts/auto/agentic/cpu_unified_current_reflection_retention_v2_v1/current_reflection_retention_v2_20260816T112512Z_310/receipt.json",
+    "receipt_sha256": "881327950939852F3DBA0A8BA05DC5A1F46970A79E96F2FAED5BCC898F106502",
+    "candidate_path": "foundation/artifacts/auto/agentic/cpu_unified_current_reflection_retention_v2_v1/current_reflection_retention_v2_20260816T112512Z_310/candidate_reflection_repair_repeat_0.pt",
+    "candidate_sha256": "40E43D4AEA793EAEF27106CA073C86ACE25B15A0134A90AE8B5B437376DC4F60",
+    "candidate_state_sha256": "DECBDBA2AF77C1C087784522DC331F60377763E8C9C12D56508D541A09ED4F44"
+  },
+  "representation": {
+    "name": "query_task_marker_v1_on_verified_reflection_retention_parent",
+    "change": "insert t=q into query prompts only",
+    "prompt_marker": "|t=q",
+    "card_binding": "model_packet from the verified parent curriculum",
+    "output_grammar": "viv_cpu_model_directed_grammar_v3",
+    "parser_changed": false,
+    "decoder_changed": false,
+    "tokenizer_changed": false,
+    "cpu_resolver_changed": false,
+    "answer_free": true
+  },
+  "curriculum": {
+    "effective_training_rows": 224,
+    "query_rows": 32,
+    "retained_non_query_rows": 192,
+    "holdouts_retained_semantically": true,
+    "source_catalog_rebuilt": false,
+    "cpu_hidden_objectives": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "context_length": 128,
+    "generation_budget": 80,
+    "response_only_loss": true
+  },
+  "diagnostic_gates": {
+    "query_supported_min": 14,
+    "query_improvement_over_parent_min": 2,
+    "query_valid_scope_topk_min": 15,
+    "downstream_non_regression": true,
+    "unauthorized_cpu_accepts": 0
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "live_seed0_mutation": false,
+    "live_model_mutation": false,
+    "production_generation": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "gpu_execution": false,
+    "human_event_fabrication": false,
+    "rust_expected_state": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": "receipt_sha256"
+  }
+}

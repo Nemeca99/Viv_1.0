@@ -1,0 +1,43 @@
+{
+  "egress_sovereignty": {
+    "allowed_protocols": [
+      "http",
+      "https"
+    ],
+    "blocked_ports": [
+      80,
+      443
+    ]
+  },
+  "file_write_boundary": {
+    "allowed_directories": [
+      "L:/LocalCoder/workspace/aios_rebuild/memory",
+      "L:/LocalCoder/workspace/autonomy/learning/neural_runs"
+    ],
+    "allowed_files": [
+      "L:/LocalCoder/workspace/autonomy/learning/dynamic_categories.json",
+      "L:/LocalCoder/workspace/autonomy/learning/multi_daemon_status.json",
+      "L:/LocalCoder/workspace/autonomy/learning/neural_status.json",
+      "L:/LocalCoder/workspace/autonomy/learning/neural_candidate.json",
+      "L:/LocalCoder/workspace/autonomy/learning/daemon_graduation_receipts.jsonl",
+      "E:/Viv/positive_memory/drone_positive_rag.sqlite3"
+    ],
+    "blocked_extensions": [
+      ".exe",
+      ".dll",
+      ".pyd",
+      ".so",
+      ".dylib",
+      ".bat",
+      ".ps1",
+      ".sh"
+    ]
+  },
+  "api_port_whitelist": {
+    "allowed_ports": [
+      8080,
+      5000,
+      11434
+    ]
+  }
+}

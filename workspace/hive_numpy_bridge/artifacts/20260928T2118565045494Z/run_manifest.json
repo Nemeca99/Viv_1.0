@@ -1,0 +1,64 @@
+{
+  "schema": "hive_numpy_bridge_run_v1",
+  "run_id": "20260928T2118565045494Z",
+  "timestamp_utc": "2026-09-28T21:18:57.1601112Z",
+  "status": "PASS",
+  "architecture": "Rust control/front end -> Python switchboard -> NumPy backend -> Python -> Rust feedback and acceptance",
+  "checks": {
+    "numpy_unit_tests": "PASS",
+    "rustfmt": "PASS",
+    "rust_compile_warnings_denied": "PASS",
+    "end_to_end_roundtrip": "PASS",
+    "rust_acceptance_gate": "PASS",
+    "loss_decreased": "PASS"
+  },
+  "metrics": {
+    "proof": "rust-python-numpy-roundtrip-v1",
+    "accepted_by_rust": true,
+    "timestamp_unix_ms": 1790630337087,
+    "numpy_version": "2.5.3",
+    "bit_generator": "PCG64",
+    "seed_source": "numpy.random.SeedSequence.entropy",
+    "seed": "23595446096182013583954116364308318437",
+    "rng_state_base64": "eyJiaXRfZ2VuZXJhdG9yIjoiUENHNjQiLCJoYXNfdWludDMyIjowLCJzdGF0ZSI6eyJpbmMiOjE1NDE0NzIwMTg4OTMyNTQ1NTE0MzE5NjIzNDg5MjYzNTQyNzc1Nywic3RhdGUiOjkxODc0NzAzMzQxMzc0MDkzOTcxODcxODQ4NTI2MzE1MTI3OTM4fSwidWludGVnZXIiOjMxNzA4OTIxMX0=",
+    "samples": 96,
+    "features": 2,
+    "dtype": "float64",
+    "initial_loss": 5.654063638176929,
+    "after_forward_loss": 1.451356851107749E-06,
+    "after_feedback_backprop_loss": 1.6426525240705624E-19,
+    "forward_gradient_norm": 0.002093457389731617,
+    "final_gradient_norm": 7.03024541591881E-10,
+    "rust_feedback_learning_rate": 0.04,
+    "rust_feedback_second_steps": 240,
+    "return_shapes": {
+      "X": [
+        96,
+        2
+      ],
+      "y": [
+        96,
+        1
+      ]
+    }
+  },
+  "tools": {
+    "python": "Python 3.12.10",
+    "numpy": "2.5.3",
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "rustfmt": "rustfmt 1.8.0-stable (1159e78c47 2025-09-14)"
+  },
+  "sha256": {
+    "numpy_backend.py": "225046E86A4FAFD4D8DB260086FB4A82350BC9E27623C4F5C450C40ADF2796F4",
+    "python_switchboard.py": "D55C043D0E8867A973A934786B4155F05F2AEFBA1118399C3AE5A11C7BCB0AF6",
+    "rust_frontend.rs": "97A0D0601553309D3E80436822F848B1F1BBADFC64AAA0A0EFE5068F20AE918C",
+    "tests/test_numpy_backend.py": "6C9DDCE846BCFDE8035ACFE275A8A0A235C9E2A109EDAA92B1494D022730F3DD",
+    "requirements.txt": "5C12D85E7C08038D1DD9FFBF8119D12CE808885230A47E2BF65DCD9F114659D5",
+    "run_proof.ps1": "4DA6C9069141A3ADCF6EDBD38A6454CC40AA05CD45C406D9EA9B14A506025F45",
+    "bridge_receipt.json": "7656E1BCEB53F7B4B365758661048831CD703C9D216D158EF217F50036A10F00",
+    "python_tests.log": "2412E0BB666288EA2321667A19BE816E185128940D38882B264B9B19915C9C10",
+    "rustfmt.log": "D3034BAA158D337DFA8DEF821D8D8C80E9F341F9FA479724BEEADD99F7503279",
+    "rustc.log": "5B61E55EFE819366F0E0142E422DBD7DE5A5886ED136602D9C8F92DDC8019072",
+    "bridge_run.log": "5AF739DA61B811E2C0A1F1F47702A62C2C94327EDD8F5181B84B670AB3CD4129"
+  }
+}

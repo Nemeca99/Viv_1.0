@@ -1,0 +1,55 @@
+{
+  "schema_version": "localcoder_template_toolbox_verification_v1",
+  "run_id": "template-toolbox-20260930T051007Z",
+  "scope": "candidate-only; no live pointer or moved Viv tree",
+  "security_core_pyd_sha256": "0948f78a8d11b3069b7a172e795c5fdb5ee6a0539c1e9f97141e7209ce21ffdd",
+  "results": [
+    {
+      "name": "rust_format",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051007Z/rust_format.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "rust_tests",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051007Z/rust_tests.log",
+      "log_sha256": "2d79d584221e01642b7dc90c48a317a2f3b0c4ea456b54f011c5ae20060cbec7"
+    },
+    {
+      "name": "rust_build",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051007Z/rust_build.log",
+      "log_sha256": "8c798c75014ca8e4571a98e4be7530a89ec2ce9032dc7862466150bbd077d744"
+    },
+    {
+      "name": "python_tests",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051007Z/python_tests.log",
+      "log_sha256": "fc2dbeeddcbe4f7875ef18a8caecf2d3c5d30d301fcf9cfa8447f55a17fc0828"
+    },
+    {
+      "name": "security_bridge",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051007Z/security_bridge.log",
+      "log_sha256": "e6d3db03a44faa96653be76bfeede73921307449dc0155333496db3f6a758290"
+    },
+    {
+      "name": "mind_request_dry_run",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051007Z/mind_request_dry_run.log",
+      "log_sha256": "e0edb1fccb77e41c3cc23a44708fe9663000617411a1c42a2b1f0c240ae1f94e"
+    },
+    {
+      "name": "isolated_runtime_self_test",
+      "exit_code": 0,
+      "log": "sandbox/code/audit/verification_runs/template-toolbox-20260930T051007Z/isolated_runtime_self_test.log",
+      "log_sha256": "76bf05b0974bbc7479f44652b6f243524a24497ddfde2df1037c89c5269d40b7"
+    }
+  ],
+  "expected_limits": [
+    "autonomous Python writes remain closed in Rust",
+    "dry-run must report HOLD_SECURITY and writes_performed=false",
+    "isolated self-test uses disposable assembly only and expects Rust denial"
+  ]
+}

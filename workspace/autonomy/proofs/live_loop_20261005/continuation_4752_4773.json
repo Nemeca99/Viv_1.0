@@ -1,0 +1,286 @@
+{
+  "schema": "viv_live_loop_continuation_receipt_v1",
+  "observed_utc": "2026-10-05T05:40:25.160355+00:00",
+  "worker_pid": 160492,
+  "supervisor_pid": 106692,
+  "worker_start_local": "2026-10-05T00:22:38-05:00",
+  "events": [
+    {
+      "id": 4752,
+      "at_epoch": 1791178311.5145812,
+      "kind": "candidate_evaluation_completed",
+      "data": {
+        "activation_block_reason": null,
+        "candidate_behavior_pass": true,
+        "candidate_improved": false,
+        "candidate_pass": false,
+        "candidate_source_safe": true,
+        "correction_examples_added": 0,
+        "drive": "E",
+        "drive_adapter_activation": null,
+        "heldout_ids_marked_evaluated": 4,
+        "output": "L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\E\\versions\\4c612fb7b639\\evidence_eval_receipt.json",
+        "summary": {
+          "base": {
+            "cases": 4,
+            "passed_cases": 4,
+            "repeats": 2
+          },
+          "candidate": {
+            "cases": 4,
+            "passed_cases": 4,
+            "repeats": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 4753,
+      "at_epoch": 1791178311.5249803,
+      "kind": "task_completed",
+      "data": {
+        "id": "test",
+        "kind": "test",
+        "result": "candidate behavior passed=True; improved=False; drive adapter activated=False"
+      }
+    },
+    {
+      "id": 4755,
+      "at_epoch": 1791178414.6561444,
+      "kind": "self_learning_completed",
+      "data": {
+        "activity": "self_learning",
+        "agent_index_entry": null,
+        "agent_index_failure_feedback_delivered": false,
+        "agent_index_rejection_reason": null,
+        "agent_question_recorded": false,
+        "bytes_read": 250031,
+        "curiosity_parent_id": null,
+        "drive": "D",
+        "drive_lora_ready": false,
+        "evidence_count": 8,
+        "index_complete": false,
+        "index_progress": {
+          "directories_scanned_this_slice": 24,
+          "directory_errors_total": 0,
+          "eligible_files_indexed": 8835952,
+          "index_complete": false,
+          "index_policy_sha256": "da237ca6a4f3fe57c2f1535a90021a4550e2ac0d12d65e12cfe59ae395ea7a62",
+          "index_traversal_finished": false,
+          "mode": "persistent_read_only_drive_index",
+          "pending_directories": 971,
+          "roots": [
+            {
+              "complete": false,
+              "directories_indexed": 12568,
+              "directory_errors": 0,
+              "eligible_files": 41732,
+              "root": "C:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12567,
+              "directory_errors": 0,
+              "eligible_files": 20951,
+              "root": "D:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12457,
+              "directory_errors": 0,
+              "eligible_files": 164207,
+              "root": "E:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12452,
+              "directory_errors": 0,
+              "eligible_files": 8540012,
+              "root": "F:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12283,
+              "directory_errors": 0,
+              "eligible_files": 69050,
+              "root": "L:\\"
+            }
+          ],
+          "scan_errors_this_slice": 0,
+          "sensitive_and_non_source_paths_pruned": true,
+          "skipped_large_this_slice": 11,
+          "slice_elapsed_seconds": 9.641
+        },
+        "index_traversal_finished": false,
+        "loaded_adapter_ids": [],
+        "mind_summary_cited": false,
+        "notes_sha256": "c7b3b5e7cefb31b4d923cce67b3dee84475f8cc84173e76b32d5d100571c119c",
+        "open_curiosity_question_count": 0,
+        "planned_adapter_ids": [
+          "viv-swarm-default-v2"
+        ],
+        "response_normalization": null,
+        "sampled_files": 8,
+        "sampling_mode": "read_only_macro_random_sample",
+        "sampling_seed": 12071438032342912010,
+        "sampling_tier_counts": {
+          "archive_or_log": 0,
+          "source_document": 6,
+          "structured_text": 2
+        },
+        "tool_scheme_sha256": "ed9a86d12b33671a1e919e4d5dab9fb79b2e608aaffd3b435e8f206def4d7e61",
+        "training_examples_added": 8
+      }
+    },
+    {
+      "id": 4756,
+      "at_epoch": 1791178414.665336,
+      "kind": "task_completed",
+      "data": {
+        "id": "self_learning",
+        "kind": "self_learning",
+        "result": "drive D: sampled 8 source-backed lines, added 8 training examples; drive LoRA ready=False; model summary cited=False; follow-up question queued=False"
+      }
+    },
+    {
+      "id": 4770,
+      "at_epoch": 1791178569.0905123,
+      "kind": "drive_agent_index_proposal_rejected",
+      "data": {
+        "attempt_count": 25,
+        "drive": "L",
+        "feedback_delivered": true,
+        "proposal_sha256": "efb15b67d0f51352591409d86c08f44bb692194f27b3fda8a1c311b20e6d3651",
+        "raw_response_sha256": "efb15b67d0f51352591409d86c08f44bb692194f27b3fda8a1c311b20e6d3651",
+        "reason": "Expert output was not JSON",
+        "response_normalization": null,
+        "source_sha256": "7841c81ad8c79de474e98c5cdba23d9f382603b57ccaabc89656891826596a0b"
+      }
+    },
+    {
+      "id": 4771,
+      "at_epoch": 1791178569.1020253,
+      "kind": "self_learning_completed",
+      "data": {
+        "activity": "explore",
+        "agent_index_entry": null,
+        "agent_index_failure_feedback_delivered": true,
+        "agent_index_rejection_reason": "Expert output was not JSON",
+        "agent_question_recorded": false,
+        "bytes_read": 590,
+        "curiosity_parent_id": null,
+        "drive": "L",
+        "drive_lora_ready": true,
+        "evidence_count": 1,
+        "index_complete": false,
+        "index_progress": {
+          "directories_scanned_this_slice": 24,
+          "directory_errors_total": 0,
+          "eligible_files_indexed": 8935979,
+          "index_complete": false,
+          "index_policy_sha256": "da237ca6a4f3fe57c2f1535a90021a4550e2ac0d12d65e12cfe59ae395ea7a62",
+          "index_traversal_finished": false,
+          "mode": "persistent_read_only_drive_index",
+          "pending_directories": 936,
+          "roots": [
+            {
+              "complete": false,
+              "directories_indexed": 12578,
+              "directory_errors": 0,
+              "eligible_files": 41742,
+              "root": "C:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12577,
+              "directory_errors": 0,
+              "eligible_files": 20958,
+              "root": "D:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12467,
+              "directory_errors": 0,
+              "eligible_files": 164207,
+              "root": "E:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12462,
+              "directory_errors": 0,
+              "eligible_files": 8640001,
+              "root": "F:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12291,
+              "directory_errors": 0,
+              "eligible_files": 69071,
+              "root": "L:\\"
+            }
+          ],
+          "scan_errors_this_slice": 0,
+          "sensitive_and_non_source_paths_pruned": true,
+          "skipped_large_this_slice": 4,
+          "slice_elapsed_seconds": 9.641
+        },
+        "index_traversal_finished": false,
+        "loaded_adapter_ids": [
+          "viv-swarm-default-v2"
+        ],
+        "mind_summary_cited": false,
+        "notes_sha256": "efb15b67d0f51352591409d86c08f44bb692194f27b3fda8a1c311b20e6d3651",
+        "open_curiosity_question_count": 0,
+        "planned_adapter_ids": [
+          "viv-swarm-default-v2"
+        ],
+        "response_normalization": null,
+        "sampled_files": 1,
+        "sampling_mode": "read_only_macro_random_sample",
+        "sampling_seed": 11627230400606287378,
+        "sampling_tier_counts": {
+          "archive_or_log": 0,
+          "source_document": 0,
+          "structured_text": 1
+        },
+        "tool_scheme_sha256": "3f7b0dd0dec160f3b2c5b4a7dab5495487efa5a0a32089655e1844c410a3e132",
+        "training_examples_added": 0
+      }
+    },
+    {
+      "id": 4772,
+      "at_epoch": 1791178569.1150372,
+      "kind": "task_completed",
+      "data": {
+        "id": "explore",
+        "kind": "explore",
+        "result": "drive L: sampled 1 source-backed lines, added 0 training examples; drive LoRA ready=True; model summary cited=False; follow-up question queued=False"
+      }
+    },
+    {
+      "id": 4773,
+      "at_epoch": 1791178570.1230042,
+      "kind": "task_selected",
+      "data": {
+        "id": "explore",
+        "kind": "explore",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    }
+  ],
+  "artifact_sha256": {
+    "viv_autonomy.py": "d097b94b56e398588a0b62c4a2c5de97295613b73ab8aca0e7659681b7ad1fb7",
+    "autonomy/agent_index.py": "39a38070f8d6c3f143155641e8970724352220951d2121a060ab12831b105018",
+    "swarm_adapters/drive_stacks/E/versions/4c612fb7b639/evidence_eval_receipt.json": "885243cb95379d66b7bbdcf3466bb1bb81d8acecf10006f8fd6412025405e7a8",
+    "swarm_adapters/drive_stacks/E/versions/4c612fb7b639/training_receipt.json": "55b9996375899f89a0d9707260726918d78cfa13b68409578d03c537cd2e30ea"
+  },
+  "claims": {
+    "candidate_eval": "E candidate 4c612fb7b639: base 4/4 and candidate 4/4 across two repeats; candidate_improved=false; candidate_pass=false; activation none",
+    "candidate_disposition": "candidate-only; not activated",
+    "drive_D_learning": "8 source-backed training examples added; D drive adapter not ready",
+    "drive_L_exploration": "attempt 25 rejected as non-JSON; feedback delivered; no index entry or curiosity question accepted",
+    "index": "read-only macro index continues; latest receipt reports traversal incomplete",
+    "task_loop": "worker alive; random task explore selected at event 4773; completion not yet observed at receipt time"
+  }
+}

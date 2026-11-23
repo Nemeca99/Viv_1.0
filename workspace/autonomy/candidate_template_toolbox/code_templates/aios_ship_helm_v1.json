@@ -1,0 +1,139 @@
+{
+  "schema_version": "aios_ship_helm_v1",
+  "surface_id": "aios_ship_helm_v1",
+  "purpose": "Tiny sealed control grammar. The PC is molded into the ship first; this helm is the computer's wheel so Viv can later learn to emit short indexed frames onto tools that already exist. Not a daemon. Not trained in this slice.",
+  "sequence": {
+    "1_mold": "hardware / L: plane / schedules / Rust leash — other agents",
+    "2_teach": "this helm — one character-learnable frame menu mapped onto existing tools",
+    "training": "next-character continuation after 86M, then SFT; this slice does not train"
+  },
+  "roles": {
+    "captain": "human Architect",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "helm": "CPU-owned frame menu; she may emit a frame, CPU executes the mapping",
+    "computer_in_command": false
+  },
+  "grammar": {
+    "prefix": "H",
+    "form": "H|<verb> or H|<verb>|<arg>...",
+    "padding": "trailing ~ is protocol filler and is stripped, not repaired",
+    "max_frame_chars": 80,
+    "verb_charset": "^[a-z][a-z0-9_]*$",
+    "spaces": "forbidden",
+    "english_codegen": false,
+    "powershell": false
+  },
+  "policy": "deny_by_default",
+  "allow": {
+    "status": {
+      "frame": "H|status",
+      "maps_to": "lib.aios_captain_bridge.observe_ship",
+      "kind": "read"
+    },
+    "tools": {
+      "frame": "H|tools",
+      "maps_to": [
+        "lib.aios_coder.list_built_tools",
+        "lib.aios_coder.template_status",
+        "lib.aios_ship_skeleton.ship_functions"
+      ],
+      "kind": "read",
+      "identity": "toolbox = her functions = builder functions",
+      "skip_if_missing": ["lib.aios_ship_skeleton"]
+    },
+    "inventory": {
+      "frame": "H|inventory or H|inventory|<query> or H|inventory|q=<query>|e=<ext>|n=<limit>",
+      "maps_to": "lib.viv_file_index_retrieve.index_status|retrieve",
+      "kind": "read",
+      "packet_owner": "CPU",
+      "bare_frame": "index_status",
+      "args_frame": "retrieve after CPU packet validation"
+    },
+    "watch": {
+      "frame": "H|watch",
+      "maps_to": "lib.viv_night_watch.status",
+      "kind": "read",
+      "no_invent_mission": true,
+      "missing_orders": "ABSTAIN",
+      "once_not_a_helm_verb": true
+    },
+    "mailbox": {
+      "frame": "H|mailbox",
+      "maps_to": [
+        "lib.aios_captain_mailbox.mailbox_status",
+        "lib.aios_captain_mailbox.peek_pending"
+      ],
+      "kind": "read",
+      "peek_does_not_consume": true,
+      "send_is_not_a_viv_verb": true
+    },
+    "leash": {
+      "frame": "H|leash",
+      "maps_to": "lib.aios_rust_runtime_lock.runtime_lock_status",
+      "kind": "read",
+      "skip_if_missing": ["lib.aios_rust_runtime_lock"]
+    },
+    "dispatch": {
+      "frame": "H|dispatch|<terms>",
+      "maps_to": "lib.aios_deck_dispatch.dispatch",
+      "kind": "read",
+      "cannot_flip_hold_to_pass": true,
+      "spaces": "pipe-separated terms joined by CPU into a prompt"
+    }
+  },
+  "deny_always": [
+    "shell",
+    "promote",
+    "delete",
+    "pointer",
+    "seed",
+    "rust_write",
+    "train"
+  ],
+  "not_taught": {
+    "gpu": {
+      "frame": "H|gpu|*",
+      "classification": "deny",
+      "state": "HOLD_NOT_TAUGHT",
+      "next_teach": true,
+      "note": "VRAM-exclusive yield then speak is a later helm teach surface. This slice does not teach H|gpu and does not unload live 86M."
+    }
+  },
+  "not_viv_verbs": {
+    "mailbox_send": "Captain mailbox send is not a Viv helm verb. She cannot mail herself promotions.",
+    "watch_once": "Night-watch once is not a helm verb. Helm reports status only.",
+    "admit": "Captain admits toolbox functions. Helm lists; it does not admit."
+  },
+  "wrap": {
+    "import_do_not_fork": true,
+    "missing_optional_surface": "skip"
+  },
+  "forbidden": {
+    "daemon": true,
+    "gpu_execution": true,
+    "gpu_train": true,
+    "model_inference": true,
+    "night_orders_write": true,
+    "seed_mutation": true,
+    "pointer_mutation": true,
+    "registry_mutation": true,
+    "rust_write": true,
+    "security_core_pyd": true,
+    "powershell": true,
+    "english_codegen": true
+  },
+  "cli": {
+    "runner": "build_tools/run_aios_ship_helm_v1.py",
+    "commands": ["status", "exec"],
+    "exec": "CPU path; no model; --frame H|<verb>"
+  },
+  "protected_untouched": [
+    "Seed 0",
+    "template registry",
+    "active pointer",
+    "Rust security binary",
+    "NIGHT_ORDERS.json",
+    "pretrain / indexer / bot / Ollama"
+  ]
+}

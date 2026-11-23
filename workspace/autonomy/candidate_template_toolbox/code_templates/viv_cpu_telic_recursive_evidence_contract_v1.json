@@ -1,0 +1,46 @@
+{
+  "schema_version": "viv_cpu_telic_recursive_evidence_v1",
+  "receipt_schema": "viv_cpu_telic_recursive_evidence_receipt_v1",
+  "status": "candidate_only",
+  "parent": {
+    "schema_version": "viv_cpu_telic_evidence_reevaluation_receipt_v1",
+    "requires_verified_evidence_reevaluation": true
+  },
+  "lifecycle": [
+    "OBSERVE",
+    "REFLECT",
+    "CPU_VALIDATE",
+    "RECORD",
+    "OBSERVE_NEXT_CYCLE",
+    "REFLECT",
+    "CPU_VALIDATE",
+    "RECORD",
+    "COMPLETE"
+  ],
+  "causal_inputs_for_cycle_two": [
+    "cycle_one_receipt_sha256",
+    "cycle_one_transition_state_sha256",
+    "cycle_one_evidence_reference_hash",
+    "cycle_one_lifecycle_state"
+  ],
+  "rules": {
+    "cycle_two_must_consume_cycle_one": true,
+    "direct_reflect_to_query_forbidden": true,
+    "direct_reflect_to_sandbox_forbidden": true,
+    "history_rewrite_forbidden": true,
+    "foundations_mutation_forbidden": true,
+    "model_output_repair": false,
+    "cpu_substitution": false,
+    "surviving_branches_must_be_recorded": true,
+    "pruning_requires_declared_rule": true,
+    "maximum_cycles": 2
+  },
+  "authority": {
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "rust_write": false,
+    "gpu_authority": false
+  }
+}

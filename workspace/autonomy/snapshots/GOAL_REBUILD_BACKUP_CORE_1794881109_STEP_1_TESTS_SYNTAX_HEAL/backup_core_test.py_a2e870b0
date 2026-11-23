@@ -1,0 +1,86 @@
+import os
+import tempfile
+from backup_core import BackupCore
+import unittest
+
+
+class TestBackupCore(unittest.TestCase):
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.config = {
+            'snapshot_dir': os.path.join(self.temp_dir, '.snapshots'),
+            'max_snapshots': 3,
+            'quota_limit': 1000
+        }
+
+    def test_init_default_config(self):
+        bc = BackupCore({'snapshot_dir': '/tmp/test', 'max_snapshots': 5})
+        self.assertEqual(bc.max_snapshots, 5)
+        self.assertEqual(bc.quota_limit, 1000000000)
+
+    def test_backup_file_basic(self):
+        bc = BackupCore({'snapshot_dir': os.path.join(self.temp_dir, '.snapshots'), 'max_snapshots': 3})
+        test_file = os.path.join(self.temp_dir, 'test.txt')
+        with open(test_file, 'w') as f:
+            f.write('hello world')
+        bc.backup_file(test_file)
+        snapshot_path = os.path.join(bc.snapshot_dir, 'test.snap')
+        self.assertTrue(os.path.exists(snapshot_path))
+
+    def test_backup_quota_exceeded(self):
+        bc = BackupCore({'snapshot_dir': os.path.join(self.temp_dir, '.snapshots'), 'max_snapshots': 2})
+        file1 = os.path.join(self.temp_dir, 'file1.txt')
+        with open(file1, 'w') as f:
+            f.write('content1')
+        bc.backup_file(file1)
+
+        file2 = os.path.join(self.temp_dir, 'file2.txt')
+        with open(file2, 'w') as f:
+            f.write('content2')
+        bc.backup_file(file2)
+
+        file3 = os.path.join(self.temp_dir, 'file3.txt')
+        with open(file3, 'w') as f:
+            f.write('content3')
+        bc.backup_file(file3)
+
+        self.assertEqual(len([f for f in os.listdir(bc.snapshot_dir) if f.endswith('.snap')]), 2)
+
+    def test_get_health_status(self):
+        bc = BackupCore({'snapshot_dir': os.path.join(self.temp_dir, '.snapshots'), 'quota_limit': 100})
+        file_path = os.path.join(self.temp_dir, 'health.txt')
+        with open(file_path, 'w') as f:
+            f.write('x' * 50)
+        bc.backup_file(file_path)
+
+        status = bc.get_health_status()
+        self.assertIn('status', status)
+        self.assertIn('snapshot_count', status)
+        self.assertIn('quota_used', status)
+
+    def test_verify_hashes_valid(self):
+        bc = BackupCore({'snapshot_dir': os.path.join(self.temp_dir, '.snapshots')})
+        file_path = os.path.join(self.temp_dir, 'verify.txt')
+        with open(file_path, 'w') as f:
+            f.write('verification content')
+        bc.backup_file(file_path)
+
+        self.assertTrue(bc._verify_hashes())
+
+    def test_verify_hashes_invalid(self):
+        bc = BackupCore({'snapshot_dir': os.path.join(self.temp_dir, '.snapshots')})
+        file_path = os.path.join(self.temp_dir, 'corrupt.txt')
+        with open(file_path, 'w') as f:
+            f.write('original content')
+        bc.backup_file(file_path)
+
+        corrupt_path = os.path.join(bc.snapshot_dir, 'corrupt.snap')
+        if os.path.exists(corrupt_path):
+            with open(corrupt_path, 'w') as f:
+                f.write('corrupted content')
+
+        self.assertFalse(bc._verify_hashes())
+
+
+if __name__ == '__main__':
+    unittest.main()

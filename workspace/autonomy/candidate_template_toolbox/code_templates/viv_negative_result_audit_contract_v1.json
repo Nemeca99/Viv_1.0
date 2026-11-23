@@ -1,0 +1,38 @@
+{
+  "schema_version": "viv_negative_result_audit_contract_v1",
+  "audit_schema": "viv_negative_result_audit_v1",
+  "report_schema": "viv_negative_result_audit_report_v1",
+  "purpose": "Reclassify negative-looking receipts without rewriting historical evidence.",
+  "classifications": [
+    "TRUE_NEGATIVE",
+    "NOT_OBSERVED",
+    "INTEGRATION_GAP",
+    "REPRESENTATION_FAILURE",
+    "AUTHORITY_HOLD",
+    "EVALUATOR_DRIFT",
+    "UNRESOLVED"
+  ],
+  "rules": {
+    "true_negative": "A valid producer and evaluator ran in sufficient tested scope and the declared target was not reached.",
+    "not_observed": "Fresh admissible observation or completed generation was not established.",
+    "integration_gap": "The required producer was not called or did not complete despite otherwise available input.",
+    "representation_failure": "Raw output existed but was empty, malformed, rejected, repaired, or not preserved.",
+    "authority_hold": "A valid proposal reached a closed CPU/Rust authority boundary.",
+    "evaluator_drift": "Source, verifier, parent, or evaluator integrity is stale, invalid, or contradictory.",
+    "unresolved": "The evidence is insufficient to distinguish a capability result from a broader negative claim."
+  },
+  "invariants": {
+    "original_receipts_immutable": true,
+    "model_packets_unchanged": true,
+    "source_catalog_rebuilt": false,
+    "generalization_from_one_receipt": false,
+    "cpu_side_only": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_object_keys": "sorted",
+    "trailing_lf": true,
+    "volatile_fields_excluded": true
+  }
+}

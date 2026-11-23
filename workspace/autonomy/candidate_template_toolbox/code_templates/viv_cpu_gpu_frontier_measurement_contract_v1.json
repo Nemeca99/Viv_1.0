@@ -1,0 +1,70 @@
+{
+  "schema_version": "viv_cpu_gpu_frontier_measurement_v1",
+  "receipt_schema": "viv_cpu_gpu_frontier_measurement_receipt_v1",
+  "contract_status": "candidate_only",
+  "parent": {
+    "receipt_path": "foundation/artifacts/auto/agentic/cpu_gpu_frontier_edge_v2/cpu_gpu_frontier_edge_v2_20260815T163341Z_139528/receipt.json",
+    "receipt_sha256": "AE5213979F502AC34FB2DF727D5E9FC348213FD224160512D974884282234D1D",
+    "candidate_sha256": "3C8FFA5851B188CA54156DAEE53B545D9B5456DBF61E412394E66E4080D4D46C",
+    "candidate_state_sha256": "B4C9C546637874724C9393F54DE9763B3632B9DBB2C34A112B4FA373D21BB3EA"
+  },
+  "frozen_authority": {
+    "seed_zero_generation": 0,
+    "cpu_is_deterministic_judge": true,
+    "gpu_is_private_probability_proposal": true,
+    "rust_is_executable_write_membrane": true,
+    "all_routes_retained": true,
+    "pruning_allowed": false,
+    "preferred_route_allowed": false,
+    "production_mutation": false,
+    "expected_rust_state": "HOLD_SECURITY"
+  },
+  "representation": {
+    "name": "predecision_measurement_visible_relation_hidden_v1",
+    "prompt": "VIV|f5|p=<prior>|q=<pair>|l=<left_measurement>|r=<right_measurement>|e=<evidence>|a=<authority>|b=<budget>|c=<context>|o=",
+    "measurement_tiers": {"l": 0, "x": 1, "m": 2, "h": 3, "p": 4},
+    "derived_relation_hidden_from_model": true,
+    "target_is_one_of_pair": true,
+    "expected_slot_hidden": true,
+    "target_leakage": false,
+    "post_decision_fields": false,
+    "maximum_prompt_characters": 99,
+    "training_exposure": "all_224_positions"
+  },
+  "curriculum": {
+    "schema": "viv_cpu_gpu_frontier_measurement_curriculum_v1",
+    "dataset_sha256": "25CEB309D7F50EB682232BA8750573995EDB8B28ECF27428453ACD3E97135624",
+    "parent_dataset_sha256": "CEF3989B82259D8DA45182D82F87847660AFF108997D650B300193928ED3ED89",
+    "training_rows": 224,
+    "repair_rows": 32,
+    "validation_rows": 16,
+    "negative_rows": 8,
+    "two_row_traces": 8,
+    "sampler_index_space": 224,
+    "no_train_evaluation_leakage": true,
+    "metadata_only": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "generation_budget": 40,
+    "tokenizer_changed": false,
+    "decoder_changed": false
+  },
+  "gates": {
+    "supported_model_origin_minimum": 12,
+    "per_pair_coverage_minimum": 2,
+    "trace_complete_minimum": 6,
+    "negative_cpu_accepts": 0,
+    "unauthorized_cpu_accepts": 0,
+    "gpu_nonempty_required": true,
+    "repeated_normalized_digest_equal": true,
+    "independent_verification_required": true
+  },
+  "failure_states": ["HOLD_FRONTIER_MEASUREMENT_PREFLIGHT", "HOLD_FRONTIER_MEASUREMENT_MODEL", "HOLD_FRONTIER_MEASUREMENT_DETERMINISM", "HOLD_FRONTIER_MEASUREMENT_RECURSION", "HOLD_FRONTIER_MEASUREMENT_SECURITY", "FAIL_FRONTIER_MEASUREMENT_PROTECTED_STATE"],
+  "model_packet_exclusions": ["expected_slot", "derived_relation_cpu_side", "target_frame", "cpu_final_disposition", "post_decision_state", "source_body", "source_path", "shell", "python", "generated_code"]
+}

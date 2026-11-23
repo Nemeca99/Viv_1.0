@@ -1,0 +1,43 @@
+{
+  "schema_version": "viv_cpu_gpu_synchronized_exploration_v1",
+  "receipt_schema": "viv_cpu_gpu_synchronized_exploration_receipt_v1",
+  "status": "candidate_only",
+  "parent": {
+    "schema_version": "viv_cpu_telic_recursive_evidence_receipt_v1",
+    "requires_verified_recursive_two_cycle": true
+  },
+  "pairing": {
+    "same_model_weights": true,
+    "same_tokenizer": true,
+    "same_prompt": true,
+    "same_seed_set": true,
+    "same_generation_budget": true,
+    "same_run_window": true,
+    "cpu_and_gpu_concurrent": true,
+    "gpu_is_proposal_only": true
+  },
+  "search": {
+    "route_seeds": [73100, 73101, 73102],
+    "preserve_all_routes": true,
+    "first_survivor_is_not_final": true,
+    "pruning_requires": ["falsification", "dominance", "budget", "declared_stop"],
+    "canary_pruning": "none"
+  },
+  "cpu_rules": {
+    "semantic_binding_final": true,
+    "evidence_verdict_final": true,
+    "gpu_cannot_authorize": true,
+    "probability_cannot_redefine_truth": true,
+    "unauthorized_accepts": 0
+  },
+  "authority": {
+    "training": false,
+    "optimizer": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "registry_mutation": false,
+    "rust_write": false
+  }
+}

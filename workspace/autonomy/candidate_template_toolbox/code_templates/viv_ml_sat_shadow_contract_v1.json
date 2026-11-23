@@ -1,0 +1,35 @@
+{
+  "schema_version": "viv_ml_sat_shadow_v1",
+  "status": "candidate_only",
+  "purpose": "Evaluate model proposals as bounded assignments against CPU-owned hard constraints and retain satisfying alternatives for further tests.",
+  "model_role": "proposal_generator",
+  "cpu_role": "deterministic_constraint_checker_and_evidence_judge",
+  "rust_role": "executable_write_membrane",
+  "constraint_kinds": [
+    "required_field",
+    "equals",
+    "in",
+    "not_in",
+    "numeric_tolerance",
+    "authority_closed",
+    "evidence_state"
+  ],
+  "states": [
+    "SAT_CANDIDATE",
+    "UNSAT",
+    "SEMANTIC_UNBOUND",
+    "INSUFFICIENT_EVIDENCE",
+    "UNAUTHORIZED",
+    "MALFORMED"
+  ],
+  "rules": {
+    "exact_target_not_required_for_candidate_retention": true,
+    "logically_compatible_alternates_retained": true,
+    "unsat_core_retained_as_negative_evidence": true,
+    "candidate_deletion_api": false,
+    "truth_promotion_in_checker": false,
+    "production_authority_opened_in_checker": false,
+    "stop_when_one_survivor_requires_complete_tests": true,
+    "multiple_survivors_hold_for_more_tests": true
+  }
+}

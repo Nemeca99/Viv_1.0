@@ -1,0 +1,2190 @@
+{
+  "schema": "viv_live_loop_continuation_receipt_v1",
+  "observed_utc": "2026-10-05T05:45:15.639709+00:00",
+  "worker_pid": 160492,
+  "supervisor_pid": 106692,
+  "event_range": [
+    4752,
+    4837
+  ],
+  "events": [
+    {
+      "id": 4752,
+      "at_epoch": 1791178311.5145812,
+      "kind": "candidate_evaluation_completed",
+      "data": {
+        "activation_block_reason": null,
+        "candidate_behavior_pass": true,
+        "candidate_improved": false,
+        "candidate_pass": false,
+        "candidate_source_safe": true,
+        "correction_examples_added": 0,
+        "drive": "E",
+        "drive_adapter_activation": null,
+        "heldout_ids_marked_evaluated": 4,
+        "output": "L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\E\\versions\\4c612fb7b639\\evidence_eval_receipt.json",
+        "summary": {
+          "base": {
+            "cases": 4,
+            "passed_cases": 4,
+            "repeats": 2
+          },
+          "candidate": {
+            "cases": 4,
+            "passed_cases": 4,
+            "repeats": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 4753,
+      "at_epoch": 1791178311.5249803,
+      "kind": "task_completed",
+      "data": {
+        "id": "test",
+        "kind": "test",
+        "result": "candidate behavior passed=True; improved=False; drive adapter activated=False"
+      }
+    },
+    {
+      "id": 4754,
+      "at_epoch": 1791178312.531772,
+      "kind": "task_selected",
+      "data": {
+        "id": "self_learning",
+        "kind": "self_learning",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4755,
+      "at_epoch": 1791178414.6561444,
+      "kind": "self_learning_completed",
+      "data": {
+        "activity": "self_learning",
+        "agent_index_entry": null,
+        "agent_index_failure_feedback_delivered": false,
+        "agent_index_rejection_reason": null,
+        "agent_question_recorded": false,
+        "bytes_read": 250031,
+        "curiosity_parent_id": null,
+        "drive": "D",
+        "drive_lora_ready": false,
+        "evidence_count": 8,
+        "index_complete": false,
+        "index_progress": {
+          "directories_scanned_this_slice": 24,
+          "directory_errors_total": 0,
+          "eligible_files_indexed": 8835952,
+          "index_complete": false,
+          "index_policy_sha256": "da237ca6a4f3fe57c2f1535a90021a4550e2ac0d12d65e12cfe59ae395ea7a62",
+          "index_traversal_finished": false,
+          "mode": "persistent_read_only_drive_index",
+          "pending_directories": 971,
+          "roots": [
+            {
+              "complete": false,
+              "directories_indexed": 12568,
+              "directory_errors": 0,
+              "eligible_files": 41732,
+              "root": "C:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12567,
+              "directory_errors": 0,
+              "eligible_files": 20951,
+              "root": "D:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12457,
+              "directory_errors": 0,
+              "eligible_files": 164207,
+              "root": "E:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12452,
+              "directory_errors": 0,
+              "eligible_files": 8540012,
+              "root": "F:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12283,
+              "directory_errors": 0,
+              "eligible_files": 69050,
+              "root": "L:\\"
+            }
+          ],
+          "scan_errors_this_slice": 0,
+          "sensitive_and_non_source_paths_pruned": true,
+          "skipped_large_this_slice": 11,
+          "slice_elapsed_seconds": 9.641
+        },
+        "index_traversal_finished": false,
+        "loaded_adapter_ids": [],
+        "mind_summary_cited": false,
+        "notes_sha256": "c7b3b5e7cefb31b4d923cce67b3dee84475f8cc84173e76b32d5d100571c119c",
+        "open_curiosity_question_count": 0,
+        "planned_adapter_ids": [
+          "viv-swarm-default-v2"
+        ],
+        "response_normalization": null,
+        "sampled_files": 8,
+        "sampling_mode": "read_only_macro_random_sample",
+        "sampling_seed": 12071438032342912010,
+        "sampling_tier_counts": {
+          "archive_or_log": 0,
+          "source_document": 6,
+          "structured_text": 2
+        },
+        "tool_scheme_sha256": "ed9a86d12b33671a1e919e4d5dab9fb79b2e608aaffd3b435e8f206def4d7e61",
+        "training_examples_added": 8
+      }
+    },
+    {
+      "id": 4756,
+      "at_epoch": 1791178414.665336,
+      "kind": "task_completed",
+      "data": {
+        "id": "self_learning",
+        "kind": "self_learning",
+        "result": "drive D: sampled 8 source-backed lines, added 8 training examples; drive LoRA ready=False; model summary cited=False; follow-up question queued=False"
+      }
+    },
+    {
+      "id": 4757,
+      "at_epoch": 1791178415.6736867,
+      "kind": "task_selected",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4758,
+      "at_epoch": 1791178426.664778,
+      "kind": "plan_rejected",
+      "data": {
+        "proposal": {
+          "cases": [
+            {
+              "expected": {
+                "failed": 0,
+                "passed": 0,
+                "unknown": 0
+              },
+              "input": []
+            },
+            {
+              "expected": {
+                "failed": 1,
+                "passed": 1,
+                "unknown": 0
+              },
+              "input": [
+                {
+                  "passed": true
+                },
+                {
+                  "passed": false
+                },
+                {}
+              ]
+            },
+            {
+              "expected": {
+                "failed": 0,
+                "passed": 1,
+                "unknown": 3
+              },
+              "input": [
+                {
+                  "passed": "false"
+                },
+                {
+                  "passed": 1
+                },
+                {
+                  "passed": null
+                },
+                {
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "expected": {
+                "failed": 0,
+                "passed": 3,
+                "unknown": 0
+              },
+              "input": [
+                {
+                  "passed": true
+                },
+                {
+                  "passed": true
+                },
+                {
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "expected": {
+                "failed": 3,
+                "passed": 0,
+                "unknown": 0
+              },
+              "input": [
+                {
+                  "passed": false
+                },
+                {
+                  "passed": false
+                },
+                {
+                  "passed": false
+                }
+              ]
+            },
+            {
+              "expected": {
+                "failed": 1,
+                "passed": 1,
+                "unknown": 5
+              },
+              "input": [
+                {
+                  "passed": true
+                },
+                {
+                  "passed": false
+                },
+                {
+                  "passed": "true"
+                },
+                {
+                  "passed": "false"
+                },
+                {
+                  "passed": null
+                },
+                {
+                  "passed": 1
+                },
+                {
+                  "passed": 0
+                }
+              ]
+            }
+          ],
+          "requirement": "Implement solve(value). value is a list of receipt objects. Return an object with passed, failed, unknown integer counts. Count only the literal boolean true in the passed field as passed, literal false as failed; absent or any other value is unknown. This is for honest Viv telemetry.",
+          "title": "Validate and Count Build Receipts"
+        },
+        "proposal_canonical_sha256": "ab262b453bbe0963aa7157440466db913f1098ef2fd968db72de1fd3b786e364",
+        "proposal_sha256": "3125baa89e8727528eefb9bd40ea0013e2a28c5ae04bdcda4795b1a1e88b3812",
+        "reason": "Rejected planner family 'Validate and Count Build Receipts' after 13 invalid variants. Correct the recorded error with a materially different contract or choose another gap.",
+        "rejected_family": "Validate and Count Build Receipts",
+        "rejected_variants": 13
+      }
+    },
+    {
+      "id": 4759,
+      "at_epoch": 1791178426.6703598,
+      "kind": "task_completed",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "result": "looked for work and refreshed the task list"
+      }
+    },
+    {
+      "id": 4760,
+      "at_epoch": 1791178427.6760159,
+      "kind": "task_selected",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4761,
+      "at_epoch": 1791178427.6810176,
+      "kind": "task_completed",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "result": "idled for one second"
+      }
+    },
+    {
+      "id": 4762,
+      "at_epoch": 1791178428.689006,
+      "kind": "task_selected",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4763,
+      "at_epoch": 1791178428.6981392,
+      "kind": "task_completed",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "result": "an earlier autonomous chat turn is still queued"
+      }
+    },
+    {
+      "id": 4764,
+      "at_epoch": 1791178429.7057621,
+      "kind": "task_selected",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4765,
+      "at_epoch": 1791178435.1751664,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "missing dependency",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            },
+            {
+              "id": "f3",
+              "reason": "network error",
+              "status": "failed"
+            },
+            {
+              "id": "f4",
+              "reason": "missing dependency",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "missing dependency"
+          }
+        },
+        "output": {
+          "results": [
+            {
+              "id": "f1",
+              "reason": "missing dependency",
+              "status": "failed"
+            },
+            {
+              "id": "f4",
+              "reason": "missing dependency",
+              "status": "failed"
+            }
+          ]
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4766,
+      "at_epoch": 1791178435.1801755,
+      "kind": "task_completed",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "result": "registered tested tool called with a recorded development case"
+      }
+    },
+    {
+      "id": 4767,
+      "at_epoch": 1791178436.1869311,
+      "kind": "task_selected",
+      "data": {
+        "id": "explore",
+        "kind": "explore",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4768,
+      "at_epoch": 1791178539.0106847,
+      "kind": "drive_agent_index_feedback_delivered",
+      "data": {
+        "current_source_sha256": "7841c81ad8c79de474e98c5cdba23d9f382603b57ccaabc89656891826596a0b",
+        "drive": "L",
+        "failure_event_id": null,
+        "failure_reason": "Expert output was not JSON",
+        "previous_failure_count": 24
+      }
+    },
+    {
+      "id": 4769,
+      "at_epoch": 1791178569.0775054,
+      "kind": "drive_stack_inference_completed",
+      "data": {
+        "adapter_ids": [
+          "viv-swarm-default-v2"
+        ],
+        "adapter_sha256": [
+          "a02989847cf69c062fe0d3e6d33949b37ae596e70fae445c495d366a3ef6dc5c"
+        ],
+        "base_config_sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+        "drive": "L",
+        "expert_loading": "dynamic_unmerged_lora_per_task",
+        "loaded_into_coordinator": false,
+        "merged_into_base": false,
+        "model_family": "Qwen3-1.7B",
+        "released_after_generation": true,
+        "tool_scheme_sha256": "3f7b0dd0dec160f3b2c5b4a7dab5495487efa5a0a32089655e1844c410a3e132"
+      }
+    },
+    {
+      "id": 4770,
+      "at_epoch": 1791178569.0905123,
+      "kind": "drive_agent_index_proposal_rejected",
+      "data": {
+        "attempt_count": 25,
+        "drive": "L",
+        "feedback_delivered": true,
+        "proposal_sha256": "efb15b67d0f51352591409d86c08f44bb692194f27b3fda8a1c311b20e6d3651",
+        "raw_response_sha256": "efb15b67d0f51352591409d86c08f44bb692194f27b3fda8a1c311b20e6d3651",
+        "reason": "Expert output was not JSON",
+        "response_normalization": null,
+        "source_sha256": "7841c81ad8c79de474e98c5cdba23d9f382603b57ccaabc89656891826596a0b"
+      }
+    },
+    {
+      "id": 4771,
+      "at_epoch": 1791178569.1020253,
+      "kind": "self_learning_completed",
+      "data": {
+        "activity": "explore",
+        "agent_index_entry": null,
+        "agent_index_failure_feedback_delivered": true,
+        "agent_index_rejection_reason": "Expert output was not JSON",
+        "agent_question_recorded": false,
+        "bytes_read": 590,
+        "curiosity_parent_id": null,
+        "drive": "L",
+        "drive_lora_ready": true,
+        "evidence_count": 1,
+        "index_complete": false,
+        "index_progress": {
+          "directories_scanned_this_slice": 24,
+          "directory_errors_total": 0,
+          "eligible_files_indexed": 8935979,
+          "index_complete": false,
+          "index_policy_sha256": "da237ca6a4f3fe57c2f1535a90021a4550e2ac0d12d65e12cfe59ae395ea7a62",
+          "index_traversal_finished": false,
+          "mode": "persistent_read_only_drive_index",
+          "pending_directories": 936,
+          "roots": [
+            {
+              "complete": false,
+              "directories_indexed": 12578,
+              "directory_errors": 0,
+              "eligible_files": 41742,
+              "root": "C:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12577,
+              "directory_errors": 0,
+              "eligible_files": 20958,
+              "root": "D:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12467,
+              "directory_errors": 0,
+              "eligible_files": 164207,
+              "root": "E:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12462,
+              "directory_errors": 0,
+              "eligible_files": 8640001,
+              "root": "F:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12291,
+              "directory_errors": 0,
+              "eligible_files": 69071,
+              "root": "L:\\"
+            }
+          ],
+          "scan_errors_this_slice": 0,
+          "sensitive_and_non_source_paths_pruned": true,
+          "skipped_large_this_slice": 4,
+          "slice_elapsed_seconds": 9.641
+        },
+        "index_traversal_finished": false,
+        "loaded_adapter_ids": [
+          "viv-swarm-default-v2"
+        ],
+        "mind_summary_cited": false,
+        "notes_sha256": "efb15b67d0f51352591409d86c08f44bb692194f27b3fda8a1c311b20e6d3651",
+        "open_curiosity_question_count": 0,
+        "planned_adapter_ids": [
+          "viv-swarm-default-v2"
+        ],
+        "response_normalization": null,
+        "sampled_files": 1,
+        "sampling_mode": "read_only_macro_random_sample",
+        "sampling_seed": 11627230400606287378,
+        "sampling_tier_counts": {
+          "archive_or_log": 0,
+          "source_document": 0,
+          "structured_text": 1
+        },
+        "tool_scheme_sha256": "3f7b0dd0dec160f3b2c5b4a7dab5495487efa5a0a32089655e1844c410a3e132",
+        "training_examples_added": 0
+      }
+    },
+    {
+      "id": 4772,
+      "at_epoch": 1791178569.1150372,
+      "kind": "task_completed",
+      "data": {
+        "id": "explore",
+        "kind": "explore",
+        "result": "drive L: sampled 1 source-backed lines, added 0 training examples; drive LoRA ready=True; model summary cited=False; follow-up question queued=False"
+      }
+    },
+    {
+      "id": 4773,
+      "at_epoch": 1791178570.1230042,
+      "kind": "task_selected",
+      "data": {
+        "id": "explore",
+        "kind": "explore",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4774,
+      "at_epoch": 1791178674.52216,
+      "kind": "drive_agent_index_feedback_delivered",
+      "data": {
+        "current_source_sha256": "927b2f2e024e2fb24482fdd19de4d8ce161d63991d59d5dfa95c58b7503273be",
+        "drive": "C",
+        "failure_event_id": null,
+        "failure_reason": "Curiosity summary must contain Sense/source, Observation, Investigate, Architect learns, and Follow-up question in the required format",
+        "previous_failure_count": 11
+      }
+    },
+    {
+      "id": 4775,
+      "at_epoch": 1791178700.1169193,
+      "kind": "drive_stack_inference_completed",
+      "data": {
+        "adapter_ids": [
+          "viv-swarm-default-v2",
+          "viv-drive-c"
+        ],
+        "adapter_sha256": [
+          "a02989847cf69c062fe0d3e6d33949b37ae596e70fae445c495d366a3ef6dc5c",
+          "40c0d301943684fdd3351d6292da642a9bc52b76f197ba41c7ca98ecc3fae7c7"
+        ],
+        "base_config_sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+        "drive": "C",
+        "expert_loading": "dynamic_unmerged_lora_per_task",
+        "loaded_into_coordinator": false,
+        "merged_into_base": false,
+        "model_family": "Qwen3-1.7B",
+        "released_after_generation": true,
+        "tool_scheme_sha256": "23aac39dd9a902a84da88b58dae8818b47d2d236ea8619244a0b765ef1a0ea4d"
+      }
+    },
+    {
+      "id": 4776,
+      "at_epoch": 1791178700.1289215,
+      "kind": "drive_agent_index_proposal_rejected",
+      "data": {
+        "attempt_count": 12,
+        "drive": "C",
+        "feedback_delivered": true,
+        "proposal_sha256": "02959126097ef8159f382748359005060fd42e8e0080610be29f970b1bc78cc9",
+        "raw_response_sha256": "75941e6a21e947890772cc8ce829e64ba09e6d9ea0ed526ae43e48fda8ace8d1",
+        "reason": "Project must identify one existing ancestor directory of the source",
+        "response_normalization": "stripped_outer_markdown_json_fence",
+        "source_sha256": "927b2f2e024e2fb24482fdd19de4d8ce161d63991d59d5dfa95c58b7503273be"
+      }
+    },
+    {
+      "id": 4777,
+      "at_epoch": 1791178700.1414628,
+      "kind": "self_learning_completed",
+      "data": {
+        "activity": "explore",
+        "agent_index_entry": null,
+        "agent_index_failure_feedback_delivered": true,
+        "agent_index_rejection_reason": "Project must identify one existing ancestor directory of the source",
+        "agent_question_recorded": false,
+        "bytes_read": 1594,
+        "curiosity_parent_id": null,
+        "drive": "C",
+        "drive_lora_ready": true,
+        "evidence_count": 1,
+        "index_complete": false,
+        "index_progress": {
+          "directories_scanned_this_slice": 24,
+          "directory_errors_total": 0,
+          "eligible_files_indexed": 9036197,
+          "index_complete": false,
+          "index_policy_sha256": "da237ca6a4f3fe57c2f1535a90021a4550e2ac0d12d65e12cfe59ae395ea7a62",
+          "index_traversal_finished": false,
+          "mode": "persistent_read_only_drive_index",
+          "pending_directories": 924,
+          "roots": [
+            {
+              "complete": false,
+              "directories_indexed": 12588,
+              "directory_errors": 0,
+              "eligible_files": 41752,
+              "root": "C:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12587,
+              "directory_errors": 0,
+              "eligible_files": 20964,
+              "root": "D:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12477,
+              "directory_errors": 0,
+              "eligible_files": 164207,
+              "root": "E:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12472,
+              "directory_errors": 0,
+              "eligible_files": 8739990,
+              "root": "F:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12299,
+              "directory_errors": 0,
+              "eligible_files": 69284,
+              "root": "L:\\"
+            }
+          ],
+          "scan_errors_this_slice": 0,
+          "sensitive_and_non_source_paths_pruned": true,
+          "skipped_large_this_slice": 7,
+          "slice_elapsed_seconds": 9.594
+        },
+        "index_traversal_finished": false,
+        "loaded_adapter_ids": [
+          "viv-swarm-default-v2",
+          "viv-drive-c"
+        ],
+        "mind_summary_cited": false,
+        "notes_sha256": "02959126097ef8159f382748359005060fd42e8e0080610be29f970b1bc78cc9",
+        "open_curiosity_question_count": 0,
+        "planned_adapter_ids": [
+          "viv-swarm-default-v2",
+          "viv-drive-c"
+        ],
+        "response_normalization": "stripped_outer_markdown_json_fence",
+        "sampled_files": 1,
+        "sampling_mode": "read_only_macro_random_sample",
+        "sampling_seed": 8009466028142264012,
+        "sampling_tier_counts": {
+          "archive_or_log": 0,
+          "source_document": 1,
+          "structured_text": 0
+        },
+        "tool_scheme_sha256": "23aac39dd9a902a84da88b58dae8818b47d2d236ea8619244a0b765ef1a0ea4d",
+        "training_examples_added": 0
+      }
+    },
+    {
+      "id": 4778,
+      "at_epoch": 1791178700.1544755,
+      "kind": "task_completed",
+      "data": {
+        "id": "explore",
+        "kind": "explore",
+        "result": "drive C: sampled 1 source-backed lines, added 0 training examples; drive LoRA ready=True; model summary cited=False; follow-up question queued=False"
+      }
+    },
+    {
+      "id": 4779,
+      "at_epoch": 1791178701.165512,
+      "kind": "task_selected",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4780,
+      "at_epoch": 1791178711.4363337,
+      "kind": "plan_rejected",
+      "data": {
+        "proposal": {
+          "cases": [
+            {
+              "expected": {
+                "failed": 1,
+                "passed": 1,
+                "unknown": 1
+              },
+              "input": [
+                {
+                  "passed": true
+                },
+                {
+                  "passed": false
+                },
+                {}
+              ]
+            },
+            {
+              "expected": {
+                "failed": 0,
+                "passed": 1,
+                "unknown": 3
+              },
+              "input": [
+                {
+                  "passed": "false"
+                },
+                {
+                  "passed": 1
+                },
+                {
+                  "passed": null
+                },
+                {
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "expected": {
+                "failed": 0,
+                "passed": 0,
+                "unknown": 0
+              },
+              "input": []
+            },
+            {
+              "expected": {
+                "failed": 0,
+                "passed": 3,
+                "unknown": 0
+              },
+              "input": [
+                {
+                  "passed": true
+                },
+                {
+                  "passed": true
+                },
+                {
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "expected": {
+                "failed": 3,
+                "passed": 0,
+                "unknown": 0
+              },
+              "input": [
+                {
+                  "passed": false
+                },
+                {
+                  "passed": false
+                },
+                {
+                  "passed": false
+                }
+              ]
+            },
+            {
+              "expected": {
+                "failed": 1,
+                "passed": 2,
+                "unknown": 2
+              },
+              "input": [
+                {
+                  "passed": true
+                },
+                {
+                  "passed": false
+                },
+                {
+                  "passed": true
+                },
+                {
+                  "passed": "true"
+                },
+                {
+                  "passed": null
+                }
+              ]
+            }
+          ],
+          "requirement": "Implement solve(value). value is a list of receipt objects. Return an object with passed, failed, unknown integer counts. Count only the literal boolean true in the passed field as passed, literal false as failed; absent or any other value is unknown. This is for honest Viv telemetry.",
+          "title": "Validate and Count Build Receipts"
+        },
+        "proposal_canonical_sha256": "33cf93d7738fce2c73e0c619556094cf5a1414c75d512cf0fba42e944d9dadb6",
+        "proposal_sha256": "37e1ed813375c62eaaa89048f31e593b787fb2a584fcd086e14b1cffdf82313f",
+        "reason": "Rejected planner family 'Validate and Count Build Receipts' after 14 invalid variants. Correct the recorded error with a materially different contract or choose another gap.",
+        "rejected_family": "Validate and Count Build Receipts",
+        "rejected_variants": 14
+      }
+    },
+    {
+      "id": 4781,
+      "at_epoch": 1791178711.44851,
+      "kind": "task_completed",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "result": "looked for work and refreshed the task list"
+      }
+    },
+    {
+      "id": 4782,
+      "at_epoch": 1791178712.4619162,
+      "kind": "task_selected",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4783,
+      "at_epoch": 1791178712.4684637,
+      "kind": "task_completed",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "result": "idled for one second"
+      }
+    },
+    {
+      "id": 4784,
+      "at_epoch": 1791178713.4770875,
+      "kind": "task_selected",
+      "data": {
+        "id": "test",
+        "kind": "test",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4785,
+      "at_epoch": 1791178718.8255603,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "missing dependency",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            },
+            {
+              "id": "f3",
+              "reason": "network error",
+              "status": "failed"
+            },
+            {
+              "id": "f4",
+              "reason": "missing dependency",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "missing dependency"
+          }
+        },
+        "output": {
+          "results": [
+            {
+              "id": "f1",
+              "reason": "missing dependency",
+              "status": "failed"
+            },
+            {
+              "id": "f4",
+              "reason": "missing dependency",
+              "status": "failed"
+            }
+          ]
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4786,
+      "at_epoch": 1791178719.3002594,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "invalid config",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            },
+            {
+              "id": "f3",
+              "reason": "network error",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "invalid"
+          }
+        },
+        "output": {
+          "results": [
+            {
+              "id": "f1",
+              "reason": "invalid config",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            }
+          ]
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4787,
+      "at_epoch": 1791178719.757654,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "unknown error",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "unknown error",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "unknown"
+          }
+        },
+        "output": {
+          "results": [
+            {
+              "id": "f1",
+              "reason": "unknown error",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "unknown error",
+              "status": "failed"
+            }
+          ]
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4788,
+      "at_epoch": 1791178720.2012284,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "network error",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "network error",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "network"
+          }
+        },
+        "output": {
+          "results": [
+            {
+              "id": "f1",
+              "reason": "network error",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "network error",
+              "status": "failed"
+            }
+          ]
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4789,
+      "at_epoch": 1791178720.669454,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "missing dependency",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            },
+            {
+              "id": "f3",
+              "reason": "network error",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "invalid"
+          }
+        },
+        "output": {
+          "results": [
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            }
+          ]
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4790,
+      "at_epoch": 1791178721.1387975,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "missing dependency",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            },
+            {
+              "id": "f3",
+              "reason": "network error",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "missing"
+          }
+        },
+        "output": {
+          "results": [
+            {
+              "id": "f1",
+              "reason": "missing dependency",
+              "status": "failed"
+            }
+          ]
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4791,
+      "at_epoch": 1791178721.6252377,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "missing dependency",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            },
+            {
+              "id": "f3",
+              "reason": "network error",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "unknown"
+          }
+        },
+        "output": {
+          "results": []
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4792,
+      "at_epoch": 1791178722.079169,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [],
+          "options": {
+            "query": "missing"
+          }
+        },
+        "output": {
+          "results": []
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4793,
+      "at_epoch": 1791178722.08468,
+      "kind": "task_evaluation",
+      "data": {
+        "failures": [],
+        "id": "d91d04c1e36350dcc805",
+        "kind": "capability",
+        "passed": true
+      }
+    },
+    {
+      "id": 4794,
+      "at_epoch": 1791178722.090195,
+      "kind": "task_completed",
+      "data": {
+        "id": "test",
+        "kind": "test",
+        "result": "capability checks: 8/8 passed"
+      }
+    },
+    {
+      "id": 4795,
+      "at_epoch": 1791178723.0973418,
+      "kind": "task_selected",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4796,
+      "at_epoch": 1791178733.1243067,
+      "kind": "plan_rejected",
+      "data": {
+        "proposal": {
+          "cases": [
+            {
+              "expected": {
+                "failed": 0,
+                "passed": 0,
+                "unknown": 0
+              },
+              "input": []
+            },
+            {
+              "expected": {
+                "failed": 1,
+                "passed": 1,
+                "unknown": 1
+              },
+              "input": [
+                {
+                  "passed": true
+                },
+                {
+                  "passed": false
+                },
+                {}
+              ]
+            },
+            {
+              "expected": {
+                "failed": 0,
+                "passed": 1,
+                "unknown": 3
+              },
+              "input": [
+                {
+                  "passed": "false"
+                },
+                {
+                  "passed": 1
+                },
+                {
+                  "passed": null
+                },
+                {
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "expected": {
+                "failed": 0,
+                "passed": 3,
+                "unknown": 0
+              },
+              "input": [
+                {
+                  "passed": true
+                },
+                {
+                  "passed": true
+                },
+                {
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "expected": {
+                "failed": 2,
+                "passed": 2,
+                "unknown": 2
+              },
+              "input": [
+                {
+                  "passed": true
+                },
+                {
+                  "passed": true
+                },
+                {
+                  "passed": "true"
+                },
+                {
+                  "passed": false
+                },
+                {
+                  "passed": "false"
+                },
+                {
+                  "passed": null
+                }
+              ]
+            }
+          ],
+          "requirement": "Implement solve(value). value is a list of receipt objects. Return an object with passed, failed, unknown integer counts. Count only the literal boolean true in the passed field as passed, literal false as failed; absent or any other value is unknown. This is for honest Viv telemetry.",
+          "title": "Validate and Count Build Receipts"
+        },
+        "proposal_canonical_sha256": "8304289e14d57ba6a27d1af81ecb34df05b8c48eeed5bc773eb2440aa7d3e795",
+        "proposal_sha256": "8d2f39d74ef5de3898bfc84881cefe3541c98233c568d29c78ced7aba5f02878",
+        "reason": "Rejected planner family 'Validate and Count Build Receipts' after 15 invalid variants. Correct the recorded error with a materially different contract or choose another gap.",
+        "rejected_family": "Validate and Count Build Receipts",
+        "rejected_variants": 15
+      }
+    },
+    {
+      "id": 4797,
+      "at_epoch": 1791178733.128925,
+      "kind": "task_completed",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "result": "looked for work and refreshed the task list"
+      }
+    },
+    {
+      "id": 4798,
+      "at_epoch": 1791178734.1362238,
+      "kind": "task_selected",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4799,
+      "at_epoch": 1791178742.69267,
+      "kind": "plan_rejected",
+      "data": {
+        "proposal": {
+          "latest_feedback": [
+            {
+              "actual": {
+                "failed": 0,
+                "passed": 3,
+                "unknown": 0
+              },
+              "expected": {
+                "failed": 0,
+                "passed": 3,
+                "unknown": 0
+              },
+              "input": [
+                {
+                  "passed": "false"
+                },
+                {
+                  "passed": 1
+                },
+                {
+                  "passed": null
+                },
+                {
+                  "passed": true
+                }
+              ],
+              "passed": true
+            }
+          ],
+          "requirement": "Implement solve(value). value is a list of receipt objects. Return an object with passed, failed, unknown integer counts. Count only the literal boolean true in the passed field as passed, literal false as failed; absent or any other value is unknown. This is for honest Viv telemetry.",
+          "requirements": [
+            "Implement solve(value). value is a list of receipt objects. Return an object with passed, failed, unknown integer counts. Count only the literal boolean true in the passed field as passed, literal false as failed; absent or any other value is unknown. This is for honest Viv telemetry."
+          ],
+          "terminal_variants": 1,
+          "title": "Validate and Count Build Receipts"
+        },
+        "proposal_canonical_sha256": "a7c28367539ce5dd49b1bc3c24ecbd23feb065f1df91f30f3522d700aa12eae3",
+        "proposal_sha256": "389036e45b64f1f6feb476c315ee862057d2b86229dce72e1a48febcd205dc5b",
+        "reason": "Rejected planner family 'Validate and Count Build Receipts' after 16 invalid variants. Correct the recorded error with a materially different contract or choose another gap.",
+        "rejected_family": "Validate and Count Build Receipts",
+        "rejected_variants": 16
+      }
+    },
+    {
+      "id": 4800,
+      "at_epoch": 1791178742.7008154,
+      "kind": "task_completed",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "result": "looked for work and refreshed the task list"
+      }
+    },
+    {
+      "id": 4801,
+      "at_epoch": 1791178743.7079618,
+      "kind": "task_selected",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4802,
+      "at_epoch": 1791178743.7149308,
+      "kind": "task_completed",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "result": "an earlier autonomous chat turn is still queued"
+      }
+    },
+    {
+      "id": 4803,
+      "at_epoch": 1791178744.7217526,
+      "kind": "task_selected",
+      "data": {
+        "id": "training",
+        "kind": "training",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4804,
+      "at_epoch": 1791178744.7902634,
+      "kind": "self_training_corpus_prepared",
+      "data": {
+        "corpus_sha256": "d8b1c71c45a55a7dcb38b8556de32718f6a044a3c19c236629fa0c27613d8c91",
+        "drive": "D",
+        "evaluation_file_sha256": "a45a5c2af9c6877c24988315d132e27aab447b22c6e992f3016c67d09989bb07",
+        "evaluation_group_count": 5,
+        "evaluation_ids": [
+          "1d66cc090227bf514cec8a3ca56df3c8c2eb6c040b81c111ad91a790d2415bf8",
+          "36ee7963a0bcd027135b94aa7d36ecf415d7831db4f65139d9de1ecb3e0d8b00",
+          "52fbfd85079ff787d853f5a9397af9835cb9d734aecb15608c78c0562d7945c2",
+          "36f948aec1c760d730ae699d8a826df84667afea45f85b68b1dee3a72da31c11",
+          "d462680b021f4622de44c5c4583f0d918b502fd0700473ba0c6e8d76727eda33"
+        ],
+        "evaluation_sampling_tier_counts": {
+          "archive_or_log": 1,
+          "source_document": 4
+        },
+        "evaluation_source_count": 5,
+        "excluded_unsafe_source_count": 0,
+        "failure_feedback_training_count": 0,
+        "previously_evaluated_training_count": 4,
+        "promotion": "forbidden_candidate_only",
+        "schema": "viv_evidence_sft_v3",
+        "source_safety_policy": "credential_and_binary_source_exclusion_v1",
+        "tool_scheme_sha256": "ed9a86d12b33671a1e919e4d5dab9fb79b2e608aaffd3b435e8f206def4d7e61",
+        "training_file_sha256": "f42524febca66f7a75ef67953bd318e18f96ede166bee94b724fb9d70b4bc131",
+        "training_ids": [
+          "3fae402560af5867dcbb016cf473283e64262b19d57bd303c58cacdeb98da8ea",
+          "457148669ae929c7299e1e9fa1dd8c07444e7dc363514075e7815e7e63e6b4d6",
+          "93bebda9fab5909f7b43dbc688407c833d97806e004b6c15e54d518ad4bf0124",
+          "c764dde1c1ddcbea9b0e0715aca20e1e650f54a0f93e5788ef741a5879312a12",
+          "755879ee6d9e096fbec64f3553b0fb38a0bdce9cbc2ae3b72c5138cbff222885",
+          "b21dec7ea482b417f3f12fdfbc1658e7c936f45155a76cebd13897faed68d706",
+          "21f097599c51dca0981507955808a60587726719b3d0207686d657c96414e090",
+          "f4f046f446625c056ffa4f46f3c3e01f650501a438d489459fd1125d2572107b",
+          "f9b3172f42737a6ec19ad96d9ad8cc13fd4eb977bfe35d44589cb387e4e47bc4",
+          "f29ca8fd1cf9bc75585fb07d8f0409727c641db821b278415983041ce8d9cc87",
+          "d763a9c1263e2e4ad54435de3ddacd158bb3f8443823776a0dc9fdce7078735a",
+          "9c43b5e65c612d2c5aca068c6302a4110131b02e521fb64d748c6b30e9e167a2",
+          "fd51a0ce756c8e903afde5bca422f3119a49bc3ec1b1c6e2662b3e75b40c998a",
+          "076bc561345f40a4bc44e05b23ecde83cee960adc329ed54ff42097fb6cf3f65",
+          "19f4505cc27c48394bb5bd7c7e6e266e836130abf9ff6472df7adda8aad37233",
+          "d1519f78610675bf496b3496f4ca8d51735a2b289b54a698c0eda3fe9398eb74",
+          "d56ce2697616289fde0e44af2aa2dab936b17ce3dd07de94e745dafa2a0843e5",
+          "b303134d58b79f17061136ea09f2ad56d2a57f536dfabdddb4d2b96bca65c5a6",
+          "36d45a9111bc5bda923a3d93afcaec392bd77dd05e26ba1194a13de07a5f83fc",
+          "511305b7cb100e8d5fcba880cdd9bb84e56caaa259aa25573f6021759195f5ef",
+          "17542219d8e123f1720cfc8a90d2db0c7ae4c230c66a94885f032090fea032eb",
+          "4489f8abdc5761cd6c872344e1790f538aeb2ab03fac041f4735559be5b3961f",
+          "18076741dff6f1461985d82be00c23267c0fa4ac9f3b159fdc4b608164c3fcb8"
+        ],
+        "training_sampling_tier_counts": {
+          "archive_or_log": 1,
+          "source_document": 19,
+          "structured_text": 3
+        },
+        "training_source_count": 22
+      }
+    },
+    {
+      "id": 4805,
+      "at_epoch": 1791178862.5092132,
+      "kind": "training_task_finished",
+      "data": {
+        "output": "L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\D\\versions\\d8b1c71c45a5",
+        "status": "passed",
+        "stderr_tail": "00:31,  2.58s/it]\n                                               \n\n 70%|#######   | 28/40 [01:12<00:31,  2.58s/it]\n 72%|#######2  | 29/40 [01:15<00:28,  2.59s/it]\n                                               \n\n 72%|#######2  | 29/40 [01:15<00:28,  2.59s/it]\n 75%|#######5  | 30/40 [01:17<00:24,  2.41s/it]\n                                               \n\n 75%|#######5  | 30/40 [01:17<00:24,  2.41s/it]\n 78%|#######7  | 31/40 [01:19<00:22,  2.47s/it]\n                                               \n\n 78%|#######7  | 31/40 [01:19<00:22,  2.47s/it]\n 80%|########  | 32/40 [01:22<00:20,  2.52s/it]\n                                               \n\n 80%|########  | 32/40 [01:22<00:20,  2.52s/it]\n 82%|########2 | 33/40 [01:24<00:17,  2.55s/it]\n                                               \n\n 82%|########2 | 33/40 [01:24<00:17,  2.55s/it]\n 85%|########5 | 34/40 [01:27<00:15,  2.57s/it]\n                                               \n\n 85%|########5 | 34/40 [01:27<00:15,  2.57s/it]\n 88%|########7 | 35/40 [01:30<00:12,  2.59s/it]\n                                               \n\n 88%|########7 | 35/40 [01:30<00:12,  2.59s/it]\n 90%|######### | 36/40 [01:32<00:09,  2.41s/it]\n                                               \n\n 90%|######### | 36/40 [01:32<00:09,  2.41s/it]\n 92%|#########2| 37/40 [01:34<00:07,  2.48s/it]\n                                               \n\n 92%|#########2| 37/40 [01:34<00:07,  2.48s/it]\n 95%|#########5| 38/40 [01:37<00:05,  2.52s/it]\n                                               \n\n 95%|#########5| 38/40 [01:37<00:05,  2.52s/it]\n 98%|#########7| 39/40 [01:40<00:02,  2.57s/it]\n                                               \n\n 98%|#########7| 39/40 [01:40<00:02,  2.57s/it]\n100%|##########| 40/40 [01:42<00:00,  2.59s/it]\n                                               \n\n100%|##########| 40/40 [01:42<00:00,  2.59s/it]\n                                               \n\n100%|##########| 40/40 [01:42<00:00,  2.59s/it]\n100%|##########| 40/40 [01:42<00:00,  2.57s/it]\n",
+        "stdout_tail": "h': '5.87'}\n{'loss': '0.0007327', 'grad_norm': '0.004934', 'learning_rate': '2.632e-05', 'epoch': '6'}\n{'loss': '0.0007989', 'grad_norm': '0.007207', 'learning_rate': '2.105e-05', 'epoch': '6.174'}\n{'loss': '0.0004899', 'grad_norm': '0.003655', 'learning_rate': '1.579e-05', 'epoch': '6.348'}\n{'loss': '0.00126', 'grad_norm': '0.00861', 'learning_rate': '1.053e-05', 'epoch': '6.522'}\n{'loss': '0.0004917', 'grad_norm': '0.003711', 'learning_rate': '5.263e-06', 'epoch': '6.696'}\n{'train_runtime': '102.7', 'train_samples_per_second': '1.558', 'train_steps_per_second': '0.389', 'train_loss': '0.1689', 'epoch': '6.696'}\n{\n  \"schema\": \"hive_lora_training_v1\",\n  \"created_utc\": \"2026-10-05T05:40:58.202144+00:00\",\n  \"base\": \"L:\\\\LocalCoder\\\\workspace\\\\swarm_adapters\\\\models\\\\Qwen3-1.7B\",\n  \"base_config_sha256\": \"1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197\",\n  \"base_weight_sha256\": {\n    \"model-00001-of-00002.safetensors\": \"169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5\",\n    \"model-00002-of-00002.safetensors\": \"912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9\"\n  },\n  \"dataset\": \"L:\\\\LocalCoder\\\\workspace\\\\autonomy\\\\learning\\\\corpora\\\\D\\\\d8b1c71c45a55a7d\\\\train.jsonl\",\n  \"dataset_sha256\": \"f42524febca66f7a75ef67953bd318e18f96ede166bee94b724fb9d70b4bc131\",\n  \"adapter_name\": \"viv-drive-d\",\n  \"shared_adapter\": \"L:\\\\LocalCoder\\\\workspace\\\\swarm_adapters\\\\runs\\\\viv-swarm-default-v2\\\\swarm-default\",\n  \"saved_adapter\": \"L:\\\\LocalCoder\\\\workspace\\\\swarm_adapters\\\\drive_stacks\\\\D\\\\versions\\\\d8b1c71c45a5\\\\viv-drive-d\",\n  \"steps\": 40,\n  \"seed\": 42017,\n  \"trainable_parameters\": 8716288,\n  \"train_loss\": 0.16885267683974234,\n  \"metrics\": {\n    \"train_runtime\": 102.7219,\n    \"train_samples_per_second\": 1.558,\n    \"train_steps_per_second\": 0.389,\n    \"total_flos\": 580675275153408.0,\n    \"train_loss\": 0.16885267683974234,\n    \"epoch\": 6.695652173913043\n  },\n  \"torch\": \"2.6.0+cu124\",\n  \"cuda\": \"12.4\",\n  \"gpu\": \"NVIDIA GeForce RTX 3060 Ti\"\n}\n"
+      }
+    },
+    {
+      "id": 4806,
+      "at_epoch": 1791178862.546242,
+      "kind": "task_completed",
+      "data": {
+        "id": "training",
+        "kind": "training",
+        "result": "isolated training candidate saved at L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\D\\versions\\d8b1c71c45a5"
+      }
+    },
+    {
+      "id": 4807,
+      "at_epoch": 1791178863.5519238,
+      "kind": "task_selected",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4808,
+      "at_epoch": 1791178868.8735821,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "c964338a2dcb995dda19ed72da75da5f033d162727cfd23977ebea7539a41c78",
+        "input": [
+          {
+            "passed": true
+          },
+          {
+            "passed": false
+          },
+          {}
+        ],
+        "output": {
+          "failed": 1,
+          "passed": 1,
+          "unknown": 1
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "6c10bcdd3a9a8cf9943b"
+      }
+    },
+    {
+      "id": 4809,
+      "at_epoch": 1791178868.879582,
+      "kind": "task_completed",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "result": "registered tested tool called with a recorded development case"
+      }
+    },
+    {
+      "id": 4810,
+      "at_epoch": 1791178869.8867,
+      "kind": "task_selected",
+      "data": {
+        "id": "explore",
+        "kind": "explore",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4811,
+      "at_epoch": 1791178975.879749,
+      "kind": "drive_agent_index_feedback_delivered",
+      "data": {
+        "current_source_sha256": "1e8e9098dcf1b8417d40ba6946a67f4122f9ea41fbb12772eabcd9086954f6e4",
+        "drive": "C",
+        "failure_event_id": null,
+        "failure_reason": "Project must identify one existing ancestor directory of the source",
+        "previous_failure_count": 12
+      }
+    },
+    {
+      "id": 4812,
+      "at_epoch": 1791179005.221646,
+      "kind": "drive_stack_inference_completed",
+      "data": {
+        "adapter_ids": [
+          "viv-swarm-default-v2",
+          "viv-drive-c"
+        ],
+        "adapter_sha256": [
+          "a02989847cf69c062fe0d3e6d33949b37ae596e70fae445c495d366a3ef6dc5c",
+          "40c0d301943684fdd3351d6292da642a9bc52b76f197ba41c7ca98ecc3fae7c7"
+        ],
+        "base_config_sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+        "drive": "C",
+        "expert_loading": "dynamic_unmerged_lora_per_task",
+        "loaded_into_coordinator": false,
+        "merged_into_base": false,
+        "model_family": "Qwen3-1.7B",
+        "released_after_generation": true,
+        "tool_scheme_sha256": "23aac39dd9a902a84da88b58dae8818b47d2d236ea8619244a0b765ef1a0ea4d"
+      }
+    },
+    {
+      "id": 4813,
+      "at_epoch": 1791179005.2346468,
+      "kind": "drive_agent_index_proposal_rejected",
+      "data": {
+        "attempt_count": 13,
+        "drive": "C",
+        "feedback_delivered": true,
+        "proposal_sha256": "a8cb25104b13879db3851cb77dbad136ee2a5fd9d64cc403a6b586ad14e5edef",
+        "raw_response_sha256": "800b6ff785e150cf665a76bcf29d8c3484066b0197289179eb1fc1f7e92f1691",
+        "reason": "Curiosity summary must contain Sense/source, Observation, Investigate, Architect learns, and Follow-up question in the required format",
+        "response_normalization": "stripped_outer_markdown_json_fence",
+        "source_sha256": "1e8e9098dcf1b8417d40ba6946a67f4122f9ea41fbb12772eabcd9086954f6e4"
+      }
+    },
+    {
+      "id": 4814,
+      "at_epoch": 1791179005.249647,
+      "kind": "self_learning_completed",
+      "data": {
+        "activity": "explore",
+        "agent_index_entry": null,
+        "agent_index_failure_feedback_delivered": true,
+        "agent_index_rejection_reason": "Curiosity summary must contain Sense/source, Observation, Investigate, Architect learns, and Follow-up question in the required format",
+        "agent_question_recorded": false,
+        "bytes_read": 645,
+        "curiosity_parent_id": null,
+        "drive": "C",
+        "drive_lora_ready": true,
+        "evidence_count": 1,
+        "index_complete": false,
+        "index_progress": {
+          "directories_scanned_this_slice": 24,
+          "directory_errors_total": 0,
+          "eligible_files_indexed": 9136227,
+          "index_complete": false,
+          "index_policy_sha256": "da237ca6a4f3fe57c2f1535a90021a4550e2ac0d12d65e12cfe59ae395ea7a62",
+          "index_traversal_finished": false,
+          "mode": "persistent_read_only_drive_index",
+          "pending_directories": 906,
+          "roots": [
+            {
+              "complete": false,
+              "directories_indexed": 12598,
+              "directory_errors": 0,
+              "eligible_files": 41762,
+              "root": "C:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12597,
+              "directory_errors": 0,
+              "eligible_files": 20967,
+              "root": "D:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12487,
+              "directory_errors": 0,
+              "eligible_files": 164207,
+              "root": "E:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12482,
+              "directory_errors": 0,
+              "eligible_files": 8839982,
+              "root": "F:\\"
+            },
+            {
+              "complete": false,
+              "directories_indexed": 12307,
+              "directory_errors": 0,
+              "eligible_files": 69309,
+              "root": "L:\\"
+            }
+          ],
+          "scan_errors_this_slice": 0,
+          "sensitive_and_non_source_paths_pruned": true,
+          "skipped_large_this_slice": 0,
+          "slice_elapsed_seconds": 9.766
+        },
+        "index_traversal_finished": false,
+        "loaded_adapter_ids": [
+          "viv-swarm-default-v2",
+          "viv-drive-c"
+        ],
+        "mind_summary_cited": false,
+        "notes_sha256": "a8cb25104b13879db3851cb77dbad136ee2a5fd9d64cc403a6b586ad14e5edef",
+        "open_curiosity_question_count": 0,
+        "planned_adapter_ids": [
+          "viv-swarm-default-v2",
+          "viv-drive-c"
+        ],
+        "response_normalization": "stripped_outer_markdown_json_fence",
+        "sampled_files": 1,
+        "sampling_mode": "read_only_macro_random_sample",
+        "sampling_seed": 9125550532725045939,
+        "sampling_tier_counts": {
+          "archive_or_log": 0,
+          "source_document": 1,
+          "structured_text": 0
+        },
+        "tool_scheme_sha256": "23aac39dd9a902a84da88b58dae8818b47d2d236ea8619244a0b765ef1a0ea4d",
+        "training_examples_added": 0
+      }
+    },
+    {
+      "id": 4815,
+      "at_epoch": 1791179005.2626789,
+      "kind": "task_completed",
+      "data": {
+        "id": "explore",
+        "kind": "explore",
+        "result": "drive C: sampled 1 source-backed lines, added 0 training examples; drive LoRA ready=True; model summary cited=False; follow-up question queued=False"
+      }
+    },
+    {
+      "id": 4816,
+      "at_epoch": 1791179006.2696931,
+      "kind": "task_selected",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4817,
+      "at_epoch": 1791179017.8237338,
+      "kind": "plan_rejected",
+      "data": {
+        "proposal": {
+          "latest_feedback": [
+            {
+              "actual": {
+                "failed": 0,
+                "passed": 3,
+                "unknown": 0
+              },
+              "expected": {
+                "failed": 0,
+                "passed": 3,
+                "unknown": 0
+              },
+              "input": [
+                {
+                  "passed": "false"
+                },
+                {
+                  "passed": 1
+                },
+                {
+                  "passed": null
+                },
+                {
+                  "passed": true
+                }
+              ],
+              "passed": true
+            }
+          ],
+          "requirement": "Implement solve(value). value is a list of receipt objects. Return an object with passed, failed, unknown integer counts. Count only the literal boolean true in the passed field as passed, literal false as failed; absent or any other value is unknown. This is for honest Viv telemetry.",
+          "requirements": [
+            "Implement solve(value). value is a list of receipt objects. Return an object with passed, failed, unknown integer counts. Count only the literal boolean true in the passed field as passed, literal false as failed; absent or any other value is unknown. This is for honest Viv telemetry."
+          ],
+          "terminal_failure_families": [
+            {
+              "latest_feedback": [
+                {
+                  "actual": {
+                    "failed": 0,
+                    "passed": 3,
+                    "unknown": 0
+                  },
+                  "expected": {
+                    "failed": 0,
+                    "passed": 3,
+                    "unknown": 0
+                  },
+                  "input": [
+                    {
+                      "passed": "false"
+                    },
+                    {
+                      "passed": 1
+                    },
+                    {
+                      "passed": null
+                    },
+                    {
+                      "passed": true
+                    }
+                  ],
+                  "passed": true
+                }
+              ],
+              "requirement": "Implement solve(value). value is a list of receipt objects. Return an object with passed, failed, unknown integer counts. Count only the literal boolean true in the passed field as passed, literal false as failed; absent or any other value is unknown. This is for honest Viv telemetry.",
+              "terminal_variants": 1,
+              "title": "Validate and Count Build Receipts"
+            }
+          ],
+          "terminal_variants": 1,
+          "title": "Validate and Count Build Receipts"
+        },
+        "proposal_canonical_sha256": "0d5fbbdda8ece76be3b114503bcfed248fc1e966017adcf0d8d4df8b7587c557",
+        "proposal_sha256": "c1109fe2a6596b94b5863b6ad2c37f78d00e99bb1181908968fc19b5339591df",
+        "reason": "Rejected planner family 'Validate and Count Build Receipts' after 17 invalid variants. Correct the recorded error with a materially different contract or choose another gap.",
+        "rejected_family": "Validate and Count Build Receipts",
+        "rejected_variants": 17
+      }
+    },
+    {
+      "id": 4818,
+      "at_epoch": 1791179017.830334,
+      "kind": "task_completed",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "result": "looked for work and refreshed the task list"
+      }
+    },
+    {
+      "id": 4819,
+      "at_epoch": 1791179018.8380435,
+      "kind": "task_selected",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4820,
+      "at_epoch": 1791179024.1710446,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "missing dependency",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            },
+            {
+              "id": "f3",
+              "reason": "network error",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "invalid"
+          }
+        },
+        "output": {
+          "results": [
+            {
+              "id": "f2",
+              "reason": "invalid config",
+              "status": "failed"
+            }
+          ]
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4821,
+      "at_epoch": 1791179024.1790447,
+      "kind": "task_completed",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "result": "registered tested tool called with a recorded development case"
+      }
+    },
+    {
+      "id": 4822,
+      "at_epoch": 1791179025.1870596,
+      "kind": "task_selected",
+      "data": {
+        "id": "training",
+        "kind": "training",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4823,
+      "at_epoch": 1791179025.1940618,
+      "kind": "training_task_checked",
+      "data": {
+        "reason": "evaluation is pending",
+        "status": "waiting_for_new_evidence"
+      }
+    },
+    {
+      "id": 4824,
+      "at_epoch": 1791179025.2005703,
+      "kind": "task_completed",
+      "data": {
+        "id": "training",
+        "kind": "training",
+        "result": "evaluation is pending"
+      }
+    },
+    {
+      "id": 4825,
+      "at_epoch": 1791179026.207314,
+      "kind": "task_selected",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4826,
+      "at_epoch": 1791179026.2143328,
+      "kind": "task_completed",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "result": "idled for one second"
+      }
+    },
+    {
+      "id": 4827,
+      "at_epoch": 1791179027.2210557,
+      "kind": "task_selected",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4828,
+      "at_epoch": 1791179037.1421826,
+      "kind": "plan_rejected",
+      "data": {
+        "proposal": {
+          "case_count": 1,
+          "event_id": 4731,
+          "latest_feedback": [
+            "{\"actual\":{\"failed\":0,\"passed\":3,\"unknown\":0},\"expected\":{\"failed\":0,\"passed\":3,\"unknown\":0},\"input\":[{\"passed\":\"false\"},{\"passed\":1},{\"passed\":null},{\"passed\":true}],\"passed\":true}"
+          ],
+          "proposal_canonical_sha256": "0db7f208b773351d5f0d4297aacb4e956419f9da4aa8de2bb564fb5c1d5bd728",
+          "proposal_sha256": "f4e91c43590a9816cd216377e1a8ee55d2d78bb90a75b4470021f47f741fd6af",
+          "reason": "Rejected planner family 'Validate and Count Build Receipts' after 12 invalid variants. Correct the recorded error with a materially different contract or choose another gap.",
+          "requirements": [
+            "Implement solve(value). value is a list of receipt objects. Return an object with passed, failed, unknown integer counts. Count only the literal boolean true in the passed field as passed, literal false as failed; absent or any other value is unknown. This is for honest Viv telemetry."
+          ],
+          "terminal_variants": 1,
+          "title": "Validate and Count Build Receipts"
+        },
+        "proposal_canonical_sha256": "10c6aa31d81757ea63f607c011e2df9be51f178e289574b3d4b913f433773f66",
+        "proposal_sha256": "91bda09963296fddf34878d59fa8578e1216e0ee1a0cbad8098937bfed306a8b",
+        "reason": "Rejected malformed proposal. Return exactly title, requirement, and cases; cases must contain 3-30 objects, each with input and expected. Every input must contain exactly data and options, with options an object. Validation error: Task must contain title, requirement, cases"
+      }
+    },
+    {
+      "id": 4829,
+      "at_epoch": 1791179037.1473696,
+      "kind": "task_completed",
+      "data": {
+        "id": "build",
+        "kind": "build",
+        "result": "looked for work and refreshed the task list"
+      }
+    },
+    {
+      "id": 4830,
+      "at_epoch": 1791179038.1538436,
+      "kind": "task_selected",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4831,
+      "at_epoch": 1791179038.1618118,
+      "kind": "task_completed",
+      "data": {
+        "id": "chat",
+        "kind": "chat",
+        "result": "an earlier autonomous chat turn is still queued"
+      }
+    },
+    {
+      "id": 4832,
+      "at_epoch": 1791179039.1681237,
+      "kind": "task_selected",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4833,
+      "at_epoch": 1791179039.1741416,
+      "kind": "task_completed",
+      "data": {
+        "id": "idle",
+        "kind": "idle",
+        "result": "idled for one second"
+      }
+    },
+    {
+      "id": 4834,
+      "at_epoch": 1791179040.1813252,
+      "kind": "task_selected",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    },
+    {
+      "id": 4835,
+      "at_epoch": 1791179051.724173,
+      "kind": "capability_used",
+      "data": {
+        "code_sha256": "fe0b4188cec1a820790af670c10bc13adab14272260b3d521f35e63749391393",
+        "input": {
+          "data": [
+            {
+              "id": "f1",
+              "reason": "unknown error",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "unknown error",
+              "status": "failed"
+            }
+          ],
+          "options": {
+            "query": "unknown"
+          }
+        },
+        "output": {
+          "results": [
+            {
+              "id": "f1",
+              "reason": "unknown error",
+              "status": "failed"
+            },
+            {
+              "id": "f2",
+              "reason": "unknown error",
+              "status": "failed"
+            }
+          ]
+        },
+        "scope": "sandbox_execution_observation",
+        "task_id": "d91d04c1e36350dcc805"
+      }
+    },
+    {
+      "id": 4836,
+      "at_epoch": 1791179051.732173,
+      "kind": "task_completed",
+      "data": {
+        "id": "tool_call",
+        "kind": "tool_call",
+        "result": "registered tested tool called with a recorded development case"
+      }
+    },
+    {
+      "id": 4837,
+      "at_epoch": 1791179052.7387893,
+      "kind": "task_selected",
+      "data": {
+        "id": "self_learning",
+        "kind": "self_learning",
+        "pool_size": 8,
+        "selection": "uniform_random"
+      }
+    }
+  ],
+  "pending_jobs": {
+    "evaluation_job": {
+      "adapter": "L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\D\\versions\\d8b1c71c45a5",
+      "adapter_name": "viv-drive-d",
+      "base": "L:\\LocalCoder\\workspace\\swarm_adapters\\models\\Qwen3-1.7B",
+      "dataset": "L:\\LocalCoder\\workspace\\autonomy\\learning\\corpora\\D\\d8b1c71c45a55a7d\\eval.jsonl",
+      "drive": "D",
+      "output": "L:\\LocalCoder\\workspace\\swarm_adapters\\drive_stacks\\D\\versions\\d8b1c71c45a5\\evidence_eval_receipt.json",
+      "shared_adapter": "L:\\LocalCoder\\workspace\\swarm_adapters\\runs\\viv-swarm-default-v2\\swarm-default"
+    },
+    "training_job": null
+  },
+  "artifact_sha256": {
+    "viv_autonomy.py": "d097b94b56e398588a0b62c4a2c5de97295613b73ab8aca0e7659681b7ad1fb7",
+    "autonomy/agent_index.py": "39a38070f8d6c3f143155641e8970724352220951d2121a060ab12831b105018",
+    "swarm_adapters/drive_stacks/E/versions/4c612fb7b639/training_receipt.json": "55b9996375899f89a0d9707260726918d78cfa13b68409578d03c537cd2e30ea",
+    "swarm_adapters/drive_stacks/E/versions/4c612fb7b639/evidence_eval_receipt.json": "885243cb95379d66b7bbdcf3466bb1bb81d8acecf10006f8fd6412025405e7a8",
+    "swarm_adapters/drive_stacks/D/versions/d8b1c71c45a5/training_receipt.json": "a47c62be68f52a5afd092c7db71ab6656409efc72a2d24011a3452932b6f38dd",
+    "autonomy/learning/corpora/D/d8b1c71c45a55a7d/eval.jsonl": "a45a5c2af9c6877c24988315d132e27aab447b22c6e992f3016c67d09989bb07"
+  },
+  "current_observation": {
+    "worker_alive_observed": true,
+    "current_selected_task": "self_learning",
+    "E_candidate": "4c612fb7b639 evaluated at base 4/4 and candidate 4/4 across 2 repeats; no improvement and no activation",
+    "D_candidate": "d8b1c71c45a5 trained in isolation for 40 steps; evaluation job pending; no activation",
+    "L_scout": "attempt 25 rejected as non-JSON after feedback; no curiosity entry/follow-up accepted",
+    "C_scout": "attempt 12 rejected because model selected a non-ancestor project directory; no curiosity entry/follow-up accepted",
+    "build_planner": "one repeated planner family rejected after 12 invalid variants; alternate gap not yet demonstrated",
+    "index": "read-only macro index remains incomplete"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "viv_cpu_tool_call_grammar_v1",
+  "grammar_version": 1,
+  "purpose": "CPU-only data protocol for selecting approved template components and declared variable values",
+  "frames": {
+    "select": "S|<slot 0..3>",
+    "hold": "H|<missing|malformed|unsafe|review|unknown>",
+    "variable": "V|<template_id>|<declared_key>|<safe_data_value>"
+  },
+  "source_text_accepted": false,
+  "paths_accepted": false,
+  "arbitrary_expressions_accepted": false,
+  "variable_values_are_data_only": true,
+  "human_approval_required_before_template_insertion": true,
+  "training_input_policy": "metadata_only; no source bytes, function bodies, or generated Python"
+}

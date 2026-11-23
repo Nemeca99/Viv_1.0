@@ -1,0 +1,42 @@
+{
+  "schema_version": "viv_cpu_language_truth_anchor_v1",
+  "experiment_id": "cpu_language_truth_anchor_v1",
+  "purpose": "GPU explores language. CPU anchors truth. Language proposals cannot mint FACT.",
+  "candidate_only": true,
+  "gpu_explores": "language",
+  "cpu_anchors": "truth",
+  "classes": [
+    "LANGUAGE_PROPOSAL",
+    "TRUTH_ANCHORED",
+    "HOLD_LIE",
+    "ABSTAIN"
+  ],
+  "cannot_mint_fact": ["LANGUAGE_PROPOSAL", "HOLD_LIE", "ABSTAIN"],
+  "axioms": [
+    {
+      "id": "hold_is_not_pass",
+      "text": "HOLD is not PASS."
+    },
+    {
+      "id": "missing_sensor_abstain",
+      "text": "Missing sensor is ABSTAIN, never a fabricated S_n."
+    },
+    {
+      "id": "inventory_not_truth",
+      "text": "Index inventory is not runtime truth."
+    },
+    {
+      "id": "plant_ce_not_h_english",
+      "text": "Plant bits/char is CE on a pinned alphabet, not H(English)."
+    },
+    {
+      "id": "gpu_explores_language_not_truth",
+      "text": "GPU explores language. CPU anchors truth."
+    }
+  ],
+  "forbidden": {
+    "ingest_harvest_to_86m": true,
+    "kill_pretrain": true,
+    "gpu_authors_fact": true
+  }
+}

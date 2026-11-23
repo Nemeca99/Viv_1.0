@@ -1,0 +1,60 @@
+Architect authorizes one replacement in this existing Python dispatcher. A real coding run had a failed shell attempt followed by a passing shell attempt: preserve every failed attempt in shell_check_errors, and let the final observed shell check determine verification success. Add final_shell_check_passed to the receipt. Use localcoder_patch single-file form with filePath, oldString, and newString, exactly one replacement; then run the AST syntax check and return a short visible result.
+
+OldString:
+    shell_check_errors = [item for item in shell_checks
+                          if item.get('status') != 'completed' or item.get('exit') != 0]
+    verification_tools = {'localcoder_add_python', 'localcoder_write_exact', 'localcoder_patch', 'write', 'edit', 'patch'}
+    verification_required = any(str(item.get('tool') or '').lower() in verification_tools for item in tools_used)
+    task_errors = []
+    if timed_out: task_errors.append('timed_out')
+    if not session_succeeded: task_errors.append('session_outcome_not_succeeded')
+    if not session_exports_terminal: task_errors.append('session_export_not_terminal')
+    if not visible_final_text: task_errors.append('visible_final_text_missing')
+    if tool_errors: task_errors.append('tool_error')
+    if shell_check_errors: task_errors.append('shell_check_failed')
+    if verification_required and not shell_checks: task_errors.append('verification_check_missing')
+    task_succeeded = not task_errors
+    effective_exit_code = 0 if task_succeeded else (code or 1)
+    report = dict(elapsed_seconds=round(time.monotonic()-start, 3), exit_code=effective_exit_code,
+                  transport_exit_code=transport_exit_code, session_outcomes=session_outcomes, timed_out=timed_out,
+                  sessions=sessions, prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
+                  tools=tools_used,
+                  model_ids=model_ids, shell_checks=shell_checks,
+                  task_succeeded=task_succeeded, task_errors=task_errors,
+                  tool_errors=tool_errors, shell_check_errors=shell_check_errors,
+                  final_text=visible_final_text, session_exports_terminal=session_exports_terminal,
+                  background_interrupted=background_interrupted, evidence=str(directory))
+
+NewString:
+    shell_check_errors = [item for item in shell_checks
+                          if item.get('status') != 'completed' or item.get('exit') != 0]
+    final_shell_check_passed = bool(shell_checks) and shell_checks[-1].get('status') == 'completed' and shell_checks[-1].get('exit') == 0
+    verification_tools = {'localcoder_add_python', 'localcoder_write_exact', 'localcoder_patch', 'write', 'edit', 'patch'}
+    verification_required = any(str(item.get('tool') or '').lower() in verification_tools for item in tools_used)
+    task_errors = []
+    if timed_out: task_errors.append('timed_out')
+    if not session_succeeded: task_errors.append('session_outcome_not_succeeded')
+    if not session_exports_terminal: task_errors.append('session_export_not_terminal')
+    if not visible_final_text: task_errors.append('visible_final_text_missing')
+    if tool_errors: task_errors.append('tool_error')
+    if verification_required and not shell_checks: task_errors.append('verification_check_missing')
+    elif shell_checks and not final_shell_check_passed: task_errors.append('shell_check_failed')
+    task_succeeded = not task_errors
+    effective_exit_code = 0 if task_succeeded else (code or 1)
+    report = dict(elapsed_seconds=round(time.monotonic()-start, 3), exit_code=effective_exit_code,
+                  transport_exit_code=transport_exit_code, session_outcomes=session_outcomes, timed_out=timed_out,
+                  sessions=sessions, prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
+                  tools=tools_used,
+                  model_ids=model_ids, shell_checks=shell_checks,
+                  task_succeeded=task_succeeded, task_errors=task_errors,
+                  tool_errors=tool_errors, shell_check_errors=shell_check_errors,
+                  final_shell_check_passed=final_shell_check_passed,
+                  final_text=visible_final_text, session_exports_terminal=session_exports_terminal,
+                  background_interrupted=background_interrupted, evidence=str(directory))
+
+Run after patch: & 'L:\.venv\Scripts\python.exe' -c "import ast; from pathlib import Path; ast.parse(Path('.opencode/evals/run_local_agent_task.py').read_text(encoding='utf-8')); print('PASS: dispatcher AST syntax')"
+
+Authorized target:
+<localcoder_patch_paths>
+.opencode/evals/run_local_agent_task.py
+</localcoder_patch_paths>

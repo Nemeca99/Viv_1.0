@@ -1,0 +1,60 @@
+{
+  "elapsed_seconds": 78.36,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e26b9cf2affei3a4rFYFIw50Ko"
+  ],
+  "prompt_sha256": "32c04fa25b61a6bd974bd699c3e375941d17b65d2afa1bd4ba4e3a89cd659fb6",
+  "tools": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-9b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "At line:1 char:31\r\n+ ... python.exe' '.opencode/evals/agent_dispatch_minimal_probe_20261114T09 ...\r\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nUnexpected token ''.opencode/evals/agent_dispatch_minimal_probe_20261114T0900.py'' in expression or statement.\r\n    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException\r\n    + FullyQualifiedErrorId : UnexpectedToken\nExit code: 1"
+    },
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "drone-ready"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "At line:1 char:31\r\n+ ... python.exe' '.opencode/evals/agent_dispatch_minimal_probe_20261114T09 ...\r\n+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\nUnexpected token ''.opencode/evals/agent_dispatch_minimal_probe_20261114T0900.py'' in expression or statement.\r\n    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException\r\n    + FullyQualifiedErrorId : UnexpectedToken\nExit code: 1"
+    }
+  ],
+  "final_text": [
+    "File created at `L:\\LocalCoder\\.opencode\\evals\\agent_dispatch_minimal_probe_20261114T0900.py` (82 bytes, SHA-256 verified). Shell execution produced stdout `drone-ready`."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T085658217494Z"
+}

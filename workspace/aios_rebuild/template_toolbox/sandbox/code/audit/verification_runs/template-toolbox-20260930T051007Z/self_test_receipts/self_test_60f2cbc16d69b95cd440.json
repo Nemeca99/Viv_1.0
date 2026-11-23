@@ -1,0 +1,856 @@
+{
+  "active_pointer_changed": false,
+  "active_pointer_changed_in_production": false,
+  "compile": {
+    "error": null,
+    "ok": true
+  },
+  "created_utc": "2026-09-30T05:10:11+00:00",
+  "declared_variable_keys": [
+    "message",
+    "suffix"
+  ],
+  "deterministic_comparison": {
+    "all_signatures_equal": true,
+    "signature_count": 10,
+    "volatile_fields_excluded": [
+      "created_utc",
+      "run_id",
+      "temporary_paths",
+      "request_id",
+      "decision_id"
+    ]
+  },
+  "errors": [],
+  "execution": {
+    "baseline": {
+      "calls": [
+        {
+          "name": "main",
+          "variables": {
+            "message": "template-fixture",
+            "suffix": "ok"
+          }
+        }
+      ],
+      "result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa"
+    },
+    "declared_variable_keys": [
+      "message",
+      "suffix"
+    ],
+    "runtime_override": {
+      "calls": [
+        {
+          "name": "main",
+          "variables": {
+            "message": "self-test-override",
+            "suffix": "ok"
+          }
+        }
+      ],
+      "result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81"
+    }
+  },
+  "final_state": "PASS_WITH_EXPECTED_SECURITY_HOLD",
+  "generated_files_created": false,
+  "generated_files_created_in_production": false,
+  "generated_source_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+  "import_before_execution": {
+    "declared_variable_keys": [
+      "message",
+      "suffix"
+    ],
+    "executed_template_functions": [],
+    "ok": true
+  },
+  "isolated_generation": {
+    "active_pointer_changed": true,
+    "generated_files_created": true,
+    "generation_id": "gen_c6be6ff385aed99f",
+    "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+    "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+    "pointer_sha256": "a9f26d5bcfa1e585231726ba1ba4df8805e1d6ad2f0cefa3d843d19ce4d696ee",
+    "receipt_sha256": "194df7a146dcd95ffd61d768b14edf709cf4a18b9a433571d499c738d8bc3ef0"
+  },
+  "negative_tests": [
+    {
+      "error": "variable_override_key_not_declared:fixture.echo:__self_test_undeclared__",
+      "name": "undeclared_variable_override",
+      "passed": true
+    },
+    {
+      "error": "selection_request_unknown_template:fixture.unknown",
+      "name": "unknown_template_selection",
+      "passed": true
+    },
+    {
+      "error": "selection_request_template_fields_not_allowed:source",
+      "name": "raw_source_selection_field",
+      "passed": true
+    },
+    {
+      "name": "manifest_tamper",
+      "passed": true,
+      "result": {
+        "generation_id": "gen_c6be6ff385aed99f",
+        "ok": false,
+        "reason": "manifest_receipt_hash_mismatch",
+        "state": "HOLD"
+      }
+    },
+    {
+      "name": "generated_source_tamper",
+      "passed": true,
+      "result": {
+        "generation_id": "gen_c6be6ff385aed99f",
+        "ok": false,
+        "reason": "generated_hash_mismatch:fixture.echo",
+        "state": "HOLD"
+      }
+    },
+    {
+      "name": "pointer_tamper",
+      "passed": true,
+      "result": {
+        "generation_id": "gen_c6be6ff385aed99f",
+        "ok": false,
+        "reason": "pointer_receipt_sha256_mismatch",
+        "state": "HOLD"
+      }
+    }
+  ],
+  "normalized_deterministic_comparison_digest": "506588316769c9ee40827b78c6a4d4e8ac717941358f4895f56203247d1d0135",
+  "pillar": "auto",
+  "protected_state_after": {
+    "active_pointer": {
+      "exists": false,
+      "sha256": null
+    },
+    "authoritative_training": {
+      "deployment_authority_open": null,
+      "promotion_authority_open": null,
+      "status": null,
+      "training_authority_open": null,
+      "worker_pid": null,
+      "worker_state": null
+    },
+    "live_model_changed": null,
+    "production_generation_ids": [],
+    "protected_main_sha256": {
+      "auto_main.py": null,
+      "rid_main.py": null,
+      "uml_main.py": null
+    },
+    "registry_sha256": "fb04d7f30c94fcb281535edd8470c6c223811f8234c1cd278bbf1f1243fc8fe5",
+    "rust": {
+      "integrity": {
+        "detail": "sha256=0948f78a8d11b3069b7a172e795c5fdb5ee6a0539c1e9f97141e7209ce21ffdd path=<protected-security-runtime>",
+        "ok": true
+      },
+      "rust_available": true
+    },
+    "seed_checkpoint_sha256": null,
+    "seed_lineage": {
+      "head_generation": null,
+      "head_name": null,
+      "integrity": null,
+      "replacement_gate": null
+    }
+  },
+  "protected_state_before": {
+    "active_pointer": {
+      "exists": false,
+      "sha256": null
+    },
+    "authoritative_training": {
+      "deployment_authority_open": null,
+      "promotion_authority_open": null,
+      "status": null,
+      "training_authority_open": null,
+      "worker_pid": null,
+      "worker_state": null
+    },
+    "live_model_changed": null,
+    "production_generation_ids": [],
+    "protected_main_sha256": {
+      "auto_main.py": null,
+      "rid_main.py": null,
+      "uml_main.py": null
+    },
+    "registry_sha256": "fb04d7f30c94fcb281535edd8470c6c223811f8234c1cd278bbf1f1243fc8fe5",
+    "rust": {
+      "integrity": {
+        "detail": "sha256=0948f78a8d11b3069b7a172e795c5fdb5ee6a0539c1e9f97141e7209ce21ffdd path=<protected-security-runtime>",
+        "ok": true
+      },
+      "rust_available": true
+    },
+    "seed_checkpoint_sha256": null,
+    "seed_lineage": {
+      "head_generation": null,
+      "head_name": null,
+      "integrity": null,
+      "replacement_gate": null
+    }
+  },
+  "protected_state_unchanged": true,
+  "repeated_run_count": 10,
+  "repeated_runs": [
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 1,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    },
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 2,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    },
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 3,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    },
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 4,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    },
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 5,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    },
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 6,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    },
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 7,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    },
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 8,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    },
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 9,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    },
+    {
+      "generation_id": "gen_c6be6ff385aed99f",
+      "run_number": 10,
+      "security_denied": true,
+      "signature": {
+        "baseline_call_order": [
+          "main"
+        ],
+        "baseline_main_variables": {
+          "message": "template-fixture",
+          "suffix": "ok"
+        },
+        "baseline_result_sha256": "94e411436e38371590854242dbadc86e44cd27e718649edae64b59cbb25badaa",
+        "compiled": true,
+        "discovery_ids": {
+          "auto": [
+            "fixture.echo"
+          ],
+          "rid": [
+            "fixture.echo"
+          ],
+          "uml": [
+            "fixture.echo"
+          ]
+        },
+        "full_source_byte_equal": false,
+        "generated_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+        "generation_id": "gen_c6be6ff385aed99f",
+        "import_without_execution": true,
+        "index_sha256": "b4a138f2269513dfbf42e4024acaded5ebf1a6b7041c8520ea01c520e543dcfe",
+        "input_sha256": "9e021cf4314f8a7e88fe95399c1757a31d205a34d318e9e6061ba4573d43094b",
+        "manifest_sha256": "3c80137b30518464fe1f3fc4c88593b53c47dd3e594fd7c519cf87a3bd68678f",
+        "negative_names": [
+          "undeclared_variable_override",
+          "unknown_template_selection",
+          "raw_source_selection_field",
+          "manifest_tamper",
+          "generated_source_tamper",
+          "pointer_tamper"
+        ],
+        "override_call_order": [
+          "main"
+        ],
+        "override_main_variables": {
+          "message": "self-test-override",
+          "suffix": "ok"
+        },
+        "override_result_sha256": "d6819bfcc559d0a0798b1dbcc03562d7a480149c6e99b69654e78876152d2b81",
+        "source_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c"
+      }
+    }
+  ],
+  "run_id": "self_test_60f2cbc16d69b95cd440",
+  "runtime_variable_overrides": {
+    "message": "self-test-override"
+  },
+  "rust_security": {
+    "decision": {
+      "integrity": {
+        "detail": "sha256=0948f78a8d11b3069b7a172e795c5fdb5ee6a0539c1e9f97141e7209ce21ffdd path=<protected-security-runtime>",
+        "ok": true
+      },
+      "master_s_n": 1.0,
+      "ok": false,
+      "pointer_decision": {
+        "allowed": true,
+        "law": "",
+        "reason": "OK",
+        "tariff_demand": 1.0,
+        "version": "0.3.1"
+      },
+      "python_write_decisions": [
+        {
+          "allowed": false,
+          "target_path": "<protected-generated-root>",
+          "template_id": "fixture.echo",
+          "verdict": {
+            "action": "WRITE_PYTHON",
+            "actor": "viv_autonomous",
+            "allowed": false,
+            "autonomous_access": false,
+            "content_bytes": 461,
+            "content_sha256": "3e4792eb62ed84252d81e82862b6a431232908725322e11cf228a92a55629ffa",
+            "decision_id": "0f19c9afd7dcc853aa004ac056f35779",
+            "disposition": "DENY",
+            "ledger_recorded": true,
+            "normalized_target_path": "<protected-generated-root>",
+            "operation_id": "template-publish-gen_c6be6ff385aed99f-fixture.echo",
+            "parent_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "policy_version": "python-write-control-v1",
+            "provenance_sha256": "",
+            "reason": "Rust Python self-authoring capability is closed at this stage",
+            "request_id": "template-dry-run-gen_c6be6ff385aed99f-fixture.echo",
+            "rule": "python_write_capability_closed"
+          }
+        }
+      ],
+      "reason": "rust_security_denied_or_unavailable",
+      "rust_available": true,
+      "state": "HOLD_SECURITY"
+    },
+    "decision_ids": [
+      "0f19c9afd7dcc853aa004ac056f35779",
+      "template-dry-run-gen_c6be6ff385aed99f-fixture.echo"
+    ],
+    "integrity": {
+      "detail": "sha256=0948f78a8d11b3069b7a172e795c5fdb5ee6a0539c1e9f97141e7209ce21ffdd path=<protected-security-runtime>",
+      "ok": true
+    },
+    "reason": "rust_security_denied_or_unavailable",
+    "rule": "rust_security_denied_or_unavailable"
+  },
+  "schema_version": "viv_code_template_self_test_receipt_v1",
+  "selection_request": {
+    "schema_version": "viv_code_template_selection_request_v1",
+    "templates": [
+      {
+        "submain_order": [],
+        "target_pillars": [
+          "rid",
+          "auto",
+          "uml"
+        ],
+        "template_id": "fixture.echo"
+      }
+    ]
+  },
+  "selection_request_sha256": "46b0d072db7de9f4d08421e0ba6f950ee76f89e8b79c20c1c6cd008388184e12",
+  "source": {
+    "path": "fixture_echo.py",
+    "sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c",
+    "source_index_receipt_sha256": null,
+    "source_index_sha256": null
+  },
+  "submain_count": 0,
+  "submain_order": [],
+  "template_id": "fixture.echo",
+  "token_cost": {
+    "amortized_examples": [
+      {
+        "builds": 1,
+        "ordinary_tokens": 116,
+        "saved_tokens": -41,
+        "toolbox_tokens_including_one_time_template_context": 157
+      },
+      {
+        "builds": 10,
+        "ordinary_tokens": 1160,
+        "saved_tokens": 634,
+        "toolbox_tokens_including_one_time_template_context": 526
+      },
+      {
+        "builds": 100,
+        "ordinary_tokens": 11600,
+        "saved_tokens": 7384,
+        "toolbox_tokens_including_one_time_template_context": 4216
+      }
+    ],
+    "caveat": "This excludes one-time template comprehension, status responses, tool-schema tokens, explanations, and tokenizer-specific billing behavior.",
+    "code_bytes_sent_to_model": 0,
+    "estimate_method": "ceil(utf8_text_characters/4); replace with the active model tokenizer for billing-grade counts",
+    "estimated_reduction_ratio": 0.646552,
+    "estimated_saved_tokens": 75,
+    "model_token_cost_scope": "ordinary_generated_code_vs_structured_tool_request",
+    "ok": true,
+    "one_time_template_context": {
+      "characters": 462,
+      "estimated_tokens": 116,
+      "scope": "template comprehension or first-use context; amortize across repeated selections"
+    },
+    "ordinary_code": {
+      "bytes": 461,
+      "characters": 461,
+      "estimated_output_tokens": 116
+    },
+    "state": "PASS",
+    "steady_state_break_even_builds": 2,
+    "tool_request": {
+      "bytes": 161,
+      "characters": 161,
+      "estimated_tokens": 41,
+      "payload": {
+        "schema_version": "viv_code_template_selection_request_v1",
+        "templates": [
+          {
+            "submain_order": [],
+            "target_pillars": [
+              "auto",
+              "rid",
+              "uml"
+            ],
+            "template_id": "fixture.echo"
+          }
+        ]
+      }
+    }
+  }
+}

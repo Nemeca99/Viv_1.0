@@ -1,0 +1,66 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 707.844,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e20a9f0f7ffenVjMZDDm1EMtui"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "bbcdb56272cee2363a596b5b0137c5d605fbaf105d2150ca496ce45e0097b91d",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "FAIL: Valid envelope test - ['Schema validation failed: validate_postal_message() takes 1 positional argument but 2 were given']\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "FAIL: Valid envelope test - ['Schema validation failed: validate_postal_message() takes 1 positional argument but 2 were given']\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Fix schema validation error - validate_postal_message() takes 1 positional argument but 2 were given. Need to check correct function signature before re-running --self-check.\nVerified facts: shell returned exit code 1 with FAIL message indicating Schema validation failed due to wrong function call signature for validate_postal_message().\nNext bounded action: Use localcoder_write_exact tool"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T131201393925Z"
+}

@@ -1,0 +1,62 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 636.641,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1f8cae9dffedOKOaRNsIJqj2R"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "7ccb644c64e77f4f6ac33a70443ad49f2a8754668ac47aa6dcdc883b22dc57a9",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_record_turn_result",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: 8 checks"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "<tool_call>\n<function=aios_router_complete_lane>\n<parameter=lane_id>\ndrone\n</parameter>\n=receipt=v19_candidate_build: File created (sha256=ed80e42c058ac6eddbffd469873852bb83ea91584b1a0a2dafb30a9d33f7c8bc), shell verification passed (PASS: 8 checks), turn=0 recorded, lane completed.\n</parameter>\n<parameter=turn>\n0\n</parameter>\n</function>\n</tool_call>"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T182336143154Z"
+}

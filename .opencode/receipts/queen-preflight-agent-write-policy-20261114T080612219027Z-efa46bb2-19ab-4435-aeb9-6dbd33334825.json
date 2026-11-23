@@ -1,0 +1,34 @@
+{
+  "schema": "architect_preflight_gate_v1",
+  "task": "enable add-only Python creation for the LocalCoder Drone",
+  "gate_verdict": {
+    "active_without_health_report": [],
+    "allowed": true,
+    "architect_permission": {
+      "expires_unix": 1794723300,
+      "grant_id": "architect-localcoder-20261115T061500Z",
+      "scope": "localcoder_runtime",
+      "status": "not_needed",
+      "waived_reasons": []
+    },
+    "authority": "deterministic_aios_body_rust",
+    "body_image": "sha256:b1d7837fc4a78f60031bb5b0c3d68e639ecb786fa88b41776a5b64111f2a9634",
+    "bound_core_count": 19,
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "execution_boundary": "wsl_docker",
+    "expected_core_count": 19,
+    "gate": "rust",
+    "minimum_stability_sn": 0.45,
+    "reasons": [],
+    "requested_threads": 2,
+    "resource_diagnostics": {
+      "gpu_memory_percent": 93.7,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "below_limit",
+      "sensor_age_seconds": 0.7
+    },
+    "schema": "aios_mind_runtime_gate_v1",
+    "stability_sn": 1.0
+  },
+  "captured_at": "2026-11-14T08:06:12.219027+00:00"
+}

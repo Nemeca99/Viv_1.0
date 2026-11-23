@@ -1,0 +1,138 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "observed_tool_count_mismatch",
+  "plan_validation": "plan_matches_current_architect_assignment",
+  "final_validation": "final_report_missing_drone_tag",
+  "intermediate_validation": {
+    "passed": false,
+    "reason": "observed_tool_count_mismatch"
+  },
+  "intermediate_self_prompts": [],
+  "journal_style": {
+    "status": "read_labels_only",
+    "entry_sha256": "22a8a38f6e2770f903f18db45be2925914f85b23e2a682253fa8a3f3c9f0b7fa",
+    "labels": [
+      "Location",
+      "Direction",
+      "Action Taken",
+      "Silicon Trace",
+      "Reflection & Next Lesson"
+    ]
+  },
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+  ],
+  "required_tools": [
+    "localcoder_add_python",
+    "shell"
+  ],
+  "session_id": "ses_e24152ae2ffetRG7nkMrzN4m7e",
+  "visible_pre_work_self_prompt": "[DRONE SELF-PROMPT]\nAgenda: Create candidate envelope checker and verify via shell.\nVerified facts: Architect authorization confirmed; tool sequence bounded to `localcoder_add_python` → `shell`. No repository facts checked yet.\nNext bounded action: Call `localcoder_add_python` for target path `workspace/autonomy/hive_agent_message_contract_candidate.py`.",
+  "assignment_sha256": "699a0626257b42cf0a185655a93a747f41ced6b36c932c9c3f7b04fa534e574b",
+  "plan": {
+    "elapsed_seconds": 26.766,
+    "exit_code": 1,
+    "transport_exit_code": 0,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e24152ae2ffetRG7nkMrzN4m7e"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "52996c06c17235c341ef71db1c45170fe04e6b13dc89ebf23970aec807ec2ccb",
+    "tools": [],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Create candidate envelope checker and verify via shell.\nVerified facts: Architect authorization confirmed; tool sequence bounded to `localcoder_add_python` → `shell`. No repository facts checked yet.\nNext bounded action: Call `localcoder_add_python` for target path `workspace/autonomy/hive_agent_message_contract_candidate.py`."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T211602608910Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T211602531682Z.prompt.txt"
+  },
+  "work": {
+    "elapsed_seconds": 100.406,
+    "exit_code": 1,
+    "transport_exit_code": 1,
+    "session_outcomes": [
+      "succeeded"
+    ],
+    "timed_out": true,
+    "sessions": [
+      "ses_e24152ae2ffetRG7nkMrzN4m7e"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "72ad7e0c1770ad5638c353ffe451f5a21f1e09df1d1dff0a999095b864e1d145",
+    "tools": [],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "tool_action_missing",
+      "timed_out"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Create candidate envelope checker and verify via shell.\nVerified facts: Architect authorization confirmed; tool sequence bounded to `localcoder_add_python` → `shell`. No repository facts checked yet.\nNext bounded action: Call `localcoder_add_python` for target path `workspace/autonomy/hive_agent_message_contract_candidate.py`."
+    ],
+    "session_exports_terminal": true,
+    "background_interrupted": true,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261114T211629459212Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261114T211629377626Z.prompt.txt",
+    "dispatcher_final_text": [
+      "[DRONE SELF-PROMPT]\nAgenda: Create candidate envelope checker and verify via shell.\nVerified facts: Architect authorization confirmed; tool sequence bounded to `localcoder_add_python` → `shell`. No repository facts checked yet.\nNext bounded action: Call `localcoder_add_python` for target path `workspace/autonomy/hive_agent_message_contract_candidate.py`."
+    ]
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794690969968-3dee4520-717b-4b3c-8f92-fd434221bfd6-body-gate.json",
+      "sha256": "510068e88818029da320ab3698e7ca103b161c5495f0d5c297c0e6686c737637",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794690998904-5e55588d-7076-459f-a810-6ed92733c1d9-body-gate.json",
+      "sha256": "dfd786fc3eab9644e85155605074f584478f8e55badd2c0dd8ea5e2e2976594b",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    }
+  ]
+}

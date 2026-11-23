@@ -1,0 +1,128 @@
+{
+  "schema_version": "viv_cpu_staged_autonomous_candidate_loop_v1",
+  "receipt_schema": "viv_cpu_staged_autonomous_candidate_loop_receipt_v1",
+  "status": "CANDIDATE_ONLY",
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "background_daemon": false,
+    "production_activation": false,
+    "live_model_mutation": false,
+    "seed_mutation": false
+  },
+  "parent": {
+    "v2_receipt_schema": "viv_cpu_bounded_autonomous_candidate_loop_receipt_v2",
+    "v2_final_state": "PASS_CPU_BOUNDED_AUTONOMOUS_CANDIDATE_LOOP",
+    "seed_zero_generation": 0,
+    "registry_required_template": "fixture.echo"
+  },
+  "candidate_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "training_rows": 224,
+    "candidate_only": true,
+    "optimizer_scope": "isolated_candidate_only",
+    "decoder_changed": false,
+    "tokenizer_changed": false,
+    "grammar_changed": false
+  },
+  "reflection": {
+    "allowed_frames": [
+      "NO_DEFICIENCY",
+      "DEFICIENCY_CANDIDATE|<surface_slot>|<evidence_slot>|<observed_metric>|<expected_metric>"
+    ],
+    "surface_slots": ["rid", "auto", "uml", "documentation", "model_protocol"],
+    "metric_codes": [
+      "coverage_gap",
+      "adaptive_repeat",
+      "protocol_hold",
+      "stale_evidence",
+      "no_deficiency",
+      "insufficient_context"
+    ],
+    "heldout_deficiency_rows": 8,
+    "heldout_clean_rows": 8,
+    "minimum_deficiency": 6,
+    "minimum_clean": 7,
+    "cpu_substitution_counts_as_success": false,
+    "query_after_reflection": false,
+    "execution_after_reflection": false
+  },
+  "adaptive_schedule": {
+    "repair_rows": 32,
+    "repeat_correct_rows": 16,
+    "alternative_required_rows": 16,
+    "heldout_rows": 16,
+    "compositional_traces": 8,
+    "minimum_choices": 12,
+    "minimum_traces": 6,
+    "minimum_repeat_or_alternative": 3,
+    "approved_experiment_slots": [0, 1, 2, 3, 4],
+    "max_repeat_count": 3,
+    "prior_result_is_pre_decision_metadata": true,
+    "target_excluded_from_prompt": true,
+    "same_slot_is_not_automatically_correct": true
+  },
+  "fresh_holdout": {
+    "ordinary_minimum": "50/56",
+    "compositional_minimum": "11/14",
+    "deterministic_repeats": 2,
+    "metadata_only": true
+  },
+  "state_machine": {
+    "required_order": [
+      "OBSERVE",
+      "RETRIEVE",
+      "HYPOTHESIZE",
+      "CPU_VALIDATE",
+      "CANDIDATE_PLAN",
+      "SANDBOX_TEST",
+      "MEASURE",
+      "ACCEPT_OR_REJECT_OR_HOLD",
+      "RECORD",
+      "SCHEDULE",
+      "OBSERVE_OR_COMPLETE"
+    ],
+    "direct_proposal_to_sandbox": false,
+    "second_cycle_requires_prior_receipt": true,
+    "requires_operator_resume_on_failure": true
+  },
+  "approved_experiment_menu": [
+    {"slot": 0, "id": "fixture_validation", "pillar": "auto"},
+    {"slot": 1, "id": "message_override", "pillar": "auto"},
+    {"slot": 2, "id": "suffix_override", "pillar": "auto"},
+    {"slot": 3, "id": "negative_hold", "pillar": "auto"},
+    {"slot": 4, "id": "documentation_drift", "pillar": "auto"}
+  ],
+  "protected_boundaries": [
+    "new_template",
+    "template_adoption",
+    "registry_insertion",
+    "production_generation",
+    "active_pointer",
+    "seed_zero",
+    "live_model",
+    "training_authority",
+    "promotion_authority",
+    "deployment_authority",
+    "gpu_authority",
+    "rust_write_authority"
+  ],
+  "final_states": [
+    "PASS_CPU_BOUNDED_AUTONOMOUS_CANDIDATE_LOOP",
+    "HOLD_AUTONOMY_PREFLIGHT",
+    "HOLD_REFLECTION",
+    "HOLD_ADAPTIVE_SCHEDULER",
+    "HOLD_LIVE_OBSERVATION",
+    "HOLD_RECURSIVE_EVIDENCE",
+    "HOLD_MODEL_PROTOCOL_REGRESSION",
+    "HOLD_AUTONOMY_DETERMINISM",
+    "HOLD_AUTONOMY_SECURITY",
+    "HOLD_TEMPLATE_CHOICE_SINGLETON",
+    "FAIL_AUTONOMY_PROTECTED_STATE"
+  ]
+}

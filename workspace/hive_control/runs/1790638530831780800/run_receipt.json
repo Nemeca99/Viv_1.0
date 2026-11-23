@@ -1,0 +1,301 @@
+{
+  "artifact": {
+    "path": "runs\\1790638530831780800\\hello.py",
+    "sha256": "539a41b22de5d96e39079a74b387ff1b11ce8cc5ccdc44e4274db19a1bf5afd9"
+  },
+  "discovery": {
+    "agent": "template-lookup",
+    "registry_sha256": "a8f887b9f153060c805c3ac703bd167ea4c380d40f74928ed082af26a9a30b2e",
+    "template_ids": [
+      "python.module_docstring",
+      "python.typing_final_import",
+      "python.greeting_function"
+    ]
+  },
+  "fault_injected": false,
+  "foreman_snapshot_id": "3a01e585087222ca367708677eb05c6d20b17700cd36850881d6ee8d4d001af8",
+  "human_reply": {
+    "route": "Queen -> Viv -> task-003",
+    "value": "Hello from the Hive!"
+  },
+  "mind_generations": 3,
+  "mind_greeting_metrics": {
+    "done_reason": "stop",
+    "eval_count": 34,
+    "load_duration": 2729900,
+    "prompt_eval_count": 546,
+    "total_duration": 662806000
+  },
+  "mind_header_metrics": {
+    "done_reason": "stop",
+    "eval_count": 54,
+    "load_duration": 2207300,
+    "prompt_eval_count": 551,
+    "total_duration": 1273058400
+  },
+  "mind_plan": [
+    {
+      "agent_id": "stamp-header",
+      "agent_kind": "deterministic",
+      "capability": "stamp-template",
+      "depends_on": [
+        "discover-templates"
+      ],
+      "id": "task-001",
+      "objective": "Stamp the module header"
+    },
+    {
+      "agent_id": "stamp-import",
+      "agent_kind": "deterministic",
+      "capability": "stamp-template",
+      "depends_on": [
+        "task-001"
+      ],
+      "id": "task-002",
+      "objective": "Stamp the typing import"
+    },
+    {
+      "agent_id": "queen-via-viv",
+      "agent_kind": "human",
+      "capability": "reply",
+      "depends_on": [
+        "task-002"
+      ],
+      "id": "human-greeting",
+      "objective": "Supply the greeting string"
+    },
+    {
+      "agent_id": "stamp-function",
+      "agent_kind": "deterministic",
+      "capability": "stamp-template",
+      "depends_on": [
+        "task-002",
+        "human-greeting"
+      ],
+      "id": "task-003",
+      "objective": "Stamp the greeting function"
+    }
+  ],
+  "mind_plan_metrics": {
+    "done_reason": "stop",
+    "eval_count": 270,
+    "load_duration": 1619400,
+    "prompt_eval_count": 880,
+    "total_duration": 4487204200
+  },
+  "mode": "live",
+  "numeric_bridge": {
+    "numpy_version": "2.5.3",
+    "summary": {
+      "advanced_index_is_copy": true,
+      "astype_dtype": "float64",
+      "astype_is_copy": true,
+      "axis0_sum": [
+        12,
+        15,
+        18,
+        21
+      ],
+      "base_dtype": "int32",
+      "base_shape": [
+        3,
+        4
+      ],
+      "broadcast_shape": [
+        3,
+        4
+      ],
+      "elementwise_shape": [
+        2,
+        2
+      ],
+      "matrix_product": [
+        [
+          11.0
+        ]
+      ],
+      "reshape_shares_memory": true,
+      "slice_is_view": true
+    }
+  },
+  "python_role": "data transport only",
+  "ready_cohorts": [
+    [
+      "task-001"
+    ],
+    [
+      "task-002"
+    ],
+    [
+      "human-greeting"
+    ],
+    [
+      "task-003"
+    ]
+  ],
+  "rust_owns": [
+    "task state",
+    "OS entropy and master key",
+    "snapshot encryption",
+    "tool grants",
+    "artifact commits",
+    "receipt"
+  ],
+  "schema": "hive_rust_control_run_v1",
+  "scope": "isolated LocalCoder proof; no training, promotion, or deployment",
+  "security_checks": {
+    "master_key_in_worker_context": false,
+    "unapproved_peer_denied": true,
+    "unapproved_shell_denied": true,
+    "wrong_task_owner_denied": true
+  },
+  "source_sha256": {
+    "numpy_backend": "225046e86a4fafd4d8db260086fb4a82350bc9e27623c4f5c450c40adf2796f4",
+    "python_switchboard": "3728d52ba4a9becc75d40a4d207201c0e0962f5df3e63fed0dbf5d6ecc945403",
+    "rust_control": "f1655627dc3b0ecd199dffe05efdbdc6ce5346484c8c28da4d0ef78ab4c31480",
+    "rust_graph": "6ceb0e15a6f6b0c2a9f9235727376cda211538fb47d70b7dda478cec90df8c01",
+    "rust_runner": "8ea361c6d7966959c6a5939b823f11997568302ffaccba329dab08ac319c3f11",
+    "template_registry": "a8f887b9f153060c805c3ac703bd167ea4c380d40f74928ed082af26a9a30b2e"
+  },
+  "status": "PASS",
+  "swarm_generation_count": 0,
+  "task_graph": [
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "template-lookup",
+        "agent_kind": "deterministic",
+        "capability": "read-template-registry",
+        "depends_on": [],
+        "id": "discover-templates",
+        "objective": "Read the approved template registry"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "queen-via-viv",
+        "agent_kind": "human",
+        "capability": "reply",
+        "depends_on": [
+          "task-002"
+        ],
+        "id": "human-greeting",
+        "objective": "Supply the greeting string"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-header",
+        "agent_kind": "deterministic",
+        "capability": "stamp-template",
+        "depends_on": [
+          "discover-templates"
+        ],
+        "id": "task-001",
+        "objective": "Stamp the module header"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-import",
+        "agent_kind": "deterministic",
+        "capability": "stamp-template",
+        "depends_on": [
+          "task-001"
+        ],
+        "id": "task-002",
+        "objective": "Stamp the typing import"
+      },
+      "state": "completed"
+    },
+    {
+      "generation_count": 0,
+      "spec": {
+        "agent_id": "stamp-function",
+        "agent_kind": "deterministic",
+        "capability": "stamp-template",
+        "depends_on": [
+          "task-002",
+          "human-greeting"
+        ],
+        "id": "task-003",
+        "objective": "Stamp the greeting function"
+      },
+      "state": "completed"
+    }
+  ],
+  "task_index": [
+    {
+      "artifact_sha256": "a51affadaa26ab8b02af350e040e3917515829e161c111655a4bdee384dec702",
+      "checksum": "229af650ce116fa2631a9241ac43604bbd5ac0285a1f37a76066c8f9725e83d4",
+      "owner": "stamp-header",
+      "parent": null,
+      "state": "Completed",
+      "task_id": "task-001"
+    },
+    {
+      "artifact_sha256": "aabd92042d969ed0235db7d37a1bc051cb1c124e7a5398f011efe5a9d2359d2a",
+      "checksum": "4b58f17020dd0bddef3f89fc09ae721899c5bf1c524863befad0e2e9ce85ec53",
+      "owner": "stamp-import",
+      "parent": "task-001",
+      "state": "Completed",
+      "task_id": "task-002"
+    },
+    {
+      "artifact_sha256": "539a41b22de5d96e39079a74b387ff1b11ce8cc5ccdc44e4274db19a1bf5afd9",
+      "checksum": "61fe7525091e82a9aa19aad70fb27fd91eea8aa5ed7ff94cfef632523be34c80",
+      "owner": "stamp-function",
+      "parent": "task-002",
+      "state": "Completed",
+      "task_id": "task-003"
+    }
+  ],
+  "tasks": [
+    {
+      "artifact_sha256": "a51affadaa26ab8b02af350e040e3917515829e161c111655a4bdee384dec702",
+      "checksum": "229af650ce116fa2631a9241ac43604bbd5ac0285a1f37a76066c8f9725e83d4",
+      "generation_count": 0,
+      "owner": "stamp-header",
+      "parent": null,
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-001",
+      "template_id": "python.module_docstring",
+      "template_source_sha256": "f13f73d2ad5457028632ac8af982012c047f7128f34c0c07eb25fa01c26511bd"
+    },
+    {
+      "artifact_sha256": "aabd92042d969ed0235db7d37a1bc051cb1c124e7a5398f011efe5a9d2359d2a",
+      "checksum": "4b58f17020dd0bddef3f89fc09ae721899c5bf1c524863befad0e2e9ce85ec53",
+      "generation_count": 0,
+      "owner": "stamp-import",
+      "parent": "task-001",
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-002",
+      "template_id": "python.typing_final_import",
+      "template_source_sha256": "4cf00c254e8ae8a65f5174806728bbbbe379c0fc9da9863d1657b5a21a89d68b"
+    },
+    {
+      "artifact_sha256": "539a41b22de5d96e39079a74b387ff1b11ce8cc5ccdc44e4274db19a1bf5afd9",
+      "checksum": "61fe7525091e82a9aa19aad70fb27fd91eea8aa5ed7ff94cfef632523be34c80",
+      "generation_count": 0,
+      "owner": "stamp-function",
+      "parent": "task-002",
+      "posthoc_pass": true,
+      "stamp_count": 1,
+      "task_id": "task-003",
+      "template_id": "python.greeting_function",
+      "template_source_sha256": "5aded09231abe636de33cf5f5808536f5d0f4a3664765cdb4d9b326457169573"
+    }
+  ],
+  "validation": {
+    "actual": "Hello from the Hive!",
+    "passed": true
+  }
+}

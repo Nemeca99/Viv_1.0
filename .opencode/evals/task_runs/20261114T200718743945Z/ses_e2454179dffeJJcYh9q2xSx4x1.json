@@ -1,0 +1,280 @@
+{
+  "info": {
+    "id": "ses_e2454179dffeJJcYh9q2xSx4x1",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 33206,
+      "output": 340,
+      "reasoning": 109,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794686838885,
+      "updated": 1794686910462,
+      "busy": 1794686838904,
+      "idle": 1794686910466,
+      "viewed": 1794686910466
+    },
+    "title": "LocalCoder Drone 20261114T200718743945Z",
+    "subpath": "LocalCoder",
+    "permissions": [
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "allow"
+      }
+    ],
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1dbabe871001o7uEu7jqot6Cwj",
+      "time": {
+        "created": 1794686838897
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1dbabe86f0019BywWqJzk1lhUB",
+      "time": {
+        "created": 1794686838911
+      },
+      "text": "[ARCHITECT] Close the current Drone helper task by reviewing its generated implementation and executing one bounded check.\n\n[QUEEN → DRONE] Start with `[DRONE SELF-PROMPT]` naming the `format_drone_self_prompt` check. Call `read` for exactly `workspace/autonomy/opencode_drone_prompts.py`. After the result, emit a compact self-prompt with one verified fact and the next check. Then call `shell` exactly once with this command: `L:\\.venv\\Scripts\\python.exe -B -c \"import ast,pathlib,runpy; p=pathlib.Path('workspace/autonomy/opencode_drone_prompts.py'); ast.parse(p.read_text(encoding='utf-8')); f=runpy.run_path(str(p))['format_drone_self_prompt']; s=f('agenda','evidence','next'); assert s.startswith('[DRONE SELF-PROMPT]'); assert 'Verified facts: evidence' in s; assert 'Next bounded action: next' in s; print('PASS: self-prompt format')\"`. Do not repeat tools. Finish with `[DRONE]` and report the actual output.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1dbabe883001Zu3mJ537uPcOpi",
+      "time": {
+        "created": 1794686838919,
+        "firstToken": 1794686847461,
+        "streamed": 1794686847474,
+        "completed": 1794686851145
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_2",
+          "name": "read",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "path": "workspace/autonomy/opencode_drone_prompts.py"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Read file workspace/autonomy/opencode_drone_prompts.py, lines 1-19\n1: def format_drone_self_prompt(agenda: str, verified_facts: str, next_action: str) -> str:\n2:     \"\"\"Formats only caller-supplied facts; does not verify truth or grant authority.\"\"\"\n3:     \n4:     values = (agenda, verified_facts, next_action)\n5:     if any(not isinstance(value, str) or not value.strip() for value in values):\n6:         raise ValueError(\"All three inputs must be non-empty strings after whitespace trimming\")\n7: \n8:     trimmed_agenda, trimmed_facts, trimmed_next = (value.strip() for value in values)\n9:     \n10:     if not trimmed_agenda or not trimmed_facts or not trimmed_next:\n11:         raise ValueError(\"All three inputs must be non-empty strings after whitespace trimming\")\n12:     \n13:     return f\"\"\"[DRONE SELF-PROMPT]\n14: \n15: Agenda: {trimmed_agenda}\n16: \n17: Verified facts: {trimmed_facts}\n18: \n19: Next bounded action: {trimmed_next}\"\"\""
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794686847465,
+            "ran": 1794686847472,
+            "completed": 1794686850207
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "a5340b41c09e8bfe049d044d522f74189d53ca2f",
+        "end": "596d77ef26714300c2147c00ce0a52a151da8e3b",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794686850179-2aa152bf-54f3-466d-a649-c449949d03bb-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794686850191-73ff539c-efa0-40c6-9fb6-03b234bb03c6.json",
+          "LocalCoder/.opencode/receipts/1794686850202-dd83865c-d16e-4f80-a960-69e5c9c8ccd1.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 7328,
+        "output": 37,
+        "reasoning": 44,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1dbac1497001E00SsOtuxfaEsn",
+      "metadata": {
+        "instruction": {
+          "paths": [
+            "L:\\LocalCoder\\workspace\\AGENTS.md"
+          ]
+        }
+      },
+      "time": {
+        "created": 1794686850199
+      },
+      "text": "Instructions from: L:\\LocalCoder\\workspace\\AGENTS.md\n# LocalCoder Workspace Map\n\nRead `L:\\LocalCoder\\AGENTS.md` first.\n\n## Existing systems to reuse\n\n- `viv_autonomy.py` and `autonomy\\state.sqlite3`: persistent autonomous task loop, events, capabilities, training, evaluation, and promotion gates.\n- `viv_chat_cli.py`: existing user-facing Viv entry point.\n- `hive_control`: Rust task graph, capability, snapshot, channel, and receipt contracts.\n- `swarm_adapters`: local Qwen worker models, LoRA stacks, held-out evaluation, and candidate activation.\n- `hive_voice`: one-mouth voice routing.\n- `HIVE_NETWORK_ARCHITECTURE_DRAFT.md` and `HIVE_LOCK_MANIFEST.json`: locked Hive topology and evidence boundaries.\n- `INN`: learned architect engine and deterministic Rust farm.\n\n## Current coupling direction\n\nCurrent farm training: Architect -> GPU model Queen -> CPU own neural INN drone proposal -> Queen selection -> Rust execution and verification. The legacy farm policy remains a reversible fallback.\n\nThe Architect intends the INN to become Queen after broader learning and language gates. Do not claim that role switch has already occurred. These current farm roles follow the Architect's explicit direction; preserve the separate locked general Hive contracts.\n\nOwn neural training uses `autonomy/train_neural_inn.py`, the admitted checkpoint in `autonomy/learning/neural_admitted.json`, verified live Rust facts, and parent-relative farm/language gates. The Hive launches a bounded CPU attempt every 250 completed lessons by default. Live receipts must distinguish neural proposals, legacy weight updates, and failed candidates. Queen prose is not automatically a verified training target.\n\nThe game supplies the common training corpus: `autonomy/farm_corpus.py` publishes immutable hash-addressed snapshots with `inn_train.json` and `model_train.jsonl`. INN training reads its internal view; `autonomy/farm_adapter.py` reuses the existing Hive QLoRA trainer for the model view. Exclude reserved plots 21 and 41, reject conflicting targets, and distinguish legality facts from measured 12-tick strategy improvements. The current Ollama Qwen3-8B Queen cannot use a LoRA trained on the existing local Qwen3-1.7B worker base. Adapter preflight and training receipts must not claim live Queen weights changed before matching-base training, held-out evaluation, conversion, and live verification.\n\nDo not infer that Continue/Viv state is LocalCoder Hive state. Resolve and inspect each runtime separately with the updated `viv-live-foreman` skill.\n\nCustom tokenizer lane: `INN/inn/uml_character_tokenizer.py` is a hash-identical copy of the Architect's universal Unicode tokenizer from Continue/Viv. `INN/inn/tokenizer.py` supplies a frozen compact neural view, retaining universal IDs separately. `LanguageEngine` accepts this tokenizer and a configurable token context; checkpoints bind both. Legacy byte checkpoints retain their original contract. `Rebuild-INNTokenizer.ps1` runs a bounded language-only migration/training/evaluation candidate, writes `autonomy/learning/inn_tokenizer_status.json`, and does not replace the admitted farm INN. `Speak-INNTokenizer.ps1` inspects that candidate. Character integration does not establish Wikipedia knowledge or word/BPE curriculum completion.\n\nWikipedia sentence scaling: `autonomy/wiki_sentence_corpus.py` creates a bounded lead-sentence pilot from F:/AI_Datasets/wikipedia_deduplicated, excluding redirects/markup and recording aligned original/reduced views with conjunction offsets. Reduction is mechanical deletion, not a guaranteed semantic rewrite. `Train-INNSentences.ps1` trains the character INN on the reduced view with prior-skill replay, deterministic article/sentence order, 512-token context and a 600-second update-loop ceiling. Whole articles are split before training; cross-split identical targets are excluded. Results are development evaluations, not evidence of general factual generation. The structure pass remains closed until a separate generation-quality evaluation passes. Never promote a candidate just because NLL fell.\n\nFull Wikipedia continuation uses `Train-INNWikipedia.ps1` and `autonomy/train_inn_wikipedia.py`, with `autonomy/wiki_stream.py` reading prose from all article sections. The experimental campaign head at `autonomy/learning/wikipedia_campaign/head.json` binds checkpoint hash, Adam optimizer continuity, dataset cursor, pending corpus hash and chunk offset in one atomic commit. Each command resumes this head; it does not restart the pilot parent. An expanded compact character vocabulary remaps existing weights and Adam moments by character identity. Commands stop after their update budget, the pending segment's first training traversal, or a 600-second update-loop ceiling; `-Segments` requests a bounded sequence of commands. Reading a file, preparing an article or presenting its chunks is not evidence of mastery. Completed eligible articles include reserved evaluation articles. Exact-target split ownership is stored on L: in SQLite; initial pilot overlap and repeated evaluations remain development evidence. Retention failures preserve the rejected run and leave the campaign head unchanged. Training stays on L:, source reads stay on F:, and the farm admission stays untouched. Stop with less than 2 GiB free on L:; retain receipts and failed candidates.\n\nThe matching training base is now `swarm_adapters/models/Qwen3-8B`, pinned to official revision `b968826d9c46dd6066d109eabc6255188de91218`. `model_source.json` records upstream hash checks and matching live Queen architecture (36 layers, width 4096). `Train-FarmAdapter.ps1 -Train` performs bounded GPU training and evaluation using existing Hive pause controls and inference locking. It unloads Ollama and leaves farm execution paused after completion or failure. Only explicit `-ResumeFarm` restarts continuous farm execution after the entire successful command. Original base weights remain frozen. `evaluate_farm_adapter.py` compares reserved Rust descriptions before any live activation. A trained adapter or passing language score alone is not a passing Rust farm behavior gate.\n",
+      "description": "Loaded LocalCoder\\workspace\\AGENTS.md",
+      "type": "synthetic"
+    },
+    {
+      "id": "msg_1dbac1854001Po7lITVmIhIdC6",
+      "time": {
+        "created": 1794686851161,
+        "firstToken": 1794686869245,
+        "streamed": 1794686869255,
+        "completed": 1794686877870
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_3",
+          "name": "shell",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "L:\\.venv\\Scripts\\python.exe -B -c \"import ast,pathlib,runpy; p=pathlib.Path('workspace/autonomy/opencode_drone_prompts.py'); ast.parse(p.read_text(encoding='utf-8')); f=runpy.run_path(str(p))['format_drone_self_prompt']; s=f('agenda','evidence','next'); assert s.startswith('[DRONE SELF-PROMPT]'); assert 'Verified facts: evidence' in s; assert 'Next bounded action: next' in s; print('PASS: self-prompt format')\""
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "PASS: self-prompt format\r\n"
+              }
+            ],
+            "metadata": {
+              "status": "completed",
+              "truncated": false,
+              "exit": 0
+            }
+          },
+          "time": {
+            "created": 1794686869248,
+            "ran": 1794686869253,
+            "completed": 1794686877018
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "daf05cea90493d4d892749e8055b67e8b1e130d6",
+        "end": "59d80267f19cc37e2e4931333797165a9edefac3",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794686876472-6cf2ac7b-0d60-4453-ab5f-9a80261df0d7-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794686876478-996564de-2b7f-4289-895a-760465783991.json",
+          "LocalCoder/.opencode/receipts/1794686877016-141fa982-960f-4c08-9e4f-7b23fed43035.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 8921,
+        "output": 147,
+        "reasoning": 27,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1dbac80b30017YwiSiVkdLFdyn",
+      "metadata": {
+        "notice": "instructions",
+        "instructionSources": [
+          "core/skill-guidance"
+        ]
+      },
+      "time": {
+        "created": 1794686877875
+      },
+      "type": "system",
+      "text": "New skills are available in addition to those previously listed:\n  <skill>\n    <id>browser</id>\n    <name>Browser</name>\n    <description>Use the in-app browser: open and read pages, click and fill forms, take screenshots, check console and network logs, and profile performance and memory. Load it before your first browser tool call.</description>\n  </skill>",
+      "description": "Instructions updated: core/skill-guidance"
+    },
+    {
+      "id": "msg_1dbac80b8001pbo8hZii2B7pzB",
+      "time": {
+        "created": 1794686877885,
+        "firstToken": 1794686909675,
+        "streamed": 1794686909707,
+        "completed": 1794686910462
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive@q4_k_m",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The self-prompt format check passed successfully. Now I need to report the actual output as required by the [DRONE] instruction, then stop since this is a one-shot verification task.",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794686909677,
+            "completed": 1794686909703
+          }
+        },
+        {
+          "type": "text",
+          "text": "[DRONE SELF-PROMPT] completed successfully. The `format_drone_self_prompt` function correctly formats its caller-supplied arguments into the expected `[DRONE SELF-PROMPT]` structure with agenda, verified facts, and next bounded action sections.\n\n**Actual output:** `PASS: self-prompt format`\n\nThe implementation:\n- Takes three string parameters (agenda, evidence, next)\n- Validates all inputs are non-empty strings after trimming\n- Returns a formatted string starting with `[DRONE SELF-PROMPT]` header\n- Properly labels sections as \"Agenda:\", \"Verified facts:\", and \"Next bounded action:\"\n\n**Task complete.** The Drone helper task has been closed by executing the one bounded check requested."
+        }
+      ],
+      "snapshot": {
+        "start": "d53dc9e01a8f2156ca8e2987db970a5d4475d303",
+        "end": "d53dc9e01a8f2156ca8e2987db970a5d4475d303",
+        "files": []
+      },
+      "finish": "stop",
+      "rawFinish": "stop",
+      "cost": 0,
+      "tokens": {
+        "input": 16957,
+        "output": 156,
+        "reasoning": 38,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1dbad0002001xy7gpgI59pVPqY",
+      "time": {
+        "created": 1794686910466
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    }
+  ]
+}

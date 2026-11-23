@@ -1,0 +1,86 @@
+{
+  "schema_version": "viv_cpu_routed_recursive_chain_contract_v1",
+  "receipt_schema": "viv_cpu_routed_recursive_chain_receipt_v1",
+  "experiment_id": "cpu_routed_recursive_chain_v1",
+  "purpose": "Compare a CPU-owned route composition of independently verified surface candidates with a freshly evaluated unified candidate through the same bounded recursive lifecycle.",
+  "route_owner": "CPU_RULE",
+  "candidate_only": true,
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "max_cycles": 2,
+    "repeats": 2,
+    "max_schedule_repeats_per_cycle": 1,
+    "concurrency": 1,
+    "background_daemon": false
+  },
+  "route_order": [
+    "reflection",
+    "query",
+    "action",
+    "variable",
+    "result",
+    "scheduler"
+  ],
+  "cataloged_but_not_invoked": {
+    "template": "The singleton/contract-bound template path is validated by the action and variable frames; the separately cataloged template specialist is retained as evidence but is not invoked as a second model decision in this comparison."
+  },
+  "comparison_arms": [
+    "route_controlled",
+    "fresh_unified"
+  ],
+  "frozen_inputs": {
+    "grammar": "existing_recursive_v1_grammar",
+    "tokenizer": "unchanged_first_party_tokenizer",
+    "decoder": "unchanged_deterministic_cpu_decoder",
+    "seed": 43,
+    "training": false,
+    "optimizer": false,
+    "checkpoint_writes": false
+  },
+  "model_authority": {
+    "model_may_select_route": false,
+    "raw_model_output_preserved": true,
+    "cpu_normalization_separate": true,
+    "cpu_final_authority": true,
+    "harness_repair_forbidden": true,
+    "direct_hypothesize_to_sandbox_forbidden": true
+  },
+  "acceptance": {
+    "route_catalog_independently_verified": true,
+    "route_chain_two_linked_cycles": true,
+    "unified_control_two_linked_cycles": true,
+    "both_repeats_deterministic": true,
+    "rust_decision": "HOLD_SECURITY",
+    "cpu_unauthorized_accepts": 0,
+    "protected_state_unchanged": true,
+    "no_preferred_route": true
+  },
+  "safety": {
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "production_generation": false,
+    "promotion": false,
+    "deployment": false,
+    "human_events_fabricated": false,
+    "rust_write_without_approval": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sorted_object_keys": true,
+    "trailing_lf": true,
+    "volatile_fields_excluded_from_behavior_digest": [
+      "created_utc",
+      "run_id",
+      "repeat_index",
+      "cycle_receipt_sha256",
+      "cycle_receipt_file_sha256",
+      "normalized_cycle_sha256",
+      "prior_cycle_receipt_sha256"
+    ]
+  }
+}

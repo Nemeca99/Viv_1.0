@@ -1,0 +1,291 @@
+{
+  "schema": "aios_router_postal_live_gate_roundtrip_v1",
+  "result": "passed",
+  "test_scope": "one live router task with two bounded turns",
+  "rust_body_gate": "required per tool action",
+  "privacy_core": "required per tool action",
+  "queen_actor": "codex",
+  "drone_actor": "localcoder-viv-drone-01",
+  "docker_image": "sha256:91a19a582ab99f6b51ecb12712afe4f0c2fe91fe4bcd48e59a7d159bd5d43f72",
+  "database": "L:\\LocalCoder\\workspace\\aios_rebuild\\memory\\aios_router\\router.sqlite3",
+  "key_volume": "aios-router-postal-key-v1",
+  "daemon_enabled": false,
+  "model_invoked": false,
+  "live_router_modified": true,
+  "session_id": "codex_postal_smoke_20261116193003_127f36a0",
+  "task_id": "codex_postal_smoke_20261116193003_127f36a0",
+  "mcp_protocol": "2024-11-05",
+  "seed_verified": true,
+  "outbox_count_after_turn_one": 1,
+  "turns_submitted": 2,
+  "invalid_handshake_reason": "inbox_handshake_mismatch",
+  "corrected_route_status": "delivered",
+  "bounce_visible_in_drone_inbox": true,
+  "postal_event_chain": "verified",
+  "task_summary": {
+    "bounce_messages": 1,
+    "delivered_messages": 2,
+    "event_receipts": [
+      {
+        "body_sha256": "767e4aee96d082e00be03b13baf1b0264cda8ace5144e39c1b9a6d9cf3f8fd06",
+        "event": "drone_registered",
+        "event_sha256": "a005c0e8b1df634b006a86fa3b5bbe41ae16a72a4f38b70158b7bbb4f590a91b",
+        "message_id": null,
+        "reason_code": null,
+        "turn": null
+      },
+      {
+        "body_sha256": "801624bcdba80f7109ba822ab081555e8e55ee9d2d2e07eb1a7fa513634ad549",
+        "event": "drone_outbox",
+        "event_sha256": "8db05f24e64c48cb537827fb87f6543a51f4df8f2411409ab818616e9a17ed53",
+        "message_id": "msg_aa5bf63f97176637171fc841cb6f4bd3",
+        "reason_code": null,
+        "turn": 0
+      },
+      {
+        "body_sha256": "3bd3c7addaf90b95a12b06d2e8fc38e5ef840995cd9251b900a5b3cac4fefa44",
+        "event": "queen_list_outbox",
+        "event_sha256": "a793def236dfdc02a2c155c3cfd5d36b3249456896ec5bd75b40060831da810c",
+        "message_id": null,
+        "reason_code": null,
+        "turn": null
+      },
+      {
+        "body_sha256": "801624bcdba80f7109ba822ab081555e8e55ee9d2d2e07eb1a7fa513634ad549",
+        "event": "queen_read_outbox",
+        "event_sha256": "36d7de63b591281196c142502c20727487e77d0d25034864a67a1ace798318a0",
+        "message_id": "msg_aa5bf63f97176637171fc841cb6f4bd3",
+        "reason_code": null,
+        "turn": 0
+      },
+      {
+        "body_sha256": "6774e99d4ae03e39f25325807a534148208067d57034e77298084905f061f9b5",
+        "event": "queen_delivered",
+        "event_sha256": "44534e713f2fd53c6c789b54bd5358fe334abee26f4a8c2dac6d9d0c3c67d58d",
+        "message_id": "msg_1210564c244da0b703eafd7866ae5343",
+        "reason_code": null,
+        "turn": 0
+      },
+      {
+        "body_sha256": "f4374cfab5cff5a219226b98b125a23fb0f7466a868343bde6857b77a82e60c8",
+        "event": "drone_read_inbox",
+        "event_sha256": "083c7bd5875b75ca897357037a59b51a1b3ddd3521d34f99a5c08429d1f11eed",
+        "message_id": null,
+        "reason_code": null,
+        "turn": null
+      },
+      {
+        "body_sha256": "2f567519b44adc0ca54b96ca9b1b5ff61ec717a1217bd0af76c8d643a362dc84",
+        "event": "drone_outbox",
+        "event_sha256": "e20b4605d4ea4c8011689e148fad5987ca685536cc53cf95d5ae8162040458ed",
+        "message_id": "msg_9430e5aaa32fd76e03d5869292b383df",
+        "reason_code": null,
+        "turn": 1
+      },
+      {
+        "body_sha256": "2f567519b44adc0ca54b96ca9b1b5ff61ec717a1217bd0af76c8d643a362dc84",
+        "event": "queen_read_outbox",
+        "event_sha256": "55c4cb21f3a584c53c7f20b795c7c3cad29035a172eef15284cfee1733aa2302",
+        "message_id": "msg_9430e5aaa32fd76e03d5869292b383df",
+        "reason_code": null,
+        "turn": 1
+      },
+      {
+        "body_sha256": "b62145db66732fdb0ae05bd0daa7fcde4d84de8621d6ab0ea826c638d5d66419",
+        "event": "route_bounced",
+        "event_sha256": "713f64cc76e005c3a67244d3c135877ae8630dc4a93bfc0a7e90a601f37d85d1",
+        "message_id": "bounce_05592fa71f55e064bb5135492ba2504a",
+        "reason_code": "inbox_handshake_mismatch",
+        "turn": 1
+      },
+      {
+        "body_sha256": "d94f0a6f6a86817b3b416b50ba0da71c87e5bf28a17edad4af6fc5e9909786f0",
+        "event": "queen_delivered",
+        "event_sha256": "28748ed002be19ae0fc4b7eb54dee8b729122d32a36a89da8f02a815ec5d5c98",
+        "message_id": "msg_d72da03a7a1bae783f882d5f73f3503d",
+        "reason_code": null,
+        "turn": 1
+      },
+      {
+        "body_sha256": "8513dd36d48b218f577bab127200123b7fa804e0ad5b79e17c03f69a0a1b2417",
+        "event": "drone_read_inbox",
+        "event_sha256": "93a5ff69dba692bafe4ef4e2cda3fd39db6afef0e69ef8fbbe2f68870956ddae",
+        "message_id": null,
+        "reason_code": null,
+        "turn": null
+      }
+    ],
+    "lanes": [
+      {
+        "active_turn": null,
+        "completed": true,
+        "completed_turns": 2,
+        "lane_id": "drone",
+        "max_turns": 2
+      }
+    ],
+    "outbox_messages": 2,
+    "postal_event_chain": "verified",
+    "queen_summary": "Derived from Rust task and postal receipts; no message body or model-authored success claim is inferred.",
+    "schema": "hive_postal_event_v1",
+    "state": "completed",
+    "task_id": "codex_postal_smoke_20261116193003_127f36a0"
+  },
+  "gate_audits": [
+    {
+      "source": "tool:aios_router_lookup_drone_seed",
+      "captured_at": "2026-11-16T19:30:06.506Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0003-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_open_build_task",
+      "captured_at": "2026-11-16T19:30:09.001Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0004-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_register_drone",
+      "captured_at": "2026-11-16T19:30:15.926Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0005-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_accept_self_prompt",
+      "captured_at": "2026-11-16T19:30:22.211Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0006-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_drone_submit",
+      "captured_at": "2026-11-16T19:30:29.171Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0007-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_queen_list_outbox",
+      "captured_at": "2026-11-16T19:30:35.466Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0008-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_queen_read_outbox",
+      "captured_at": "2026-11-16T19:30:41.799Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0009-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_queen_dispatch",
+      "captured_at": "2026-11-16T19:30:48.456Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0010-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_drone_read_inbox",
+      "captured_at": "2026-11-16T19:30:55.521Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0011-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_accept_self_prompt",
+      "captured_at": "2026-11-16T19:31:02.083Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0012-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_drone_submit",
+      "captured_at": "2026-11-16T19:31:08.413Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0013-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_queen_read_outbox",
+      "captured_at": "2026-11-16T19:31:17.034Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0014-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_queen_dispatch",
+      "captured_at": "2026-11-16T19:31:23.320Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0015-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_queen_dispatch",
+      "captured_at": "2026-11-16T19:31:30.276Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0016-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_drone_read_inbox",
+      "captured_at": "2026-11-16T19:31:37.018Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0017-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_complete_lane",
+      "captured_at": "2026-11-16T19:31:44.043Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0018-body-gate.json"
+    },
+    {
+      "source": "tool:aios_router_postal_queen_summary",
+      "captured_at": "2026-11-16T19:31:50.297Z",
+      "body_image": "sha256:ec018cd07a9c4be50ff7941b78f3d7467f1735ef08652ef22d56765026fe2bcd",
+      "body_allowed": true,
+      "architect_permission_status": "applied",
+      "privacy_allowed": true,
+      "receipt_file": "codex-postal-codex_postal_smoke_20261116193003_127f36a0-0019-body-gate.json"
+    }
+  ],
+  "container_exit_code": 0,
+  "container_stderr_tail": "wsl: Failed to translate 'G:\\Simulacra\\KEEP\\Tools\\Git\\bin'\nwsl: Failed to translate 'G:\\Simulacra\\KEEP\\Tools\\Git\\bin'\n"
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": "viv_cpu_gpu_frontier_recursive_continuation_v1",
+  "status": "candidate_only",
+  "receipt_schema": "viv_cpu_gpu_frontier_recursive_continuation_receipt_v1",
+  "parents": {
+    "probability_frontier_receipt_sha256": "BBAB522C8BBCCCF21045D8DB0E439036DA307F57BD1453EA037B3B792E851E0B",
+    "disposition_receipt_sha256": "0ABA6CC364B4A554FC4FA2433C959D24CE468941040B30D9765CDA3A9F41339A",
+    "candidate_state_sha256": "32AAB25A244A44CD880314E0D4FF508C30492F838AA0B1428CDD080EE375ED65"
+  },
+  "schedule": {
+    "model_gate": "raw_model_origin_continue_not_converged_explore",
+    "cpu_owned_route_seed_menu": [73103, 73104, 73105],
+    "max_new_routes": 15,
+    "max_sequential_cycles": 1,
+    "concurrency": 3,
+    "no_human_selected_route": true,
+    "no_background_daemon": true,
+    "no_self_resume": true,
+    "stop_on": ["malformed_model_frame", "stale_state", "budget_exhaustion", "rust_denial", "protected_state_drift"]
+  },
+  "frontier_policy": {
+    "retain_parent_routes": true,
+    "retain_new_routes": true,
+    "all_routes_preserved": true,
+    "failed_or_held_routes_retained": true,
+    "preferred_route": null,
+    "pruning_applied": false,
+    "first_survivor_is_final": false
+  },
+  "model": {
+    "same_first_party_model_and_tokenizer": true,
+    "cpu_authority": true,
+    "gpu_proposal_only": true,
+    "cpu_profile": {"temperature": 0.0, "top_k": null, "draft_mode": "cpu_gate"},
+    "gpu_profile": {"temperature": 4.0, "top_k": 5, "draft_mode": null},
+    "generation_budget": 48,
+    "context_length": 128
+  },
+  "authority": {
+    "training_authority_open": false,
+    "promotion_authority_open": false,
+    "deployment_authority_open": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "registry_mutation": false,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "rust_write_membrane": true
+  },
+  "acceptance": {
+    "first_disposition_model_origin_continue": true,
+    "new_gpu_routes_nonempty": 15,
+    "new_routes_retained": true,
+    "combined_disposition_model_origin": true,
+    "repeated_digests_identical": true,
+    "cpu_unauthorized_accepts": 0,
+    "rust_expected_state": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

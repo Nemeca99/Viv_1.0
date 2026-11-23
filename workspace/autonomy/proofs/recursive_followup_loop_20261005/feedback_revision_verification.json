@@ -1,0 +1,53 @@
+{
+  "recorded_at_utc": "2026-10-05T04:34:15.0461188Z",
+  "change": "Failure-specific flat-schema and no-None curiosity feedback",
+  "pre_edit_hashes": {
+    "agent_index.py": "F45057A7227ECD629EFF235AF8DDAC0207BE1B405C71AEBFB1648F7E19B9A425",
+    "viv_autonomy.py": "0D998D5BBD3893EC8E72F07819A712A3D93DAD47DA6E25DFDE54B8A6E42E1199"
+  },
+  "post_edit_hashes": {
+    "agent_index.py": "AE5163E61C9E1ACA3899049E3BA6FCEA97DA5B99564BE634AB0423D4A1F228A1",
+    "viv_autonomy.py": "0D998D5BBD3893EC8E72F07819A712A3D93DAD47DA6E25DFDE54B8A6E42E1199",
+    "test_agent_index.py": "5B674EE1749D74D210AECCD3875A7A265119EE5FFBD6EEAED5579C825D30FE9C"
+  },
+  "tests": "py_compile passed; 31 focused tests passed",
+  "live_failure_examples": [
+    {
+      "failure": "nested result object; follow-up None",
+      "event": 4432,
+      "drive": "C"
+    },
+    {
+      "failure": "missing evidence and unknowns fields",
+      "event": 4454,
+      "drive": "L"
+    },
+    {
+      "failure": "unsupported recursive_followup field",
+      "event": 4485,
+      "drive": "F"
+    }
+  ],
+  "heldout_eval": {
+    "drive": "E",
+    "adapter": "4d0dbca4a082",
+    "event": 4458,
+    "base": "4/4, 2 repeats",
+    "candidate": "4/4, 2 repeats",
+    "improved": false,
+    "activated": false
+  },
+  "task_tool_evals": [
+    {
+      "passed": "8/8",
+      "event": 4469,
+      "id": "d91d04c1e36350dcc805"
+    },
+    {
+      "passed": "3/3",
+      "event": 4477,
+      "id": "6c10bcdd3a9a8cf9943b"
+    }
+  ],
+  "pause_state": "worker exited at bounded task boundary; worker lock released; supervisor paused"
+}

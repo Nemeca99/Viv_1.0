@@ -1,0 +1,58 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 474.421,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1ec6b145ffezHnvUsLEaqGPWA"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "b3cf939f935b73ed7c89c9c4800ff277ef62139661cec9d27e367c11966a403d",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "L:.venv\\Scripts\\python.exe: The term 'L:.venv\\Scripts\\python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "L:.venv\\Scripts\\python.exe: The term 'L:.venv\\Scripts\\python.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE]\nTarget: `workspace/autonomy/hive_postal_inbox_contract_v5_check_candidate.py`\nFact: Shell execution failed with exit code 1; Scripts token confirmed in error message indicating path syntax issue.\n\n[DRONE SELF-PROMPT]\nAgenda: Retry shell execution with corrected absolute path for python.exe using forward slashes.\nVerified facts: File created successfully but shell command failed because L:.venv\\Scripts\\python.exe was not recognized as a cmdlet; Scripts token confirmed in error message.\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T215951186284Z"
+}

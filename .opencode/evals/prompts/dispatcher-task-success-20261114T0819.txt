@@ -1,0 +1,20 @@
+Architect authorization: update this existing Python dispatcher only. The task is to make its exit code and receipt reflect whether the coding task actually completed.
+
+Read .opencode/evals/run_local_agent_task.py first. Use localcoder_patch for the change. After the patch, use shell to run this AST syntax check from L:\LocalCoder: & 'L:\.venv\Scripts\python.exe' -c "import ast; from pathlib import Path; ast.parse(Path('.opencode/evals/run_local_agent_task.py').read_text(encoding='utf-8')); print('PASS: dispatcher AST syntax')"
+
+Implement these requirements in the existing flow:
+- Preserve the current task launch, timeout, session polling, interruption, export, and evidence paths.
+- Calculate session_exports_terminal once and require a nonempty session list with every export terminal.
+- Collect tool_errors for every observed tool whose status is not completed.
+- Collect shell_check_errors for every shell check whose status is not completed or whose exit value is not numeric zero.
+- A verification check is required when any used tool is localcoder_add_python, localcoder_write_exact, localcoder_patch, write, edit, or patch. A required check is satisfied by at least one shell check, and every observed shell check must pass.
+- Create task_errors with clear stable reasons for timeout, unsuccessful or missing session outcome, nonterminal/missing export, absent visible final text, tool errors, failed shell checks, and a missing required check.
+- Set task_succeeded true only when there is no timeout, every session outcome is succeeded, exports are terminal, visible final text is present, tool_errors and shell_check_errors are empty, and any required verification check exists.
+- Include task_succeeded, task_errors, tool_errors, and shell_check_errors in receipt.json. Keep transport_exit_code as separate transport evidence. Set exit_code to zero only for task_succeeded; otherwise return a nonzero exit code even if the CLI returned zero.
+- Make the journal result and next self-prompt distinguish completed work from incomplete evidence without copying model reasoning.
+- Preserve the existing model, paths, privacy behavior, and bounded task behavior. Keep the patch focused on this Python file.
+
+The only authorized patch target is the path in this contract.
+<localcoder_patch_paths>
+.opencode/evals/run_local_agent_task.py
+</localcoder_patch_paths>

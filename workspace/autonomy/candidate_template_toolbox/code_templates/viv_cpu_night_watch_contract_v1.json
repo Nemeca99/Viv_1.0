@@ -1,0 +1,116 @@
+{
+  "schema_version": "viv_cpu_night_watch_contract_v1",
+  "experiment_id": "cpu_night_watch_v1",
+  "purpose": "Candidate-only watchstanding console. The Architect remains captain; Viv may keep watch from sealed night orders but cannot become captain, invent a mission, open a daemon, or self-resume.",
+  "status": "CANDIDATE_ONLY",
+  "candidate_only": true,
+  "plan_only_until_isolated_cli": true,
+  "runtime_started_requires": {
+    "captain_night_orders_valid": true,
+    "cli_command": "once",
+    "isolated": true,
+    "no_publish": true
+  },
+  "night_orders": {
+    "path": "foundation/artifacts/auto/agentic/NIGHT_ORDERS.json",
+    "schema_version": "viv_cpu_night_watch_orders_v1",
+    "author": "captain",
+    "missing_or_invalid": "ABSTAIN",
+    "invent_mission": false,
+    "current_task_is_writable_mission": false
+  },
+  "duty_board": {
+    "single_queue": true,
+    "hidden_second_queue": false,
+    "ticket_fields": [
+      "id",
+      "evidence_hash",
+      "budget",
+      "retries",
+      "authority_scope",
+      "disposition"
+    ],
+    "preempt_order": ["human", "external", "idle"],
+    "max_cycles_default": 3,
+    "background_daemon": false,
+    "automatic_self_resume": false
+  },
+  "allowed_watch_actions": [
+    "observe",
+    "retrieve",
+    "query",
+    "assemble",
+    "test",
+    "hold",
+    "stop"
+  ],
+  "forbidden_unless_captain_opens": [
+    "promote",
+    "delete",
+    "open_training",
+    "move_pointer",
+    "touch_seed_0",
+    "rewrite_structure",
+    "self_resume"
+  ],
+  "status_lamp": {
+    "exactly_one": [
+      "PASS_candidate_only",
+      "HOLD",
+      "PENDING",
+      "ABSTAIN",
+      "requires_operator_resume"
+    ],
+    "never_healthy_while_hold_or_fallback": true
+  },
+  "fuel_gauge": {
+    "cycle_cap": true,
+    "optional_wall_clock": true,
+    "exhausted": "requires_operator_resume",
+    "stopping_is_watch_success": true
+  },
+  "ships_log": {
+    "path": "foundation/artifacts/auto/night_watch/ship_log.jsonl",
+    "append_only": true,
+    "one_json_object_per_line": true,
+    "terminating_lf": true,
+    "rewrite_old_rows": false,
+    "separate_fields": ["raw_model", "cpu_disposition", "rust_decision"]
+  },
+  "cli": {
+    "runner": "build_tools/run_viv_night_watch_v1.py",
+    "commands": ["status", "once"],
+    "forbidden_commands": ["start-daemon", "daemon", "resume"],
+    "once_requires": ["isolated", "no_publish"]
+  },
+  "protected": {
+    "seed_0": false,
+    "live_pointer": false,
+    "registry_production": false,
+    "rust_binary": false,
+    "training_authority": false
+  },
+  "assemble": {
+    "isolated_candidate_plan_only": true,
+    "invokes_cpu_candidate_assembler_v1": false,
+    "production_write": false
+  },
+  "captain_mailbox": {
+    "import": "lib.aios_captain_mailbox.captain_preempts_idle",
+    "peek": "lib.aios_captain_mailbox.peek_pending",
+    "pending_allowed_order": "HOLD lamp with PREEMPT disposition",
+    "do_not_assemble": true,
+    "do_not_invent_work": true,
+    "peek_does_not_consume": true,
+    "denied_promote_does_not_execute": true
+  },
+  "canary_rack": {
+    "optional": true,
+    "after_mailbox_check": true,
+    "requires_valid_night_orders": true,
+    "requires_isolated_no_publish": true,
+    "hold_stops_beat": true,
+    "do_not_delete_leftover": true,
+    "offline_clone_dest_hold_is_honest": true
+  }
+}

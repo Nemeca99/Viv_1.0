@@ -1,0 +1,68 @@
+{
+  "schema_version": "viv_cpu_reflection_query_variable_sandbox_shadow_contract_v1",
+  "experiment_id": "cpu_reflection_query_variable_sandbox_shadow_current_v1",
+  "scope": {
+    "candidate_only": true,
+    "isolated": true,
+    "no_publish": true,
+    "model_origin_input": "hash_pinned_parent_variable_admission",
+    "production_mutation": false,
+    "active_pointer_mutation": false,
+    "registry_mutation": false
+  },
+  "parent": {
+    "required_schema": "viv_cpu_reflection_query_variable_shadow_receipt_v1",
+    "required_state": "PASS_CPU_REFLECTION_QUERY_VARIABLE_SHADOW_CANDIDATE_ONLY",
+    "required_independent_state": "INDEPENDENT_CONFIRMATION_PASS",
+    "required_model_frame": "A|variable|0|message|msg_preview~~~~~~~~"
+  },
+  "assembly": {
+    "authority": "CPU_RULE",
+    "template_id": "fixture.echo",
+    "pillar": "auto",
+    "indexed_sections": ["VARIABLES", "main"],
+    "model_request_variable_overrides": {},
+    "cpu_materialization": {
+      "allowed_keys": ["message"],
+      "allowed_value_slot": "msg_preview",
+      "resolved_literal": "preview",
+      "variables_section_only": true,
+      "imports_immutable": true,
+      "function_spans_immutable": true,
+      "source_template_mutated": false
+    }
+  },
+  "sandbox": {
+    "compile_required": true,
+    "import_without_execution_required": true,
+    "explicit_main_call_required": true,
+    "declared_variable_binding_required": true,
+    "undeclared_override_must_be_rejected": true,
+    "candidate_root": "sandbox/code/template_candidates",
+    "production_generation_forbidden": true,
+    "active_pointer_forbidden": true
+  },
+  "security": {
+    "rust_probe_required": true,
+    "expected_state": "HOLD_SECURITY",
+    "expected_allowed": false,
+    "local_test_writer": "isolated_test_only",
+    "production_python_write": false
+  },
+  "determinism": {
+    "repeats": 2,
+    "normalized_digest_excludes": ["run_id", "candidate_id", "output_path", "decision_id", "request_id", "wall_seconds"],
+    "source_and_result_hashes_must_match": true
+  },
+  "forbidden_model_inputs": ["source_body", "source_path", "arbitrary_path", "python", "shell", "literal_runtime_value"],
+  "lifecycle": [
+    "OBSERVE",
+    "RETRIEVE",
+    "HYPOTHESIZE",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "RECORD"
+  ]
+}

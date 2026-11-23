@@ -1,0 +1,58 @@
+{
+  "schema_version": "viv_cpu_current_unified_fresh_generalization_contract_v1",
+  "experiment_id": "cpu_current_unified_fresh_generalization_v1",
+  "receipt_schema": "viv_cpu_current_unified_fresh_generalization_receipt_v1",
+  "candidate_only": true,
+  "purpose": "Evaluate the current unified candidate on a fresh target-free holdout without changing the proven backbone or training another candidate.",
+  "required_cli_flags": [
+    "--isolated",
+    "--no-publish"
+  ],
+  "parent": {
+    "backbone_receipt": "foundation/artifacts/auto/agentic/cpu_proven_backbone_gate_v1/proven_backbone_20260816T103726Z_752/receipt.json",
+    "backbone_sha256": "D449776ADE11512CB018BC049DB54C0D3B3B1924D8A809A6E56D18D8690B3694",
+    "unified_receipt": "foundation/artifacts/auto/agentic/cpu_unified_recursive_self_building_v2/unified_recursive_v2_20260816T092845Z_037/receipt.json",
+    "unified_sha256": "E33A6E0EF3F01E2265D9389A7CC3D2983411BAA7D7E616CB40D1D31662A6037D",
+    "candidate_sha256": "0652699B8EC09EFE3FD2256D8FEDE5682D056C48D5F4B6E0808D2E5F66D8ACE1",
+    "candidate_state_sha256": "B3FD3694ABCDFAFA4029D9F69D6233A1AB105065168004D6D2DB072AACD29BBA"
+  },
+  "curriculum": {
+    "builder": "build_tools/build_viv_cpu_unified_target_free_curriculum_v1.py",
+    "metadata_only": true,
+    "target_free": true,
+    "source_catalog_rebuilt": false,
+    "training_row_count": 224,
+    "holdout_surface_count": 7,
+    "repeats": 2,
+    "candidate_training": false,
+    "seed": 43
+  },
+  "diagnostic_thresholds": {
+    "reflection_supported": [6, 8],
+    "reflection_clean": [3, 4],
+    "query_supported": [12, 16],
+    "action_supported": [8, 8],
+    "variable_supported": [12, 16],
+    "result_supported": [16, 24],
+    "scheduler_supported": [13, 16],
+    "template_supported": [16, 24]
+  },
+  "authority": {
+    "cpu_validation": true,
+    "rust_write_membrane": true,
+    "human_production_approval": true,
+    "training_authority_open": false,
+    "promotion_authority_open": false,
+    "deployment_authority_open": false,
+    "live_model_mutation": false,
+    "gpu_execution": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "separators": [",", ":"],
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

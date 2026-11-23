@@ -1,0 +1,58 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 572.734,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1efa5f3affeyHRh5CqPVIrGP1"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "5864c9333ea55df628f0fd5a2f7ea71c659eafbfb68ce56f12f51bcb18899531",
+  "tools": [
+    {
+      "tool": "read",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Case 2: expected reason 'accepted_for_local_inbox', got 'not_for_local_inbox'\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Case 2: expected reason 'accepted_for_local_inbox', got 'not_for_local_inbox'\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE]\nTarget: L:\\LocalCoder\\workspace\\autonomy\\hive_postal_inbox_contract_v2_candidate.py\nFact: Self-check failed on Case 2 - expected (False, \"not_for_local_inbox\") but got (True, \"accepted_for_local_inbox\"), indicating message_matches_local_inbox is not properly validating recipient_id against local_inbox_id.\n\n[DRONE SELF-PROMPT]\nAgenda: Fix v2 candidate to add explicit recipient validation before inbox check.\nVerified facts: expected\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T210324681012Z"
+}

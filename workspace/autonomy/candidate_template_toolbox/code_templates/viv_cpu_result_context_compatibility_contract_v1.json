@@ -1,0 +1,57 @@
+{
+  "schema_version": "viv_cpu_result_context_compatibility_contract_v1",
+  "receipt_schema": "viv_cpu_result_context_compatibility_receipt_v1",
+  "experiment_id": "cpu_result_context_compatibility_v1",
+  "purpose": "Test a CPU-owned pre-decision result-card representation with the verified result specialist before changing its weights or attaching it to the recursive route.",
+  "candidate_only": true,
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "outer_repeats": 2,
+    "cycles": 2,
+    "concurrency": 1,
+    "background_daemon": false
+  },
+  "representation": {
+    "source_schema": "viv_cpu_pre_decision_result_card_v1",
+    "renderer": "foundation.lib.viv_cpu_governed_clean_result_gate.render_prompt",
+    "derived_before_model_decision": true,
+    "target_derived": false,
+    "expected_disposition_derived": false,
+    "cpu_final_disposition_derived": false,
+    "post_decision": false,
+    "answer_repair": false
+  },
+  "attachment": {
+    "result_route": "expert_result_surface_specialist_v1",
+    "other_routes": "fresh_unified_candidate",
+    "static_router_mutation": false,
+    "model_route_selection": false
+  },
+  "model_authority": {
+    "raw_output_preserved": true,
+    "result_repair_forbidden": true,
+    "fallback_forbidden": true,
+    "cpu_final_authority": true,
+    "rust_write_authority": "HOLD_SECURITY_without_separate_approval"
+  },
+  "safety": {
+    "training": false,
+    "optimizer_activity": false,
+    "checkpoint_writes": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "production_generation": false,
+    "promotion": false,
+    "deployment": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sorted_object_keys": true,
+    "trailing_lf": true,
+    "receipt_hash_scope": "canonical_json_without_receipt_sha256"
+  }
+}

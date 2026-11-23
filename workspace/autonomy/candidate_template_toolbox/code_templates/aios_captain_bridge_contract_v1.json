@@ -1,0 +1,60 @@
+{
+  "schema_version": "aios_captain_bridge_contract_v1",
+  "surface_id": "aios_captain_bridge_v1",
+  "purpose": "Read-only captain's-bridge lamps for the AIOS ship. Observation only. Never command.",
+  "metaphor": {
+    "captain": "human Architect",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "computer_in_command": false,
+    "computer_mode": "candidate_only"
+  },
+  "mode": {
+    "plan_only": true,
+    "read_only": true,
+    "candidate_only_mind": true,
+    "aios_runtime_start": false,
+    "gpu_train_start": false,
+    "daemon": false,
+    "production_write": false
+  },
+  "authority_lamps": {
+    "source": "authoritative_training_head",
+    "ignore_stale_top_level_worker_projection": true,
+    "stale_in_progress_vs_stopped_closed_head": "PROJECTION_DRIFT_STALE_WORKER_IN_PROGRESS"
+  },
+  "expected_rust_sha256": "6BCA1C84F9BE871D8F5876A7F84DE8D4437E21A10C602A9E67F55EB162005261",
+  "rid": {
+    "read_contract": ["rid_feed.read_live", "rid_main.triad_observe", "aios_adapter_rid.status"],
+    "missing_fresh_sample": "ABSTAIN",
+    "do_not_fabricate_sample": true,
+    "forbidden": ["pulse_once", "sample_once", "120s_stress", "prt_cycle.observe_state", "aios_adapter_rid.snapshot"]
+  },
+  "auto": {
+    "read_contract": ["auto_main.triad_descriptor", "artifact presence"],
+    "forbidden": ["run_once", "run_beat", "pulse_once", "autonomous_loop"]
+  },
+  "uml": {
+    "read_contract": ["uml_main.triad_descriptor", "aios_adapter_uml_invoke.cpu_plan"],
+    "forbidden": ["evaluate", "invoke_uml", "repl"]
+  },
+  "organism": {
+    "read_contract": ["organism_state.json presence", "halt.flag presence"],
+    "forbidden": ["boot", "organism_beat", "organism_run", "halt", "seed_curriculum", "aios_organism.status"]
+  },
+  "skeleton": {
+    "reuse": ["aios_skeleton_map.walk_systems", "aios_skeleton_map.summarize_systems", "aios_skeleton_bus.default_bus.wire_status"],
+    "completed_organism_claim": false,
+    "map_state_is_not_running": true
+  },
+  "protected_untouched": [
+    "Seed 0",
+    "template registry",
+    "active pointer",
+    "Rust security binary"
+  ],
+  "cli": {
+    "runner": "build_tools/run_aios_captain_bridge_v1.py",
+    "allowed_commands": ["status"]
+  }
+}

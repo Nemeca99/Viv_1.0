@@ -1,0 +1,27 @@
+{
+  "schema": "viv-rnn-reasoning-probe-v1",
+  "status": "PASS",
+  "retrieval": {
+    "rows": [
+      "622",
+      "2992"
+    ]
+  },
+  "rnn": {
+    "steps": 2,
+    "backend": "cupy-int32",
+    "route_score": 59601728
+  },
+  "composition": {
+    "accepted_claim": "blue light is scattered more than red light",
+    "gate": "ALLOW",
+    "rejected_claim": "green light is scattered more than blue light",
+    "rejected_preserved": true
+  },
+  "held_out": {
+    "claim": "sunset light appears red because blue light is scattered away",
+    "pass": true,
+    "separate_from_retrieval": true
+  },
+  "source_read_only": true
+}

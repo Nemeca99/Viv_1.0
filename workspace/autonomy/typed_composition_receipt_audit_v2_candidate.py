@@ -1,0 +1,370 @@
+"""Audit V2 candidate typed composition receipts with self-check."""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import sqlite3
+import sys
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+RECEIPT_ROOT = HERE / "learning" / "neural_runs" / "composition_receipts"
+DB_PATH = (HERE.parent / "autonomy" / "learning" / "neural_runs" / "candidate_verified_functions.sqlite3")
+
+SCHEMA_NAME = "viv_typed_composition_execution_v1"
+
+
+def sha256_bytes(value: bytes) -> str:
+    return hashlib.sha256(value).hexdigest()
+
+
+def sha256_text(value: str) -> str:
+    return sha256_bytes(value.encode("utf-8"))
+
+
+def canonical_hash(value: object) -> str:
+    encoded = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return sha256_bytes(encoded)
+
+
+class ReceiptAuditError(Exception):
+    pass
+
+
+def validate_node_identity(node: dict, expected: dict, expected_relay_count: int) -> str | None:
+    """Validate a node against an expected signature and relay count.
+
+    Returns None on success; error string on failure.
+    Standard library only. No I/O, imports with side effects, databases, main block.
+    """
+    # Require node and expected to be dicts
+    if not isinstance(node, dict) or not isinstance(expected, dict):
+        return "node_identity_type_error: both node and expected must be dicts"
+
+    # Require expected.gate_status == 'ALLOW'
+    if expected.get("gate_status") != "ALLOW":
+        return f"expected_gate_status_mismatch: got {expected.get('gate_status')!r}, want 'ALLOW'"
+
+    # Require expected.language == 'python'
+    if expected.get("language") != "python":
+        return f"expected_language_mismatch: got {expected.get('language')!r}, want 'python'"
+
+    # Required fields to compare: version_id, task_id, function_name, code_sha256, tests_sha256
+    required_fields = ("version_id", "task_id", "function_name", "code_sha256", "tests_sha256")
+
+    for field in required_fields:
+        node_val = node.get(field)
+        exp_val = expected.get(field)
+
+        # Both must exist and have same type and value
+        if node_val is None or exp_val is None:
+            return f"node_identity_field_missing: {field}"
+        if type(node_val) is not type(exp_val):
+            return f"node_identity_type_mismatch: {field} got {type(node_val).__name__}, expected {type(exp_val).__name__}"
+        if node_val != exp_val:
+            return f"node_identity_value_mismatch: {field} got {node_val!r}, expected {exp_val!r}"
+
+    # Require node.relay_count to be int (not bool) and equal expected_relay_count
+    relay_node = node.get("relay_count")
+    if not isinstance(relay_node, int):
+        return f"node_relay_count_type_error: got {type(relay_node).__name__}, want int"
+    # bool is a subclass of int in Python; explicitly reject it
+    if isinstance(relay_node, bool):
+        return "node_relay_count_bool_error: relay_count must not be bool"
+
+    if relay_node != expected_relay_count or type(expected_relay_count) is not int:
+        return f"node_relay_count_mismatch: got {relay_node}, expected {expected_relay_count}"
+
+    return None
+
+
+def audit_receipt(receipt_path: Path, db_path: Path) -> int:
+    checks_passed = 0
+    total_checks = 8
+
+    try:
+        # Check 1: Receipt schema is viv_typed_composition_execution_v1
+        with receipt_path.open("r", encoding="utf-8") as stream:
+            receipt = json.load(stream)
+        if receipt.get("schema") != SCHEMA_NAME:
+            print(f"FAIL: check1_schema_mismatch={receipt.get('schema')}", flush=True)
+            return 1
+        checks_passed += 1
+
+        # Check 2: Recompute top-level receipt_sha256 after removing only receipt_sha256
+        receipt_copy = dict(receipt)
+        claimed_receipt = receipt_copy.pop("receipt_sha256", None)
+        if claimed_receipt is None:
+            print(f"FAIL: check2_missing_receipt_sha256", flush=True)
+            return 1
+        recomputed_hash = canonical_hash(receipt_copy)
+        if recomputed_hash != claimed_receipt:
+            print(f"FAIL: check2_recomputed_hash_mismatch={recomputed_hash}!=expected={claimed_receipt}", flush=True)
+            return 1
+        checks_passed += 1
+
+        # Check 3: SHA-256 of database bytes equals candidate_store_sha256
+        db_bytes = db_path.read_bytes()
+        db_hash = sha256_bytes(db_bytes)
+        if receipt.get("candidate_store_sha256") != db_hash:
+            print(f"FAIL: check3_db_hash_mismatch={db_hash}!=expected={receipt.get('candidate_store_sha256')}", flush=True)
+            return 1
+        checks_passed += 1
+
+        # Check 4: Read-only PRAGMA quick_check returns ok
+        try:
+            conn = sqlite3.connect(f"file:{db_path.as_posix()}?mode=ro", uri=True, timeout=15)
+            quick_result = conn.execute("PRAGMA quick_check").fetchone()[0]
+            conn.close()
+            if quick_result != "ok":
+                print(f"FAIL: check4_quick_check_failed={quick_result}", flush=True)
+                return 1
+        except sqlite3.Error as exc:
+            print(f"FAIL: check4_sqlite_error={exc}", flush=True)
+            return 1
+        checks_passed += 1
+
+        # Check 5: relay_count equals typed_relays length; exactly three distinct relay_key values exist
+        typed_relays = receipt.get("typed_relays", [])
+        if len(typed_relays) != receipt.get("relay_count"):
+            print(f"FAIL: check5_relay_count_mismatch={receipt.get('relay_count')}!=len(typed_relays)={len(typed_relays)}", flush=True)
+            return 1
+        relay_keys = {r.get("relay_key") for r in typed_relays if isinstance(r, dict)}
+        if len(relay_keys) != 3:
+            print(f"FAIL: check5_relay_keys_count_mismatch={len(relay_keys)}!=expected=3", flush=True)
+            return 1
+
+        # Query database for relay rows and validate edges
+        try:
+            conn = sqlite3.connect(f"file:{db_path.as_posix()}?mode=ro", uri=True, timeout=15)
+            conn.row_factory = sqlite3.Row
+            db = conn
+            rows = db.execute("""
+                SELECT relay_key, provider_version_id, consumer_version_id,
+                       provider_output_type, consumer_input_type, evidence_json, receipt_sha256
+                FROM typed_function_relays_v1
+                ORDER BY relay_key
+            """).fetchall()
+            conn.close()
+
+            if len(rows) != 3:
+                print(f"FAIL: check5_db_rows_count_mismatch={len(rows)}!=expected=3", flush=True)
+                return 1
+
+            # Validate each row's receipt_sha256, provider/consumer version IDs match typed_relays edge
+            for i, raw_row in enumerate(rows):
+                evidence = json.loads(raw_row["evidence_json"]) if raw_row["evidence_json"] else None
+                if evidence is None:
+                    print(f"FAIL: check5_evidence_missing={i}", flush=True)
+                    return 1
+
+                # Compare receipt_sha256 with typed relay edge
+                typed_edge = typed_relays[i] if i < len(typed_relays) else None
+                if typed_edge is None or evidence.get("receipt_sha256") != raw_row["receipt_sha256"]:
+                    print(f"FAIL: check5_receipt_sha256_mismatch={i}", flush=True)
+                    return 1
+
+                # Compare provider/consumer version IDs and types with typed relay edge
+                if (raw_row["provider_version_id"] != typed_edge.get("provider_version_id") or
+                    raw_row["consumer_version_id"] != typed_edge.get("consumer_version_id") or
+                    raw_row["provider_output_type"] != typed_edge.get("provider_output_type") or
+                    raw_row["consumer_input_type"] != typed_edge.get("consumer_input_type")):
+                    print(f"FAIL: check5_version_or_type_mismatch={i}", flush=True)
+                    return 1
+
+            # Compare each row's provider/consumer types to its receipt edge
+            for i, raw_row in enumerate(rows):
+                evidence = json.loads(raw_row["evidence_json"]) if raw_row["evidence_json"] else None
+                typed_edge = typed_relays[i] if i < len(typed_relays) else None
+                if (typed_edge is None or
+                    evidence.get("provider_output_type") != raw_row["provider_output_type"] or
+                    evidence.get("consumer_input_type") != raw_row["consumer_input_type"]):
+                    print(f"FAIL: check5_provider_consumer_types_mismatch={i}", flush=True)
+                    return 1
+
+        except (sqlite3.Error, json.JSONDecodeError) as exc:
+            print(f"FAIL: check5_sqlite_or_json_error={exc}", flush=True)
+            return 1
+        checks_passed += 1
+
+        # Check 6: execution_order has two unique IDs, ends at entry_version_id, node_count is two, and node_gates version IDs equal execution_order
+        execution_order = receipt.get("execution_order", [])
+        if (not isinstance(execution_order, list) or
+                any(type(vid) is not int for vid in execution_order)):
+            print("FAIL: check6_execution_order_not_integer_list", flush=True)
+            return 1
+        if len(execution_order) != 2 or len(set(execution_order)) != 2:
+            print(f"FAIL: check6_execution_order_mismatch={len(execution_order)}!=expected=2 unique IDs", flush=True)
+            return 1
+
+        entry_version_id = receipt.get("entry_version_id")
+        if type(entry_version_id) is not int or execution_order[-1] != entry_version_id:
+            print(f"FAIL: check6_entry_version_id_mismatch={execution_order[-1]}!=expected={entry_version_id}", flush=True)
+            return 1
+
+        node_count = receipt.get("node_count")
+        if (type(node_count) is not int or node_count != 2 or
+                node_count != len(execution_order) or type(receipt.get("relay_count")) is not int):
+            print(f"FAIL: check6_node_count_mismatch={node_count}!=expected=2", flush=True)
+            return 1
+
+        # Verify node_gates: list of two dicts, each with int version_id, dict gate, status='ALLOW', string output
+        node_gates = receipt.get("node_gates", [])
+        if not isinstance(node_gates, list) or len(node_gates) != 2:
+            print(f"FAIL: check6_node_gates_not_list_of_two={node_gates}", flush=True)
+            return 1
+        for ng in node_gates:
+            if not isinstance(ng, dict):
+                print(f"FAIL: check6_node_gate_not_dict={ng}", flush=True)
+                return 1
+            if "version_id" not in ng or type(ng["version_id"]) is not int:
+                print(f"FAIL: check6_node_missing_int_version_id={ng}", flush=True)
+                return 1
+            if "gate" not in ng or not isinstance(ng["gate"], dict):
+                print(f"FAIL: check6_node_gate_not_dict={ng}", flush=True)
+                return 1
+            gate = ng["gate"]
+            if gate.get("status") != "ALLOW":
+                print(f"FAIL: check6_gate_status_not_ALLOW={gate}", flush=True)
+                return 1
+            if not isinstance(gate.get("output"), str):
+                print(f"FAIL: check6_gate_output_not_string={gate}", flush=True)
+                return 1
+        version_ids = [ng["version_id"] for ng in node_gates]
+        if version_ids != execution_order:
+            print(f"FAIL: check6_node_gates_version_ids_mismatch={version_ids}!=expected={execution_order}", flush=True)
+            return 1
+
+        # Bind each claimed node to the recorded version, never receipt prose.
+        try:
+            identity_db = sqlite3.connect(f"file:{db_path.as_posix()}?mode=ro", uri=True, timeout=15)
+            try:
+                recorded_versions = identity_db.execute("""
+                    SELECT v.version_id,v.task_id,f.function_name,v.code_sha256,
+                           v.tests_sha256,v.gate_status,f.language
+                    FROM function_versions v JOIN functions f USING(function_key)
+                    WHERE v.version_id IN (?,?)
+                """, tuple(execution_order)).fetchall()
+            finally:
+                identity_db.close()
+        except sqlite3.Error as exc:
+            print(f"FAIL: check6_identity_sqlite_error={exc}", flush=True)
+            return 1
+        identity_keys = ("version_id", "task_id", "function_name", "code_sha256",
+                         "tests_sha256", "gate_status", "language")
+        identities = {row[0]: dict(zip(identity_keys, row)) for row in recorded_versions}
+        endpoint_ids = {row[key] for row in rows
+                        for key in ("provider_version_id", "consumer_version_id")}
+        if set(execution_order) != endpoint_ids:
+            print("FAIL: check6_circuit_ids_not_relay_endpoints", flush=True)
+            return 1
+        positions = {vid: index for index, vid in enumerate(execution_order)}
+        if any(positions[row["provider_version_id"]] >= positions[row["consumer_version_id"]]
+               for row in rows):
+            print("FAIL: check6_provider_not_before_consumer", flush=True)
+            return 1
+        for node in node_gates:
+            expected_count = sum(row["consumer_version_id"] == node["version_id"] for row in rows)
+            error = validate_node_identity(node, identities.get(node["version_id"]), expected_count)
+            if error is not None:
+                print(f"FAIL: check6_node_identity={error}", flush=True)
+                return 1
+        if receipt.get("entry_function") != node_gates[-1]["function_name"]:
+            print("FAIL: check6_entry_function_mismatch", flush=True)
+            return 1
+
+        checks_passed += 1
+
+        # Check 7: For every edge, recompute receipt_sha256 excluding only receipt_sha256; recompute relay_key excluding relay_key and receipt_sha256; require provider_output_type equals consumer_input_type and both equal the database row
+        for i, typed_edge in enumerate(typed_relays):
+            if not isinstance(typed_edge, dict):
+                print(f"FAIL: check7_typed_edge_not_dict={i}", flush=True)
+                return 1
+
+            # Recompute receipt_sha256 excluding only receipt_sha256
+            edge_copy = dict(typed_edge)
+            claimed_receipt = edge_copy.pop("receipt_sha256", None)
+            if claimed_receipt is None:
+                print(f"FAIL: check7_missing_receipt_sha256_in_edge={i}", flush=True)
+                return 1
+
+            recomputed_edge_hash = canonical_hash(edge_copy)
+            if recomputed_edge_hash != claimed_receipt:
+                print(f"FAIL: check7_recomputed_edge_hash_mismatch={i}", flush=True)
+                return 1
+
+            # Recompute relay_key and bind database evidence
+            payload = dict(edge_copy)  # already has no receipt_sha256
+            claimed_key = payload.pop("relay_key", None)
+            if claimed_key is None:
+                print(f"FAIL: check7_relay_key_missing={i}", flush=True)
+                return 1
+            if canonical_hash(payload) != claimed_key:
+                print(f"FAIL: check7_relay_key_mismatch={i}", flush=True)
+                return 1
+            # Find exactly one row with matching relay_key in rows list
+            matching_rows = [row for row in rows if row["relay_key"] == claimed_key]
+            if len(matching_rows) != 1:
+                print(f"FAIL: check7_no_unique_relay_row={i}", flush=True)
+                return 1
+            db_evidence = json.loads(matching_rows[0]["evidence_json"])
+            # Bind edge to database evidence by hash equality (no double-encode)
+            if canonical_hash(db_evidence) != canonical_hash(typed_edge):
+                print(f"FAIL: check7_edge_not_bound_to_database={i}", flush=True)
+                return 1
+
+        # Check that provider_output_type equals consumer_input_type for each edge and both equal the database row
+        for i, raw_row in enumerate(rows):
+            evidence = json.loads(raw_row["evidence_json"]) if raw_row["evidence_json"] else None
+            typed_edge = typed_relays[i] if i < len(typed_relays) else None
+            if (typed_edge is None or
+                evidence.get("provider_output_type") != evidence.get("consumer_input_type")):
+                print(f"FAIL: check7_provider_consumer_types_not_equal={i}", flush=True)
+                return 1
+
+        checks_passed += 1
+
+        # Check 8: candidate_store_read_only is True; promoted, live_viv_modified, model_weights_changed are exactly False
+        if receipt.get("candidate_store_read_only") is not True:
+            print(f"FAIL: check8_candidate_store_not_read_only", flush=True)
+            return 1
+        if any(receipt.get(key) is not False for key in ("promoted", "live_viv_modified", "model_weights_changed")):
+            print(f"FAIL: check8_state_flags_mismatch", flush=True)
+            return 1
+        checks_passed += 1
+
+    except (json.JSONDecodeError, FileNotFoundError) as exc:
+        print(f"FAIL: audit_error={exc}", flush=True)
+        return 1
+
+    if checks_passed != total_checks:
+        return 1
+
+    # All checks passed
+    print("PASS: 8 checks", flush=True)
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Audit V2 candidate typed composition receipts.")
+    parser.add_argument("--self-check", action="store_true", help="Run self-check on the latest receipt.")
+    args = parser.parse_args()
+
+    if not args.self_check:
+        parser.error("--self-check is required")
+
+    # Find the latest receipt file in RECEIPT_ROOT
+    receipts = sorted(RECEIPT_ROOT.glob("typed_composition_execution_*.json"))
+    if not receipts:
+        print(f"FAIL: no_receipts_found_in={RECEIPT_ROOT}", flush=True)
+        return 1
+
+    latest_receipt = receipts[-1]
+    result = audit_receipt(latest_receipt, DB_PATH)
+    sys.exit(result)
+
+
+if __name__ == "__main__":
+    main()

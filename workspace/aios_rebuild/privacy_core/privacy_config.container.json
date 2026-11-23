@@ -1,0 +1,45 @@
+{
+  "mode": "semi-auto",
+  "egress_sovereignty": {
+    "allowed_protocols": [
+      "http",
+      "https"
+    ],
+    "blocked_ports": [
+      80,
+      443
+    ]
+  },
+  "file_write_boundary": {
+    "allowed_directories": [
+      "/dev/shm",
+      "/tmp",
+      "/opt/aios_rebuild/data_core/FractalCache",
+      "/opt/aios_rebuild/data_core/log",
+      "/opt/aios_rebuild/dream_core/state",
+      "/opt/aios_rebuild/memory",
+      "/opt/aios_rebuild/marketplace_core/config",
+      "/opt/aios_rebuild/music_core/config",
+      "/opt/aios_rebuild/music_core/music_library",
+      "/opt/aios_rebuild/template_core/config"
+    ],
+    "allowed_files": [],
+    "blocked_extensions": [
+      ".exe",
+      ".dll",
+      ".pyd",
+      ".so",
+      ".dylib",
+      ".bat",
+      ".ps1",
+      ".sh"
+    ]
+  },
+  "api_port_whitelist": {
+    "allowed_ports": [
+      8080,
+      5000,
+      11434
+    ]
+  }
+}

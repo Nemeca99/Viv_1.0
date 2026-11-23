@@ -1,0 +1,44 @@
+{
+  "schema": "localcoder_supervised_relay_identity_review_v1",
+  "captured_at": "2026-11-17T08:24:53.220195+00:00",
+  "session_id": "ses_e17e97865ffeqBHUup02dTc68O",
+  "source_sha256": "8d62fb7c3baf6fc9c9defa4574da5831c2e047d855f4a46f8ed50eb48f2bbd19",
+  "checker_sha256": {
+    ".opencode/evals/verify_receipt_flags_20261117.py": "e61ad08e67675ee3904fb7ec029290393b7f1e4f86db9370998c3a17912e0c05",
+    ".opencode/evals/verify_relay_identity_20261117.py": "99ff7ec69a00f3b48f58a41a191d2475e6f22e0be28c1d106ef43f883c195efb"
+  },
+  "relay_identity_checks": {
+    "cases": 11,
+    "passed": 11,
+    "failed": [],
+    "db_unchanged": true,
+    "source_sha256": "8d62fb7c3baf6fc9c9defa4574da5831c2e047d855f4a46f8ed50eb48f2bbd19"
+  },
+  "state_flag_regression": {
+    "cases": 53,
+    "passed": 53,
+    "failed": [],
+    "db_unchanged": true,
+    "source_sha256": "8d62fb7c3baf6fc9c9defa4574da5831c2e047d855f4a46f8ed50eb48f2bbd19"
+  },
+  "scope_verified": "Only the relay key and database evidence binding block changed, plus a final newline added by the patch transport.",
+  "baseline": "2/11; nine resealed tampered edges were wrongly accepted.",
+  "failed_drone_drafts": [
+    "audit_drone_attempt1.py",
+    "audit_drone_attempt2.py",
+    "drone_attempt1.jsonl",
+    "drone_attempt2.jsonl"
+  ],
+  "authorship": "Viv authored the binding patch through localcoder_patch. Codex froze probes, supplied review corrections, then fixed one remaining comparison: computed payload digest must equal claimed key, not its rehash. See raw same-session attempts for exact provenance.",
+  "limits": "Candidate receipt auditor only; not a new circuit execution, model learning, or promotion.",
+  "live_self_check": {
+    "output": "PASS: 8 checks",
+    "exit": 0,
+    "raw": "L:\\LocalCoder\\.opencode\\evals\\relay_identity_20261117\\drone_final_check.jsonl"
+  },
+  "handoff": {
+    "path": "L:\\LocalCoder\\.opencode\\session_summaries\\20261117-relay-identity-supervision.md",
+    "sha256": "b70eaa1121a4c88b7348e6d064e8c8e6204a7d6e55dfe219c65aa742b69b3f1d",
+    "review": "Viv authored; Codex corrected draft provenance and added candidate/history boundary. Original retained as handoff_drone.md."
+  }
+}

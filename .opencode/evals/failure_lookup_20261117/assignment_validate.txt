@@ -1,0 +1,11 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+[QUEEN] Your prior XML text did not execute a tool and created no file. I supplied a stub module; you implement it one function at a time. Use real tool calls with their advertised argument names, never XML.
+1. Use read on `L:/LocalCoder/workspace/autonomy/receipt_failure_lookup_candidate.py` with limit 30.
+2. Use localcoder_patch tool. Replace only the `raise NotImplementedError('validate_result')` line with a complete validator. Return record unchanged on success; raise ValueError on any invalid record. Require dict, source_sha256 matching [0-9a-f]{64}, actual int cases>0 and int passed in 0..cases, db_unchanged is True, failed is list of length cases-passed. Each row: dict, distinct nonempty str case, actual int exit, actual bool expected_accept, matched is False, str output. Missing fields are invalid. No input mutation. Leave lookup_failures stub unchanged.
+<localcoder_patch_paths>
+workspace/autonomy/receipt_failure_lookup_candidate.py
+</localcoder_patch_paths>
+3. Use shell with exactly `& 'L:/.venv/Scripts/python.exe' -B 'L:/LocalCoder/.opencode/evals/failure_lookup_20261117/verify_validation.py'`.
+Report the actual result normally.
+[CURRENT AUTHORIZATION FACT]
+The Architect assigned Codex/Queen to supervise Viv's coding. This function is the only active change.

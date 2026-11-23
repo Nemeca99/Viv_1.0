@@ -1,0 +1,118 @@
+{
+  "assignment": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nTask access: write\nRouter bounds JSON: {\"task_class\":\"build\",\"lane_ids\":[\"drone\"],\"max_turns_per_lane\":1}\nAcceptance JSON: {\"version\":1,\"kind\":\"artifacts\",\"artifacts\":[\".opencode/evals/completion-fixture/value.txt\",\".opencode/evals/completion-fixture/check.py\"],\"checks\":[{\"id\":\"behavior-and-readonly-scope\",\"argv\":[\"/usr/local/bin/python\",\"-B\",\".opencode/evals/completion-fixture/check.py\"],\"timeout_seconds\":5,\"inputs\":[\".opencode/evals/completion-fixture/check.py\"]}]}\nBounded control and verification test of existing artifacts. No source edits. Use aios_router_open_build_task. Then use aios_router_accept_self_prompt for lane drone turn 0 with Agenda, Verified facts, Next bounded action. Then use aios_router_record_turn_result for lane drone turn 0: artifacts are ready for deterministic verification, no success is claimed yet. Then use aios_router_complete_lane for lane drone with a nonempty receipt; Rust must run the frozen checks. Finally use aios_router_queen_summary and report the actual state and verification hash, then stop. The frontend supplies trusted session/task/assignment bindings.",
+  "contract": {
+    "version": 1,
+    "kind": "artifacts",
+    "artifacts": [
+      ".opencode/evals/completion-fixture/value.txt",
+      ".opencode/evals/completion-fixture/check.py"
+    ],
+    "checks": [
+      {
+        "id": "behavior-and-readonly-scope",
+        "argv": [
+          "/usr/local/bin/python",
+          "-B",
+          ".opencode/evals/completion-fixture/check.py"
+        ],
+        "timeout_seconds": 5,
+        "inputs": [
+          ".opencode/evals/completion-fixture/check.py"
+        ]
+      }
+    ]
+  },
+  "observations": [
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout",
+    "same live session still running after observation timeout"
+  ],
+  "session": {
+    "id": "ses_e1205dad9ffejRkKCh6TOu7ikA",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "model": {
+      "id": "omnicoder-2-9b",
+      "providerID": "lmstudio",
+      "variant": "default"
+    },
+    "cost": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "time": {
+      "created": 1794993956249,
+      "updated": 1794993956249
+    },
+    "title": "Bounded Rust completion gate check",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "prompt": {
+    "data": {
+      "id": "msg_1edfa25e70015lKUMv63CNETKc",
+      "sessionID": "ses_e1205dad9ffejRkKCh6TOu7ikA",
+      "time": {
+        "created": 1794993957367
+      },
+      "type": "user",
+      "payload": {
+        "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nTask access: write\nRouter bounds JSON: {\"task_class\":\"build\",\"lane_ids\":[\"drone\"],\"max_turns_per_lane\":1}\nAcceptance JSON: {\"version\":1,\"kind\":\"artifacts\",\"artifacts\":[\".opencode/evals/completion-fixture/value.txt\",\".opencode/evals/completion-fixture/check.py\"],\"checks\":[{\"id\":\"behavior-and-readonly-scope\",\"argv\":[\"/usr/local/bin/python\",\"-B\",\".opencode/evals/completion-fixture/check.py\"],\"timeout_seconds\":5,\"inputs\":[\".opencode/evals/completion-fixture/check.py\"]}]}\nBounded control and verification test of existing artifacts. No source edits. Use aios_router_open_build_task. Then use aios_router_accept_self_prompt for lane drone turn 0 with Agenda, Verified facts, Next bounded action. Then use aios_router_record_turn_result for lane drone turn 0: artifacts are ready for deterministic verification, no success is claimed yet. Then use aios_router_complete_lane for lane drone with a nonempty receipt; Rust must run the frozen checks. Finally use aios_router_queen_summary and report the actual state and verification hash, then stop. The frontend supplies trusted session/task/assignment bindings."
+      },
+      "delivery": "steer"
+    }
+  },
+  "result": "FAIL",
+  "error": "RuntimeError('bounded test deadline reached without a verified summary')",
+  "logs": [
+    "server listening on http://127.0.0.1:28895\n",
+    "[localcoder-drone-assignment-gate] assignment session=ses_e1205dad9ffejRkKCh6TOu7ikA next=aios_router_lookup_drone_seed authorized_sequence=aios_router_lookup_drone_seed,aios_router_open_build_task,aios_router_accept_self_prompt,aios_router_record_turn_result,aios_router_complete_lane,aios_router_queen_summary\n",
+    "[localcoder-toolbridge] drone_next_tool_required session=ses_e1205dad9ffejRkKCh6TOu7ikA tool=aios_router_lookup_drone_seed\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_lookup_drone_seed\n",
+    "[localcoder-drone-assignment-gate] allowed session=ses_e1205dad9ffejRkKCh6TOu7ikA tool=aios_router_lookup_drone_seed step=1/6\n",
+    "[localcoder-drone-assignment-gate] completed session=ses_e1205dad9ffejRkKCh6TOu7ikA step=1/6\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e1205dad9ffejRkKCh6TOu7ikA\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_open_build_task\n",
+    "[localcoder-drone-assignment-gate] overwrote_untrusted_router_binding session=ses_e1205dad9ffejRkKCh6TOu7ikA tool=aios_router_open_build_task session_id_mismatch=false task_id_mismatch=true assignment_hash_mismatch=true\n",
+    "[localcoder-drone-assignment-gate] allowed session=ses_e1205dad9ffejRkKCh6TOu7ikA tool=aios_router_open_build_task step=2/6\n",
+    "[localcoder-drone-assignment-gate] overwrote_untrusted_router_assignment session=ses_e1205dad9ffejRkKCh6TOu7ikA tool=aios_router_open_build_task assignment_mismatch=true\n",
+    "[localcoder-toolbridge] completed explicit tool step 1/5: aios_router_open_build_task\n",
+    "[localcoder-drone-assignment-gate] completed session=ses_e1205dad9ffejRkKCh6TOu7ikA step=2/6\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e1205dad9ffejRkKCh6TOu7ikA\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_accept_self_prompt\n",
+    "[localcoder-drone-assignment-gate] overwrote_untrusted_router_binding session=ses_e1205dad9ffejRkKCh6TOu7ikA tool=aios_router_accept_self_prompt session_id_mismatch=false task_id_mismatch=true assignment_hash_mismatch=true\n",
+    "[localcoder-drone-assignment-gate] allowed session=ses_e1205dad9ffejRkKCh6TOu7ikA tool=aios_router_accept_self_prompt step=3/6\n",
+    "[localcoder-toolbridge] completed explicit tool step 2/5: aios_router_accept_self_prompt\n",
+    "[localcoder-drone-assignment-gate] completed session=ses_e1205dad9ffejRkKCh6TOu7ikA step=3/6\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e1205dad9ffejRkKCh6TOu7ikA\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_record_turn_result\n",
+    "[localcoder-drone-assignment-gate] overwrote_untrusted_router_binding session=ses_e1205dad9ffejRkKCh6TOu7ikA tool=aios_router_record_turn_result session_id_mismatch=false task_id_mismatch=true assignment_hash_mismatch=true\n",
+    "[localcoder-drone-assignment-gate] allowed session=ses_e1205dad9ffejRkKCh6TOu7ikA tool=aios_router_record_turn_result step=4/6\n",
+    "[localcoder-toolbridge] completed explicit tool step 3/5: aios_router_record_turn_result\n",
+    "[localcoder-drone-assignment-gate] completed session=ses_e1205dad9ffejRkKCh6TOu7ikA step=4/6\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e1205dad9ffejRkKCh6TOu7ikA\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_complete_lane\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e1205dad9ffejRkKCh6TOu7ikA\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_complete_lane\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e1205dad9ffejRkKCh6TOu7ikA\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_complete_lane\n",
+    "[localcoder-toolbridge] drone_seed_bootstrap_required session=ses_e1205dad9ffejRkKCh6TOu7ikA\n",
+    "[localcoder-toolbridge] normalized tool call: aios_router_complete_lane\n"
+  ]
+}

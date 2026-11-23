@@ -1,0 +1,68 @@
+{
+  "schema_version": "viv_cpu_query_objective_alignment_contract_v1",
+  "purpose": "Target-only objective alignment for the verified CPU query specialist.",
+  "status": "candidate_only",
+  "parent": {
+    "receipt_path": "foundation/artifacts/auto/agentic/cpu_unified_current_query_retention_v1/current_query_retention_20260816T114646Z_771/receipt.json",
+    "receipt_sha256": "0ADDBDC1A47A3CFD73AD8AA180B250D5867D50103663024992531DD4A03E9773",
+    "candidate_path": "foundation/artifacts/auto/agentic/cpu_unified_current_query_retention_v1/current_query_retention_20260816T114646Z_771/candidate_query_retention_repeat_0.pt",
+    "candidate_sha256": "EC0B82DC83AE55533E4A7870A9777965D2FC91EF8DF6AC5C4DB040B6BBF1C656",
+    "candidate_state_sha256": "6FA16D8EA3EDBDE08C136EA7E46BC3BD6425CEEBE00D9C1FA373288F6C07CBEB"
+  },
+  "experiment": {
+    "change": "training_targets_only",
+    "prompt_representation": "query_task_marker_v1",
+    "output_grammar": "viv_cpu_model_directed_grammar_v3",
+    "parser_changed": false,
+    "oracle_changed": false,
+    "cpu_resolver_changed": false,
+    "tokenizer_changed": false,
+    "decoder_changed": false,
+    "parent_model_changed": false,
+    "holdout_prompts_changed": false,
+    "holdout_targets_changed": false,
+    "source_catalog_rebuilt": false,
+    "query_training_rows": 32,
+    "effective_training_rows": 224,
+    "auto_live_objective_anchor": "viv_self_development_loop_v1",
+    "auto_live_document_id": "DOC-DEEAAE8AA3FDFDF7"
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "context_length": 128,
+    "generation_budget": 80,
+    "response_only_loss": true
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "live_seed0_mutation": false,
+    "live_model_mutation": false,
+    "production_generation": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "gpu_execution": false,
+    "rust_expected_state": "HOLD_SECURITY"
+  },
+  "acceptance": {
+    "query_supported_min": 14,
+    "query_improvement_over_parent_min": 2,
+    "query_valid_scope_topk_min": 15,
+    "live_model_origin_required": true,
+    "downstream_non_regression_required": true,
+    "parent_route_remains_unactivated": true,
+    "preferred_route": null
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": "receipt_sha256"
+  }
+}

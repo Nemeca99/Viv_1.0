@@ -1,0 +1,82 @@
+{
+  "fault_injected": true,
+  "foreman_snapshot_id": "3a01e585087222ca367708677eb05c6d20b17700cd36850881d6ee8d4d001af8",
+  "mind_generation_count": 0,
+  "mind_metrics": {
+    "plan": null,
+    "slots": null
+  },
+  "mind_plan": [
+    {
+      "agent_id": "stamp-import",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [],
+      "id": "import",
+      "objective": "Stamp approved import span"
+    },
+    {
+      "agent_id": "stamp-variables",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "import"
+      ],
+      "id": "variables",
+      "objective": "Stamp approved variables span"
+    },
+    {
+      "agent_id": "stamp-function",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "variables"
+      ],
+      "id": "function",
+      "objective": "Stamp approved function span"
+    },
+    {
+      "agent_id": "stamp-registry",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "function"
+      ],
+      "id": "registry",
+      "objective": "Stamp approved registry span"
+    }
+  ],
+  "mind_slots": {
+    "message": "hive-template-rebuild",
+    "suffix": "verified"
+  },
+  "mode": "fixture",
+  "reason": "parent artifact changed before dispatch",
+  "reference_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c",
+  "schema": "hive_template_rebuild_run_v1",
+  "scope": "isolated fixture.echo source and registry; no legacy write or promotion",
+  "source_sha256": {
+    "runner": "431ea28cfe15b002f8b1aa5baf50d0a0b42f50521c31b1c27f63be7ab97e4ae1",
+    "switchboard": "ff3831d55ebfad40c91757d36b26f96315f69aab919e8163b0e26982f2f779d0"
+  },
+  "status": "HOLD",
+  "swarm_generation_count": 0,
+  "tasks": [
+    {
+      "artifact_sha256": "3ba127006ac2fb095ff3823178a98b6e404251b8b6987ba1f01f416c7431fd59",
+      "checksum": "7c9f9505bc523b63b15e48f9fdd88a05e1c959ec6c47b65c4d6c116f718854bf",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-import",
+      "task_id": "import"
+    },
+    {
+      "artifact_sha256": "ddfb091d4827e90123d4079aa6b111c164c00f0a9ea52550e13aded5184540fe",
+      "checksum": "87715d805312e13126b3bb77ff12693da3195f74be38a3b4fd0615cd8f321461",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-variables",
+      "task_id": "variables"
+    }
+  ]
+}

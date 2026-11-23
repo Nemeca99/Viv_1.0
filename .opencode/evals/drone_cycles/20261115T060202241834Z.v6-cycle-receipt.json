@@ -1,0 +1,110 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "work_final_or_body_gate_verification_failed",
+  "session_mode": "fresh_visible_action_session",
+  "session_id": "ses_e22342400ffet4Ev4aAsZ6c6lT",
+  "session_recovery": null,
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "required_tools": [
+    "read"
+  ],
+  "final_validation": "final_report_missing_drone_tag",
+  "intermediate_validation": {
+    "passed": true,
+    "reason": "no_intermediate_tool_boundary"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794722489804-a0269ce8-6c85-41c0-8e18-01859e565275-body-gate.json",
+      "sha256": "c896393356ca9777c6ee3eb475d559284bee5358cc1468342714f197fb1a133f",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794722502575-6d90965e-72ea-4082-9b33-3a2442b108e2-body-gate.json",
+      "sha256": "ed55b7fbd7945ae9b96ff229f45d4e5c9b477be06dcc1ea2572bb41743026d55",
+      "source": "tool:read",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794722506744-22f1608b-40cd-40f5-9dbe-7fd2793efbc8-body-gate.json",
+      "sha256": "beee9439fa0e9f6e86ebbc897354d6efb33c611eda3684a8b404612b42d48874",
+      "source": "model_request:primary",
+      "allowed": false,
+      "disposition": "HOLD_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794723300,
+        "grant_id": "architect-localcoder-20261115T061500Z",
+        "scope": "localcoder_runtime",
+        "status": "not_needed",
+        "waived_reasons": []
+      },
+      "reasons": [
+        "ram_at_or_above_limit"
+      ]
+    }
+  ],
+  "assignment_sha256": "83d79c3bf8c77ced25100847a4880933a213bd36c7e5997f4a5bf72613c510de",
+  "work": {
+    "elapsed_seconds": 34.891,
+    "exit_code": 1,
+    "transport_exit_code": 1,
+    "session_outcomes": [
+      "failed"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e22342400ffet4Ev4aAsZ6c6lT"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "4ce8aae7e91f12ae31a7d95233706024c466cfeff3ce6ec841223eabd9c0c51e",
+    "tools": [
+      {
+        "tool": "read",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "session_outcome_not_succeeded",
+      "visible_final_text_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T060127117803Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261115T060127040211Z.prompt.txt",
+    "dispatcher_final_text": []
+  }
+}

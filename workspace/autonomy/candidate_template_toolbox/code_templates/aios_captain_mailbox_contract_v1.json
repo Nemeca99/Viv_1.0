@@ -1,0 +1,87 @@
+{
+  "schema_version": "aios_captain_mailbox_contract_v1",
+  "surface_id": "captain_mailbox_v1",
+  "purpose": "One-beat captain override intake. Captain orders preempt idle ship/computer work. Mailbox is incoming command; night orders remain standing watch policy.",
+  "roles": {
+    "captain": "human operator / user",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "mailbox": "CPU intake for captain orders that hit the deck"
+  },
+  "distinct_from": {
+    "night_orders": "standing watch policy while captain is away",
+    "captain_bridge": "separate bridge surface; do not merge",
+    "inbox_outbox": "organism ask/mission board; mailbox is sealed command intake"
+  },
+  "log": {
+    "path": "foundation/artifacts/auto/agentic/captain_mailbox/orders.jsonl",
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "trailing_lf": true,
+    "one_json_object_per_line": true,
+    "append_only": true,
+    "rewrite_forbidden": true,
+    "peek_does_not_consume": true
+  },
+  "order_fields": ["id", "utc", "command", "evidence_refs", "budget", "disposition"],
+  "command_menu": {
+    "policy": "deny_by_default",
+    "allow": [
+      "observe_status",
+      "hold_watch",
+      "stop_watch",
+      "require_operator_resume"
+    ],
+    "deny_hold_do_not_execute": [
+      "promote",
+      "delete",
+      "open_training",
+      "move_pointer",
+      "touch_seed",
+      "start_daemon",
+      "shell"
+    ]
+  },
+  "dispositions": {
+    "pending": "allowed command admitted to mailbox; idle work must yield",
+    "HOLD": "denied or unknown command recorded; not executed; does not preempt"
+  },
+  "preempt": {
+    "function": "captain_preempts_idle",
+    "rule": "true iff at least one pending allowed captain order exists",
+    "empty_mailbox": false,
+    "hold_only_mailbox": false,
+    "wire_into_night_watch": true,
+    "export_api_only": false,
+    "night_watch_yield": "HOLD lamp with PREEMPT disposition; do not assemble; do not invent work"
+  },
+  "intake": {
+    "auto_execute_assemble": false,
+    "auto_execute_test": false,
+    "auto_execute_shell": false,
+    "daemon": false,
+    "network": false,
+    "socket": false,
+    "remote_intake": "ABSTAIN",
+    "phone_path": "ABSTAIN",
+    "federation": false,
+    "seed_mutation": false,
+    "pointer_mutation": false,
+    "registry_mutation": false,
+    "rust_write": false,
+    "training_authority": false
+  },
+  "cli": {
+    "path": "build_tools/run_aios_captain_mailbox_v1.py",
+    "commands": ["status", "send", "peek"],
+    "send_commands": [
+      "observe_status",
+      "hold_watch",
+      "stop_watch",
+      "require_operator_resume"
+    ]
+  },
+  "default_budget": {
+    "beats": 1
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "schema_version": "viv_cpu_model_directed_phase_ablation_v1",
+  "receipt_schema": "viv_cpu_model_directed_phase_ablation_receipt_v1",
+  "curriculum_schema": "viv_cpu_model_directed_phase_ablation_curriculum_v1",
+  "grammar_schema": "viv_cpu_model_directed_grammar_v3",
+  "status": "CANDIDATE_ONLY",
+  "mode": "CPU_PHASE_ABLATION_DIAGNOSTIC",
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "background_daemon": false,
+    "production_activation": false,
+    "human_approval_for_template_insertion": true
+  },
+  "frozen_inputs": {
+    "parent_receipt_schema": "viv_cpu_model_directed_self_development_receipt_v3",
+    "parent_receipt": "foundation/artifacts/auto/agentic/cpu_model_directed_self_development_v3/model_directed_v3_20260813T050222Z_151984/receipt.json",
+    "tokenizer_changed": false,
+    "decoder_changed": false,
+    "grammar_changed": false,
+    "target_changed": false,
+    "registry_mutation": false,
+    "seed_mutation": false,
+    "gpu_execution": false
+  },
+  "candidate_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "parent": "viv_slm_seed_0000",
+    "live_weight_update": false,
+    "seed_write": false,
+    "promotion": false,
+    "deployment": false
+  },
+  "curriculum": {
+    "training_rows": 224,
+    "heldout_rows": 56,
+    "compositional_traces": 14,
+    "matched_budget": true,
+    "identical_sampler_index_space": true,
+    "metadata_only": true,
+    "source_paths_present": false,
+    "source_text_present": false,
+    "function_bodies_present": false,
+    "generated_python_present": false
+  },
+  "arms": {
+    "control_value_slots": {
+      "phase_fields": [],
+      "purpose": "exact v3 value-slot control replay"
+    },
+    "current_phase": {
+      "phase_fields": ["ps"],
+      "purpose": "current pre-decision contract phase"
+    },
+    "current_plus_prior_phase": {
+      "phase_fields": ["ps", "pv"],
+      "purpose": "current and fixed-trace prior phase"
+    },
+    "phase_plus_result": {
+      "phase_fields": ["ps", "rs"],
+      "purpose": "current phase and independent pre-decision measurement"
+    },
+    "full_phase_state": {
+      "phase_fields": ["ps", "pv", "nx", "rs", "ev", "au"],
+      "purpose": "full bounded pre-decision phase state"
+    }
+  },
+  "wire_field_format": "VIV|v4|...|ps=<current>|pv=<prior>|nx=<allowed_next>|rs=<measurement>|ev=<evidence>|au=<authority>|o=",
+  "wire_token_map": {
+    "ps": {
+      "o": "state_observed",
+      "r": "state_retrieved_verified",
+      "h": "state_hypothesis_validated",
+      "p": "state_candidate_planned",
+      "m": "state_sandbox_measured",
+      "c": "state_result_recorded",
+      "s": "state_scheduled"
+    },
+    "pv": {
+      "n": "none",
+      "o": "state_observed",
+      "r": "state_retrieved_verified",
+      "h": "state_hypothesis_validated",
+      "p": "state_candidate_planned",
+      "m": "state_sandbox_measured"
+    },
+    "nx": {
+      "r": "retrieve",
+      "h": "hypothesis",
+      "s": "sandbox",
+      "o": "generic_outcome_or_observe"
+    },
+    "rs": {
+      "p": "pass",
+      "f": "fail",
+      "u": "unclear",
+      "d": "denied",
+      "n": "na"
+    },
+    "ev": {
+      "v": "verified"
+    },
+    "au": {
+      "c": "closed",
+      "s": "sandbox"
+    }
+  },
+  "causal_availability": {
+    "pre_decision_only": true,
+    "forbidden_sources": [
+      "target_frame",
+      "expected_disposition",
+      "cpu_normalized_action",
+      "cpu_final_disposition",
+      "post_decision_state",
+      "known_correct_answer",
+      "future_trace_row"
+    ],
+    "measurement_must_be_independent": true,
+    "derivation_records_required": true
+  },
+  "ownership_ledger": {
+    "path": "foundation/artifacts/auto/agentic/model_directed_self_development/ownership_ledger.jsonl",
+    "actors": ["MODEL", "CPU_RULE", "SCAFFOLD", "HUMAN", "RUST"],
+    "decision_kinds": ["deficiency", "query", "action", "template", "variable", "result", "schedule", "transition", "execution", "security"],
+    "append_only": true,
+    "hash_chained": true,
+    "classification_audit_only": true,
+    "semantic_id_excludes_representation": true
+  },
+  "novelty_definitions": {
+    "replication": "same semantic hypothesis and materially same intervention contract",
+    "refinement": "same hypothesis family with a bounded parameter, context, or representation change",
+    "inversion": "explicit test of an opposing prediction or intervention polarity",
+    "novel": "no matching semantic hypothesis lineage exists",
+    "unsupported": "evidence or lineage is insufficient to classify the relationship"
+  },
+  "state_machine": [
+    "OBSERVE",
+    "RETRIEVE",
+    "HYPOTHESIZE",
+    "CPU_VALIDATE",
+    "CANDIDATE_PLAN",
+    "SANDBOX_TEST",
+    "MEASURE",
+    "ACCEPT_REJECT_HOLD",
+    "RECORD",
+    "SCHEDULE",
+    "OBSERVE_OR_COMPLETE"
+  ],
+  "prohibited_transition": "HYPOTHESIZE_DIRECTLY_TO_SANDBOX_TEST",
+  "acceptance": {
+    "control_replays_v3_exactly": true,
+    "all_arms_same_row_count": true,
+    "causal_availability_required": true,
+    "at_least_one_measurable_first_divergence": true,
+    "unauthorized_cpu_accepts": 0,
+    "rust_production_write_decision": "HOLD_SECURITY",
+    "final_state_candidate_only": true,
+    "no_preferred_arm": true
+  },
+  "human_approval_boundaries": [
+    "new_template",
+    "template_adoption",
+    "registry_insertion",
+    "architecture_change",
+    "production_activation",
+    "promotion",
+    "deployment",
+    "live_model_mutation"
+  ]
+}

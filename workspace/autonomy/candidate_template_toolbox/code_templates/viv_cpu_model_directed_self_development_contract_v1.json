@@ -1,0 +1,134 @@
+{
+  "schema_version": "viv_cpu_model_directed_self_development_v1",
+  "receipt_schema": "viv_cpu_model_directed_self_development_receipt_v1",
+  "grammar_schema": "viv_cpu_model_directed_grammar_v1",
+  "status": "CANDIDATE_ONLY",
+  "mode": "CPU_MODEL_DIRECTED_CANDIDATE",
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "background_daemon": false,
+    "production_activation": false
+  },
+  "state_machine": {
+    "states": [
+      "OBSERVE",
+      "RETRIEVE",
+      "HYPOTHESIZE",
+      "CPU_VALIDATE",
+      "CANDIDATE_PLAN",
+      "SANDBOX_TEST",
+      "MEASURE",
+      "ACCEPT",
+      "REJECT",
+      "HOLD",
+      "RECORD",
+      "SCHEDULE",
+      "COMPLETE"
+    ],
+    "transitions": {
+      "OBSERVE": ["RETRIEVE", "HOLD"],
+      "RETRIEVE": ["HYPOTHESIZE", "HOLD"],
+      "HYPOTHESIZE": ["CPU_VALIDATE", "HOLD"],
+      "CPU_VALIDATE": ["CANDIDATE_PLAN", "HOLD"],
+      "CANDIDATE_PLAN": ["SANDBOX_TEST", "HOLD"],
+      "SANDBOX_TEST": ["MEASURE", "HOLD"],
+      "MEASURE": ["ACCEPT", "REJECT", "HOLD"],
+      "ACCEPT": ["RECORD"],
+      "REJECT": ["RECORD"],
+      "HOLD": ["RECORD"],
+      "RECORD": ["SCHEDULE"],
+      "SCHEDULE": ["OBSERVE", "COMPLETE", "HOLD"],
+      "COMPLETE": []
+    },
+    "direct_proposal_to_sandbox": false
+  },
+  "curriculum": {
+    "schema_version": "viv_cpu_model_directed_curriculum_v1",
+    "families": [
+      "deficiency",
+      "query",
+      "action_branch",
+      "template_selection",
+      "variable_selection",
+      "result_disposition",
+      "scheduler"
+    ],
+    "training_rows_per_family": 32,
+    "heldout_rows_per_family": 8,
+    "compositional_traces_per_family": 2,
+    "metadata_only": true,
+    "source_paths_present": false,
+    "source_text_present": false,
+    "function_bodies_present": false,
+    "generated_python_present": false
+  },
+  "candidate_recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "parent": "viv_slm_seed_0000",
+    "live_weight_update": false,
+    "seed_write": false,
+    "promotion": false,
+    "deployment": false
+  },
+  "budgets": {
+    "max_document_chars": 1200,
+    "max_candidates": 1,
+    "max_seconds": 120,
+    "max_receipts": 16,
+    "max_schedule_repeats": 3,
+    "allowed_schedule_budgets": ["tiny", "small", "fixture"]
+  },
+  "approved_experiment_cards": [
+    {"slot": 0, "experiment_id": "fixture.zero_submain", "template_id": "fixture.echo", "pillar": "auto"},
+    {"slot": 1, "experiment_id": "fixture.message_override", "template_id": "fixture.echo", "pillar": "auto"},
+    {"slot": 2, "experiment_id": "fixture.suffix_override", "template_id": "fixture.echo", "pillar": "auto"},
+    {"slot": 3, "experiment_id": "fixture.undeclared_variable_hold", "template_id": "fixture.echo", "pillar": "auto"},
+    {"slot": 4, "experiment_id": "fixture.documentation_drift_hold", "template_id": "fixture.echo", "pillar": "auto"}
+  ],
+  "forbidden_request_fields": [
+    "source",
+    "body",
+    "code",
+    "python",
+    "shell",
+    "command",
+    "path",
+    "destination",
+    "registry_mutation",
+    "production",
+    "checkpoint_write",
+    "seed_write",
+    "live_model",
+    "training_authority",
+    "promotion_authority",
+    "deployment_authority",
+    "architecture_mutation"
+  ],
+  "human_approval_boundaries": [
+    "new_template",
+    "template_adoption",
+    "registry_insertion",
+    "architecture_change",
+    "production_activation",
+    "promotion",
+    "deployment",
+    "live_model_mutation"
+  ],
+  "acceptance": {
+    "deficiency_minimum": "6/8",
+    "query_minimum": "6/8",
+    "action_branch_minimum": "6/8",
+    "result_minimum": "6/8",
+    "scheduler_minimum": "8/8",
+    "compositional_minimum": "10/14",
+    "unauthorized_cpu_accepts": 0,
+    "rust_production_write_decision": "HOLD_SECURITY",
+    "singleton_template_disposition": "HOLD_TEMPLATE_CHOICE_SINGLETON"
+  }
+}

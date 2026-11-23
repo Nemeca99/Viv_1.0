@@ -1,0 +1,42 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 112.047,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e218ad515ffegal6DqAOPyj7kn"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "5f64625138e35e256b21caf7253175b9656f89dd3c400e4380d2283cd4060f08",
+  "tools": [
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 0,
+      "output": "PASS: validator cases"
+    }
+  ],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": true,
+  "final_text": [
+    "[DRONE]\nFile: `workspace/autonomy/hive_agent_message_contract_v5_candidate.py`\nFact: Shell output confirmed `PASS: validator cases`, indicating all validation assertions passed for the Queen-corrected message contract.\n\n[DRONE SELF-PROMPT]\nAgenda: Verification complete; no further actions required per Architect's bounded assignment.\nVerified facts: The `validate_agent_message` function in `hive_agent_message_contract_v5_candidate.py` correctly enforced all field validations, including missing fields (`MISSING_TASK_ID`, `MISSING_AGENT_TYPE`, etc.), invalid values (`INVALID_TRUST_CLASS`, `INVALID_AUDIENCE`, etc.), and type constraints (e.g., `ARTIFACT_REF_ITEM_NOT_STRING`). The test suite passed with output `PASS: validator cases`.\nNext bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T090622854249Z"
+}

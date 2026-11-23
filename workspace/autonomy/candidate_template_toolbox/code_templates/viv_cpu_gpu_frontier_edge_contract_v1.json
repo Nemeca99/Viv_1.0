@@ -1,0 +1,68 @@
+{
+  "schema_version": "viv_cpu_gpu_frontier_edge_v1",
+  "receipt_schema": "viv_cpu_gpu_frontier_edge_receipt_v1",
+  "contract_status": "candidate_only",
+  "parent": {
+    "receipt_path": "foundation/artifacts/auto/agentic/cpu_gpu_frontier_selection_v1/frontier_selection_v1_20260815T152434Z_36996/receipt.json",
+    "receipt_sha256": "1BB3AA17D65DAF0836E4C0352A9EC0934FB09E5F8BFC6DB06FD0B37BC842D7B5",
+    "candidate_sha256": "99C02AF7225044E27B88B11DA92A7BE209F22540E5185F15A5A759C2ECCE53D3",
+    "candidate_state_sha256": "87C1244EE22B25FE167BF7570340B8E8E38FB80A9690E608391A03EA7C6D87DD"
+  },
+  "frozen_authority": {
+    "seed_zero_generation": 0,
+    "cpu_is_deterministic_judge": true,
+    "gpu_is_private_probability_proposal": true,
+    "rust_is_executable_write_membrane": true,
+    "all_routes_retained": true,
+    "pruning_allowed": false,
+    "preferred_route_allowed": false,
+    "production_mutation": false,
+    "expected_rust_state": "HOLD_SECURITY"
+  },
+  "representation": {
+    "name": "pairwise_predecision_edge_v1",
+    "prompt": "VIV|f4|p=<prior>|q=<pair>|r=<relation>|e=<evidence>|a=<authority>|b=<budget>|c=<context>|o=",
+    "relation_codes": {"w": "left_route_wins", "l": "right_route_wins", "t": "tie_or_unresolved"},
+    "target_is_one_of_pair": true,
+    "expected_slot_hidden": true,
+    "target_leakage": false,
+    "post_decision_fields": false,
+    "maximum_prompt_characters": 99
+  },
+  "curriculum": {
+    "schema": "viv_cpu_gpu_frontier_edge_curriculum_v1",
+    "dataset_sha256": "0DE49889F86BC160DE87877AACF9FE459B3E1883235C3E1026E96154EB1254BE",
+    "parent_dataset_sha256": "3D1935C011E0E5A3771EF41A34E3609FEAF957ADAA30351FF01F15C9FFE00F7E",
+    "training_rows": 224,
+    "repair_rows": 32,
+    "validation_rows": 16,
+    "negative_rows": 8,
+    "two_row_traces": 8,
+    "sampler_index_space": 224,
+    "no_train_evaluation_leakage": true,
+    "metadata_only": true
+  },
+  "recipe": {
+    "device": "cpu",
+    "seed": 43,
+    "steps": 1024,
+    "batch_size": 8,
+    "learning_rate": 0.0005,
+    "repeats": 2,
+    "generation_budget": 40,
+    "tokenizer_changed": false,
+    "decoder_changed": false
+  },
+  "gates": {
+    "supported_model_origin_minimum": 12,
+    "per_pair_coverage_minimum": 2,
+    "trace_complete_minimum": 6,
+    "negative_cpu_accepts": 0,
+    "unauthorized_cpu_accepts": 0,
+    "gpu_nonempty_required": true,
+    "repeated_normalized_digest_equal": true,
+    "independent_verification_required": true
+  },
+  "failure_states": ["HOLD_FRONTIER_EDGE_PREFLIGHT", "HOLD_FRONTIER_EDGE_MODEL", "HOLD_FRONTIER_EDGE_DETERMINISM", "HOLD_FRONTIER_EDGE_RECURSION", "HOLD_FRONTIER_EDGE_SECURITY", "FAIL_FRONTIER_EDGE_PROTECTED_STATE"],
+  "model_packet_exclusions": ["expected_slot", "target_frame", "cpu_final_disposition", "post_decision_state", "source_body", "source_path", "shell", "python", "generated_code"]
+}

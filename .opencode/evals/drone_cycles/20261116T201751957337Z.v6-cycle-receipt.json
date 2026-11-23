@@ -1,0 +1,400 @@
+{
+  "cycle_succeeded": false,
+  "stop_reason": "self_prompt_missing_after_aios_router_lookup_drone_seed",
+  "session_mode": "fresh_visible_action_session",
+  "agent": "drone_build",
+  "session_id": "ses_e19fed567ffeMWqzTbmCEASMvh",
+  "session_recovery": null,
+  "model_ids": [
+    "omnicoder-2-9b"
+  ],
+  "required_tools": [
+    "aios_router_lookup_drone_seed",
+    "aios_router_open_build_task",
+    "read",
+    "aios_router_accept_self_prompt",
+    "localcoder_add_python",
+    "shell",
+    "aios_router_record_turn_result",
+    "aios_router_complete_lane"
+  ],
+  "final_validation": "final_report_missing_drone_tag",
+  "self_check_validation": {
+    "required": true,
+    "passed": false,
+    "reason": "self_check_result_missing"
+  },
+  "read_evidence_validation": null,
+  "source_line_validation": {
+    "required": true,
+    "passed": false,
+    "reason": "assigned_line_limit_target_unreadable",
+    "target": "workspace/autonomy/run_visible_drone_cycle_v8.py",
+    "exclusive_limit": 100
+  },
+  "intermediate_validation": {
+    "passed": false,
+    "reason": "self_prompt_missing_after_aios_router_lookup_drone_seed"
+  },
+  "body_gate_receipts": [
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794860201419-ea43547e-648f-4a80-8e3f-fe2db23b9b76-body-gate.json",
+      "sha256": "24f7c562ef9508446e2b3a310b8e701ccb72c787ae67e1d3678a80d37cb68e6f",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794860251,
+        "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+        "gpu_memory_ceiling_percent": 97.6,
+        "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+        "observed_gpu_memory_percent": 96.6,
+        "observed_gpu_memory_source": "hwinfo",
+        "observed_gpu_sensor_age_seconds": 0.6,
+        "observed_ram_percent": 78.1,
+        "scope": "localcoder_runtime",
+        "status": "applied",
+        "waived_reasons": [
+          "gpu_memory_at_or_above_limit_or_unavailable"
+        ]
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 96.6,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "at_or_above_limit",
+        "host_ram_percent": 78.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.6
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794860208739-c96e27cb-1cb0-4187-9865-6786f29394a3-body-gate.json",
+      "sha256": "686a8ca58258e8511c06a5695cb7339492a791a292eb92f59d4cbe137616d487",
+      "source": "tool:aios_router_lookup_drone_seed",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794860251,
+        "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+        "gpu_memory_ceiling_percent": 97.6,
+        "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+        "observed_gpu_memory_percent": 96.4,
+        "observed_gpu_memory_source": "hwinfo",
+        "observed_gpu_sensor_age_seconds": 2,
+        "observed_ram_percent": 79.4,
+        "scope": "localcoder_runtime",
+        "status": "applied",
+        "waived_reasons": [
+          "gpu_memory_at_or_above_limit_or_unavailable"
+        ]
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 96.4,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "at_or_above_limit",
+        "host_ram_percent": 79.4,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 2
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794860213194-5f5a1a59-b95d-4b4d-bafe-0fbbb6e3f5f2-body-gate.json",
+      "sha256": "f8a6ef60099c994246a2df66fdac53813dbaaa8cf5ceeb666e32c7d83e200103",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794860251,
+        "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+        "gpu_memory_ceiling_percent": 97.6,
+        "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+        "observed_gpu_memory_percent": 96.5,
+        "observed_gpu_memory_source": "hwinfo",
+        "observed_gpu_sensor_age_seconds": 2,
+        "observed_ram_percent": 78.7,
+        "scope": "localcoder_runtime",
+        "status": "applied",
+        "waived_reasons": [
+          "gpu_memory_at_or_above_limit_or_unavailable"
+        ]
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 96.5,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "at_or_above_limit",
+        "host_ram_percent": 78.7,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 2
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794860220564-9282b5f5-d248-4432-9498-a243d2a3c3b7-body-gate.json",
+      "sha256": "5a892fa02f09f00087df238fe29617198501c84f64c3c398109724f646542d78",
+      "source": "tool:localcoder_drone_self_prompt",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794860251,
+        "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+        "gpu_memory_ceiling_percent": 97.6,
+        "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+        "observed_gpu_memory_percent": 96.4,
+        "observed_gpu_memory_source": "hwinfo",
+        "observed_gpu_sensor_age_seconds": 1.7,
+        "observed_ram_percent": 78,
+        "scope": "localcoder_runtime",
+        "status": "applied",
+        "waived_reasons": [
+          "gpu_memory_at_or_above_limit_or_unavailable"
+        ]
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 96.4,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "at_or_above_limit",
+        "host_ram_percent": 78,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794860225269-c48c2f63-9ae4-4d5e-9ec2-09fba199ef7c-body-gate.json",
+      "sha256": "023fa6137d867bec58788766946f76ad2caf2a8100d1155a23463c2a27b247d1",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794860251,
+        "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+        "gpu_memory_ceiling_percent": 97.6,
+        "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+        "observed_gpu_memory_percent": 96.6,
+        "observed_gpu_memory_source": "hwinfo",
+        "observed_gpu_sensor_age_seconds": 1.8,
+        "observed_ram_percent": 77.3,
+        "scope": "localcoder_runtime",
+        "status": "applied",
+        "waived_reasons": [
+          "gpu_memory_at_or_above_limit_or_unavailable"
+        ]
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 96.6,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "at_or_above_limit",
+        "host_ram_percent": 77.3,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.8
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794860235826-43131126-d856-43dc-92e7-ed219a728a04-body-gate.json",
+      "sha256": "fd43c1f4df70f2d2eb892bfe241abdf2f2050a71bc32214a9d01e96493f3aa9e",
+      "source": "tool:aios_router_open_build_task",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794860251,
+        "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+        "gpu_memory_ceiling_percent": 97.6,
+        "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+        "observed_gpu_memory_percent": 96.4,
+        "observed_gpu_memory_source": "hwinfo",
+        "observed_gpu_sensor_age_seconds": 1.7,
+        "observed_ram_percent": 78.4,
+        "scope": "localcoder_runtime",
+        "status": "applied",
+        "waived_reasons": [
+          "gpu_memory_at_or_above_limit_or_unavailable"
+        ]
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 96.4,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "at_or_above_limit",
+        "host_ram_percent": 78.4,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.7
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794860243031-4d86b375-267e-4851-b3a6-ec3c5246ad1c-body-gate.json",
+      "sha256": "2704b2e282675bffcb9b4e5d3d00afae170a2cae9ba7f66905a791eefd87f038",
+      "source": "model_request:primary",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794860251,
+        "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+        "gpu_memory_ceiling_percent": 97.6,
+        "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+        "observed_gpu_memory_percent": 96.4,
+        "observed_gpu_memory_source": "hwinfo",
+        "observed_gpu_sensor_age_seconds": 1.9,
+        "observed_ram_percent": 79.8,
+        "scope": "localcoder_runtime",
+        "status": "applied",
+        "waived_reasons": [
+          "gpu_memory_at_or_above_limit_or_unavailable"
+        ]
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 96.4,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "at_or_above_limit",
+        "host_ram_percent": 79.8,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.9
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794860248042-ce5a932f-2174-4a31-9fa1-2f043ea40ff6-body-gate.json",
+      "sha256": "69f52864dce3d487941c9ff95fafd08797014ac47378b9a0a99a7290c6dca37a",
+      "source": "tool:localcoder_drone_self_prompt",
+      "allowed": true,
+      "disposition": "ALLOW_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794860251,
+        "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+        "gpu_memory_ceiling_percent": 97.6,
+        "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+        "observed_gpu_memory_percent": 96.6,
+        "observed_gpu_memory_source": "hwinfo",
+        "observed_gpu_sensor_age_seconds": 0.9,
+        "observed_ram_percent": 80.1,
+        "scope": "localcoder_runtime",
+        "status": "applied",
+        "waived_reasons": [
+          "gpu_memory_at_or_above_limit_or_unavailable"
+        ]
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 96.6,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "at_or_above_limit",
+        "host_ram_percent": 80.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 0.9
+      },
+      "reasons": []
+    },
+    {
+      "path": "L:\\LocalCoder\\.opencode\\receipts\\1794860252922-00ed1372-06f7-44bf-8e27-fedbd46614ad-body-gate.json",
+      "sha256": "dc48e458711b46c24ce46c2e37355dcefa5c5826c3e6efa6ee8d2caaaac87eee",
+      "source": "model_request:primary",
+      "allowed": false,
+      "disposition": "HOLD_MIND_RUNTIME",
+      "authority": "deterministic_aios_body_rust",
+      "architect_permission": {
+        "expires_unix": 1794860251,
+        "goal_id": "01a1e340-84ed-77c3-92f3-3eb738b89f5b",
+        "gpu_memory_ceiling_percent": 97.6,
+        "grant_id": "architect-localcoder-drone-code-v8-20261116T201231Z",
+        "observed_gpu_memory_percent": 96.7,
+        "observed_gpu_memory_source": "hwinfo",
+        "observed_gpu_sensor_age_seconds": 1.4,
+        "observed_ram_percent": 80.1,
+        "scope": "localcoder_runtime",
+        "status": "expired",
+        "waived_reasons": []
+      },
+      "resource_diagnostics": {
+        "gpu_memory_percent": 96.7,
+        "gpu_memory_source": "hwinfo",
+        "gpu_memory_state": "at_or_above_limit",
+        "host_ram_percent": 80.1,
+        "host_sample_window_seconds": 0.05,
+        "sensor_age_seconds": 1.4
+      },
+      "reasons": [
+        "gpu_memory_at_or_above_limit_or_unavailable"
+      ]
+    }
+  ],
+  "preflight_observation": {
+    "valid": true,
+    "allowed": true,
+    "authority": "deterministic_aios_body_rust",
+    "disposition": "ALLOW_MIND_RUNTIME",
+    "reasons": [],
+    "resource_diagnostics": {
+      "gpu_memory_percent": 96.4,
+      "gpu_memory_source": "hwinfo",
+      "gpu_memory_state": "at_or_above_limit",
+      "host_ram_percent": 77.4,
+      "host_sample_window_seconds": 0.05,
+      "sensor_age_seconds": 1.1
+    },
+    "return_code": 0
+  },
+  "assignment_sha256": "ab9a10995be5584daa42716a7ac5439cc72f05a78b4ca82cf067cf69d4e785b9",
+  "work": {
+    "agent": "drone_build",
+    "elapsed_seconds": 73.531,
+    "exit_code": 1,
+    "transport_exit_code": 1,
+    "session_outcomes": [
+      "failed"
+    ],
+    "timed_out": false,
+    "sessions": [
+      "ses_e19fed567ffeMWqzTbmCEASMvh"
+    ],
+    "visibility": "desktop",
+    "prompt_sha256": "e2b37728a22ff3e95e7b0915ccdc079e489fba2550e054e7d585d49dd8894ba0",
+    "tools": [
+      {
+        "tool": "aios_router_lookup_drone_seed",
+        "status": "completed"
+      },
+      {
+        "tool": "localcoder_drone_self_prompt",
+        "status": "completed"
+      },
+      {
+        "tool": "aios_router_open_build_task",
+        "status": "completed"
+      },
+      {
+        "tool": "localcoder_drone_self_prompt",
+        "status": "completed"
+      }
+    ],
+    "model_ids": [
+      "omnicoder-2-9b"
+    ],
+    "shell_checks": [],
+    "task_succeeded": false,
+    "task_errors": [
+      "session_outcome_not_succeeded",
+      "visible_final_text_missing",
+      "self_check_result_missing"
+    ],
+    "tool_errors": [],
+    "shell_check_errors": [],
+    "final_shell_check_passed": false,
+    "final_text": [],
+    "session_exports_terminal": true,
+    "background_interrupted": false,
+    "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261116T201638279866Z",
+    "wrapper_exit": 1,
+    "prompt_path": "L:\\LocalCoder\\.opencode\\evals\\drone_cycles\\20261116T201638200273Z.prompt.txt",
+    "exit_only_final_shell_check_passed": false,
+    "dispatcher_final_text": []
+  }
+}

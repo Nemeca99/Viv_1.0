@@ -1,0 +1,105 @@
+{
+  "schema_version": "aios_sensor_internal_state_contract_v1",
+  "surface_id": "aios_sensor_internal_state_v1",
+  "purpose": "Encode Architect doctrine: EXTERNAL sensors tell INTERNAL truth state. The model does not author plant truth. GPU, voice, and UI do not override sensor cards.",
+  "computer_not_language_brain": true,
+  "model_authors_plant_truth": false,
+  "internal_truth_measured_not_narrated": true,
+  "pipeline": {
+    "flow": [
+      "external sensors (temps, load, GPU util, iCUE, disk, RID plant, ...)",
+      "Rust Security IN (120V in)",
+      "CPU internal state card (RID/S_n/HOLD/ABSTAIN)",
+      "(optional) mouth render lossless",
+      "Rust Security OUT if spoken"
+    ],
+    "authority": "external_sensors",
+    "cpu_role": "bind_measured_observations_to_epistemic_card",
+    "mouth_role": "optional_lossless_render_only",
+    "gpu_role": "optional_external_movement_not_truth"
+  },
+  "voltage_versus_duration": {
+    "rid_plant_capture_duration_s": 120,
+    "rid_plant_capture_note": "120 seconds is the default stressed plant-capture duration when proving plant. It is not the security membrane.",
+    "rust_membrane": "120V_in_120V_out",
+    "rust_membrane_citation": "foundation/docs/architecture/AIOS_120_IN_120_OUT_V1.md",
+    "rust_membrane_note": "120V in / 120V out is the Rust security-membrane integrity metaphor, not a capture duration."
+  },
+  "mode": {
+    "plan_only": true,
+    "read_only": true,
+    "candidate_only_mind": true,
+    "aios_runtime_start": false,
+    "gpu_train_start": false,
+    "gpu_execution": false,
+    "daemon": false,
+    "production_write": false,
+    "pulse_rid": false,
+    "stress_rid_120s": false
+  },
+  "epistemic": ["FACT", "HOLD", "ABSTAIN"],
+  "bind_rules": {
+    "no_observation": "ABSTAIN",
+    "missing_sensor": "ABSTAIN",
+    "stale_sensor": "HOLD",
+    "contradictory_sensor": "HOLD",
+    "fabricated_s_n": false,
+    "speech_string_cannot_override": true,
+    "gpu_claim_cannot_override": true,
+    "ui_claim_cannot_override": true,
+    "gpu_util_is_optional_sensor_field": true,
+    "gpu_util_does_not_start_training": true
+  },
+  "s_n_contradiction_abs_tol": 0.05,
+  "live_feed": {
+    "adapter": "lib.rid_feed.read_live",
+    "meta": "lib.rid_feed.feed_meta",
+    "missing": "ABSTAIN",
+    "stale_file": "HOLD",
+    "fresh_sample": "FACT",
+    "do_not_call": [
+      "lib.rid_feed.pulse_once",
+      "lib.rid_telemetry.sample_once",
+      "lib.prt_cycle.observe_state",
+      "lib.pulse_plant.run_pulse"
+    ]
+  },
+  "import_do_not_rewrite": [
+    "lib.rid_feed.read_live",
+    "lib.viv_pillar_score_adapters.build_rid_score_card",
+    "lib.aios_adapter_rid.status",
+    "lib.viv_cpu_mouth_render.render_cpu_mouth"
+  ],
+  "do_not_fight_in_flight": [
+    "aios_gpu_domain",
+    "viv_cpu_mouth_render"
+  ],
+  "expected_rust_sha256": "6BCA1C84F9BE871D8F5876A7F84DE8D4437E21A10C602A9E67F55EB162005261",
+  "expected_pointer_generation": "gen_c6be6ff385aed99f",
+  "forbidden": {
+    "pulse_once": true,
+    "sample_once": true,
+    "observe_state_publish": true,
+    "stress_rid_120s": true,
+    "kill_pretrain": true,
+    "gpu_train_start": true,
+    "fabricate_s_n": true,
+    "speech_override": true,
+    "edit_pyd": true,
+    "pointer_mutation": true,
+    "rewrite_mouth_render": true,
+    "rewrite_gpu_domain": true
+  },
+  "protected_untouched": [
+    "Seed 0",
+    "template registry",
+    "active pointer",
+    "Rust security binary",
+    "pretrain weights"
+  ],
+  "cli": {
+    "runner": "build_tools/run_aios_sensor_internal_state_v1.py",
+    "allowed_commands": ["status"],
+    "fail_soft": true
+  }
+}

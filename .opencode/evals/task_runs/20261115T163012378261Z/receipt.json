@@ -1,0 +1,67 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 600.375,
+  "exit_code": 1,
+  "transport_exit_code": 1,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": true,
+  "sessions": [
+    "ses_e1ff47fdbffeerie5S27MLsW56"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "8153e328ded3a7da4becdd717df0f6a54f82fd8a1ec0c1d09aa0359575dd596a",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "completed"
+    },
+    {
+      "tool": "shell",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_record_turn_result",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "File \"L:\\LocalCoder\\workspace\\autonomy\\hive_postal_route_request_v11_candidate.py\", line 1\r\n    prepare_routing_request(proposed_recipient_id):\r\n                                                  ^\r\nSyntaxError: invalid syntax\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "timed_out",
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "File \"L:\\LocalCoder\\workspace\\autonomy\\hive_postal_route_request_v11_candidate.py\", line 1\r\n    prepare_routing_request(proposed_recipient_id):\r\n                                                  ^\r\nSyntaxError: invalid syntax\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE SELF-PROMPT]\nAgenda: Complete lane after recording turn result; fix Python syntax error in hive_postal_route_request_v11_candidate.py before final execution verification.\nVerified facts: aios_router_record_turn_result recorded (sha256=96d02be056e566a268ba47773a0cdff17eb7e2a357102dd3892ab15a9edbc4f6, task_id=oc_c3b7f750313feef1b8def50afc4bb4635031c4ad119305c9ce099e01a8dd90e5, turn=0).\nNext bounded action: Call the aios_router_complete_lane tool."
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": true,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T163012378261Z"
+}

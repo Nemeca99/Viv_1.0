@@ -1,0 +1,197 @@
+{
+  "info": {
+    "id": "ses_e1e25cab7ffeISb5hzWrCKIYNH",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "drone_build",
+    "cost": 0,
+    "tokens": {
+      "input": 18187,
+      "output": 274,
+      "reasoning": 101,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "succeeded",
+    "time": {
+      "created": 1794790536527,
+      "updated": 1794791136549,
+      "busy": 1794790709784,
+      "idle": 1794790709758,
+      "viewed": 1794790709758
+    },
+    "title": "LocalCoder Drone 20261116T005536362553Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1e1da3576001X3ZWLylGO6kybr",
+      "time": {
+        "created": 1794790536566
+      },
+      "type": "agent-switched",
+      "agent": "drone_build",
+      "previous": "drone_build"
+    },
+    {
+      "id": "msg_1e1da3563001xh12xUG6yGeo8x",
+      "time": {
+        "created": 1794790536600
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nAdd the new file `workspace/autonomy/typed_composition_receipt_audit_v1_candidate.py`. Only artifact to be added is this Python file; Rust, candidate database, model settings, and daemons stay unchanged.\nCall the read tool for `workspace/autonomy/candidate_typed_composition_executor_v2.py` and use its actual constants/schema to implement the checker.\nCall the localcoder_add_python tool to add exactly the named new file. Implement `--self-check`: load the saved receipt `workspace/autonomy/learning/neural_runs/composition_receipts/typed_composition_execution_20261116T001444Z_62c3fffb.json` and open the candidate SQLite database with URI `mode=ro`. Print exactly `PASS: 8 checks` only if all pass: (1) receipt schema; (2) canonical SHA-256 excluding only `receipt_sha256`; (3) database SHA-256 matches receipt; (4) PRAGMA quick_check is `ok`; (5) three database relay rows match receipt count; (6) two unique execution nodes end with entry version; (7) relay receipt/key digests recompute and provider/consumer types agree; (8) candidate_store_read_only is true and promoted, live_viv_modified, model_weights_changed are false. The database connection must not write. No other output file.\nCall the shell tool with exactly this command: `& 'L:/.venv/Scripts/python.exe' -B 'L:/LocalCoder/workspace/autonomy/typed_composition_receipt_audit_v1_candidate.py' --self-check`. It must exit 0 and print exactly `PASS: 8 checks`.\nAfter each tool result, self-prompt with Agenda:, Verified facts:, Next bounded action: naming only the next assigned tool. Final response starts `[DRONE]`, reports the actual added filename and a concrete source fact, then self-prompts with Next bounded action: STOP. Use only read, localcoder_add_python, shell; stop on any denied or failed tool.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: read → localcoder_add_python → shell. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n\n[QUEEN → DRONE]\nExecute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each non-final tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Every field must contain non-empty text; do not put commas after labels. Verified facts must cite the latest actual tool evidence, not the path or directory name alone. Name the next assigned tool in Next bounded action. After the final tool, combine the report and self-prompt in one final message: it must start exactly with [DRONE], state the actual target filename and one concrete fact from returned content, then end with [DRONE SELF-PROMPT] and the same fields, each non-empty and on its own line. Final Verified facts must repeat one concrete fact anchor from the read output and include the exact shell output when a shell check was assigned. Next bounded action must be STOP. Do not invent tool results or claim unverified work.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1e1da35a8001iKjGZBhfugP66Y",
+      "time": {
+        "created": 1794790536632,
+        "firstToken": 1794790582418,
+        "streamed": 1794790582437,
+        "completed": 1794790588430
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_66",
+          "name": "read",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "path": "L:/LocalCoder/workspace/autonomy/candidate_typed_composition_executor_v2.py"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Read file L:/LocalCoder/workspace/autonomy/candidate_typed_composition_executor_v2.py, lines 1-404\n1: \"\"\"Execute a candidate Python circuit from persisted, typed relay evidence.\n2: \n3: The executor reads only ALLOW candidate versions and the append-only typed\n4: relay graph. It validates version receipts, contract identity, relay digests,\n5: source call sites, and types before composing exact function definitions. Each\n6: dependency subtree and the requested entry function must pass the existing\n7: deterministic Python gate. No active pointer, learned memory, live topology,\n8: model weights, or candidate graph rows are changed.\n9: \"\"\"\n10: from __future__ import annotations\n11: \n12: import argparse\n13: import ast\n14: from datetime import datetime, timezone\n15: import hashlib\n16: import importlib.util\n17: import json\n18: from pathlib import Path\n19: import sqlite3\n20: import subprocess\n21: import sys\n22: import uuid\n23: \n24: HERE = Path(__file__).resolve().parent\n25: WORKSPACE = HERE.parent\n26: ROOT = WORKSPACE.parent\n27: sys.path[:0] = [str(WORKSPACE), str(HERE)]\n28: \n29: import candidate_typed_function_relays_v1 as relay_builder\n30: import candidate_verified_function_store as store\n31: import viv_code_learning_loop as gates\n32: from aios_rebuild.privacy_core.privacy_core import PrivacyCore\n33: \n34: DB_PATH = store.DB_PATH\n35: CURRICULUM_PATH = HERE / \"python_edge_curriculum_test_10017.py\"\n36: RECEIPT_ROOT = HERE / \"learning\" / \"neural_runs\" / \"composition_receipts\"\n37: GOAL_ID = \"01a1d847-3b27-7533-bbc2-c718ace48ae7\"\n38: TABLE = \"typed_function_relays_v1\"\n39: MAX_DEPTH = 16\n40: MAX_NODES = 32\n41: \n42: \n43: def sha256_bytes(value: bytes) -> str:\n44:     return hashlib.sha256(value).hexdigest()\n45: \n46: \n47: def sha256_text(value: str) -> str:\n48:     return sha256_bytes(value.encode(\"utf-8\"))\n49: \n50: \n51: def canonical_hash(value: object) -> str:\n52:     encoded = json.dumps(value, ensure_ascii=False, sort_keys=True,\n53:                          separators=(\",\", \":\")).encode(\"utf-8\")\n54:     return sha256_bytes(encoded)\n55: \n56: \n57: def body_preflight() -> dict:\n58:     command = [str(Path(sys.executable)), \"-m\",\n59:                \"aios_rebuild.main_core.mind_runtime_gate\",\n60:                \"--goal-id\", GOAL_ID]\n61:     result = subprocess.run(command, cwd=WORKSPACE, capture_output=True,\n62:                             text=True, encoding=\"utf-8\", timeout=45)\n63:     if result.returncode != 0:\n64:         raise RuntimeError(\"RUST_BODY_PREFLIGHT_FAILED:\" + result.stderr[-1200:])\n65:     try:\n66:         body = json.loads(result.stdout.strip().splitlines()[-1])\n67:     except (IndexError, json.JSONDecodeError) as exc:\n68:         raise RuntimeError(\"RUST_BODY_PREFLIGHT_INVALID_JSON\") from exc\n69:     if (body.get(\"allowed\") is not True\n70:             or body.get(\"authority\") != \"deterministic_aios_body_rust\"\n71:             or body.get(\"disposition\") != \"ALLOW_MIND_RUNTIME\"):\n72:         raise PermissionError(\"RUST_BODY_PREFLIGHT_DENIED:\" + json.dumps(body))\n73:     return body\n74: \n75: \n76: def load_curriculum() -> dict[str, dict]:\n77:     spec = importlib.util.spec_from_file_location(\n78:         \"candidate_composition_executor_curriculum\", CURRICULUM_PATH)\n79:     if spec is None or spec.loader is None:\n80:         raise RuntimeError(\"CURRICULUM_IMPORT_UNAVAILABLE\")\n81:     module = importlib.util.module_from_spec(spec)\n82:     spec.loader.exec_module(module)\n83:     rows = module.CURRICULUM + module.EDGE_TRANSFER_CURRICULUM\n84:     result: dict[str, dict] = {}\n85:     for row in rows:\n86:         task_id = str(row.get(\"id\", \"\"))\n87:         if not task_id or task_id in result:\n88:             raise ValueError(\"CURRICULUM_TASK_ID_MISSING_OR_DUPLICATE\")\n89:         result[task_id] = row\n90:     return result\n91: \n92: \n93: def open_readonly() -> sqlite3.Connection:\n94:     if not DB_PATH.is_file():\n95:         raise FileNotFoundError(DB_PATH)\n96:     connection = sqlite3.connect(\n97:         f\"file:{DB_PATH.as_posix()}?mode=ro\", uri=True, timeout=15)\n98:     connection.row_factory = sqlite3.Row\n99:     return connection\n100: \n101: \n102: def load_version(db: sqlite3.Connection, version_id: int) -> dict:\n103:     row = db.execute(\"\"\"\n104:         SELECT f.function_key,f.language,f.domain,f.function_name,f.signature,\n105:                f.specification,f.contract_sha256,\n106:                v.version_id,v.parent_version_id,v.task_id,v.source_kind,\n107:                v.source_sha256,v.code,v.code_sha256,v.tests_sha256,\n108:                v.gate_name,v.gate_status,v.gate_output,v.gate_receipt_sha256,\n109:                v.admitted_utc\n110:         FROM function_versions v\n111:         JOIN functions f USING(function_key)\n112:         WHERE v.version_id=?\n113:     \"\"\", (version_id,)).fetchone()\n114:     if row is None:\n115:         raise ValueError(f\"FUNCTION_VERSION_NOT_FOUND:{version_id}\")\n116:     version = dict(row)\n117:     name = version[\"function_name\"]\n118:     if version[\"language\"] != \"python\" or version[\"gate_status\"] != \"ALLOW\":\n119:         raise ValueError(f\"FUNCTION_VERSION_NOT_ADMITTED_PYTHON:{version_id}\")\n120:     if sha256_text(version[\"code\"]) != version[\"code_sha256\"]:\n121:         raise ValueError(f\"FUNCTION_CODE_HASH_MISMATCH:{version_id}\")\n122:     if sha256_text(version[\"specification\"]) != version[\"contract_sha256\"]:\n123:         raise ValueError(f\"FUNCTION_SPEC_HASH_MISMATCH:{version_id}\")\n124:     expected_key, expected_name, expected_signature = store._function_identity(\n125:         version[\"language\"], version[\"domain\"], version[\"specification\"])\n126:     if (expected_key != version[\"function_key\"]\n127:             or expected_name != name\n128:             or expected_signature != version[\"signature\"]):\n129:         raise ValueError(f\"FUNCTION_CONTRACT_IDENTITY_MISMATCH:{version_id}\")\n130:     gate_evidence = {\n131:         \"task_id\": version[\"task_id\"], \"language\": version[\"language\"],\n132:         \"function_key\": version[\"function_key\"],\n133:         \"code_sha256\": version[\"code_sha256\"],\n134:         \"tests_sha256\": version[\"tests_sha256\"],\n135:         \"gate\": version[\"gate_name\"], \"status\": version[\"gate_status\"],\n136:         \"output\": version[\"gate_output\"],\n137:         \"created_utc\": version[\"admitted_utc\"],\n138:     }\n139:     if canonical_hash(gate_evidence) != version[\"gate_receipt_sha256\"]:\n140:         raise ValueError(f\"FUNCTION_GATE_RECEIPT_MISMATCH:{version_id}\")\n141:     version[\"function_code\"], version[\"function_ast\"] = relay_builder.extract_function(\n142:         version[\"code\"], name)\n143:     return version\n144: \n145: \n146: def validate_edge(db: sqlite3.Connection, raw: sqlite3.Row,\n147:                   versions: dict[int, dict]) -> dict:\n148:     stored = json.loads(raw[\"evidence_json\"])\n149:     callsite = json.loads(raw[\"callsite_json\"])\n150:     if not isinstance(stored, dict) or not isinstance(callsite, dict):\n151:         raise ValueError(\"RELAY_EVIDENCE_NOT_OBJECT\")\n152:     if stored.get(\"schema\") != \"viv_typed_function_relay_v1\":\n153:         raise ValueError(\"RELAY_SCHEMA_UNSUPPORTED\")\n154:     if stored.get(\"receipt_sha256\") != raw[\"receipt_sha256\"]:\n155:         raise ValueError(\"RELAY_RECEIPT_COLUMN_MISMATCH\")\n156:     receipt_payload = dict(stored)\n157:     claimed_receipt = receipt_payload.pop(\"receipt_sha256\")\n158:     if canonical_hash(receipt_payload) != claimed_receipt:\n159:         raise ValueError(\"RELAY_RECEIPT_HASH_MISMATCH\")\n160:     key_payload = dict(receipt_payload)\n161:     claimed_key = key_payload.pop(\"relay_key\", None)\n162:     if claimed_key != raw[\"relay_key\"] or canonical_hash(key_payload) != claimed_key:\n163:         raise ValueError(\"RELAY_KEY_HASH_MISMATCH\")\n164:     provider_id = int(raw[\"provider_version_id\"])\n165:     consumer_id = int(raw[\"consumer_version_id\"])\n166:     provider = versions.setdefault(provider_id, load_version(db, provider_id))\n167:     consumer = versions.setdefault(consumer_id, load_version(db, consumer_id))\n168:     columns = {\n169:         \"provider_version_id\": provider_id,\n170:         \"consumer_version_id\": consumer_id,\n171:         \"provider_function_name\": provider[\"function_name\"],\n172:         \"consumer_function_name\": consumer[\"function_name\"],\n173:         \"direction\": \"PROVIDER_RETURN_TO_CALLER_TYPED_USE\",\n174:         \"provider_output_type\": raw[\"provider_output_type\"],\n175:         \"consumer_input_type\": raw[\"consumer_input_type\"],\n176:     }\n177:     for key, value in columns.items():\n178:         if stored.get(key) != value:\n179:             raise ValueError(f\"RELAY_COLUMN_EVIDENCE_MISMATCH:{key}\")\n180:     if callsite != stored.get(\"callsite\"):\n181:         raise ValueError(\"RELAY_CALLSITE_COLUMN_MISMATCH\")\n182:     if raw[\"provider_output_type\"] != raw[\"consumer_input_type\"]:\n183:         raise ValueError(\"RELAY_TYPE_EDGE_MISMATCH\")\n184:     regenerated = relay_builder.typed_calls(\n185:         provider, consumer, provider[\"function_code\"], consumer[\"function_code\"],\n186:         provider[\"function_ast\"], consumer[\"function_ast\"])\n187:     exact = [item for item in regenerated if item[\"relay_key\"] == raw[\"relay_key\"]]\n188:     if len(exact) != 1 or canonical_hash(exact[0]) != canonical_hash(stored):\n189:         raise ValueError(\"RELAY_SOURCE_OR_TYPE_EVIDENCE_MISMATCH\")\n190:     return {\"row\": dict(raw), \"evidence\": stored,\n191:             \"provider\": provider, \"consumer\": consumer}\n192: \n193: \n194: def edges_for_consumer(db: sqlite3.Connection, version_id: int,\n195:                        versions: dict[int, dict]) -> list[dict]:\n196:     rows = db.execute(f\"\"\"\n197:         SELECT relay_key,provider_version_id,consumer_version_id,\n198:                provider_function_name,consumer_function_name,direction,\n199:                provider_output_type,consumer_input_type,callsite_json,\n200:                evidence_json,receipt_sha256,created_utc\n201:         FROM {TABLE}\n202:         WHERE consumer_version_id=?\n203:         ORDER BY provider_function_name,callsite_json,relay_key\n204:     \"\"\", (version_id,)).fetchall()\n205:     validated = [validate_edge(db, row, versions) for row in rows]\n206:     providers_by_name: dict[str, int] = {}\n207:     for edge in validated:\n208:         name = edge[\"provider\"][\"function_name\"]\n209:         provider_id = edge[\"provider\"][\"version_id\"]\n210:         previous = providers_by_name.setdefault(name, provider_id)\n211:         if previous != provider_id:\n212:             raise ValueError(f\"AMBIGUOUS_PROVIDER_VERSION:{name}\")\n213:     call_names = {\n214:         node.func.id for node in ast.walk(versions[version_id][\"function_ast\"])\n215:         if isinstance(node, ast.Call) and isinstance(node.func, ast.Name)\n216:     }\n217:     candidate_names = {row[0] for row in db.execute(\"\"\"\n218:         SELECT DISTINCT f.function_name\n219:         FROM function_versions v JOIN functions f USING(function_key)\n220:         WHERE f.language='python' AND v.gate_status='ALLOW'\n221:     \"\"\")}\n222:     represented = set(providers_by_name)\n223:     unlinked_candidates = sorted((call_names & candidate_names) - represented)\n224:     if unlinked_candidates:\n225:         raise ValueError(\"MISSING_TYPED_RELAY:\" + \",\".join(unlinked_candidates))\n226:     if represented - call_names:\n227:         raise ValueError(\"RELAY_PROVIDER_NOT_CALLED:\" + \",\".join(sorted(represented - call_names)))\n228:     return validated\n229: \n230: \n231: def curriculum_for_version(version: dict, curriculum: dict[str, dict],\n232:                            root_task: dict | None) -> dict:\n233:     task = root_task if root_task is not None else curriculum.get(version[\"task_id\"])\n234:     if task is None:\n235:         raise ValueError(f\"CURRICULUM_TEST_SOURCE_UNAVAILABLE:{version['task_id']}\")\n236:     if task[\"spec\"] != version[\"specification\"]:\n237:         raise ValueError(f\"CURRICULUM_SPEC_MISMATCH:{version['version_id']}\")\n238:     if sha256_text(task[\"tests\"]) != version[\"tests_sha256\"]:\n239:         raise ValueError(f\"CURRICULUM_TEST_HASH_MISMATCH:{version['version_id']}\")\n240:     return task\n241: \n242: \n243: def execute(entry_task_id: str, persist_receipt: bool = False) -> dict:\n244:     body = body_preflight()\n245:     curriculum = load_curriculum()\n246:     root_task = curriculum.get(entry_task_id)\n247:     if root_task is None:\n248:         raise ValueError(f\"ENTRY_TASK_NOT_FOUND:{entry_task_id}\")\n249:     db_hash_before = sha256_bytes(DB_PATH.read_bytes())\n250:     versions: dict[int, dict] = {}\n251:     circuit_cache: dict[int, dict] = {}\n252:     visiting: set[int] = set()\n253:     edges_by_consumer: dict[int, list[dict]] = {}\n254: \n255:     with open_readonly() as db:\n256:         quick = db.execute(\"PRAGMA quick_check\").fetchone()[0]\n257:         if quick != \"ok\":\n258:             raise RuntimeError(\"CANDIDATE_STORE_QUICK_CHECK_FAILED\")\n259:         target = db.execute(\"\"\"\n260:             SELECT v.version_id\n261:             FROM function_versions v JOIN functions f USING(function_key)\n262:             WHERE f.language='python' AND f.function_name=?\n263:               AND f.specification=? AND v.tests_sha256=?\n264:               AND v.gate_status='ALLOW'\n265:               AND EXISTS (\n266:                   SELECT 1 FROM typed_function_relays_v1 r\n267:                   WHERE r.consumer_version_id=v.version_id\n268:               )\n269:             ORDER BY v.version_id DESC\n270:         \"\"\", (root_task[\"spec\"].split(\"(\", 1)[0].removeprefix(\"def \"),\n271:               root_task[\"spec\"], sha256_text(root_task[\"tests\"]))).fetchall()\n272:         if len(target) != 1:\n273:             raise ValueError(f\"ENTRY_VERSION_NOT_UNIQUE:{entry_task_id}:{len(target)}\")\n274:         root_id = int(target[0][0])\n275:         root_version = load_version(db, root_id)\n276:         if root_version[\"specification\"] != root_task[\"spec\"]:\n277:             raise ValueError(\"ENTRY_SPEC_MISMATCH\")\n278:         if root_version[\"tests_sha256\"] != sha256_text(root_task[\"tests\"]):\n279:             raise ValueError(\"ENTRY_TEST_HASH_MISMATCH\")\n280: \n281:         def build(version_id: int, depth: int = 0,\n282:                   is_root: bool = False) -> dict:\n283:             if depth > MAX_DEPTH:\n284:                 raise ValueError(\"CIRCUIT_DEPTH_EXCEEDED\")\n285:             if version_id in circuit_cache:\n286:                 return circuit_cache[version_id]\n287:             if version_id in visiting:\n288:                 raise ValueError(\"CIRCUIT_CYCLE_DETECTED\")\n289:             if version_id not in versions and len(versions) >= MAX_NODES:\n290:                 raise ValueError(\"CIRCUIT_NODE_LIMIT_EXCEEDED\")\n291:             visiting.add(version_id)\n292:             version = versions.setdefault(version_id, load_version(db, version_id))\n293:             if is_root:\n294:                 task = curriculum_for_version(version, curriculum, root_task)\n295:             else:\n296:                 task = curriculum_for_version(version, curriculum, None)\n297:             edges = edges_by_consumer.setdefault(\n298:                 version_id, edges_for_consumer(db, version_id, versions))\n299:             order: list[int] = []\n300:             for provider_id in sorted({edge[\"provider\"][\"version_id\"] for edge in edges}):\n301:                 child = build(provider_id, depth + 1, False)\n302:                 for item in child[\"order\"]:\n303:                     if item not in order:\n304:                         order.append(item)\n305:             if version_id not in order:\n306:                 order.append(version_id)\n307:             names: dict[str, int] = {}\n308:             parts = []\n309:             for item in order:\n310:                 selected = versions[item]\n311:                 name = selected[\"function_name\"]\n312:                 previous = names.setdefault(name, item)\n313:                 if previous != item:\n314:                     raise ValueError(f\"CIRCUIT_FUNCTION_NAME_COLLISION:{name}\")\n315:                 parts.append(selected[\"function_code\"].rstrip())\n316:             composed = \"\\n\\n\".join(parts) + \"\\n\"\n317:             passed, output = gates.gate_python(composed, task[\"tests\"])\n318:             if not passed:\n319:                 raise RuntimeError(\n320:                     f\"CIRCUIT_GATE_DENIED:{version_id}:\" + output[:2400])\n321:             node = {\"version_id\": version_id, \"task_id\": version[\"task_id\"],\n322:                     \"function_name\": version[\"function_name\"],\n323:                     \"code_sha256\": version[\"code_sha256\"],\n324:                     \"tests_sha256\": version[\"tests_sha256\"],\n325:                     \"relay_count\": len(edges), \"order\": order,\n326:                     \"composed_code\": composed,\n327:                     \"gate\": {\"status\": \"ALLOW\", \"output\": output[-1000:]}}\n328:             circuit_cache[version_id] = node\n329:             visiting.remove(version_id)\n330:             return node\n331: \n332:         root = build(root_id, is_root=True)\n333:         all_edges = [edge[\"evidence\"] for consumer_id in root[\"order\"]\n334:                      for edge in edges_by_consumer.get(consumer_id, [])]\n335:         db_hash_after_read = sha256_bytes(DB_PATH.read_bytes())\n336:         if db_hash_after_read != db_hash_before:\n337:             raise RuntimeError(\"CANDIDATE_STORE_CHANGED_DURING_READ\")\n338: \n339:     receipt = {\n340:         \"schema\": \"viv_typed_composition_execution_v1\",\n341:         \"created_utc\": datetime.now(timezone.utc).isoformat(),\n342:         \"entry_task_id\": entry_task_id,\n343:         \"entry_version_id\": root_id,\n344:         \"entry_function\": root[\"function_name\"],\n345:         \"execution_order\": root[\"order\"],\n346:         \"node_count\": len(root[\"order\"]),\n347:         \"relay_count\": len(all_edges),\n348:         \"typed_relays\": all_edges,\n349:         \"node_gates\": [\n350:             {key: value for key, value in circuit_cache[item].items()\n351:              if key in {\"version_id\", \"task_id\", \"function_name\", \"code_sha256\",\n352:                         \"tests_sha256\", \"relay_count\", \"gate\"}}\n353:             for item in root[\"order\"]\n354:         ],\n355:         \"candidate_store_sha256\": db_hash_before,\n356:         \"candidate_store_quick_check\": \"ok\",\n357:         \"candidate_store_read_only\": True,\n358:         \"body_preflight\": {\n359:             \"authority\": body.get(\"authority\"),\n360:             \"disposition\": body.get(\"disposition\"),\n361:             \"body_image\": body.get(\"body_image\"),\n362:         },\n363:         \"live_viv_modified\": False,\n364:         \"promoted\": False,\n365:         \"model_weights_changed\": False,\n366:     }\n367:     target_path = None\n368:     if persist_receipt:\n369:         body_preflight()\n370:         decision = PrivacyCore().authorize_file_write(str(RECEIPT_ROOT))\n371:         if decision.get(\"allowed\") is not True:\n372:             raise PermissionError(\"PRIVACYCORE_DENIED_RECEIPT_DIRECTORY:\" + json.dumps(decision))\n373:         RECEIPT_ROOT.mkdir(parents=True, exist_ok=True)\n374:         target_path = RECEIPT_ROOT / (\n375:             f\"typed_composition_execution_{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}_\"\n376:             f\"{uuid.uuid4().hex[:8]}.json\")\n377:         decision = PrivacyCore().authorize_file_write(str(target_path))\n378:         if decision.get(\"allowed\") is not True:\n379:             raise PermissionError(\"PRIVACYCORE_DENIED_RECEIPT:\" + json.dumps(decision))\n380:         receipt[\"receipt_path\"] = str(target_path)\n381:     receipt[\"receipt_sha256\"] = canonical_hash(receipt)\n382:     if target_path is not None:\n383:         encoded = json.dumps(receipt, ensure_ascii=False, indent=2) + \"\\n\"\n384:         with target_path.open(\"x\", encoding=\"utf-8\", newline=\"\\n\") as stream:\n385:             stream.write(encoded)\n386:         receipt[\"receipt_file_sha256\"] = sha256_bytes(target_path.read_bytes())\n387:     return receipt\n388: \n389: \n390: def main() -> int:\n391:     parser = argparse.ArgumentParser(description=__doc__)\n392:     parser.add_argument(\"--self-check\", action=\"store_true\")\n393:     parser.add_argument(\"--entry-task\", default=\"py24_gregorian_leap_rule\")\n394:     parser.add_argument(\"--persist-receipt\", action=\"store_true\")\n395:     args = parser.parse_args()\n396:     if not args.self_check:\n397:         parser.error(\"--self-check is required\")\n398:     result = execute(args.entry_task, args.persist_receipt)\n399:     print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)\n400:     return 0\n401: \n402: \n403: if __name__ == \"__main__\":\n404:     raise SystemExit(main())"
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794790582423,
+            "ran": 1794790582433,
+            "completed": 1794790587171
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "545722f2b8cd9c9082ced4fda4f4fe72db4ab2f1",
+        "end": "ce8b634a14877a32564d48a086535cc549d01a66",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794790582397-840dbd7c-1f02-4b86-90b8-b7fc9a9bc87c.json",
+          "LocalCoder/.opencode/receipts/1794790582405-3c21987d-9aab-416b-b7ce-752cf6fe8a7a.json",
+          "LocalCoder/.opencode/receipts/1794790587131-9650950c-7a67-4e15-9c13-3c4891d7940d-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794790587150-9278ec5a-f69f-42c4-bd83-5faf21fcb7be.json",
+          "LocalCoder/.opencode/receipts/1794790587166-44997391-a385-4b6c-b038-a37c2de79abb.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 5588,
+        "output": 74,
+        "reasoning": 29,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1e1dafb1a0011f7llLsALRKphK",
+      "metadata": {
+        "instruction": {
+          "paths": [
+            "L:\\LocalCoder\\workspace\\AGENTS.md"
+          ]
+        }
+      },
+      "time": {
+        "created": 1794790587162
+      },
+      "text": "Instructions from: L:\\LocalCoder\\workspace\\AGENTS.md\n# LocalCoder Workspace Map\n\nRead `L:\\LocalCoder\\AGENTS.md` first.\n\n## Existing systems to reuse\n\n- `viv_autonomy.py` and `autonomy\\state.sqlite3`: persistent autonomous task loop, events, capabilities, training, evaluation, and promotion gates.\n- `viv_chat_cli.py`: existing user-facing Viv entry point.\n- `hive_control`: Rust task graph, capability, snapshot, channel, and receipt contracts.\n- `swarm_adapters`: local Qwen worker models, LoRA stacks, held-out evaluation, and candidate activation.\n- `hive_voice`: one-mouth voice routing.\n- `HIVE_NETWORK_ARCHITECTURE_DRAFT.md` and `HIVE_LOCK_MANIFEST.json`: locked Hive topology and evidence boundaries.\n- `INN`: learned architect engine and deterministic Rust farm.\n\n## Current coupling direction\n\nCurrent farm training: Architect -> GPU model Queen -> CPU own neural INN drone proposal -> Queen selection -> Rust execution and verification. The legacy farm policy remains a reversible fallback.\n\nThe Architect intends the INN to become Queen after broader learning and language gates. Do not claim that role switch has already occurred. These current farm roles follow the Architect's explicit direction; preserve the separate locked general Hive contracts.\n\nOwn neural training uses `autonomy/train_neural_inn.py`, the admitted checkpoint in `autonomy/learning/neural_admitted.json`, verified live Rust facts, and parent-relative farm/language gates. The Hive launches a bounded CPU attempt every 250 completed lessons by default. Live receipts must distinguish neural proposals, legacy weight updates, and failed candidates. Queen prose is not automatically a verified training target.\n\nThe game supplies the common training corpus: `autonomy/farm_corpus.py` publishes immutable hash-addressed snapshots with `inn_train.json` and `model_train.jsonl`. INN training reads its internal view; `autonomy/farm_adapter.py` reuses the existing Hive QLoRA trainer for the model view. Exclude reserved plots 21 and 41, reject conflicting targets, and distinguish legality facts from measured 12-tick strategy improvements. The current Ollama Qwen3-8B Queen cannot use a LoRA trained on the existing local Qwen3-1.7B worker base. Adapter preflight and training receipts must not claim live Queen weights changed before matching-base training, held-out evaluation, conversion, and live verification.\n\nDo not infer that Continue/Viv state is LocalCoder Hive state. Resolve and inspect each runtime separately with the updated `viv-live-foreman` skill.\n\nCustom tokenizer lane: `INN/inn/uml_character_tokenizer.py` is a hash-identical copy of the Architect's universal Unicode tokenizer from Continue/Viv. `INN/inn/tokenizer.py` supplies a frozen compact neural view, retaining universal IDs separately. `LanguageEngine` accepts this tokenizer and a configurable token context; checkpoints bind both. Legacy byte checkpoints retain their original contract. `Rebuild-INNTokenizer.ps1` runs a bounded language-only migration/training/evaluation candidate, writes `autonomy/learning/inn_tokenizer_status.json`, and does not replace the admitted farm INN. `Speak-INNTokenizer.ps1` inspects that candidate. Character integration does not establish Wikipedia knowledge or word/BPE curriculum completion.\n\nWikipedia sentence scaling: `autonomy/wiki_sentence_corpus.py` creates a bounded lead-sentence pilot from F:/AI_Datasets/wikipedia_deduplicated, excluding redirects/markup and recording aligned original/reduced views with conjunction offsets. Reduction is mechanical deletion, not a guaranteed semantic rewrite. `Train-INNSentences.ps1` trains the character INN on the reduced view with prior-skill replay, deterministic article/sentence order, 512-token context and a 600-second update-loop ceiling. Whole articles are split before training; cross-split identical targets are excluded. Results are development evaluations, not evidence of general factual generation. The structure pass remains closed until a separate generation-quality evaluation passes. Never promote a candidate just because NLL fell.\n\nFull Wikipedia continuation uses `Train-INNWikipedia.ps1` and `autonomy/train_inn_wikipedia.py`, with `autonomy/wiki_stream.py` reading prose from all article sections. The experimental campaign head at `autonomy/learning/wikipedia_campaign/head.json` binds checkpoint hash, Adam optimizer continuity, dataset cursor, pending corpus hash and chunk offset in one atomic commit. Each command resumes this head; it does not restart the pilot parent. An expanded compact character vocabulary remaps existing weights and Adam moments by character identity. Commands stop after their update budget, the pending segment's first training traversal, or a 600-second update-loop ceiling; `-Segments` requests a bounded sequence of commands. Reading a file, preparing an article or presenting its chunks is not evidence of mastery. Completed eligible articles include reserved evaluation articles. Exact-target split ownership is stored on L: in SQLite; initial pilot overlap and repeated evaluations remain development evidence. Retention failures preserve the rejected run and leave the campaign head unchanged. Training stays on L:, source reads stay on F:, and the farm admission stays untouched. Stop with less than 2 GiB free on L:; retain receipts and failed candidates.\n\nThe matching training base is now `swarm_adapters/models/Qwen3-8B`, pinned to official revision `b968826d9c46dd6066d109eabc6255188de91218`. `model_source.json` records upstream hash checks and matching live Queen architecture (36 layers, width 4096). `Train-FarmAdapter.ps1 -Train` performs bounded GPU training and evaluation using existing Hive pause controls and inference locking. It unloads Ollama and leaves farm execution paused after completion or failure. Only explicit `-ResumeFarm` restarts continuous farm execution after the entire successful command. Original base weights remain frozen. `evaluate_farm_adapter.py` compares reserved Rust descriptions before any live activation. A trained adapter or passing language score alone is not a passing Rust farm behavior gate.\n",
+      "description": "Loaded LocalCoder\\workspace\\AGENTS.md",
+      "type": "synthetic"
+    },
+    {
+      "id": "msg_1e1db0021001dNr9qc4o8J8OrW",
+      "time": {
+        "created": 1794790588462,
+        "firstToken": 1794790708682,
+        "streamed": 1794790708761,
+        "completed": 1794790709749
+      },
+      "type": "assistant",
+      "agent": "drone_build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The user wants me to execute a specific tool sequence: read → localcoder_add_python → shell, with self-prompting between steps and final reporting. I need to follow the exact instructions carefully.\n\nLet me start by calling the read tool for the candidate executor file (already done), then proceed to add the new Python file using localcoder_add_python.",
+          "native": {
+            "reasoningField": "reasoning_content"
+          },
+          "time": {
+            "created": 1794790708686,
+            "completed": 1794790708750
+          }
+        },
+        {
+          "type": "text",
+          "text": "[DRONE]\nFile: `workspace/autonomy/typed_composition_receipt_audit_v1_candidate.py`\nFact: Executor uses `sha256_bytes()` and canonical hashing via `json.dumps(..., sort_keys=True)` matching receipt schema validation requirements.\n\n[DRONE SELF-PROMPT]\nAgenda: Implement audit checker with 8 self-checks per executor constants\nVerified facts: Read confirmed `candidate_typed_composition_executor_v2.py` uses `sha256_bytes()`, canonical hashing via JSON sort_keys, and SQLite readonly mode; receipt schema is `viv_typed_composition_execution_v1`; database path from `store.DB_PATH`; PRAGMA quick_check must be \"ok\"; three relay rows match count; two unique execution nodes end with entry version; provider/consumer types agree; candidate_store_read_only=true, live_viv_modified=false, model_weights_changed=false\nNext bounded action: Call the localcoder_add_python tool"
+        }
+      ],
+      "snapshot": {
+        "start": "8c1a67ceea71103ab39d5c547f372ff411737698",
+        "end": "8c1a67ceea71103ab39d5c547f372ff411737698",
+        "files": []
+      },
+      "finish": "stop",
+      "rawFinish": "stop",
+      "cost": 0,
+      "tokens": {
+        "input": 12599,
+        "output": 200,
+        "reasoning": 72,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1e1dcd9fe001zYzQvKpABd9l24",
+      "time": {
+        "created": 1794790709758
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    },
+    {
+      "id": "msg_1e1dcda130016MzKMXTrRtXgVf",
+      "time": {
+        "created": 1794790709792
+      },
+      "text": "[LOCALCODER PRIVATE DRONE CONTINUATION | v1]\n[DRONE SELF-PROMPT]\nAgenda: Implement audit checker with 8 self-checks per executor constants\nVerified facts: Read confirmed `candidate_typed_composition_executor_v2.py` uses `sha256_bytes()`, canonical hashing via JSON sort_keys, and SQLite readonly mode; receipt schema is `viv_typed_composition_execution_v1`; database path from `store.DB_PATH`; PRAGMA quick_check must be \"ok\"; three relay rows match count; two unique execution nodes end with entry version; provider/consumer types agree; candidate_store_read_only=true, live_viv_modified=false, model_weights_changed=false\nNext bounded action: Call the localcoder_add_python tool",
+      "type": "user"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "artifact_sha256": "f3bbc37125a51ae0524cc28da680fc36144c93f67b8b010229086964352bc9b2",
+  "fault_injected": false,
+  "foreman_snapshot_id": "3a01e585087222ca367708677eb05c6d20b17700cd36850881d6ee8d4d001af8",
+  "mind_generation_count": 0,
+  "mind_metrics": {
+    "plan": null,
+    "slots": null
+  },
+  "mind_plan": [
+    {
+      "agent_id": "stamp-import",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [],
+      "id": "import",
+      "objective": "Stamp approved import span"
+    },
+    {
+      "agent_id": "stamp-variables",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "import"
+      ],
+      "id": "variables",
+      "objective": "Stamp approved variables span"
+    },
+    {
+      "agent_id": "stamp-function",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "variables"
+      ],
+      "id": "function",
+      "objective": "Stamp approved function span"
+    },
+    {
+      "agent_id": "stamp-registry",
+      "agent_kind": "deterministic",
+      "capability": "stamp-approved-span",
+      "depends_on": [
+        "function"
+      ],
+      "id": "registry",
+      "objective": "Stamp approved registry span"
+    }
+  ],
+  "mind_slots": {
+    "message": "hive-template-rebuild",
+    "suffix": "verified"
+  },
+  "mode": "fixture",
+  "reference_sha256": "8f84915a7c291691f6e5a5028b75e7e43573a68af7f46cd91ce46cf1774fa82c",
+  "registry_sha256": "5e9b38184a1dd8074c7dce825a1cf599e93fc7fd4d1c46b7fdd02c318762a235",
+  "schema": "hive_template_rebuild_run_v1",
+  "scope": "isolated fixture.echo source and registry; no legacy write or promotion",
+  "source_sha256": {
+    "runner": "431ea28cfe15b002f8b1aa5baf50d0a0b42f50521c31b1c27f63be7ab97e4ae1",
+    "switchboard": "ff3831d55ebfad40c91757d36b26f96315f69aab919e8163b0e26982f2f779d0"
+  },
+  "status": "PASS",
+  "swarm_generation_count": 0,
+  "tasks": [
+    {
+      "artifact_sha256": "3ba127006ac2fb095ff3823178a98b6e404251b8b6987ba1f01f416c7431fd59",
+      "checksum": "66b12d3574f1fa6cf684ba95c308c7a89e0f17c9eb525ce56f4ad0e7724b1da6",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-import",
+      "task_id": "import"
+    },
+    {
+      "artifact_sha256": "ddfb091d4827e90123d4079aa6b111c164c00f0a9ea52550e13aded5184540fe",
+      "checksum": "0b6be1109538314a4943b6b963fa0cf2018f97c5896eb2c2daa595c27635785f",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-variables",
+      "task_id": "variables"
+    },
+    {
+      "artifact_sha256": "f3bbc37125a51ae0524cc28da680fc36144c93f67b8b010229086964352bc9b2",
+      "checksum": "14fee9525ebd3611f6b2288c8b2de63ce94559669be70eb30584230689875da0",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-function",
+      "task_id": "function"
+    },
+    {
+      "artifact_sha256": "5e9b38184a1dd8074c7dce825a1cf599e93fc7fd4d1c46b7fdd02c318762a235",
+      "checksum": "a4be2f6318889d362904cb48c1f49656ddb948bda621b499666b8948a734d525",
+      "generation_count": 0,
+      "one_task": true,
+      "owner": "stamp-registry",
+      "task_id": "registry"
+    }
+  ],
+  "verification": {
+    "body_unchanged": true,
+    "compiled": true,
+    "explicit_execution": {
+      "context_keys": [
+        "probe"
+      ],
+      "message": "hive-template-rebuild",
+      "ok": true,
+      "suffix": "verified",
+      "variables": {
+        "message": "hive-template-rebuild",
+        "suffix": "verified"
+      }
+    },
+    "source_sha256": "f3bbc37125a51ae0524cc28da680fc36144c93f67b8b010229086964352bc9b2",
+    "status": "PASS"
+  }
+}

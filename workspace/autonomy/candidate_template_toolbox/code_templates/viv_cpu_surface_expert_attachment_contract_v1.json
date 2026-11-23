@@ -1,0 +1,33 @@
+{
+  "schema_version": "viv_cpu_surface_expert_attachment_contract_v1",
+  "experiment_id": "cpu_surface_expert_attachment_v1",
+  "purpose": "Attach one previously held surface specialist to the proven CPU-owned route table without retraining or replacing the incumbent route.",
+  "incumbent_route": "expert_result_v2",
+  "alternate_route": "result_retention_candidate_v1",
+  "surface": "result",
+  "route_owner": "CPU_RULE",
+  "model_may_select_route": false,
+  "acceptance": {
+    "alternate_supported_success_must_meet_incumbent": true,
+    "minimum_supported_success": 16,
+    "blocked_cpu_accepts": 0,
+    "candidate_only": true,
+    "no_new_inference": true,
+    "no_training": true
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "seed_mutation": false,
+    "production_write": "HOLD_SECURITY"
+  },
+  "deterministic_canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sorted_object_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

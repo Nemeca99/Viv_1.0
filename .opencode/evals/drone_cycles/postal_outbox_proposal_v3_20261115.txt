@@ -1,0 +1,17 @@
+Router bounds JSON: {"task_class":"build","lane_ids":["drone"],"max_turns_per_lane":1}
+Add only new file `workspace/autonomy/hive_postal_outbox_proposal_candidate.py`; stop if it exists.
+
+Implement pure function `prepare_queen_outbox_proposal(message_id, sender_id, authority_queen_id, task_id, body, *, kind="REPORT", proposed_recipient_id=None, parent_message_sha256=None)`. Return `(envelope, errors)`, using `hive_postal_message_v1`; valid input gives a mapping and empty tuple, invalid input gives `None` and stable error strings. Top-level `recipient_id` always equals the supplied current Queen ID; do not hardcode a person or Queen. A proposed peer ID is only untrusted nested `routing_request` metadata and never the recipient. Copy inputs without mutation; reject a conflicting routing-request key. No I/O, crypto, identity, permission, or delivery. Rust decides acceptance and routing.
+
+Include `--self-check` for valid addressing, peer metadata, unchanged input, invalid IDs/body/kind/hash, and routing-request conflict. Print PASS only if all cases pass; otherwise exit nonzero.
+
+Use this exact tool sequence once each, in order:
+1. Call `aios_router_open_build_task` tool.
+2. Call `aios_router_accept_self_prompt` tool for lane `drone`, turn 0, grounded in the actual open result.
+3. Use `localcoder_add_python` tool exactly once to add the named target.
+4. Call `read` tool for the newly added target and identify its function definition.
+5. Call `shell` tool exactly once with `L:\.venv\Scripts\python.exe -B workspace\autonomy\hive_postal_outbox_proposal_candidate.py --self-check`.
+6. Call `aios_router_record_turn_result` tool with facts from the actual read and shell outputs.
+7. Call `aios_router_complete_lane` tool with a concise nonempty receipt.
+
+After each tool, emit visible `[DRONE SELF-PROMPT]` fields `Agenda:`, `Verified facts:`, `Next bounded action:` grounded in the latest result. Final response begins `[DRONE]`, names the target and function, includes the actual PASS output, and ends with a self-prompt whose next action is `STOP`.

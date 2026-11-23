@@ -1,0 +1,71 @@
+{
+  "schema_version": "viv_cpu_query_evidence_scope_compatibility_contract_v1",
+  "purpose": "Read-only replay proving that the existing model-authored query frames reach the evidentiary documentation scope after a CPU oracle scope-alias correction.",
+  "classification": "integration_compatibility_replay",
+  "parent": {
+    "receipt_path": "foundation/artifacts/auto/agentic/cpu_unified_current_query_retention_v1/current_query_retention_20260816T114646Z_771/receipt.json",
+    "receipt_sha256": "0ADDBDC1A47A3CFD73AD8AA180B250D5867D50103663024992531DD4A03E9773",
+    "parent_final_state": "HOLD_CURRENT_QUERY_RETENTION_MODEL",
+    "raw_model_provenance": "query_retention_candidate.repeats",
+    "new_model_inference": false
+  },
+  "compatibility_change": {
+    "source": "foundation/lib/documentation_oracle.py",
+    "semantic_scope": "evidence",
+    "accepted_manifest_classifications": [
+      {
+        "authority_class": "evidentiary"
+      },
+      {
+        "authority_scope": "experimental_evidence"
+      },
+      {
+        "role": "evidence"
+      }
+    ],
+    "parser_changed": false,
+    "query_grammar_changed": false,
+    "tokenizer_changed": false,
+    "decoder_changed": false,
+    "model_weights_changed": false,
+    "answer_repair": false,
+    "query_substitution": false
+  },
+  "replay_contract": {
+    "supported_rows": 16,
+    "stale_rows": 4,
+    "conflict_rows": 4,
+    "source_repeats": 2,
+    "expected_supported_raw_semantic_matches": 16,
+    "expected_supported_verified_oracle_results": 16,
+    "expected_unsupported_cpu_accepts": 0,
+    "record_receipt_to_oracle": false,
+    "model_output_is_reused_evidence": true
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "production_generation": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "seed0_mutation": false,
+    "live_model_mutation": false,
+    "gpu_execution": false,
+    "human_event_fabrication": false,
+    "rust_expected_state": "HOLD_SECURITY"
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": "receipt_sha256",
+    "volatile_fields_excluded_from_replay_digest": [
+      "created_utc",
+      "run_id",
+      "receipt_sha256",
+      "ledger_starting_head",
+      "ledger_ending_head"
+    ]
+  }
+}

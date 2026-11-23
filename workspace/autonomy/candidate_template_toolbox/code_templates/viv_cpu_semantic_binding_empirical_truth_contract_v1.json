@@ -1,0 +1,257 @@
+{
+  "schema_version": "viv_cpu_semantic_binding_empirical_truth_contract_v1",
+  "receipt_schema": "viv_cpu_semantic_binding_empirical_truth_receipt_v1",
+  "contract_status": "candidate_only",
+  "purpose": "Separate sealed UML token identity, mathematical structure, semantic binding, provenance, and empirical truth.",
+  "authority_model": {
+    "uml_token_identity": "sealed_existing_tokenizer",
+    "structure": "existing_uml_engine",
+    "semantic_binding": "cpu_context_only",
+    "empirical_verdict": "cpu_verified_evidence",
+    "write_authority": "rust_security_membrane",
+    "model_truth_authority": false,
+    "gpu_role": "probabilistic_route_or_relationship_proposal_only",
+    "human_adoption_authority": "closed"
+  },
+  "layer_statuses": [
+    "TOKEN_VALID",
+    "TOKEN_INVALID",
+    "STRUCTURE_VALID",
+    "STRUCTURALLY_INVALID",
+    "SEMANTIC_BOUND",
+    "SEMANTIC_UNBOUND",
+    "SEMANTIC_CONFLICT",
+    "PROVENANCE_VERIFIED",
+    "PROVENANCE_INSUFFICIENT",
+    "EMPIRICALLY_SUPPORTED",
+    "EMPIRICALLY_VERIFIED",
+    "EMPIRICALLY_UNKNOWN",
+    "EMPIRICALLY_CONTRADICTED",
+    "EMPIRICALLY_HOLD"
+  ],
+  "empirical_verdicts": [
+    "VERIFIED",
+    "SUPPORTED",
+    "UNKNOWN",
+    "CONTRADICTED",
+    "HOLD"
+  ],
+  "training_dispositions": [
+    "POSITIVE_LEARNING_SIGNAL",
+    "NEGATIVE_EVIDENCE",
+    "NO_SIGNAL_UNKNOWN",
+    "NO_SIGNAL_UNBOUND",
+    "HOLD"
+  ],
+  "lifecycle": [
+    "TOKENIZE",
+    "STRUCTURE",
+    "BIND",
+    "VERIFY_EVIDENCE",
+    "JUDGE",
+    "RECORD"
+  ],
+  "provenance_chain": [
+    "character_seals",
+    "equation_routes",
+    "decoded_bytes",
+    "semantic_bindings",
+    "evidence_hashes",
+    "empirical_verdict",
+    "learning_disposition"
+  ],
+  "comparison_operators": [
+    "equals",
+    "approximately_equals",
+    "greater_than",
+    "less_than",
+    "at_least",
+    "at_most"
+  ],
+  "approximation": {
+    "semantic_resolution_is_distinct_from_exact_equality": true,
+    "required_fields": [
+      "expected_value",
+      "observed_value",
+      "tolerance",
+      "difference",
+      "exact_equality",
+      "comparison_kind"
+    ],
+    "comparison_kind": "tolerance_bounded_not_exact_equality"
+  },
+  "model_rules": {
+    "proposal_is_not_truth": true,
+    "gpu_probability_cannot_change_verdict": true,
+    "model_may_propose_route": true,
+    "model_may_propose_binding": true,
+    "model_may_not_create_binding": true,
+    "model_may_not_mutate_axioms": true,
+    "model_may_not_mutate_tokenizer": true,
+    "metadata_only": true,
+    "forbidden_content": [
+      "source_path",
+      "arbitrary_path",
+      "source_body",
+      "python",
+      "shell",
+      "generated_code",
+      "checkpoint_path",
+      "executable_payload"
+    ]
+  },
+  "semantic_binding_rules": {
+    "context_is_cpu_owned": true,
+    "required_bindings_must_be_present": true,
+    "missing_binding_result": "SEMANTIC_UNBOUND",
+    "invented_binding_cpu_acceptance": 0,
+    "conflicting_binding_result": "SEMANTIC_CONFLICT",
+    "binding_cannot_rewrite_foundations": true,
+    "foundational_namespaces": [
+      "uml_symbol",
+      "uml_route",
+      "axiom_A",
+      "axiom_S",
+      "axiom_M",
+      "axiom_D"
+    ]
+  },
+  "route_rules": {
+    "destination_is_sealed_before_route_selection": true,
+    "probability_selects_route_only": true,
+    "probability_has_no_truth_authority": true,
+    "same_binding_and_evidence_same_verdict": true,
+    "route_probability_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "evidence_rules": {
+    "content_hash_required": true,
+    "source_reference_is_id_not_path": true,
+    "verified_status_required_for_current_judgment": true,
+    "historical_records_are_immutable": true,
+    "historical_records_are_not_current_truth": true,
+    "equal_strength_conflict": "UNKNOWN_AND_HOLD",
+    "missing_current_evidence": "UNKNOWN_AND_ABSTAIN",
+    "stronger_contradiction": "CONTRADICTED",
+    "positive_signal_requires_supported_or_verified": true,
+    "contradiction_is_negative_evidence": true
+  },
+  "acceptance_cases": {
+    "token_correct_reality_wrong": {
+      "expected_layers": [
+        "TOKEN_VALID",
+        "STRUCTURE_VALID",
+        "SEMANTIC_BOUND",
+        "EMPIRICALLY_CONTRADICTED"
+      ],
+      "uml_is_not_modified": true
+    },
+    "missing_meaning": {
+      "expected_layers": [
+        "TOKEN_VALID",
+        "STRUCTURE_VALID",
+        "SEMANTIC_UNBOUND",
+        "EMPIRICALLY_UNKNOWN"
+      ],
+      "gpu_guess_cpu_acceptance": 0
+    },
+    "approximate_truth": {
+      "exact_equality_required": false,
+      "tolerance_is_explicit": true
+    },
+    "historical_contradiction": {
+      "old_receipt_preserved": true,
+      "current_verdict_may_change": true
+    },
+    "evidence_transitions": [
+      "UNKNOWN_TO_SUPPORTED",
+      "SUPPORTED_TO_VERIFIED",
+      "SUPPORTED_TO_CONTRADICTED"
+    ],
+    "fail_closed": [
+      "malformed_semantics",
+      "conflicting_bindings",
+      "missing_required_evidence",
+      "irreconcilable_evidence_conflict"
+    ]
+  },
+  "frozen_sources": {
+    "tokenizer": {
+      "path": "foundation/lib/uml_character_tokenizer.py",
+      "sha256": "E4BF78E15637797E597D431EAF0B71A57B842393EF82D898F772F63BC7CD8A5C"
+    },
+    "equation_registry": {
+      "path": "foundation/lib/uml_equation_registry.py",
+      "sha256": "45130A643D46361BCD1893C54DD7E2D9134BFA3A81ADDED9380CEF77B95451F1"
+    },
+    "uml_engine": {
+      "path": "foundation/lib/uml_engine.py",
+      "sha256": "4B25B3E729999D2CFE2B652A7151BB9713FED9C12C361702FE3982111DF95478"
+    },
+    "route_governor": {
+      "path": "foundation/lib/uml_route_governor.py",
+      "sha256": "F59F92C8DB6D3C4D63E7BBA9A2AB8B18EF4D937B066E93957739F6A448B9E127"
+    },
+    "field_scoped_bridge": {
+      "path": "foundation/lib/uml_field_scoped_bridge.py",
+      "sha256": "B24524DE8636651BFE3EF8FFCEE3437A9C622232AE303CBA472C366768B1C1CD"
+    },
+    "security_gate": {
+      "path": "foundation/lib/uml_bridge_security_gate.py",
+      "sha256": "DE61A41C1F5C146C0DF48C75232675775BD795AA18F78F712116887030F152AF"
+    },
+    "uml_registry": {
+      "path": "foundation/lib/data/uml_registry_v1_sandbox96.json",
+      "sha256": "137208588D9F0926C12FFD1DE54D4551DC784BF7345F40BEE9BEE711149902CA",
+      "registry_sha256": "0CC5215C43A195B48B4BBEEBCE3D53A136D4DC07F139E7726BCEEE124CB8DFC4"
+    },
+    "seed_head": {
+      "path": "foundation/artifacts/auto/agentic/VIV_SLM_SEED_PARENT_HEAD.json",
+      "sha256": "DE81C47106C67092D217629237769A759A53C4F7EEC6163CE522CE4650359BA8",
+      "generation": 0
+    },
+    "seed_manifest": {
+      "path": "foundation/artifacts/auto/agentic/seed_parents/VIV_SLM_SEED_0000.json",
+      "sha256": "2EA4002BAEAA0C2BB593E8BC03C2025BC8FE77EE3A35005EB5CD4082012B856C"
+    },
+    "seed_checkpoint": {
+      "path": "foundation/models/Training/runs/viv_slm/v154_autonomous_owner/trial_0005/candidate_checkpoint.pt",
+      "sha256": "8B4395B508BF8F92C9AFA5ED49AE426A4851A5B563D8DAC175F8EFD9BA71B45C"
+    },
+    "rust_integrity": {
+      "sha256": "414C883969290756BC2DCFFA41E9F4DD72899257A3CA534742C796A3DC05AD4E"
+    }
+  },
+  "audit_jsonl_repair": {
+    "path": "foundation/artifacts/audit/python_write_control_events.jsonl",
+    "repair_receipt": "foundation/artifacts/audit/ledger_repairs/python_write_control_events_v1/20260815T042327Z/repair_receipt.json",
+    "original_bytes_artifact": "foundation/artifacts/audit/ledger_repairs/python_write_control_events_v1/20260815T042327Z/python_write_control_events.original.jsonl",
+    "one_object_per_physical_line_required": true,
+    "newline_terminated_required": true,
+    "original_conventional_parse_failures": 52,
+    "repair_status": "PASS_JSONL_LEDGER_REPAIRED"
+  },
+  "protected_state": {
+    "seed_generation": 0,
+    "training_authority": "closed",
+    "promotion_authority": "closed",
+    "deployment_authority": "closed",
+    "gpu_execution": false,
+    "live_model_mutation": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "production_generation": false,
+    "rust_expected_probe_state": "HOLD_SECURITY",
+    "candidate_only": true
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "bom": false,
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

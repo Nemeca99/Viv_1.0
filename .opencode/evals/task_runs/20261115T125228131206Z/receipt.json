@@ -1,0 +1,52 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 586.563,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e20bbd828ffeoogwjvmVZkpeLZ"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "4361a5385e7962514ae5c97b284e147aac1e9ff7b2d909baeffe46189dd5e04a",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "localcoder_add_python",
+      "status": "error"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": false,
+  "task_errors": [
+    "tool_error",
+    "verification_check_missing"
+  ],
+  "tool_errors": [
+    {
+      "tool": "localcoder_add_python",
+      "status": "error"
+    }
+  ],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "<tool_call>\n<function=read>\n<parameter=filePath>\nworkspace/autonomy/hive_postal_outbox_proposal_candidate.py\n</parameter>\n</function>\n</tool_call>"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T125228131206Z"
+}

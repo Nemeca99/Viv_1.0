@@ -1,0 +1,73 @@
+{
+  "schema_version": "viv_legal_ml_harvest_contract_v1",
+  "status": "candidate_only",
+  "purpose": "Bounded legal harvest of GPT-2/GPT-3-era ML sources for a human research shelf and a separate Viv inventory corpus. Inventory is not truth. Not 86M training ingest.",
+  "classification": {
+    "authority_class": "evidentiary",
+    "authority_scope": "experimental_evidence",
+    "role": "inventory",
+    "runtime_truth": false,
+    "verified_claim_oracle": false,
+    "inventory_not_truth": true,
+    "admitted_to_training": false
+  },
+  "corpus": {
+    "preferred_root": "D:/LocalAi/AIOS_ML_CORPUS/gpt2_3_era_v1",
+    "fallback_root": "foundation/artifacts/auto/knowledge/ml_corpus_gpt2_3_era_v1",
+    "subdirs": ["raw", "research", "corpus_manifest"],
+    "forbidden_roots": ["viv_chat_86m_v1", "viv_chat_86m"]
+  },
+  "legal": {
+    "allowlist_only": true,
+    "unbounded_crawl": false,
+    "login": false,
+    "paywall_bypass": false,
+    "product_ui_scrape": false,
+    "weight_theft": false,
+    "sci_hub": false,
+    "torrents": false,
+    "wikipedia_as_source_of_record": false,
+    "goodfellow_book_copy": false,
+    "robots_txt": true,
+    "skip_on_robots_deny": "SKIP_ROBOTS",
+    "skip_on_paywall": "SKIP_PAYWALL",
+    "rate_limit_seconds": 3.5,
+    "user_agent": "VivLegalMLHarvester/1.0 (local AIOS research harvester; contact path in foundation/docs/architecture/VIV_LEGAL_ML_HARVEST_GPT2_3_ERA_V1.md; not spam)"
+  },
+  "dual_path": {
+    "research_shelf": "research/RESEARCH_INDEX.md plus raw bytes for humans",
+    "viv_corpus": "corpus_manifest/CORPUS_VIV.json",
+    "do_not_mix": true,
+    "do_not_append_86m": true
+  },
+  "focus_topics": [
+    "softmax_vocab",
+    "cross_entropy",
+    "language_entropy",
+    "model_scale",
+    "compute_scale",
+    "scaling_laws"
+  ],
+  "entropy_numbers": {
+    "path": "research/entropy_numbers.json",
+    "hallucinate_shannon": false,
+    "partial_ok": true,
+    "canonical_root": "D:/LocalAi/AIOS_ML_CORPUS/gpt2_3_era_v1/research/entropy_numbers.json",
+    "plant_ce": {
+      "class": "FACT_PLANT_CE",
+      "required_fields": ["alphabet", "tokenization", "caveat", "not_h_english", "source"],
+      "not_h_english": true,
+      "preserve_on_rebuild": true
+    }
+  },
+  "safety": {
+    "isolated": true,
+    "no_publish": true,
+    "candidate_only": true,
+    "gpu_execution": false,
+    "seed0_mutation": false,
+    "pointer_mutation": false,
+    "night_orders": false,
+    "organism_boot": false
+  }
+}

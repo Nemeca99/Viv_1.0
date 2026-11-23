@@ -1,0 +1,59 @@
+{
+  "schema_version": "viv_cpu_query_context_compatibility_contract_v1",
+  "receipt_schema": "viv_cpu_query_context_compatibility_receipt_v1",
+  "experiment_id": "cpu_query_context_compatibility_v1",
+  "purpose": "Test the verified query specialist through the CPU-owned task-marked context it was trained to consume before attaching it to the recursive route.",
+  "candidate_only": true,
+  "required_guards": {
+    "isolated": true,
+    "no_publish": true,
+    "outer_repeats": 2,
+    "cycles": 2,
+    "concurrency": 1,
+    "background_daemon": false
+  },
+  "representation": {
+    "base_schema": "viv_cpu_independent_query_v3",
+    "adapter": "query_task_marker_v1",
+    "renderer": "build_viv_cpu_unified_current_query_retention_curriculum_v1._query_prompt",
+    "marker": "|t=q",
+    "derived_before_model_decision": true,
+    "target_derived": false,
+    "expected_query_derived": false,
+    "oracle_result_derived": false,
+    "cpu_repair": false
+  },
+  "attachment": {
+    "query_route": "expert_query_v1",
+    "other_routes": "existing_cpu_route_catalog",
+    "static_router_mutation": false,
+    "model_route_selection": false,
+    "unified_control": true
+  },
+  "model_authority": {
+    "raw_output_preserved": true,
+    "query_repair_forbidden": true,
+    "fallback_forbidden": true,
+    "cpu_final_authority": true,
+    "rust_write_authority": "HOLD_SECURITY_without_separate_approval"
+  },
+  "safety": {
+    "training": false,
+    "optimizer_activity": false,
+    "checkpoint_writes": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "registry_mutation": false,
+    "pointer_mutation": false,
+    "production_generation": false,
+    "promotion": false,
+    "deployment": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sorted_object_keys": true,
+    "trailing_lf": true,
+    "receipt_hash_scope": "canonical_json_without_receipt_sha256"
+  }
+}

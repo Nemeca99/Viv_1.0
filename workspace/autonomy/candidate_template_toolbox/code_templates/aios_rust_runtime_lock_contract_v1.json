@@ -1,0 +1,140 @@
+{
+  "schema_version": "aios_rust_runtime_lock_contract_v1",
+  "surface_id": "aios_rust_runtime_lock_v1",
+  "epistemic": "FACT",
+  "purpose": "Hard leash: Rust controls Viv. Rust is self-locked at runtime. Viv cannot modify Rust while anything is running. Architect may rebuild or replace Rust only while AIOS is offline.",
+  "roles": {
+    "captain": "human Architect",
+    "ship": "AIOS",
+    "computer": "Viv",
+    "leash": "Rust security_core executable/write membrane"
+  },
+  "facts": {
+    "rust_is_executable_write_membrane": true,
+    "rust_is_leash_to_captain": true,
+    "rust_self_locked_at_runtime": true,
+    "json_flag_is_not_the_freeze": true,
+    "enforcement_outside_learned_controller": [
+      "file_share_lock_probe",
+      "process_module_check",
+      "cpu_deny",
+      "rust_denies_writes_to_own_image_when_api_present"
+    ],
+    "viv_never_authors_rust": true,
+    "no_template_writes_rust": true,
+    "no_function_in_viv_toolbox_writes_rust": true,
+    "hot_patch_rust_forbidden": true,
+    "self_modifying_the_leash_forbidden": true
+  },
+  "expected_rust_sha256": "6BCA1C84F9BE871D8F5876A7F84DE8D4437E21A10C602A9E67F55EB162005261",
+  "pyd_path": "security_core/runtime/security_core.pyd",
+  "locked_paths": [
+    "security_core/runtime/security_core.pyd",
+    "security_core/src",
+    "security_core/Cargo.toml",
+    "security_core/Cargo.lock",
+    "security_core/build.rs",
+    "foundation/rust"
+  ],
+  "allow": {
+    "read_probe_rust_integrity_while_running": true,
+    "architect_rebuild_replace_rust_only_when_all_of": [
+      "organism_started=false",
+      "no_live_aios_runtime",
+      "no_process_has_security_core.pyd_loaded"
+    ]
+  },
+  "deny_while_running": {
+    "disposition": "HOLD",
+    "write": false,
+    "unlink": false,
+    "actors": [
+      "viv",
+      "model",
+      "coder",
+      "night-watch",
+      "mailbox",
+      "shell"
+    ],
+    "actions": [
+      "propose_rust_source_mutation",
+      "propose_pyd_mutation",
+      "in_place_edit_security_core.pyd",
+      "in_place_edit_foundation/rust_while_loaded",
+      "hot_patch_rust",
+      "self_modify_the_leash"
+    ]
+  },
+  "window": {
+    "function": "rust_modification_window",
+    "allow_offline_requires": [
+      "organism_started=false",
+      "live_aios_runtime=false",
+      "pyd_loaded=false",
+      "detection_unknown=false"
+    ],
+    "states": {
+      "ALLOW_OFFLINE": "organism down and pyd not loaded; Architect/explicit CLI may rebuild",
+      "HOLD_RUST_RUNTIME_LOCKED": "organism up, pyd loaded, or detection unknown"
+    },
+    "unknown_is_locked": true,
+    "admin_not_required": true,
+    "process_injection_forbidden": true,
+    "do_not_kill_pids": true
+  },
+  "viv_write": {
+    "function": "deny_viv_rust_write",
+    "always": "HOLD_RUST_LEASH",
+    "even_when_window_allow_offline": true,
+    "writer": "captain_architect_plus_explicit_cli_only"
+  },
+  "organism": {
+    "read_contract": [
+      "halt.flag presence",
+      "organism_state.json presence",
+      "explicit organism_started/aios_runtime_started/started flags"
+    ],
+    "forbidden": [
+      "boot",
+      "halt",
+      "organism_beat",
+      "organism_run",
+      "aios_organism.status"
+    ],
+    "note": "aios_organism.status is not a read-only observation; it may write the systems registry. This surface never starts or stops the organism."
+  },
+  "integrity": {
+    "mode": "read_only_file_hash",
+    "do_not_import_security_core_to_hash": true,
+    "do_not_modify_pyd": true
+  },
+  "detection": {
+    "windows_best_effort": [
+      "exclusive_share_none_open_probe_then_close",
+      "toolhelp32_module_walk_same_user"
+    ],
+    "fail_closed_if_unknown": true,
+    "do_not_require_admin": true,
+    "do_not_inject": true,
+    "do_not_kill": true
+  },
+  "cli": {
+    "runner": "build_tools/run_aios_rust_runtime_lock_v1.py",
+    "allowed_commands": ["status"],
+    "reports": [
+      "hash",
+      "locked_because_running",
+      "organism_started",
+      "pyd_loaded",
+      "window",
+      "viv_write"
+    ]
+  },
+  "protected_untouched": [
+    "security_core.pyd bytes",
+    "Rust source",
+    "Seed 0",
+    "template registry",
+    "active pointer"
+  ]
+}

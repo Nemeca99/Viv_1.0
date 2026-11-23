@@ -1,0 +1,9 @@
+[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]
+Task access: write
+[QUEEN] Adapter review: it was saved but failed verification. Correct the actual issues, then rerun the frozen check.
+1. Use read on `L:/LocalCoder/.opencode/evals/failure_lookup_20261117/localcoder-failure-lookup.candidate.ts` with limit 90.
+2. Use write tool to replace only `.opencode/evals/failure_lookup_20261117/localcoder-failure-lookup.candidate.ts`. Keep V2 Plugin.define. Import execFileSync at module top; execute is synchronous, so remove await import. editor.add uses `input`, not inputSchema; omit outputSchema. JSON schema types are strings. setup registers the tool but does not return an array; remove tools/push. Reject extra input keys, invalid/empty/overlong case, and non-integer/out-of-range limit before spawning. Only case and limit are allowed. Remove input.source and sourcePath. Binary is exactly L:/.venv/Scripts/python.exe (not under LocalCoder). Keep argv array and fixed module path, timeout15000/maxBuffer131072/windowsHide. Parse JSON and require result.schema === 'localcoder_failure_lookup_v1' before returning content. The Python module and checker are frozen.
+3. Use shell with exactly `node 'L:/LocalCoder/.opencode/evals/failure_lookup_20261117/verify_tool.mjs'`.
+Give the actual result normally.
+[CURRENT AUTHORIZATION FACT]
+The Architect authorized supervised corrections in this same session. This isolated candidate is the only write target.

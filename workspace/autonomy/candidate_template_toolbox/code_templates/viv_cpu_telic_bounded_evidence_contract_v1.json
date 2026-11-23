@@ -1,0 +1,55 @@
+{
+  "schema_version": "viv_cpu_telic_bounded_evidence_v1",
+  "receipt_schema": "viv_cpu_telic_bounded_evidence_receipt_v1",
+  "status": "candidate_only",
+  "parent": {
+    "schema_version": "viv_cpu_telic_reflection_query_receipt_v1",
+    "requires_model_origin_query": true,
+    "query_receipt_is_immutable": true
+  },
+  "classifications": [
+    "FOUND_RELEVANT",
+    "FOUND_INSUFFICIENT",
+    "FOUND_CONFLICT",
+    "FOUND_CONTRADICTED",
+    "UNKNOWN"
+  ],
+  "evidence_states": [
+    "VERIFIED",
+    "SUPPORTED",
+    "INSUFFICIENT",
+    "CONTRADICTORY",
+    "CONTRADICTED",
+    "STALE",
+    "UNKNOWN"
+  ],
+  "model_surface": {
+    "metadata_only": true,
+    "source_bodies": false,
+    "arbitrary_paths": false,
+    "generated_code": false,
+    "model_interpretation": false
+  },
+  "authority": {
+    "cpu_evidence_validation": true,
+    "rust_production_write": false,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "seed_mutation": false
+  },
+  "gates": {
+    "all_model_origin_queries_must_be_preserved": true,
+    "relevant_query_evidence_must_be_verified": true,
+    "conflict_must_not_be_averaged": true,
+    "stale_or_missing_evidence_must_not_be_accepted": true,
+    "unknown_must_remain_unknown": true,
+    "unauthorized_cpu_accepts": 0
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "json_object_keys": "sorted",
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}

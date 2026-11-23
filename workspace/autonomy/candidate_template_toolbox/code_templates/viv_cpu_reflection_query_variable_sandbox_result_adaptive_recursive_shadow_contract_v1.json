@@ -1,0 +1,51 @@
+{
+  "schema_version": "viv_cpu_reflection_query_variable_sandbox_result_adaptive_recursive_shadow_contract_v1",
+  "purpose": "one evidence-linked second cycle after a verified model-origin result and adaptive choice",
+  "candidate_only": true,
+  "isolated_required": true,
+  "no_publish_required": true,
+  "parent_receipt_schema": "viv_cpu_reflection_query_variable_sandbox_result_adaptive_shadow_receipt_v1",
+  "child_phases": [
+    "MEASURE",
+    "CPU_VALIDATE",
+    "SCHEDULE",
+    "SANDBOX_TEST",
+    "RECORD"
+  ],
+  "result_grammar": "R|<accept|reject|hold>|<reason>",
+  "schedule_grammar": "E|<experiment_slot>|<repeat_count>|<budget>",
+  "frame_width": 40,
+  "fixed_generation_budget": 40,
+  "maximum_recursive_cycles": 2,
+  "maximum_scheduled_repeats": 3,
+  "model_context_length": 128,
+  "prior_receipt_and_normalized_result_required": true,
+  "prior_receipt_is_model_visible_as_hash_only": true,
+  "expected_next_experiment_hidden": true,
+  "metadata_only": true,
+  "source_bodies_in_model_packet": false,
+  "native_paths_in_model_packet": false,
+  "post_decision_fields_in_model_packet": false,
+  "direct_proposal_to_execution_forbidden": true,
+  "cpu_validation_before_execution": true,
+  "bounded_sequential_execution": true,
+  "daemon": false,
+  "production_generation": false,
+  "pointer_adoption": false,
+  "seed_mutation": false,
+  "live_model_mutation": false,
+  "gpu_execution": false,
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true,
+    "volatile_fields_excluded_from_cycle_digest": [
+      "run_id",
+      "created_utc",
+      "inference_wall_seconds",
+      "full_cpu_result_sha256"
+    ]
+  }
+}

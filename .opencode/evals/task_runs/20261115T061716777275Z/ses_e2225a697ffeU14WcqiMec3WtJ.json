@@ -1,0 +1,141 @@
+{
+  "info": {
+    "id": "ses_e2225a697ffeU14WcqiMec3WtJ",
+    "projectID": "9e14a3c55c3eea6d70aece460c01a2ee97f28b7f",
+    "agent": "build",
+    "cost": 0,
+    "tokens": {
+      "input": 5719,
+      "output": 43,
+      "reasoning": 81,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "outcome": "failed",
+    "time": {
+      "created": 1794723436907,
+      "updated": 1794723452513,
+      "busy": 1794723436927,
+      "idle": 1794723485821
+    },
+    "title": "LocalCoder Drone 20261115T061716777275Z",
+    "subpath": "LocalCoder",
+    "location": {
+      "directory": "L:\\LocalCoder"
+    }
+  },
+  "messages": [
+    {
+      "id": "msg_1ddda5976001KWRTpq5xlvDEvN",
+      "time": {
+        "created": 1794723436918
+      },
+      "type": "agent-switched",
+      "agent": "build",
+      "previous": "build"
+    },
+    {
+      "id": "msg_1ddda5974001oH6xEiO3GTM32f",
+      "time": {
+        "created": 1794723436936
+      },
+      "text": "[ARCHITECT ASSIGNMENT | CURRENT AND AUTHORIZED]\nUse the read tool exactly once to read workspace/autonomy/opencode_drone_prompts.py. Report the actual file name and one verified fact from its contents. End with [DRONE SELF-PROMPT] fields Agenda, Verified facts, Next bounded action: STOP.\n\n[CURRENT AUTHORIZATION FACT]\nThe Architect authorized this bounded LocalCoder task. The Queen fixed the exact tool sequence to: read. OpenCode permission checks and the Rust WSL Docker Body gate remain authoritative.\n\n[QUEEN → DRONE]\nExecute only that sequence, in order, one tool at a time. Do not retry a denied or failed tool. After each completed tool result, emit a visible [DRONE SELF-PROMPT] with exactly these labels on separate lines: Agenda:, Verified facts:, Next bounded action:. Verified facts must include the latest required evidence token literally. Name the next assigned tool in Next bounded action. After the final assigned tool, give a short [DRONE] report with actual results and end with the same self-prompt fields; Next bounded action must be STOP. Do not invent tool results or claim unverified work.",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1ddda598f001tyXOxXOxHkK0Xh",
+      "time": {
+        "created": 1794723436950,
+        "firstToken": 1794723448333,
+        "streamed": 1794723448348,
+        "completed": 1794723452513
+      },
+      "type": "assistant",
+      "agent": "build",
+      "model": {
+        "id": "qwen3.5-4b-uncensored-hauhaucs-aggressive",
+        "providerID": "lmstudio"
+      },
+      "content": [
+        {
+          "type": "tool",
+          "id": "call_toolbridge_1",
+          "name": "read",
+          "executed": false,
+          "state": {
+            "status": "completed",
+            "input": {
+              "path": "L:\\LocalCoder\\workspace\\autonomy\\opencode_drone_prompts.py"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "Read file L:\\LocalCoder\\workspace\\autonomy\\opencode_drone_prompts.py, lines 1-19\n1: def format_drone_self_prompt(agenda: str, verified_facts: str, next_action: str) -> str:\n2:     \"\"\"Formats only caller-supplied facts; does not verify truth or grant authority.\"\"\"\n3:     \n4:     values = (agenda, verified_facts, next_action)\n5:     if any(not isinstance(value, str) or not value.strip() for value in values):\n6:         raise ValueError(\"All three inputs must be non-empty strings after whitespace trimming\")\n7: \n8:     trimmed_agenda, trimmed_facts, trimmed_next = (value.strip() for value in values)\n9:     \n10:     if not trimmed_agenda or not trimmed_facts or not trimmed_next:\n11:         raise ValueError(\"All three inputs must be non-empty strings after whitespace trimming\")\n12:     \n13:     return f\"\"\"[DRONE SELF-PROMPT]\n14: \n15: Agenda: {trimmed_agenda}\n16: \n17: Verified facts: {trimmed_facts}\n18: \n19: Next bounded action: {trimmed_next}\"\"\""
+              }
+            ],
+            "metadata": {
+              "truncated": false
+            }
+          },
+          "time": {
+            "created": 1794723448336,
+            "ran": 1794723448344,
+            "completed": 1794723451488
+          }
+        }
+      ],
+      "snapshot": {
+        "start": "2ef29e61d3cee108c83c0b415ecbb4a1bce43b50",
+        "end": "9e74c2c0dbb9c44ba4083b1c6caeb803802f3aa0",
+        "files": [
+          "LocalCoder/.opencode/receipts/1794723451439-dcc5e70a-69e9-4766-a6a2-ff5dde79c4cd-body-gate.json",
+          "LocalCoder/.opencode/receipts/1794723451465-8dc7c5df-a9ee-4dc3-9da9-b9d1d31871fa.json",
+          "LocalCoder/.opencode/receipts/1794723451479-4efaa806-fc8e-4b80-9a8e-29aaac560241.json"
+        ]
+      },
+      "finish": "tool-calls",
+      "rawFinish": "tool_calls",
+      "cost": 0,
+      "tokens": {
+        "input": 5719,
+        "output": 43,
+        "reasoning": 81,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1ddda9254001BpqAGwHzAEiMki",
+      "metadata": {
+        "instruction": {
+          "paths": [
+            "L:\\LocalCoder\\workspace\\AGENTS.md"
+          ]
+        }
+      },
+      "time": {
+        "created": 1794723451476
+      },
+      "text": "Instructions from: L:\\LocalCoder\\workspace\\AGENTS.md\n# LocalCoder Workspace Map\n\nRead `L:\\LocalCoder\\AGENTS.md` first.\n\n## Existing systems to reuse\n\n- `viv_autonomy.py` and `autonomy\\state.sqlite3`: persistent autonomous task loop, events, capabilities, training, evaluation, and promotion gates.\n- `viv_chat_cli.py`: existing user-facing Viv entry point.\n- `hive_control`: Rust task graph, capability, snapshot, channel, and receipt contracts.\n- `swarm_adapters`: local Qwen worker models, LoRA stacks, held-out evaluation, and candidate activation.\n- `hive_voice`: one-mouth voice routing.\n- `HIVE_NETWORK_ARCHITECTURE_DRAFT.md` and `HIVE_LOCK_MANIFEST.json`: locked Hive topology and evidence boundaries.\n- `INN`: learned architect engine and deterministic Rust farm.\n\n## Current coupling direction\n\nCurrent farm training: Architect -> GPU model Queen -> CPU own neural INN drone proposal -> Queen selection -> Rust execution and verification. The legacy farm policy remains a reversible fallback.\n\nThe Architect intends the INN to become Queen after broader learning and language gates. Do not claim that role switch has already occurred. These current farm roles follow the Architect's explicit direction; preserve the separate locked general Hive contracts.\n\nOwn neural training uses `autonomy/train_neural_inn.py`, the admitted checkpoint in `autonomy/learning/neural_admitted.json`, verified live Rust facts, and parent-relative farm/language gates. The Hive launches a bounded CPU attempt every 250 completed lessons by default. Live receipts must distinguish neural proposals, legacy weight updates, and failed candidates. Queen prose is not automatically a verified training target.\n\nThe game supplies the common training corpus: `autonomy/farm_corpus.py` publishes immutable hash-addressed snapshots with `inn_train.json` and `model_train.jsonl`. INN training reads its internal view; `autonomy/farm_adapter.py` reuses the existing Hive QLoRA trainer for the model view. Exclude reserved plots 21 and 41, reject conflicting targets, and distinguish legality facts from measured 12-tick strategy improvements. The current Ollama Qwen3-8B Queen cannot use a LoRA trained on the existing local Qwen3-1.7B worker base. Adapter preflight and training receipts must not claim live Queen weights changed before matching-base training, held-out evaluation, conversion, and live verification.\n\nDo not infer that Continue/Viv state is LocalCoder Hive state. Resolve and inspect each runtime separately with the updated `viv-live-foreman` skill.\n\nCustom tokenizer lane: `INN/inn/uml_character_tokenizer.py` is a hash-identical copy of the Architect's universal Unicode tokenizer from Continue/Viv. `INN/inn/tokenizer.py` supplies a frozen compact neural view, retaining universal IDs separately. `LanguageEngine` accepts this tokenizer and a configurable token context; checkpoints bind both. Legacy byte checkpoints retain their original contract. `Rebuild-INNTokenizer.ps1` runs a bounded language-only migration/training/evaluation candidate, writes `autonomy/learning/inn_tokenizer_status.json`, and does not replace the admitted farm INN. `Speak-INNTokenizer.ps1` inspects that candidate. Character integration does not establish Wikipedia knowledge or word/BPE curriculum completion.\n\nWikipedia sentence scaling: `autonomy/wiki_sentence_corpus.py` creates a bounded lead-sentence pilot from F:/AI_Datasets/wikipedia_deduplicated, excluding redirects/markup and recording aligned original/reduced views with conjunction offsets. Reduction is mechanical deletion, not a guaranteed semantic rewrite. `Train-INNSentences.ps1` trains the character INN on the reduced view with prior-skill replay, deterministic article/sentence order, 512-token context and a 600-second update-loop ceiling. Whole articles are split before training; cross-split identical targets are excluded. Results are development evaluations, not evidence of general factual generation. The structure pass remains closed until a separate generation-quality evaluation passes. Never promote a candidate just because NLL fell.\n\nFull Wikipedia continuation uses `Train-INNWikipedia.ps1` and `autonomy/train_inn_wikipedia.py`, with `autonomy/wiki_stream.py` reading prose from all article sections. The experimental campaign head at `autonomy/learning/wikipedia_campaign/head.json` binds checkpoint hash, Adam optimizer continuity, dataset cursor, pending corpus hash and chunk offset in one atomic commit. Each command resumes this head; it does not restart the pilot parent. An expanded compact character vocabulary remaps existing weights and Adam moments by character identity. Commands stop after their update budget, the pending segment's first training traversal, or a 600-second update-loop ceiling; `-Segments` requests a bounded sequence of commands. Reading a file, preparing an article or presenting its chunks is not evidence of mastery. Completed eligible articles include reserved evaluation articles. Exact-target split ownership is stored on L: in SQLite; initial pilot overlap and repeated evaluations remain development evidence. Retention failures preserve the rejected run and leave the campaign head unchanged. Training stays on L:, source reads stay on F:, and the farm admission stays untouched. Stop with less than 2 GiB free on L:; retain receipts and failed candidates.\n\nThe matching training base is now `swarm_adapters/models/Qwen3-8B`, pinned to official revision `b968826d9c46dd6066d109eabc6255188de91218`. `model_source.json` records upstream hash checks and matching live Queen architecture (36 layers, width 4096). `Train-FarmAdapter.ps1 -Train` performs bounded GPU training and evaluation using existing Hive pause controls and inference locking. It unloads Ollama and leaves farm execution paused after completion or failure. Only explicit `-ResumeFarm` restarts continuous farm execution after the entire successful command. Original base weights remain frozen. `evaluate_farm_adapter.py` compares reserved Rust descriptions before any live activation. A trained adapter or passing language score alone is not a passing Rust farm behavior gate.\n",
+      "description": "Loaded LocalCoder\\workspace\\AGENTS.md",
+      "type": "synthetic"
+    },
+    {
+      "id": "msg_1dddb187d001ng7zwRialdrIAa",
+      "time": {
+        "created": 1794723485821
+      },
+      "type": "idle",
+      "outcome": "failed",
+      "error": {
+        "type": "unknown",
+        "message": "Rust WSL Docker Body gate denied model_request:primary: [\"ram_at_or_above_limit\"]"
+      }
+    }
+  ]
+}

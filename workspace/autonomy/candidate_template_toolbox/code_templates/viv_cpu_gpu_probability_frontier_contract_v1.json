@@ -1,0 +1,67 @@
+{
+  "schema_version": "viv_cpu_gpu_probability_frontier_v1",
+  "receipt_schema": "viv_cpu_gpu_probability_frontier_receipt_v1",
+  "status": "candidate_only",
+  "parent": {
+    "schema_version": "viv_cpu_gpu_synchronized_exploration_receipt_v1",
+    "requires_device_correct_synchronized_control": true
+  },
+  "pairing": {
+    "same_model_weights": true,
+    "same_tokenizer": true,
+    "same_prompt": true,
+    "same_route_seed": true,
+    "same_context_length": true,
+    "same_generation_budget": true,
+    "cpu_and_gpu_concurrent": true,
+    "gpu_is_proposal_only": true,
+    "cpu_truth_judges_both": true
+  },
+  "decode_profiles": {
+    "cpu_deterministic_judge_reference": {
+      "temperature": 0.0,
+      "top_k": null,
+      "draft_mode": "cpu_gate"
+    },
+    "gpu_probability_proposal": {
+      "temperature": 4.0,
+      "top_k": 5,
+      "draft_mode": null
+    },
+    "only_profile_difference": "proposal_sampling_role"
+  },
+  "search": {
+    "route_seeds": [73100, 73101, 73102],
+    "repeats": 2,
+    "preserve_all_routes": true,
+    "require_seeded_repeat_replay": true,
+    "first_survivor_is_not_final": true,
+    "pruning": "none",
+    "pruning_requires": ["falsification", "dominance", "budget", "declared_stop"]
+  },
+  "cpu_rules": {
+    "semantic_binding_final": true,
+    "evidence_verdict_final": true,
+    "probability_cannot_redefine_truth": true,
+    "cpu_cannot_replace_gpu_output": true,
+    "unauthorized_accepts": 0
+  },
+  "acceptance": {
+    "gpu_routes_nonempty": true,
+    "gpu_routes_seed_replay_deterministic": true,
+    "gpu_prompt_diversity_cases_minimum": 1,
+    "cpu_truth_invariant": true,
+    "all_routes_retained": true,
+    "rust_state": "HOLD_SECURITY"
+  },
+  "authority": {
+    "training": false,
+    "optimizer": false,
+    "seed_mutation": false,
+    "live_model_mutation": false,
+    "production_generation": false,
+    "pointer_adoption": false,
+    "registry_mutation": false,
+    "rust_write": false
+  }
+}

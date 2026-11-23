@@ -1,0 +1,50 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 86.141,
+  "exit_code": 1,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e21974e7effez6KLHgu1Ri34PV"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "08a038158904ff9d283f7d0a771157de7ea6fd85031738c96539c3e4f1951228",
+  "tools": [
+    {
+      "tool": "shell",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v3_candidate.py\", line 59, in validate_agent_message\r\n    for claim in value['claims']:\r\n                 ~~~~~^^^^^^^^^^\r\nKeyError: 'claims'\nExit code: 1"
+    }
+  ],
+  "task_succeeded": false,
+  "task_errors": [
+    "shell_check_failed"
+  ],
+  "tool_errors": [],
+  "shell_check_errors": [
+    {
+      "status": "completed",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v3_candidate.py\", line 59, in validate_agent_message\r\n    for claim in value['claims']:\r\n                 ~~~~~^^^^^^^^^^\r\nKeyError: 'claims'\nExit code: 1"
+    }
+  ],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "[DRONE]\nTarget file: `L:\\LocalCoder\\workspace\\autonomy\\hive_agent_message_contract_v3_candidate.py`\nFact from tool output: `KeyError: 'claims'` at line 59 indicates the validation function expects a `'claims'` key in the input dictionary, but it was not provided.\n\n[DRONE SELF-PROMPT]\nAgenda: The diagnostic failed because validate_agent_message() requires a 'claims' key that was omitted from the test case. Verified facts: Traceback shows KeyError at line 59 when iterating over value['claims']. Next bounded action: STOP"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T085245415640Z"
+}

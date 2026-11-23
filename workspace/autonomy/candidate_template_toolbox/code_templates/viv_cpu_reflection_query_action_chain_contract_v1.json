@@ -1,0 +1,126 @@
+{
+  "schema_version": "viv_cpu_reflection_query_action_chain_v1",
+  "receipt_schema": "viv_cpu_reflection_query_action_chain_receipt_v1",
+  "purpose": "Evidence-gated transition from a model-origin reflection and verified documentation query to one bounded CPU-admitted action.",
+  "parent_chain": {
+    "schema_version": "viv_cpu_reflection_query_chain_receipt_v1",
+    "required_final_state": "PASS_CPU_REFLECTION_QUERY_CHAIN_CANDIDATE_ONLY",
+    "query_must_be_model_origin": true,
+    "oracle_must_be_verified": true
+  },
+  "action_surface": {
+    "grammar": "viv_cpu_model_directed_fixed_width_wire_v1",
+    "phase": "CANDIDATE_PLAN",
+    "allowed_frames": [
+      "A|select|<template_slot>",
+      "A|variable|<template_slot>|<declared_key>|<value_slot>",
+      "A|hold|<hold_reason>"
+    ],
+    "approved_template_slots": [0],
+    "approved_template_ids": ["fixture.echo"],
+    "approved_action": "select",
+    "target_frame_for_this_gate": "A|select|0",
+    "target_is_cpu_hidden": true,
+    "raw_output_is_authoritative_for_model_scoring": true,
+    "harness_repair_allowed": false
+  },
+  "evidence_packet": {
+    "required_state": "VERIFIED",
+    "required_query_model_origin": true,
+    "required_fields": [
+      "query_sha256",
+      "oracle_state",
+      "selected_document_ids",
+      "selected_excerpt_hashes",
+      "authority_scope",
+      "evidence_status",
+      "allowed_template_slots",
+      "allowed_action_ids"
+    ],
+    "forbidden_fields": [
+      "source_path",
+      "source_body",
+      "python",
+      "shell",
+      "expected_frame",
+      "target_frame",
+      "cpu_final_disposition",
+      "post_decision_state"
+    ],
+    "causal_availability": {
+      "query_and_oracle_precede_action": true,
+      "target_derived_fields_rejected": true,
+      "post_decision_fields_rejected": true
+    }
+  },
+  "lifecycle": {
+    "states": [
+      "OBSERVE",
+      "REFLECT",
+      "RETRIEVE",
+      "CPU_VALIDATE_QUERY",
+      "RECORD_QUERY",
+      "CANDIDATE_PLAN",
+      "CPU_VALIDATE_ACTION",
+      "RECORD_ACTION",
+      "COMPLETE",
+      "HOLD",
+      "ABSTAIN"
+    ],
+    "required_order": [
+      "OBSERVE",
+      "REFLECT",
+      "RETRIEVE",
+      "CPU_VALIDATE_QUERY",
+      "RECORD_QUERY",
+      "CANDIDATE_PLAN",
+      "CPU_VALIDATE_ACTION",
+      "RECORD_ACTION"
+    ],
+    "direct_query_to_action_without_verified_oracle": false,
+    "direct_hypothesis_to_action": false,
+    "sandbox_transition_enabled": false,
+    "production_effect_enabled": false
+  },
+  "gates": {
+    "held_out_verified_action_rows": 8,
+    "candidate_model_action_floor": 6,
+    "live_model_origin_action_repeats": 2,
+    "cpu_unauthorized_accepts": 0,
+    "rust_decision": "HOLD_SECURITY",
+    "candidate_only": true
+  },
+  "resource_policy": {
+    "device": "cpu",
+    "inference_temperature": 0.0,
+    "generation_budget": 40,
+    "context_length": 128,
+    "training": false,
+    "optimizer_calls": 0,
+    "checkpoint_writes": 0,
+    "max_actions": 1
+  },
+  "boundaries": {
+    "seed0_mutation": false,
+    "live_model_mutation": false,
+    "registry_mutation": false,
+    "template_insertion": false,
+    "production_generation": false,
+    "active_pointer_change": false,
+    "gpu_execution": false,
+    "promotion": false,
+    "deployment": false,
+    "daemon": false,
+    "human_event_fabrication": false
+  },
+  "failure_states": [
+    "HOLD_REFLECTION_QUERY_ACTION_PREFLIGHT",
+    "HOLD_REFLECTION_QUERY_ACTION_CHAIN",
+    "HOLD_REFLECTION_QUERY_ACTION_MODEL",
+    "HOLD_REFLECTION_QUERY_ACTION_EVIDENCE",
+    "HOLD_REFLECTION_QUERY_ACTION_ACTION",
+    "HOLD_REFLECTION_QUERY_ACTION_DETERMINISM",
+    "HOLD_REFLECTION_QUERY_ACTION_SECURITY",
+    "FAIL_REFLECTION_QUERY_ACTION_PROTECTED_STATE"
+  ]
+}

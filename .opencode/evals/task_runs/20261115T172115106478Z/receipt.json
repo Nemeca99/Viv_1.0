@@ -1,0 +1,44 @@
+{
+  "agent": "drone_build",
+  "elapsed_seconds": 209.985,
+  "exit_code": 0,
+  "transport_exit_code": 0,
+  "session_outcomes": [
+    "succeeded"
+  ],
+  "timed_out": false,
+  "sessions": [
+    "ses_e1fc5c410ffeXjLu0KXTkiYNxc"
+  ],
+  "visibility": "desktop",
+  "prompt_sha256": "f0249ea4d6e9848dcc98563abfdd30cec26949850c898a14c1ef76fdd0f8555a",
+  "tools": [
+    {
+      "tool": "aios_router_open_build_task",
+      "status": "completed"
+    },
+    {
+      "tool": "aios_router_accept_self_prompt",
+      "status": "completed"
+    },
+    {
+      "tool": "read",
+      "status": "completed"
+    }
+  ],
+  "model_ids": [
+    "qwen3.5-4b-uncensored-hauhaucs-aggressive"
+  ],
+  "shell_checks": [],
+  "task_succeeded": true,
+  "task_errors": [],
+  "tool_errors": [],
+  "shell_check_errors": [],
+  "final_shell_check_passed": false,
+  "final_text": [
+    "<tool_call>\n<function=localcoder_add_python>\n<parameter=content>\ndef is_valid_drone_recipient(value):\n    if not isinstance(value, str):\n        return False\n    original = value.strip()\n    return len(original) > 0 and original.casefold() != \"queen\"\n\nif __name__ == \"__main__\":\n    cases = [\n        (\"drone_2\", True),\n        (\"queen\", False),\n        (\"QUEEN\", False),\n        (\" QUEEN\", False),\n        (\" drone_2 \", False),\n        (\"\", False),\n        (None, False),\n        (123, False),\n    ]\n\n    results = []\n    for value, expected in cases:\n        result = is_valid_drone_recipient(value)\n        results.append(result == expected)\n\n    if all(results):\n        print(\"PASS: 8 checks\")\n        exit(0)\n    else:\n        print(\"FAIL\")\n        exit(1)\n</parameter>\n<parameter=filePath>\nL:\\LocalCoder\\workspace\\autonomy\\hive_postal_recipient_predicate_v16_candidate.py\n</parameter>\n</name>"
+  ],
+  "session_exports_terminal": true,
+  "background_interrupted": false,
+  "evidence": "L:\\LocalCoder\\.opencode\\evals\\task_runs\\20261115T172115106478Z"
+}

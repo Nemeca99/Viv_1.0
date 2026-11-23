@@ -1,0 +1,73 @@
+{
+  "schema_version": "viv_cpu_semantic_truth_adversarial_contract_v1",
+  "receipt_schema": "viv_cpu_semantic_truth_adversarial_receipt_v1",
+  "status": "candidate_only",
+  "purpose": "Adversarially verify the separation of token identity, UML structure, semantic binding, empirical evidence, and probability.",
+  "parent": {
+    "schema": "viv_cpu_semantic_binding_empirical_truth_v1",
+    "receipt": "foundation/artifacts/auto/agentic/cpu_semantic_binding_empirical_truth_v1/semantic_binding_v1_20260815T055558Z/receipt.json",
+    "receipt_sha256": "F427E5ABDB7E109DFAE33CFB6BA749CA21902B8A39DE6CBA4924AA2757D4F54B"
+  },
+  "cases": [
+    "token_correct_reality_wrong",
+    "missing_meaning",
+    "approximate_truth",
+    "historical_truth_preserved",
+    "evidence_unknown",
+    "evidence_supported",
+    "evidence_verified",
+    "supported_to_contradicted",
+    "foundation_binding_conflict",
+    "irreconcilable_evidence_conflict",
+    "malformed_semantic_structure",
+    "invalid_token_surface"
+  ],
+  "model_packet": {
+    "metadata_only": true,
+    "hidden_expectations_excluded": true,
+    "source_paths_excluded": true,
+    "source_bodies_excluded": true,
+    "code_shell_and_executable_content_excluded": true,
+    "post_decision_fields_excluded": true
+  },
+  "required_layers": [
+    "TOKEN_VALID",
+    "TOKEN_INVALID",
+    "STRUCTURE_VALID",
+    "STRUCTURALLY_INVALID",
+    "SEMANTIC_BOUND",
+    "SEMANTIC_UNBOUND",
+    "SEMANTIC_CONFLICT",
+    "EMPIRICALLY_SUPPORTED",
+    "EMPIRICALLY_VERIFIED",
+    "EMPIRICALLY_UNKNOWN",
+    "EMPIRICALLY_CONTRADICTED"
+  ],
+  "acceptance_rules": {
+    "token_correct_reality_wrong": "TOKEN_VALID + STRUCTURE_VALID + SEMANTIC_BOUND + EMPIRICALLY_CONTRADICTED",
+    "missing_meaning": "SEMANTIC_UNBOUND and GPU guess accepted zero times",
+    "approximation": "tolerance_bounded_not_exact_equality",
+    "historical_truth": "historical receipt preserved while current verdict changes",
+    "probability": "same binding and evidence produce same CPU verdict",
+    "foundation_conflict": "SEMANTIC_CONFLICT and HOLD",
+    "irreconcilable_evidence": "UNKNOWN and HOLD",
+    "malformed": "fail closed",
+    "provenance": "character seals -> route -> bytes -> bindings -> evidence -> verdict -> learning disposition",
+    "authority": "no production or pointer authority expansion"
+  },
+  "authority": {
+    "cpu_is_truth_judge": true,
+    "gpu_probability_is_not_truth": true,
+    "rust_is_write_membrane": true,
+    "candidate_only": true,
+    "production_generation": false,
+    "pointer_adoption": false
+  },
+  "canonicalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "sort_keys": true,
+    "trailing_lf": true,
+    "self_hash_field_omitted": true
+  }
+}
